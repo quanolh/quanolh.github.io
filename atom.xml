@@ -48,9 +48,9 @@
     <link href="https://quano.gitee.io/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/ERP/002.ERP%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
     <id>https://quano.gitee.io/wk/平台工具/架构设计/ERP/002.ERP系统架构设计/</id>
     <published>2024-03-24T07:55:57.000Z</published>
-    <updated>2024-03-24T18:51:18.654Z</updated>
+    <updated>2024-03-25T18:13:31.603Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="1-ERP系统理解"><a href="#1-ERP系统理解" class="headerlink" title="1. ERP系统理解"></a>1. ERP系统理解</h2><h3 id="1-1-ERP系统与智能工厂"><a href="#1-1-ERP系统与智能工厂" class="headerlink" title="1.1 ERP系统与智能工厂"></a>1.1 ERP系统与智能工厂</h3><p>首先所属行业是铸造业，所以先从铸造业智能工厂系统整体开始， 先分析ERP在智能工厂中的应用。<br>下图简述了 智能工厂的分层架构概览以及ERP系统在智能工厂中的位置。那ERP系统的作用是什么呢？<br><span style="font-size: 12px;"><em>tips: 只是一个大致的简述，参考了车企智能工厂的概述. 相较于共享的铸造智能工厂系统架构，此图比较粗略、分层和细节有所差异。不过在这里不是重点，我们重点关注上层的ERP在其中的应用</em>. </span></p><div>    <img src="https://quano.gitee.io/www/img/intell_factory_arch.png"         style="display: inline-block;margin-left: 18px; width: 50%"/>    <span style="display: block; margin-left: 18%;width: 50%">智能制造系统分层框架概览</span></div><p>ERP在其中作为一个集成的管理系统，通过整合企业内部的各种资源，包括财务、人力资源、生产、供应链、库存、销售等，提供一个统一的平台来监控和优化企业的运营。旨在帮助企业更有效地管理和自动化其业务流程。</p><p>随着技术以及企业的发展，CRM、SRM、HRM等模块从ERP系统中独立出来成为单独的系统，更专注于企业运营的特定领域，提供更深入的管理和分析工具。尽管独立运行，但底层通常与ERP系统进行数据集成，以便在整个企业范围内共享和流通信息。</p><h3 id="1-2-ERP存在的问题"><a href="#1-2-ERP存在的问题" class="headerlink" title="1.2 ERP存在的问题"></a>1.2 ERP存在的问题</h3><p>(什么时间？当前很多企业还使用传统的ERP系统)(ERP发展历程??)</p><p>ERP系统的作用在铸造业之外的其他行业也是同样的，是以企业的人、财、物资源集约化管理为目标的系统。通过业务流程实现资源调度集约，属于计划经济的思路，强调标准化和资源的复用节约。</p><p>然而当前市场环境下，企业面临的客户越来越多样化，个性化的需求，越来越需要<strong>以客户为中心</strong>动态的组织资源为客户提供服务。另外不同行业对于ERP的需求也有很多差异，有较多定制化的需求，国内的软件公司(用友、金蝶等)也往行业化、专业化发展，在行业提供专业的解决方案和产品服务，比如电商ERP、制造ERP、零售ERP、汽车行业ERP等等。</p><p>并且，传统的ERP存在的一些其它问题：高成本(实施和维护成本高-本地私有化等方式)、灵活性差(难以适应快速变化的业务需求，定制和升级过程复杂且耗时)、用户体验不佳、技术过时(单体架构、C/S模式)、数据孤岛、响应速度慢(企业数据信息响应)</p><p>针对这些问题，当前ERP的发展趋势是什么呢，最新一代的ERP应该是什么样子？</p><h3 id="1-3-ERP发展趋势"><a href="#1-3-ERP发展趋势" class="headerlink" title="1.3 ERP发展趋势"></a>1.3 ERP发展趋势</h3><p>可以定义为<strong><em>云ERP</em></strong>。基于云的ERP，①借助云原生技术，降低了硬件投资和维护成本；②模块化和组件化，更细粒度的拆分，使得企业可以根据需要选择和定制功能模块，提高了灵活性和可扩展性；③移动应用：支持移动设备，管理人员和员工可以随时随地访问企业数据和流程；④有较好的用户体验：直观的界面和简化的操作流程；⑤数据驱动：集成了数据分析工具，提供实时的业务洞察，帮助企业做出更快速和更准确的决策；⑥支持敏捷开发和部署：能够快速响应市场和业务需求的变化，缩短从开发到部署的周期。</p><p>要满足以上6大优点，并且适应当前市场环境，总体上的发展趋势有三个方面：</p><ul><li><p>”去ERP化“： 以资源计划为中心转变为以客户为中心(技术层面：上云-云原生、微服务)<br>为能够更加灵活的支撑前台的不断变化，满足企业的客户多样化、个性化的需求，转型为<strong><em>以客户为中心</em></strong>去动态的组织资源为客户提供服务。<br>通过云原生、微服务技术实现应用细粒度的拆分。当然，并不意味着一定要抛弃ERP软件。而是管理理念的转型伴随的系统架构的转型。</p></li><li><p>ERP回归本质：集中在完成财务相关以及资源计划方面的任务<br>目前ERP囊括太多的业务领域了，导致其过于臃肿、繁琐，未来让ERP回归到他的本质是趋势；通过更好的和CRM 、SRM、OA、EHR、PLM、MES等系统的集成去实现对数据的采集、存储和计算使用。<br>中心化、大而全的方式不适合市场及用户多变的环境，分布式、小而美才能给用户提供不一样的产品、服务和体验。</p></li><li><p>重点往行业化、专业化发展(目前正在发展的)<br>各行各业对系统的要求还是差异挺大的。<br>近几年大量的软件公司（也包括金蝶、用友）都开始事业部化了，在行业里去提供专业的解决方案和产品服务。<br>电商ERP、制造ERP</p></li></ul><p><strong><em>云ERP</em></strong> 像华为的MeatERP、用友、金蝶的最新ERP系统产品。</p><h2 id="2-新一代ERP应用架构设计"><a href="#2-新一代ERP应用架构设计" class="headerlink" title="2. 新一代ERP应用架构设计"></a>2. 新一代ERP应用架构设计</h2><p>基于以上背景和发展趋势，新一代ERP怎么做呢？</p><ul><li>核心思路<ul><li>1.完善技术底座：基于现有的erp应用，抽象和下沉共性的技术能力，采用微服务、云原生等技术构建技术底座(技术平台)， 包括完善底层开发框架和公共组件。</li><li>2.精简ERP：保留老的erp系统最核心的模块。将相对比较独立的的企业后台，比如财务、人力资源这些保留在后台ERP系统。 其他的业务模块从单体架构变成分布式的微服务架构。</li><li>3.敏捷应用：将ERP非核心模块、敏捷需求上移。采用微服务架构，改变传统单体架构模式去开发。让新应用的开发的颗粒度更小，方便开发、复用、组合。去定制开发的一些新的一些应用，同时支持未来的企业平台应用体系(企业级能力复用平台)。以实现从资源计划为中心转变为<strong><em>以客户为中心</em></strong>企业管理原则的转变， 应对企业面临的客户多样化、个性化的需求。（现在的市场需求，越来越强调以客户为中心去动态的组织资源为客户提供服务）</li><li>4.应用云化(方便管理、编排、治理)：包括 1.公有能力的服务化 2.ERP套件服务化改造 3.应用和数据分离(”去ERP化“)</li><li>5.数据驱动：将原有erp系统的数据沉淀到数据平台. 通过数据分析供上游业务和企业管理应用. </li></ul></li></ul><p>新一代ERP的特性：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">废弃：</span><br><span class="line">- 拓展应用能力。构建企业平台，将企业应用微化，可灵活定制；员工可将自己关注或者相关的应用添加到工作台. </span><br><span class="line">- 以客户为中心的敏捷行态，通过微服务实现。</span><br></pre></td></tr></table></figure><ul><li>整体架构</li></ul><div>    <img src="https://quano.gitee.io/www/img/new_erp.png"         style="display: inline-block;margin-left: 20px; width: 62%"/>    <span style="display: block; margin-left: 28%;width: 62%">新一代ERP应用架构</span></div><h3 id="2-1-ERP的核心模块"><a href="#2-1-ERP的核心模块" class="headerlink" title="2.1 ERP的核心模块"></a>2.1 ERP的核心模块</h3><p>参考：<a href="https://zhuanlan.zhihu.com/p/647462790">https://zhuanlan.zhihu.com/p/647462790</a></p><h3 id="2-2-技术底座"><a href="#2-2-技术底座" class="headerlink" title="2.2 技术底座"></a>2.2 技术底座</h3><h4 id="2-2-1-云原生"><a href="#2-2-1-云原生" class="headerlink" title="2.2.1 云原生"></a>2.2.1 云原生</h4><h4 id="2-2-2-微服务"><a href="#2-2-2-微服务" class="headerlink" title="2.2.2 微服务"></a>2.2.2 微服务</h4><h4 id="2-2-3-数据平台"><a href="#2-2-3-数据平台" class="headerlink" title="2.2.3 数据平台"></a>2.2.3 数据平台</h4><h4 id="2-2-4-算法与AI"><a href="#2-2-4-算法与AI" class="headerlink" title="2.2.4 算法与AI"></a>2.2.4 算法与AI</h4><h4 id="2-2-5-低代码平台"><a href="#2-2-5-低代码平台" class="headerlink" title="2.2.5 低代码平台"></a>2.2.5 低代码平台</h4><h4 id="2-2-6-公共组件和服务"><a href="#2-2-6-公共组件和服务" class="headerlink" title="2.2.6 公共组件和服务"></a>2.2.6 公共组件和服务</h4><h3 id="2-2-ERP的协同实现"><a href="#2-2-ERP的协同实现" class="headerlink" title="2.2 ERP的协同实现"></a>2.2 ERP的协同实现</h3><p>各个系统怎么协同、连接</p><h2 id="3-调研"><a href="#3-调研" class="headerlink" title="3.调研"></a>3.调研</h2><h3 id="3-1-国内-用友"><a href="#3-1-国内-用友" class="headerlink" title="3.1 国内-用友"></a>3.1 国内-用友</h3><p><a href="https://www.yonyou.com/YonBIP/index.html">用友BIP-商业创新平台</a>： 数智商业创新的使用平台</p><ul><li>背景：为满足 <strong>数智时代商业创新</strong>的需求，企业需要一个社会级的<strong>商业创新平台</strong>。</li><li>基本产品形态：数智平台 + 十大领域的场景服务 + 大规模生态</li><li>基础平台： 技术中台、低代码开发平台、技术中台、连接集成平台、数据中台、业务中台…</li><li>领域场景化服务： 财务云、项目用、研发云、资产云<ul><li>企业数智化财务云服务平台，助力<strong><em>企业财务数智化转型</em></strong></li></ul></li><li>特性： 云原生、敏捷工程化；技术底座iuap作为全PaaS能力一体化平台</li><li>架构：四大技术架构（云原生、元数据驱动-低代码、支持上层领域服务灵活扩展、中台化）、六大应用架构</li></ul><p><a href="https://iuap.yonyou.com/iuap/">用友iuap平台</a><br>企业级的业务和应用开发平台 - 升级企业数智化底座(技术底座，Paas层)</p><ul><li>包含：技术平台，业务、数据、智能中台， 低代码开发平台、连接集成平台.</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">用友YonBIP发展： 云转型的思路是，先有各个SaaS应用(财务云、人力云、营销云等等)， 然后才有底层Paas平台， 并不是真正从零开始研发，而是将NCC等加起来包装成大概念BIP。</span><br><span class="line">相比较 金蝶，先有苍穹PaaS平台，然后不断完善上层的Saas应用。</span><br><span class="line">优点在于： </span><br><span class="line">- 针对财务、HR、供应链等企业业务管理领域应用和服务进行了合理的微服务拆分与关联组合，形成了相较传统技术跨越式的能力提升，不断刷新业内性能极限。</span><br><span class="line">- 设计之初就结合最新的技术发展趋势和设计理念，对整体的技术基础架构以及应用架构进行了规划，是一套拥有先进思想和技术前瞻的正向平台化设计</span><br><span class="line"></span><br><span class="line">来源于：https://www.zhihu.com/question/525625964 讲述了 金蝶云苍穹和用友YonBIP的比较。</span><br><span class="line"></span><br><span class="line">YonBIP是基于iuap5.0做的, 算是国内乃至整个业界最好的。 NCC是基于NC+iuap的改造版本，但任然适用于大企业。</span><br></pre></td></tr></table></figure><h3 id="3-2-华为ERP"><a href="#3-2-华为ERP" class="headerlink" title="3.2 华为ERP"></a>3.2 华为ERP</h3><p>MetaERP</p><p><a href="https://mp.weixin.qq.com/s?__biz=MzIwNDI0ODY1OA==&amp;mid=2655968014&amp;idx=1&amp;sn=688308c8e6073b68d506c4ef6d91faec&amp;scene=21#wechat_redirect">华为ERP详细情况到底是什么样的</a></p><h4 id="2-1-华为ERP发展背景："><a href="#2-1-华为ERP发展背景：" class="headerlink" title="2.1 华为ERP发展背景："></a>2.1 华为ERP发展背景：</h4><ul><li>18,19年开始，美国打压华为，包括ERP也在禁止范围内。所以华为需要构建自己的ERP做替代。</li><li>数字化推进如火如荼，业务不确定性更加突出。 业务上对ERP的现状越来越不满意了（响应太慢，不能满足未来真正实现数字化的诉求）。</li><li>ERP是一套非常庞大的单体应用，数据量超级大，涉及模块多。迭代升级效率低(一次升级待半个月)。 远远不能满足业务需求。 急需架构升级。</li></ul><h4 id="2-2-华为下一代ERP构想"><a href="#2-2-华为下一代ERP构想" class="headerlink" title="2.2 华为下一代ERP构想"></a>2.2 华为下一代ERP构想</h4><p>第一，基于数据构建未来的智能化引擎，即智能大脑（跟传统的ERP一个非常大的区别）<br>第二，在数据基础上，上一层是构建全孵化的产品。 把以前单体系统会拆分成十几个微系统，以微服务的方式提供给上一层不同业务不同流程来组装去使用。<br>第三，面向各个部门按照自己的业务去挑选服务，去拼接组装，组成业务场景需要的一些业务流程和业务能力。<br>第四，组装完成之后，面向用户层，实现一站式服务。 从底层优化和升级后，形成整个一套面向未来的下一代ERP架构。</p><p>参考：<a href="https://mp.weixin.qq.com/s/hPkQJsJaLdEwFtYn-dI31Q">傅一平：一文讲透ERP的下一代架构！</a></p><ul><li>包含了 华为数字化转型之道 书中 华为数字化转型的框架，ERP就是其中的一个业务子集。</li></ul><p>参考：中台崛起的本质是”去ERP化“： </p><ul><li>有很多不错的理念.</li><li>套件ERP的弊端。 企业组织结构变更。</li></ul><p>特性：客户联接、能力数字化、云化IT平台、数字化运营。</p><ul><li>陈果的下一代ERP架构：以SAP ERP来说明下一代ERP。 有不同的观点(强调ERP目前没有过时，未来也不会过时)</li></ul><h3 id="3-3-ERP的发展历程和分类"><a href="#3-3-ERP的发展历程和分类" class="headerlink" title="3.3 ERP的发展历程和分类"></a>3.3 ERP的发展历程和分类</h3><p>2010年左右，云技术兴起。为企业更好的体验，更低的成本。</p><p>2021年中国云ERP市场规模为153.22亿元，其中主要以私有云为主，私有云ERP规模达137.9亿元，占比达90%。预计到2026年，中国云ERP市场规模将达到467.6亿元，2021-2026CAGR为25%。</p><h4 id="3-1-从技术架构分类"><a href="#3-1-从技术架构分类" class="headerlink" title="3.1 从技术架构分类"></a>3.1 从技术架构分类</h4><p>C/S（客户端软件）和B/S（浏览器软件）架构</p><ul><li>像用友、金蝶前期的很多产品都是C/S架构，现在也逐步都过渡到B/S架构了，能够让用户更方便快捷进行使用</li></ul><h4 id="3-2-从部署方式分类"><a href="#3-2-从部署方式分类" class="headerlink" title="3.2 从部署方式分类"></a>3.2 从部署方式分类</h4><p>横向：私有化-买断产品、云服务-订阅产品.<br>纵向：本地、云端(私有云、公有云、混合云)</p><p>本地私有化：软件部署在本地服务器，一般是内网，安全性高，但运维成本大。<br>云端私有化：企业购买软件 部署在云服务器上，可<strong><em>通过专线直连内容</em></strong>，安全性较好，服务器软件运行环境的运维成本低，但软件本身运维成本较大、<br>本地 云服务：<br>云端：用户开箱即用，订阅式收费模式，也有按流量收费，环境安全性有厂商保障， 数据统一存储在厂商的服务器上，运维成本低(安全性、隐私性问题)</p><ul><li>大型互联网自研: 都部署在自己的云端。 安全性、隐私性高，定制化程度高、灵活性好。有技术底座，运维成本较低. </li><li>中型互联网(boss): 私有化 云端（考虑数据安全和隐私性）</li><li>大型企业：???</li></ul><h4 id="3-3-从行业进行分类"><a href="#3-3-从行业进行分类" class="headerlink" title="3.3 从行业进行分类"></a>3.3 从行业进行分类</h4><ul><li>通用型ERP(用友、金蝶)：使用起来较复杂</li><li>专业性ERP</li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="1-ERP系统理解"><a href="#1-ERP系统理解" class="headerlink" title="1. ERP系统理解"></a>1. ERP系统理解</h2><h3 id="1-1-ERP系统与智能工厂"><a href="#1-1-ERP系统与智能工厂" class="headerlink" title="1.1 ERP系统与智能工厂"></a>1.1 ERP系统与智能工厂</h3><p>首先所属行业是铸造业，所以先从铸造业智能工厂系统整体开始， 先分析ERP在智能工厂中的应用。<br>下图简述了 智能工厂的分层架构概览以及ERP系统在智能工厂中的位置。那ERP系统的作用是什么呢？<br><span style="font-size: 12px;"><em>tips: 只是一个大致的简述，参考了车企智能工厂的概述. 相较于共享的铸造智能工厂系统架构，此图比较粗略、分层和细节有所差异。不过在这里不是重点，我们重点关注上层的ERP在其中的应用</em>. </span></p><div>    <img src="https://quano.gitee.io/www/img/intell_factory_arch.png"         style="display: inline-block;margin-left: 18px; width: 50%"/>    <span style="display: block; margin-left: 18%;width: 50%">智能制造系统分层框架概览</span></div><p>ERP在其中作为一个集成的管理系统，通过整合企业内部的各种资源，包括财务、人力资源、生产、供应链、库存、销售等，提供一个统一的平台来监控和优化企业的运营。旨在帮助企业更有效地管理和自动化其业务流程。</p><p>随着技术以及企业的发展，CRM、SRM、HRM等模块从ERP系统中独立出来成为单独的系统，更专注于企业运营的特定领域，提供更深入的管理和分析工具。尽管独立运行，但底层通常与ERP系统进行数据集成，以便在整个企业范围内共享和流通信息。</p><h3 id="1-2-ERP使用现状调研"><a href="#1-2-ERP使用现状调研" class="headerlink" title="1.2 ERP使用现状调研"></a>1.2 ERP使用现状调研</h3><p>todo<br>流程驱动？<br>当前大部分企业的使用现状？<br>发展历程？<br><span style="font-size: 12px;"><em>tips：TODO依据现状和发展时间线、准确总结下存在的问题。不过大致的问题差不多是以下这些</em>. </span></p><h3 id="1-3-ERP存在的问题"><a href="#1-3-ERP存在的问题" class="headerlink" title="1.3 ERP存在的问题"></a>1.3 ERP存在的问题</h3><p>ERP系统的作用在铸造业之外的其他行业也是同样的，是以企业的人、财、物资源集约化管理为目标的系统。通过<strong><em>业务流程</em></strong>实现<strong><em>资源调度集约</em></strong>，属于计划经济的思路，强调<strong>标准化和资源的复用节约</strong>。</p><p>然而当前市场环境下，企业面临的客户越来越多样化，个性化的需求，越来越需要<strong>以客户为中心</strong>动态的组织资源为客户提供服务。另外不同行业对于ERP的需求也有很多差异，有较多定制化的需求，国内的软件公司(用友、金蝶等)也往行业化、专业化发展，在行业提供专业的解决方案和产品服务，比如电商ERP、制造ERP、零售ERP、汽车行业ERP等等。</p><p>并且，传统的ERP存在的一些其它问题：高成本(实施和维护成本高-本地私有化等方式)、灵活性差(难以适应快速变化的业务需求，定制和升级过程复杂且耗时)、用户体验不佳、技术过时(单体架构、C/S模式)、数据孤岛、响应速度慢(企业数据信息响应)</p><p>针对这些问题，当前ERP的发展趋势是什么呢，最新一代的ERP应该是什么样子？</p><h3 id="1-4-ERP发展趋势"><a href="#1-4-ERP发展趋势" class="headerlink" title="1.4 ERP发展趋势"></a>1.4 ERP发展趋势</h3><p>可以定义为<strong><em>云ERP</em></strong>。基于云的ERP，①借助云原生技术，降低了硬件投资和维护成本；②模块化和组件化，更细粒度的拆分，使得企业可以根据需要选择和定制功能模块，提高了灵活性和可扩展性；③移动应用：支持移动设备，管理人员和员工可以随时随地访问企业数据和流程；④有较好的用户体验：直观的界面和简化的操作流程；⑤数据驱动：集成了数据分析工具，提供实时的业务洞察，帮助企业做出更快速和更准确的决策；⑥支持敏捷开发和部署：能够快速响应市场和业务需求的变化，缩短从开发到部署的周期。</p><p>要满足以上6大优点，并且适应市场环境变化，总体上的发展趋势有三个方面：</p><ul><li><p>”去ERP化“： 以资源计划为中心转变为以客户为中心的敏态形式(技术层面：上云、微服务拆分)<br>为能够更加灵活的支撑前台的不断变化，满足企业的客户多样化、个性化的需求，转型为<strong><em>以客户为中心</em></strong>去动态的组织资源为客户提供服务。<br>通过云原生、微服务技术实现应用细粒度的拆分。当然，并不意味着一定要抛弃ERP软件。而是管理理念的转型伴随的系统架构的转型。</p></li><li><p>ERP回归本质：集中在完成财务相关以及资源计划方面的任务<br>目前ERP囊括太多的业务领域了，导致其过于臃肿、繁琐，未来让ERP回归到他的本质是趋势；通过更好的和CRM 、SRM、OA、EHR、PLM、MES等系统的集成去实现对数据的采集、存储和计算使用。<br>中心化、大而全的方式不适合市场及用户多变的环境，分布式、小而美才能给用户提供不一样的产品、服务和体验。</p></li><li><p>重点往行业化、专业化发展(目前正在发展的)<br>各行各业对系统的要求还是差异挺大的。<br>近几年大量的软件公司（也包括金蝶、用友）都开始事业部化了，在行业里去提供专业的解决方案和产品服务。<br>电商ERP、制造ERP</p></li></ul><p><strong><em>云ERP</em></strong> 像华为的MeatERP、用友、金蝶的最新ERP系统产品。</p><h2 id="2-新一代ERP应用架构设计"><a href="#2-新一代ERP应用架构设计" class="headerlink" title="2. 新一代ERP应用架构设计"></a>2. 新一代ERP应用架构设计</h2><p>基于以上背景和发展趋势，新一代ERP怎么做呢？ 从灵活性、技术架构升级、模块化组件化、数据驱动、支持敏捷创新方面考虑.新一代ERP架构核心思路如下：</p><ul><li><strong><em>1.完善技术底座</em></strong>：基于现有的erp应用，抽象和下沉共性的技术能力，采用微服务、云原生等技术构建技术底座(技术平台)， 包括完善底层开发框架和公共组件。</li><li><strong><em>2.精简ERP</em></strong>：保留老的erp系统最核心的模块。将相对比较独立的的企业后台，比如财务、人力资源这些保留在后台ERP系统。 其他的业务模块从单体架构变成分布式的微服务架构。</li><li><strong><em>3.企业平台化-敏捷应用</em></strong>：将ERP非核心模块、敏捷需求上移。采用微服务架构，改变传统单体架构模式去开发。让新应用的开发的颗粒度更小，方便开发、复用、组合。去定制开发的一些新的一些应用，同时支持未来的企业平台应用体系(企业级能力复用平台)。以实现从资源计划为中心转变为<strong><em>以客户为中心</em></strong>企业管理原则的转变， 应对企业面临的客户多样化、个性化的需求。（现在的市场需求，越来越强调以客户为中心去动态的组织资源为客户提供服务）。可灵活支持除ERP以外的企业应用…</li><li><strong><em>4.用云化</em></strong>(方便管理、编排、治理)：包括 1.公有能力的服务化 2.ERP套件服务化改造 3.应用和数据分离(”去ERP化“)</li><li><strong><em>5.数据驱动</em></strong>：将原有erp系统的数据沉淀到数据平台. 通过数据分析供上游业务和企业管理应用. </li></ul><h3 id="2-1-整体架构"><a href="#2-1-整体架构" class="headerlink" title="2.1 整体架构"></a>2.1 整体架构</h3><div>    <img src="https://quano.gitee.io/www/img/new_erp.png"         style="display: inline-block;margin-left: 20px; width: 62%"/>    <span style="display: block; margin-left: 28%;width: 62%">新一代ERP应用架构</span></div><h3 id="2-2-复杂度分析"><a href="#2-2-复杂度分析" class="headerlink" title="2.2 复杂度分析"></a>2.2 复杂度分析</h3><p>从架构角度看，我认为对高可用、性能、扩展性的要求，通过模块化设计、多层架构(合理的分层便于扩展和维护)、数据管理等方面可以解决，并不复杂。<br>而系统的安全性和成本是其中较复杂的点。企业对敏感数据的保护是至关重要的；也要满足合规的要求，避免法律风险和罚款。对于信息安全有一定的要求。另外对于成本，不同阶段的企业对ERP的投资、运营有不同的成本预算。<br>怎么在保障系统安全的同时，合理规划和控制成本，是架构设计和选型中重要考虑的点。</p><p>从技术角度，ERP系统有集成的复杂度，需要与其他的业务系统集成，比如CRM、SCM等。不同系统可能使用不同的数据格式、接口标准等。还有定制开发，快速迭代-应对安全要求和敏捷业务。总体上就是需要实现业务流程协同、数据协同、技术协同、与其它系统协同。</p><p>针对以上系统复杂度较高的点，通过合理的技术选型解决这些问题。</p><p><span style="font-size: 12px;"><em>todo通用的模块复杂度、系统整体的复杂点。针对垂类的复杂度差异分析等。</em></span></p><h3 id="2-3-ERP的核心模块"><a href="#2-3-ERP的核心模块" class="headerlink" title="2.3 ERP的核心模块"></a>2.3 ERP的核心模块</h3><p>重点关注协同的复杂(流程、数据、系统之间).</p><p>ERP业务流程（画个图？）：将销售、生产、采购、财务等整个流程串起来。</p><ul><li>各个系统怎么协同、连接；  与 协同门户 的关系</li></ul><div>    <img src="https://quano.gitee.io/www/img/erp_arch.png"         style="display: inline-block;margin-left: 20px; width: 62%"/>    <span style="display: block; margin-left: 28%;width: 62%">ERP技术架构</span></div><h3 id="2-4-详细设计"><a href="#2-4-详细设计" class="headerlink" title="2.4 详细设计"></a>2.4 详细设计</h3><p>解决系统扩展性、敏捷性，并且为支持上层业务的数字化发展。</p><h4 id="2-4-1-云原生"><a href="#2-4-1-云原生" class="headerlink" title="2.4.1 云原生"></a>2.4.1 云原生</h4><h4 id="2-4-2-微服务"><a href="#2-4-2-微服务" class="headerlink" title="2.4.2 微服务"></a>2.4.2 微服务</h4><h4 id="2-4-3-数据平台"><a href="#2-4-3-数据平台" class="headerlink" title="2.4.3 数据平台"></a>2.4.3 数据平台</h4><h4 id="2-4-4-算法与AI"><a href="#2-4-4-算法与AI" class="headerlink" title="2.4.4 算法与AI"></a>2.4.4 算法与AI</h4><h4 id="2-4-5-低代码平台"><a href="#2-4-5-低代码平台" class="headerlink" title="2.4.5 低代码平台"></a>2.4.5 低代码平台</h4><h4 id="2-4-6-公共组件和服务"><a href="#2-4-6-公共组件和服务" class="headerlink" title="2.4.6 公共组件和服务"></a>2.4.6 公共组件和服务</h4><h3 id="2-5-安全和成本"><a href="#2-5-安全和成本" class="headerlink" title="2.5 安全和成本"></a>2.5 安全和成本</h3><p>todo<br>信息安全的考量：企业对敏感数据保护的要求、合规风险的要求。<br>成本的考量：合理的规划和成本控制。</p><h3 id="2-6-ERP与智能工厂"><a href="#2-6-ERP与智能工厂" class="headerlink" title="2.6 ERP与智能工厂"></a>2.6 ERP与智能工厂</h3><p>回顾到最开始的，ERP在智能工厂的定位，仅作为一个集成的管理系统，以流程为中心对资源集约化管理。</p><p>新一代ERP围绕ERP建设公共的技术底座、引入数据平台、算法能力。 扩展至其它上层应用，支撑上层应用敏捷创新(相较于传统的ERP迭代周期长、臃肿、响应速度慢等特点)；支撑企业平台、铸造业产业互联等。</p><h2 id="3-ERP的扩展"><a href="#3-ERP的扩展" class="headerlink" title="3.ERP的扩展"></a>3.ERP的扩展</h2><p>在数字化转型，发展数字经济，强调数字化、网络化、智能化对制造业、服务业、等产业数字化的背景下。<br>精简的ERP(企业资源管理/计划)以及其它企业平台应用，结合建设的公共、可复用的技术底座(基础设施)。可支撑企业平台的其它数字应用，包括公司事物、行政、监控、知识库等；并且支持实现企业的整体信息化转型、支持上层产业创新能力。<br>比如铸造云智能制造的互联网平台、垂类行业的各个解决方案。</p><p>核心发展理念：</p><ul><li>底层资源共享。包括(技术底座、公共服务平台、数据、算法、应用)。</li><li>数据统管(数据平台建设)。支撑数据驱动企业决策；提升开发和协同能力，促进产业创新。</li><li>以流程为中心转变为以用户/客户为中心的需求支撑(基于新技术架构)。</li><li>企业平台化-ERP以外的其他企业应用敏捷迭代，满足客户需求、产业创新。</li><li>产品互联网平台,作用于整个产业的运营效率和竞争力</li></ul><h3 id="3-1-底层资源共享"><a href="#3-1-底层资源共享" class="headerlink" title="3.1 底层资源共享"></a>3.1 底层资源共享</h3><p>底层技术架构应用到上层互联网平台、垂直行业的解决方案.</p><h3 id="3-2-企业平台化"><a href="#3-2-企业平台化" class="headerlink" title="3.2 企业平台化"></a>3.2 企业平台化</h3><p>企业平台化(构建开放、共享的平台，整合内外部资源)<br>ERP以外的其他企业应用敏捷迭代，满足客户需求、产业创新。<br>包括数字供应链(企业平台实现供应链各环节的协同工作；收集、共享供应链数据；快速响应供应链中的变化)</p><h3 id="3-3-产业互联网平台"><a href="#3-3-产业互联网平台" class="headerlink" title="3.3 产业互联网平台"></a>3.3 产业互联网平台</h3><p>ERP与整个产业链上的其他系统进行连接和数据交换，实现产业链的数字化和智能化，提高整个产业的运营效率和竞争力。<br>并且提高创新能力：利用ERP系统中的数据和分析工具，支持新产品、新技术和新业务模式的探索和实验，加速创新成果的商业化。</p><h2 id="4-调研"><a href="#4-调研" class="headerlink" title="4.调研"></a>4.调研</h2><h3 id="4-1-国内-用友"><a href="#4-1-国内-用友" class="headerlink" title="4.1 国内-用友"></a>4.1 国内-用友</h3><p><a href="https://www.yonyou.com/YonBIP/index.html">用友BIP-商业创新平台</a>： 数智商业创新的使用平台</p><ul><li>背景：为满足 <strong>数智时代商业创新</strong>的需求，企业需要一个社会级的<strong>商业创新平台</strong>。</li><li>基本产品形态：数智平台 + 十大领域的场景服务 + 大规模生态</li><li>基础平台： 技术中台、低代码开发平台、技术中台、连接集成平台、数据中台、业务中台…</li><li>领域场景化服务： 财务云、项目用、研发云、资产云<ul><li>企业数智化财务云服务平台，助力<strong><em>企业财务数智化转型</em></strong></li></ul></li><li>特性： 云原生、敏捷工程化；技术底座iuap作为全PaaS能力一体化平台</li><li>架构：四大技术架构（云原生、元数据驱动-低代码、支持上层领域服务灵活扩展、中台化）、六大应用架构</li></ul><p><a href="https://iuap.yonyou.com/iuap/">用友iuap平台</a><br>企业级的业务和应用开发平台 - 升级企业数智化底座(技术底座，Paas层)</p><ul><li>包含：技术平台，业务、数据、智能中台， 低代码开发平台、连接集成平台.</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">用友YonBIP发展： 云转型的思路是，先有各个SaaS应用(财务云、人力云、营销云等等)， 然后才有底层Paas平台， 并不是真正从零开始研发，而是将NCC等加起来包装成大概念BIP。</span><br><span class="line">相比较 金蝶，先有苍穹PaaS平台，然后不断完善上层的Saas应用。</span><br><span class="line">优点在于： </span><br><span class="line">- 针对财务、HR、供应链等企业业务管理领域应用和服务进行了合理的微服务拆分与关联组合，形成了相较传统技术跨越式的能力提升，不断刷新业内性能极限。</span><br><span class="line">- 设计之初就结合最新的技术发展趋势和设计理念，对整体的技术基础架构以及应用架构进行了规划，是一套拥有先进思想和技术前瞻的正向平台化设计</span><br><span class="line"></span><br><span class="line">来源于：https://www.zhihu.com/question/525625964 讲述了 金蝶云苍穹和用友YonBIP的比较。</span><br><span class="line"></span><br><span class="line">YonBIP是基于iuap5.0做的, 算是国内乃至整个业界最好的。 NCC是基于NC+iuap的改造版本，但任然适用于大企业。</span><br></pre></td></tr></table></figure><h3 id="4-2-华为ERP"><a href="#4-2-华为ERP" class="headerlink" title="4.2 华为ERP"></a>4.2 华为ERP</h3><p>MetaERP</p><p><a href="https://mp.weixin.qq.com/s?__biz=MzIwNDI0ODY1OA==&amp;mid=2655968014&amp;idx=1&amp;sn=688308c8e6073b68d506c4ef6d91faec&amp;scene=21#wechat_redirect">华为ERP详细情况到底是什么样的</a></p><h4 id="4-2-1-华为ERP发展背景："><a href="#4-2-1-华为ERP发展背景：" class="headerlink" title="4.2.1 华为ERP发展背景："></a>4.2.1 华为ERP发展背景：</h4><ul><li>18,19年开始，美国打压华为，包括ERP也在禁止范围内。所以华为需要构建自己的ERP做替代。</li><li>数字化推进如火如荼，业务不确定性更加突出。 业务上对ERP的现状越来越不满意了（响应太慢，不能满足未来真正实现数字化的诉求）。</li><li>ERP是一套非常庞大的单体应用，数据量超级大，涉及模块多。迭代升级效率低(一次升级待半个月)。 远远不能满足业务需求。 急需架构升级。</li></ul><h4 id="4-2-2-华为下一代ERP构想"><a href="#4-2-2-华为下一代ERP构想" class="headerlink" title="4.2.2 华为下一代ERP构想"></a>4.2.2 华为下一代ERP构想</h4><p>第一，基于数据构建未来的智能化引擎，即智能大脑（跟传统的ERP一个非常大的区别）<br>第二，在数据基础上，上一层是构建全孵化的产品。 把以前单体系统会拆分成十几个微系统，以微服务的方式提供给上一层不同业务不同流程来组装去使用。<br>第三，面向各个部门按照自己的业务去挑选服务，去拼接组装，组成业务场景需要的一些业务流程和业务能力。<br>第四，组装完成之后，面向用户层，实现一站式服务。 从底层优化和升级后，形成整个一套面向未来的下一代ERP架构。</p><p>参考：<a href="https://mp.weixin.qq.com/s/hPkQJsJaLdEwFtYn-dI31Q">傅一平：一文讲透ERP的下一代架构！</a></p><ul><li>包含了 华为数字化转型之道 书中 华为数字化转型的框架，ERP就是其中的一个业务子集。</li></ul><p>参考：中台崛起的本质是”去ERP化“： </p><ul><li>有很多不错的理念.</li><li>套件ERP的弊端。 企业组织结构变更。</li></ul><p>特性：客户联接、能力数字化、云化IT平台、数字化运营。</p><ul><li>陈果的下一代ERP架构：以SAP ERP来说明下一代ERP。 有不同的观点(强调ERP目前没有过时，未来也不会过时)</li></ul><h3 id="4-3-技术调研"><a href="#4-3-技术调研" class="headerlink" title="4.3 技术调研"></a>4.3 技术调研</h3><p>其它架构的可借鉴点(架构背后的复杂点、领先的互联网技术-云计算等)</p><p>Paas：各大互联网公司的基础研发平台中的各个平台产品(数据库、存储、微服务相关等)、各行业的软件平台(用友BIP、金蝶云·苍穹等)<br>Saas：企业办公、ERP、CRM、等产品</p><h3 id="4-4-ERP的发展历程和分类"><a href="#4-4-ERP的发展历程和分类" class="headerlink" title="4.4 ERP的发展历程和分类"></a>4.4 ERP的发展历程和分类</h3><h4 id="4-4-1-发展历程"><a href="#4-4-1-发展历程" class="headerlink" title="4.4.1 发展历程"></a>4.4.1 发展历程</h4><p>2010年左右，云技术兴起。为企业更好的体验，更低的成本。</p><p>2021年中国云ERP市场规模为153.22亿元，其中主要以私有云为主，私有云ERP规模达137.9亿元，占比达90%。预计到2026年，中国云ERP市场规模将达到467.6亿元，2021-2026CAGR为25%。</p><h4 id="4-4-2-从技术架构分类"><a href="#4-4-2-从技术架构分类" class="headerlink" title="4.4.2 从技术架构分类"></a>4.4.2 从技术架构分类</h4><p>C/S（客户端软件）和B/S（浏览器软件）架构</p><ul><li>像用友、金蝶前期的很多产品都是C/S架构，现在也逐步都过渡到B/S架构了，能够让用户更方便快捷进行使用</li></ul><h4 id="4-4-3-从部署方式分类"><a href="#4-4-3-从部署方式分类" class="headerlink" title="4.4.3 从部署方式分类"></a>4.4.3 从部署方式分类</h4><p>横向：私有化-买断产品、云服务-订阅产品.<br>纵向：本地、云端(私有云、公有云、混合云)</p><p>本地私有化：软件部署在本地服务器，一般是内网，安全性高，但运维成本大。<br>云端私有化：企业购买软件 部署在云服务器上，可<strong><em>通过专线直连内容</em></strong>，安全性较好，服务器软件运行环境的运维成本低，但软件本身运维成本较大、<br>本地 云服务：<br>云端：用户开箱即用，订阅式收费模式，也有按流量收费，环境安全性有厂商保障， 数据统一存储在厂商的服务器上，运维成本低(安全性、隐私性问题)</p><ul><li>大型互联网自研: 都部署在自己的云端。 安全性、隐私性高，定制化程度高、灵活性好。有技术底座，运维成本较低. </li><li>中型互联网(boss): 私有化 云端（考虑数据安全和隐私性）</li><li>大型企业：???</li></ul><h4 id="4-4-4-从行业进行分类"><a href="#4-4-4-从行业进行分类" class="headerlink" title="4.4.4 从行业进行分类"></a>4.4.4 从行业进行分类</h4><ul><li>通用型ERP(用友、金蝶)：使用起来较复杂</li><li>专业性ERP</li></ul>]]></content>
     
     <summary type="html">
     
@@ -127,6 +127,32 @@
   </entry>
   
   <entry>
+    <title>学习思考_系统化</title>
+    <link href="https://quano.gitee.io/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/001.%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83_%E7%B3%BB%E7%BB%9F%E5%8C%96/"/>
+    <id>https://quano.gitee.io/wk/项目管理/生活学习/学习方法/001.学习思考_系统化/</id>
+    <published>2024-02-24T01:56:24.000Z</published>
+    <updated>2024-03-24T18:38:59.440Z</updated>
+    
+    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="0ca6170728d0e7193f4d90eed45d1d974f97f07a9c7bb06ca060b141aefad4e8">37df3367815823fa6a74ef48ceb5066582bdbdc9d4d9b263c6b5b8ca3836096bbd872a5eca82543f3edcc30c21f783e0aa7ad72b7bad2d652cdb3f67059d140e5af2e068081c2b5e4e412d788d760ebbbb4b347d4694c63cbf0c85eba87f87804fe248e3d5bb590a755bc0451847d403cf465300627e16c92ca95c046b90b1f44de185b1cf906dfcbb2f86a31a0fae4eeabed4405c109b29e1e7c3d37342137224a34e8f9313946c1993531e3b84c3b27660b068476e2b2036280db596a57b5908cd17eab0b1c2766ffee30e9bd0d0c6bf12354c4f9ac1ee34dfd415af0cfe6e45348b856dee68dbaf25c318273767e1d32267298cd285f7a4ecd8a29c82d894e011c1ad3424c6baf7f1ce4a2562aa10ae55f2209479de423cc080427e3d3e013b17bb540aefdbe95f53e85e714c5f9f15c8f71f9eb0944b211e242dccb42b699bb42f9e633435310c83e6e39898ccd8b342fc025ce7666185ec5213ef8439e0fdd98ce84e42d78fc9f47229280081f8681eea458878e7c00b537d0a9a24a39440037aadcd98072a3347ca54d209bf9e30a4f8d8ca25be833284f2b43e695e32</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+    
+    <summary type="html">
+    
+      Here&#39;s something encrypted, password is required to continue reading.
+    
+    </summary>
+    
+      <category term="项目管理" scheme="https://quano.gitee.io/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"/>
+    
+      <category term="生活学习" scheme="https://quano.gitee.io/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="学习方法" scheme="https://quano.gitee.io/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+    
+      <category term="生活学习" scheme="https://quano.gitee.io/tags/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>2.职侧考试总结</title>
     <link href="https://quano.gitee.io/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%85%AC%E8%80%83/002.%E8%81%8C%E4%BE%A7%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93_filter/"/>
     <id>https://quano.gitee.io/wk/项目管理/生活学习/公考/002.职侧考试总结_filter/</id>
@@ -171,32 +197,6 @@
     
       <category term="公考" scheme="https://quano.gitee.io/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%85%AC%E8%80%83/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>学习思考_系统化</title>
-    <link href="https://quano.gitee.io/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/001.%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83_%E7%B3%BB%E7%BB%9F%E5%8C%96/"/>
-    <id>https://quano.gitee.io/wk/项目管理/生活学习/学习方法/001.学习思考_系统化/</id>
-    <published>2024-02-24T01:56:24.000Z</published>
-    <updated>2024-03-24T18:38:59.440Z</updated>
-    
-    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="0ca6170728d0e7193f4d90eed45d1d974f97f07a9c7bb06ca060b141aefad4e8">37df3367815823fa6a74ef48ceb5066582bdbdc9d4d9b263c6b5b8ca3836096bbd872a5eca82543f3edcc30c21f783e0aa7ad72b7bad2d652cdb3f67059d140e5af2e068081c2b5e4e412d788d760ebbbb4b347d4694c63cbf0c85eba87f87804fe248e3d5bb590a755bc0451847d403cf465300627e16c92ca95c046b90b1f44de185b1cf906dfcbb2f86a31a0fae4eeabed4405c109b29e1e7c3d37342137224a34e8f9313946c1993531e3b84c3b27660b068476e2b2036280db596a57b5908cd17eab0b1c2766ffee30e9bd0d0c6bf12354c4f9ac1ee34dfd415af0cfe6e45348b856dee68dbaf25c318273767e1d32267298cd285f7a4ecd8a29c82d894e011c1ad3424c6baf7f1ce4a2562aa10ae55f2209479de423cc080427e3d3e013b17bb540aefdbe95f53e85e714c5f9f15c8f71f9eb0944b211e242dccb42b699bb42f9e633435310c83e6e39898ccd8b342fc025ce7666185ec5213ef8439e0fdd98ce84e42d78fc9f47229280081f8681eea458878e7c00b537d0a9a24a39440037aadcd98072a3347ca54d209bf9e30a4f8d8ca25be833284f2b43e695e32</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-    
-    <summary type="html">
-    
-      Here&#39;s something encrypted, password is required to continue reading.
-    
-    </summary>
-    
-      <category term="项目管理" scheme="https://quano.gitee.io/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"/>
-    
-      <category term="生活学习" scheme="https://quano.gitee.io/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="学习方法" scheme="https://quano.gitee.io/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
-    
-      <category term="生活学习" scheme="https://quano.gitee.io/tags/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
@@ -389,6 +389,36 @@
   </entry>
   
   <entry>
+    <title>云计算-技术和架构概述</title>
+    <link href="https://quano.gitee.io/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/01.%E4%BA%A7%E5%93%81%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/002.%E6%8A%80%E6%9C%AF%E5%92%8C%E6%9E%B6%E6%9E%84/"/>
+    <id>https://quano.gitee.io/wk/平台工具/云计算/01.产品技术架构/002.技术和架构/</id>
+    <published>2024-02-03T14:55:57.000Z</published>
+    <updated>2024-02-03T09:46:05.804Z</updated>
+    
+    <content type="html"><![CDATA[<p>云计算是一种基于互联网的计算方式，它通过虚拟化技术将硬件资源（如服务器、存储设备和数据库）转化为动态可扩展的虚拟资源，并通过网络提供给用户使用。云计算的技术和架构包括以下几个方面：</p><h1 id="云计算技术"><a href="#云计算技术" class="headerlink" title="云计算技术"></a>云计算技术</h1><ol><li><p>虚拟化技术：云计算的核心技术之一。将物理硬件资源虚拟化为多个虚拟资源，实现资源的共享、灵活调度和高效利用。虚拟化技术包括服务器虚拟化、存储虚拟化、网络虚拟化等。</p></li><li><p>分布式技术：分布式技术是云计算的重要组成部分，它通过将数据和应用程序分布到多个节点上，实现负载均衡和高可用性。分布式技术包括分布式文件系统、分布式数据库等。</p></li><li><p>容器化技术：容器化技术是一种轻量级的虚拟化技术，它将应用程序及其依赖项打包到一个独立的容器中，实现应用程序的快速部署和管理。容器化技术包括Docker、Kubernetes等。</p></li><li><p>微服务架构：微服务架构是一种将应用程序拆分成多个小型服务的架构模式，每个服务都运行在独立的进程中，并使用轻量级通信协议进行通信，实现高内聚、低耦合的设计原则。微服务架构包括Spring Cloud、Dubbo等框架。</p></li><li><p>自动化运维：自动化运维是云计算的重要特征之一，它通过自动化工具和流程来降低运维成本，提高运维效率。自动化运维包括自动化部署、自动化监控、自动化备份等。</p></li><li><p>云安全技术：安全技术是保障云计算安全的重要手段，它通过数据加密、访问控制、安全审计等手段来保护云端数据和应用程序的安全。云安全技术包括身份认证、访问控制、数据加密等。</p></li></ol><h2 id="虚拟化技术"><a href="#虚拟化技术" class="headerlink" title="虚拟化技术"></a>虚拟化技术</h2><p>存储虚拟化： 基于存储设备的虚拟化、基于网络的虚拟化存储。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;云计算是一种基于互联网的计算方式，它通过虚拟化技术将硬件资源（如服务器、存储设备和数据库）转化为动态可扩展的虚拟资源，并通过网络提供给用户使用。云计算的技术和架构包括以下几个方面：&lt;/p&gt;
+&lt;h1 id=&quot;云计算技术&quot;&gt;&lt;a href=&quot;#云计算技术&quot; class=&quot;hea
+      
+    
+    </summary>
+    
+      <category term="平台工具" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="云计算" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
+    
+      <category term="01.产品技术架构" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/01-%E4%BA%A7%E5%93%81%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/"/>
+    
+    
+      <category term="云计算" scheme="https://quano.gitee.io/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
+    
+  </entry>
+  
+  <entry>
     <title>云计算-产品</title>
     <link href="https://quano.gitee.io/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/01.%E4%BA%A7%E5%93%81%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/001.%E4%BA%A7%E5%93%81/"/>
     <id>https://quano.gitee.io/wk/平台工具/云计算/01.产品技术架构/001.产品/</id>
@@ -442,73 +472,6 @@
   </entry>
   
   <entry>
-    <title>云计算-技术和架构概述</title>
-    <link href="https://quano.gitee.io/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/01.%E4%BA%A7%E5%93%81%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/002.%E6%8A%80%E6%9C%AF%E5%92%8C%E6%9E%B6%E6%9E%84/"/>
-    <id>https://quano.gitee.io/wk/平台工具/云计算/01.产品技术架构/002.技术和架构/</id>
-    <published>2024-02-03T14:55:57.000Z</published>
-    <updated>2024-02-03T09:46:05.804Z</updated>
-    
-    <content type="html"><![CDATA[<p>云计算是一种基于互联网的计算方式，它通过虚拟化技术将硬件资源（如服务器、存储设备和数据库）转化为动态可扩展的虚拟资源，并通过网络提供给用户使用。云计算的技术和架构包括以下几个方面：</p><h1 id="云计算技术"><a href="#云计算技术" class="headerlink" title="云计算技术"></a>云计算技术</h1><ol><li><p>虚拟化技术：云计算的核心技术之一。将物理硬件资源虚拟化为多个虚拟资源，实现资源的共享、灵活调度和高效利用。虚拟化技术包括服务器虚拟化、存储虚拟化、网络虚拟化等。</p></li><li><p>分布式技术：分布式技术是云计算的重要组成部分，它通过将数据和应用程序分布到多个节点上，实现负载均衡和高可用性。分布式技术包括分布式文件系统、分布式数据库等。</p></li><li><p>容器化技术：容器化技术是一种轻量级的虚拟化技术，它将应用程序及其依赖项打包到一个独立的容器中，实现应用程序的快速部署和管理。容器化技术包括Docker、Kubernetes等。</p></li><li><p>微服务架构：微服务架构是一种将应用程序拆分成多个小型服务的架构模式，每个服务都运行在独立的进程中，并使用轻量级通信协议进行通信，实现高内聚、低耦合的设计原则。微服务架构包括Spring Cloud、Dubbo等框架。</p></li><li><p>自动化运维：自动化运维是云计算的重要特征之一，它通过自动化工具和流程来降低运维成本，提高运维效率。自动化运维包括自动化部署、自动化监控、自动化备份等。</p></li><li><p>云安全技术：安全技术是保障云计算安全的重要手段，它通过数据加密、访问控制、安全审计等手段来保护云端数据和应用程序的安全。云安全技术包括身份认证、访问控制、数据加密等。</p></li></ol><h2 id="虚拟化技术"><a href="#虚拟化技术" class="headerlink" title="虚拟化技术"></a>虚拟化技术</h2><p>存储虚拟化： 基于存储设备的虚拟化、基于网络的虚拟化存储。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;云计算是一种基于互联网的计算方式，它通过虚拟化技术将硬件资源（如服务器、存储设备和数据库）转化为动态可扩展的虚拟资源，并通过网络提供给用户使用。云计算的技术和架构包括以下几个方面：&lt;/p&gt;
-&lt;h1 id=&quot;云计算技术&quot;&gt;&lt;a href=&quot;#云计算技术&quot; class=&quot;hea
-      
-    
-    </summary>
-    
-      <category term="平台工具" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="云计算" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
-    
-      <category term="01.产品技术架构" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/01-%E4%BA%A7%E5%93%81%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/"/>
-    
-    
-      <category term="云计算" scheme="https://quano.gitee.io/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>云计算解决方案-底层思维</title>
-    <link href="https://quano.gitee.io/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/02.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/001.%E5%BA%95%E5%B1%82%E6%80%9D%E7%BB%B4/"/>
-    <id>https://quano.gitee.io/wk/平台工具/云计算/02.解决方案/001.底层思维/</id>
-    <published>2024-02-03T14:55:57.000Z</published>
-    <updated>2024-02-02T17:15:58.126Z</updated>
-    
-    <content type="html"><![CDATA[<ol><li><p>一个解决方案的组成：比如 架构、需求、用到的技术、解决的问题、优缺点 等。</p></li><li><p>领域划分。安全、技术平台、基础设施领域解决方案分析。</p></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;一个解决方案的组成：比如 架构、需求、用到的技术、解决的问题、优缺点 等。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;领域划分。安全、技术平台、基础设施领域解决方案分析。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-
-      
-    
-    </summary>
-    
-      <category term="平台工具" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="云计算" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
-    
-      <category term="02.解决方案" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/02-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-    
-    
-      <category term="云计算" scheme="https://quano.gitee.io/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
-    
-      <category term="解决方案" scheme="https://quano.gitee.io/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-    
-  </entry>
-  
-  <entry>
     <title>云计算解决方案-5大场景</title>
     <link href="https://quano.gitee.io/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/02.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/002.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E6%9E%B6%E6%9E%84%E5%B8%885%E5%A4%A7%E5%9C%BA%E6%99%AF/"/>
     <id>https://quano.gitee.io/wk/平台工具/云计算/02.解决方案/002.解决方案架构师5大场景/</id>
@@ -540,20 +503,56 @@
   </entry>
   
   <entry>
-    <title>云计算解决方案-售前区别</title>
-    <link href="https://quano.gitee.io/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/02.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/003.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E6%9E%B6%E6%9E%84%E6%98%AF%E5%92%8C%E5%94%AE%E5%89%8D%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
-    <id>https://quano.gitee.io/wk/平台工具/云计算/02.解决方案/003.解决方案架构是和售前的区别/</id>
+    <title>云计算解决方案-面试</title>
+    <link href="https://quano.gitee.io/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/02.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/004.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E6%9E%B6%E6%9E%84%E9%9D%A2%E8%AF%95/"/>
+    <id>https://quano.gitee.io/wk/平台工具/云计算/02.解决方案/004.解决方案架构面试/</id>
     <published>2024-02-03T14:55:57.000Z</published>
-    <updated>2024-02-17T17:35:39.539Z</updated>
+    <updated>2024-02-18T15:53:28.197Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="解决方案架构师（SA）"><a href="#解决方案架构师（SA）" class="headerlink" title="解决方案架构师（SA）"></a>解决方案架构师（SA）</h2><ol><li>SA能力极其复合。<br>横跨售前、售中、售后；也就是具有出方案、拿订单、抓落地的 广谱能力。</li></ol><p>而售前的能力往往只聚焦在售前， 对于落地能力（不怎么样）</p><ol><li>SA 虽然能力具有广谱性，<br>但80%的 SA往往只做出方案 和拿订单的活。</li></ol><p>至于抓落地的苦杯活，往往敬而远之。（因为挖坑比填坑赚钱…）</p><blockquote><p>所以时下的SA都是“管挖不管埋”； 至于售前也就是攒攒WORD、堆堆PPT， 做这些垃圾活，可以说毫无存在感。甚至感觉自己啥都不是。</p></blockquote><ol><li>听说过“围标”吗？ SA往往做主标；也就是SA投的标，会中标； 至于售前，往往是陪标的（当托）</li></ol><p>售前陪标的使命，就是不中标</p><blockquote><p>基于客户的需求 还有自己的产品去 制作方案。然后向客户传递方案；解决客户的痛点。</p></blockquote><p>（与程序员的区别：看客户的需求、看自己的产品；基于客户的场景、业务流程，帮客户去解决问题）</p><p>不是纯产品的架构师，更多的是站在客户的角度。</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="议题"><a href="#议题" class="headerlink" title="议题"></a>议题</h2><h3 id="1-基于XXX-AWS、阿里云-平台的服务设计一个架构"><a href="#1-基于XXX-AWS、阿里云-平台的服务设计一个架构" class="headerlink" title="1. 基于XXX(AWS、阿里云)平台的服务设计一个架构"></a>1. 基于XXX(AWS、阿里云)平台的服务设计一个架构</h3><ol><li><p>分析：都有哪些可用的服务和产品.</p><ul><li>云服务器、容器、弹性伸缩、数据库、….. 对不同分类的产品非常熟悉.</li></ul></li><li><p>分析客户需求.</p></li></ol><blockquote><p>给了两周时间学习AWS和准备Presentation的内容.花时间好好看AWS资料，并且不建议缩短时间，让提前两天做好PPT发给HR.</p></blockquote><p>例：”初创公司基于Lamp架构设计的方案，用户有10大痛点，如果迁移到AWS上该如何设计？“ 【Presentation时间是50分钟】</p><h3 id="2-基于你过往的工作当中你认为最好的架构，设计并讲解如何设计的"><a href="#2-基于你过往的工作当中你认为最好的架构，设计并讲解如何设计的" class="headerlink" title="2. 基于你过往的工作当中你认为最好的架构，设计并讲解如何设计的"></a>2. 基于你过往的工作当中你认为最好的架构，设计并讲解如何设计的</h3><h2 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h2><p><a href="https://zhuanlan.zhihu.com/p/525328712">亚马逊”AWS解决方案架构师”</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;解决方案架构师（SA）&quot;&gt;&lt;a href=&quot;#解决方案架构师（SA）&quot; class=&quot;headerlink&quot; title=&quot;解决方案架构师（SA）&quot;&gt;&lt;/a&gt;解决方案架构师（SA）&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;SA能力极其复合。&lt;br&gt;横跨售前、售中、售后；也就是具
+        &lt;h2 id=&quot;议题&quot;&gt;&lt;a href=&quot;#议题&quot; class=&quot;headerlink&quot; title=&quot;议题&quot;&gt;&lt;/a&gt;议题&lt;/h2&gt;&lt;h3 id=&quot;1-基于XXX-AWS、阿里云-平台的服务设计一个架构&quot;&gt;&lt;a href=&quot;#1-基于XXX-AWS、阿里云-平台的服务设计一个架
+      
+    
+    </summary>
+    
+      <category term="平台工具" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="云计算" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
+    
+      <category term="02.解决方案" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/02-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    
+    
+      <category term="云计算" scheme="https://quano.gitee.io/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
+    
+      <category term="解决方案" scheme="https://quano.gitee.io/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>云计算解决方案-底层思维</title>
+    <link href="https://quano.gitee.io/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/02.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/001.%E5%BA%95%E5%B1%82%E6%80%9D%E7%BB%B4/"/>
+    <id>https://quano.gitee.io/wk/平台工具/云计算/02.解决方案/001.底层思维/</id>
+    <published>2024-02-03T14:55:57.000Z</published>
+    <updated>2024-02-02T17:15:58.126Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li><p>一个解决方案的组成：比如 架构、需求、用到的技术、解决的问题、优缺点 等。</p></li><li><p>领域划分。安全、技术平台、基础设施领域解决方案分析。</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;&lt;p&gt;一个解决方案的组成：比如 架构、需求、用到的技术、解决的问题、优缺点 等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;领域划分。安全、技术平台、基础设施领域解决方案分析。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
       
     
     </summary>
