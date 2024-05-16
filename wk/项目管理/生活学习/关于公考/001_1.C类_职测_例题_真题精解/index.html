@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <title>1.1 C类_职测_例题精解 | Nova`s Wiki</title>
+    
+    
+        <meta name="keywords" content="private">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="这是一篇加密文章，需要密码才能继续阅读。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.1 C类_职测_例题精解">
+<meta property="og:url" content="https://quano.gitee.io/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/001_1.C%E7%B1%BB_%E8%81%8C%E6%B5%8B_%E4%BE%8B%E9%A2%98_%E7%9C%9F%E9%A2%98%E7%B2%BE%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Nova&#96;s Wiki">
+<meta property="og:description" content="这是一篇加密文章，需要密码才能继续阅读。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-03-02T03:55:57.000Z">
+<meta property="article:modified_time" content="2024-05-15T15:39:39.192Z">
+<meta property="article:author" content="Nova">
+<meta property="article:tag" content="private">
+<meta name="twitter:card" content="summary">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="Nova`s Wiki" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?9088151460061a7c449bb9d5a3209fbc";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Nova`s Wiki</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>categories</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            MicroService
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            容器云平台
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E5%AE%B9%E5%99%A8%E4%BA%91%E5%B9%B3%E5%8F%B0/001.k8s%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97/">k8s安装指南</a></li>  <li class="file"><a href="/wk/MicroService/%E5%AE%B9%E5%99%A8%E4%BA%91%E5%B9%B3%E5%8F%B0/002.%E9%87%8D%E5%90%AFwsl%E5%90%8E%E7%9A%84k8s%E9%9B%86%E7%BE%A4%E6%81%A2%E5%A4%8D/">002.重新开启wsl后 k8s集群恢复.</a></li>  <li class="file"><a href="/wk/MicroService/%E5%AE%B9%E5%99%A8%E4%BA%91%E5%B9%B3%E5%8F%B0/003.minikube%E4%BD%BF%E7%94%A8/">minikube使用</a></li>  <li class="file"><a href="/wk/MicroService/%E5%AE%B9%E5%99%A8%E4%BA%91%E5%B9%B3%E5%8F%B0/004.nfs-server%E9%83%A8%E7%BD%B2/">nfs-server部署</a></li>  <li class="file"><a href="/wk/MicroService/%E5%AE%B9%E5%99%A8%E4%BA%91%E5%B9%B3%E5%8F%B0/005.K8S%E7%9A%84StorageClass%E5%AE%9E%E6%88%98/">K8S的StorageClass实战(NFS)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            微服务架构
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            基础
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%9F%BA%E7%A1%80/001.%E7%BA%BF%E7%A8%8B%E6%B1%A0/">线程池</a></li>  <li class="file"><a href="/wk/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%9F%BA%E7%A1%80/002.%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E5%8F%8A%E5%85%B6%E9%87%8D%E8%A6%81%E7%9A%8410%E4%B8%AA%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">微服务架构及其重要的10个设计模式</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            工作流引擎
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E/001.readme/">工作流引擎</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            服务治理
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86/001.%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86/">001什么是服务治理</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            链路追踪
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AA/001.trace%E4%BB%8B%E7%BB%8D/">分布式链路追踪认识及选型</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/001.%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E6%94%AF%E6%8C%81/">01.开发使用环境</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            技术框架
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Mybatis
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Mybatis/Mybatis%E5%8E%9F%E7%90%86%E6%8E%A2%E7%B4%A2/">01.Mybatis原理</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Mybatis/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">02.动态代理</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Mybatis/%E6%89%8B%E5%86%99mybatis/"></a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Mybatis/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E6%BA%90%E6%8F%90%E4%BE%9B%E8%80%85/">01.自定义数据源提供者</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Netty
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            总结
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/%E6%80%BB%E7%BB%93/001.%E7%BD%91%E7%BB%9C-Netty%E3%80%81Tomcat%E3%80%81%E5%AE%89%E5%85%A8/">02.Netty的NioEventLoop</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/002.Netty%E4%B8%AD%E7%9A%84NioEventLoop/">02.Netty的NioEventLoop</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/003.Netty%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">003.Netty线程模型</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/004.Netty%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%85%B6%E4%BB%96WebServer%E7%9A%84%E6%AF%94%E8%BE%83/">003.Netty线程模型和其他WebServer的比较</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/02.Netty%E7%9A%84NioEventLoop/">02.Netty的NioEventLoop</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/03.Netty%E4%B9%8BChannel/">03.Netty之Channel</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/Netty%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95/">Netty学习目录</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/%E7%96%91%E9%97%AE/"></a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/%E8%AF%BB%E5%86%99%E4%BA%8B%E4%BB%B6%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90%E4%B8%8E%E7%9B%B8%E5%85%B3API/">读写事件流程分析与相关API</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/01.netty%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/">01.Netty服务端启动流程</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            RPC
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Netty
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/Netty/01.netty%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/">01.Netty服务端启动流程</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/Netty/02.Netty%E7%9A%84NioEventLoop/">02.Netty的NioEventLoop</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/Netty/03.Netty%E4%B9%8BChannel/">03.Netty之Channel</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/Netty/Netty%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95/">Netty学习目录</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/Netty/%E7%96%91%E9%97%AE/"></a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/Netty/%E8%AF%BB%E5%86%99%E4%BA%8B%E4%BB%B6%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90%E4%B8%8E%E7%9B%B8%E5%85%B3API/">读写事件流程分析与相关API</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            doc
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/doc/001.post/">Thrift框架原理及rpc认识</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/doc/%E5%90%9E%E5%90%90%E9%87%8F%E5%92%8C%E5%BB%B6%E8%BF%9F/">吞吐量和延迟</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            thrift
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/thrift/thrift/">Thrift框架原理及rpc认识</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/thrift/thrift%E5%AE%89%E8%A3%85/"></a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            SpringBoot
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringBoot/01.SpringBoot%E5%B8%B8%E8%A7%81starter/">SpringBoot常见starter</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringBoot/02.SpringBootStarter%E5%AE%9A%E4%B9%89%E7%9A%84%E6%96%B9%E5%BC%8F/">SpringBootStarter的定义方式</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringBoot/04.%E8%87%AA%E5%AE%9A%E4%B9%89Endpoint/">SpringBoot:自定义Endpoint</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringBoot/Readme/">SpringBoot</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringBoot/%E8%87%AA%E5%AE%9A%E4%B9%89starter/"></a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringBoot/03.SpringBoot%E5%BA%94%E7%94%A8%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/">SpringBoot应用启动流程</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            micronaut
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/micronaut/README/">01.micronaut介绍</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            workflow
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/workflow/001.README/">workFlow</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/MicroService/README/">01.后端架构师技术图谱</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            平台工具
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            云计算
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            01.产品技术架构
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/01.%E4%BA%A7%E5%93%81%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/001.%E4%BA%A7%E5%93%81/">云计算-产品</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/01.%E4%BA%A7%E5%93%81%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/002.%E6%8A%80%E6%9C%AF%E5%92%8C%E6%9E%B6%E6%9E%84/">云计算-技术和架构概述</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/01.%E4%BA%A7%E5%93%81%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/003.%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E7%9A%84%E6%80%9D%E8%80%83%E5%92%8C%E6%80%BB%E7%BB%93/">技术架构思考总结</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            02.解决方案
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/02.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/001.%E5%BA%95%E5%B1%82%E6%80%9D%E7%BB%B4/">云计算解决方案-底层思维</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/02.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/004.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E6%9E%B6%E6%9E%84%E9%9D%A2%E8%AF%95/">云计算解决方案-面试</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/02.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/003.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E6%9E%B6%E6%9E%84%E6%98%AF%E5%92%8C%E5%94%AE%E5%89%8D%E7%9A%84%E5%8C%BA%E5%88%AB/">云计算解决方案-售前区别</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/02.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/002.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E6%9E%B6%E6%9E%84%E5%B8%885%E5%A4%A7%E5%9C%BA%E6%99%AF/">云计算解决方案-5大场景</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            03.阿里云
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/03.%E9%98%BF%E9%87%8C%E4%BA%91/001.Serverless/">阿里云-Serverless</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            04.基础技术
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/04.%E5%9F%BA%E7%A1%80%E6%8A%80%E6%9C%AF/002.%E4%BA%91%E5%8E%9F%E7%94%9F%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E4%BB%8B%E7%BB%8D/">2.元原生技术介绍</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/04.%E5%9F%BA%E7%A1%80%E6%8A%80%E6%9C%AF/001.%E4%BA%91%E5%8E%9F%E7%94%9F%E6%8A%80%E6%9C%AF/">1.云原生技术-经验</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/04.%E5%9F%BA%E7%A1%80%E6%8A%80%E6%9C%AF/003.IAAS/">3.IAAS</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/04.%E5%9F%BA%E7%A1%80%E6%8A%80%E6%9C%AF/004.%E5%BC%B9%E6%80%A7%E8%AE%A1%E7%AE%97/">4.弹性计算</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            05.解决方案_技能
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            安全方向
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/05.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88_%E6%8A%80%E8%83%BD/%E5%AE%89%E5%85%A8%E6%96%B9%E5%90%91/000.%E6%80%BB%E4%BD%93%E4%BB%8B%E7%BB%8D/">0.总体介绍</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            课程学习
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/05.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88_%E6%8A%80%E8%83%BD/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/001.%E5%8D%8E%E4%B8%BAHCIE/">0.华为HCIE课程</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            政务云
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/%E6%94%BF%E5%8A%A1%E4%BA%91/001.%E6%94%BF%E5%8A%A1%E4%BA%91%E4%BB%8B%E7%BB%8D/">1.政务云</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/%E6%94%BF%E5%8A%A1%E4%BA%91/002.%E4%BA%91%E5%AE%B9%E7%81%BE%E5%A4%87%E4%BB%BD/">2.云容灾备份</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/%E6%94%BF%E5%8A%A1%E4%BA%91/004.%E5%85%AC%E6%9C%89%E4%BA%91_%E4%BC%81%E4%B8%9A%E7%A7%81%E6%9C%89%E4%BA%91/">4.公有云_企业私有云</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/%E6%94%BF%E5%8A%A1%E4%BA%91/005.%E9%98%BF%E9%87%8C%E4%BA%91_%E8%85%BE%E8%AE%AF%E4%BA%91/">5.阿里云_腾讯云</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/%E6%94%BF%E5%8A%A1%E4%BA%91/010.%E6%80%BB%E7%BB%93/">10.总结</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/000.README/">云计算认识</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            工作相关
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            WIN
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/WIN/001.WSL2/">WSL2使用</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            WikiMe
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/WikiMe/001.wiki%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%85%AC%E5%BC%8F/">1.wiki中使用数学公式</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            压测
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E5%8E%8B%E6%B5%8B/001.wrk-http%E5%8E%8B%E6%B5%8B/">wrk-http压测</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            环境搭建
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/001.node%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Node环境搭建</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/002.python%E7%8E%AF%E5%A2%83Anaconda/">Python环境Anaconda</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/003.scala%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">scala环境搭建</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/004.checkstyle/">CheckStyle</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/004_1.checkstype_google/">google_CheckStyle</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/005.react%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/">Python环境Anaconda</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/005.sbt%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Sbt Reference Manual</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/006.Andriod%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">下载并安装 Android Studio</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/007.Gradle%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Gradle环境搭建</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            工具组件
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            ActiveMQ
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/ActiveMQ/ActiveMQ%E5%88%86%E4%BA%AB/">ActiveMQ分享</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/ActiveMQ/ActiveMQ%E4%BB%8B%E7%BB%8D/">ActiveMQ介绍</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Builder
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/Builder/sbt/">sbt了解</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Docker
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/Docker/001.Docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">1.Docker常用命令</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/Docker/002.Docker%E7%8E%AF%E5%A2%83-Ubuntu16%E5%AE%89%E8%A3%85Docker%E7%8E%AF%E5%A2%83/">2.Ubuntu16安装Docker[D]</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/Docker/003.Docker%E7%8E%AF%E5%A2%83%E5%85%B6%E4%BB%96%E4%B8%AD%E9%97%B4%E4%BB%B6%E4%BD%BF%E7%94%A8/">3.Docker环境其他中间件使用</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/Docker/004.Dockerfile%E8%AF%AD%E6%B3%95/">4.Dockerfile语法</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/Docker/005.%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F/">5.docker系统镜像[D]</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/Docker/006.Docker%E7%BD%91%E7%BB%9C/">6.Docker NetWork</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/Docker/007.Docker%E5%85%B6%E4%BB%96%E5%B7%A5%E5%85%B7/">7.Docker其他工具</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Drools
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/Drools/001.%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E%E5%85%A5%E9%97%A8/">规则引擎入门</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Elasticsearch
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/Elasticsearch/001.ES%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">ES环境搭建</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/Elasticsearch/002.Es%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85/"></a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/Elasticsearch/1.ES%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">ES环境搭建</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/Elasticsearch/Python%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95/">Python客户端创建索引</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            IDE
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/IDE/Git%E4%BD%BF%E7%94%A8%E8%A7%84%E8%8C%83/">Git使用规范</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/IDE/Git%E5%AD%A6%E4%B9%A0/">Git学习</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/IDE/Maven%E5%91%BD%E4%BB%A4/">Maven命令</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/IDE/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/IDE/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6/">浏览器插件</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Influxdb
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/Influxdb/Influxdb%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Influxdb环境搭建</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Jenkins
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/Jenkins/1.Jenkins%E8%AE%A4%E8%AF%86/">Jenkins认识</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/Jenkins/2.Jenkins%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">Jenkins安装配置</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/Jenkins/3.Jenkins%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/">Jenkins插件使用</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/Jenkins/4.Jenkins%E9%A1%B9%E7%9B%AE%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/">Jenkins项目常用配置</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Redis
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            性能测试
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/Redis/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/001.incr%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">redis性能测试</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Zookeeper
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/Zookeeper/zk%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">Zookeeper安装使用指南</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            nginx
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/nginx/001.Ubuntu%E4%B8%8Bnginx%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/">Ubuntu下nginx安装使用</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/nginx/002.%E7%BD%91%E7%AB%99https%E6%94%AF%E6%8C%81-nginx/">网站https支持-Nginx</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/nginx/003.Nginx%E8%BD%AC%E5%8F%91%E9%85%8D%E7%BD%AE/">Nginx转发配置</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            前端方案
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/%E5%89%8D%E7%AB%AF%E6%96%B9%E6%A1%88/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E8%AE%B0%E5%BD%95/">前端框架选择方案</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            组件安装配置
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/ActiveMQ/">Redis的安装及集群配置</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/ElasticSearch/">Elasticsearch</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/JRebel/">JRebel 安装使用</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Linux常用命令</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Maven%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8/">Maven的安装配置使用</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Redis-clinet/">Redis-client安装配置</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Redis%E5%AE%89%E8%A3%85%E5%8F%8A%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE/">Redis的安装及集群配置</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/SpringMvc%E6%80%BB%E7%BB%93/">SpringMVC总结</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Swagger2%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/">Swagger2安装使用</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Zookeeper/">ZooKeeper</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/hotJar/"></a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/nginx/">Ngix安装</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            规则引擎
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7%E7%BB%84%E4%BB%B6/%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E/%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E%E6%AF%94%E8%BE%83/"></a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            架构设计
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            ERP
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/ERP/001.ERP%E7%B3%BB%E7%BB%9F%E8%AE%A4%E8%AF%86/">1.ERP系统认识</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/ERP/002.ERP%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">2.ERP系统架构设计</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            学习资料
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/001.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/">1.架构设计学习资料</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            实践经验总结
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9E%E8%B7%B5%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/001.%E9%A3%8E%E6%8E%A7%E6%9E%B6%E6%9E%84_01/">风控架构篇_01</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9E%E8%B7%B5%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/002.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/">2. 架构设计案例</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            方法论
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%B9%E6%B3%95%E8%AE%BA/001.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95%E8%AE%BA%E7%9A%84%E7%90%86%E8%A7%A3/">1.架构设计方法论理解</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%B9%E6%B3%95%E8%AE%BA/005.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E6%A8%A1%E6%9D%BF/">5.架构设计文档模板</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%B9%E6%B3%95%E8%AE%BA/002.%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E5%8F%91%E5%B1%95_%E8%8D%89%E7%A8%BF/">3.微服务架构熟知</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/001.ArchitectureStart/">1.架构设计-Start</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/002.%E5%B8%B8%E8%A7%81%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93/">2.架构模式总结_常见</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/003.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/">3.架构设计原则总结</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/005.%E8%83%BD%E5%8A%9B%E5%AE%9A%E4%B9%89/">5.架构设计-能力定义</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/004.%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/">4.架构设计工具总结</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            程序语言
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            C++
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            [重点]开发环境
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/C++/%5B%E9%87%8D%E7%82%B9%5D%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/VScode%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">rocksdb源码环境配置</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            rocksdb源码学习
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/C++/rocksdb%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/001.%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98/">rocksdb源码环境配置</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/C++/rocksdb%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/002.Java%E7%89%88%E6%9C%AC%E6%94%AF%E6%8C%81/"></a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/C++/rocksdb%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/003.%E7%9B%B8%E5%85%B3%E4%BE%9D%E8%B5%96/"></a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/C++/rocksdb%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/merge%E6%93%8D%E4%BD%9C/">Merge源码解析</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            开发环境问题
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/C++/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%97%AE%E9%A2%98/1.%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">C++环境常见问题</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/C++/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%97%AE%E9%A2%98/2.vagrant/">vagrant</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            编译器
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/C++/%E7%BC%96%E8%AF%91%E5%99%A8/%E7%BC%96%E8%AF%91%E5%99%A8%E4%BA%86%E8%A7%A3/"></a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/C++/0.C%E4%B8%8Ec++%E5%8C%BA%E5%88%AB%E5%8F%8A%E5%85%A5%E9%97%A8/">0.C和c++区别</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/C++/1.%E6%8C%87%E9%92%88%E5%92%8C%E5%BC%95%E7%94%A8/">1.指针和引用</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/C++/3.virtual%E5%85%B3%E9%94%AE%E5%AD%97/">3.虚函数</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/C++/2.Make%E5%91%BD%E4%BB%A4%E6%95%99%E7%A8%8B/">2.Make命令教程</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/C++/4.explicit%E5%85%B3%E9%94%AE%E5%AD%97/">4.explict函数</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/C++/5.%E5%88%9D%E5%A7%8B%E5%8C%96%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/"></a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/C++/6.c++%E5%AE%B9%E5%99%A8%E6%B5%85%E6%9E%90/">6.C++ vector 容器浅析</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/C++/7.JavaJNI%E7%9A%84%E6%94%AF%E6%8C%81/">JavaJNI的支持</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HashMap
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Java/HashMap/HashMap%E6%89%A9%E5%AE%B9/">HashMap扩容</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JVM
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Java/JVM/001.Java%E5%AF%B9%E8%B1%A1/">查看java对象大小</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            多线程
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/001.%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/">线程状态说明及状态流转</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/002.LockSupport/">LockSupport</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            正则表达式
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Java/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/001.%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99/">正则表达式</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            注解
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Java/%E6%B3%A8%E8%A7%A3/1.%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%88%86%E7%B1%BB/">1.注解的分类</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Java/%E6%B3%A8%E8%A7%A3/2.%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3/">2.自定义注解</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Java/BeanToMap/">实体Bean与Map之间的转换</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Java/Java8Stream/">3.Java8Stream</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Java/Java%E5%9F%BA%E7%A1%80/">1.Java基础</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Java/Jdk%E9%95%9C%E5%83%8F/">jdk下载镜像</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Java/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3-FunctionalInterface/">函数式接口-FunctionalInterface</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Java/%E9%94%81/"></a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Python
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            http请求
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Python/http%E8%AF%B7%E6%B1%82/get/"></a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            jupyter
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Python/jupyter/1.%E4%BB%80%E4%B9%88%E6%98%AFjupyter/">Jupyter</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            pandas
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Python/pandas/001.README/"></a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Python/pandas/002.pandas%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">pandas数据类型</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Python/pandas/003.DataFrame%E9%81%8D%E5%8E%86/">DataFrame遍历</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            基础语法及操作
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Python/%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E5%8F%8A%E6%93%8D%E4%BD%9C/001.csv%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/">CSV文件读取</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Python/%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E5%8F%8A%E6%93%8D%E4%BD%9C/002.%E4%B8%AD%E6%96%87http%E8%AF%B7%E6%B1%82%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3/">中文http请求乱码解决</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Python/Python%E5%AE%A2%E6%88%B7%E7%AB%AFHttp%E8%AF%B7%E6%B1%82/">Python客户端http请求</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Python/Python%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Python学习</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Python/pandas%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">pandas总结</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Python/pandas%E5%A4%84%E7%90%86%E8%A1%A8%E6%A0%BC/">pandas读取表格</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Python/%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/">Python常用函数</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Python/%E6%A8%A1%E5%9D%97%E5%AE%89%E8%A3%85/">pip 模块安装</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Scala
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Scala/Scala%E5%85%A5%E9%97%A8/">Scala学习</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Scala/%E4%BD%BF%E7%94%A8maven%E6%9E%84%E5%BB%BAscala%E9%A1%B9%E7%9B%AE/">Scala项目构建</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            编程相关
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            IOS
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3/IOS/001.IOS%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/">1.IOS开发总结</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            vue
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3/vue/Vue%E7%89%B9%E6%80%A7/">Vue特性</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3/vue/Vue%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95-%E9%87%87%E5%9D%91%E8%AE%B0/">Vue项目采坑记录</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            客户端开发
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91/001.%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%80%E6%96%B0%E6%8A%80%E6%9C%AF/">客户端最新技术</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3/%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B/">Reactive</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据处理
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            DataStore
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Elasticsearch
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Elasticsearch/1.ES%E4%BB%8B%E7%BB%8D/">1.ES介绍</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Elasticsearch/3.ES%E5%B8%B8%E7%94%A8api/">3.ES常用API</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Elasticsearch/2.ES%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">2.ES环境搭建</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Elasticsearch/4.ES%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE/">4.权限设置</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Elasticsearch/5.Logstash%E5%AE%89%E8%A3%85/">5.Logstash安装</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Elasticsearch/6.EsJavaClient/">6.EsJavaClient</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Elasticsearch/7.Es%E6%A0%B8%E5%BF%83Lucene/">7.ES核心-Lucene</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Hadoop
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Hadoop/Hadoop%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/">Hadoop学习资料</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kafka
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            kafkaListener
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Kafka/kafkaListener/listener/"></a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            kafka设计解析
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Kafka/kafka%E8%AE%BE%E8%AE%A1%E8%A7%A3%E6%9E%90/1.KafkaConsumer%E4%B8%BA%E4%BD%95%E4%BD%BF%E7%94%A8pull%E6%A8%A1%E5%BC%8F/">KafkaConsumer为何使用pull模式</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Kafka/Kafka%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Kafak环境搭建</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Kafka/Kafka%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Kafak常用命令</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Kafka/Kakfa%E7%9B%91%E6%8E%A7/">Kafak监控</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Kafka/%E5%85%B3%E4%BA%8E%E6%9C%80%E8%BF%91kafka%E7%9A%84%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98/">Kafka问题总结</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Kafka/%E5%85%B3%E4%BA%8Ekafka%E7%9A%84offset%E5%AD%98%E5%82%A8/">关于kafka的offset存储</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Mongo
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Mongo/Mongo%E5%9F%BA%E7%A1%80-Docker%E7%8E%AF%E5%A2%83%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">Mongo基础-相关命令行-Docker</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Mongo/Mongo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Mongo常用命令</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Mongo/Mongo%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">Mongo环境搭建配置-客户端</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Mongo/Mongo%E5%90%AF%E5%8A%A8%E9%AA%8C%E8%AF%81/">启用验证</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Mongo/%E4%BD%BF%E7%94%A8python%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E5%88%B0Mongo/">使用python添加数据到mongo</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Mysql
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Mysql/Mysql%E5%B8%B8%E7%94%A8sql/"></a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Mysql/Mysql%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">MySQL常见命令</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Mysql/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA/">Mysql数据库导入导出</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Oracle
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Oracle/Oracle%E6%89%B9%E9%87%8F%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90/">Oracle批量测试数据生成</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Redis
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Redis/Redis%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">Redis常用操作</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Flink
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            flink技术点
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%8A%80%E6%9C%AF%E7%82%B9/1.%E7%AA%97%E5%8F%A3%E7%AF%87-1/">1.窗口篇(一)</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%8A%80%E6%9C%AF%E7%82%B9/2.%E7%AA%97%E5%8F%A3%E7%AF%87-2/">1.窗口篇(二)</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%8A%80%E6%9C%AF%E7%82%B9/3.%E6%B0%B4%E4%BD%8D%E7%BA%BF/">2.水位线(watermark)</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%8A%80%E6%9C%AF%E7%82%B9/%E7%AA%97%E5%8F%A3%E8%A7%A6%E5%8F%91%E5%99%A8%E4%B8%8EEvictors/"></a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            flink整理
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%95%B4%E7%90%86/1.Fink%E4%BB%8B%E7%BB%8D/"></a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%95%B4%E7%90%86/2.Flink%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/"></a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%95%B4%E7%90%86/4.Flink%E6%A6%82%E5%BF%B5/"></a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%95%B4%E7%90%86/3.FlinkApi/"></a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%95%B4%E7%90%86/5.%E6%99%BA%E8%83%BD%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E5%B9%B3%E5%8F%B0/"></a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/1.Flink%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Flink环境搭建</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/Alink/">Alink介绍</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/FinkCEP/">FlinkCEP</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/2.Flink%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%B6%E6%9E%84/">Flink基本架构</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/FlinkStart/">FlinkStart</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            技术文章
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Start/">数据处理相关</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据收集
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86/ELK/">ELK</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            组件安装配置
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Hadoop组件安装
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Hadoop%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/1.%E9%85%8D%E7%BD%AEssh%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/">ssh免密登录</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Hadoop%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/2.%E4%BC%AA%E9%9B%86%E7%BE%A4%E6%A8%A1%E5%BC%8F%E5%AE%89%E8%A3%85/">伪集群模式安装</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Hadoop%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/3.HBase%E4%BC%AA%E9%9B%86%E7%BE%A4%E6%A8%A1%E5%BC%8F%E5%AE%89%E8%A3%85/">HBase伪集群模式安装</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Hadoop%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/5.Hive%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E6%90%AD%E5%BB%BA/">5.Hive环境安装搭建</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Hadoop%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/4.%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E4%B8%8E%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">常用操作命令与问题记录</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Hadoop%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/6.sqoop%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/"></a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            常用命令整理
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/001.hdfs%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/"></a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据qa环境搭建
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E6%95%B0%E6%8D%AEqa%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/001.Hive%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"></a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E6%95%B0%E6%8D%AEqa%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/002.Hive-DDL%E8%AE%B0%E5%BD%95/"></a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据存储
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/001.%E5%AD%98%E5%82%A8%E6%A6%82%E8%BF%B0/">数据存储</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/002.Hbase%E5%AD%98%E5%82%A8%E5%8E%9F%E7%90%86/">Hbase存储原理</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/003.%E6%96%87%E6%A1%A3/"></a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            算法
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            001.机器学习
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            001.工作环境
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            win环境
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/001.%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/win%E7%8E%AF%E5%A2%83/001.win10%E5%AD%90%E7%B3%BB%E7%BB%9Fnvidia-docker/">Win10系统WSL2的ubuntu子系统安装docker、nvidia-docker</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/001.%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/win%E7%8E%AF%E5%A2%83/002.nvidia-docker%E3%80%81cuda%E8%AE%A4%E8%AF%86/">nvidia-docker、cuda认识</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/001.%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/001.Gpu%E7%8E%AF%E5%A2%83%E7%9B%B8%E5%85%B3-nvidia-docker%E5%AE%89%E8%A3%85%E6%B5%8B%E8%AF%95/">001.Gpu环境相关-nvidia-docker安装测试</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/001.%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/002.jupyterlab%E5%AE%89%E8%A3%85/">001.jupyterlab</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            003.知识图谱
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            存储
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            nebula
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/003.%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/%E5%AD%98%E5%82%A8/nebula/001.nebula%E5%AE%B9%E5%99%A8%E5%8C%96/">nebula容器化</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/003.%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/%E5%AD%98%E5%82%A8/nebula/003.%E5%9B%BE%E5%8F%AF%E8%A7%86%E5%8C%96/">图可视化</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/003.%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/%E5%AD%98%E5%82%A8/nebula/002.nebula%E5%BA%94%E7%94%A8%E4%BE%8B%E5%AD%90/">nebula应用</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            学习结构
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/003.%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/%E5%AD%A6%E4%B9%A0%E7%BB%93%E6%9E%84/001.%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95/"></a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/003.%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/%E5%AD%A6%E4%B9%A0%E7%BB%93%E6%9E%84/002.%E4%BB%80%E4%B9%88%E6%98%AF%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/"></a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            004.数学知识
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/004.%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E5%90%91%E9%87%8F%E7%82%B9%E4%B9%98%E4%B8%8E%E5%8F%89%E4%B9%98%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8F%8A%E5%87%A0%E4%BD%95%E6%84%8F%E4%B9%89/">向量点乘与叉乘的概念及几何意义</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            NLP
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            NLP系列
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/NLP%E7%B3%BB%E5%88%97/001.NLP%E5%9F%BA%E7%A1%80%E4%BB%BB%E5%8A%A1/"></a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/NLP%E7%B3%BB%E5%88%97/002.BERT/"></a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/NLP%E7%B3%BB%E5%88%97/002.word2vec/">Word2vec</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/001.Readme/">NLP_ability</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/002.%E6%96%87%E6%9C%AC%E6%8A%BD%E5%8F%96/">工具包整理</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/FastText/">FastText</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/NLP%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/">Nlp学习资料</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/%E5%88%86%E8%AF%8D%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">分词</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/Nlp%E8%AE%A4%E8%AF%86/">Nlp认识</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/%E5%A4%9A%E6%A8%A1%E5%8C%B9%E9%85%8D/">多模匹配</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/%E5%AD%97%E5%85%B8%E6%A0%91/">字典树</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            机器学习100天
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0100%E5%A4%A9/001.%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/">数据预处理</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0100%E5%A4%A9/002.%E7%AE%80%E5%8D%95%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E5%AE%9E%E7%8E%B0/">简单线性回归实现</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            机器学习实战
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98/1.%E5%86%B3%E7%AD%96%E6%A0%91/">1.决策树</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            模型
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%A8%A1%E5%9E%8B/%E4%BB%80%E4%B9%88%E6%98%AF%E6%A8%A1%E5%9E%8B/">什么是模型</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            神经网络
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/002.%E7%90%86%E8%A7%A3%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">理解神经网络</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/003.%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">卷积神经网络</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/000.README/">README.md</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/001.%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%B8%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E5%85%B3%E7%B3%BB/">自然语言处理与人工智能的关系</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AE%A4%E8%AF%86/">机器学习认识</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3.Logistic%E5%9B%9E%E5%BD%92/">Logistic回归</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2.KNN/">KNN</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/4.%E5%88%A9%E7%94%A8AdaBoost%E5%85%83%E7%AE%97%E6%B3%95%E6%8F%90%E9%AB%98%E5%88%86%E7%B1%BB%E6%80%A7%E8%83%BD/">AdaBoost算法</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/5.%E5%85%B6%E4%BB%96%E7%AE%97%E6%B3%95/">其他算法</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            002.深度学习
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            001.环境搭建
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/002.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/001.%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/001.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">1. 深度学习环境搭建</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/002.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/001.%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/002.nvidia-docker/">2. Nvidia-docker环境安装及测试</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            002.常见算法
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/002.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/002.%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/001.CNN/">1.CNN</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            003.框架工具
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/002.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/003.%E6%A1%86%E6%9E%B6%E5%B7%A5%E5%85%B7/001.tensorflow%E8%AE%A4%E8%AF%86/">001.tensorflow认识.md</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            003.图像识别
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            OCR
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/OCR/000.OCR%E6%A6%82%E8%BF%B0%E5%92%8C%E8%AE%A4%E8%AF%86/">OCR概述和认识</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/OCR/001.RCNN%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">RCNN</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/OCR/002.PSENet%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">PSENet</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/OCR/003.OCR%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0/">OCR项目学习</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/OCR/004.OpenCV/"></a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/OCR/005.PaddleOCR%E5%AE%9E%E8%B7%B5/">PaddleOCR实践</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            目标检测
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/001.%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">1.目标检测</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/002.RCNN/">1.RCNN</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/003.Yolo/">1.Yolo</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/004.yolo%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/">1.CNN</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/001.%E6%9C%BA%E5%99%A8%E8%A7%86%E8%A7%89%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">001.机器识别基本概念.md</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/002.yolov5%E8%AF%A6%E8%A7%A3/">2.yolov5详解</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            004.NLP
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            分类-fasttext
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/004.NLP/%E5%88%86%E7%B1%BB-fasttext/001.fasttext%E5%88%86%E7%B1%BB%E5%B7%A5%E5%85%B7/">fasttext分类工具</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            基础算法
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            字符串匹配
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/001.%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/"></a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/002.%E5%AD%97%E7%AC%A6%E9%9B%86%E6%A6%82%E5%BF%B5%E4%B8%8E%E8%AE%A4%E8%AF%86/"></a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            状态机
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E7%8A%B6%E6%80%81%E6%9C%BA/001.%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA/">有限状态机</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E7%8A%B6%E6%80%81%E6%9C%BA/002.%E7%8A%B6%E6%80%81%E6%9C%BA%E5%8C%B9%E9%85%8D%E5%AD%97%E7%AC%A6%E4%B8%B2/"></a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/000.README/">算法</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            项目管理
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            [1]沟通能力
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B1%5D%E6%B2%9F%E9%80%9A%E8%83%BD%E5%8A%9B/000.%E6%B2%9F%E9%80%9A%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7/">沟通-重要性</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            生活学习
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            TODOLIST
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/TODOLIST/README/">TODOLIST</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            了解点金融
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E4%BA%86%E8%A7%A3%E7%82%B9%E9%87%91%E8%9E%8D/%E6%9C%AA%E6%9D%A5%E5%8D%81%E5%B9%B4,%E4%B9%B0%E6%88%BF%E8%BF%98%E6%98%AF%E4%B9%B0%E8%82%A1/">金融</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            关于体制
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%85%B3%E4%BA%8E%E4%BD%93%E5%88%B6/001.%E5%85%AC%E5%8A%A1%E5%91%98/">体制-公务员</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            关于公考
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file active"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/001_1.C%E7%B1%BB_%E8%81%8C%E6%B5%8B_%E4%BE%8B%E9%A2%98_%E7%9C%9F%E9%A2%98%E7%B2%BE%E8%A7%A3/">1.1 C类_职测_例题精解</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/001_2.C%E7%B1%BB_%E8%81%8C%E6%B5%8B_%E7%9C%9F%E9%A2%98%E7%B2%BE%E8%A7%A3_2024/">1.2 C类_职测_例题精解_2024</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/001.%E4%BA%8B%E4%B8%9A%E5%8D%95%E4%BD%8DC%E7%B1%BB%E8%80%83%E7%82%B9_%E8%81%8C%E6%B5%8B/">1.事业单位C类考点_职测</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/002.%E8%81%8C%E4%BE%A7%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93_filter/">2.职侧考试总结</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/003.%E5%85%AC%E8%80%83%E8%A1%8C%E6%B5%8B%E4%B8%8EC%E7%B1%BB%E7%9A%84%E5%B7%AE%E5%88%AB/">3.公考行测与C类的差别</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/004.%E9%94%99%E9%A2%98%E6%9C%AC/">4.错题本</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/005.%E8%AF%8D%E8%AF%AD%E7%A7%AF%E7%B4%AF/">5.词语积累</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/006.C%E7%B1%BB%E8%80%83%E7%82%B9_%E7%BB%BC%E5%BA%94/">6.事业单位C类考点_综应</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            向上
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%90%91%E4%B8%8A/001.%E5%85%B3%E4%BA%8E%E4%BA%BA%E4%BA%8B/">1.关于人事</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            学习方法
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/001.%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83_%E7%B3%BB%E7%BB%9F%E5%8C%96/">学习思考_系统化</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            思维
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E6%80%9D%E7%BB%B4/001.%E7%B3%BB%E7%BB%9F%E6%80%9D%E7%BB%B4/">系统思维.</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E6%80%9D%E7%BB%B4/002.%E6%97%B6%E9%97%B4%E5%92%8C%E6%B3%A8%E6%84%8F%E5%8A%9B/">时间和注意力.</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E6%80%9D%E7%BB%B4/003.%E5%AF%B9%E4%B8%96%E7%95%8C%E7%9A%84%E8%AE%A4%E8%AF%86/">对世界的认识.</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            教育
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            哈弗公开课
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E6%95%99%E8%82%B2/%E5%93%88%E5%BC%97%E5%85%AC%E5%BC%80%E8%AF%BE/%E9%87%8D%E8%A6%81%E7%9A%84%E4%BA%8B%E6%83%85/">人生重要的事情</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            旅行
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E6%97%85%E8%A1%8C/2019%E7%BE%8E%E8%A5%BF%E4%B9%8B%E8%A1%8C/">After美西</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            闲聊
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E9%97%B2%E8%81%8A/001.%E9%97%B2%E8%81%8A/">闲聊</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E9%97%B2%E8%81%8A/002.%E8%B5%84%E6%B2%BB%E9%80%9A%E9%89%B4/">资治通鉴</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%9C%A8%E7%9C%8B%E7%9A%84%E4%B9%A6%E5%92%8C%E6%96%87%E7%AB%A0/">在看的书和文章</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E7%94%9F%E6%B4%BB/">Something</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E8%BF%98%E8%AE%B0%E5%BE%97%E5%84%BF%E6%97%B6%E7%9A%84%E6%A2%A6%E5%90%97/">还记得儿时的梦吗</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            软件工程
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Linux
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            内存
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/%E5%86%85%E5%AD%98/001.%E5%86%85%E5%AD%98%E6%9F%A5%E7%9C%8B/">内存查看</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/%E5%86%85%E5%AD%98/002.JAVA%E8%BF%9B%E7%A8%8B%E5%8D%A0%E7%94%A8%E5%86%85%E5%AD%98%E6%9F%A5%E7%9C%8B/"></a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/Awk%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E7%A5%9E%E5%A5%87/">Awk文本处理神奇</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/Linux%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/"></a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/Linux%E7%B3%BB%E7%BB%9F%E7%8A%B6%E6%80%81/"></a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/Netty%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%90%86/">Netty实现代理</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/Shell%E5%8A%A0%E8%A7%A3%E5%AF%86%E5%8F%8Aexpect%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E4%BA%A4%E4%BA%92/">Shell加解密及expect实现自动交互</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/Ubuntu%E5%AE%89%E8%A3%85%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/">Ubuntu安装邮件服务器</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/ubuntu%E6%8C%82%E8%BD%BDsamba/">ubunut 挂载samba</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/%E9%82%AE%E7%AE%B1%E6%A3%80%E6%B5%8B/">邮箱检测</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数学基础
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%AE%9A%E4%B9%89/">线性代数的定义</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            计算机网络
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP-IP%E5%8F%8A%E5%BA%94%E7%94%A8%E9%97%AE%E9%A2%98/">Tcp,Ip及其应用</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            问题
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E9%97%AE%E9%A2%98/%E5%85%B3%E4%BA%8E%E9%9D%9E%E6%8A%80%E6%9C%AF%E7%B1%BB%E7%9A%84%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98/">非技术问题</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            面试资料
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/001.%E9%80%9A%E7%94%A8%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/">1.技术面试问题汇总</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/002.%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%A2%B3%E7%90%86/">2.面试问题梳理</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/099.%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/">面试问题n</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/README/">A_人与系统</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/WikiStart/">Wiki Start</a></li>  </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-项目管理/生活学习/关于公考/001_1.C类_职测_例题_真题精解" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">项目管理</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/">生活学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/">关于公考</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/private/" rel="tag">private</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/001_1.C%E7%B1%BB_%E8%81%8C%E6%B5%8B_%E4%BE%8B%E9%A2%98_%E7%9C%9F%E9%A2%98%E7%B2%BE%E8%A7%A3/">
+            <time datetime="2024-03-02T03:55:57.000Z" itemprop="datePublished">2024-03-02</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            1.1 C类_职测_例题精解
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article" style="display:none">
+                <strong class="toc-title">Catalogue</strong>
+                    
+                        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%A8%80%E8%AF%AD%E7%90%86%E8%A7%A3%E4%B8%8E%E8%A1%A8%E8%BE%BE"><span class="toc-text">1.言语理解与表达</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E9%80%BB%E8%BE%91%E5%A1%AB%E7%A9%BA"><span class="toc-text">1.1 逻辑填空</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-text">1.1.1 知识点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-2-%E4%BE%8B%E9%A2%98"><span class="toc-text">1.1.2 例题</span></a></li></ol></li></ol></li></ol>
+                    
+                </div>
+            
+        
+        
+            <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉，您输入的密码错误，请检查后重新输入。" data-whm="抱歉, 当前文章不能被校验, 不过您还是可以看看解密后的内容。">
+  <script id="hbeData" type="hbeData" data-hmacdigest="ce362bfecbacfcb42fb9b8a2fefcea6d09acb6a3241ac778976208294aef150b">6529a249a0af82b27e00ec9fb492a16509e0ab54fed1a1b181f77886475504de6e4c68bf7f6d8d6090d051da1ad7bef09290497c1facdda1ce78b26502cfb5e62112528a8d539a5ff87e480a01fe98799bef4acba69437f45d72a5c968a44cbf68a550b1ad4aff9b15dd484477101f08894fc7e6608263d23c5457edecd9f95c3dd12769e26c9d32f530c60d686b1b22ff8adfa491090652f8ecc9a85144629fe5a598110cd7cd594165e63b57051c2626177608ac68541181c5076555da5855bb2e6911f58c3ffd84d5a85035e8ad1efb156ebaf44cf2a45623c016341bec8b57eb892da3466926d4c131e8dc1f8d3156c50fced9d4be0a89c8c9c972540a06967437d30aafdbf42ac14ba0ddf1a045174b7cd086cd03d70b40273c9ff9519fe2089fb4b24c38548212c2feee407d521415b28757f00e48430975bb0ad79d243909e54993c0fded89870a9c09f7f64e02065205978a754f453d5b2baec2ca1996e0b4903a66c6a5a8efe474624251091ef29fa186b1cd5a921d646a009cb004ca919349f5c4f774677d4fe8f9a50a88243e133a8e6d0931d64f4ccc433bd615a7a9f65409c0977eb01eb7fb93870ae6d87b2a239c9115ac77d5452d9985ea5949080f8f14a967e0a04fc3ebf72e8328b8e213d38674bdc4c413c32d9ccd24cee4f341277f24a259b322e038cf12c839c2966a2ca9df5981bf8ce5d53d86d0165b9b6c331c6fb0e2e067172127f49f038f22bd88c9b57f49924186b0e77b621ec6543b11ffb29db77f6c8f3727ff21120ed0d1f6efc23b73f1d52e5784b9e9ea8f662b85f18f962c1fb1b53fa283e0afdb98accd795d8792680d9e21f5cad8d2616b79ddea7ea5ccaf19e332d95c5f078dbb19b278738a16f51e38cae888011269dadbd4fe2fd7642cf1acb449c90493fbdc64050d5a85bb696fde5feeca9446d19b375770b142973cdc55643548adde93b186437f79b78e5324153bc9c35593e477167c361fa609025a5a522adcffd7f188eb84df4e89d90d69fe36012bf10c0e782023b07c244701b2cb54aa14bb1da449be4aaefde94f4e2627f0d16c4ed78722c33fdd3eb46da5e9c52d55f050c6a578b90c03a6c001761c0f8900c9d05563d1059107a872dcd1fe8dbea95d9d523221794daf4944fcaf76d5771f9d2cfe9a79738b0c254648e54a0cc5925913464e5ffc2bc650b724608bdce6793b1e2a9c182329124527753370d25940cf19110c22eef3d19ecfd3201111dfbdc271ca25a8596c3cdee1dd3489f837ec019f702f553cb2a29554245d018c663b5c3d183e15ecc32884e7c48021f485ac11f87af0e62df7851891f3691d7d213095141a1a9fdbbde61b1d2bba6d410abdc853e58b1112d8d18cb3589a24929d939ab728b5a29d02e64857d0dbdf3ad91bd3eee557ba2ed03d05dd305f922410b4e10e41faf19d5e66b51a3c564e9e5cf13e23df8b1973f825e61b816f3f0aad844010ddc61ea273e0e7c525290d7422fbeee76375c99e4f7c63c1cb543198e1eee57c4b435225925f59c9b8d1a47088c6767fec948a210556c51f177c48c78102286372a0f4c6eadca62232fb791042752a10e740ee0c858701b12a1b94d849ec41f18a1b85c1de8df88a16943c07278371d1e7e861db615d3b2aa94e92ea2fa19ed8f927fe81009583ab3fefc3487a1ebb59bde5b43c952da03430af79053148072fdc025871e76e1b3b2ef82925c9409c806b73a8526425ccba5e1608ed4999f9755196820ed1fa3bb2969575c30c69c458a5ea8f8f63d397a72e85c35833ffaf0e9e4ab7c7ddfcbfc659aefe73ca31702967fd608bdcc5c7dbd02637066b344c42450986d2767e6f86690e175dd7e3422715e5ca2dc75cbad54a5764261cc797bd5ea26ec5a1223f3b0653dc39c01b9ca322519e80e126aa93d54ff94ec76b5213539f4f8d402859df6503673253aace1d0dafef82fe33e62dd59530f9419fca0b49acbe0584d162cfe7056e67629ef1ab4173c004b089551ecdf03448d5a0630b3d23c74f9402c26a9f6361ffea8088d334acedff71cb8e668901a694229bf3dc72ecfed6558e52654c5ff910523be3e136c6be523cd2ece595b72bd98b09af0a3c3b1c8d4ec62b38ce7f8a25e677978ec68d7a2d84e13f44847bdf54983daaec796504fb707563572bb83c3b94f7c96bed9a55ba4583fec211f5920ee04ae2bc49fcb52e55e6dba5c22170fd5cd51f767478bf79ef63565380bc66d6dc514f27a59a6a3978600104260359e2a32766c4277a76afd178c36e6ed705a2f46ab6c81cc6efb8446bfd1ceed03c64706e259877e568b6328af8eec8c9f1980e3ba0c0213321bb5f9316a4cff94fea0440ddf32035b75a7d28e51bca14f56f44c72c09ad1ffe7cd250968e7503311bad21533e159406372c4bd0c86663c75a5ba11a07a9d4a47f7c6f593f5b7eefa24aef391cc587ecd332a7d53424fb9a4a09c22a10d95a5a6fbe480e23e51443d31f7ce9bbb6cd0c2e5b35bb5baa7b6b0448ac536811c14077ee72f4c33f9bbdbc5c5ba1df8263a870cc309b9b83365a240bac23cd467c8fd11898b3f22b50a6f6b7aeb4aba883fc727f60dfe1650785640de02f36663c5095a9755dfeacd538c01db057d8fa9c239568beb257026d5f71d6dc5948221a07c181414ae493cd336ff7c015563754dcc354733bea0166fff16585fabc0637e5b924c7a61c60d7529d41052bfacafbc441aad09027c801413b469f1cf0dbceff2ce9ded4f3a735c42a08df680f49e2951210dfa9891ca3b934e9d4351686cf24f593ba98455d0e0b31ba08bcbe9bd37b991cf686491ddb1314c77ff9dcaeead3907ce474c2f05b3083083b550b34491c623f8d3cb251b3ae08c2a4d65a0ef76a4564a29006bb1d49dae9d2c16eaf20bdc4dd302bc9d0f5d94d7810c118762ac1acdcdc99f418aa99e693464f810b84ec0d4a0d3d8ab83cad6149f252b4c21827f725023a66fb4de9a7e691f159dee29a37d3cc5f461576a4f3cb84baa222c402cc2960a67e1218c9a2d424a3f3d89c0f25a8da55dae89fc15978afcbd9112345348da96bc9420bafad36c8ed5cc46ba60664132df97a5df21b1dc285bd3644a8db0f00f9c1816f71e855bbc3211f48f377654d5b09f8dbe36892599f2a07a13cc5f76df3ff535fcb3bcaee2aac4e8d470cfdf80471255096e49d089aef764b3f52f9c177a1aec6eea20009d143717b6ba07b4be29f066e0ccf599ce6b56730b5ee8cfb67ccecff7546202921a26d0a6bc7a1a9b0c620524843a4d86919bef46a53b81971f2c5ab0108563d1ce070cff7a583daa8af30f025cd3e7b7b62c8a5e57e8e2b8d7d02ca2ab4440fd3c99340a718d1ec96a217a2bb5b6592865645f363376e136a829571eb5d819c9d1ebd58840badbdd6f1193899b512138b0366159b614dc7395faa3b73a987e485e9800406af2bee79b484121d6636a4c8a7a7fd75e7792fb45ebc5f16cd40f9d2ac126da69fe3b920c27f90d43667078a3d8ffd832ef7fa0adb447ba9be0da5e8464651e1ac7fab9c43d1818e624d04454bd617120f21b92b622c74113eb65bb14de1de10900cbf1f19af0e094eced37161498c98da93d545f680a3b82208e1500df5f0807baf76775db8b06df2550fb96afb4445c0079d24bfb6f3b5ff9607f9af5ed1af82c1a4f3df62d646501da02c90103277eb25d14a44b638e6b7856c5689b92b6efd1e462080ce50bcd9d68fd2e104bdc26632dc48379c059b988c4686144c1071da2bb0ac9c7713a3361477fc7e69bf59513fdfbf802e5cc2cc7c52e146961d389554df259dc32da945ef76ebf218e51355d012b02bc2329db6ec7a6f70d347d82578dabeaa88cff38ae33c0c54605c799e3bc9d04c4c733dd9199acc0932cff58e3c89e22fc465638268201e36e6fc6cee8246309eb220bc8e5b472e2b0776fb606be15d3f42d129e9c76708f9d0d7d6ddc89e27b73200003d4e68d65fe74fb9c38bd30aeed1c0a3c32e9f4353e1a77da64025847e75bf28d75e22b5f7754189ca8f3da7590d37333f727457ea0223460a40b370933585e5e6f0b83daea2608d19851e25c4a26cd358e77ea08bbd5384838cd2e4d56b32a29f2e328ddaa84bb5241bb51a63e346674b43dca72642fd1857c1bce39a6371703f9d41ef22056652b7af8fa60d29a91fc1883a738b2ee58cebafdf2ddd5826cfff2650f29d4b9e172b01db72b128261e611b9efaf44d2e0d2edcf142acbdf2de9ddaef2d588590c578809c1cec76f1b09692385d71a3a2c789a28d88fe3105d80f90a4c7c1cbcc32478c11817f81b6efb6241582df05b0deadf3e69e922eb00c860b2ba3ef6553ef419de9eacf1d9420ab2cd8870fb240533b98fc25a2ec9fed8f8b75ea367f8ed2402a1e0e575f848aa85e50b4dac2a7fac03c9ca907910e13196bae3a5195bad2a20c664741e060eb94dea5043efddde63db8431c1234040ad381fad358578bef67078812d0d89ab65967c72231b803d38e78cd35ca05794a12973b550d7c52f6c5c70189210e6b0843e8299c8d35579459222f2fb6ad3476643750e4c9b9b4859de890252fb2d1ed4ab988bea3339e2165bb6ceadb2963f81ea9fe247270ca023bfa8c6415478ed0ef9a7326734c09beb3021e9ad14af08d5ebf24313cec1e3ab0d9aba762c235bff1471cc3de16b3d86316499d898b40c163c1727270ccfc450b550357eede37c18d53239ba1a8d83bc2c888e5161ee358b8f34e4f26087241add398b6cb9bd94e80816f9a77b3a699a50454aeb9e06b51cb3ad5589c8429cd0088772a6c52891e1eb02fce6afe08739ab9111922955d88749f0edcf4acf3d94adf299155b585ce45f3e64dcd879026226bee3115e176f9ae23857489447406cc15a81dfd64ba476fd533926f0f051c53e318a7fb8447d849f98b7c2b0f2d29a8d4737492081abceca6a108f32678bcc49a0f4e81421447f258b42a70d1e20c1783caa53f63f7bf21917dade2b5f4b477fdb8b744a3cdea8bf674f58d17118f25e655e65c8e664e9187059487d8b0b3799b86461d82788c0dd24d29c7019bcc023ff8c55f52bffc9b094719b2a8b644d9d9cd8e3972afe41307bea6f6412cd37b01e1ac6dd947e2f3c5702d9caa12a6acb60af39e3ed9611ff44e8ac2da9e5229de8c978a8834e4384347ab0fdbcf56a70710e85f9b59747e113bd12e4dba39d046f97f9e5044f409563a2ca0a22814479256ce09ce5080d7411fb0ea8b641ee0e54e9ac77522f317d1dc0f2127e32cb36b757614f0a024aa6a47a679a81640a09d6bec8e10c491a46063882b658dc43c8cf39e0ca60182336d71b6c217e2928939dcbc6d78a3b352a47910f54e96d29eacb7cea77e4ea911bbfda1050c6a4e230135130e81f67e2b0b1cab82db75f0046051ab703b77f0025a78909335d35baba89bf3b2efea9cfc4872cbcc6fbd971a6d034772ad8c4adba8da5e47ed488b5374343f92a0d67c7c04ccb6760494396b95c98071844aac1b7b53c537bbddd771b42414c5c5d4ba3e35321414a68166c822fa1f27d2c67f04b550cf290a4e8903e38ffecb413b85b5d845fdd38dee10880278f0e65d15fefd2181c812ffa5e3fe2a7bc8d5a1d8ba1752f590205127022d196719477f60fdee342ca1b2f95d201282527408fdd42e4d3fa4d1f084ffeac6ad416b71f517124a88936a15518a37094af4feca8bfc2d83892318c61be58af798b1da1624f6bfb6f1cc9705b0a4d32c503ed9e6f6b1cd2c139b09cfd4d75a96637216fcbf426c8defc3b1d5fcbbcf669462699391a73a4df62d25145bbb8ea53df02a827fedd92cdd607d7e1b641d100d4f66d650a8a1f69ea08df9a456e932cb9e0582ef93ed959a7ff0499285f1b1e160d0ed9639116e4252a5c050917baab81314a30cf43b019d7d73b878e0a53a36f0cd0f2d04a1f447bbbd3fd9ccd56317b376811681943dfc284524966126ae919d77027fcf6a02e5e1c9206b389b48539776a1bcd000fb6d0cd665404182856006e97ff3ffff89f5e581921f4838c2b6ed35a617003bb5b44da06a6cf3b5655641ad40313882c3b026bc52ed56e6948d308ea5c2a8a8d940305906d64946a99562f2d4f5509c95f17cf18fc0c0ad9073852ef33f03daecb7054d941545a65ecbe09d6b819e3b016d0f693c7d763106acc4b797d456e52fca3fc3a3f19b498e096a989025b1b34289148d5c78ddf4488c19fd76e63a00d99931635f109aa1f07bf3f0bd4b90c3274225acab0697f0eaecb06295b71cdf5be36cc1155a96800cbc4cc29d6e9fc1113bff6a4077ec2fbaeff7767d5dc297d398f292a1639e8cdfa72e5c69953ef1852432ac4d4ccad3a96d4e96d90ad640c8640704115fa04a1797674ee926b1d580dcd29db8c77a1e40e2cd79f6e9b1f7bcd1e14c6a46d3d7cdb712a6af6e1394aa150f21a593f0615332ddb8e26b5d6f96d421b75cba4b395a8b1dcb4e479cdeaed64277bfd2bfc0ce92451c7dff36b3f169cd83681738993642a1f5d3a907a9d79e4922a18a0c580d19574431c079440084b409dc41f0fc8fca916ac2178c4733503eb4c631fab878d375f590e2fecb4ba5bcec1fd9f9328b8a371c7dfbe5de034bb0ef6bb0764a355c2a8bdb28b05421ee849c8b506487af505e2de991d5aedda8b3a519b5886af414972546f21f35e0a77b056aa6ef7fc895a7f3617dad8ad6eaf8fcc84cadad9a9e6dcf768286681eca286fb9ae3d9b0c2d450a56efa252d2e21303468c4f6301951d0cd2499a827f611e88dd36777b83e7b2190ecae43d61178d6a37f3267adc9137df19b47cc81c715f2e00e0328a694c60870b78ca2179bf1e284291f30ba611e242f7ac106fae2bddf47a2cfb689192c5836c7f2990af4d697d06052c6612e5befb284b61cc7394f3c160060d6814a213191db8d97f88e2a346c4799ddbbab73d5510b5b20495ad8dc250e05a9a997252b8c9123d4e33b731aa7759cc965b56a371ffcc9056bfebe895a0cafd1b1e3cc3bcef7e925663026a2fea09d5cb729a17fb9baafd89375f7b92de5b1954e3638443c5ba6036ccb13c60e21c90b5a03f97cd610145e8d29be5d698e95a91066ab12f4103e57b458ae2825ee17bd272521205e2ac25308a674f47a89a8a616782e5e0d9daf4136863f496125d8e1210dbff13d20713bf65c2bb213de1193feefd2ec71d45a9c3ba7dedfb40486184d45c45525c2426b6d2c756bdcfcd616c60e3b51599e98b03e3c36183557b264aa3baa584caeb8ecb2d9cdc46674e103c32aa33ca4689de6e3b67e7073ac26565765419fa9aa558f95f96ccbeb891b2056866f0c86f74bcb4adede5a03339458086929313999f50bc1b651ba5f33377ebe8bd83155db6f5f9ab8986b79a69c4f7f882ab089440822d8e6d1bcb0a19e431df5e55365d31089256ad0040e71843f5388f443f7318ac44bc63a75c4417c3d3c23dc98756f2beb1ee2cb25b29ac26b4c332e5f646663e7365754fbe125fcfc5907d414e15573a4eb8e54c0e62c3da1d29da3de292a80de7f92719a4ccb6d2af88eb8039cf5ded46bb6d85b2cb5dff6617458d8ab27c329c137dbdd5da85aadd54c4630ed8b069437b45c393a41386de076751f82035650a2439e8dae3701a3c25baaf2feb4c2b127b20dc1159744511cd496b22a2ad7c2f06db2825584b9199aea680dfb1b26c81b156df73c2f55eb1e3ccf5037421b591ed83ddbc5fbceae846407f54da3217a1c8db3f523682f75fe05686b7f5b1ba575afb8fc44323312f95e903b23347ceb7b99e2066b43b2ba16f238eaf42c9bb77ff8523270766a9b5d12c38de37791b897c205d921f2c8a62f98a6da61bfc5b55b21621a85c3e59f7de138462c0d1357e4a99219a459a0af20ae14b6d504c00dcf8b182f8132151f7012576f01f040be27d03c9140a4f01ac467dbf3fe63180bfb316f64f919348390b7bd817af83ed2a968cfc61823c1c46f93aa572c34b0bd9345c76677b3da4b1a0b543fcafd3bb64f8bae63dfb2205bcc4fe33bc4cd47cc7ae3fad2a57862ed0d0de7c1e4d363407957fba98f38b7a06cc9315179e214bc4e1e4debb5191729c2fdd0b36109bfea96526dd1e405285b711d2c561b2161eaa358d249667555d7fd0d182ade0d1e08b15588396d63579b59f534d7afd0500c680f89224d6fd139fd69bd0f59473ca1176226c34c0cb2930c97bcb7805982343f41937b04632f553bd3fe4e2491839f53f24a42aa6f80d4df818889174275453350b3a35181f8049b941a100a32345020e271f0a731cb4e768baa49fcb329b74a44dbb505e277d608c2e5acac363f7433bbbe50e1a85e04dd8573c8238abc31ceb628a2225f6c603bb4fd3e9cbf0fd415b347baa0280d3fb2215f1b5f933bb336b0e706c385fd7c4afba88db0dd3e4fa24592b97447877878388f189e68e95c046f1c39758f2008909da1809b10965ed0fbc541778f958c909d8d1d31fe3d3ffd519ed9041e7ca55b41d0ef6baf499a0b8c5bf02a0b60678dc94dc1179073df8e392105113fb0c1a5510fda7e23ae89a6ee4919e29758021a87c507c4d65073791af894c472a4489b6d020c61e4217b77398917cc16f445ca86d3c965b96f2778443b12f34e4bfb2c6eb7524d7ce19a403e8ad161091631ea169b37942a8173e63b14097be985cc38dafa086499c30ea620c3d93605d7aceddba127bf023334c1f232c51dce550d02c1de68b9aebcef7f09b7911bdb29b491623ef4185fd40ed0188bb34bad896815f54760fead9440503faca88fe2ff16e44f537d21b960e6aa8c19434b37f2202f8a2750a9978c1fbca4961924f11a900717e1372f4c088b2445f68a6e9a1f8dbbd83cd6df5fd1107bd5500ca069f4a16d1662c854eb4f60279c11ee1c558b70bdb313f6270f1dc159b5ee5ad6bcdcb4d673f1632456bd6a1e1fddec9dd03c5d6f43fca4656ec1428dbbc80495d56918829e5eb134adf070ba64a429618f8d9abb6a16b1d527dba44ac58aa4f18fc4a0767ad98b0debb98d9ebef8fec1fdf32a6b166d4b99bd82344188c58aec78b2b4c34a16efe128e5e833edcf27ae9fb80f788c5bded31b0b659b30ea01775bb4725a7bd1ab43d79b3181c45804df7824b1bebc1cc0aaeab100a7a99be90071a4b4a2c0d24c8561f75a073b1531f2abed7dca007a1c3ce34dfd1b756d60852133bbaa0b4f968f3dbf955aef9a45d5710fb174bc62353f4ddf76cfe2a0fbee23e585d4fb75e639d19dfd167ec0f14201da63413a8da148a2f2e89877741da8930150112034c13334e0f078dbb95fd58434fb5026a2c549403a42454f631020c638f44cda425bc1e212193d2cea8a75911f5d3d0179bcd2cb73d306e1fef3f3d10cf7ddc414b8bf3d6a5d3074fe1b33df52703c046ec7f4e40c3df66712b8b9fdd8df53291a9b7769895acaae89946a8278475a3e15fc0c7a50c71aca50a9ff61a61bbb10a1a72a90f36a8294600bcfd93a4a7fa097e24a0daf41420e3329587d60ce5a2f3a8d2f67e3c814038b4124300d9f39d6e60545c091c1a87b1c15e43c93e4bda6afbfa1fbc7c68577067e1127dba5a6bea7d308facc8ae3a2abc9a32f48424e7f7f5f77283b8a45346878859e734dd2a195750786deb825514edd0da9c103bb35e9c731fdaa0a471897abd0ae4</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">当前文章暂不对外可见，请输入密码后查看！</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3/IOS/001.IOS%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    1.IOS开发总结
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/001_2.C%E7%B1%BB_%E8%81%8C%E6%B5%8B_%E7%9C%9F%E9%A2%98%E7%B2%BE%E8%A7%A3_2024/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">1.2 C类_职测_例题精解_2024</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Nova &copy; 2024 
+            <a rel="external nofollow noopener noreferrer" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png"></a>
+            <br> Powered by <a href="http://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a>. Theme - <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a>
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
