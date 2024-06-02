@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://quano.gitee.io/"/>
-  <updated>2024-05-18T15:22:10.222Z</updated>
+  <updated>2024-06-02T05:33:08.780Z</updated>
   <id>https://quano.gitee.io/</id>
   
   <author>
@@ -17,9 +17,40 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>1.分布式架构体系_专题-开篇介绍(架构概述)</title>
+    <link href="https://quano.gitee.io/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/01.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/02.%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB_%E4%B8%93%E9%A2%98/001.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%A6%82%E8%BF%B0/"/>
+    <id>https://quano.gitee.io/wk/平台工具/01.架构设计/02.分布式架构体系_专题/001.架构设计概述/</id>
+    <published>2024-05-31T16:05:57.000Z</published>
+    <updated>2024-06-02T05:33:08.780Z</updated>
+    
+    <content type="html"><![CDATA[<p>单体架构早已成过去， 随着互联网和业务规模的发展，分布式系统已经随处可见，掌握分布式架构的知识体系 显得尤为重要.</p><p>这里主要是对 分布式架构的认识总结. </p><p><span style="color: red;">分布式架构体系设计</span> 是一种将系统得 <span style="color: red;">不同组件和功能分布在多个节点上</span>，通过<span style="color: red;">网络进行协同</span>工作的<span style="color: red;">架构设计理念和方法</span>.</p><h2 id="1-主要特点"><a href="#1-主要特点" class="headerlink" title="1.主要特点"></a>1.主要特点</h2><h3 id="1-1-去中心化"><a href="#1-1-去中心化" class="headerlink" title="1.1 去中心化"></a>1.1 去中心化</h3><p>不存在单一的中心控制节点，各个节点相互独立又相互协作.</p><h3 id="1-2-分布式部署"><a href="#1-2-分布式部署" class="headerlink" title="1.2 分布式部署"></a>1.2 分布式部署</h3><p>系统的各个部分运行在<span style="color: red;">不同的物理或逻辑节点上</span></p><h3 id="1-3-网络通信"><a href="#1-3-网络通信" class="headerlink" title="1.3 网络通信"></a>1.3 网络通信</h3><p>节点之间通过网络进行信息传递和协调</p><h2 id="2-目标"><a href="#2-目标" class="headerlink" title="2.目标"></a>2.目标</h2><ul><li><p>高可用：通过冗余和容错机制，减少单点故障对系统的影响，确保系统持续可用。</p></li><li><p>可扩展性：能够方便地添加或移除节点来适应业务增长或变化的需求</p></li><li><p>高性能：通过分布式处理和负载均衡，提升系统整体的处理能力和响应速度。</p></li><li><p>容错性和可靠性：即使部分节点出现故障，系统仍能正确运行或快速恢复</p></li><li><p>数据一致性： 保证在分布式环境下数据的完整性和一致性</p></li><li><p>弹性：可以动态调整资源分配以应对不同的工作负载</p></li></ul><p>todo： 怎么实现这些目标？都有哪些实践？常见的中间件都有哪些解决方案？ 如何和别人直观的描述这些内容？</p><h2 id="3-常用架构设计模式"><a href="#3-常用架构设计模式" class="headerlink" title="3. 常用架构设计模式"></a>3. 常用架构设计模式</h2><p>如何选择适合的架构设计模式.</p><div class="table-container"><table><thead><tr><th>架构模式</th><th>说明</th><th>优缺点</th><th>具体的实现技术</th><th>相关的中间件</th></tr></thead><tbody><tr><td>*分层架构模式</td><td>将系统分为不同的层次，如表示层、业务逻辑层、数据访问层等，各层职责明确。</td><td>优缺点</td><td>-</td><td>-</td></tr><tr><td>*微服务架构模式</td><td>将系统拆分成多个独立的微服务</td><td>-</td><td>数据6</td><td>-</td></tr><tr><td>*事件驱动模式</td><td>客户端与服务器</td><td>-</td><td>数据6</td><td>-</td></tr><tr><td>*微核模式</td><td>客户端与服务器</td><td>-</td><td>数据6</td><td>-</td></tr><tr><td>*整体架构</td><td>是一种用于设计和构建企业信息系统的框架和方法</td><td>通过包含多个层次或视角，例如业务架构、应用架构、数据架构和技术架构等</td><td>-</td><td>-</td></tr><tr><td>分布式对象模式</td><td>客户端与服务器</td><td>-</td><td>数据6</td><td>-</td></tr><tr><td>管道-过滤器模式</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>主从模式</td><td>有主节点负责主要任务处理，从节点提供辅助或备份</td><td>-</td><td>-</td></tr><tr><td>C/S 模式</td><td>客户端与服务器</td><td>-</td><td>数据6</td><td>-</td></tr><tr><td>MVP模式</td><td>客户端与服务器</td><td>-</td><td>数据6</td><td>-</td></tr><tr><td>分布式缓存模式</td><td>利用缓存提高数据访问效率</td><td>-</td><td>数据6</td><td>-</td></tr><tr><td>分布式缓存储模式</td><td>如分布式文件系统、分布式数据库等</td><td>-</td><td>数据6</td><td>-</td></tr><tr><td>分布式协调模式</td><td>如使用zookeeper等进行分布式协调</td><td>-</td><td>数据6</td><td>-</td></tr></tbody></table></div><p>优点：分布式系统的目标， 解决了高可用、扩展性、高性能、容错、弹性等问题。<br>缺点：负责性增加、 数据一致性挑战、分布式事务难题、部署和管理复杂、成本高(构建和维护分布式架构 需要更多的硬件资源和人力)、网络延迟和开销</p><h3 id="3-1-架构模式总结"><a href="#3-1-架构模式总结" class="headerlink" title="3.1 架构模式总结"></a>3.1 架构模式总结</h3><p>不同分类的架构（技术架构、产品架构、算法架构、云计算架构、解决方案架构、业务架构）<br>todo 这些模式怎么划分？</p><p>软件设计模式？区别？<br>todo：自己的认识和总结？</p><h3 id="3-1-整体架构模式"><a href="#3-1-整体架构模式" class="headerlink" title="3.1 整体架构模式"></a>3.1 整体架构模式</h3><p>整体架构模式的目的是： 确保企业信息系统能够支持企业的战略目标，同时保持灵活性、可扩展性和可维护性。</p><p>整体架构模式通常包括以下几个关键组成部分：</p><ol><li>业务架构：定义企业的业务流程、组成结构和业务策略，以支持企业目标</li><li>应用架构：定义企业应用系统的结构和交互方式，包括应用的功能、接口和服务</li><li>数据架构：定义企业数据的组织、管理和访问方式，包括数据模型、数据存储和数据交换</li><li>技术架构：定义支持企业信息系统的安全策略和控制措施，以保护企业资产和数据</li><li>安全架构：定义企业信息系统的安全策略和控制措施，以保护企业资产和数据</li><li>集成架构：定义不同系统和组件之间的集成方式，以实现数据和流程的无缝流动</li></ol><p>整体架构模式还可以能包括 治理、风险管理、合规性和其他方面的考虑。 通过采用整体架构模式，企业可以确保其信息系统的设计和实施与企业战略保持一致，并且能够适应不断变化的业务需求和技术环境。</p><h2 id="4-分布式系统模式"><a href="#4-分布式系统模式" class="headerlink" title="4. 分布式系统模式"></a>4. 分布式系统模式</h2><p>架构模式 相比分布式系统模式，是一个更广泛的概念，不仅适用于分布式系统，也适用于单体系统。 架构模式提供了一种高层次的抽象， 用于知道软件系统的组织和设计。</p><p>架构模式通常关注于系统的结构、组件、它们之间的关系以及它们如何交互。架构模式可以包括分布式系统模式，但它们也包括其他类型的模式，如：</p><ul><li>MVC（模型-视图-控制器）模式：用于分离用户界面和业务逻辑。</li><li>管道-过滤器模式：将数据流通过一系列过滤器进行处理。</li><li>分层架构模式：将系统分解为不同的逻辑层，每层负责不同的职责。</li></ul><p>总的来说，分布式系统模式是架构模式的一个子集，专注于解决分布式环境中特有的问题。而架构模式提供了更广泛的设计原则和实践，适用于各种类型的软件系统。</p><p>分布式系统模式都有哪些呢？</p><ul><li>代理模式：一个中间代理(代理服务器) 代表客户端与服务端进行通信，可以提供负载均衡、缓存、安全等功能</li><li>断路器模式：</li><li>命令查询责任分离(CQRS)：将读取(查询)操作和写入(命令)操作分离， 以提高性能和可伸缩性</li><li>事件溯源：</li><li>领导者选举：</li><li>发布者/订阅者：kafka等。 消息生产者、消息消费者 订阅.</li><li>分片模式：</li></ul><h2 id="5-难点"><a href="#5-难点" class="headerlink" title="5. 难点"></a>5. 难点</h2><ul><li>分布式一致性</li><li>分布式事务管理</li><li>网络通信与延迟</li><li>分布式故障处理</li><li>资源管理与调度</li><li>数据分布与管理</li><li>分布式锁与同步</li><li>性能优化</li><li>监控与调试</li><li>安全问题</li></ul><h3 id="5-1-网络通信与延迟"><a href="#5-1-网络通信与延迟" class="headerlink" title="5.1 网络通信与延迟"></a>5.1 网络通信与延迟</h3><p>在分布式架构体系设计中，如何避免网络延迟和开销？</p><p>对网络延迟赫尔开销的理解： 这是分布式系统固有的挑战之一，但为了获得诸多优势需要面对现实困难问题，需要在性能优化和系统特性之间权衡和取舍</p><ul><li>解决办法包括： 优化网络架构、数据压缩、缓存策略、就近访问、异步通信、协议优化、资源预分配、负载均衡策略 等</li></ul><p>合并请求、优化网络协议、智能路由(负载均衡)、流量控制、系统优化(减少不必要的通信)</p><p>如何评估网络延迟和开销问题呢？</p><ul><li>基准测试、监控工具、性能分析工具、日志分析、压力测试、分布式跟踪(系统)</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;单体架构早已成过去， 随着互联网和业务规模的发展，分布式系统已经随处可见，掌握分布式架构的知识体系 显得尤为重要.&lt;/p&gt;
+&lt;p&gt;这里主要是对 分布式架构的认识总结. &lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: red;&quot;&gt;分布式架构体系设计&lt;/span&gt; 是一
+      
+    
+    </summary>
+    
+      <category term="平台工具" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="01.架构设计" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/01-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
+    
+      <category term="02.分布式架构体系_专题" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/01-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/02-%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB-%E4%B8%93%E9%A2%98/"/>
+    
+    
+      <category term="架构设计" scheme="https://quano.gitee.io/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
     <title>1.架构设计方法论理解</title>
-    <link href="https://quano.gitee.io/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%B9%E6%B3%95%E8%AE%BA/001.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95%E8%AE%BA%E7%9A%84%E7%90%86%E8%A7%A3/"/>
-    <id>https://quano.gitee.io/wk/平台工具/架构设计/方法论/001.架构设计方法论的理解/</id>
+    <link href="https://quano.gitee.io/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/01.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/01.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E4%BD%93%E7%B3%BB%E4%B8%8E%E6%96%B9%E6%B3%95%E8%AE%BA/001.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95%E8%AE%BA%E7%9A%84%E7%90%86%E8%A7%A3/"/>
+    <id>https://quano.gitee.io/wk/平台工具/01.架构设计/01.架构设计体系与方法论/001.架构设计方法论的理解/</id>
     <published>2024-05-07T14:55:57.000Z</published>
     <updated>2024-05-18T15:22:10.222Z</updated>
     
@@ -36,12 +67,42 @@
     
       <category term="平台工具" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/"/>
     
-      <category term="架构设计" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
+      <category term="01.架构设计" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/01-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
     
-      <category term="方法论" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%B9%E6%B3%95%E8%AE%BA/"/>
+      <category term="01.架构设计体系与方法论" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/01-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/01-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E4%BD%93%E7%B3%BB%E4%B8%8E%E6%96%B9%E6%B3%95%E8%AE%BA/"/>
     
     
       <category term="架构设计" scheme="https://quano.gitee.io/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>001.TensorFlow识别MNIST.md</title>
+    <link href="https://quano.gitee.io/wk/%E7%AE%97%E6%B3%95/002.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/004.%E7%B3%BB%E5%88%97%E8%AF%BE%E7%A8%8B/001.TensorFlow%E8%AF%86%E5%88%ABMNIST/"/>
+    <id>https://quano.gitee.io/wk/算法/002.深度学习/004.系列课程/001.TensorFlow识别MNIST/</id>
+    <published>2024-04-28T14:55:57.000Z</published>
+    <updated>2024-06-02T16:49:13.512Z</updated>
+    
+    <content type="html"><![CDATA[<p>目的：通过学习TensorFlow识别 MNIST， (1).熟悉 算法工程 工作内容都有呢些. (2).熟悉TensorFlow框架的原理和使用</p><h1 id="TensorFlow识别-MNIST"><a href="#TensorFlow识别-MNIST" class="headerlink" title="TensorFlow识别 MNIST"></a>TensorFlow识别 MNIST</h1><p>见 kaggle： <a href="https://www.kaggle.com/code/novatensor/digit-rec-tensorflow/edit">https://www.kaggle.com/code/novatensor/digit-rec-tensorflow/edit</a></p><h2 id="1-1-数据下载"><a href="#1-1-数据下载" class="headerlink" title="1.1 数据下载"></a>1.1 数据下载</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 引入依赖</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> scipy.io <span class="keyword">import</span> loadmat</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt <span class="comment"># 用于图像相关 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 原始数据是 784 * 70000 的二维数组(mnist[&#x27;data&#x27;]). 及70000条数据， 每条是 784维 的灰度图像.</span></span><br><span class="line">mnist = loadmat(<span class="string">&quot;/kaggle/input/mnist-original/mnist-original.mat&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># label 是 1*70000的二维数组(行向量)。 转置后 变为 一列标签, 对应70000条数据的标签.</span></span><br><span class="line">mnist[<span class="string">&#x27;label&#x27;</span>].T</span><br></pre></td></tr></table></figure><p>数据查看</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看其中某一条图像</span></span><br><span class="line">plt.imshow(mnistData[<span class="number">20000</span>].reshape(<span class="number">28</span>,<span class="number">28</span>))</span><br></pre></td></tr></table></figure><h2 id="1-2-利用TensorFlow识别MNIST"><a href="#1-2-利用TensorFlow识别MNIST" class="headerlink" title="1.2 利用TensorFlow识别MNIST"></a>1.2 利用TensorFlow识别MNIST</h2><p>基础知识：Softmax回归(线性的多元分类模型).</p><p>Softmax目的：将打分结果(向量) 转化为 0-1区间的概率.</p><p>假设 x是单个样本的特征， W、b 是 Softmax模型的参数。 </p><ul><li>对样本的理解： 这里 一条数据就是 一个样本，包含了一个特征向量。 （业务中: 也可以用id表示一个样本 ? )</li></ul><p>在MNIST中，x就代表输入的图片， 它是一个 784维度的向量，而W是一个矩阵。<br>它的形状是 (784,10) , b是一个10维的向量。10代表的是类别数。</p><h3 id="1-2-1-Softmax"><a href="#1-2-1-Softmax" class="headerlink" title="1.2.1 Softmax"></a>1.2.1 <span style="color: red;">Softmax</span></h3><p><strong><em>Softmax回归</em></strong>是一个线性的多类分类模型。 实际上是直接从 Logiistic回归模型转化而来的。<br>区别在于Logistic回归模型为两类分类模型，而Softmax模型为多分类模型.</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">什么是回归?</span><br><span class="line">回归是统计学和机器学习中的一种重要的分析方法，用于建立变量之间的关系模型，通常用于预测连续型变量的数值...</span><br><span class="line">见：机器学习基本概念和算法</span><br><span class="line"></span><br><span class="line">什么是逻辑回归?</span><br><span class="line">(重要)在二分类问题中，采用逻辑函数 将线性组合的输出 转换为0-1之间的概率值，用于描述事件发生的概率.</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>逻辑回归公式:<br>$ h_\theta(x) = \frac{1}{1 + e^{-\theta^Tx}} $</p><p>Softmax回归公式:<br>$ Y<em>k = \frac{e^{Logit_k}}{\sum</em>{j=1}^{K} e^{Logit_j}} $</p><h2 id="1-3-使用Softmax对MNIST分类"><a href="#1-3-使用Softmax对MNIST分类" class="headerlink" title="1.3 使用Softmax对MNIST分类"></a>1.3 使用Softmax对MNIST分类</h2><h3 id="1-3-1-计算Logit"><a href="#1-3-1-计算Logit" class="headerlink" title="1.3.1 计算Logit"></a>1.3.1 计算Logit</h3><p>(<span style="color: red;">简单的线性模型</span>)</p><p>通过一下公式计算各个类别的Logit<br>$ \text{Logit} = z = W^T x + b $</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">W 是权重矩阵，</span><br><span class="line">x 是输入的特征向量， 可以是经过前层神经网络处理后的特征表示.</span><br><span class="line">b 是一个偏置向量，为每个类别提供一个可学习的偏置项.</span><br></pre></td></tr></table></figure><h3 id="1-3-2-使用Softmax函数"><a href="#1-3-2-使用Softmax函数" class="headerlink" title="1.3.2 使用Softmax函数"></a>1.3.2 使用Softmax函数</h3><p>(<span style="color: red;">激活函数-Softmax函数， 用于将线性组合转换为每个类别的概率分布</span>)</p><p>使用Softmax函数将它转换为各个类别的概率值将</p><h3 id="1-3-3-Softmax回归在TensorFlow中的实现"><a href="#1-3-3-Softmax回归在TensorFlow中的实现" class="headerlink" title="1.3.3 Softmax回归在TensorFlow中的实现"></a>1.3.3 Softmax回归在TensorFlow中的实现</h3><p>代码详见：<a href="https://www.kaggle.com/code/novatensor/digit-rec-tensorflow/edit">Kaggle:digit-rec-tensowflow</a></p><p>todo：别的算法, 分别的结果评估、效果比对</p><p>总结算法公共工作过程？Tensorflow的原理和使用</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;目的：通过学习TensorFlow识别 MNIST， (1).熟悉 算法工程 工作内容都有呢些. (2).熟悉TensorFlow框架的原理和使用&lt;/p&gt;
+&lt;h1 id=&quot;TensorFlow识别-MNIST&quot;&gt;&lt;a href=&quot;#TensorFlow识别-MNIST&quot; c
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="002.深度学习" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/002-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="004.系列课程" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/002-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/004-%E7%B3%BB%E5%88%97%E8%AF%BE%E7%A8%8B/"/>
+    
+    
+      <category term="ML" scheme="https://quano.gitee.io/tags/ML/"/>
     
   </entry>
   
@@ -87,8 +148,8 @@
   
   <entry>
     <title>5.架构设计文档模板</title>
-    <link href="https://quano.gitee.io/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%B9%E6%B3%95%E8%AE%BA/005.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E6%A8%A1%E6%9D%BF/"/>
-    <id>https://quano.gitee.io/wk/平台工具/架构设计/方法论/005.架构设计文档模板/</id>
+    <link href="https://quano.gitee.io/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/01.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/01.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E4%BD%93%E7%B3%BB%E4%B8%8E%E6%96%B9%E6%B3%95%E8%AE%BA/005.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E6%A8%A1%E6%9D%BF/"/>
+    <id>https://quano.gitee.io/wk/平台工具/01.架构设计/01.架构设计体系与方法论/005.架构设计文档模板/</id>
     <published>2024-04-07T14:55:57.000Z</published>
     <updated>2024-05-11T16:48:01.954Z</updated>
     
@@ -102,9 +163,9 @@
     
       <category term="平台工具" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/"/>
     
-      <category term="架构设计" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
+      <category term="01.架构设计" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/01-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
     
-      <category term="方法论" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%B9%E6%B3%95%E8%AE%BA/"/>
+      <category term="01.架构设计体系与方法论" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/01-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/01-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E4%BD%93%E7%B3%BB%E4%B8%8E%E6%96%B9%E6%B3%95%E8%AE%BA/"/>
     
     
       <category term="private" scheme="https://quano.gitee.io/tags/private/"/>
@@ -115,8 +176,8 @@
   
   <entry>
     <title>6.架构师职责及基本的理解</title>
-    <link href="https://quano.gitee.io/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%B9%E6%B3%95%E8%AE%BA/006.%E6%9E%B6%E6%9E%84%E5%B8%88%E8%81%8C%E8%B4%A3/"/>
-    <id>https://quano.gitee.io/wk/平台工具/架构设计/方法论/006.架构师职责/</id>
+    <link href="https://quano.gitee.io/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/01.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/01.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E4%BD%93%E7%B3%BB%E4%B8%8E%E6%96%B9%E6%B3%95%E8%AE%BA/006.%E6%9E%B6%E6%9E%84%E5%B8%88%E8%81%8C%E8%B4%A3/"/>
+    <id>https://quano.gitee.io/wk/平台工具/01.架构设计/01.架构设计体系与方法论/006.架构师职责/</id>
     <published>2024-04-07T14:55:57.000Z</published>
     <updated>2024-05-18T16:41:02.111Z</updated>
     
@@ -130,14 +191,67 @@
     
       <category term="平台工具" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/"/>
     
-      <category term="架构设计" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
+      <category term="01.架构设计" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/01-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
     
-      <category term="方法论" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%B9%E6%B3%95%E8%AE%BA/"/>
+      <category term="01.架构设计体系与方法论" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/01-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/01-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E4%BD%93%E7%B3%BB%E4%B8%8E%E6%96%B9%E6%B3%95%E8%AE%BA/"/>
     
     
       <category term="private" scheme="https://quano.gitee.io/tags/private/"/>
     
       <category term="架构设计" scheme="https://quano.gitee.io/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>0.Web端安全</title>
+    <link href="https://quano.gitee.io/wk/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/Web%E7%AB%AF%E5%AE%89%E5%85%A8/000.Web%E7%AB%AF%E5%AE%89%E5%85%A8/"/>
+    <id>https://quano.gitee.io/wk/信息安全/Web端安全/000.Web端安全/</id>
+    <published>2024-03-25T07:55:57.000Z</published>
+    <updated>2024-06-02T05:16:56.447Z</updated>
+    
+    <content type="html"><![CDATA[<p>常见Web系统安全漏洞原理，利用方式(含工具)、以及对应解决方案.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;常见Web系统安全漏洞原理，利用方式(含工具)、以及对应解决方案.&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="信息安全" scheme="https://quano.gitee.io/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/"/>
+    
+      <category term="Web端安全" scheme="https://quano.gitee.io/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/Web%E7%AB%AF%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="安全" scheme="https://quano.gitee.io/tags/%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>信息安全体系</title>
+    <link href="https://quano.gitee.io/wk/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/Security/"/>
+    <id>https://quano.gitee.io/wk/信息安全/Security/</id>
+    <published>2024-03-24T07:55:57.000Z</published>
+    <updated>2024-06-02T05:13:45.927Z</updated>
+    
+    <content type="html"><![CDATA[<div>    <span style="display: block; margin-left: 40%;width: 85%">信息安全体系</span>    <img src="https://gitee.com/quano/www/raw/master/img/信息安全.png"         style="display: inline-block;margin-left: 18px; width: 85%"/></div>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;div&gt;
+    &lt;span style=&quot;display: block; margin-left: 40%;width: 85%&quot;&gt;信息安全体系&lt;/span&gt;
+    &lt;img src=&quot;https://gitee.com/quano/www/raw/master/img/信
+      
+    
+    </summary>
+    
+      <category term="信息安全" scheme="https://quano.gitee.io/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/"/>
+    
     
   </entry>
   
@@ -174,8 +288,8 @@
   
   <entry>
     <title>2.ERP系统架构设计</title>
-    <link href="https://quano.gitee.io/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/ERP/002.ERP%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
-    <id>https://quano.gitee.io/wk/平台工具/架构设计/ERP/002.ERP系统架构设计/</id>
+    <link href="https://quano.gitee.io/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/01.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/03.ERP/002.ERP%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
+    <id>https://quano.gitee.io/wk/平台工具/01.架构设计/03.ERP/002.ERP系统架构设计/</id>
     <published>2024-03-24T07:55:57.000Z</published>
     <updated>2024-05-22T18:07:53.016Z</updated>
     
@@ -192,17 +306,17 @@
     
       <category term="平台工具" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/"/>
     
-      <category term="架构设计" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
+      <category term="01.架构设计" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/01-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
     
-      <category term="ERP" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/ERP/"/>
+      <category term="03.ERP" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/01-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/03-ERP/"/>
     
     
   </entry>
   
   <entry>
     <title>1.ERP系统认识</title>
-    <link href="https://quano.gitee.io/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/ERP/001.ERP%E7%B3%BB%E7%BB%9F%E8%AE%A4%E8%AF%86/"/>
-    <id>https://quano.gitee.io/wk/平台工具/架构设计/ERP/001.ERP系统认识/</id>
+    <link href="https://quano.gitee.io/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/01.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/03.ERP/001.ERP%E7%B3%BB%E7%BB%9F%E8%AE%A4%E8%AF%86/"/>
+    <id>https://quano.gitee.io/wk/平台工具/01.架构设计/03.ERP/001.ERP系统认识/</id>
     <published>2024-03-24T03:55:57.000Z</published>
     <updated>2024-03-24T06:42:42.155Z</updated>
     
@@ -219,9 +333,9 @@
     
       <category term="平台工具" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/"/>
     
-      <category term="架构设计" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
+      <category term="01.架构设计" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/01-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
     
-      <category term="ERP" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/ERP/"/>
+      <category term="03.ERP" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/01-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/03-ERP/"/>
     
     
   </entry>
@@ -249,29 +363,23 @@
   </entry>
   
   <entry>
-    <title>0.算法工程职责</title>
-    <link href="https://quano.gitee.io/wk/%E7%AE%97%E6%B3%95/006.%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/000.%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E8%81%8C%E8%B4%A3/"/>
-    <id>https://quano.gitee.io/wk/算法/006.算法工程/000.算法工程职责/</id>
+    <title>0.算法工程概述</title>
+    <link href="https://quano.gitee.io/wk/%E7%AE%97%E6%B3%95/006.%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/000.%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E6%A6%82%E8%BF%B0/"/>
+    <id>https://quano.gitee.io/wk/算法/006.算法工程/000.算法工程概述/</id>
     <published>2024-03-18T16:48:57.000Z</published>
-    <updated>2024-05-18T18:38:51.044Z</updated>
+    <updated>2024-06-02T05:46:52.653Z</updated>
     
-    <content type="html"><![CDATA[<p>算法工程师</p><p>算法设计</p><p>数据预处理</p><p>模型训练和评估</p><p>模型优化</p><p>模型压缩与加速</p><p>算法实现</p><p>软件工程</p><p>系统集成</p><p>性能监控与调优</p><p>开发部署</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="算法工程职责"><a href="#算法工程职责" class="headerlink" title="算法工程职责"></a>算法工程职责</h1><p>算法工程师</p><p>算法设计</p><p>数据预处理</p><p>模型训练和评估</p><p>模型优化</p><p>模型压缩与加速</p><p>算法实现</p><p>软件工程</p><p>系统集成</p><p>性能监控与调优</p><p>开发部署</p><h1 id="通过识别MNIST了解算法工程"><a href="#通过识别MNIST了解算法工程" class="headerlink" title="通过识别MNIST了解算法工程"></a>通过识别MNIST了解算法工程</h1><p>通过Tensorflow深度学习项目来 了解算法工程 和Tensorflow.</p><p><a href="/wk/算法/002.深度学习/004.系列课程/001.TensorFlow识别MNIST/">TensorFlow识别MNIST</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;算法工程师&lt;/p&gt;
+        &lt;h1 id=&quot;算法工程职责&quot;&gt;&lt;a href=&quot;#算法工程职责&quot; class=&quot;headerlink&quot; title=&quot;算法工程职责&quot;&gt;&lt;/a&gt;算法工程职责&lt;/h1&gt;&lt;p&gt;算法工程师&lt;/p&gt;
 &lt;p&gt;算法设计&lt;/p&gt;
 &lt;p&gt;数据预处理&lt;/p&gt;
 &lt;p&gt;模型训练和评估&lt;/p&gt;
-&lt;p&gt;模型优化&lt;/p&gt;
-&lt;p&gt;模型压缩与加速&lt;/p&gt;
-&lt;p&gt;算法实现&lt;/p&gt;
-&lt;p&gt;软件工程&lt;/p&gt;
-&lt;p&gt;系统集成&lt;/p&gt;
-&lt;p&gt;性能监控与调优&lt;/p&gt;
-&lt;p&gt;开发部署&lt;/
+&lt;p&gt;模
       
     
     </summary>
@@ -366,6 +474,35 @@
   </entry>
   
   <entry>
+    <title>1.IOS开发总结</title>
+    <link href="https://quano.gitee.io/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3/IOS/001.IOS%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/"/>
+    <id>https://quano.gitee.io/wk/平台工具/编程相关/IOS/001.IOS开发总结/</id>
+    <published>2024-03-02T03:55:57.000Z</published>
+    <updated>2024-03-01T17:46:00.100Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="IOS技术栈"><a href="#IOS技术栈" class="headerlink" title="IOS技术栈"></a>IOS技术栈</h1><p>编程语言：Swift、Objective-C。</p><ul><li>Swift：Swift旨在比Objective-C更安全、更快，并且更易于学习。</li><li>Objective-C：传统的iOS开发语言，仍然被广泛使用，尤其是在维护旧项目或使用某些第三方库时。</li></ul><h1 id="Objective-C-项目-启动入口"><a href="#Objective-C-项目-启动入口" class="headerlink" title="Objective-C 项目 启动入口"></a>Objective-C 项目 启动入口</h1><p>入口及项目结构核心环节</p><ol><li>main.m</li></ol><p>在 Objective-C 项目中，main.m 是应用程序的入口文件，它包含了 main 函数，这是 C 和 C++ 程序的标准入口点。<br>main.m 文件通常位于项目的根目录下，它负责设置应用程序的环境，创建和返回一个 UIApplication 实例，并启动事件循环。</p><ol><li>UIApplicationMain</li></ol><p>UIApplicationMain 是一个宏，它在 main.m 文件中被调用，用于启动应用程序的运行循环。<br>这个宏接受几个参数，包括应用程序的类、启动器的类、启动器的参数和返回值。</p><ol><li>AppDelegate</li></ol><p>AppDelegate 是一个继承自 UIApplicationDelegate 的类，它负责协调应用程序的生命周期事件。<br>在 main.m 文件中，UIApplicationMain 宏会创建 AppDelegate 实例，并在应用程序启动时调用其方法，如 application:didFinishLaunchingWithOptions:。</p><ol><li>Info.plist</li></ol><p>Info.plist 文件包含了应用程序的配置信息，如应用程序的显示名称、Bundle Identifier、启动画面等。<br>在 Info.plist 中，你可以指定 UIApplicationDelegate 类的名称，这个类就是 AppDelegate。</p><ol><li>启动画面（Launch Screen）:</li></ol><p>启动画面是用户在打开应用程序时首先看到的界面，它通常在 LaunchScreen.storyboard 或 LaunchScreen.xib 文件中定义。</p><ol><li>RootViewController<br>RootViewController 是应用程序的初始视图控制器，它在 AppDelegate 的 window 属性中被设置。<br>在 application:didFinishLaunchingWithOptions: 方法中，你可以加载并设置 RootViewController。</li></ol><p>在 Swift 项目中，main.swift 文件取代了 main.m，但入口点的概念和流程基本相同。Swift 项目同样使用 UIApplicationMain 宏来启动应用程序，并且也有一个 AppDelegate 类来处理应用程序的生命周期事件。</p><p>总的来说，iOS 项目的入口点是 main.m 或 main.swift 文件中的 UIApplicationMain 宏，它启动了应用程序的运行循环，并设置了 AppDelegate 和 UIApplication。这些组件共同定义了应用程序的启动流程和生命周期管理。</p><h1 id=""><a href="#" class="headerlink" title=" "></a> </h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;IOS技术栈&quot;&gt;&lt;a href=&quot;#IOS技术栈&quot; class=&quot;headerlink&quot; title=&quot;IOS技术栈&quot;&gt;&lt;/a&gt;IOS技术栈&lt;/h1&gt;&lt;p&gt;编程语言：Swift、Objective-C。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Swift：Swift旨在比Obj
+      
+    
+    </summary>
+    
+      <category term="平台工具" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="编程相关" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="IOS" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3/IOS/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>1.1 C类_职测_例题精解</title>
     <link href="https://quano.gitee.io/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/001_1.C%E7%B1%BB_%E8%81%8C%E6%B5%8B_%E4%BE%8B%E9%A2%98_%E7%9C%9F%E9%A2%98%E7%B2%BE%E8%A7%A3/"/>
     <id>https://quano.gitee.io/wk/项目管理/生活学习/关于公考/001_1.C类_职测_例题_真题精解/</id>
@@ -418,35 +555,6 @@
   </entry>
   
   <entry>
-    <title>1.IOS开发总结</title>
-    <link href="https://quano.gitee.io/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3/IOS/001.IOS%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/"/>
-    <id>https://quano.gitee.io/wk/平台工具/编程相关/IOS/001.IOS开发总结/</id>
-    <published>2024-03-02T03:55:57.000Z</published>
-    <updated>2024-03-01T17:46:00.100Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="IOS技术栈"><a href="#IOS技术栈" class="headerlink" title="IOS技术栈"></a>IOS技术栈</h1><p>编程语言：Swift、Objective-C。</p><ul><li>Swift：Swift旨在比Objective-C更安全、更快，并且更易于学习。</li><li>Objective-C：传统的iOS开发语言，仍然被广泛使用，尤其是在维护旧项目或使用某些第三方库时。</li></ul><h1 id="Objective-C-项目-启动入口"><a href="#Objective-C-项目-启动入口" class="headerlink" title="Objective-C 项目 启动入口"></a>Objective-C 项目 启动入口</h1><p>入口及项目结构核心环节</p><ol><li>main.m</li></ol><p>在 Objective-C 项目中，main.m 是应用程序的入口文件，它包含了 main 函数，这是 C 和 C++ 程序的标准入口点。<br>main.m 文件通常位于项目的根目录下，它负责设置应用程序的环境，创建和返回一个 UIApplication 实例，并启动事件循环。</p><ol><li>UIApplicationMain</li></ol><p>UIApplicationMain 是一个宏，它在 main.m 文件中被调用，用于启动应用程序的运行循环。<br>这个宏接受几个参数，包括应用程序的类、启动器的类、启动器的参数和返回值。</p><ol><li>AppDelegate</li></ol><p>AppDelegate 是一个继承自 UIApplicationDelegate 的类，它负责协调应用程序的生命周期事件。<br>在 main.m 文件中，UIApplicationMain 宏会创建 AppDelegate 实例，并在应用程序启动时调用其方法，如 application:didFinishLaunchingWithOptions:。</p><ol><li>Info.plist</li></ol><p>Info.plist 文件包含了应用程序的配置信息，如应用程序的显示名称、Bundle Identifier、启动画面等。<br>在 Info.plist 中，你可以指定 UIApplicationDelegate 类的名称，这个类就是 AppDelegate。</p><ol><li>启动画面（Launch Screen）:</li></ol><p>启动画面是用户在打开应用程序时首先看到的界面，它通常在 LaunchScreen.storyboard 或 LaunchScreen.xib 文件中定义。</p><ol><li>RootViewController<br>RootViewController 是应用程序的初始视图控制器，它在 AppDelegate 的 window 属性中被设置。<br>在 application:didFinishLaunchingWithOptions: 方法中，你可以加载并设置 RootViewController。</li></ol><p>在 Swift 项目中，main.swift 文件取代了 main.m，但入口点的概念和流程基本相同。Swift 项目同样使用 UIApplicationMain 宏来启动应用程序，并且也有一个 AppDelegate 类来处理应用程序的生命周期事件。</p><p>总的来说，iOS 项目的入口点是 main.m 或 main.swift 文件中的 UIApplicationMain 宏，它启动了应用程序的运行循环，并设置了 AppDelegate 和 UIApplication。这些组件共同定义了应用程序的启动流程和生命周期管理。</p><h1 id=""><a href="#" class="headerlink" title=" "></a> </h1>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;IOS技术栈&quot;&gt;&lt;a href=&quot;#IOS技术栈&quot; class=&quot;headerlink&quot; title=&quot;IOS技术栈&quot;&gt;&lt;/a&gt;IOS技术栈&lt;/h1&gt;&lt;p&gt;编程语言：Swift、Objective-C。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Swift：Swift旨在比Obj
-      
-    
-    </summary>
-    
-      <category term="平台工具" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="编程相关" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3/"/>
-    
-      <category term="IOS" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3/IOS/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>2.职侧考试总结</title>
     <link href="https://quano.gitee.io/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/002.%E8%81%8C%E4%BE%A7%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93_filter/"/>
     <id>https://quano.gitee.io/wk/项目管理/生活学习/关于公考/002.职侧考试总结_filter/</id>
@@ -469,120 +577,6 @@
     
     
       <category term="private" scheme="https://quano.gitee.io/tags/private/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>3.公考行测与C类的差别</title>
-    <link href="https://quano.gitee.io/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/003.%E5%85%AC%E8%80%83%E8%A1%8C%E6%B5%8B%E4%B8%8EC%E7%B1%BB%E7%9A%84%E5%B7%AE%E5%88%AB/"/>
-    <id>https://quano.gitee.io/wk/项目管理/生活学习/关于公考/003.公考行测与C类的差别/</id>
-    <published>2024-02-24T01:56:24.000Z</published>
-    <updated>2024-05-04T22:03:07.359Z</updated>
-    
-    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉，您输入的密码错误，请检查后重新输入。" data-whm="抱歉, 当前文章不能被校验, 不过您还是可以看看解密后的内容。">  <script id="hbeData" type="hbeData" data-hmacdigest="ff98a597a0a8c18e399e6f44903879ca59e0f4d7046207b1756ad7a39911bf31">6529a249a0af82b27e00ec9fb492a165cd7b472eb2ff883b7cc2ddc06f5cd8c5</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">当前文章暂不对外可见，请输入密码后查看！</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-    
-    <summary type="html">
-    
-      这是一篇加密文章，需要密码才能继续阅读。
-    
-    </summary>
-    
-      <category term="项目管理" scheme="https://quano.gitee.io/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"/>
-    
-      <category term="生活学习" scheme="https://quano.gitee.io/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="关于公考" scheme="https://quano.gitee.io/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/"/>
-    
-    
-      <category term="private" scheme="https://quano.gitee.io/tags/private/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>学习思考_系统化</title>
-    <link href="https://quano.gitee.io/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/001.%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83_%E7%B3%BB%E7%BB%9F%E5%8C%96/"/>
-    <id>https://quano.gitee.io/wk/项目管理/生活学习/学习方法/001.学习思考_系统化/</id>
-    <published>2024-02-24T01:56:24.000Z</published>
-    <updated>2024-03-24T18:38:59.440Z</updated>
-    
-    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉，您输入的密码错误，请检查后重新输入。" data-whm="抱歉, 当前文章不能被校验, 不过您还是可以看看解密后的内容。">  <script id="hbeData" type="hbeData" data-hmacdigest="0ca6170728d0e7193f4d90eed45d1d974f97f07a9c7bb06ca060b141aefad4e8">37df3367815823fa6a74ef48ceb5066582bdbdc9d4d9b263c6b5b8ca3836096bbd872a5eca82543f3edcc30c21f783e0aa7ad72b7bad2d652cdb3f67059d140e5af2e068081c2b5e4e412d788d760ebbbb4b347d4694c63cbf0c85eba87f87804fe248e3d5bb590a755bc0451847d403cf465300627e16c92ca95c046b90b1f44de185b1cf906dfcbb2f86a31a0fae4eeabed4405c109b29e1e7c3d37342137224a34e8f9313946c1993531e3b84c3b27660b068476e2b2036280db596a57b5908cd17eab0b1c2766ffee30e9bd0d0c6bf12354c4f9ac1ee34dfd415af0cfe6e45348b856dee68dbaf25c318273767e1d32267298cd285f7a4ecd8a29c82d894e011c1ad3424c6baf7f1ce4a2562aa10ae55f2209479de423cc080427e3d3e013b17bb540aefdbe95f53e85e714c5f9f15c8f71f9eb0944b211e242dccb42b699bb42f9e633435310c83e6e39898ccd8b342fc025ce7666185ec5213ef8439e0fdd98ce84e42d78fc9f47229280081f8681eea458878e7c00b537d0a9a24a39440037aadcd98072a3347ca54d209bf9e30a4f8d8ca25be833284f2b43e695e32</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">当前文章暂不对外可见，请输入密码后查看！</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-    
-    <summary type="html">
-    
-      这是一篇加密文章，需要密码才能继续阅读。
-    
-    </summary>
-    
-      <category term="项目管理" scheme="https://quano.gitee.io/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"/>
-    
-      <category term="生活学习" scheme="https://quano.gitee.io/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="学习方法" scheme="https://quano.gitee.io/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
-    
-      <category term="生活学习" scheme="https://quano.gitee.io/tags/%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>客户端最新技术</title>
-    <link href="https://quano.gitee.io/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91/001.%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%80%E6%96%B0%E6%8A%80%E6%9C%AF/"/>
-    <id>https://quano.gitee.io/wk/平台工具/编程相关/客户端开发/001.客户端最新技术/</id>
-    <published>2024-02-18T14:55:57.000Z</published>
-    <updated>2024-02-17T17:17:01.793Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="最新的客户端技术"><a href="#最新的客户端技术" class="headerlink" title="最新的客户端技术"></a>最新的客户端技术</h1><p>语言：Java / Kotlin ; Objective-C / Swift</p><p>关键词：移动端跨平台、Flutter、C++ 开发(音视频相关)</p><p>沟通能力、学习能力、快速响应变化.</p><p>开发平台.</p><p>Gradle、Android性能.</p><p>Android框架源码.</p><p>网络协议、多线程.</p><p>分析和解决实际问题的能力和态度.</p><p>跨平台（React Native、Flutter）</p><h2 id="JD要求"><a href="#JD要求" class="headerlink" title="JD要求"></a>JD要求</h2><ol><li>了解Android Framework 系统架构、有Android 源码分析经验。</li><li>有App性能优化的经验，包括网络、内存、CPU等.</li><li>有C++编程经验，可以独立封装JNI接口.</li></ol><ol><li>具备扎实的OC和Swift语言基础，有良好的编码习惯和代码风格.</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;最新的客户端技术&quot;&gt;&lt;a href=&quot;#最新的客户端技术&quot; class=&quot;headerlink&quot; title=&quot;最新的客户端技术&quot;&gt;&lt;/a&gt;最新的客户端技术&lt;/h1&gt;&lt;p&gt;语言：Java / Kotlin ; Objective-C / Swift&lt;/p&gt;
-&lt;p&gt;
-      
-    
-    </summary>
-    
-      <category term="平台工具" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="编程相关" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3/"/>
-    
-      <category term="客户端开发" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-    
-      <category term="Android" scheme="https://quano.gitee.io/tags/Android/"/>
-    
-      <category term="客户端" scheme="https://quano.gitee.io/tags/%E5%AE%A2%E6%88%B7%E7%AB%AF/"/>
-    
-      <category term="IOS" scheme="https://quano.gitee.io/tags/IOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>沟通-重要性</title>
-    <link href="https://quano.gitee.io/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B1%5D%E6%B2%9F%E9%80%9A%E8%83%BD%E5%8A%9B/000.%E6%B2%9F%E9%80%9A%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7/"/>
-    <id>https://quano.gitee.io/wk/项目管理/[1]沟通能力/000.沟通的重要性/</id>
-    <published>2024-02-08T01:56:24.000Z</published>
-    <updated>2024-02-08T08:51:55.522Z</updated>
-    
-    <content type="html"><![CDATA[<p>领导眼中工作价值 = 你的工作价值 * 沟通能力.</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;领导眼中工作价值 = 你的工作价值 * 沟通能力.&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-      <category term="项目管理" scheme="https://quano.gitee.io/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"/>
-    
-      <category term="[1]沟通能力" scheme="https://quano.gitee.io/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/1-%E6%B2%9F%E9%80%9A%E8%83%BD%E5%8A%9B/"/>
-    
-    
-      <category term="沟通" scheme="https://quano.gitee.io/tags/%E6%B2%9F%E9%80%9A/"/>
     
   </entry>
   
