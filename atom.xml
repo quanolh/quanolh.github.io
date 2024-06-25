@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://quano.gitee.io/"/>
-  <updated>2024-06-10T17:18:08.659Z</updated>
+  <updated>2024-06-25T15:51:27.114Z</updated>
   <id>https://quano.gitee.io/</id>
   
   <author>
@@ -17,20 +17,46 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>4. 最优化理论_模型训练中的数学原理</title>
-    <link href="https://quano.gitee.io/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002.%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E5%87%BD%E6%95%B0/004.%E6%9C%80%E4%BC%98%E5%8C%96%E7%90%86%E8%AE%BA_%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%A6/"/>
-    <id>https://quano.gitee.io/wk/算法/001.机器学习/002.数学知识/函数/004.最优化理论_模型训练中的数学/</id>
-    <published>2024-06-10T14:55:57.000Z</published>
-    <updated>2024-06-10T17:18:08.659Z</updated>
+    <title>策略治理_策略评价体系</title>
+    <link href="https://quano.gitee.io/wk/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E9%A3%8E%E6%8E%A7%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%AE%89%E5%85%A8/%E7%AD%96%E7%95%A5%E5%B9%B3%E5%8F%B0/001.%E7%AD%96%E7%95%A5%E6%B2%BB%E7%90%86_%E7%AD%96%E7%95%A5%E8%AF%84%E4%BB%B7%E4%BD%93%E7%B3%BB/"/>
+    <id>https://quano.gitee.io/wk/信息安全/风控与业务安全/策略平台/001.策略治理_策略评价体系/</id>
+    <published>2024-06-24T07:55:57.000Z</published>
+    <updated>2024-06-25T15:51:27.114Z</updated>
     
-    <content type="html"><![CDATA[<p>以Logistic回归算法 为依据， 学习初步的最优化理论，以及梯度下降最优化算法. </p><p>先来看看模型训练过程：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 算法过程</span><br><span class="line">1. 收集数据、准备数据</span><br><span class="line">2. 分析数据</span><br><span class="line">3. 训练算法：训练的目的是为了找到最佳的分类回归系数</span><br></pre></td></tr></table></figure></p><h1 id="基于最优化方法的最佳回归系数确定"><a href="#基于最优化方法的最佳回归系数确定" class="headerlink" title="基于最优化方法的最佳回归系数确定"></a>基于<span style="color: red;">最优化方法</span>的最佳回归系数确定</h1><p>确定回归系数的最优化方法通常涉及到<strong><em>求解损失函数</em></strong>的<strong><em>最小化问题</em></strong>。<br>通常在线性回归中，最常用的方法是<strong><em>最小二乘法</em></strong>，而在深度学习中，通常使用<strong><em>梯度下降法或其变种来优化损失函数</em></strong>。<br>(逻辑回归是个分类问题，不是线性回归，使用的最优化方法是梯度下降)</p><ul><li>最小二乘法<br>在普通最小二乘线性回归中，我们试图找到一条直线，使得该直线与数据点的<strong><em>残差平方和</em></strong>最小。这个问题可以通过解析方法（例如正规方程）求解，或者通过迭代优化方法（例如梯度下降）来解决。</li></ul><ul><li>梯度下降法<br>在深度学习中，梯度下降法是最常用的优化方法之一。它通过计算损失函数相对于模型参数的梯度，并沿着梯度的反方向更新参数，以使损失函数的值逐渐减小。梯度下降法有多种变种，包括批量梯度下降（Batch Gradient Descent）、随机梯度下降（Stochastic Gradient Descent）和小批量梯度下降（Mini-batch Gradient Descent）等。</li></ul><ul><li>其他优化方法<br>除了梯度下降法之外，还有一些其他的优化方法，如动量法（Momentum）、自适应学习率方法（Adaptive Learning Rate Methods，如Adam、RMSProp等）等。这些方法通过在梯度下降过程中引入动量或自适应调整学习率的方式来加速优化过程。</li></ul><h2 id="1-最小二乘法"><a href="#1-最小二乘法" class="headerlink" title="1. 最小二乘法"></a>1. 最小二乘法</h2><p>目标是最小化观测值与模型预测值之间的平方误差</p><h2 id="2-梯度下降法"><a href="#2-梯度下降法" class="headerlink" title="2. 梯度下降法"></a>2. 梯度下降法</h2><h2 id="3-逻辑回归的最优化"><a href="#3-逻辑回归的最优化" class="headerlink" title="3. 逻辑回归的最优化"></a>3. 逻辑回归的最优化</h2><p>逻辑回归使用 梯度下降法<br>梯度下降通过迭代更新模型参数，沿着损失函数的负梯度方向寻找损失函数的最小值。这种方法适用于逻辑回归中的损失函数，如对数损失函数（logarithmic loss）或交叉熵损失函数（cross-entropy loss），可以有效地最小化损失并找到最优参数。</p><h3 id="1-1-模型预测："><a href="#1-1-模型预测：" class="headerlink" title="1.1 模型预测："></a>1.1 模型预测：</h3><p>logistic 回归的模型预测由 sigmoid 函数完成，将线性组合的结果 $z$ 映射到一个介于 0 和 1 之间的概率值，表示样本属于正类的概率。预测公式为：<br>$ \hat{y} = \sigma(z) = \frac{1}{1 + e^{-z}} $<br>其中，e是自然对数的底，即欧拉常数，约等于2.71828。</p><h3 id="1-2-损失函数"><a href="#1-2-损失函数" class="headerlink" title="1.2 损失函数"></a>1.2 损失函数</h3><p>logistic 回归通常使用对数损失函数（log loss），也称为交叉熵损失函数，用来衡量模型预测值与真实标签之间的差异。</p><p>对于二分类问题，对数损失函数的定义为：<br>$ \text{Log Loss} = -\frac{1}{N} \sum_{i=1}^{N} \left( y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right) $</p><p>其中，$N$ 是样本数量，y_i 是第 i 个样本的真实标签，$\hat{y}_i$ 是模型的预测概率。</p><p><strong><em>这个损失函数是根据最大似然估计推导而来的</em></strong>。todo：怎么推导来着？？？？？？</p><p>我们希望<strong><em>通过最小化损失函数，使得模型输出的概率尽可能地接近真实标签的概率</em></strong>。而对数损失函数在这里被广泛选择的原因有以下几点：</p><ol><li>可微性： 对数损失函数是连续可导的，这使得我们可以使用梯度下降等优化算法来最小化损失函数，从而更新模型的参数。</li><li>凸性： 对数损失函数是凸函数，这意味着局部最小值也是全局最小值，因此我们可以保证收敛到全局最优解。</li><li>推导简单性： 对数损失函数的推导相对简单，并且与逻辑回归模型的概率输出形式相符合，因此在数学上更容易处理和理解。</li></ol><p>因此，对数损失函数是逻辑回归中的一种合适选择，它在实践中被广泛采用，并且在处理二分类问题时通常能够取得良好的效果。</p><h3 id="1-3-参数优化"><a href="#1-3-参数优化" class="headerlink" title="1.3 参数优化"></a>1.3 参数优化</h3><p>通过最小化损失函数来优化模型的参数 $ \mathbf{w} = (w_0, w_1, \ldots, w_n) $。<br>通常使用梯度下降法或其变种来进行参数优化。<br>具体地，我们计算损失函数关于参数的梯度，然后沿着梯度的反方向更新参数，使损失函数的值逐渐减小。</p><p>如上 sigmoid函数 定义， 函数的输入记为 $z$(其中$z$是线性函数的输出)，即 $z$ 由下面公式得出：<br>$z = w_0 + w_1x_1 + w_2x_2 + \ldots + w_nx_n$<br>在这里，$w_0, w_1, \ldots, w_n$ 是模型的权重，$x_1, x_2, \ldots, x_n$ 是输入特征。sigmoid函数将z的值映射到[0,1]的区间</p><p>todo: 这个过程的代码实现.</p><p>是怎么根据 损失函数、梯度下降 来找到 最优参数的呢？？</p>]]></content>
+    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉，您输入的密码错误，请检查后重新输入。" data-whm="抱歉, 当前文章不能被校验, 不过您还是可以看看解密后的内容。">  <script id="hbeData" type="hbeData" data-hmacdigest="14239b5fe69f4219a02b4430f494264791039600332beaf2c1451170acda7291">6529a249a0af82b27e00ec9fb492a16554c827f272e9748714be7891901a63d8de314d6d0b6656af15cadc33b8cce5aa86c8b95ec593b02332f93dbbc84d4343222e9b804f962bacce50f4de7ab55acffe9516142e678310b11e54b99873542462fbd3f477668f73b69edfbf7df084952600abad77f454dddd2153ebe063a444b098fb9772b94a84396ea167c211466d4e05d706a5801e210b094f34eabfcd34907a082811091897da7eaa63eb95624bfc174946d447c8119d99de2e9636565d9b430ab9ab5e4f45ec5e77ee91c77de25ab0dce573baaceb9fdca9e976d073bf0f86fb93428d619f622dbb29e85ab4f9bf464317494b83d76c9edb841b2de1d84a48a65c509dae3c711a48fa89ae441fb4164b4d2b65fcdf2d2da5db3b216fe718bd35c7c852009c18cf38608b47df8c18d826a017530df7098102ce3c886705ae4f1f8a93806c661fd041a53a3d498af34db88726916996cf4565e72baf9f139fdd033d44dc10ee877c9595ecbc9437bb93b0acb62c041095499e55ff3f08977f8ec8032731e7690f36f2b213dc341f233bdfc580162f873a469e08d3801db390420e28d2b62a5975d5c60df5a97621d4cc1ce536b1731f376a568b087837d7e8575fe2cdf7d3fdfd8c873f8930bbd8744061ea1b4038d9d603bff061f5c9272d479e58e16d533a7266825a601e32fc8dc746d7a811d2b33250a64a96ae3d0c2dbbfe7e49581ef32db3a9b1dd5cb69ff70d2fe11f71c09499e60358d3a34f1b4251d7743cbc20dc5c96aaa56eb9153deb6f852e68f1d06230931de849c5ad81c1a12554e9cd035f3479ca089bdddf6cca4cc71e0f8187a57b55c5b46811e1a854abaa28c11ba489cedde1643b14c1e49bb0bbdf36d930eb758b02e37e9644e3a61830637106a0d82db582dd637d976c1d9be34ba607ea37e0713dcb2815650b8d0f870499f7b11eb36351b92cca22161d291e33bc76eb0300b77c7c76755e202ba68888f6f65a4c2252bcb1ddce5a4fb31b55621f3049e39f1575512fc06fd54a6493ffd1422371561be419a8610aff5ac6569843933e87d0a599041b3b71aa1069fa5e58648d23b6960bc82464de50eae683dea98d9acf08629a0aa36a80416c6e81bb73486eee66619d5b13176b6b3ddfb9a4fadd2385afeeb783791b9c624267e551074356510e832270283da58648e53c4f15594e7d5fff8a815a598f1c3e17e66371d02a53ace029eb72614bbf85e14ce2e0649e80b9136528fecbe9854bf2252a9d68cc4a39a32efca2b0faf456799c17a389587b42a160e0feefe5eb8e95038dd9b3dceb43cdaca2aceb49b3c64ffd5c4d97341c65c13eb510764a0b8b4fb0b9ef0abe1a52d929cd06c96c32f02ccb1ba3ec64e1539709402f059970e5fd86cce8aa9bcae4098b09113491e553c154dc8d3a1cea27a2c5d4d8af655dad0fae242e7a0dc74fcd8729b398c0e9070be8af5921fcfbd1ff4851e2fc2ba8b27351169db2de8380d50fbad5e34984db912455d33400c25f7b406dd81d2fa0169ff3ab8d3cdeca00be1fb0a2698e14b4c8f6bfdd2edbbc3d0552dc7d6f59758de3042be73c98c8e3c93378bd517cbb29811cceb10bf47197076c55b7ac796d6fc199cff69b5c482e1dd27b9a3cc372110c9e098e6a7059395060391c91e90e33554af10d47a52c29a740487c66ec0048035e28e029423bd094dd81a6773136902aa2daeaa63fd484d6464f6dd13f9373d6367e0ece0586cc2ba42ef55fcb67b998994f175f9db4e766cb181b12a78e2904fda9ea084abbd5691be7c784beee6d1f02eb010b1af30163af925f5277347e925d218bb7eb212f9604b3c18e3d985a255905d7421eb02fb7105b7c144be5ba59107d1a2dc69ce68baf539cf6fff55247b2d62501b3c29ce93faff33ec2d96a40c3451edd03304232b789f3dfdfb2b54aba06b38f680492c1e01c84d4a9dcebe5f99c2902961f3b2967eec659e63a727695f1e0d66771982c434265bcd182dd4e70c3fee0a716dbd1c8d383b64845526e4bf6a7049100149b3ca1a7f2d60cf3205e26e976804247df3f90d34f30e4644d6314ea1a5f518dc643d0267f7c5653fc25b9dac6ad2234cd5bb546262a5e92c9084056d5110401ff268ffd9742c5141d8b0616968be9a4a678aba383d325f4bd6ade7edc043978bc22d42021e805a8571c2b708d86ab9d5946ae32e4c9fceefaf453cf358a7401b4b3858ae30ce70ba1f00753cdd90ee8cad1df8b58aca4373c7c239a700d0c1ea205e9375bbc28d14391891f1a883dd6853eb84f97f45a382f46de943b28094d86d79e97cb129d72fbe496c2b5f6de556df1f5d0468b206b5d1f7897e8c8f2207b5dfc7c979e42c9e7415aaa5363a439ee104387d1a41f5f13a84fc94db27084a9ec75f2fcfc99e27f7d7c5eedf1228c86867951ca6c2be5a9cbb204c504dab92bfd0781f38383fbd18ca45b6e429a3e9dc3d783d4a8b6305ebed7978e395f36b5e0f4c03ec98dec084a44badba4a9cb46f554f599760f27bc9806adf0b6227eb91d3a6dd9185142e8d093b8df8855691f39e20ee1a6f442b7ea839ae3b4e06f221a8d44fad5f5464b407fd77ae9673bd8323d00faf59ec99fc42fb23e58f9fc5f2b47d4667324486a4f6be9a02925efb07a9faa3d7b19af6d65d321dcef7ecb74d3ac0679c2d3eeb513717dd1a3b799cca15bc8585a9851cd1beb1a731d4bee0767d03097d9a1</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">当前文章暂不对外可见，请输入密码后查看！</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+    
+    <summary type="html">
+    
+      这是一篇加密文章，需要密码才能继续阅读。
+    
+    </summary>
+    
+      <category term="信息安全" scheme="https://quano.gitee.io/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/"/>
+    
+      <category term="风控与业务安全" scheme="https://quano.gitee.io/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E9%A3%8E%E6%8E%A7%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%AE%89%E5%85%A8/"/>
+    
+      <category term="策略平台" scheme="https://quano.gitee.io/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E9%A3%8E%E6%8E%A7%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%AE%89%E5%85%A8/%E7%AD%96%E7%95%A5%E5%B9%B3%E5%8F%B0/"/>
+    
+    
+      <category term="private" scheme="https://quano.gitee.io/tags/private/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>1.参数估计方法</title>
+    <link href="https://quano.gitee.io/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002.%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/001.%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/"/>
+    <id>https://quano.gitee.io/wk/算法/001.机器学习/002.数学知识/机器学习/001.参数估计/</id>
+    <published>2024-06-12T17:55:57.000Z</published>
+    <updated>2024-06-16T20:35:05.461Z</updated>
+    
+    <content type="html"><![CDATA[<p>定义：<br>参数估计过程中，我们的目的是找到一组参数值， 使得<strong><em>目标函数</em></strong>达到最优(如最小或最大)。</p><p><span style="font-size: 12px;">tips: 损失函数是目标函数的一种常见形式。 很多情况下，优化目标函数主要就是通过最小化损失函数来实现的。</span></p><p>参数估计的方法有：<br><strong><em>最优化理论(最大似然估计、最小化损失函数(最小二乘法、梯度下降法)) 、贝叶斯估计、矩估计</em></strong></p><p>以上 也说明了 参数估计 与最小化损失函数 的关系.</p><h1 id="一、最优化理论"><a href="#一、最优化理论" class="headerlink" title="一、最优化理论"></a>一、最优化理论</h1><p><a href="/wk/算法/001.机器学习/002.数学知识/机器学习/002.最优化理论_模型训练中的数学/">数学原理:最优化理论/梯度下降最优化算法</a></p><h2 id="1-1-最大似然估计"><a href="#1-1-最大似然估计" class="headerlink" title="1.1 最大似然估计"></a>1.1 最大似然估计</h2><p><span style="color: red;">通过最大似然估计(MLE)或其他优化算法来估计模型的参数 θ</span>而不是最小化平方差.</p><p>可以 通过 梯度上升法 实现最大似然估计， 帮助找到 使得似然最大的 参数组合. </p><p>另外用于 最大似然估计的方法还有：</p><ul><li>牛顿法： 利用目标函数的 一阶导数和二阶导数来更新参数。</li><li>拟牛顿法：是对牛顿法的改进，避免了计算二阶导数。</li><li>期望最大化(EM)算法：在一些含有隐变量的模型中经常使用。</li></ul><p>这里重点介绍 梯度上升法：</p><h3 id="1-1-1-梯度上升法"><a href="#1-1-1-梯度上升法" class="headerlink" title="1.1.1 梯度上升法"></a>1.1.1 梯度上升法</h3><p>基于的思想：要<span style="color: red;">找到某函数的最大值</span>，最好的方法是<strong><em>沿着该函数的梯度方向探寻</em></strong>。</p><p><span style="font-size: 12px;">tips: 关于<strong><em>梯度</em></strong>的概念， <a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002.%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E5%BE%AE%E7%A7%AF%E5%88%86/001.%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/#4-2-%E6%A2%AF%E5%BA%A6-Gradient">梯度</a>是多元函数在某一点的导数，是一个向量， 其各个分量分别是函数对各个自变量的偏导数。</span></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">梯度是多元函数在某一点的导数，是一个向量，其各个分量分别是函数对各个自变量的偏导数</span><br><span class="line">1. 在单变量情况下，导数和梯度是等价的概念，因为梯度只有一个分量.</span><br><span class="line">2. 在多变量情况下，导数是一个标量，而梯度是一个向量，包含了所有偏导数的信息.</span><br><span class="line">3. 梯度 的每个分量，表示了函数在 对应方向上的变化率，可以看作是函数在该点的局部导数.</span><br><span class="line">在优化问题中，特别是在机器学习和数值优化中，我们经常需要最小化或最大化函数。梯度提供了函数在给定点的局部变化方向，</span><br><span class="line">因此可以被用来指导优化算法（如梯度下降法、梯度上升法）在参数空间中搜索最优解。</span><br></pre></td></tr></table></figure><h4 id="1-梯度上升的迭代"><a href="#1-梯度上升的迭代" class="headerlink" title="1. 梯度上升的迭代"></a>1. 梯度上升的迭代</h4><p>迭代公式如下：<br>$ \mathbf{w}^{(t+1)} = \mathbf{w}^{(t)} + \eta \nabla f(\mathbf{w}^{(t)}) $</p><p>其中：</p><ul><li>$\mathbf{w}^{(t+1)}$ 是第 $t$ 次迭代后的参数向量</li><li>$\eta$ 是学习率，控制每次迭代中参数更新的步长</li><li>$f(\mathbf{w}^{(t)})$ 是目标函数$f$在参数向量 $\mathbf{w}^{(t)}$ 处的梯度向量</li></ul><p>该公式将一直被迭代执行，直到达到某个停止条件为止，比如迭代次数达到某个指定值 或者算法达到某个可以允许的误差范围.</p><h4 id="2-训练算法-逻辑回归"><a href="#2-训练算法-逻辑回归" class="headerlink" title="2. 训练算法:逻辑回归"></a>2. 训练算法:逻辑回归</h4><p>使用梯度上升找到最佳参数</p><p>逻辑回归假设输出$y$是二分类问题。 对于给定的输入特征 $\mathbf{x}$ ，逻辑回归模型的输出 $ \hat{y}$ 由一下逻辑函数给出：<br>$ \hat{y} = \sigma(\mathbf{w}^\top \mathbf{x} + b) = \frac{1}{1 + e^{-(\mathbf{w}^\top \mathbf{x} + b)}} $</p><ol><li>损失函数<br>逻辑回归使用<strong><em>交叉熵损失函数</em></strong>来衡量预测值 $\hat{y}$ 与真实标签 $y$ 之间的差异：<br>$\mathcal{L}(\mathbf{w}, b) = - \frac{1}{N} \sum_{i=1}^N \left[ y^{(i)} \log \hat{y}^{(i)} + (1 - y^{(i)}) \log (1 - \hat{y}^{(i)}) \right]$<br>其中：<ul><li>$N$ 是训练样本数量</li><li>$y^{(i)} = \sigma(\mathbf{w}^\top \mathbf{x^{(i)}} + b)$ 是对样本 $i$ 的预测概率</li><li>$y^{(i)}$ 是样本 $i$ 的真实标签</li></ul></li><li>梯度上升优化过程<br>梯度上升法<strong><em>用于最大化对数似然函数</em></strong> $ \ell(\mathbf{w}, b) = \sum_{i=1}^N \left[ y^{(i)} \log \hat{y}^{(i)} + (1 - y^{(i)}) \log (1 - \hat{y}^{(i)}) \right] $<br>即使得损失函数 $ \mathcal{L}(w, b) $ 最小化。<br>梯度上升法的步骤如下：<ul><li>(1)初始化参数：随机初始化权重$\mathbf{w}$和偏置$b$</li><li>(2)计算梯度： 计算损失函数对参数 $\mathbf{w}$和$b$ 的梯度<br>  对于权重 $\mathbf{w}$ 的梯度： $ \frac{\partial \mathcal{L}}{\partial \mathbf{w}} = \frac{1}{N} \sum_{i=1}^N (\hat{y}^{(i)} - y^{(i)}) \mathbf{x}^{(i)} $<br>  对于偏置 b 的梯度：$ \frac{\partial \mathcal{L}}{\partial b} = \frac{1}{N} \sum_{i=1}^N (\hat{y}^{(i)} - y^{(i)}) $</li><li>(3)参数更新：根据梯度方向和学习率 $\eta$，更新参数  $\mathbf{w}$和$b$<br>  $ \mathbf{w} := \mathbf{w} + \eta \frac{\partial \mathcal{L}}{\partial \mathbf{w}} $<br>  $ b:= b + \eta \frac{\partial \mathcal{L}}{\partial b} $</li><li>(4) 重复迭代：重复步骤2和步骤3，直到损失函数收敛或达到预定的迭代次数</li></ul></li></ol><p>理解 梯度上升、 最大似然估计(似然函数)、 损失函数的关系：</p><ul><li>逻辑回归中 通过 最大化似然函数(假设观测数据服从伯努利分布) 来估计参数</li><li>而 最大化的方法 是通过 梯度上升法</li><li>梯度上升 是通过 计算损失函数 $\mathcal{L}(\mathbf{w}, b)$ 对参数  $\mathbf{w}$和$b$  的梯度来更新参数.</li></ul><p>梯度上升 只是定义了 迭代的方法(看迭代公式) . 而损失函数 的梯度用来计算 更新方向和大小，从而逐步优化.</p><p>损失函数的梯度被用来计算参数的更新方向和大小，从而逐步优化模型的参数以最小化或最大化损失函数的值。</p><p>逻辑回归中， 损失函数是怎么来的？？<br>通过最大化对数似然函数（log-likelihood）得到的， 推导过程：<br>(重要)在统计推断中，通过最大化对数似然函数来估计参数是常用的方法。对于逻辑回归，我们实际上是最大化对数似然函数的负数的相反数，即最小化负对数似然函数（Negative Log-Likelihood）：<br>$\mathcal{L}(\mathbf{w}, b) = - \frac{1}{N} \sum_{i=1}^N \left[ y^{(i)} \log \hat{y}^{(i)} + (1 - y^{(i)}) \log (1 - \hat{y}^{(i)}) \right]$</p><p>这个负对数似然函数就是逻辑回归中常用的损失函数，用于衡量模型预测值与真实标签之间的差异。</p><p>损失函数是 对数似然函数的负数除以样本数.</p><h2 id="1-2-最小化损失函数"><a href="#1-2-最小化损失函数" class="headerlink" title="1.2 最小化损失函数"></a>1.2 最小化损失函数</h2><h3 id="1-2-1-最小二乘法"><a href="#1-2-1-最小二乘法" class="headerlink" title="1.2.1 最小二乘法"></a>1.2.1 最小二乘法</h3><h3 id="1-2-2-梯度下降法"><a href="#1-2-2-梯度下降法" class="headerlink" title="1.2.2 梯度下降法"></a>1.2.2 梯度下降法</h3><h1 id="二、贝叶斯估计"><a href="#二、贝叶斯估计" class="headerlink" title="二、贝叶斯估计"></a>二、贝叶斯估计</h1><h1 id="三、矩估计"><a href="#三、矩估计" class="headerlink" title="三、矩估计"></a>三、矩估计</h1><h1 id="关于目标函数和损失函数"><a href="#关于目标函数和损失函数" class="headerlink" title="关于目标函数和损失函数"></a>关于目标函数和损失函数</h1><p>损失函数是目标函数的一种常见形式。 很多情况下，优化目标函数主要就是通过最小化损失函数来实现的。</p><p>假设我们训练 图像分类模型， 目标函数 除了考虑分类错误的损失（损失函数部分）， 还可能考虑模型的复杂度，如参数的数量或某些正则化项， 以避免过拟合吗，这就是损失之外的其它因素。</p><p>包含约束条件的例子： 比如在资源分配问题中，目标函数可能是 最大化总收益， 但同时有约束条件如每个资源的分配量不能超过其上限，或者总资源使用量不能超过某个固定值等。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;以Logistic回归算法 为依据， 学习初步的最优化理论，以及梯度下降最优化算法. &lt;/p&gt;
-&lt;p&gt;先来看看模型训练过程：&lt;br&gt;&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;
+        &lt;p&gt;定义：&lt;br&gt;参数估计过程中，我们的目的是找到一组参数值， 使得&lt;strong&gt;&lt;em&gt;目标函数&lt;/em&gt;&lt;/strong&gt;达到最优(如最小或最大)。&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;tips: 损失函数是目标函数的一种常见形式。
       
     
     </summary>
@@ -41,7 +67,41 @@
     
       <category term="002.数学知识" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/001-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002-%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/"/>
     
-      <category term="函数" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/001-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002-%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E5%87%BD%E6%95%B0/"/>
+      <category term="机器学习" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/001-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002-%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="ML" scheme="https://quano.gitee.io/tags/ML/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2.最优化理论_模型训练中的数学原理</title>
+    <link href="https://quano.gitee.io/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002.%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002.%E6%9C%80%E4%BC%98%E5%8C%96%E7%90%86%E8%AE%BA_%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%A6/"/>
+    <id>https://quano.gitee.io/wk/算法/001.机器学习/002.数学知识/机器学习/002.最优化理论_模型训练中的数学/</id>
+    <published>2024-06-10T14:55:57.000Z</published>
+    <updated>2024-06-16T17:49:51.469Z</updated>
+    
+    <content type="html"><![CDATA[<p>在参数估计中，常用的方法主要是最优化理论，<br>其中包括 最大似然估计、最小化损失函数(最小二乘法、梯度下降法)) 。</p><ul><li>本文以Logistic回归算法 为依据， 初步的学习逻辑回归中的最优化理论：最大似然估计. </li><li>之后介绍其它的最优化方法：梯度下降、最小二乘法.</li></ul><p><span style="font-size: 12px;">tips: 逻辑回归中除了 最大似然估计还可以用其它方法，比如梯度下降</span></p><h1 id="逻辑回归中的最优化理论"><a href="#逻辑回归中的最优化理论" class="headerlink" title="逻辑回归中的最优化理论"></a>逻辑回归中的最优化理论</h1><p>基于 最优化方法 的最佳回归系数确定.</p><h2 id="1-最大似然估计"><a href="#1-最大似然估计" class="headerlink" title="1. 最大似然估计"></a>1. 最大似然估计</h2><h1 id="背景-模型训练"><a href="#背景-模型训练" class="headerlink" title="背景(模型训练)"></a>背景(模型训练)</h1><p>先来看看模型训练过程：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 算法过程</span><br><span class="line">1. 收集数据、准备数据</span><br><span class="line">2. 分析数据</span><br><span class="line">3. 训练算法：训练的目的是为了找到最佳的分类回归系数</span><br></pre></td></tr></table></figure></p><h2 id="基于最优化方法的最佳回归系数确定"><a href="#基于最优化方法的最佳回归系数确定" class="headerlink" title="基于最优化方法的最佳回归系数确定"></a>基于<span style="color: red;">最优化方法</span>的最佳回归系数确定</h2><p>确定回归系数的最优化方法通常涉及到<strong><em>求解损失函数</em></strong>的<strong><em>最小化问题</em></strong>。<br>通常在线性回归中，最常用的方法是<strong><em>最小二乘法</em></strong>，而在深度学习中，通常使用<strong><em>梯度下降法或其变种来优化损失函数</em></strong>。<br>(逻辑回归是个分类问题，不是线性回归，使用的最优化方法是梯度下降)</p><ul><li>最小二乘法<br>在普通最小二乘线性回归中，我们试图找到一条直线，使得该直线与数据点的<strong><em>残差平方和</em></strong>最小。这个问题可以通过解析方法（例如正规方程）求解，或者通过迭代优化方法（例如梯度下降）来解决。</li></ul><ul><li>梯度下降法<br>在深度学习中，梯度下降法是最常用的优化方法之一。它通过计算损失函数相对于模型参数的梯度，并沿着梯度的反方向更新参数，以使损失函数的值逐渐减小。梯度下降法有多种变种，包括批量梯度下降（Batch Gradient Descent）、随机梯度下降（Stochastic Gradient Descent）和小批量梯度下降（Mini-batch Gradient Descent）等。</li></ul><ul><li>其他优化方法<br>除了梯度下降法之外，还有一些其他的优化方法，如动量法（Momentum）、自适应学习率方法（Adaptive Learning Rate Methods，如Adam、RMSProp等）等。这些方法通过在梯度下降过程中引入动量或自适应调整学习率的方式来加速优化过程。</li></ul><h2 id="1-最小二乘法"><a href="#1-最小二乘法" class="headerlink" title="1. 最小二乘法"></a>1. 最小二乘法</h2><p>目标是最小化观测值与模型预测值之间的平方误差</p><h2 id="2-梯度下降法"><a href="#2-梯度下降法" class="headerlink" title="2. 梯度下降法"></a>2. 梯度下降法</h2><h2 id="3-逻辑回归的最优化"><a href="#3-逻辑回归的最优化" class="headerlink" title="3. 逻辑回归的最优化"></a>3. 逻辑回归的最优化</h2><p>逻辑回归使用 梯度下降法<br>梯度下降通过迭代更新模型参数，沿着损失函数的负梯度方向寻找损失函数的最小值。这种方法适用于逻辑回归中的损失函数，如对数损失函数（logarithmic loss）或交叉熵损失函数（cross-entropy loss），可以有效地最小化损失并找到最优参数。</p><h3 id="1-1-模型预测："><a href="#1-1-模型预测：" class="headerlink" title="1.1 模型预测："></a>1.1 模型预测：</h3><p>logistic 回归的模型预测由 sigmoid 函数完成，将线性组合的结果 $z$ 映射到一个介于 0 和 1 之间的概率值，表示样本属于正类的概率。预测公式为：<br>$ \hat{y} = \sigma(z) = \frac{1}{1 + e^{-z}} $<br>其中，e是自然对数的底，即欧拉常数，约等于2.71828。</p><h3 id="1-2-损失函数"><a href="#1-2-损失函数" class="headerlink" title="1.2 损失函数"></a>1.2 损失函数</h3><p>logistic 回归通常使用对数损失函数（log loss），也称为交叉熵损失函数，用来衡量模型预测值与真实标签之间的差异。</p><p>对于二分类问题，对数损失函数的定义为：<br>$ \text{Log Loss} = -\frac{1}{N} \sum_{i=1}^{N} \left( y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right) $</p><p>其中，$N$ 是样本数量，y_i 是第 i 个样本的真实标签，$\hat{y}_i$ 是模型的预测概率。</p><p><strong><em>这个损失函数是根据最大似然估计推导而来的</em></strong>。todo：怎么推导来着？？？？？？</p><p>我们希望<strong><em>通过最小化损失函数，使得模型输出的概率尽可能地接近真实标签的概率</em></strong>。而对数损失函数在这里被广泛选择的原因有以下几点：</p><ol><li>可微性： 对数损失函数是连续可导的，这使得我们可以使用梯度下降等优化算法来最小化损失函数，从而更新模型的参数。</li><li>凸性： 对数损失函数是凸函数，这意味着局部最小值也是全局最小值，因此我们可以保证收敛到全局最优解。</li><li>推导简单性： 对数损失函数的推导相对简单，并且与逻辑回归模型的概率输出形式相符合，因此在数学上更容易处理和理解。</li></ol><p>因此，对数损失函数是逻辑回归中的一种合适选择，它在实践中被广泛采用，并且在处理二分类问题时通常能够取得良好的效果。</p><h3 id="1-3-参数优化"><a href="#1-3-参数优化" class="headerlink" title="1.3 参数优化"></a>1.3 参数优化</h3><p>通过最小化损失函数来优化模型的参数 $ \mathbf{w} = (w_0, w_1, \ldots, w_n) $。<br>通常使用梯度下降法或其变种来进行参数优化。<br>具体地，我们计算损失函数关于参数的梯度，然后沿着梯度的反方向更新参数，使损失函数的值逐渐减小。</p><p>如上 sigmoid函数 定义， 函数的输入记为 $z$(其中$z$是线性函数的输出)，即 $z$ 由下面公式得出：<br>$z = w_0 + w_1x_1 + w_2x_2 + \ldots + w_nx_n$<br>在这里，$w_0, w_1, \ldots, w_n$ 是模型的权重，$x_1, x_2, \ldots, x_n$ 是输入特征。sigmoid函数将z的值映射到[0,1]的区间</p><p>todo: 这个过程的代码实现.</p><p>是怎么根据 损失函数、梯度下降 来找到 最优参数的呢？？</p><p>拓展</p><p>其它机器学习模型 中的参数估计方法是？</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在参数估计中，常用的方法主要是最优化理论，&lt;br&gt;其中包括 最大似然估计、最小化损失函数(最小二乘法、梯度下降法)) 。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;本文以Logistic回归算法 为依据， 初步的学习逻辑回归中的最优化理论：最大似然估计. &lt;/li&gt;
+&lt;li&gt;之后介绍其它的
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="001.机器学习" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/001-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="002.数学知识" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/001-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002-%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="机器学习" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/001-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002-%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     
       <category term="数学" scheme="https://quano.gitee.io/tags/%E6%95%B0%E5%AD%A6/"/>
@@ -272,38 +332,6 @@
   </entry>
   
   <entry>
-    <title>1.导数与微分</title>
-    <link href="https://quano.gitee.io/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002.%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E5%BE%AE%E7%A7%AF%E5%88%86/001.%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/"/>
-    <id>https://quano.gitee.io/wk/算法/001.机器学习/002.数学知识/微积分/001.导数与微分/</id>
-    <published>2024-04-10T15:55:57.000Z</published>
-    <updated>2024-06-09T20:01:07.447Z</updated>
-    
-    <content type="html"><![CDATA[<p>数学背景： 函数与极限(数列与极限).</p><h1 id="导数概念"><a href="#导数概念" class="headerlink" title="导数概念"></a>导数概念</h1><p>在微积分中，导数是<strong><em>描述函数变化率</em></strong>的概念。<br>导数可以理解为函数在某一点的斜率，表示函数在该点附近的局部变化情况。</p><h2 id="1-导数定义"><a href="#1-导数定义" class="headerlink" title="1. 导数定义"></a>1. 导数定义</h2><p>给定一个函数 $f(x)$，它的导数 $f’(x)$ 或 $ \frac{df}{dx} $ 在某一点 $x$ 处的定义如下：<br>$ f’(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h} $<br>这个极限表示当自变量 $x$ 的增量 $h$ 趋近于零时，函数在点 $x$ 处的平均变化率的极限。导数告诉我们函数在 $x$ 处的瞬时变化率，即函数曲线在该点处的切线的斜率。<br>h即自变量的增量 $ \delta x $</p><p>另一种常见的表示形式是利用微分符号 $dx$ 来表示导数，即：<br>$ f’(x) = \frac{df}{dx} $<br>这表示函数 $f(x) $ 相对于自变量 $x$ 的变化率。</p><h2 id="2-导数的集合意义"><a href="#2-导数的集合意义" class="headerlink" title="2. 导数的集合意义"></a>2. 导数的集合意义</h2><p>导数$ f’(x) $ 在 何上表示曲线 $y=f(x)$ 在点$ M(x_0, f(x_0)) $ 处的切线的斜率，即<br>$ f’(x_0) = tan a $</p><h2 id="3-函数可导性与连续型的关系"><a href="#3-函数可导性与连续型的关系" class="headerlink" title="3. 函数可导性与连续型的关系"></a>3. 函数可导性与连续型的关系</h2><p>可导 比连续.  连续不一定可导.</p><p>函数在某点连续 是函数在该点可导 的必要条件，但不是充分条件. </p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;数学背景： 函数与极限(数列与极限).&lt;/p&gt;
-&lt;h1 id=&quot;导数概念&quot;&gt;&lt;a href=&quot;#导数概念&quot; class=&quot;headerlink&quot; title=&quot;导数概念&quot;&gt;&lt;/a&gt;导数概念&lt;/h1&gt;&lt;p&gt;在微积分中，导数是&lt;strong&gt;&lt;em&gt;描述函数变化率&lt;/em&gt;&lt;/
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="001.机器学习" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/001-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="002.数学知识" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/001-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002-%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/"/>
-    
-      <category term="微积分" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/001-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002-%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E5%BE%AE%E7%A7%AF%E5%88%86/"/>
-    
-    
-      <category term="数学" scheme="https://quano.gitee.io/tags/%E6%95%B0%E5%AD%A6/"/>
-    
-  </entry>
-  
-  <entry>
     <title>1.高中_62中常考函数图像</title>
     <link href="https://quano.gitee.io/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002.%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E5%87%BD%E6%95%B0/001.%E9%AB%98%E4%B8%AD%E6%95%B0%E5%AD%A6_62%E7%A7%8D%E5%B8%B8%E8%80%83%E5%87%BD%E6%95%B0%E5%9B%BE%E5%83%8F/"/>
     <id>https://quano.gitee.io/wk/算法/001.机器学习/002.数学知识/函数/001.高中数学_62种常考函数图像/</id>
@@ -329,6 +357,38 @@
       <category term="002.数学知识" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/001-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002-%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/"/>
     
       <category term="函数" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/001-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002-%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E5%87%BD%E6%95%B0/"/>
+    
+    
+      <category term="数学" scheme="https://quano.gitee.io/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>1.导数与微分</title>
+    <link href="https://quano.gitee.io/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002.%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E5%BE%AE%E7%A7%AF%E5%88%86/001.%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/"/>
+    <id>https://quano.gitee.io/wk/算法/001.机器学习/002.数学知识/微积分/001.导数与微分/</id>
+    <published>2024-04-10T15:55:57.000Z</published>
+    <updated>2024-06-16T18:58:58.865Z</updated>
+    
+    <content type="html"><![CDATA[<p>数学背景： 函数与极限(数列与极限).</p><h1 id="导数概念"><a href="#导数概念" class="headerlink" title="导数概念"></a>导数概念</h1><p>在微积分中，导数是<strong><em>描述函数变化率</em></strong>的概念。<br>导数可以理解为函数在某一点的斜率，表示函数在该点附近的局部变化情况。</p><h2 id="1-导数定义"><a href="#1-导数定义" class="headerlink" title="1. 导数定义"></a>1. 导数定义</h2><p>导数是函数对其自变量的变化率或斜率的度量。</p><p>给定一个函数 $f(x)$，它的导数 $f’(x)$ 或 $ \frac{df}{dx} $ 在某一点 $x$ 处的定义如下：<br>$ f’(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h} $<br><strong><em>这个极限表示当自变量 $x$ 的增量 $h$ 趋近于零时，函数在点 $x$ 处的平均变化率的极限 (<span style="color: red;">函数值$f(x + h)的变化量与 $h$ 的比率$</span>)。</em></strong><br><strong><em>$h$即自变量的增量 $ \delta x $，是一个趋近于零的实数</em></strong>。</p><p>导数告诉我们函数在 $x$ 处的瞬时变化率，即函数曲线在该点处的切线的<strong><em>斜率</em></strong>。</p><p>另一种常见的表示形式是利用微分符号 $dx$ 来表示导数，即：<br>$ f’(x) = \frac{df}{dx} $<br>这表示函数 $f(x) $ 相对于自变量 $x$ 的变化率。</p><p><span style="font-size: 12px;">tips: $h$ 是在定义导数时用来表示自变量 $x$ 的微小变化量，是一个无限接近于0的数。 $dx$ 是微积分中用来表示自变量$x$的微小变化量的标志，通常与微分和积分相关的符号一起使用 </span></p><h2 id="2-导数的集合意义"><a href="#2-导数的集合意义" class="headerlink" title="2. 导数的集合意义"></a>2. 导数的集合意义</h2><p>导数$ f’(x) $ 在 何上表示曲线 $y=f(x)$ 在点$ M(x_0, f(x_0)) $ 处的切线的斜率，即<br>$ f’(x_0) = tan a $</p><h2 id="3-函数可导性与连续型的关系"><a href="#3-函数可导性与连续型的关系" class="headerlink" title="3. 函数可导性与连续型的关系"></a>3. 函数可导性与连续型的关系</h2><p>可导 比连续.  连续不一定可导.</p><p>函数在某点连续 是函数在该点可导 的必要条件，但不是充分条件. </p><h2 id="4-多变量函数的导数"><a href="#4-多变量函数的导数" class="headerlink" title="4. 多变量函数的导数"></a>4. 多变量函数的导数</h2><p>对于多变量函数 $f(x)$，其中 $\mathbf{x} = (x_1, x_2, \ldots, x_n)$ 是一个包含 $n$ 个自变量的向量，其导数有两种常见的形式：<span style="color: red;">偏导数和全导数</span>。</p><h3 id="4-1-偏导数-Partial-Derivatives"><a href="#4-1-偏导数-Partial-Derivatives" class="headerlink" title="4.1 偏导数(Partial Derivatives)"></a>4.1 偏导数(Partial Derivatives)</h3><p>偏导数是多变量函数在某一点关于其中一个自变量的导数。偏导数用 $ \frac{\partial f}{\partial x_i} $ 表示，<strong><em>表示函数  $f$关于 $x_i$ 的变化率</em></strong>，而将其他自变量视为常数。</p><h3 id="4-2-梯度-Gradient"><a href="#4-2-梯度-Gradient" class="headerlink" title="4.2 梯度(Gradient)"></a>4.2 梯度(Gradient)</h3><p><strong><em>梯度是多变量函数的导数的一种推广，它是一个向量，包含函数对所有自变量的偏导数</em></strong>。</p><ul><li>梯度 $\nabla f(\mathbf{x}) $ 是一个向量，其分量表示了函数 $f(x)$ 在每个方向上的变化率。</li></ul><p>梯度用符号 $\nabla f(\mathbf{x})$ 表示，定义为：<br>$ \nabla f(\mathbf{x}) = \left( \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2}, \ldots, \frac{\partial f}{\partial x_n} \right) $</p><p>梯度  $\nabla f(\mathbf{x})$ 指示了函数 $f$ 在点 $ \mathbf{x} $ 处的最大变化率方向。<span style="color: red;">它的方向是函数在该点上升最快的方向</span>，而其<strong><em>模长</em></strong>则是这个方向上的变化率。</p><p><span style="font-size: 12px;">tips: 在数学和物理中，模长（Magnitude）通常指的是一个向量的长度或大小，也称为向量的模或向量的大小。<br>它是一个标量，用于表示向量的大小，而不考虑其具体的方向。 </span></p><ul><li><strong><em>换句话说，沿着梯度的方向，函数值 $f(x)$ 的变化速率是最快的，而这个速率就是梯度的模长</em></strong>。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;数学背景： 函数与极限(数列与极限).&lt;/p&gt;
+&lt;h1 id=&quot;导数概念&quot;&gt;&lt;a href=&quot;#导数概念&quot; class=&quot;headerlink&quot; title=&quot;导数概念&quot;&gt;&lt;/a&gt;导数概念&lt;/h1&gt;&lt;p&gt;在微积分中，导数是&lt;strong&gt;&lt;em&gt;描述函数变化率&lt;/em&gt;&lt;/
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="001.机器学习" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/001-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="002.数学知识" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/001-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002-%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="微积分" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/001-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002-%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E5%BE%AE%E7%A7%AF%E5%88%86/"/>
     
     
       <category term="数学" scheme="https://quano.gitee.io/tags/%E6%95%B0%E5%AD%A6/"/>
@@ -548,64 +608,6 @@
     
     
       <category term="private" scheme="https://quano.gitee.io/tags/private/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>0.算法工程概述</title>
-    <link href="https://quano.gitee.io/wk/%E7%AE%97%E6%B3%95/006.%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/000.%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E6%A6%82%E8%BF%B0/"/>
-    <id>https://quano.gitee.io/wk/算法/006.算法工程/000.算法工程概述/</id>
-    <published>2024-03-18T16:48:57.000Z</published>
-    <updated>2024-06-02T05:46:52.653Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="算法工程职责"><a href="#算法工程职责" class="headerlink" title="算法工程职责"></a>算法工程职责</h1><p>算法工程师</p><p>算法设计</p><p>数据预处理</p><p>模型训练和评估</p><p>模型优化</p><p>模型压缩与加速</p><p>算法实现</p><p>软件工程</p><p>系统集成</p><p>性能监控与调优</p><p>开发部署</p><h1 id="通过识别MNIST了解算法工程"><a href="#通过识别MNIST了解算法工程" class="headerlink" title="通过识别MNIST了解算法工程"></a>通过识别MNIST了解算法工程</h1><p>通过Tensorflow深度学习项目来 了解算法工程 和Tensorflow.</p><p><a href="/wk/算法/002.深度学习/004.系列课程/001.TensorFlow识别MNIST/">TensorFlow识别MNIST</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;算法工程职责&quot;&gt;&lt;a href=&quot;#算法工程职责&quot; class=&quot;headerlink&quot; title=&quot;算法工程职责&quot;&gt;&lt;/a&gt;算法工程职责&lt;/h1&gt;&lt;p&gt;算法工程师&lt;/p&gt;
-&lt;p&gt;算法设计&lt;/p&gt;
-&lt;p&gt;数据预处理&lt;/p&gt;
-&lt;p&gt;模型训练和评估&lt;/p&gt;
-&lt;p&gt;模
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="006.算法工程" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/006-%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/"/>
-    
-    
-      <category term="模型" scheme="https://quano.gitee.io/tags/%E6%A8%A1%E5%9E%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>1.模型压缩与加速</title>
-    <link href="https://quano.gitee.io/wk/%E7%AE%97%E6%B3%95/006.%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/001.%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9%E4%B8%8E%E5%8A%A0%E9%80%9F/"/>
-    <id>https://quano.gitee.io/wk/算法/006.算法工程/001.模型压缩与加速/</id>
-    <published>2024-03-18T16:48:57.000Z</published>
-    <updated>2024-05-18T17:55:51.349Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="1-模型压缩概述"><a href="#1-模型压缩概述" class="headerlink" title="1. 模型压缩概述"></a>1. 模型压缩概述</h1><p>模型压缩和加速是深度学习算法中两个 密切相关的概念。共同的目标是保持模型性能的同时<span style="color: red;">减少模型的复杂度(大小)</span>和<span style="color: red;">提高推理速度</span>。</p><h2 id="1-1-背景-问题定义"><a href="#1-1-背景-问题定义" class="headerlink" title="1.1 背景/问题定义"></a>1.1 背景/问题定义</h2><p>由于设备的算力和内存有限，尤其是嵌入式设备， 因此深度学习模型需要经过模型压缩后，才能部署到嵌入式设备上。</p><p>可以从3个角度定义 模型压缩问题：</p><ul><li>压缩的收益：(1)计算:减少浮点运运算量；降低延迟-Latency (2)减少内存占用，提高GPU/NPU计算利用率</li><li>公式定义模型压缩的问题?</li><li>模型压缩问题的约束？</li></ul><p>一定程度上，<span style="color: red;">网络越深，参数越多，模型也会越复杂，但其最终效果也越好</span>，而模型压缩算法旨在将一个庞大而复杂的预训练模型转化为一个精简的小模型。</p><h2 id="1-2-模型压缩方法分类"><a href="#1-2-模型压缩方法分类" class="headerlink" title="1.2 模型压缩方法分类"></a>1.2 模型压缩方法分类</h2><p>前端压缩：指在不改变原网络结构的压缩技术。 主要包括<span style="color: red;">知识蒸馏</span>、<span style="color: red;">轻量级网络</span>（紧凑的模型结构设计）以及滤波器（filter）层面的<span style="color: red;">剪枝</span>（结构化剪枝）等；</p><p>后端压缩：指包括<span style="color: red;">低秩近似</span>、未加限制的剪枝（非结构化剪枝/稀疏）、<span style="color: red;">参数量化</span>以及<span style="color: red;">二值网络</span>等，目标在于尽可能减少模型大小，会对原始网络结构造成极大程度的改造。</p><h2 id="1-3-模型压缩方法综述"><a href="#1-3-模型压缩方法综述" class="headerlink" title="1.3 模型压缩方法综述"></a>1.3 模型压缩方法综述</h2><h3 id="1-3-1-压缩"><a href="#1-3-1-压缩" class="headerlink" title="1.3.1 压缩"></a>1.3.1 压缩</h3><h4 id="1-剪枝"><a href="#1-剪枝" class="headerlink" title="1.剪枝"></a>1.<span style="color: red;">剪枝</span></h4><p>网络剪枝：通过去除模型中冗余或不重要的神经元、连接或通道，减小模型的规模。</p><p>结构化剪枝：与剪枝类似，但更注重模型结构的完整性，通常去除整个卷积核或神经元。</p><p>将权重低于阈值的连接都从网络中删除。</p><p>卷积层和全连接层</p><p>韩松2016年Deep Compression属于开山之作，剪枝步骤：正常训练，删除网络中权重低于阈值的连接层，重新训练。需要重新训练模型。</p><h4 id="2-量化"><a href="#2-量化" class="headerlink" title="2.量化"></a>2.<span style="color: red;">量化</span></h4><p>将模型参数从高精度数据类型（例如浮点数）转换为低精度数据类型（例如整数），减小模型的存储空间和计算量。</p><p>指将神经网络的浮点算法转换为定点算法</p><p>卷积、全连接、激活、BN层等</p><p>TensoRT框架中的基于 KL 散度方法的INT8量化策略是主流技术。PTQ 训练后量化方法不需要重新训练模型。</p><h4 id="3-知识蒸馏"><a href="#3-知识蒸馏" class="headerlink" title="3.知识蒸馏"></a>3.<span style="color: red;">知识蒸馏</span></h4><p>通过将大型模型的知识迁移到小型模型中，减少模型大小同时保持性能。</p><p>属于迁移学习的一种，主要思想是将学习能力强的复杂教师模型中的“知识”迁移到简单的学生模型中。</p><p>涉及的网络层:卷积和全连接层</p><p>经典KD论文，属于蒸 “logits”方法，将Teacher Network输出的soft label作为标签来训练Student Network。必须重新训练模型。</p><h4 id="4-其它"><a href="#4-其它" class="headerlink" title="4. 其它"></a>4. 其它</h4><p>稀疏性： 利用模型的稀疏性，较少计算量和存储需求<br>混合专家模型：通过将模型分解为多个专家网络，并在不同输入上激活不同专家，来提高模型的效率</p><h3 id="1-3-2-加速"><a href="#1-3-2-加速" class="headerlink" title="1.3.2 加速"></a>1.3.2 加速</h3><h4 id="1-量化"><a href="#1-量化" class="headerlink" title="1. 量化"></a>1. 量化</h4><p>除了压缩模型，量化还可以通过减少数据类型的宽度来加速模型的推理。</p><h4 id="2-模型蒸馏"><a href="#2-模型蒸馏" class="headerlink" title="2. 模型蒸馏"></a>2. 模型蒸馏</h4><p>通过模型蒸馏技术，减少模型大小，间接提高推理速度。</p><h4 id="3-轻量化模型架构"><a href="#3-轻量化模型架构" class="headerlink" title="3. 轻量化模型架构"></a>3. <span style="color: red;">轻量化模型架构</span></h4><p>模型结构优化<br>通过调整神经网络的架构来提高性能和效率。</p><p>轻量级网络的核心是在尽量保持精度的前提下，从体积和速度两方面对网络进行轻量化改造</p><p>涉及的网络层:卷积层/卷积模块</p><p>Mobilenet 提出深度可分离卷积；<br>shufflenetv2 论文 提出的四个高效网络设计的实用指导思想；<br>RepVGG 提出重参数化思想。<br>都需要重新设计 backbone 和和重新训练模型。</p><h4 id="4-软件框架和库优化"><a href="#4-软件框架和库优化" class="headerlink" title="4. 软件框架和库优化"></a>4. 软件框架和库优化</h4><p>优化深度学习框架和库，如TensorFlow、PyTorch等，以提高执行效率</p><h4 id="5-硬件加速"><a href="#5-硬件加速" class="headerlink" title="5. 硬件加速"></a>5. 硬件加速</h4><h4 id="6-线性代数加速"><a href="#6-线性代数加速" class="headerlink" title="6. 线性代数加速"></a>6. 线性代数加速</h4><p>通过优化基础运算，如矩阵乘法，来提高计算速度</p><h4 id="7-分布式计算"><a href="#7-分布式计算" class="headerlink" title="7. 分布式计算"></a>7. 分布式计算</h4><p>使用多卡推理和通信加速，提升模型的推理速度</p><h4 id="8-FlashAttention-和-PageAttention-技术"><a href="#8-FlashAttention-和-PageAttention-技术" class="headerlink" title="8. FlashAttention 和 PageAttention 技术"></a>8. FlashAttention 和 PageAttention 技术</h4><p>些技术通过优化注意力机制来加速Transformer模型的推理。</p><h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p><a href="https://zhuanlan.zhihu.com/p/608915925">深度学习模型压缩方法综述</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;1-模型压缩概述&quot;&gt;&lt;a href=&quot;#1-模型压缩概述&quot; class=&quot;headerlink&quot; title=&quot;1. 模型压缩概述&quot;&gt;&lt;/a&gt;1. 模型压缩概述&lt;/h1&gt;&lt;p&gt;模型压缩和加速是深度学习算法中两个 密切相关的概念。共同的目标是保持模型性能的同时&lt;sp
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="006.算法工程" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/006-%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/"/>
-    
-    
-      <category term="模型" scheme="https://quano.gitee.io/tags/%E6%A8%A1%E5%9E%8B/"/>
     
   </entry>
   
