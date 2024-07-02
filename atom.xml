@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://quano.gitee.io/"/>
-  <updated>2024-06-25T15:51:27.114Z</updated>
+  <updated>2024-07-02T18:16:51.681Z</updated>
   <id>https://quano.gitee.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>GPU架构与CUDA编程模型</title>
+    <link href="https://quano.gitee.io/wk/%E7%AE%97%E6%B3%95/006.%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/%E5%BA%95%E5%B1%82%E8%AE%A1%E7%AE%97%E8%B5%84%E6%BA%90_%E7%A1%AC%E4%BB%B6%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8A%A0%E9%80%9F/001.GPU%E6%9E%B6%E6%9E%84%E4%B8%8ECUDA%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/"/>
+    <id>https://quano.gitee.io/wk/算法/006.算法工程/底层计算资源_硬件原理与加速/001.GPU架构与CUDA编程模型/</id>
+    <published>2024-07-03T15:55:57.000Z</published>
+    <updated>2024-07-02T18:16:51.681Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h1><p>高性能推理引擎、AI算法工程 对于GPU CUDA性能优化的诉求目前是AI行业各个公司在算法工程上需要解决的问题。 以实现高效的并行计算，充分利用GPU计算资源，实现AI算法高性能推理.</p><p>AI行业可以分为两块：<strong><em>基础设施(infra)和算法模型</em></strong>. 一方面是建设和优化支持AI应用的基础设施，让GPU更好的使用起来。另一方面是研究和应用在这些基础设施上运行的先进算法。</p><p>其中infra包括：硬件基础设施（比如GPU架构、云计算平台）、软件工具（比如深度学习框架、数据处理工具）、以及相关的网络基础设施（比如高速网络连接）。<em>GPU架构和CUDA编程模型可以被视为在这一基础设施层面的重要组成部分</em>。<br>而算法方面包括：机器学习算法（如监督学习、无监督学习、强化学习）、深度学习模型（如神经网络结构和训练方法）、以及在特定领域中的应用优化算法等。这些算法和模型构成了AI技术的核心，决定了AI系统在解决问题时的效果和性能。</p><span id="more"></span><h2 id="0-1-相关概念"><a href="#0-1-相关概念" class="headerlink" title="0.1 相关概念"></a>0.1 相关概念</h2><p>并行计算 CUDA核心加速库 </p><p>GPU池化、 GPU虚拟化 - 对GPU资源的分配和管控</p><p>算力平台：资源规划</p><p>国产智算芯片生态架构</p><h1 id="1-GPU架构"><a href="#1-GPU架构" class="headerlink" title="1.GPU架构"></a>1.GPU架构</h1><h1 id="2-CUDA编程模型"><a href="#2-CUDA编程模型" class="headerlink" title="2.CUDA编程模型"></a>2.CUDA编程模型</h1><h2 id="2-1-CUDA介绍"><a href="#2-1-CUDA介绍" class="headerlink" title="2.1 CUDA介绍"></a>2.1 CUDA介绍</h2><p>CUDA 是一种并行计算平台和编程模型，利用GPU的并行性能加速计算密集型任务。</p><p>熟悉并行计算的概念，如线程、块、网格等。</p><h2 id="2-2-CUDA编程模型"><a href="#2-2-CUDA编程模型" class="headerlink" title="2.2 CUDA编程模型"></a>2.2 CUDA编程模型</h2><ul><li>CUDA 编程模型涉及编写主机（CPU）和设备（GPU）端代码。</li><li>理解如何在CUDA中编写核函数（kernel functions）来在GPU上执行并行计算任务。</li></ul><h2 id="2-3-CUDA的核心概念-重点"><a href="#2-3-CUDA的核心概念-重点" class="headerlink" title="2.3 CUDA的核心概念(重点)"></a>2.3 CUDA的核心概念(重点)</h2><p>理解CUDA线程层次结构和内存管理。<br>学习如何使用CUDA工具集编译和调试CUDA程序。</p><h2 id="2-4-开发和优化CUDA程序"><a href="#2-4-开发和优化CUDA程序" class="headerlink" title="2.4 开发和优化CUDA程序"></a>2.4 开发和优化CUDA程序</h2><p>实际开发并优化具有挑战性的任务，如矩阵乘法、向量加法等。<br>学习如何优化内存访问和并行计算以提高性能。</p><h2 id="2-5-CUDA环境架构"><a href="#2-5-CUDA环境架构" class="headerlink" title="2.5 CUDA环境架构"></a>2.5 <span style="color: red;">CUDA环境架构</span></h2><p>CUDA是由NVIDIA推出的并行计算平台和编程模型，主要用于利用GPU进行通用目的的并行计算</p><h3 id="1-GPU硬件"><a href="#1-GPU硬件" class="headerlink" title="1. GPU硬件"></a>1. GPU硬件</h3><p>CUDA环境的核心是支持CUDA的NVIDIA GPU。这些GPU具有大量的并行处理单元（CUDA核心），专门设计用于高性能并行计算。CUDA能够利用这些核心并行处理大规模数据和复杂计算任务。</p><h3 id="2-CUDA-Driver"><a href="#2-CUDA-Driver" class="headerlink" title="2. CUDA Driver"></a>2. CUDA Driver</h3><p>CUDA Driver是与NVIDIA GPU硬件交互的底层驱动程序。它负责管理GPU设备、分配计算资源并与操作系统进行交互。CUDA Driver与操作系统紧密结合，确保CUDA程序能够正确地访问和控制GPU资源。</p><h3 id="3-CUDA-Runtime-API"><a href="#3-CUDA-Runtime-API" class="headerlink" title="3. CUDA Runtime API"></a>3. CUDA Runtime API</h3><p>CUDA Runtime API是一组库函数和接口，为开发人员提供了在CUDA环境中编写和执行GPU计算任务的方法。这些API包括设备管理、内存管理、执行控制和数据传输等功能。开发人员可以使用CUDA Runtime API来编写高效的GPU并行计算程序。</p><h3 id="4-CUDA-Toolkit"><a href="#4-CUDA-Toolkit" class="headerlink" title="4. CUDA Toolkit"></a>4. CUDA Toolkit</h3><p>CUDA Toolkit是一个完整的开发工具包，包括CUDA编译器、调试器、性能分析工具和开发文档等。它提供了开发、编译和优化CUDA程序所需的所有工具和资源。CUDA Toolkit还包括针对不同NVIDIA GPU架构的优化库和示例代码，帮助开发人员实现最佳的性能和兼容性。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">CUDA Toolkit不仅包含了CUDA Runtime API，还提供了更多的工具和资源，帮助开发者进行CUDA程序的开发、编译、优化和调试。</span><br><span class="line">CUDA Toolkit中的CUDA Runtime API是其中一个重要的组成部分，但并不是整个Toolkit的全部内容。</span><br><span class="line"></span><br><span class="line">- 关系</span><br><span class="line">依赖关系：CUDA Toolkit依赖于CUDA Runtime API。也就是说，在使用CUDA Toolkit进行CUDA程序的开发时，</span><br><span class="line">开发者需要调用CUDA Runtime API中提供的函数来实现与CUDA设备的交互和控制。</span><br><span class="line">功能关系：CUDA Toolkit提供了比CUDA Runtime </span><br><span class="line">API更广泛的功能，包括编译器、调试器和性能分析工具等，这些工具帮助开发者更高效地开发和优化CUDA应用程序。</span><br><span class="line">使用方式：开发者通常会安装CUDA Toolkit来获取CUDA编译器、文档、示例代码等资源，并通过Toolkit中提供的工具</span><br><span class="line">和CUDA Runtime API来编写、编译和调试CUDA程序。</span><br></pre></td></tr></table></figure><h3 id="5-CUDA-编程模型"><a href="#5-CUDA-编程模型" class="headerlink" title="5. CUDA 编程模型"></a>5. CUDA 编程模型</h3><p>CUDA 编程模型基于主机（CPU）与设备（GPU）之间的协同工作。开发者可以通过定义核函数（也称为CUDA核函数或者GPU核函数）来在GPU上并行执行操作，从而充分利用GPU的并行计算能力。核函数由开发者编写，并通过CUDA编译器转换为能够在GPU上执行的代码。</p><p>总结来说，CUDA环境架构包括GPU硬件、CUDA Driver、CUDA Runtime API、CUDA Toolkit和CUDA编程模型，为开发者提供了丰富的工具和资源，支持高效的并行计算和GPU加速应用程序的开发与优化。</p><h3 id="6-疑问"><a href="#6-疑问" class="headerlink" title="6. 疑问"></a>6. 疑问</h3><h4 id="6-1-nvcc-amp-nvidia-smi"><a href="#6-1-nvcc-amp-nvidia-smi" class="headerlink" title="6.1 nvcc &amp; nvidia-smi"></a>6.1 nvcc &amp; nvidia-smi</h4><p>CUDA有 runtime api 和 driver api</p><ul><li>runtime api </li><li>driver api</li></ul><p><span style="color: blue;">问题：nvcc -V 和 nvidia-smi 显示出来的CUDA版本不一致， 有没有问题？</span></p><p><strong><em>1.下面先分析一下版本不一致的原因：</em></strong></p><p>从编译器、设备监控管理角度看：</p><ul><li>nvcc属于<strong>CUDA</strong>的编译器，将程序编译成可执行的二进制文件.</li><li>nvidia-smi(NVIDIA System Management Interface) 是帮助<strong><em>管理和监控NVIDIA GPU设备</em></strong>的命令行工具.</li></ul><p>从api角度，CUDA有 runtime api和driver api（并且两者都有对应的版本    ）：</p><ul><li>nvcc -V显示的就是前者的版本</li><li>nvidia-smi显示的是后者对应的CUDA版本s</li></ul><p><strong><em>2.这两个api的必要文件(安装)都是哪些呢？</em></strong></p><ul><li>driver api的必要文件由 GPU driver install 安装， nvidia-smi就属于这一类API</li><li>而用于支持 runtime api的必要文件是由 <strong><em><span style="color: red;">GUDA Toolkit installer</span></em></strong> 安装的</li></ul><p><span style="color: blue;"><strong><em>nvcc</em></strong>是 CUDA Toolkit一起安装的<em>CUDA compiler-driver tool</em> 它只知道它自身构建时的CUDA runtime版本，并不知道安装了什么版本的GPU driver， 甚至不知道是否安装了    GPU driver</span></p><p><span style="font-size: 12px;">tips: GUDA Toolkit installer通常会集成了GPU dirver installer，如果你的CUDA均通过CUDA Toolkit installer来安装，那么runtime api和driver api的版本应该是一致的。 否则可能是使用了单独的 GPU driver installer，这样就导致nvidia-smi和nvcc -V显示的版本不一致了 </span></p><p>通常driver api的版本是向下兼容runtime api的版本，即nvida-smi显示的版本大于nvcc -V的版本通常不会有大问题.</p><h4 id="6-2-多版本CUDA切换"><a href="#6-2-多版本CUDA切换" class="headerlink" title="6.2 多版本CUDA切换"></a>6.2 多版本CUDA切换</h4><h4 id="6-3-Window-WSL中的CUDA"><a href="#6-3-Window-WSL中的CUDA" class="headerlink" title="6.3 Window WSL中的CUDA"></a>6.3 Window WSL中的CUDA</h4><p>主要看官方资料.</p><p>首先：WSL中的CUDA程序实际上是通过Windows上的NVIDIA驱动来访问GPU资源的</p><p>问题：CUDA initialization: The NVIDIA driver on your system is too old (found version 10010).</p><p>原因分析：驱动的兼容性</p><p>pytorch 环境下 gpu 测试. </p><p>模型训练和推理.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;0-前言&quot;&gt;&lt;a href=&quot;#0-前言&quot; class=&quot;headerlink&quot; title=&quot;0.前言&quot;&gt;&lt;/a&gt;0.前言&lt;/h1&gt;&lt;p&gt;高性能推理引擎、AI算法工程 对于GPU CUDA性能优化的诉求目前是AI行业各个公司在算法工程上需要解决的问题。 以实现高效的并行计算，充分利用GPU计算资源，实现AI算法高性能推理.&lt;/p&gt;
+&lt;p&gt;AI行业可以分为两块：&lt;strong&gt;&lt;em&gt;基础设施(infra)和算法模型&lt;/em&gt;&lt;/strong&gt;. 一方面是建设和优化支持AI应用的基础设施，让GPU更好的使用起来。另一方面是研究和应用在这些基础设施上运行的先进算法。&lt;/p&gt;
+&lt;p&gt;其中infra包括：硬件基础设施（比如GPU架构、云计算平台）、软件工具（比如深度学习框架、数据处理工具）、以及相关的网络基础设施（比如高速网络连接）。&lt;em&gt;GPU架构和CUDA编程模型可以被视为在这一基础设施层面的重要组成部分&lt;/em&gt;。&lt;br&gt;而算法方面包括：机器学习算法（如监督学习、无监督学习、强化学习）、深度学习模型（如神经网络结构和训练方法）、以及在特定领域中的应用优化算法等。这些算法和模型构成了AI技术的核心，决定了AI系统在解决问题时的效果和性能。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="006.算法工程" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/006-%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/"/>
+    
+      <category term="底层计算资源_硬件原理与加速" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/006-%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/%E5%BA%95%E5%B1%82%E8%AE%A1%E7%AE%97%E8%B5%84%E6%BA%90-%E7%A1%AC%E4%BB%B6%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8A%A0%E9%80%9F/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>策略治理_策略评价体系</title>
@@ -274,7 +300,7 @@
     <link href="https://quano.gitee.io/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002.%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E5%87%BD%E6%95%B0/003.%E5%87%BD%E6%95%B0Softmax/"/>
     <id>https://quano.gitee.io/wk/算法/001.机器学习/002.数学知识/函数/003.函数Softmax/</id>
     <published>2024-04-12T15:55:57.000Z</published>
-    <updated>2024-06-09T18:28:25.032Z</updated>
+    <updated>2024-07-02T17:24:54.845Z</updated>
     
     <content type="html"><![CDATA[<h1 id="1-请描述Softmax函数的数学定义。"><a href="#1-请描述Softmax函数的数学定义。" class="headerlink" title="1. 请描述Softmax函数的数学定义。"></a>1. 请描述Softmax函数的数学定义。</h1><h2 id="1-1-定义"><a href="#1-1-定义" class="headerlink" title="1.1 定义"></a>1.1 定义</h2><p>Softmax函数是一种在机器学习和深度学习中常用的激活函数，特别是在处理多分类问题时。<br>它将一个向量或一组实数转换成概率分布，使得每个元素的值都在0到1之间，并且所有元素的和为1。</p><h2 id="1-2-函数定义-公式"><a href="#1-2-函数定义-公式" class="headerlink" title="1.2 函数定义(公式)"></a>1.2 函数定义(公式)</h2><p>给定一个样本的特征向量 $z$，Softmax函数定义如下：<br>$ \text{Softmax}(z_i) = \frac{e^{z_i}}{\sum_{j=1}^{K} e^{z_j}} $<br>其中：</p><ul><li>$z_i$ 是输入向量中第 $i$ 个元素的值。</li><li>$K$ 是类别的总数。</li><li>$e^{z_i}$ 是 $z_i$ 的指数（自然对数的底数）。</li><li>分母是对所有类别指数的和。</li></ul><h2 id="1-3-数学特性"><a href="#1-3-数学特性" class="headerlink" title="1.3 数学特性"></a>1.3 数学特性</h2><ul><li>非负性：由于指数函数 $e^{x}$ 总是正的，Softmax函数的输出也总是非负的。</li><li>归一化：输出值的总和为1，因此可以解释为概率分布。</li><li>可微性：Softmax函数是连续可微的，这使得它在梯度下降算法中易于优化。</li></ul><h2 id="1-4-用途"><a href="#1-4-用途" class="headerlink" title="1.4 用途"></a>1.4 用途</h2><ul><li><p>多分类问题<br>在多分类问题中，Softmax函数通常用于神经网络的输出层，将模型的输出（即每个类别的原始分数或对数几率）转换为每个类别的概率估计。这样，具有最高概率的类别将被选择作为模型的预测结果。</p></li><li><p>在计算损失函数的梯度<br>Softmax函数的导数在计算损失函数（如交叉熵损失）的梯度时非常重要，因为它涉及到概率的对数，这在多分类问题中是常见的损失函数。</p></li></ul><h2 id="1-5-扩展-为什么是指数函数"><a href="#1-5-扩展-为什么是指数函数" class="headerlink" title="1.5 (扩展)为什么是指数函数"></a>1.5 (扩展)为什么是指数函数</h2><ul><li>归一化：Softmax函数的目标是将一个向量转换为概率分布，即所有输出值都是非负的，并且总和为1，<br>$e^{x}$ 能够确保即使输入值$x$很大或很小，函数的输出也能持在合理的范围内</li><li>区分度：指数函数能够放大输入值之间的差异。这有助于在多个类别中区分出最可能的类别。</li><li>数学性质：数函数具有许多有用的数学性质，如可微性、连续性等，这些性质使得Softmax函数在优化算法（如梯度下降）中易于处理。</li></ul><h1 id="2-Softmax函数如何应用于多分类问题？"><a href="#2-Softmax函数如何应用于多分类问题？" class="headerlink" title="2. Softmax函数如何应用于多分类问题？"></a>2. Softmax函数如何应用于多分类问题？</h1><p>Softmax函数通常用于多分类问题中，其作用是将模型的原始输出转换为表示概率分布的向量，以便对多个类别进行分类。在多分类问题中，Softmax函数通常作为神经网络输出层的激活函数之一。</p><h2 id="2-1-模型输出"><a href="#2-1-模型输出" class="headerlink" title="2.1 模型输出"></a>2.1 模型输出</h2><p>神经网络的输出层会输出一个原始的<strong><em>分数向量</em></strong>，该向量的每个元素对应于一个类别。这些分数可以是线性变换的结果，如全连接层的输出。</p><h2 id="2-2-Softmax转换"><a href="#2-2-Softmax转换" class="headerlink" title="2.2 Softmax转换"></a>2.2 Softmax转换</h2><p>将这个原始的分数向量作为Softmax函数的输入。<br>Softmax函数会对这些分数<strong><em>进行指数化并归一化，得到一个概率分布</em></strong>，其中每个元素表示对应类别的预测概率。</p><h2 id="2-3-概率解释"><a href="#2-3-概率解释" class="headerlink" title="2.3 概率解释"></a>2.3 概率解释</h2><p>这些预测概率可以被解释为模型对每个类别的置信度。</p><h2 id="2-4-损失计算"><a href="#2-4-损失计算" class="headerlink" title="2.4 损失计算"></a>2.4 损失计算</h2><p>在训练过程中，模型的预测结果会与真实标签进行比较，通常使用交叉熵损失函数来计算预测结果与真实标签之间的差异。</p>]]></content>
     
@@ -296,7 +322,7 @@
       <category term="函数" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/001-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002-%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E5%87%BD%E6%95%B0/"/>
     
     
-      <category term="函数" scheme="https://quano.gitee.io/tags/%E5%87%BD%E6%95%B0/"/>
+      <category term="数学" scheme="https://quano.gitee.io/tags/%E6%95%B0%E5%AD%A6/"/>
     
   </entry>
   
@@ -586,28 +612,6 @@
     
       <category term="03.ERP" scheme="https://quano.gitee.io/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/01-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/03-ERP/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>A_人与系统</title>
-    <link href="https://quano.gitee.io/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/README/"/>
-    <id>https://quano.gitee.io/wk/项目管理/README/</id>
-    <published>2024-03-24T01:56:24.000Z</published>
-    <updated>2024-05-15T15:38:09.394Z</updated>
-    
-    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉，您输入的密码错误，请检查后重新输入。" data-whm="抱歉, 当前文章不能被校验, 不过您还是可以看看解密后的内容。">  <script id="hbeData" type="hbeData" data-hmacdigest="d0d1bae9e1af0904506e32fea2bb5aca89c81509752dafb333c65a2c2f0976ad">6529a249a0af82b27e00ec9fb492a1659268f32bc06030e165d6717e60325ffd6ac33fed71dbb185f24eaf821597761118197a33e8c8c565b91f5a682a77d8671e8644850336297e1262343904e4ecd064136140f8e8647335840debea976e3b40676c92da4fc7a278ae92dba263e6e63beb80278d589da94d9c13e45dbf539dc56aef788c8222a1f29fdd40213f5a63c04c039e36c4984f616eada91ec9ec233a3082cda6a61bc0da4f0b293559dc43a44d8d1b27501c0df05d722b19c85a1a93118a72cf2523c945e7ce425248bcf08a79ea2b8dee36e5f5c8b740b2b027f6eff9ae768480c0e3cd1d84dfc4e58b12d431d39f3d463522e029cf188a20c12d416cde78a944ffb389f3742d4caacba478e10b3e04edb0aa8c8787fdb22e68364882d8f0413cd970bf29649093d136d29e0ca409ff564c10ba79d49770ee4838e4350c966144b5e71e885a3459155260037e74d0dfafb84875e2c7d50f045a718dea847f7bf0f2d20449f95dddd56e3bf22b4704f9075786252aa9d5ecccab54aae27568aa231c406b49c06acd957c12c567195ed7d79d4b7f0e2d9544ea169152a158775f563e9a8c32fd72f3017afdc428529606c2e665b7006cf714629e98dd1ad4357ca8008443e6f012612229a8f1ea5536248d6c0b199ed810018cc63f7f08318adc0497d7e8b7e9cf62b34b0e00552083a5b02267843eb3a8c618db53b31138cf56afd5e9789cc0bd21544e8af9a56ac64857a7b864a14f002a1782570651e0c05dab49bf4685e78085c3aee6a37d7e6f37919bef490c1a8599921fcc4336cabfc4263abef23a766ddd66c2751017d573a1f287737011f9446655cdd72dbd23de662065b52fbdc3695ffbe231501708dcb08844c6c89e52dd1fec3f080cfb2e2d2cff9910fcd6d504750b0763840729df4d3027f28af4d3ef9226b24ba57b70a6858d9b7652810194d9fde7c37a47feac5211877c64316aede58c7920436a8a969295ed1984cda184a631637d656145562d78eea67f7c7f83fe1a1a95545fc0bdafba06e77b169691cec12b6949b26de36f273840c878670230564598943da3ef6abecc505962fa948f1b927f975156fdbbe55490790ae52bcf26a5960d42b340c9b27993a21bf0b42f14b2ee2dfdf5204a8b5f04225ee0cd854707cf1b24793a4a2430aa536c32f537729f5f9553dabd60f1b0e4637aae53aeeb241763472b847544dd508cdfcf5bd16f8316fdfa4c319465f8c546a5852e8fb1a15a911e20bd2ae2c43ecb252af1a62f8f06555524311008ed1b62c6c7bfa0ef1448</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">当前文章暂不对外可见，请输入密码后查看！</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-    
-    <summary type="html">
-    
-      这是一篇加密文章，需要密码才能继续阅读。
-    
-    </summary>
-    
-      <category term="项目管理" scheme="https://quano.gitee.io/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"/>
-    
-    
-      <category term="private" scheme="https://quano.gitee.io/tags/private/"/>
     
   </entry>
   
