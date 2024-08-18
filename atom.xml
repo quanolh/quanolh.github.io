@@ -470,38 +470,6 @@
   </entry>
   
   <entry>
-    <title>1.导数与微分</title>
-    <link href="https://quano.gitee.io/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002.%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E5%BE%AE%E7%A7%AF%E5%88%86/001.%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/"/>
-    <id>https://quano.gitee.io/wk/算法/001.机器学习/002.数学知识/微积分/001.导数与微分/</id>
-    <published>2024-04-10T15:55:57.000Z</published>
-    <updated>2024-06-16T18:58:58.865Z</updated>
-    
-    <content type="html"><![CDATA[<p>数学背景： 函数与极限(数列与极限).</p><h1 id="导数概念"><a href="#导数概念" class="headerlink" title="导数概念"></a>导数概念</h1><p>在微积分中，导数是<strong><em>描述函数变化率</em></strong>的概念。<br>导数可以理解为函数在某一点的斜率，表示函数在该点附近的局部变化情况。</p><h2 id="1-导数定义"><a href="#1-导数定义" class="headerlink" title="1. 导数定义"></a>1. 导数定义</h2><p>导数是函数对其自变量的变化率或斜率的度量。</p><p>给定一个函数 $f(x)$，它的导数 $f’(x)$ 或 $ \frac{df}{dx} $ 在某一点 $x$ 处的定义如下：<br>$ f’(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h} $<br><strong><em>这个极限表示当自变量 $x$ 的增量 $h$ 趋近于零时，函数在点 $x$ 处的平均变化率的极限 (<span style="color: red;">函数值$f(x + h)的变化量与 $h$ 的比率$</span>)。</em></strong><br><strong><em>$h$即自变量的增量 $ \delta x $，是一个趋近于零的实数</em></strong>。</p><p>导数告诉我们函数在 $x$ 处的瞬时变化率，即函数曲线在该点处的切线的<strong><em>斜率</em></strong>。</p><p>另一种常见的表示形式是利用微分符号 $dx$ 来表示导数，即：<br>$ f’(x) = \frac{df}{dx} $<br>这表示函数 $f(x) $ 相对于自变量 $x$ 的变化率。</p><p><span style="font-size: 12px;">tips: $h$ 是在定义导数时用来表示自变量 $x$ 的微小变化量，是一个无限接近于0的数。 $dx$ 是微积分中用来表示自变量$x$的微小变化量的标志，通常与微分和积分相关的符号一起使用 </span></p><h2 id="2-导数的集合意义"><a href="#2-导数的集合意义" class="headerlink" title="2. 导数的集合意义"></a>2. 导数的集合意义</h2><p>导数$ f’(x) $ 在 何上表示曲线 $y=f(x)$ 在点$ M(x_0, f(x_0)) $ 处的切线的斜率，即<br>$ f’(x_0) = tan a $</p><h2 id="3-函数可导性与连续型的关系"><a href="#3-函数可导性与连续型的关系" class="headerlink" title="3. 函数可导性与连续型的关系"></a>3. 函数可导性与连续型的关系</h2><p>可导 比连续.  连续不一定可导.</p><p>函数在某点连续 是函数在该点可导 的必要条件，但不是充分条件. </p><h2 id="4-多变量函数的导数"><a href="#4-多变量函数的导数" class="headerlink" title="4. 多变量函数的导数"></a>4. 多变量函数的导数</h2><p>对于多变量函数 $f(x)$，其中 $\mathbf{x} = (x_1, x_2, \ldots, x_n)$ 是一个包含 $n$ 个自变量的向量，其导数有两种常见的形式：<span style="color: red;">偏导数和全导数</span>。</p><h3 id="4-1-偏导数-Partial-Derivatives"><a href="#4-1-偏导数-Partial-Derivatives" class="headerlink" title="4.1 偏导数(Partial Derivatives)"></a>4.1 偏导数(Partial Derivatives)</h3><p>偏导数是多变量函数在某一点关于其中一个自变量的导数。偏导数用 $ \frac{\partial f}{\partial x_i} $ 表示，<strong><em>表示函数  $f$关于 $x_i$ 的变化率</em></strong>，而将其他自变量视为常数。</p><h3 id="4-2-梯度-Gradient"><a href="#4-2-梯度-Gradient" class="headerlink" title="4.2 梯度(Gradient)"></a>4.2 梯度(Gradient)</h3><p><strong><em>梯度是多变量函数的导数的一种推广，它是一个向量，包含函数对所有自变量的偏导数</em></strong>。</p><ul><li>梯度 $\nabla f(\mathbf{x}) $ 是一个向量，其分量表示了函数 $f(x)$ 在每个方向上的变化率。</li></ul><p>梯度用符号 $\nabla f(\mathbf{x})$ 表示，定义为：<br>$ \nabla f(\mathbf{x}) = \left( \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2}, \ldots, \frac{\partial f}{\partial x_n} \right) $</p><p>梯度  $\nabla f(\mathbf{x})$ 指示了函数 $f$ 在点 $ \mathbf{x} $ 处的最大变化率方向。<span style="color: red;">它的方向是函数在该点上升最快的方向</span>，而其<strong><em>模长</em></strong>则是这个方向上的变化率。</p><p><span style="font-size: 12px;">tips: 在数学和物理中，模长（Magnitude）通常指的是一个向量的长度或大小，也称为向量的模或向量的大小。<br>它是一个标量，用于表示向量的大小，而不考虑其具体的方向。 </span></p><ul><li><strong><em>换句话说，沿着梯度的方向，函数值 $f(x)$ 的变化速率是最快的，而这个速率就是梯度的模长</em></strong>。</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;数学背景： 函数与极限(数列与极限).&lt;/p&gt;
-&lt;h1 id=&quot;导数概念&quot;&gt;&lt;a href=&quot;#导数概念&quot; class=&quot;headerlink&quot; title=&quot;导数概念&quot;&gt;&lt;/a&gt;导数概念&lt;/h1&gt;&lt;p&gt;在微积分中，导数是&lt;strong&gt;&lt;em&gt;描述函数变化率&lt;/em&gt;&lt;/
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="001.机器学习" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/001-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="002.数学知识" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/001-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002-%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/"/>
-    
-      <category term="微积分" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/001-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002-%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E5%BE%AE%E7%A7%AF%E5%88%86/"/>
-    
-    
-      <category term="数学" scheme="https://quano.gitee.io/tags/%E6%95%B0%E5%AD%A6/"/>
-    
-  </entry>
-  
-  <entry>
     <title>1.高中_62中常考函数图像</title>
     <link href="https://quano.gitee.io/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002.%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E5%87%BD%E6%95%B0/001.%E9%AB%98%E4%B8%AD%E6%95%B0%E5%AD%A6_62%E7%A7%8D%E5%B8%B8%E8%80%83%E5%87%BD%E6%95%B0%E5%9B%BE%E5%83%8F/"/>
     <id>https://quano.gitee.io/wk/算法/001.机器学习/002.数学知识/函数/001.高中数学_62种常考函数图像/</id>
@@ -527,6 +495,38 @@
       <category term="002.数学知识" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/001-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002-%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/"/>
     
       <category term="函数" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/001-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002-%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E5%87%BD%E6%95%B0/"/>
+    
+    
+      <category term="数学" scheme="https://quano.gitee.io/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>1.导数与微分</title>
+    <link href="https://quano.gitee.io/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002.%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E5%BE%AE%E7%A7%AF%E5%88%86/001.%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/"/>
+    <id>https://quano.gitee.io/wk/算法/001.机器学习/002.数学知识/微积分/001.导数与微分/</id>
+    <published>2024-04-10T15:55:57.000Z</published>
+    <updated>2024-06-16T18:58:58.865Z</updated>
+    
+    <content type="html"><![CDATA[<p>数学背景： 函数与极限(数列与极限).</p><h1 id="导数概念"><a href="#导数概念" class="headerlink" title="导数概念"></a>导数概念</h1><p>在微积分中，导数是<strong><em>描述函数变化率</em></strong>的概念。<br>导数可以理解为函数在某一点的斜率，表示函数在该点附近的局部变化情况。</p><h2 id="1-导数定义"><a href="#1-导数定义" class="headerlink" title="1. 导数定义"></a>1. 导数定义</h2><p>导数是函数对其自变量的变化率或斜率的度量。</p><p>给定一个函数 $f(x)$，它的导数 $f’(x)$ 或 $ \frac{df}{dx} $ 在某一点 $x$ 处的定义如下：<br>$ f’(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h} $<br><strong><em>这个极限表示当自变量 $x$ 的增量 $h$ 趋近于零时，函数在点 $x$ 处的平均变化率的极限 (<span style="color: red;">函数值$f(x + h)的变化量与 $h$ 的比率$</span>)。</em></strong><br><strong><em>$h$即自变量的增量 $ \delta x $，是一个趋近于零的实数</em></strong>。</p><p>导数告诉我们函数在 $x$ 处的瞬时变化率，即函数曲线在该点处的切线的<strong><em>斜率</em></strong>。</p><p>另一种常见的表示形式是利用微分符号 $dx$ 来表示导数，即：<br>$ f’(x) = \frac{df}{dx} $<br>这表示函数 $f(x) $ 相对于自变量 $x$ 的变化率。</p><p><span style="font-size: 12px;">tips: $h$ 是在定义导数时用来表示自变量 $x$ 的微小变化量，是一个无限接近于0的数。 $dx$ 是微积分中用来表示自变量$x$的微小变化量的标志，通常与微分和积分相关的符号一起使用 </span></p><h2 id="2-导数的集合意义"><a href="#2-导数的集合意义" class="headerlink" title="2. 导数的集合意义"></a>2. 导数的集合意义</h2><p>导数$ f’(x) $ 在 何上表示曲线 $y=f(x)$ 在点$ M(x_0, f(x_0)) $ 处的切线的斜率，即<br>$ f’(x_0) = tan a $</p><h2 id="3-函数可导性与连续型的关系"><a href="#3-函数可导性与连续型的关系" class="headerlink" title="3. 函数可导性与连续型的关系"></a>3. 函数可导性与连续型的关系</h2><p>可导 比连续.  连续不一定可导.</p><p>函数在某点连续 是函数在该点可导 的必要条件，但不是充分条件. </p><h2 id="4-多变量函数的导数"><a href="#4-多变量函数的导数" class="headerlink" title="4. 多变量函数的导数"></a>4. 多变量函数的导数</h2><p>对于多变量函数 $f(x)$，其中 $\mathbf{x} = (x_1, x_2, \ldots, x_n)$ 是一个包含 $n$ 个自变量的向量，其导数有两种常见的形式：<span style="color: red;">偏导数和全导数</span>。</p><h3 id="4-1-偏导数-Partial-Derivatives"><a href="#4-1-偏导数-Partial-Derivatives" class="headerlink" title="4.1 偏导数(Partial Derivatives)"></a>4.1 偏导数(Partial Derivatives)</h3><p>偏导数是多变量函数在某一点关于其中一个自变量的导数。偏导数用 $ \frac{\partial f}{\partial x_i} $ 表示，<strong><em>表示函数  $f$关于 $x_i$ 的变化率</em></strong>，而将其他自变量视为常数。</p><h3 id="4-2-梯度-Gradient"><a href="#4-2-梯度-Gradient" class="headerlink" title="4.2 梯度(Gradient)"></a>4.2 梯度(Gradient)</h3><p><strong><em>梯度是多变量函数的导数的一种推广，它是一个向量，包含函数对所有自变量的偏导数</em></strong>。</p><ul><li>梯度 $\nabla f(\mathbf{x}) $ 是一个向量，其分量表示了函数 $f(x)$ 在每个方向上的变化率。</li></ul><p>梯度用符号 $\nabla f(\mathbf{x})$ 表示，定义为：<br>$ \nabla f(\mathbf{x}) = \left( \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2}, \ldots, \frac{\partial f}{\partial x_n} \right) $</p><p>梯度  $\nabla f(\mathbf{x})$ 指示了函数 $f$ 在点 $ \mathbf{x} $ 处的最大变化率方向。<span style="color: red;">它的方向是函数在该点上升最快的方向</span>，而其<strong><em>模长</em></strong>则是这个方向上的变化率。</p><p><span style="font-size: 12px;">tips: 在数学和物理中，模长（Magnitude）通常指的是一个向量的长度或大小，也称为向量的模或向量的大小。<br>它是一个标量，用于表示向量的大小，而不考虑其具体的方向。 </span></p><ul><li><strong><em>换句话说，沿着梯度的方向，函数值 $f(x)$ 的变化速率是最快的，而这个速率就是梯度的模长</em></strong>。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;数学背景： 函数与极限(数列与极限).&lt;/p&gt;
+&lt;h1 id=&quot;导数概念&quot;&gt;&lt;a href=&quot;#导数概念&quot; class=&quot;headerlink&quot; title=&quot;导数概念&quot;&gt;&lt;/a&gt;导数概念&lt;/h1&gt;&lt;p&gt;在微积分中，导数是&lt;strong&gt;&lt;em&gt;描述函数变化率&lt;/em&gt;&lt;/
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="001.机器学习" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/001-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="002.数学知识" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/001-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002-%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="微积分" scheme="https://quano.gitee.io/categories/%E7%AE%97%E6%B3%95/001-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002-%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E5%BE%AE%E7%A7%AF%E5%88%86/"/>
     
     
       <category term="数学" scheme="https://quano.gitee.io/tags/%E6%95%B0%E5%AD%A6/"/>
