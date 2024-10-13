@@ -3,21 +3,21 @@
 <head>
     <meta charset="utf-8">
     
-    <title>4.自编码在ECG场景实现异常检测 | Nova`s Wiki</title>
+    <title>4.自编码在ECG场景异常检测 | Nova`s Wiki</title>
     
     
         <meta name="keywords" content="python">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="1. 问题背景介绍ECG指心电图， ECG数据中的异常可能预示着心脏疾病等健康问题。 对ECG数据进行异常检测可以帮助医生及时发现潜在的健康风险。 实现方法：  构建Autoencoder 模型对正常的ECG数据进行训练，使得模型能够学习到正常 ECG信号的特征。  当输入新的ECG数据时， 如果重构后的信号与原始信号之间的差异较大， 则判断该数据为异常的ECG信号， 可能存在心脏疾病 等异常情况">
+    <meta name="description" content="&#x2F;* 为表头 th 元素设置右对齐样式 *&#x2F; table th {   text-align: right; } &#x2F;* 暗黑风格表格样式 *&#x2F; table {   font-size: 12px;   width: 100%; }   1. 问题背景介绍ECG指心电图， ECG数据中的异常可能预示着心脏疾病等健康问题。 对ECG数据进行异常检测可以帮助医生及时发现潜在的健康风险。 实现方法：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="4.自编码在ECG场景实现异常检测">
+<meta property="og:title" content="4.自编码在ECG场景异常检测">
 <meta property="og:url" content="https://quano.gitee.io/wk/%E7%AE%97%E6%B3%95/006.%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/%E5%AE%9E%E8%B7%B5/004.%E8%87%AA%E7%BC%96%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B_ECG%E5%BF%83%E7%94%B5%E5%9B%BE/index.html">
 <meta property="og:site_name" content="Nova&#96;s Wiki">
-<meta property="og:description" content="1. 问题背景介绍ECG指心电图， ECG数据中的异常可能预示着心脏疾病等健康问题。 对ECG数据进行异常检测可以帮助医生及时发现潜在的健康风险。 实现方法：  构建Autoencoder 模型对正常的ECG数据进行训练，使得模型能够学习到正常 ECG信号的特征。  当输入新的ECG数据时， 如果重构后的信号与原始信号之间的差异较大， 则判断该数据为异常的ECG信号， 可能存在心脏疾病 等异常情况">
+<meta property="og:description" content="&#x2F;* 为表头 th 元素设置右对齐样式 *&#x2F; table th {   text-align: right; } &#x2F;* 暗黑风格表格样式 *&#x2F; table {   font-size: 12px;   width: 100%; }   1. 问题背景介绍ECG指心电图， ECG数据中的异常可能预示着心脏疾病等健康问题。 对ECG数据进行异常检测可以帮助医生及时发现潜在的健康风险。 实现方法：">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-03-18T16:48:57.000Z">
-<meta property="article:modified_time" content="2024-10-07T17:10:21.706Z">
+<meta property="article:published_time" content="2024-03-21T16:48:57.000Z">
+<meta property="article:modified_time" content="2024-10-13T17:24:21.651Z">
 <meta property="article:author" content="Nova">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
@@ -194,168 +194,6 @@ var _hmt = _hmt || [];
                         <a href="#" data-role="directory">
                             <i class="fa fa-folder"></i>
                             &nbsp;
-                            MicroService
-                        </a>
-                         <ul class="unstyled" id="tree"> 
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            容器云平台
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E5%AE%B9%E5%99%A8%E4%BA%91%E5%B9%B3%E5%8F%B0/001.k8s%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97/">k8s安装指南</a></li>  <li class="file"><a href="/wk/MicroService/%E5%AE%B9%E5%99%A8%E4%BA%91%E5%B9%B3%E5%8F%B0/002.%E9%87%8D%E5%90%AFwsl%E5%90%8E%E7%9A%84k8s%E9%9B%86%E7%BE%A4%E6%81%A2%E5%A4%8D/">002.重新开启wsl后 k8s集群恢复.</a></li>  <li class="file"><a href="/wk/MicroService/%E5%AE%B9%E5%99%A8%E4%BA%91%E5%B9%B3%E5%8F%B0/003.minikube%E4%BD%BF%E7%94%A8/">minikube使用</a></li>  <li class="file"><a href="/wk/MicroService/%E5%AE%B9%E5%99%A8%E4%BA%91%E5%B9%B3%E5%8F%B0/004.nfs-server%E9%83%A8%E7%BD%B2/">nfs-server部署</a></li>  <li class="file"><a href="/wk/MicroService/%E5%AE%B9%E5%99%A8%E4%BA%91%E5%B9%B3%E5%8F%B0/005.K8S%E7%9A%84StorageClass%E5%AE%9E%E6%88%98/">K8S的StorageClass实战(NFS)</a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            微服务架构
-                        </a>
-                         <ul class="unstyled" id="tree"> 
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            基础
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%9F%BA%E7%A1%80/002.%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E5%8F%8A%E5%85%B6%E9%87%8D%E8%A6%81%E7%9A%8410%E4%B8%AA%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">微服务架构及其重要的10个设计模式</a></li>  <li class="file"><a href="/wk/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%9F%BA%E7%A1%80/001.%E7%BA%BF%E7%A8%8B%E6%B1%A0/">线程池</a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            工作流引擎
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E/001.readme/">工作流引擎</a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            服务治理
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86/001.%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86/">001什么是服务治理</a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            链路追踪
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AA/001.trace%E4%BB%8B%E7%BB%8D/">分布式链路追踪认识及选型</a></li>  </ul> 
-                    </li> 
-                     <li class="file"><a href="/wk/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/001.%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E6%94%AF%E6%8C%81/">01.开发使用环境</a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            技术框架
-                        </a>
-                         <ul class="unstyled" id="tree"> 
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            Mybatis
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Mybatis/Mybatis%E5%8E%9F%E7%90%86%E6%8E%A2%E7%B4%A2/">01.Mybatis原理</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Mybatis/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">02.动态代理</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Mybatis/%E6%89%8B%E5%86%99mybatis/"></a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Mybatis/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E6%BA%90%E6%8F%90%E4%BE%9B%E8%80%85/">01.自定义数据源提供者</a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            Netty
-                        </a>
-                         <ul class="unstyled" id="tree"> 
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            总结
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/%E6%80%BB%E7%BB%93/001.%E7%BD%91%E7%BB%9C-Netty%E3%80%81Tomcat%E3%80%81%E5%AE%89%E5%85%A8/">02.Netty的NioEventLoop</a></li>  </ul> 
-                    </li> 
-                     <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/002.Netty%E4%B8%AD%E7%9A%84NioEventLoop/">02.Netty的NioEventLoop</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/003.Netty%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">003.Netty线程模型</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/004.Netty%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%85%B6%E4%BB%96WebServer%E7%9A%84%E6%AF%94%E8%BE%83/">003.Netty线程模型和其他WebServer的比较</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/01.netty%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/">01.Netty服务端启动流程</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/02.Netty%E7%9A%84NioEventLoop/">02.Netty的NioEventLoop</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/03.Netty%E4%B9%8BChannel/">03.Netty之Channel</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/Netty%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95/">Netty学习目录</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/%E7%96%91%E9%97%AE/"></a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/%E8%AF%BB%E5%86%99%E4%BA%8B%E4%BB%B6%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90%E4%B8%8E%E7%9B%B8%E5%85%B3API/">读写事件流程分析与相关API</a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            RPC
-                        </a>
-                         <ul class="unstyled" id="tree"> 
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            Netty
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/Netty/01.netty%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/">01.Netty服务端启动流程</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/Netty/03.Netty%E4%B9%8BChannel/">03.Netty之Channel</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/Netty/02.Netty%E7%9A%84NioEventLoop/">02.Netty的NioEventLoop</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/Netty/%E7%96%91%E9%97%AE/"></a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/Netty/Netty%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95/">Netty学习目录</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/Netty/%E8%AF%BB%E5%86%99%E4%BA%8B%E4%BB%B6%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90%E4%B8%8E%E7%9B%B8%E5%85%B3API/">读写事件流程分析与相关API</a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            doc
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/doc/001.post/">Thrift框架原理及rpc认识</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/doc/%E5%90%9E%E5%90%90%E9%87%8F%E5%92%8C%E5%BB%B6%E8%BF%9F/">吞吐量和延迟</a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            thrift
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/thrift/thrift/">Thrift框架原理及rpc认识</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/thrift/thrift%E5%AE%89%E8%A3%85/"></a></li>  </ul> 
-                    </li> 
-                     </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            SpringBoot
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringBoot/01.SpringBoot%E5%B8%B8%E8%A7%81starter/">SpringBoot常见starter</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringBoot/02.SpringBootStarter%E5%AE%9A%E4%B9%89%E7%9A%84%E6%96%B9%E5%BC%8F/">SpringBootStarter的定义方式</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringBoot/03.SpringBoot%E5%BA%94%E7%94%A8%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/">SpringBoot应用启动流程</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringBoot/04.%E8%87%AA%E5%AE%9A%E4%B9%89Endpoint/">SpringBoot:自定义Endpoint</a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringBoot/%E8%87%AA%E5%AE%9A%E4%B9%89starter/"></a></li>  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringBoot/Readme/">SpringBoot</a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            micronaut
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/micronaut/README/">01.micronaut介绍</a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            workflow
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/workflow/001.README/">workFlow</a></li>  </ul> 
-                    </li> 
-                     </ul> 
-                    </li> 
-                     <li class="file"><a href="/wk/MicroService/MicroService/">微服务架构体系</a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
                             信息安全
                         </a>
                          <ul class="unstyled" id="tree"> 
@@ -399,6 +237,168 @@ var _hmt = _hmt || [];
                         <a href="#" data-role="directory">
                             <i class="fa fa-folder"></i>
                             &nbsp;
+                            MicroService
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            容器云平台
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E5%AE%B9%E5%99%A8%E4%BA%91%E5%B9%B3%E5%8F%B0/001.k8s%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97/">k8s安装指南</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E5%AE%B9%E5%99%A8%E4%BA%91%E5%B9%B3%E5%8F%B0/002.%E9%87%8D%E5%90%AFwsl%E5%90%8E%E7%9A%84k8s%E9%9B%86%E7%BE%A4%E6%81%A2%E5%A4%8D/">002.重新开启wsl后 k8s集群恢复.</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E5%AE%B9%E5%99%A8%E4%BA%91%E5%B9%B3%E5%8F%B0/003.minikube%E4%BD%BF%E7%94%A8/">minikube使用</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E5%AE%B9%E5%99%A8%E4%BA%91%E5%B9%B3%E5%8F%B0/004.nfs-server%E9%83%A8%E7%BD%B2/">nfs-server部署</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E5%AE%B9%E5%99%A8%E4%BA%91%E5%B9%B3%E5%8F%B0/005.K8S%E7%9A%84StorageClass%E5%AE%9E%E6%88%98/">K8S的StorageClass实战(NFS)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            微服务架构
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            基础
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%9F%BA%E7%A1%80/001.%E7%BA%BF%E7%A8%8B%E6%B1%A0/">线程池</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%9F%BA%E7%A1%80/002.%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E5%8F%8A%E5%85%B6%E9%87%8D%E8%A6%81%E7%9A%8410%E4%B8%AA%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">微服务架构及其重要的10个设计模式</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            工作流引擎
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E/001.readme/">工作流引擎</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            服务治理
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86/001.%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86/">001什么是服务治理</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            链路追踪
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AA/001.trace%E4%BB%8B%E7%BB%8D/">分布式链路追踪认识及选型</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/001.%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E6%94%AF%E6%8C%81/">01.开发使用环境</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            技术框架
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Mybatis
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Mybatis/Mybatis%E5%8E%9F%E7%90%86%E6%8E%A2%E7%B4%A2/">01.Mybatis原理</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Mybatis/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">02.动态代理</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Mybatis/%E6%89%8B%E5%86%99mybatis/"></a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Mybatis/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E6%BA%90%E6%8F%90%E4%BE%9B%E8%80%85/">01.自定义数据源提供者</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Netty
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            总结
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/%E6%80%BB%E7%BB%93/001.%E7%BD%91%E7%BB%9C-Netty%E3%80%81Tomcat%E3%80%81%E5%AE%89%E5%85%A8/">02.Netty的NioEventLoop</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/002.Netty%E4%B8%AD%E7%9A%84NioEventLoop/">02.Netty的NioEventLoop</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/004.Netty%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%85%B6%E4%BB%96WebServer%E7%9A%84%E6%AF%94%E8%BE%83/">003.Netty线程模型和其他WebServer的比较</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/003.Netty%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">003.Netty线程模型</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/02.Netty%E7%9A%84NioEventLoop/">02.Netty的NioEventLoop</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/03.Netty%E4%B9%8BChannel/">03.Netty之Channel</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/%E7%96%91%E9%97%AE/"></a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/Netty%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95/">Netty学习目录</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/01.netty%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/">01.Netty服务端启动流程</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/%E8%AF%BB%E5%86%99%E4%BA%8B%E4%BB%B6%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90%E4%B8%8E%E7%9B%B8%E5%85%B3API/">读写事件流程分析与相关API</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            RPC
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Netty
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/Netty/01.netty%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/">01.Netty服务端启动流程</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/Netty/02.Netty%E7%9A%84NioEventLoop/">02.Netty的NioEventLoop</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/Netty/03.Netty%E4%B9%8BChannel/">03.Netty之Channel</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/Netty/Netty%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95/">Netty学习目录</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/Netty/%E8%AF%BB%E5%86%99%E4%BA%8B%E4%BB%B6%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90%E4%B8%8E%E7%9B%B8%E5%85%B3API/">读写事件流程分析与相关API</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/Netty/%E7%96%91%E9%97%AE/"></a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            doc
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/doc/%E5%90%9E%E5%90%90%E9%87%8F%E5%92%8C%E5%BB%B6%E8%BF%9F/">吞吐量和延迟</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/doc/001.post/">Thrift框架原理及rpc认识</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            thrift
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/thrift/thrift%E5%AE%89%E8%A3%85/"></a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/thrift/thrift/">Thrift框架原理及rpc认识</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            SpringBoot
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringBoot/01.SpringBoot%E5%B8%B8%E8%A7%81starter/">SpringBoot常见starter</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringBoot/02.SpringBootStarter%E5%AE%9A%E4%B9%89%E7%9A%84%E6%96%B9%E5%BC%8F/">SpringBootStarter的定义方式</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringBoot/03.SpringBoot%E5%BA%94%E7%94%A8%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/">SpringBoot应用启动流程</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringBoot/04.%E8%87%AA%E5%AE%9A%E4%B9%89Endpoint/">SpringBoot:自定义Endpoint</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringBoot/Readme/">SpringBoot</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/SpringBoot/%E8%87%AA%E5%AE%9A%E4%B9%89starter/"></a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            micronaut
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/micronaut/README/">01.micronaut介绍</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            workflow
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/workflow/001.README/">workFlow</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/MicroService/MicroService/">微服务架构体系</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
                             [1]架构设计
                         </a>
                          <ul class="unstyled" id="tree"> 
@@ -408,7 +408,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             01.架构设计体系与方法论
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B1%5D%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/01.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E4%BD%93%E7%B3%BB%E4%B8%8E%E6%96%B9%E6%B3%95%E8%AE%BA/001.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95%E8%AE%BA%E7%9A%84%E7%90%86%E8%A7%A3/">1.架构设计方法论理解</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B1%5D%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/01.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E4%BD%93%E7%B3%BB%E4%B8%8E%E6%96%B9%E6%B3%95%E8%AE%BA/002.%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%BB%BA%E6%A8%A1%E5%B7%A5%E5%85%B7_UML/">2.软件系统建模工具_UML</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B1%5D%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/01.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E4%BD%93%E7%B3%BB%E4%B8%8E%E6%96%B9%E6%B3%95%E8%AE%BA/006.%E6%9E%B6%E6%9E%84%E5%B8%88%E8%81%8C%E8%B4%A3/">6.架构师职责及基本的理解</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B1%5D%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/01.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E4%BD%93%E7%B3%BB%E4%B8%8E%E6%96%B9%E6%B3%95%E8%AE%BA/002.%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%BB%BA%E6%A8%A1%E5%B7%A5%E5%85%B7_UML/">2.软件系统建模工具_UML</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B1%5D%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/01.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E4%BD%93%E7%B3%BB%E4%B8%8E%E6%96%B9%E6%B3%95%E8%AE%BA/001.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95%E8%AE%BA%E7%9A%84%E7%90%86%E8%A7%A3/">1.架构设计方法论理解</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B1%5D%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/01.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E4%BD%93%E7%B3%BB%E4%B8%8E%E6%96%B9%E6%B3%95%E8%AE%BA/006.%E6%9E%B6%E6%9E%84%E5%B8%88%E8%81%8C%E8%B4%A3/">6.架构师职责及基本的理解</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -453,7 +453,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             05.学习资料及实践总结
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B1%5D%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/05.%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E5%8F%8A%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/001.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/">1.架构设计学习资料</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B1%5D%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/05.%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E5%8F%8A%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/003.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/">3.架构设计原则总结</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B1%5D%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/05.%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E5%8F%8A%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/004.%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/">4.架构设计工具总结</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B1%5D%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/05.%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E5%8F%8A%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/005.%E8%83%BD%E5%8A%9B%E5%AE%9A%E4%B9%89/">5.架构设计-能力定义</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B1%5D%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/05.%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E5%8F%8A%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/%E5%AE%9E%E8%B7%B5_%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/">实践_架构设计案例</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B1%5D%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/05.%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E5%8F%8A%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/%E5%AE%9E%E8%B7%B5_%E9%A3%8E%E6%8E%A7%E6%9E%B6%E6%9E%84_01/">实践_风控架构篇_01</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B1%5D%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/05.%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E5%8F%8A%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E6%9D%BF_001%E8%AE%BE%E8%AE%A1%E6%A8%A1%E6%9D%BF/">设计模板_001设计模板</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B1%5D%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/05.%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E5%8F%8A%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E6%9D%BF_%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E6%A8%A1%E6%9D%BF/">设计模板_架构设计文档模板</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B1%5D%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/05.%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E5%8F%8A%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/001.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/">1.架构设计学习资料</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B1%5D%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/05.%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E5%8F%8A%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/004.%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/">4.架构设计工具总结</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B1%5D%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/05.%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E5%8F%8A%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/%E5%AE%9E%E8%B7%B5_%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B/">实践_架构设计案例</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B1%5D%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/05.%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E5%8F%8A%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/003.%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/">3.架构设计原则总结</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B1%5D%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/05.%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E5%8F%8A%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/005.%E8%83%BD%E5%8A%9B%E5%AE%9A%E4%B9%89/">5.架构设计-能力定义</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B1%5D%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/05.%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E5%8F%8A%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/%E5%AE%9E%E8%B7%B5_%E9%A3%8E%E6%8E%A7%E6%9E%B6%E6%9E%84_01/">实践_风控架构篇_01</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B1%5D%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/05.%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E5%8F%8A%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E6%9D%BF_001%E8%AE%BE%E8%AE%A1%E6%A8%A1%E6%9D%BF/">设计模板_001设计模板</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B1%5D%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/05.%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E5%8F%8A%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E6%9D%BF_%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E6%A8%A1%E6%9D%BF/">设计模板_架构设计文档模板</a></li>  </ul> 
                     </li> 
                      <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B1%5D%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/001.ArchitectureStart/">软件架构设计体系</a></li>  </ul> 
                     </li> 
@@ -494,7 +494,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             [重点]开发环境
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/%5B%E9%87%8D%E7%82%B9%5D%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%9E%84%E5%BB%BA/">C++开发环境构建</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/%5B%E9%87%8D%E7%82%B9%5D%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/VScode%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">VScode搭建C++开发环境</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/%5B%E9%87%8D%E7%82%B9%5D%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/VScode%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">VScode搭建C++开发环境</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/%5B%E9%87%8D%E7%82%B9%5D%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%9E%84%E5%BB%BA/">C++开发环境构建</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -503,7 +503,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             rocksdb源码学习
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/rocksdb%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/002.Java%E7%89%88%E6%9C%AC%E6%94%AF%E6%8C%81/"></a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/rocksdb%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/001.%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98/">rocksdb源码环境配置</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/rocksdb%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/003.%E7%9B%B8%E5%85%B3%E4%BE%9D%E8%B5%96/"></a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/rocksdb%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/merge%E6%93%8D%E4%BD%9C/">Merge源码解析</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/rocksdb%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/001.%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98/">rocksdb源码环境配置</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/rocksdb%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/002.Java%E7%89%88%E6%9C%AC%E6%94%AF%E6%8C%81/"></a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/rocksdb%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/003.%E7%9B%B8%E5%85%B3%E4%BE%9D%E8%B5%96/"></a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/rocksdb%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/merge%E6%93%8D%E4%BD%9C/">Merge源码解析</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -523,7 +523,7 @@ var _hmt = _hmt || [];
                         </a>
                          <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/%E7%BC%96%E8%AF%91%E5%99%A8/%E7%BC%96%E8%AF%91%E5%99%A8%E4%BA%86%E8%A7%A3/"></a></li>  </ul> 
                     </li> 
-                     <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/1.%E6%8C%87%E9%92%88%E5%92%8C%E5%BC%95%E7%94%A8/">1.指针和引用</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/2.Make%E5%91%BD%E4%BB%A4%E6%95%99%E7%A8%8B/">2.Make命令教程</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/3.virtual%E5%85%B3%E9%94%AE%E5%AD%97/">3.虚函数</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/4.explicit%E5%85%B3%E9%94%AE%E5%AD%97/">4.explict函数</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/5.%E5%88%9D%E5%A7%8B%E5%8C%96%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/"></a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/6.c++%E5%AE%B9%E5%99%A8%E6%B5%85%E6%9E%90/">6.C++ vector 容器浅析</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/7.JavaJNI%E7%9A%84%E6%94%AF%E6%8C%81/">JavaJNI的支持</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/0.C%E4%B8%8Ec++%E5%8C%BA%E5%88%AB%E5%8F%8A%E5%85%A5%E9%97%A8/">0.C和c++区别</a></li>  </ul> 
+                     <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/0.C%E4%B8%8Ec++%E5%8C%BA%E5%88%AB%E5%8F%8A%E5%85%A5%E9%97%A8/">0.C和c++区别</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/1.%E6%8C%87%E9%92%88%E5%92%8C%E5%BC%95%E7%94%A8/">1.指针和引用</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/2.Make%E5%91%BD%E4%BB%A4%E6%95%99%E7%A8%8B/">2.Make命令教程</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/3.virtual%E5%85%B3%E9%94%AE%E5%AD%97/">3.虚函数</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/4.explicit%E5%85%B3%E9%94%AE%E5%AD%97/">4.explict函数</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/5.%E5%88%9D%E5%A7%8B%E5%8C%96%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/"></a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/6.c++%E5%AE%B9%E5%99%A8%E6%B5%85%E6%9E%90/">6.C++ vector 容器浅析</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/7.JavaJNI%E7%9A%84%E6%94%AF%E6%8C%81/">JavaJNI的支持</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -557,7 +557,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             多线程
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/001.%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/">线程状态说明及状态流转</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/002.LockSupport/">LockSupport</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/003.ForkJoin/">ForkJoin</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/001.%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/">线程状态说明及状态流转</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/003.ForkJoin/">ForkJoin</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/002.LockSupport/">LockSupport</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -577,7 +577,7 @@ var _hmt = _hmt || [];
                         </a>
                          <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/%E6%B3%A8%E8%A7%A3/2.%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3/">2.自定义注解</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/%E6%B3%A8%E8%A7%A3/1.%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%88%86%E7%B1%BB/">1.注解的分类</a></li>  </ul> 
                     </li> 
-                     <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/BeanToMap/">实体Bean与Map之间的转换</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/Jdk%E9%95%9C%E5%83%8F/">jdk下载镜像</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3-FunctionalInterface/">函数式接口-FunctionalInterface</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/%E9%94%81/"></a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/Java8Stream/">3.Java8Stream</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/Java%E5%9F%BA%E7%A1%80/">1.Java基础</a></li>  </ul> 
+                     <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/BeanToMap/">实体Bean与Map之间的转换</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/Java8Stream/">3.Java8Stream</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/Java%E5%9F%BA%E7%A1%80/">1.Java基础</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/Jdk%E9%95%9C%E5%83%8F/">jdk下载镜像</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/%E9%94%81/"></a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3-FunctionalInterface/">函数式接口-FunctionalInterface</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -593,7 +593,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             01.Python基础
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/01.Python%E5%9F%BA%E7%A1%80/003.numpy/">01.numpy</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/01.Python%E5%9F%BA%E7%A1%80/001.%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99/">01.Python语法规则</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/01.Python%E5%9F%BA%E7%A1%80/001.%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99/">01.Python语法规则</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/01.Python%E5%9F%BA%E7%A1%80/003.numpy/">01.numpy</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -629,7 +629,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             基础语法及操作
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E5%8F%8A%E6%93%8D%E4%BD%9C/002.%E4%B8%AD%E6%96%87http%E8%AF%B7%E6%B1%82%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3/">中文http请求乱码解决</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E5%8F%8A%E6%93%8D%E4%BD%9C/001.csv%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/">CSV文件读取</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E5%8F%8A%E6%93%8D%E4%BD%9C/001.csv%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/">CSV文件读取</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E5%8F%8A%E6%93%8D%E4%BD%9C/002.%E4%B8%AD%E6%96%87http%E8%AF%B7%E6%B1%82%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3/">中文http请求乱码解决</a></li>  </ul> 
                     </li> 
                      <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/Python%E5%AE%A2%E6%88%B7%E7%AB%AFHttp%E8%AF%B7%E6%B1%82/">Python客户端http请求</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/Python%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Python学习</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/pandas%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">pandas总结</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/pandas%E5%A4%84%E7%90%86%E8%A1%A8%E6%A0%BC/">pandas读取表格</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/">Python常用函数</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E6%A8%A1%E5%9D%97%E5%AE%89%E8%A3%85/">pip 模块安装</a></li>  </ul> 
                     </li> 
@@ -640,7 +640,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             Scala
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Scala/%E4%BD%BF%E7%94%A8maven%E6%9E%84%E5%BB%BAscala%E9%A1%B9%E7%9B%AE/">Scala项目构建</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Scala/Scala%E5%85%A5%E9%97%A8/">Scala学习</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Scala/Scala%E5%85%A5%E9%97%A8/">Scala学习</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%5B2%5D%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Scala/%E4%BD%BF%E7%94%A8maven%E6%9E%84%E5%BB%BAscala%E9%A1%B9%E7%9B%AE/">Scala项目构建</a></li>  </ul> 
                     </li> 
                      </ul> 
                     </li> 
@@ -750,7 +750,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             IDE
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/IDE/Git%E4%BD%BF%E7%94%A8%E8%A7%84%E8%8C%83/">Git使用规范</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/IDE/Git%E5%AD%A6%E4%B9%A0/">Git学习</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/IDE/Maven%E5%91%BD%E4%BB%A4/">Maven命令</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/IDE/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6/">浏览器插件</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/IDE/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/IDE/Git%E4%BD%BF%E7%94%A8%E8%A7%84%E8%8C%83/">Git使用规范</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/IDE/Git%E5%AD%A6%E4%B9%A0/">Git学习</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/IDE/Maven%E5%91%BD%E4%BB%A4/">Maven命令</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/IDE/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/IDE/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6/">浏览器插件</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -822,7 +822,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             组件安装配置
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/ActiveMQ/">Redis的安装及集群配置</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/ElasticSearch/">Elasticsearch</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/JRebel/">JRebel 安装使用</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Linux常用命令</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Maven%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8/">Maven的安装配置使用</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Redis%E5%AE%89%E8%A3%85%E5%8F%8A%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE/">Redis的安装及集群配置</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Redis-clinet/">Redis-client安装配置</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/SpringMvc%E6%80%BB%E7%BB%93/">SpringMVC总结</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Swagger2%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/">Swagger2安装使用</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Zookeeper/">ZooKeeper</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/hotJar/"></a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/nginx/">Ngix安装</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/ActiveMQ/">Redis的安装及集群配置</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/ElasticSearch/">Elasticsearch</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/JRebel/">JRebel 安装使用</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Linux常用命令</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Maven%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8/">Maven的安装配置使用</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Redis-clinet/">Redis-client安装配置</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/SpringMvc%E6%80%BB%E7%BB%93/">SpringMVC总结</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Redis%E5%AE%89%E8%A3%85%E5%8F%8A%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE/">Redis的安装及集群配置</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Swagger2%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/">Swagger2安装使用</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Zookeeper/">ZooKeeper</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/hotJar/"></a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6_%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/nginx/">Ngix安装</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -858,7 +858,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             02.解决方案
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/02.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/002.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E6%9E%B6%E6%9E%84%E5%B8%885%E5%A4%A7%E5%9C%BA%E6%99%AF/">云计算解决方案-5大场景</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/02.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/001.%E5%BA%95%E5%B1%82%E6%80%9D%E7%BB%B4/">云计算解决方案-底层思维</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/02.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/003.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E6%9E%B6%E6%9E%84%E6%98%AF%E5%92%8C%E5%94%AE%E5%89%8D%E7%9A%84%E5%8C%BA%E5%88%AB/">云计算解决方案-售前区别</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/02.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/004.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E6%9E%B6%E6%9E%84%E9%9D%A2%E8%AF%95/">云计算解决方案-面试</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/02.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/001.%E5%BA%95%E5%B1%82%E6%80%9D%E7%BB%B4/">云计算解决方案-底层思维</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/02.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/002.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E6%9E%B6%E6%9E%84%E5%B8%885%E5%A4%A7%E5%9C%BA%E6%99%AF/">云计算解决方案-5大场景</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/02.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/003.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E6%9E%B6%E6%9E%84%E6%98%AF%E5%92%8C%E5%94%AE%E5%89%8D%E7%9A%84%E5%8C%BA%E5%88%AB/">云计算解决方案-售前区别</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/02.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/004.%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E6%9E%B6%E6%9E%84%E9%9D%A2%E8%AF%95/">云计算解决方案-面试</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -957,7 +957,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             环境搭建
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/004.checkstyle/">CheckStyle</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/003.scala%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">scala环境搭建</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/004_1.checkstype_google/">google_CheckStyle</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/005.react%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/">Python环境Anaconda</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/005.sbt%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Sbt Reference Manual</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/006.Andriod%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">下载并安装 Android Studio</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/001.node%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Node环境搭建</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/007.Gradle%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Gradle环境搭建</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/001.node%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Node环境搭建</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/003.scala%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">scala环境搭建</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/004_1.checkstype_google/">google_CheckStyle</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/005.sbt%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Sbt Reference Manual</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/006.Andriod%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">下载并安装 Android Studio</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/007.Gradle%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Gradle环境搭建</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/005.react%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/">Python环境Anaconda</a></li>  <li class="file"><a href="/wk/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/004.checkstyle/">CheckStyle</a></li>  </ul> 
                     </li> 
                      </ul> 
                     </li> 
@@ -991,7 +991,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             Elasticsearch
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Elasticsearch/2.ES%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">2.ES环境搭建</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Elasticsearch/3.ES%E5%B8%B8%E7%94%A8api/">3.ES常用API</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Elasticsearch/4.ES%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE/">4.权限设置</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Elasticsearch/1.ES%E4%BB%8B%E7%BB%8D/">1.ES介绍</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Elasticsearch/5.Logstash%E5%AE%89%E8%A3%85/">5.Logstash安装</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Elasticsearch/6.EsJavaClient/">6.EsJavaClient</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Elasticsearch/7.Es%E6%A0%B8%E5%BF%83Lucene/">7.ES核心-Lucene</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Elasticsearch/1.ES%E4%BB%8B%E7%BB%8D/">1.ES介绍</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Elasticsearch/2.ES%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">2.ES环境搭建</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Elasticsearch/3.ES%E5%B8%B8%E7%94%A8api/">3.ES常用API</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Elasticsearch/4.ES%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE/">4.权限设置</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Elasticsearch/5.Logstash%E5%AE%89%E8%A3%85/">5.Logstash安装</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Elasticsearch/6.EsJavaClient/">6.EsJavaClient</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Elasticsearch/7.Es%E6%A0%B8%E5%BF%83Lucene/">7.ES核心-Lucene</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -1027,7 +1027,7 @@ var _hmt = _hmt || [];
                         </a>
                          <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Kafka/kafka%E8%AE%BE%E8%AE%A1%E8%A7%A3%E6%9E%90/1.KafkaConsumer%E4%B8%BA%E4%BD%95%E4%BD%BF%E7%94%A8pull%E6%A8%A1%E5%BC%8F/">KafkaConsumer为何使用pull模式</a></li>  </ul> 
                     </li> 
-                     <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Kafka/Kafka%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Kafak环境搭建</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Kafka/Kakfa%E7%9B%91%E6%8E%A7/">Kafak监控</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Kafka/%E5%85%B3%E4%BA%8Ekafka%E7%9A%84offset%E5%AD%98%E5%82%A8/">关于kafka的offset存储</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Kafka/%E5%85%B3%E4%BA%8E%E6%9C%80%E8%BF%91kafka%E7%9A%84%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98/">Kafka问题总结</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Kafka/Kafka%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Kafak常用命令</a></li>  </ul> 
+                     <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Kafka/Kafka%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Kafak常用命令</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Kafka/Kafka%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Kafak环境搭建</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Kafka/Kakfa%E7%9B%91%E6%8E%A7/">Kafak监控</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Kafka/%E5%85%B3%E4%BA%8Ekafka%E7%9A%84offset%E5%AD%98%E5%82%A8/">关于kafka的offset存储</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Kafka/%E5%85%B3%E4%BA%8E%E6%9C%80%E8%BF%91kafka%E7%9A%84%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98/">Kafka问题总结</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -1036,7 +1036,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             Mongo
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Mongo/Mongo%E5%90%AF%E5%8A%A8%E9%AA%8C%E8%AF%81/">启用验证</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Mongo/Mongo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Mongo常用命令</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Mongo/Mongo%E5%9F%BA%E7%A1%80-Docker%E7%8E%AF%E5%A2%83%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">Mongo基础-相关命令行-Docker</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Mongo/Mongo%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">Mongo环境搭建配置-客户端</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Mongo/%E4%BD%BF%E7%94%A8python%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E5%88%B0Mongo/">使用python添加数据到mongo</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Mongo/Mongo%E5%90%AF%E5%8A%A8%E9%AA%8C%E8%AF%81/">启用验证</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Mongo/Mongo%E5%9F%BA%E7%A1%80-Docker%E7%8E%AF%E5%A2%83%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">Mongo基础-相关命令行-Docker</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Mongo/Mongo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Mongo常用命令</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Mongo/Mongo%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">Mongo环境搭建配置-客户端</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Mongo/%E4%BD%BF%E7%94%A8python%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E5%88%B0Mongo/">使用python添加数据到mongo</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -1081,7 +1081,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             flink技术点
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%8A%80%E6%9C%AF%E7%82%B9/1.%E7%AA%97%E5%8F%A3%E7%AF%87-1/">1.窗口篇(一)</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%8A%80%E6%9C%AF%E7%82%B9/2.%E7%AA%97%E5%8F%A3%E7%AF%87-2/">1.窗口篇(二)</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%8A%80%E6%9C%AF%E7%82%B9/%E7%AA%97%E5%8F%A3%E8%A7%A6%E5%8F%91%E5%99%A8%E4%B8%8EEvictors/"></a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%8A%80%E6%9C%AF%E7%82%B9/3.%E6%B0%B4%E4%BD%8D%E7%BA%BF/">2.水位线(watermark)</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%8A%80%E6%9C%AF%E7%82%B9/1.%E7%AA%97%E5%8F%A3%E7%AF%87-1/">1.窗口篇(一)</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%8A%80%E6%9C%AF%E7%82%B9/2.%E7%AA%97%E5%8F%A3%E7%AF%87-2/">1.窗口篇(二)</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%8A%80%E6%9C%AF%E7%82%B9/3.%E6%B0%B4%E4%BD%8D%E7%BA%BF/">2.水位线(watermark)</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%8A%80%E6%9C%AF%E7%82%B9/%E7%AA%97%E5%8F%A3%E8%A7%A6%E5%8F%91%E5%99%A8%E4%B8%8EEvictors/"></a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -1090,7 +1090,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             flink整理
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%95%B4%E7%90%86/1.Fink%E4%BB%8B%E7%BB%8D/"></a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%95%B4%E7%90%86/2.Flink%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/"></a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%95%B4%E7%90%86/3.FlinkApi/"></a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%95%B4%E7%90%86/5.%E6%99%BA%E8%83%BD%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E5%B9%B3%E5%8F%B0/"></a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%95%B4%E7%90%86/4.Flink%E6%A6%82%E5%BF%B5/"></a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%95%B4%E7%90%86/1.Fink%E4%BB%8B%E7%BB%8D/"></a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%95%B4%E7%90%86/2.Flink%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/"></a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%95%B4%E7%90%86/3.FlinkApi/"></a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%95%B4%E7%90%86/4.Flink%E6%A6%82%E5%BF%B5/"></a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/flink%E6%95%B4%E7%90%86/5.%E6%99%BA%E8%83%BD%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E5%B9%B3%E5%8F%B0/"></a></li>  </ul> 
                     </li> 
                      <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/1.Flink%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Flink环境搭建</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/2.Flink%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%B6%E6%9E%84/">Flink基本架构</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/Alink/">Alink介绍</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/FinkCEP/">FlinkCEP</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/Flink/FlinkStart/">Flink学习开篇</a></li>  </ul> 
                     </li> 
@@ -1126,7 +1126,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             Hadoop组件安装
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Hadoop%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/1.%E9%85%8D%E7%BD%AEssh%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/">ssh免密登录</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Hadoop%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/2.%E4%BC%AA%E9%9B%86%E7%BE%A4%E6%A8%A1%E5%BC%8F%E5%AE%89%E8%A3%85/">伪集群模式安装</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Hadoop%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/4.%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E4%B8%8E%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">常用操作命令与问题记录</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Hadoop%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/3.HBase%E4%BC%AA%E9%9B%86%E7%BE%A4%E6%A8%A1%E5%BC%8F%E5%AE%89%E8%A3%85/">HBase伪集群模式安装</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Hadoop%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/5.Hive%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E6%90%AD%E5%BB%BA/">5.Hive环境安装搭建</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Hadoop%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/6.sqoop%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/"></a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Hadoop%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/1.%E9%85%8D%E7%BD%AEssh%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/">ssh免密登录</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Hadoop%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/2.%E4%BC%AA%E9%9B%86%E7%BE%A4%E6%A8%A1%E5%BC%8F%E5%AE%89%E8%A3%85/">伪集群模式安装</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Hadoop%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/3.HBase%E4%BC%AA%E9%9B%86%E7%BE%A4%E6%A8%A1%E5%BC%8F%E5%AE%89%E8%A3%85/">HBase伪集群模式安装</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Hadoop%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/4.%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E4%B8%8E%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">常用操作命令与问题记录</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Hadoop%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/5.Hive%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E6%90%AD%E5%BB%BA/">5.Hive环境安装搭建</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Hadoop%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/6.sqoop%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/"></a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -1157,7 +1157,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             数据存储
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/001.%E5%AD%98%E5%82%A8%E6%A6%82%E8%BF%B0/">数据存储</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/003.%E6%96%87%E6%A1%A3/"></a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/002.Hbase%E5%AD%98%E5%82%A8%E5%8E%9F%E7%90%86/">Hbase存储原理</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/001.%E5%AD%98%E5%82%A8%E6%A6%82%E8%BF%B0/">数据存储</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/002.Hbase%E5%AD%98%E5%82%A8%E5%8E%9F%E7%90%86/">Hbase存储原理</a></li>  <li class="file"><a href="/wk/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/003.%E6%96%87%E6%A1%A3/"></a></li>  </ul> 
                     </li> 
                      </ul> 
                     </li> 
@@ -1182,7 +1182,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             001.工作环境搭建
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/001.%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/002.jupyterlab%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">2.Jupyterlab开发环境搭建</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/001.%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/001.Anaconda%E5%AE%89%E8%A3%85/">1.Anaconda安装</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/001.%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/001.Anaconda%E5%AE%89%E8%A3%85/">1.Anaconda安装</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/001.%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/002.jupyterlab%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">2.Jupyterlab开发环境搭建</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -1254,7 +1254,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             009.一些杂文
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/009.%E4%B8%80%E4%BA%9B%E6%9D%82%E6%96%87/002.%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%B8%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E5%85%B3%E7%B3%BB/">自然语言处理与人工智能的关系</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/009.%E4%B8%80%E4%BA%9B%E6%9D%82%E6%96%87/003.%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/">README.md</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/009.%E4%B8%80%E4%BA%9B%E6%9D%82%E6%96%87/1.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AE%A4%E8%AF%86/">机器学习认识</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/009.%E4%B8%80%E4%BA%9B%E6%9D%82%E6%96%87/4.%E5%88%A9%E7%94%A8AdaBoost%E5%85%83%E7%AE%97%E6%B3%95%E6%8F%90%E9%AB%98%E5%88%86%E7%B1%BB%E6%80%A7%E8%83%BD/">AdaBoost算法</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/009.%E4%B8%80%E4%BA%9B%E6%9D%82%E6%96%87/003.%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/">README.md</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/009.%E4%B8%80%E4%BA%9B%E6%9D%82%E6%96%87/002.%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%B8%8E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E5%85%B3%E7%B3%BB/">自然语言处理与人工智能的关系</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/009.%E4%B8%80%E4%BA%9B%E6%9D%82%E6%96%87/1.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AE%A4%E8%AF%86/">机器学习认识</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/009.%E4%B8%80%E4%BA%9B%E6%9D%82%E6%96%87/4.%E5%88%A9%E7%94%A8AdaBoost%E5%85%83%E7%AE%97%E6%B3%95%E6%8F%90%E9%AB%98%E5%88%86%E7%B1%BB%E6%80%A7%E8%83%BD/">AdaBoost算法</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -1272,7 +1272,7 @@ var _hmt = _hmt || [];
                         </a>
                          <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/NLP%E7%B3%BB%E5%88%97/001.NLP%E5%9F%BA%E7%A1%80%E4%BB%BB%E5%8A%A1/"></a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/NLP%E7%B3%BB%E5%88%97/002.BERT/"></a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/NLP%E7%B3%BB%E5%88%97/002.word2vec/">Word2vec</a></li>  </ul> 
                     </li> 
-                     <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/001.Readme/">NLP_ability</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/002.%E6%96%87%E6%9C%AC%E6%8A%BD%E5%8F%96/">工具包整理</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/FastText/">FastText</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/NLP%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/">Nlp学习资料</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/Nlp%E8%AE%A4%E8%AF%86/">Nlp认识</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/%E5%88%86%E8%AF%8D%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">分词</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/%E5%A4%9A%E6%A8%A1%E5%8C%B9%E9%85%8D/">多模匹配</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/%E5%AD%97%E5%85%B8%E6%A0%91/">字典树</a></li>  </ul> 
+                     <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/001.Readme/">NLP_ability</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/002.%E6%96%87%E6%9C%AC%E6%8A%BD%E5%8F%96/">工具包整理</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/NLP%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/">Nlp学习资料</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/FastText/">FastText</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/Nlp%E8%AE%A4%E8%AF%86/">Nlp认识</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/%E5%88%86%E8%AF%8D%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">分词</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/%E5%AD%97%E5%85%B8%E6%A0%91/">字典树</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/NLP/%E5%A4%9A%E6%A8%A1%E5%8C%B9%E9%85%8D/">多模匹配</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -1281,7 +1281,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             机器学习100天
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0100%E5%A4%A9/001.%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/">数据预处理</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0100%E5%A4%A9/002.%E7%AE%80%E5%8D%95%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E5%AE%9E%E7%8E%B0/">简单线性回归实现</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0100%E5%A4%A9/2.KNN/">KNN</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0100%E5%A4%A9/3.Logistic%E5%9B%9E%E5%BD%92/">Logistic回归</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0100%E5%A4%A9/5.%E5%85%B6%E4%BB%96%E7%AE%97%E6%B3%95/">其他算法</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0100%E5%A4%A9/001.%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/">数据预处理</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0100%E5%A4%A9/002.%E7%AE%80%E5%8D%95%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E5%AE%9E%E7%8E%B0/">简单线性回归实现</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0100%E5%A4%A9/3.Logistic%E5%9B%9E%E5%BD%92/">Logistic回归</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0100%E5%A4%A9/2.KNN/">KNN</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0100%E5%A4%A9/5.%E5%85%B6%E4%BB%96%E7%AE%97%E6%B3%95/">其他算法</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -1308,7 +1308,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             神经网络
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/002.%E7%90%86%E8%A7%A3%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">理解神经网络</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/003.%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">卷积神经网络</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/003.%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">卷积神经网络</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/002.%E7%90%86%E8%A7%A3%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">理解神经网络</a></li>  </ul> 
                     </li> 
                      <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%92%8C%E7%AE%97%E6%B3%95/">机器学习基本概念和算法</a></li>  </ul> 
                     </li> 
@@ -1326,7 +1326,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             001.常见算法
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/002.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/001.%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/001.CNN/">1.CNN</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/002.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/001.%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/002.Transformer/">2.Transformer</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/002.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/001.%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/003.xgboost/">3.xgboost</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/002.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/001.%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/001.CNN/">1.CNN</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/002.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/001.%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/003.xgboost/">3.xgboost</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/002.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/001.%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/002.Transformer/">2.Transformer</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -1353,7 +1353,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             OCR
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/OCR/000.OCR%E6%A6%82%E8%BF%B0%E5%92%8C%E8%AE%A4%E8%AF%86/">OCR概述和认识</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/OCR/003.OCR%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0/">OCR项目学习</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/OCR/001.RCNN%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">RCNN</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/OCR/002.PSENet%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">PSENet</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/OCR/004.OpenCV/"></a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/OCR/005.PaddleOCR%E5%AE%9E%E8%B7%B5/">PaddleOCR实践</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/OCR/000.OCR%E6%A6%82%E8%BF%B0%E5%92%8C%E8%AE%A4%E8%AF%86/">OCR概述和认识</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/OCR/001.RCNN%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">RCNN</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/OCR/003.OCR%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0/">OCR项目学习</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/OCR/004.OpenCV/"></a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/OCR/002.PSENet%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">PSENet</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/OCR/005.PaddleOCR%E5%AE%9E%E8%B7%B5/">PaddleOCR实践</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -1362,9 +1362,9 @@ var _hmt = _hmt || [];
                             &nbsp;
                             目标检测
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/001.%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">1.目标检测</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/003.Yolo/">1.Yolo</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/002.RCNN/">1.RCNN</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/004.yolo%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/">1.CNN</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/001.%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">1.目标检测</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/002.RCNN/">1.RCNN</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/004.yolo%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/">1.CNN</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/003.Yolo/">1.Yolo</a></li>  </ul> 
                     </li> 
-                     <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/002.yolov5%E8%AF%A6%E8%A7%A3/">2.yolov5详解</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/001.%E6%9C%BA%E5%99%A8%E8%A7%86%E8%A7%89%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">001.机器识别基本概念.md</a></li>  </ul> 
+                     <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/001.%E6%9C%BA%E5%99%A8%E8%A7%86%E8%A7%89%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">001.机器识别基本概念.md</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/003.%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/002.yolov5%E8%AF%A6%E8%A7%A3/">2.yolov5详解</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -1443,7 +1443,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             实践
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/006.%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/%E5%AE%9E%E8%B7%B5/001.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B8%B8%E8%A7%81python%E5%BA%93/">1.深度学习常见python库</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/006.%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/%E5%AE%9E%E8%B7%B5/003.%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95%E5%8F%8A%E7%BB%8F%E5%85%B8%E6%A8%A1%E5%9E%8B/">3.异常检测算法及经典模型</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/006.%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/%E5%AE%9E%E8%B7%B5/002.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E5%9C%A8%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E8%AF%86%E5%88%AB%E7%9A%84%E5%BA%94%E7%94%A8/">2.机器学习在网络流量识别的应用</a></li>  <li class="file active"><a href="/wk/%E7%AE%97%E6%B3%95/006.%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/%E5%AE%9E%E8%B7%B5/004.%E8%87%AA%E7%BC%96%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B_ECG%E5%BF%83%E7%94%B5%E5%9B%BE/">4.自编码在ECG场景实现异常检测</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/006.%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/%E5%AE%9E%E8%B7%B5/001.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B8%B8%E8%A7%81python%E5%BA%93/">1.深度学习常见python库</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/006.%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/%E5%AE%9E%E8%B7%B5/002.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E5%9C%A8%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E8%AF%86%E5%88%AB%E7%9A%84%E5%BA%94%E7%94%A8/">2.机器学习在网络流量识别的应用</a></li>  <li class="file active"><a href="/wk/%E7%AE%97%E6%B3%95/006.%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/%E5%AE%9E%E8%B7%B5/004.%E8%87%AA%E7%BC%96%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B_ECG%E5%BF%83%E7%94%B5%E5%9B%BE/">4.自编码在ECG场景异常检测</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/006.%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/%E5%AE%9E%E8%B7%B5/003.%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95%E5%8F%8A%E7%BB%8F%E5%85%B8%E6%A8%A1%E5%9E%8B/">3.异常检测算法及经典模型</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -1488,7 +1488,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             状态机
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E7%8A%B6%E6%80%81%E6%9C%BA/001.%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA/">有限状态机</a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E7%8A%B6%E6%80%81%E6%9C%BA/002.%E7%8A%B6%E6%80%81%E6%9C%BA%E5%8C%B9%E9%85%8D%E5%AD%97%E7%AC%A6%E4%B8%B2/"></a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E7%8A%B6%E6%80%81%E6%9C%BA/002.%E7%8A%B6%E6%80%81%E6%9C%BA%E5%8C%B9%E9%85%8D%E5%AD%97%E7%AC%A6%E4%B8%B2/"></a></li>  <li class="file"><a href="/wk/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E7%8A%B6%E6%80%81%E6%9C%BA/001.%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA/">有限状态机</a></li>  </ul> 
                     </li> 
                      </ul> 
                     </li> 
@@ -1508,7 +1508,16 @@ var _hmt = _hmt || [];
                             &nbsp;
                             [1]沟通能力
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B1%5D%E6%B2%9F%E9%80%9A%E8%83%BD%E5%8A%9B/000.%E6%B2%9F%E9%80%9A%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7/">沟通-重要性</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B1%5D%E6%B2%9F%E9%80%9A%E8%83%BD%E5%8A%9B/002.%E4%B8%8E%E4%BA%BA/">与人</a></li>  </ul> 
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            面试总结
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B1%5D%E6%B2%9F%E9%80%9A%E8%83%BD%E5%8A%9B/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/002.%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%A2%B3%E7%90%86/">2.面试问题梳理</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B1%5D%E6%B2%9F%E9%80%9A%E8%83%BD%E5%8A%9B/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/001.%E9%80%9A%E7%94%A8%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/">1.技术面试问题汇总</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B1%5D%E6%B2%9F%E9%80%9A%E8%83%BD%E5%8A%9B/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/003.%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/">3.自我介绍</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B1%5D%E6%B2%9F%E9%80%9A%E8%83%BD%E5%8A%9B/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/004.%E9%9D%A2%E8%AF%95%E9%87%8D%E7%82%B9%E9%97%AE%E9%A2%98/">4.面试重点问题</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B1%5D%E6%B2%9F%E9%80%9A%E8%83%BD%E5%8A%9B/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/099.%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/">99.面试问题n</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B1%5D%E6%B2%9F%E9%80%9A%E8%83%BD%E5%8A%9B/000.%E6%B2%9F%E9%80%9A%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7/">沟通-重要性</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B1%5D%E6%B2%9F%E9%80%9A%E8%83%BD%E5%8A%9B/002.%E4%B8%8E%E4%BA%BA/">与人</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -1524,7 +1533,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             TODOLIST
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B2%5D%E5%8F%91%E5%B1%95%E8%A7%84%E5%88%92/TODOLIST/README/">TODOLIST</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B2%5D%E5%8F%91%E5%B1%95%E8%A7%84%E5%88%92/TODOLIST/%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C/">工作手册</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B2%5D%E5%8F%91%E5%B1%95%E8%A7%84%E5%88%92/TODOLIST/TODOList/">TODO_LIST</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B2%5D%E5%8F%91%E5%B1%95%E8%A7%84%E5%88%92/TODOLIST/%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C/">工作手册</a></li>  </ul> 
                     </li> 
                      </ul> 
                     </li> 
@@ -1560,7 +1569,7 @@ var _hmt = _hmt || [];
                         </a>
                          <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%5B2%5D%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/%E8%A8%80%E8%AF%AD%E6%80%BB%E7%BB%93/000.%E8%A8%80%E8%AF%AD_%E8%80%83%E7%82%B9%E6%80%BB%E7%BB%93/">0.言语-考点总结及解题思路</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%5B2%5D%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/%E8%A8%80%E8%AF%AD%E6%80%BB%E7%BB%93/001.%E8%A8%80%E8%AF%AD_%E4%B8%AD%E5%BF%83%E7%90%86%E8%A7%A3_%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/">1.言语_中心理解_解题思路</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%5B2%5D%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/%E8%A8%80%E8%AF%AD%E6%80%BB%E7%BB%93/002.%E8%A8%80%E8%AF%AD_%E9%80%BB%E8%BE%91%E5%A1%AB%E7%A9%BA_%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/">2.言语_逻辑填空_解题思路</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%5B2%5D%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/%E8%A8%80%E8%AF%AD%E6%80%BB%E7%BB%93/003.%E8%A8%80%E8%AF%AD_%E8%A1%8C%E6%96%87%E7%BB%93%E6%9E%84%E6%80%BB%E7%BB%93/">3.言语_行文结构总结</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%5B2%5D%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/%E8%A8%80%E8%AF%AD%E6%80%BB%E7%BB%93/004.%E8%A8%80%E8%AF%AD_%E8%AF%8D%E8%BE%A8%E6%9E%90%E6%80%BB%E7%BB%93/">4.言语_词辨析总结</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%5B2%5D%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/%E8%A8%80%E8%AF%AD%E6%80%BB%E7%BB%93/005.%E8%A8%80%E8%AF%AD_%E9%94%99%E9%A2%98%E6%80%BB%E7%BB%93/">5.言语_错题总结</a></li>  </ul> 
                     </li> 
-                     <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%5B2%5D%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/001.%E4%BA%8B%E4%B8%9A%E5%8D%95%E4%BD%8DC%E7%B1%BB%E8%80%83%E7%82%B9_%E8%81%8C%E6%B5%8B/">1.事业单位C类考点_职测</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%5B2%5D%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/001_2.C%E7%B1%BB_%E8%81%8C%E6%B5%8B_%E7%9C%9F%E9%A2%98%E7%B2%BE%E8%A7%A3_2024/">1.2 C类_职测_例题精解_2024</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%5B2%5D%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/001_1.C%E7%B1%BB_%E8%81%8C%E6%B5%8B_%E4%BE%8B%E9%A2%98_%E7%9C%9F%E9%A2%98%E7%B2%BE%E8%A7%A3/">1.1 C类_职测_例题精解</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%5B2%5D%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/003.%E5%85%AC%E8%80%83%E8%A1%8C%E6%B5%8B%E4%B8%8EC%E7%B1%BB%E7%9A%84%E5%B7%AE%E5%88%AB/">3.公考行测与C类的差别</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%5B2%5D%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/002.%E8%81%8C%E4%BE%A7%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93_filter/">2.职侧考试总结</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%5B2%5D%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/005.%E8%AF%8D%E8%AF%AD%E7%A7%AF%E7%B4%AF/">5.词语积累</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%5B2%5D%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/004.%E9%94%99%E9%A2%98%E6%9C%AC/">4.错题本</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%5B2%5D%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/006.C%E7%B1%BB%E8%80%83%E7%82%B9_%E7%BB%BC%E5%BA%94/">6.事业单位C类考点_综应</a></li>  </ul> 
+                     <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%5B2%5D%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/001_1.C%E7%B1%BB_%E8%81%8C%E6%B5%8B_%E4%BE%8B%E9%A2%98_%E7%9C%9F%E9%A2%98%E7%B2%BE%E8%A7%A3/">1.1 C类_职测_例题精解</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%5B2%5D%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/001.%E4%BA%8B%E4%B8%9A%E5%8D%95%E4%BD%8DC%E7%B1%BB%E8%80%83%E7%82%B9_%E8%81%8C%E6%B5%8B/">1.事业单位C类考点_职测</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%5B2%5D%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/001_2.C%E7%B1%BB_%E8%81%8C%E6%B5%8B_%E7%9C%9F%E9%A2%98%E7%B2%BE%E8%A7%A3_2024/">1.2 C类_职测_例题精解_2024</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%5B2%5D%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/003.%E5%85%AC%E8%80%83%E8%A1%8C%E6%B5%8B%E4%B8%8EC%E7%B1%BB%E7%9A%84%E5%B7%AE%E5%88%AB/">3.公考行测与C类的差别</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%5B2%5D%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/002.%E8%81%8C%E4%BE%A7%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93_filter/">2.职侧考试总结</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%5B2%5D%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/004.%E9%94%99%E9%A2%98%E6%9C%AC/">4.错题本</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%5B2%5D%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/005.%E8%AF%8D%E8%AF%AD%E7%A7%AF%E7%B4%AF/">5.词语积累</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%5B2%5D%E5%85%B3%E4%BA%8E%E5%85%AC%E8%80%83/006.C%E7%B1%BB%E8%80%83%E7%82%B9_%E7%BB%BC%E5%BA%94/">6.事业单位C类考点_综应</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -1596,7 +1605,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             学习方法
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/002.%E5%BC%80%E7%AA%8D/">开窍</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/001.%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83_%E7%B3%BB%E7%BB%9F%E5%8C%96/">学习思考_系统化</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/001.%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83_%E7%B3%BB%E7%BB%9F%E5%8C%96/">学习思考_系统化</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/002.%E5%BC%80%E7%AA%8D/">开窍</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -1659,7 +1668,7 @@ var _hmt = _hmt || [];
                             &nbsp;
                             闲聊
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E9%97%B2%E8%81%8A/001.%E9%97%B2%E8%81%8A/">闲聊</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E9%97%B2%E8%81%8A/002.%E8%B5%84%E6%B2%BB%E9%80%9A%E9%89%B4/">资治通鉴</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E9%97%B2%E8%81%8A/002.%E8%B5%84%E6%B2%BB%E9%80%9A%E9%89%B4/">资治通鉴</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%5B3%5D%E7%94%9F%E6%B4%BB%E5%AD%A6%E4%B9%A0/%E9%97%B2%E8%81%8A/001.%E9%97%B2%E8%81%8A/">闲聊</a></li>  </ul> 
                     </li> 
                      </ul> 
                     </li> 
@@ -1686,7 +1695,7 @@ var _hmt = _hmt || [];
                         </a>
                          <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/%E5%86%85%E5%AD%98/001.%E5%86%85%E5%AD%98%E6%9F%A5%E7%9C%8B/">内存查看</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/%E5%86%85%E5%AD%98/002.JAVA%E8%BF%9B%E7%A8%8B%E5%8D%A0%E7%94%A8%E5%86%85%E5%AD%98%E6%9F%A5%E7%9C%8B/"></a></li>  </ul> 
                     </li> 
-                     <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/Awk%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E7%A5%9E%E5%A5%87/">Awk文本处理神奇</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/Linux%E7%B3%BB%E7%BB%9F%E7%8A%B6%E6%80%81/"></a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/Netty%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%90%86/">Netty实现代理</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/Ubuntu%E5%AE%89%E8%A3%85%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/">Ubuntu安装邮件服务器</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/Linux%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/"></a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/ubuntu%E6%8C%82%E8%BD%BDsamba/">ubunut 挂载samba</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/Shell%E5%8A%A0%E8%A7%A3%E5%AF%86%E5%8F%8Aexpect%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E4%BA%A4%E4%BA%92/">Shell加解密及expect实现自动交互</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/%E9%82%AE%E7%AE%B1%E6%A3%80%E6%B5%8B/">邮箱检测</a></li>  </ul> 
+                     <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/Linux%E7%B3%BB%E7%BB%9F%E7%8A%B6%E6%80%81/"></a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/Awk%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E7%A5%9E%E5%A5%87/">Awk文本处理神奇</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/Linux%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/"></a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/Netty%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%90%86/">Netty实现代理</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/Ubuntu%E5%AE%89%E8%A3%85%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/">Ubuntu安装邮件服务器</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/Shell%E5%8A%A0%E8%A7%A3%E5%AF%86%E5%8F%8Aexpect%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E4%BA%A4%E4%BA%92/">Shell加解密及expect实现自动交互</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/%E9%82%AE%E7%AE%B1%E6%A3%80%E6%B5%8B/">邮箱检测</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/Linux/ubuntu%E6%8C%82%E8%BD%BDsamba/">ubunut 挂载samba</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -1716,15 +1725,6 @@ var _hmt = _hmt || [];
                          <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E9%97%AE%E9%A2%98/%E5%85%B3%E4%BA%8E%E9%9D%9E%E6%8A%80%E6%9C%AF%E7%B1%BB%E7%9A%84%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98/">非技术问题</a></li>  </ul> 
                     </li> 
                      </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            面试资料
-                        </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/001.%E9%80%9A%E7%94%A8%E6%8A%80%E6%9C%AF%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/">1.技术面试问题汇总</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/002.%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%A2%B3%E7%90%86/">2.面试问题梳理</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/003.%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/">3.自我介绍</a></li>  <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/099.%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/">99.面试问题n</a></li>  </ul> 
                     </li> 
                      <li class="file"><a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/README/">A_人与系统</a></li>  </ul> 
                     </li> 
@@ -1801,7 +1801,7 @@ var _hmt = _hmt || [];
             
             <section id="main"><article id="post-算法/006.算法工程/实践/004.自编码实现异常检测_ECG心电图" class="article article-type-post" itemscope itemprop="blogPost">
     
-    <div class="article-inner">
+    <div class="article-inner post-body">
         
         
             <header class="article-header">
@@ -1823,7 +1823,7 @@ var _hmt = _hmt || [];
     <div class="article-date">
         <i class="fa fa-calendar"></i>
         <a href="/wk/%E7%AE%97%E6%B3%95/006.%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/%E5%AE%9E%E8%B7%B5/004.%E8%87%AA%E7%BC%96%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B_ECG%E5%BF%83%E7%94%B5%E5%9B%BE/">
-            <time datetime="2024-03-18T16:48:57.000Z" itemprop="datePublished">2024-03-19</time>
+            <time datetime="2024-03-21T16:48:57.000Z" itemprop="datePublished">2024-03-22</time>
         </a>
     </div>
 
@@ -1838,7 +1838,7 @@ var _hmt = _hmt || [];
                 
     
         <h1 class="article-title" itemprop="name">
-            4.自编码在ECG场景实现异常检测
+            4.自编码在ECG场景异常检测
         </h1>
     
 
@@ -1852,13 +1852,25 @@ var _hmt = _hmt || [];
                 <div id="toc" class="toc-article">
                 <strong class="toc-title">Catalogue</strong>
                     
-                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E9%97%AE%E9%A2%98%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D"><span class="toc-text">1. 问题背景介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E6%A8%A1%E5%9E%8B%E5%AE%9E%E8%B7%B5"><span class="toc-text">2. 模型实践</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BB%8B%E7%BB%8D"><span class="toc-text">2.1 数据集介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-kaggle%E7%9B%B8%E5%85%B3%E9%A1%B9%E7%9B%AE"><span class="toc-text">2.1.1 kaggle相关项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">2.1.2 数据集</span></a></li></ol></li></ol></li></ol>
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E9%97%AE%E9%A2%98%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D"><span class="toc-text">1. 问题背景介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%9F%BA%E4%BA%8E%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8%E7%9A%84%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B"><span class="toc-text">2. 基于自编码器的异常检测</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E4%BB%80%E4%B9%88%E6%98%AF%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B"><span class="toc-text">2.1 什么是异常检测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E5%9F%BA%E4%BA%8E%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8%E7%9A%84%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B"><span class="toc-text">2.2 基于自编码器的异常检测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-%E4%BB%80%E4%B9%88%E6%98%AF%E8%87%AA%E7%BC%96%E7%A0%81"><span class="toc-text">2.2.1 什么是自编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-%E8%87%AA%E7%BC%96%E7%A0%81%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E5%8E%9F%E7%90%86"><span class="toc-text">2.2.2 自编码异常检测原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E8%87%AA%E7%BC%96%E7%A0%81%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">2.3 自编码异常检测应用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%A2%86%E5%9F%9F"><span class="toc-text">2.3.1 网络安全领域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-%E5%85%B6%E5%AE%83%E5%9C%BA%E6%99%AF"><span class="toc-text">2.3.1 其它场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-%E5%9C%A8%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%A2%86%E5%9F%9F%E7%9A%84%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B"><span class="toc-text">2.3.2 在网络安全领域的应用案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-4-%E6%9C%AA%E6%9D%A5%E5%8F%91%E5%B1%95%E8%B6%8B%E5%8A%BF"><span class="toc-text">2.3.4 未来发展趋势</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D-%E6%A8%A1%E5%9E%8B%E5%AE%9E%E8%B7%B5"><span class="toc-text">3. 项目介绍(模型实践)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-kaggle%E7%9B%B8%E5%85%B3%E9%A1%B9%E7%9B%AE-%E5%8C%BB%E7%96%97%E5%81%A5%E5%BA%B7-ECG"><span class="toc-text">3.1 kaggle相关项目(医疗健康:ECG)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BB%8B%E7%BB%8D"><span class="toc-text">3.2 数据集介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-Plot-ECG"><span class="toc-text">3.2.1 Plot ECG</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-Preprocessing"><span class="toc-text">3.2.2 Preprocessing</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83"><span class="toc-text">3.3 模型训练</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1-%E6%A8%A1%E5%9E%8B%E5%AE%9A%E4%B9%89"><span class="toc-text">3.3.1 模型定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2-%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83"><span class="toc-text">3.3.2 模型训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-3-%E6%A8%A1%E5%9E%8B%E4%BF%9D%E5%AD%98"><span class="toc-text">3.3.3 模型保存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-4-plot-model"><span class="toc-text">3.3.4 plot model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-5-Test-model"><span class="toc-text">3.3.5 Test model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-6-%E6%A8%A1%E5%9E%8B%E5%8A%A0%E8%BD%BD%E5%92%8C%E6%8E%A8%E7%90%86"><span class="toc-text">3.3.6 模型加载和推理</span></a></li></ol></li></ol></li></ol>
                     
                 </div>
             
         
         
-            <h1 id="1-问题背景介绍"><a href="#1-问题背景介绍" class="headerlink" title="1. 问题背景介绍"></a>1. 问题背景介绍</h1><p>ECG指心电图， ECG数据中的异常可能预示着心脏疾病等健康问题。</p>
+            <style>
+/* 为表头 th 元素设置右对齐样式 */
+table th {
+  text-align: right;
+}
+/* 暗黑风格表格样式 */
+table {
+  font-size: 12px;
+  width: 100%;
+}
+</style>
+
+<h1 id="1-问题背景介绍"><a href="#1-问题背景介绍" class="headerlink" title="1. 问题背景介绍"></a>1. 问题背景介绍</h1><p>ECG指心电图， ECG数据中的异常可能预示着心脏疾病等健康问题。</p>
 <p>对ECG数据进行异常检测可以帮助医生及时发现潜在的健康风险。</p>
 <p>实现方法：</p>
 <ol>
@@ -1866,9 +1878,287 @@ var _hmt = _hmt || [];
 <li>当输入新的ECG数据时， 如果重构后的信号与原始信号之间的差异较大， 则判断该数据为异常的ECG信号， 可能存在心脏疾病 等异常情况。 </li>
 </ol>
 <p>以下的项目 对ECG 数据进行预处理，例如 去除噪声、标准化等操作， 以提高模型的性能。</p>
-<h1 id="2-模型实践"><a href="#2-模型实践" class="headerlink" title="2. 模型实践"></a>2. 模型实践</h1><h2 id="2-1-数据集介绍"><a href="#2-1-数据集介绍" class="headerlink" title="2.1 数据集介绍"></a>2.1 数据集介绍</h2><h3 id="2-1-1-kaggle相关项目"><a href="#2-1-1-kaggle相关项目" class="headerlink" title="2.1.1 kaggle相关项目"></a>2.1.1 kaggle相关项目</h3><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.kaggle.com/code/ohseokkim/dectecting-anomaly-using-autoencoder/comments">kaggle项目:Dectecting Anomaly using Autoencoder</a></p>
-<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.kaggle.com/code/mineshjethva/ecg-anomaly-detection">kaggle项目:ECG Anomaly Detection</a></p>
-<h3 id="2-1-2-数据集"><a href="#2-1-2-数据集" class="headerlink" title="2.1.2 数据集"></a>2.1.2 数据集</h3>
+<h1 id="2-基于自编码器的异常检测"><a href="#2-基于自编码器的异常检测" class="headerlink" title="2. 基于自编码器的异常检测"></a>2. 基于自编码器的异常检测</h1><p>Autoencoder-based anomaly detection</p>
+<h2 id="2-1-什么是异常检测"><a href="#2-1-什么是异常检测" class="headerlink" title="2.1 什么是异常检测"></a>2.1 什么是异常检测</h2><p>What is anomaly detection?</p>
+<p>Anomaly detection (aka outlier analysis) is a step in data mining that identifies data points, events, and/or observations that deviate from a dataset’s normal behavior. Anomalous data can indicate critical incidents, such as a technical glitch, or potential opportunities, for instance a change in consumer behavior. Machine learning is progressively being used to automate anomaly detection.</p>
+<p>异常检测（也称为离群值分析）是数据挖掘中的一个步骤，它可以识别偏离数据集正常行为的数据点、事件和 / 或观察结果。异常数据可以指示关键事件，例如技术故障，或者潜在的机会，例如消费者行为的变化。机器学习正逐渐被用于实现异常检测的自动化。</p>
+<h2 id="2-2-基于自编码器的异常检测"><a href="#2-2-基于自编码器的异常检测" class="headerlink" title="2.2 基于自编码器的异常检测"></a>2.2 基于自编码器的异常检测</h2><p>Autoencoder-based anomaly detection</p>
+<p>自编码器是一种无监督学习的神经网络结构，在异常检测中，基于自编码器的方法通常利用自编码器学习正常数据的模式，然后通过比较新数据与自编码器重构数据的差异来检测异常。如果新数据的重构误差较大，则可能被判定为异常数据。</p>
+<h3 id="2-2-1-什么是自编码"><a href="#2-2-1-什么是自编码" class="headerlink" title="2.2.1 什么是自编码"></a>2.2.1 什么是自编码</h3><p>What is Autoencoder?<br>自编码器尽可能地学习产生与输入相同的输出。通过这个学习过程，输入的表示可以在潜在空间中被有效地压缩。换句话说，它压缩了维度并将输入的表示存储在潜在空间中。</p>
+<div class="note info"><p>自编码器的目标是学习如何将输入数据编码为低维表示，然后再将这个低维表示解码回尽可能接近原始输入的数据。所以在训练自编码器时，输入数据既是期望的输出数据。(先encode,再decode)</p>
+</div>
+<h3 id="2-2-2-自编码异常检测原理"><a href="#2-2-2-自编码异常检测原理" class="headerlink" title="2.2.2 自编码异常检测原理"></a>2.2.2 自编码异常检测原理</h3><h2 id="2-3-自编码异常检测应用场景"><a href="#2-3-自编码异常检测应用场景" class="headerlink" title="2.3 自编码异常检测应用场景"></a>2.3 自编码异常检测应用场景</h2><p>Autoencoder-based anomaly detection</p>
+<h3 id="2-3-1-网络安全领域"><a href="#2-3-1-网络安全领域" class="headerlink" title="2.3.1 网络安全领域"></a>2.3.1 网络安全领域</h3><ol>
+<li>网络入侵检测：网络系统中会产生大量的网络流量数据，包括数据包的源地址、目的地址、协议类型、流量大小等信息。自编码异常检测可以对正常的网络流量模式进行学习，当出现与正常模式不同的异常流量时，如大量的恶意扫描、DDoS 攻击等，自编码器能够检测到这种异常，及时发出警报并采取相应的防护措施，保护网络系统的安全。</li>
+<li>用户行为异常检测：对于企业的内部网络系统或在线服务平台，自编码器可以分析用户的行为数据，如登录时间、访问的页面、操作行为等，检测出异常的用户行为，例如异常的频繁登录失败、异常的大量数据下载等，可能是用户账号被盗用或内部员工的违规操作等情况。</li>
+</ol>
+<h3 id="2-3-1-其它场景"><a href="#2-3-1-其它场景" class="headerlink" title="2.3.1 其它场景"></a>2.3.1 其它场景</h3><ol>
+<li>工业制造领域：<ul>
+<li>设备故障预测与诊断</li>
+<li>产品质量检测</li>
+</ul>
+</li>
+<li>金融领域<ul>
+<li>信用卡欺诈检测</li>
+<li>金融市场异常检测</li>
+</ul>
+</li>
+<li>医疗健康领域<ul>
+<li>疾病早起预警</li>
+<li>医疗影像异常检测</li>
+</ul>
+</li>
+<li>智慧交通领域<ul>
+<li>交通流量异常检测</li>
+<li>车辆故障检测</li>
+</ul>
+</li>
+<li>能源领域<ul>
+<li>电力系统异常检测</li>
+<li>能源消耗异常检测</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-3-2-在网络安全领域的应用案例"><a href="#2-3-2-在网络安全领域的应用案例" class="headerlink" title="2.3.2 在网络安全领域的应用案例"></a>2.3.2 在网络安全领域的应用案例</h3><p><strong><em>自编码异常检测技术</em></strong></p>
+<ol>
+<li>网络入侵检测<ul>
+<li>基于堆叠自编码器的入侵检测：</li>
+<li>结合深度学习模型的入侵检测：</li>
+</ul>
+</li>
+<li>用户行为异常检测<ul>
+<li>在线服务平台用户行为检测。</li>
+<li>企业内部网络用户行为分析。</li>
+</ul>
+</li>
+<li>恶意软件检测<ul>
+<li>基于行为特征的恶意软件检测：</li>
+<li>恶意软件变种检测</li>
+</ul>
+</li>
+<li><strong><em>网络流量异常检测</em></strong><ul>
+<li>异常流量模式识别：</li>
+<li>流量特征异常检测：</li>
+</ul>
+</li>
+</ol>
+<p>推荐：异常流量模式识别、流量特征异常检测、结合深度学习模型的入侵检测、在线服务平台用户行为检测（todo:怎么做?）</p>
+<h3 id="2-3-4-未来发展趋势"><a href="#2-3-4-未来发展趋势" class="headerlink" title="2.3.4 未来发展趋势"></a>2.3.4 未来发展趋势</h3><p>Autoencoder-based anomaly detection</p>
+<p>与其它技术的融合：</p>
+<ul>
+<li>与深度学习其它模型结合：</li>
+<li>实时性和适应性的增强：实时检测、动态使用。<ul>
+<li>实时检测：随着网络攻击的速度和复杂性不断增加，对异常检测的实时性要求越来越高。未来，自编码异常检测技术将不断优化算法和模型结构，提高检测的速度和效率，以满足实时检测的需求。例如，采用硬件加速技术，如使用 GPU、FPGA 等硬件设备来加速自编码器的计算，减少检测的时间延迟；或者开发轻量级的自编码器模型，在保证检测准确性的前提下，降低模型的计算复杂度，提高实时性。</li>
+</ul>
+</li>
+</ul>
+<h1 id="3-项目介绍-模型实践"><a href="#3-项目介绍-模型实践" class="headerlink" title="3. 项目介绍(模型实践)"></a>3. 项目介绍(模型实践)</h1><h2 id="3-1-kaggle相关项目-医疗健康-ECG"><a href="#3-1-kaggle相关项目-医疗健康-ECG" class="headerlink" title="3.1 kaggle相关项目(医疗健康:ECG)"></a>3.1 kaggle相关项目(医疗健康:ECG)</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.kaggle.com/code/ohseokkim/dectecting-anomaly-using-autoencoder/comments">kaggle项目:Dectecting Anomaly using Autoencoder</a><br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.kaggle.com/code/novatensor/dectecting-anomaly/edit#Modeling">编辑的:fork from Dectecting Anomaly using Autoencoder</a><br>模型文件见：kaggle的以上项目链接</p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.kaggle.com/code/mineshjethva/ecg-anomaly-detection">废弃:kaggle项目:ECG Anomaly Detection</a></p>
+<h2 id="3-2-数据集介绍"><a href="#3-2-数据集介绍" class="headerlink" title="3.2 数据集介绍"></a>3.2 数据集介绍</h2><p>此数据集包含患者的心电图读数。每一行对应一位患者的一次完整心电图。每一个心电图都由 140 个数据点（读数）组成。</p>
+<ol>
+<li>第 0 至 139 列包含特定患者的心电图数据点。这些是浮点数。</li>
+<li>标签显示心电图是正常还是异常。它是一个分类变量，值为 0 或 1。</li>
+</ol>
+<!-- 在页面中显示表格 -->
+<div id="csv-table"></div>
+
+<h3 id="3-2-1-Plot-ECG"><a href="#3-2-1-Plot-ECG" class="headerlink" title="3.2.1 Plot ECG"></a>3.2.1 Plot ECG</h3><p>Plot the normal/abnormal ECG.</p>
+<div id="chart"></div>
+
+
+<h3 id="3-2-2-Preprocessing"><a href="#3-2-2-Preprocessing" class="headerlink" title="3.2.2 Preprocessing"></a>3.2.2 Preprocessing</h3><p>数据预处理：归一化</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">preProcessing</span> = (<span class="params">data0</span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> data1 = data0.<span class="title function_">map</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="title class_">Number</span>(item))</span><br><span class="line">    <span class="comment">// 归一化</span></span><br><span class="line">    <span class="keyword">const</span> min_val = -<span class="number">6.2808752</span>; <span class="comment">// _.min(data1);</span></span><br><span class="line">    <span class="keyword">const</span> max_val = <span class="number">7.4021031</span>;  <span class="comment">//_.max(data1);</span></span><br><span class="line">    data1.<span class="title function_">forEach</span>(<span class="function">(<span class="params">element, index</span>) =&gt;</span> &#123;</span><br><span class="line">        data0[index] = (element-min_val)/(max_val-min_val);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="note info"><p>关于数据归一化：归一化时， 取了原始数据集的最大值、最小值。 当然有多种取法： 整个数据集(单个特征单独取、所有特征一起取)</p>
+<ul>
+<li>如果特征尺度差异很大，特征分别归一化可能更合适；如果特征尺度相对接近，一起归一化可能更简单有效。</li>
+<li>训练时的归一化，在推理时怎么处理呢？ <strong><em>记录训练时的统计信息</em></strong>(均值、标准差、最大最小值) ，用于推理时特征处理.</li>
+</ul>
+</div>
+<div class="note warning"><p>问题：<br>如果把 异常的模式数据 作为正常 加到训练集中，会有什么影响？ 自编码器 对不同模式的 学习能力强不强，还是说适合指针对 某个范围内的 模式序列？</p>
+</div>
+<h2 id="3-3-模型训练"><a href="#3-3-模型训练" class="headerlink" title="3.3 模型训练"></a>3.3 模型训练</h2><h3 id="3-3-1-模型定义"><a href="#3-3-1-模型定义" class="headerlink" title="3.3.1 模型定义"></a>3.3.1 模型定义</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">AnomalyDetector</span>(<span class="title class_ inherited__">Model</span>):</span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">    <span class="built_in">super</span>(AnomalyDetector, self).__init__()</span><br><span class="line">    self.encoder = tf.keras.Sequential([</span><br><span class="line">      <span class="comment"># 表示创建一个全连接层，也称为密集层。 有32个神经元。</span></span><br><span class="line">      layers.Dense(<span class="number">32</span>, activation=<span class="string">&quot;relu&quot;</span>),</span><br><span class="line">      layers.Dense(<span class="number">16</span>, activation=<span class="string">&quot;relu&quot;</span>),</span><br><span class="line">      layers.Dense(<span class="number">8</span>, activation=<span class="string">&quot;relu&quot;</span>)])</span><br><span class="line">    </span><br><span class="line">    self.decoder = tf.keras.Sequential([</span><br><span class="line">      layers.Dense(<span class="number">16</span>, activation=<span class="string">&quot;relu&quot;</span>),</span><br><span class="line">      layers.Dense(<span class="number">32</span>, activation=<span class="string">&quot;relu&quot;</span>),</span><br><span class="line">      layers.Dense(<span class="number">140</span>, activation=<span class="string">&quot;sigmoid&quot;</span>)])</span><br><span class="line">  <span class="comment"># 定义了call方法，这是模型的前向传播方法。当调用模型实例时，这个方法会被自动调用。</span></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">call</span>(<span class="params">self, x</span>):</span><br><span class="line">    encoded = self.encoder(x)</span><br><span class="line">    decoded = self.decoder(encoded)</span><br><span class="line">    <span class="keyword">return</span> decoded</span><br><span class="line"></span><br><span class="line">autoencoder = AnomalyDetector()</span><br><span class="line"><span class="comment"># 指定了优化器为Adam优化器；指定了损失函数为平均绝对误差（Mean Absolute Error，MAE）</span></span><br><span class="line">autoencoder.<span class="built_in">compile</span>(optimizer=<span class="string">&#x27;adam&#x27;</span>, loss=<span class="string">&#x27;mae&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<div class="note info"><p>encoder 是一个由三层全连接层组成的神经网络。每层的神经元数量分别为 32、16 和 8，激活函数均为relu。这个编码器将输入数据压缩成低维表示。<br>decoder 同样是一个由三层全连接层组成的神经网络。每层的神经元数量分别为 16、32 和 140，激活函数为relu和sigmoid。这个解码器将低维表示解码回原始数据的形状。</p>
+</div>
+<div class="note info"><p>输入数据维度与神经元之间关系：<br>1.连接方式：如果是一个全连接层，输入数据的每个特征(维度)都会连接到该层的每个神经元. 输入数据维度n,m个神经元，则总共有n*m个连接<br>2.神经元数量对模型的影响：表达能力、过拟合风险</p>
+<ol>
+<li>选择合适的神经元数量</li>
+</ol>
+</div>
+<div class="note info"><p>关于模型输出：依据自编码器的工作原理，解码器处理后，最终的输出为一个向量，其维度与输入数据一致。以尽量接近地还原原始输入。<br>问题：那怎么用于实际场景 判断当前数据是否异常呢(怎么分类)? 计算2个张量之间的差异(使用 平均绝对误差MAE方法)，详见模型测试(Test model)</p>
+</div>
+<div class="note warning"><p>encoder,decoder架构在深度学习模型中的定位? 为什么是三层的网络.</p>
+</div>
+<h3 id="3-3-2-模型训练"><a href="#3-3-2-模型训练" class="headerlink" title="3.3.2 模型训练"></a>3.3.2 模型训练</h3><p>The autoencoder is trained using only regular ECGs, but evaluated using the full test set.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">history = autoencoder.fit(normal_train_data, normal_train_data, </span><br><span class="line">          epochs=<span class="number">20</span>, </span><br><span class="line">          batch_size=<span class="number">512</span>,</span><br><span class="line">          validation_data=(test_data, test_data),</span><br><span class="line">          shuffle=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 两个参数都是 normal_train_data 的原因? (先编码为低维表示,再解码回尽可能接近原始输入的数据,因此)输入数据既是期望的输出数据。</span></span><br><span class="line"><span class="comment"># - 第一个normal_train_data是输入到自编码器的原始数据.</span></span><br><span class="line"><span class="comment"># - 第二个normal_train_data是自编码器应该学习去重构的目标数据。由于自编码器的目的就是尽可能地重构输入数据.</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-3-3-模型保存"><a href="#3-3-3-模型保存" class="headerlink" title="3.3.3 模型保存"></a>3.3.3 模型保存</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 保存整个模型</span></span><br><span class="line">autoencoder.save(<span class="string">&#x27;/kaggle/working/my_autoencoder_model&#x27;</span>)</span><br><span class="line"><span class="comment"># 或者只保存模型的权重</span></span><br><span class="line">autoencoder.save_weights(<span class="string">&#x27;/kaggle/working/my_autoencoder_weights.h5&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="3-3-4-plot-model"><a href="#3-3-4-plot-model" class="headerlink" title="3.3.4 plot model"></a>3.3.4 plot model</h3><p>loss<br>If the reconstruction error is greater than one standard deviation from the normal training example, classify the ECG as abnormal. First, let’s plot the normal ECG of the training set, the reconstruction after being encoded and decoded by the autoencoder, and the reconstruction error.</p>
+<h3 id="3-3-5-Test-model"><a href="#3-3-5-Test-model" class="headerlink" title="3.3.5 Test model"></a>3.3.5 Test model</h3><p>分别用 normal data 和 abnormal data 进行测试.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 推理（single_data 为一个 tf.Tensor</span></span><br><span class="line">single_data = normal_train_data[<span class="number">0</span>]</span><br><span class="line">reconstructed_data = autoencoder.predict(np.expand_dims(single_data, axis=<span class="number">0</span>))</span><br><span class="line"><span class="built_in">print</span>(reconstructed_data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将解码后的张量 计算残差,  然后设一个阈值。</span></span><br><span class="line"><span class="comment"># 阈值的获取 通过 测试 正常、异常数据集的分布。</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-3-6-模型加载和推理"><a href="#3-3-6-模型加载和推理" class="headerlink" title="3.3.6 模型加载和推理"></a>3.3.6 模型加载和推理</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">model_path = <span class="string">&#x27;/home/tensor/quano/tensorflow_project/autoencoder_model&#x27;</span></span><br><span class="line"><span class="comment"># 加载保存的模型</span></span><br><span class="line">loaded_autoencoder = tf.keras.models.load_model(model_path)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 推理</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例输入数据</span></span><br><span class="line">input_data = np.array([<span class="number">0.5703046609377435</span>,<span class="number">0.46561659035884023</span>,<span class="number">0.29058116682096913</span>,<span class="number">0.17791583430341332</span>,<span class="number">0.09538919607875133</span>,<span class="number">0.08467857469305494</span>,<span class="number">0.2019510401474509</span>,<span class="number">0.3163002239066622</span>,<span class="number">0.337320325941027</span>,<span class="number">0.414248838646481</span>,<span class="number">0.4707059485726145</span>,<span class="number">0.4691904978026605</span>,<span class="number">0.4776775491926345</span>,<span class="number">0.48004090308321257</span>,<span class="number">0.47027246326919925</span>,<span class="number">0.4729926787942067</span>,<span class="number">0.4791714871023365</span>,<span class="number">0.4802746855193069</span>,<span class="number">0.46928869645287685</span>,<span class="number">0.4610686345968992</span>,<span class="number">0.46148039363623056</span>,<span class="number">0.4465829036650596</span>,<span class="number">0.45325327885669453</span>,<span class="number">0.4561009344727237</span>,<span class="number">0.44896180387861906</span>,<span class="number">0.4432531994880092</span>,<span class="number">0.43402174656668135</span>,<span class="number">0.4430723455872177</span>,<span class="number">0.4325052631268151</span>,<span class="number">0.43014902464619126</span>,<span class="number">0.4145465801111444</span>,<span class="number">0.41206530598678215</span>,<span class="number">0.4042027816414794</span>,<span class="number">0.4105454307414929</span>,<span class="number">0.4082913235344385</span>,<span class="number">0.4034299396645247</span>,<span class="number">0.39648476384706394</span>,<span class="number">0.393320447639678</span>,<span class="number">0.3915881544590333</span>,<span class="number">0.39603877907195106</span>,<span class="number">0.4074695404581618</span>,<span class="number">0.4053117945820319</span>,<span class="number">0.4173487887501802</span>,<span class="number">0.4162455852173646</span>,<span class="number">0.42334117857952025</span>,<span class="number">0.4459063725914117</span>,<span class="number">0.4455184110026689</span>,<span class="number">0.44474098888251545</span>,<span class="number">0.44404327967106405</span>,<span class="number">0.4567321697060647</span>,<span class="number">0.45217464629027443</span>,<span class="number">0.45325041515267184</span>,<span class="number">0.460829305634432</span>,<span class="number">0.4669593432008878</span>,<span class="number">0.46631943865612946</span>,<span class="number">0.4743283178341371</span>,<span class="number">0.46297092117729954</span>,<span class="number">0.47388949889659626</span>,<span class="number">0.4678889792582658</span>,<span class="number">0.46734479729460654</span>,<span class="number">0.48026674134241665</span>,<span class="number">0.48439838203938396</span>,<span class="number">0.48574668791223624</span>,<span class="number">0.48985567856962836</span>,<span class="number">0.4931734825597144</span>,<span class="number">0.48830411577865324</span>,<span class="number">0.49913936646380563</span>,<span class="number">0.5057091963669927</span>,<span class="number">0.5078240970388735</span>,<span class="number">0.513230286274736</span>,<span class="number">0.5211992662445427</span>,<span class="number">0.5149918325895467</span>,<span class="number">0.5199009290250793</span>,<span class="number">0.5074853718068091</span>,<span class="number">0.5113434097896654</span>,<span class="number">0.5092939451639706</span>,<span class="number">0.5073481524121105</span>,<span class="number">0.5110537944798174</span>,<span class="number">0.5096124087253724</span>,<span class="number">0.49639560197212335</span>,<span class="number">0.49456538201189726</span>,<span class="number">0.5014910057995196</span>,<span class="number">0.5063671130721592</span>,<span class="number">0.5020293695854213</span>,<span class="number">0.5007152441365781</span>,<span class="number">0.4958237410929754</span>,<span class="number">0.48436235333355754</span>,<span class="number">0.4914246074628358</span>,<span class="number">0.48253574954511186</span>,<span class="number">0.4772388391495147</span>,<span class="number">0.4755063515667492</span>,<span class="number">0.47530029920459643</span>,<span class="number">0.48763381361205554</span>,<span class="number">0.47761297699346644</span>,<span class="number">0.4745832345579325</span>,<span class="number">0.47575447225550305</span>,<span class="number">0.47009120521663034</span>,<span class="number">0.45409669348083376</span>,<span class="number">0.4687486393221862</span>,<span class="number">0.4767007399258976</span>,<span class="number">0.4795878650191238</span>,<span class="number">0.47514804507144476</span>,<span class="number">0.4761949406877303</span>,<span class="number">0.4856189189454463</span>,<span class="number">0.4876376366101524</span>,<span class="number">0.49962776744299886</span>,<span class="number">0.5284430101010977</span>,<span class="number">0.5431970757419092</span>,<span class="number">0.5495933513246893</span>,<span class="number">0.5488369809078774</span>,<span class="number">0.5231477513926921</span>,<span class="number">0.4934438615604616</span>,<span class="number">0.4988147587722185</span>,<span class="number">0.5099680323252431</span>,<span class="number">0.5161331652480952</span>,<span class="number">0.4907889556471781</span>,<span class="number">0.466802485537816</span>,<span class="number">0.43299440444190435</span>,<span class="number">0.41644001145569315</span>,<span class="number">0.4182245147607959</span>,<span class="number">0.43140410154710257</span>,<span class="number">0.4321411603788044</span>,<span class="number">0.42124117378743486</span>,<span class="number">0.42373569210440104</span>,<span class="number">0.42885276080573775</span>,<span class="number">0.43089887674527705</span>,<span class="number">0.43537636466177837</span>,<span class="number">0.4391244324344211</span>,<span class="number">0.43714183556075653</span>,<span class="number">0.44534281180581864</span>,<span class="number">0.45330930781348977</span>,<span class="number">0.4882133636066645</span>,<span class="number">0.5786804690028633</span>,<span class="number">0.5858615883356332</span>,<span class="number">0.5959517819304003</span>,<span class="number">0.5952476516022831</span>,<span class="number">0.5700759388034695</span>,<span class="number">0.4850423339485966</span>,<span class="number">0.4233501875830645</span>,<span class="number">0.4759834370270104</span>])</span><br><span class="line"></span><br><span class="line">tensor = tf.convert_to_tensor(input_data)</span><br><span class="line"><span class="built_in">print</span>(tensor)</span><br><span class="line"><span class="built_in">print</span>(tf.shape(tensor))</span><br><span class="line"><span class="comment"># 进行推理</span></span><br><span class="line">reconstructed_data = loaded_autoencoder.predict(np.expand_dims(tensor, axis=<span class="number">0</span>))</span><br><span class="line"><span class="built_in">print</span>(reconstructed_data)</span><br><span class="line"><span class="comment"># 计算MAE：平均绝对误差.</span></span><br><span class="line">train_loss_0 = tf.keras.losses.mae(reconstructed_data, tensor)</span><br><span class="line"><span class="built_in">print</span>(train_loss_0.numpy())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+  // CSV 数据
+  const csvData = `-0.11252183,-2.8272038,-3.7738969,-4.3497511,-4.376041,-3.4749863,-2.1814082,-1.8182865,-1.2505219,-0.47749208,-0.36380791,-0.49195659,-0.42185509,-0.30920086,-0.4959387,-0.34211867,-0.35533627,-0.36791303,-0.31650279,-0.41237405,-0.47167181,-0.41345783,-0.36461703,-0.44929829,-0.47141866,-0.42477658,-0.46251673,-0.55247236,-0.47537519,-0.6942,-0.7018681,-0.59381178,-0.66068415,-0.71383066,-0.76980688,-0.67228161,-0.65367605,-0.63940562,-0.55930228,-0.59167032,-0.49322332,-0.46305183,-0.30164382,-0.23273401,-0.12505488,-0.15394314,-0.024357404,-0.065608758,0.034999258,0.061935219,0.07119542,0.12392505,0.10312371,0.22522849,0.12868305,0.30248315,0.25727621,0.19635161,0.17938297,0.24472863,0.34121687,0.32820441,0.40604169,0.44660507,0.42406823,0.48151204,0.4778438,0.62408259,0.57458456,0.59801319,0.5645919,0.607979,0.62063457,0.65625291,0.68474806,0.69427284,0.66558377,0.57579577,0.63813479,0.61491695,0.56908343,0.46857572,0.44281777,0.46827436,0.43249295,0.40795792,0.41862256,0.36253075,0.41095901,0.47166633,0.37216676,0.33787543,0.22140511,0.27399747,0.29866408,0.26356357,0.34256352,0.41950529,0.58660736,0.86062387,1.1733446,1.2581791,1.4337887,1.7005334,1.9990431,2.1253411,1.9932907,1.9322463,1.7974367,1.5222839,1.2511679,0.99873034,0.48372242,0.023132292,-0.19491383,-0.22091729,-0.24373668,-0.25469462,-0.29113555,-0.25649034,-0.22787425,-0.32242276,-0.28928586,-0.31816951,-0.36365359,-0.39345584,-0.26641886,-0.25682316,-0.28869399,-0.16233755,0.16034772,0.79216787,0.93354122,0.79695779,0.57862066,0.2577399,0.22807718,0.12343082,0.92528624,0.19313742,1.0
+-1.1008778,-3.9968398,-4.2858426,-4.5065789,-4.0223767,-3.2343676,-1.5661258,-0.99225766,-0.75467971,0.042321173,0.14895093,0.18352707,0.29487608,0.19023267,0.235575,0.25348712,0.2217424,0.050233259,0.17804214,0.13956318,0.046794433,0.043007139,0.10654432,0.012654003,0.0039948539,0.045724179,-0.045999362,-0.072666959,-0.071077909,-0.15386649,-0.22725443,-0.2492697,-0.25348935,-0.33283516,-0.26432996,-0.34582525,-0.31078107,-0.33415978,-0.30617791,-0.17456252,-0.20616017,-0.22447967,-0.048683931,-0.019621159,0.094805186,0.11678639,0.18518592,0.23052577,0.13802707,0.24442554,0.27169477,0.25900331,0.26920166,0.12706463,0.20207339,0.25598343,0.15311526,0.21021583,0.19108187,0.19092702,0.21051006,0.20710764,0.20488835,0.20086474,0.34691963,0.3480019,0.25453726,0.33197465,0.3566903,0.34992982,0.43037963,0.46750163,0.48606309,0.4031884,0.47895569,0.39739177,0.46412003,0.45179539,0.36136121,0.3798309,0.34278528,0.39910656,0.3875084,0.25570346,0.28403408,0.28499257,0.25010809,0.17303626,0.14942257,0.141685,0.22226096,0.17284705,0.15077932,0.17656601,0.28094204,0.48993901,0.66088884,0.8931933,1.0269972,1.2023937,1.5574096,1.8084277,2.1643459,2.0707467,1.9036136,1.7644552,1.5077694,1.2934277,0.89456215,0.57801575,0.24434305,-0.28644345,-0.51588134,-0.73270694,-0.83246547,-0.80331806,-0.83625248,-0.77786456,-0.77475301,-0.73340394,-0.72138631,-0.83209517,-0.71198159,-0.7518673,-0.7577196,-0.85311967,-0.76698841,-0.68816064,-0.51992349,0.039406169,0.56032676,0.53835583,0.65688079,0.78748958,0.72404623,0.55578372,0.47633335,0.77381971,1.1196209,-1.4362499,1.0
+-0.56708802,-2.5934502,-3.8742297,-4.5840949,-4.1874487,-3.1514617,-1.7429402,-1.4906585,-1.1835803,-0.39422869,-0.28289676,-0.35692576,-0.28729745,-0.3994889,-0.47324409,-0.37904758,-0.39903903,-0.17859449,-0.33952226,-0.49844722,-0.33725108,-0.42547978,-0.42395228,-0.46317045,-0.49325315,-0.54974899,-0.52983109,-0.53093478,-0.5023649,-0.41736768,-0.52634573,-0.47100496,-0.67678428,-0.89861193,-0.61057104,-0.5301643,-0.76567438,-0.58193724,-0.53784761,-0.55638598,-0.43802347,-0.43624802,-0.40011375,-0.13498651,-0.23934677,-0.12024439,-0.0019714041,0.28500048,0.31564573,0.10736401,0.10952148,0.15807843,0.29189779,0.2612945,0.18840714,0.14065136,0.26336542,0.28720706,0.31431725,0.17794238,0.13829008,0.32106868,0.45816774,0.25191615,0.26135293,0.27748753,0.29879325,0.45907535,0.41914662,0.52050892,0.53776119,0.60321071,0.47563399,0.52169287,0.73524831,0.72954106,0.71852334,0.49843316,0.54544098,0.60482668,0.52129639,0.39438062,0.40502023,0.59756305,0.53113004,0.3776509,0.46770093,0.45756933,0.34111609,0.40791318,0.45912699,0.40393661,0.2981912,0.46110053,0.6646591,0.58775722,0.70132474,0.91720459,1.2479873,1.5055679,1.6401054,1.8109878,2.1853978,2.2629849,2.0529202,1.890488,1.793033,1.5647844,1.2346189,0.90030201,0.55195714,0.25822163,-0.128587,-0.092585287,-0.16860627,-0.4959888,-0.39503448,-0.32823831,-0.44813804,-0.26823009,-0.45641485,-0.35786694,-0.31750833,-0.43411223,-0.54920348,-0.32461549,-0.26808235,-0.22038421,-0.11742905,0.61405916,1.2848254,0.88607336,0.5314524,0.31137684,-0.021918959,-0.71368344,-0.53219671,0.32109663,0.90422673,-0.42179659,1.0
+0.80023202,-0.87425189,-2.3847613,-3.9732924,-4.3382241,-3.8024222,-2.5345096,-1.7834233,-1.5944504,-0.75319899,-0.29810663,-0.42892797,-0.49135079,-0.36130424,-0.33929554,-0.32495154,-0.29011333,-0.36305106,-0.52568383,-0.59742301,-0.57552317,-0.56750306,-0.50455484,-0.61840616,-0.68281354,-0.74384873,-0.81558784,-0.82690193,-0.78237433,-0.92946196,-0.99967167,-1.0609695,-1.0078773,-1.0287349,-1.1226293,-1.0286499,-1.0465146,-1.0633724,-1.1224228,-0.98324201,-0.85586525,-0.791266,-0.58875425,-0.51830558,-0.39729838,-0.35433285,-0.20742492,-0.088266017,-0.16873361,-0.067592085,-0.032772281,0.071899471,0.081485179,0.067225257,0.13271969,0.070240933,0.10043175,0.15041753,0.10988654,0.14886026,0.20874762,0.22823622,0.27366422,0.29952441,0.32706231,0.24231412,0.38610522,0.41908722,0.43971785,0.48895381,0.54171511,0.57386922,0.63355476,0.41167103,0.44091729,0.5887054,0.53086502,0.55896452,0.60687423,0.61472869,0.53777156,0.59929423,0.64046303,0.56839906,0.54471048,0.55795891,0.53776149,0.47229245,0.46659561,0.63441689,0.42517487,0.42077721,0.44052297,0.36102802,0.35929943,0.32136632,0.42132549,0.50512195,0.67748866,0.90869284,0.98223031,1.1553635,1.3362539,1.6275344,1.7175939,1.6964865,1.7416856,1.674078,1.5469278,1.3317385,1.1101682,0.92221037,0.52177665,0.15485176,-0.1238607,-0.20299778,-0.24795602,-0.21912177,-0.2146952,-0.31921472,-0.19859713,-0.15161786,-0.12959259,-0.074938934,-0.19680704,-0.17479482,-0.20883265,-0.21075375,-0.10048537,0.19744621,0.966606,1.1488838,0.95843425,1.0590254,1.3716823,1.2773918,0.96030393,0.97101956,1.6143924,1.4214563,1.0
+1.5225911,0.090146502,-2.3048594,-3.8464567,-4.9756669,-5.1222201,-3.5175835,-1.9529461,-1.6653285,-0.61271733,0.15978408,0.1390482,0.25517634,0.28751406,0.15385271,0.19107336,0.27561786,0.2907129,0.14039185,0.027916922,0.033551012,-0.17029102,-0.079020421,-0.040056011,-0.13774058,-0.21585129,-0.34216506,-0.21832591,-0.36291507,-0.39515543,-0.60864334,-0.64259456,-0.75017731,-0.66339098,-0.69423388,-0.76075209,-0.85578278,-0.89908005,-0.92278298,-0.86188518,-0.70547832,-0.73500271,-0.57030078,-0.58539589,-0.48830704,-0.17954798,-0.18485645,-0.1954939,-0.20504064,-0.031418833,-0.093779327,-0.079059605,0.024642189,0.10851936,0.09976356,0.20934888,0.053945868,0.20334453,0.12123955,0.11379352,0.2906042,0.34713735,0.36558619,0.42180942,0.46720686,0.40057942,0.54883792,0.63873276,0.6676709,0.74164367,0.85068305,0.76574687,0.83291793,0.66303613,0.71582558,0.6877828,0.66115856,0.71186278,0.69214033,0.51129505,0.48625219,0.58101535,0.64773502,0.58838177,0.57040062,0.50347029,0.34664437,0.44327704,0.32165099,0.24917348,0.22546789,0.22264848,0.39140769,0.2542928,0.2128369,0.22886292,0.15137256,-0.067479997,0.13300226,0.24181068,0.28131515,0.22056519,0.23488984,0.36383793,0.39146,0.5555207,0.94979904,1.1516786,1.2391987,1.2288493,0.87734413,0.47090645,0.54439632,0.69700632,0.7813637,0.43457943,0.10637308,-0.35622216,-0.58273556,-0.55831824,-0.37798224,-0.36789708,-0.51704136,-0.48290892,-0.41289218,-0.38489522,-0.32362985,-0.27234512,-0.29947295,-0.18725917,-0.078253778,0.39933766,1.6371971,1.7354562,1.8735201,1.8638855,1.5194615,0.35594853,-0.48818377,0.23199584,1.0
+-0.032245388,-0.54504988,-0.82233951,-1.6050845,-1.8057748,-2.0080666,-2.2339748,-2.191458,-2.0580713,-1.8808487,-1.5980847,-1.0734666,-0.60601763,-0.40062774,-0.30974032,-0.27599315,-0.16190422,0.10850521,0.30977527,0.41252896,0.53814803,0.54247379,0.42785112,0.37815942,0.36188738,0.37976272,0.45375055,0.5483923,0.67794169,0.66825595,0.4131611,0.22767328,0.27982432,0.35898388,0.40398305,0.43035215,0.40867432,0.42049766,0.42107193,0.32161806,0.22971489,0.20655718,0.22594547,0.34068889,0.44956444,0.40496562,0.30956912,0.24239092,0.17865089,0.18501601,0.33981574,0.51298385,0.47234082,0.24335581,0.082250646,0.041823061,0.04329214,0.16040296,0.26450173,0.21102713,0.22029886,0.31735332,0.31367233,0.31088657,0.38498299,0.36784817,0.2984939,0.31753582,0.32696731,0.29884615,0.3674174,0.47894802,0.51140793,0.49840732,0.49130584,0.50073549,0.49360933,0.53874692,0.63148766,0.57849716,0.53415701,0.6395139,0.67505033,0.5978203,0.48834268,0.39688329,0.42172264,0.51001168,0.55461096,0.59630145,0.57140413,0.45837937,0.44734872,0.50965739,0.53081508,0.51322441,0.46546407,0.49637166,0.60659122,0.66603659,0.62919292,0.54553078,0.54543892,0.60964795,0.59777943,0.57261331,0.60459362,0.57085274,0.48861488,0.48893631,0.51936437,0.55129762,0.61166333,0.61427183,0.55032934,0.48756962,0.41517402,0.39897417,0.53464846,0.66442392,0.63454566,0.56613755,0.47991327,0.29107729,0.10251066,0.018347409,0.043036237,0.038287591,-0.168029,-0.44347067,-0.90642467,-1.6213757,-2.3290905,-3.0498941,-3.6204134,-4.2104818,-4.043785,-3.0518127,-2.8068663,-0.87966639,0.0`;
+
+  const preProcessing = (data0) => {
+      const data1 = data0.map(item => Number(item))
+      // 归一化
+       const min_val = -6.2808752; // _.min(data1);
+       const max_val = 7.4021031;  //_.max(data1);
+       data1.forEach((element, index) => {
+      data0[index] = (element-min_val)/(max_val-min_val);
+    });
+  }
+  const display = (data0, normal, title) => {
+      // 复制数组
+      const dataArray = Array.from(data0);
+      const label = dataArray.pop()// 最后一个标签元素
+      preProcessing(dataArray)
+    console.log(JSON.stringify(dataArray));
+       // 图形绘制.
+       const width = 400;
+      const height = 300;
+      const margin = { top: 20, right: 20, bottom: 30, left: 40 };
+
+      const svg = d3.select("#chart")
+       .append("svg")
+       .attr("width", width + margin.left + margin.right)
+       .attr("height", height + margin.top + margin.bottom);
+
+      const g = svg.append("g")
+       .attr("transform", `translate(${margin.left},${margin.top})`);
+
+      // 假设数据点的 x 值为索引
+      const xScale = d3.scaleLinear()
+       .domain([0, dataArray.length - 1])
+       .range([0, width]);
+
+      const yScale = d3.scaleLinear()
+       .domain([0, d3.max(dataArray)])
+       .range([height, 0]);
+
+      const lineGenerator = d3.line()
+       .x((d, i) => xScale(i))
+       .y(d => yScale(d));
+
+      g.append("path")
+       .datum(dataArray)
+       .attr("d", lineGenerator)
+       .attr("stroke", normal? "steelblue" : "red")
+       .attr("stroke-width", 2)
+       .attr("fill", "none");
+
+      // X 轴
+      g.append("g")
+       .attr("transform", `translate(0,${height})`)
+       .call(d3.axisBottom(xScale));
+
+        const yAxis = d3.axisLeft(yScale).ticks(5).tickFormat(d => d.toFixed(1));
+      // Y 轴
+      g.append("g")
+       .call(yAxis);
+
+      // 添加边框
+      g.append("rect")
+       .attr("width", width)
+       .attr("height", height)
+       .attr("stroke", "black")
+       .attr("stroke-width", 0.5)
+       .attr("fill", "none");
+     // 添加标题
+      svg.append("text")
+      .attr("x", width / 2)
+      .attr("y", margin.top / 2)
+      .style("text-anchor", "middle")
+      .text(title);
+      // 以更细粒度的 y 轴间隔创建田字格
+      const numCellsX = 7; // x 轴方向格子数量
+      const numCellsY = 6; // y 轴方向格子数量
+      const cellWidth = width / numCellsX;
+      const cellHeight = height / numCellsY;
+      for (let i = 0; i < numCellsY; i++) {
+        for (let j = 0; j < numCellsX; j++) {
+          g.append("rect")
+           .attr("x", j * cellWidth)
+           .attr("y", i * cellHeight)
+           .attr("width", cellWidth)
+           .attr("height", cellHeight)
+           .attr("stroke", "gray")
+           .attr("stroke-width", 0.5)
+           .attr("stroke-opacity", 0.4)
+           .attr("fill", "none");
+        }
+  }
+  }
+
+  // 设置一个标志变量，决定是否使用自增数字作为表头
+  const useNumericHeaders = true;
+  // 使用 PapaParse 解析 CSV 数据
+  Papa.parse(csvData, {
+    complete: function (results) {
+      const data = results.data;
+      display(data[4], true, "A Normal ECG(5)")
+      display(data[5], false, "An Anomalous ECG(6)")
+      let table = '<table border="1" cellpadding="5">';
+      table += '<thead><tr>';
+      // 第一行第一列为空.
+      table += `<th></th>`;
+      if (useNumericHeaders) {
+        // 使用从 0 开始自增的数字作为表头
+        for (let i = 0; i < Object.keys(data[0]).length; i++) {
+          table += `<th>${i}</th>`;
+        }
+      } else {
+        // 使用第一行数据作为表头
+        const headerRow = data[0];
+        for (const value of Object.values(headerRow)) {
+          table += `<th>${value}</th>`;
+        }
+      }
+
+      table += '</tr></thead>';
+      table += '<tbody>';
+      // 创建表格内容，从第二行开始
+      const start = useNumericHeaders? 0 : 1;
+      for (let i = start; i < data.length; i++) {
+        const row = data[i];
+        table += `<tr><td>${i+1}</td>`;
+        for (const value of Object.values(row)) {
+          table += `<td>${value}</td>`;
+        }
+        table += '</tr>';
+      }
+      table += '</tbody></table>';
+      // 将表格插入页面
+      const tableContainer = document.getElementById('csv-table');
+      tableContainer.innerHTML = table;
+      // 判断表格宽度是否超过一定值，如果是则添加滚动条
+      const tableElement = tableContainer.querySelector('table');
+      const maxWidth = 500; // 设置一个最大宽度，超过这个宽度就添加滚动条
+      if (tableElement.offsetWidth > maxWidth) {
+        tableContainer.style.overflowX = 'auto';
+      }
+    }
+  }); 
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
             </div>
         
         <footer class="article-footer">
@@ -1880,19 +2170,19 @@ var _hmt = _hmt || [];
     
 <nav id="article-nav">
     
-        <a href="/wk/%E7%AE%97%E6%B3%95/006.%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/%E5%AE%9E%E8%B7%B5/002.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E5%9C%A8%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E8%AF%86%E5%88%AB%E7%9A%84%E5%BA%94%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/wk/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/README/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">Newer</strong>
             <div class="article-nav-title">
                 
-                    2.机器学习在网络流量识别的应用
+                    A_人与系统
                 
             </div>
         </a>
     
     
-        <a href="/wk/%E7%AE%97%E6%B3%95/006.%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/001.%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%E6%96%B9%E6%A1%88/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/wk/%E7%AE%97%E6%B3%95/006.%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/%E5%AE%9E%E8%B7%B5/003.%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95%E5%8F%8A%E7%BB%8F%E5%85%B8%E6%A8%A1%E5%9E%8B/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">Older</strong>
-            <div class="article-nav-title">1.特征工程方案</div>
+            <div class="article-nav-title">3.异常检测算法及经典模型</div>
         </a>
     
 </nav>
