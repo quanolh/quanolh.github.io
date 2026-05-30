@@ -1,0 +1,555 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>1.NLP方向概述 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="nlp">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.NLP方向概述">
+<meta property="og:url" content="https://waisec.cn/wiki/80d872c1/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-01-21T16:05:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.151Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="nlp">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "1.NLP方向概述",
+    "url": "https://waisec.cn/wiki/80d872c1/",
+    "datePublished": "2026-01-21T16:05:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.151Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "nlp"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/5|NLP方向/001.NLP方向概述" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF"><span class="toc-text">一、核心技术</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E9%A2%84%E5%A4%84%E7%90%86%E6%8A%80%E6%9C%AF"><span class="toc-text">1.1 预处理技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E8%AF%AD%E4%B9%89%E7%90%86%E8%A7%A3%E6%8A%80%E6%9C%AF"><span class="toc-text">1.2 语义理解技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E8%AF%AD%E8%A8%80%E7%94%9F%E6%88%90%E6%8A%80%E6%9C%AF"><span class="toc-text">1.3 语言生成技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E9%AB%98%E7%BA%A7%E6%8A%80%E6%9C%AF%E6%96%B9%E5%90%91"><span class="toc-text">1.4 高级技术方向</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">二、典型应用场景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%A0%B8%E5%BF%83%E9%A1%B9%E7%9B%AE"><span class="toc-text">三、核心项目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-NLP-%E6%8A%80%E6%9C%AF%E7%9A%84%E6%A0%B8%E5%BF%83%E4%BB%B7%E5%80%BC"><span class="toc-text">四、 NLP 技术的核心价值</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81NLP%E6%96%B9%E5%90%91%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D"><span class="toc-text">五、NLP方向系统介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA"><span class="toc-text">5.1 基础理论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%AF%8D%E5%90%91%E9%87%8F%E7%9B%B8%E5%85%B3"><span class="toc-text">1.词向量相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80"><span class="toc-text">2.语言模型基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%96%87%E6%9C%AC%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">3.文本预处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%8E%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%EF%BC%88%E6%A0%B8%E5%BF%83%EF%BC%89"><span class="toc-text">5.2 深度学习与预训练模型（核心）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Transformer%E6%A0%B8%E5%BF%83"><span class="toc-text">1.Transformer核心</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E7%B3%BB%E5%88%97"><span class="toc-text">2.预训练模型系列</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E4%B8%8B%E6%B8%B8%E4%BB%BB%E5%8A%A1%E9%80%82%E9%85%8D"><span class="toc-text">3.下游任务适配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF"><span class="toc-text">5.3 核心技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98-amp-%E5%B7%A5%E7%A8%8B%E8%83%BD%E5%8A%9B"><span class="toc-text">5.4 项目实战&amp;工程能力</span></a></li></ol></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/5-NLP%E6%96%B9%E5%90%91/">5|NLP方向</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/nlp/" rel="tag">nlp</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/01/" onclick="onclickRoute(event, '/archives/2026/01/')">
+            <time datetime="2026-01-21T16:05:57.000Z" itemprop="datePublished">2026-01-22</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="nlp">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/80d872c1/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            NLP方向概述
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p>NLP作为人工智能（AI）的核心分支和AI发展的重要基石，其应用形态随着2023年大模型技术的发展发生了质的变化。2023 年前，以分词、句法分析等基础任务落地各业务场景；2023 年，大模型爆发，引爆 AI （生成式）创作革命；2025 年， AI 已具备更成熟的思考与决策能力。</p>
+<p>而NLP基础任务旨在让计算机理解、分析、生成和交互人类语言。包括 基础语言处理、语义理解分析、语言生成、人机交互与实用拓展类等。</p>
+
+      <div class="tip-container tip-question" style="
+        background-color: #fef7fb;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #e53e3e;
+        ">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>本文的目的：</p>
+<ol>
+<li>简单介绍下NLP做的事，在大模型爆发前和之后NLP都在做什么？ 「NLP是什么？」</li>
+<li>NLP的基础任务都有哪些，以前都有哪些应用场景？ 「NLP可以用来做什么？」</li>
+<li>当前大模型时代，NLP在做什么？NLP的基础任务还有什么价值？ 「大模型时代的价值？」</li>
+<li>如何 做NLP模型的训练、调优、验证和部署，确保模型在实际场景中的高效性能；「如何做？」
+            </li></ol></div>
+        </div>
+      </div>
+    
+
+
+<h1 id="一、核心技术"><a href="#一、核心技术" class="headerlink" title="一、核心技术"></a>一、核心技术</h1><p>NLP 技术体系可分为基础层、核心层和应用层，其中核心技术围绕 “语言理解” 和 “语言生成” 两大核心目标展开</p>
+<h2 id="1-1-预处理技术"><a href="#1-1-预处理技术" class="headerlink" title="1.1 预处理技术"></a>1.1 预处理技术</h2><p>分词</p>
+<p>词性标注</p>
+<p>命名实体识别</p>
+<p>停用词去除</p>
+<p>词形还原 / 词干提取</p>
+<h2 id="1-2-语义理解技术"><a href="#1-2-语义理解技术" class="headerlink" title="1.2 语义理解技术"></a>1.2 语义理解技术</h2><p>词向量表示（Word Embedding）</p>
+<p>句法分析（Syntactic Parsing）</p>
+<p>语义角色标注（SRL, Semantic Role Labeling）</p>
+<p>关系抽取（Relation Extraction）</p>
+<p>文本相似度计算</p>
+<h2 id="1-3-语言生成技术"><a href="#1-3-语言生成技术" class="headerlink" title="1.3 语言生成技术"></a>1.3 语言生成技术</h2><p>机器翻译（Machine Translation, MT）</p>
+<p>文本摘要（Text Summarization）</p>
+<p>对话系统（Dialogue System）</p>
+<p>大语言模型（LLM, Large Language Model）</p>
+<p>基于 Transformer 架构的千亿级参数模型，是当前 NLP 技术的巅峰，具备 “通用语言能力”，可支持对话、创作、代码生成、逻辑推理等多任务。代表模型有 GPT 系列、LLaMA、文心一言、通义千问。</p>
+<h2 id="1-4-高级技术方向"><a href="#1-4-高级技术方向" class="headerlink" title="1.4 高级技术方向"></a>1.4 高级技术方向</h2><p>多模态 NLP<br>低资源 NLP<br>可信 NLP</p>
+
+      <div class="tip-container tip-question" style="
+        background-color: #fef7fb;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #e53e3e;
+        ">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>在大模型时代，NLP的基础任务还有什么价值？<br> NLP 基础任务非但没有被替代，反而成为大模型落地的核心支撑，其价值体现在提升大模型性能、降低落地成本、保障产业级可靠性三个核心维度。<br> 是连接通用大模型与产业场景的 “桥梁”<br>
+            </p></div>
+        </div>
+      </div>
+    <p></p>
+<h1 id="二、典型应用场景"><a href="#二、典型应用场景" class="headerlink" title="二、典型应用场景"></a>二、典型应用场景</h1><h1 id="三、核心项目"><a href="#三、核心项目" class="headerlink" title="三、核心项目"></a>三、核心项目</h1><p>Transformer 架构（2017 年，Google）</p>
+<p>BERT（2018 年，Google）</p>
+<p>LLaMA 系列（Meta）</p>
+<p>Hugging Face Transformers 库</p>
+<h1 id="四、-NLP-技术的核心价值"><a href="#四、-NLP-技术的核心价值" class="headerlink" title="四、 NLP 技术的核心价值"></a>四、 NLP 技术的核心价值</h1><p>提升效率：替代人工完成重复、繁琐的文本处理任务（如审核、摘要、翻译），降低人力成本，提升工作效率。<br>打破壁垒：解决跨语言沟通障碍，实现信息的全球化传播；打通 “数据孤岛”，让非结构化文本数据转化为可利用的知识。<br>赋能创新：催生新的产品形态（如智能助手、对话机器人），推动各行业的数字化转型，创造新的商业模式。<br>辅助决策：通过舆情分析、文本挖掘，为企业和政府提供数据驱动的决策依据，提升决策的科学性和及时性。</p>
+<h1 id="五、NLP方向系统介绍"><a href="#五、NLP方向系统介绍" class="headerlink" title="五、NLP方向系统介绍"></a>五、NLP方向系统介绍</h1><p>主要围绕以下几方面：基础理论、核心技术、项目实战、工程能力</p>
+<h2 id="5-1-基础理论"><a href="#5-1-基础理论" class="headerlink" title="5.1 基础理论"></a>5.1 基础理论</h2><h3 id="1-词向量相关"><a href="#1-词向量相关" class="headerlink" title="1.词向量相关"></a>1.词向量相关</h3><p>Word2Vec 和One-hot 、 FastText</p>
+<h3 id="2-语言模型基础"><a href="#2-语言模型基础" class="headerlink" title="2.语言模型基础"></a>2.语言模型基础</h3><p>高频题：什么是语言模型？ N-gram模型的优缺点？如何解决数据稀疏问题？<br>延伸题：困惑度（Perplexoty）的含义？ 如何用它评估语言模型的好坏？</p>
+<h3 id="3-文本预处理"><a href="#3-文本预处理" class="headerlink" title="3.文本预处理"></a>3.文本预处理</h3><p>高频题：中文分词有哪些常用的算法（正向最大匹配、逆向最大匹配、CRF等）？各有什么局限？</p>
+<h2 id="5-2-深度学习与预训练模型（核心）"><a href="#5-2-深度学习与预训练模型（核心）" class="headerlink" title="5.2 深度学习与预训练模型（核心）"></a>5.2 深度学习与预训练模型（核心）</h2><h3 id="1-Transformer核心"><a href="#1-Transformer核心" class="headerlink" title="1.Transformer核心"></a>1.Transformer核心</h3><p>Transformer的整体架构？ Self-Attention的计算过程？ 为什么需要Multi-Head Attention？</p>
+<p>Position Encoding的作用？ 为什么不用 RNN/LSTM 而用Transformer？ Transformer的优缺点？</p>
+<h3 id="2-预训练模型系列"><a href="#2-预训练模型系列" class="headerlink" title="2.预训练模型系列"></a>2.预训练模型系列</h3><p>BERT的核心创新点（Masked LM + 下一句预测？）  BERT和GPT的区别（Encode-only vs Decoder-only）</p>
+<p>工程题： 如何基于预训练模型 做微调（Fine-tuning）？ 微调时如何防止过拟合？<br>什么是Prompt Tuning？ 适用于什么场景？</p>
+<h2 id="3-下游任务适配"><a href="#3-下游任务适配" class="headerlink" title="3.下游任务适配"></a>3.下游任务适配</h2><p>如何用BERT做文本分类、NER、文本匹配？ 不同任务的输出层如何设计？<br>延伸题： 序列标注任务（如NER）和文本生成任务（如机器翻译）的建模差异？</p>
+<h2 id="5-3-核心技术"><a href="#5-3-核心技术" class="headerlink" title="5.3 核心技术"></a>5.3 核心技术</h2><h2 id="5-4-项目实战-amp-工程能力"><a href="#5-4-项目实战-amp-工程能力" class="headerlink" title="5.4 项目实战&amp;工程能力"></a>5.4 项目实战&amp;工程能力</h2>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/7c40c2b3/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/7c40c2b3/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    3.AI对软件工程的影响
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/50fdba4b/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/50fdba4b/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">Agent构建概述</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

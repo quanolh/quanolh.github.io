@@ -1,0 +1,428 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>001.机器识别基本概念.md | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="机器视觉">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="001.机器识别基本概念.md">
+<meta property="og:url" content="https://waisec.cn/wiki/e8d4ea51/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-28T14:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.150Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="机器视觉">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "001.机器识别基本概念.md",
+    "url": "https://waisec.cn/wiki/e8d4ea51/",
+    "datePublished": "2024-01-28T14:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.150Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "机器视觉"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/4|图像识别/001.机器视觉基本概念" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/4-%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/">4|图像识别</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E6%9C%BA%E5%99%A8%E8%A7%86%E8%A7%89/" rel="tag">机器视觉</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/01/" onclick="onclickRoute(event, '/archives/2024/01/')">
+            <time datetime="2024-01-28T14:55:57.000Z" itemprop="datePublished">2024-01-28</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="机器视觉">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/e8d4ea51/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            机器识别基本概念.md
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <ol>
+<li><p>机器视觉（Computer Vision）是一门涉及计算机科学和人工智能的交叉学科，其目标是使计算机系统能够理解和解释视觉信息，模仿人类视觉系统的能力。以下是一些机器视觉的基本概念：</p>
+</li>
+<li><p>图像： 图像是由像素组成的二维矩阵，每个像素表示图像的一个小元素。机器视觉系统通常以图像作为输入。</p>
+</li>
+<li><p>图像处理： 图像处理涉及对图像进行预处理、增强和分析的一系列技术。常见的图像处理任务包括滤波、边缘检测、图像变换等。</p>
+</li>
+<li><p>特征提取： 特征是图像中具有信息量的部分，特征提取是从图像中选择和提取关键信息以用于进一步分析和识别的过程。常见的特征包括边缘、角点、颜色直方图等。</p>
+</li>
+<li><p>图像识别和分类： 图像识别是将图像分为不同的类别或标签的任务。图像分类是机器学习中的一个重要问题，涉及训练模型以自动识别图像中的对象或场景。</p>
+</li>
+<li><p>目标检测： 目标检测是在图像中定位并识别多个目标的任务。与图像分类不同，目标检测需要标示目标在图像中的位置。</p>
+</li>
+<li><p>图像分割： 图像分割是将图像划分为具有语义意义的区域的任务。目标是将图像中的每个像素分配到相应的类别。</p>
+</li>
+<li><p>三维重建： 三维重建是根据多个视角的二维图像推断出场景的三维结构。这在计算机视觉和计算机图形学中都是重要的问题。</p>
+</li>
+<li><p>深度学习： 深度学习是一种机器学习方法，通过使用深度神经网络来学习和表示复杂的图像特征。深度学习已经在图像识别、目标检测等任务中取得了显著的成功。</p>
+</li>
+</ol>
+<p>todo: </p>
+<ol>
+<li>总结以前同事工作相关的概念.</li>
+<li>总结之前的项目，变为自己的项目经历.</li>
+<li>最新模型架构用到的一些知识点，补全. yolo等.</li>
+</ol>
+<ol>
+<li>找鹏波聊一聊 图像相关的技术. </li>
+</ol>
+<p>图像处理基本算法有哪些：</p>
+<p>图像处理涉及多种基本算法，这些算法可以用于对图像进行预处理、增强、分析和处理。以下是一些常见的图像处理基本算法：</p>
+<ol>
+<li>灰度化（Grayscale Conversion）： 将彩色图像转换为灰度图像，通常通过对RGB通道的加权平均来实现</li>
+<li>直方图均衡化（Histogram Equalization）： 通过调整图像的灰度直方图，增强图像的对比度</li>
+<li><strong>滤波</strong>（Filtering）： 使用不同类型的滤波器进行<strong>图像平滑</strong>（低通滤波器）或边缘增强（高通滤波器）<ul>
+<li>去噪（Denoising）、边缘增强（Sharpening）、</li>
+</ul>
+</li>
+<li>模板匹配：</li>
+<li>Blob分析：</li>
+<li>图像缩放（Image Resizing）：</li>
+<li>图像旋转（Image Rotation）：</li>
+</ol>
+<p>资料：<br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://juejin.cn/post/7319902933386756133">图像处理算法：从基础到先进实践</a></p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/27c96b07/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/27c96b07/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    阿里云-Serverless
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/1939517c/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/1939517c/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">2.yolov5详解</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

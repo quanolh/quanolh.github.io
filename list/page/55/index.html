@@ -1,0 +1,1727 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="AI工程师,大模型应用,数据架构,Agent,AI知识库,风控架构,Novus,Wiki,Quinoa,quanoc">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Novus·Wiki | 个人知识库">
+<meta property="og:url" content="https://waisec.cn/list/page/55/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="AI工程师,大模型应用,数据架构,Agent,AI知识库,风控架构,Novus,Wiki,Quinoa,quanoc">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+        
+<article id="post-算法 | AI与机器学习/5|NLP方向/NLP/Nlp认识" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/5-NLP%E6%96%B9%E5%90%91/">5|NLP方向</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/5-NLP%E6%96%B9%E5%90%91/NLP/">NLP</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/NLP/" rel="tag">NLP</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2018/12/" onclick="onclickRoute(event, '/archives/2018/12/')">
+            <time datetime="2018-12-02T14:55:57.000Z" itemprop="datePublished">2018-12-02</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="NLP">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/e6c99885/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/e6c99885/" onclick="onclickRoute(event, '/wiki/e6c99885/')">Nlp认识</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p></p><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.jianshu.com/p/465f037349dc">七大NLP技术</a></p>
+<h3 id="技术1：文本嵌入（Text-Embeddings）"><a href="#技术1：文本嵌入（Text-Embeddings）" class="headerlink" title="技术1：文本嵌入（Text Embeddings）"></a>技术1：文本嵌入（Text Embeddings）</h3><p>在传统的NLP中，我们将单词视为离散符号，然后可以用one-hot向量表示。向量的维度是整个词汇表中单词的数量。单词作为离散符号的问题在于，对于one-hot向量来说，没有自然的相似性概念。因此，另一种方法是学习在向量本身中编码相似性。<strong>核心思想是一个词的含义是由经常出现在其旁边的单词给出的。</strong></p>
+<h3 id="技术2：机器翻译"><a href="#技术2：机器翻译" class="headerlink" title="技术2：机器翻译"></a>技术2：机器翻译</h3><p>机器翻译是语言理解的经典测试。它由语言分析和语言生成组成。大型机器翻译系统具有巨大的商业用途。</p>
+<p>1.端到端训练<br>2.分布式表示的优势<br>3.更好地探索上下文<br>4.更流利的文本生成</p>
+<h3 id="技巧3：Dialogue和Conversations"><a href="#技巧3：Dialogue和Conversations" class="headerlink" title="技巧3：Dialogue和Conversations"></a>技巧3：Dialogue和Conversations</h3><h3 id="技术4：情绪分析"><a href="#技术4：情绪分析" class="headerlink" title="技术4：情绪分析"></a>技术4：情绪分析</h3><p>用于情感分析的现代深度学习方法可用于形态学、语法和逻辑语义，其中最有效的是递归神经网络。顾名思义，递归神经网络开发的主要假设递归是描述语言的自然方式。递归在消歧方面很有用，有助于某些任务引用特定的短语，并且对于使用语法树结构的任务非常有效。</p>
+<p>
+                
+            
+        
+        
+            </p></div> 
+            <div class="article-more-link">
+                <a href="/wiki/e6c99885/#more" onclick="onclickRoute(event, '/wiki/e6c99885/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-算法 | AI与机器学习/2|机器学习/其它资料/机器学习100天/3.Logistic回归" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">2|机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%85%B6%E5%AE%83%E8%B5%84%E6%96%99/">其它资料</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%85%B6%E5%AE%83%E8%B5%84%E6%96%99/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0100%E5%A4%A9/">机器学习100天</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/TML/" rel="tag">TML</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2018/12/" onclick="onclickRoute(event, '/archives/2018/12/')">
+            <time datetime="2018-12-02T14:55:57.000Z" itemprop="datePublished">2018-12-02</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="TML">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/7c6f4691/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/7c6f4691/" onclick="onclickRoute(event, '/wiki/7c6f4691/')">Logistic回归</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p></p><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>回归: 假设有一组数据点,用一条直线对这些点进行拟合,这个拟合过程就是回归.回归一词源于最佳拟合,表示要找到最佳拟合参数.</p>
+<p>训练分类器的做法就是寻找最佳拟合参数.</p>
+<p>使用的一些优化算法: 梯度上升法,最小二乘法.</p>
+<h3 id="最优化算法"><a href="#最优化算法" class="headerlink" title="最优化算法"></a>最优化算法</h3><h4 id="1-最小二乘法"><a href="#1-最小二乘法" class="headerlink" title="1. 最小二乘法"></a>1. 最小二乘法</h4><p>向量运算进行参数求解过程</p>
+<p>损失函数,给定数据X,Y, 根据aX 的出的Y1 与Y之间的偏差,称为损失.怎么将这个损失降到最低.  </p>
+<p>
+                
+            
+        
+        
+            </p></div> 
+            <div class="article-more-link">
+                <a href="/wiki/7c6f4691/#more" onclick="onclickRoute(event, '/wiki/7c6f4691/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-平台工具 | 工程架构和工具/中间件_组件/Builder/sbt" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6-%E7%BB%84%E4%BB%B6/">中间件_组件</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6-%E7%BB%84%E4%BB%B6/Builder/">Builder</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2018/12/" onclick="onclickRoute(event, '/archives/2018/12/')">
+            <time datetime="2018-12-02T03:55:57.000Z" itemprop="datePublished">2018-12-02</time>
+        </a>
+    </div>
+
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/b33641e2/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/b33641e2/" onclick="onclickRoute(event, '/wiki/b33641e2/')">sbt了解</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p></p><p>下载安装:<a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.scala-sbt.org/download.html">https://www.scala-sbt.org/download.html</a></p>
+<blockquote>
+<p>sbt是类似ANT、MAVEN的构建工具，全称为Simple build tool，是Scala事实上的标准构建工具。</p>
+</blockquote>
+<p>主要特性:</p>
+<p>
+                
+            
+        
+        
+            </p></div> 
+            <div class="article-more-link">
+                <a href="/wiki/b33641e2/#more" onclick="onclickRoute(event, '/wiki/b33641e2/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-算法 | AI与机器学习/2|机器学习/005.一些杂文/4.利用AdaBoost元算法提高分类性能" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">2|机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/005-%E4%B8%80%E4%BA%9B%E6%9D%82%E6%96%87/">005.一些杂文</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/TML/" rel="tag">TML</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2018/12/" onclick="onclickRoute(event, '/archives/2018/12/')">
+            <time datetime="2018-12-02T03:55:57.000Z" itemprop="datePublished">2018-12-02</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="TML">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/6179c970/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/6179c970/" onclick="onclickRoute(event, '/wiki/6179c970/')">AdaBoost算法</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><ul>
+<li>组合相似的分类器来提高分类性能</li>
+<li>应用AdaBoost算法</li>
+<li>处理非均衡分类问题</li>
+</ul>
+</p><p>
+                
+            
+        
+        
+            </p></div> 
+            <div class="article-more-link">
+                <a href="/wiki/6179c970/#more" onclick="onclickRoute(event, '/wiki/6179c970/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-平台工具 | 工程架构和工具/[3]计算机基础/编程语言/Scala/Scala入门" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">[3]计算机基础</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Scala/">Scala</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2018/12/" onclick="onclickRoute(event, '/archives/2018/12/')">
+            <time datetime="2018-12-02T03:55:57.000Z" itemprop="datePublished">2018-12-02</time>
+        </a>
+    </div>
+
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/ba928b52/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/ba928b52/" onclick="onclickRoute(event, '/wiki/ba928b52/')">Scala学习</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p></p><p>有了java,为什么要用scala.想学scala.</p>
+<p>先了解下它有什么比java更优秀的地方.</p>
+<p>Scala是2001年诞生的一门多范式语言 .设计初衷是要集成面向对象编程和函数式编程的各种特性</p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="http://www.runoob.com/scala/scala-intro.html">Scala 特性</a></p>
+<ul>
+<p>
+                
+            
+        
+        
+            </p></ul></div> 
+            <div class="article-more-link">
+                <a href="/wiki/ba928b52/#more" onclick="onclickRoute(event, '/wiki/ba928b52/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-平台工具 | 工程架构和工具/[3]计算机基础/编程语言/Scala/使用maven构建scala项目" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">[3]计算机基础</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Scala/">Scala</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2018/12/" onclick="onclickRoute(event, '/archives/2018/12/')">
+            <time datetime="2018-12-02T03:55:57.000Z" itemprop="datePublished">2018-12-02</time>
+        </a>
+    </div>
+
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/adda838d/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/adda838d/" onclick="onclickRoute(event, '/wiki/adda838d/')">Scala项目构建</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+            
+        
+        
+            <p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.scala-lang.org/tutorials/scala-with-maven.html">SCALA WITH MAVEN</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mvn archetype:generate</span><br><span class="line"></span><br><span class="line">输入 groupId等</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.scala-lang<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>scala-library<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.11.8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- This plugin compiles Scala files --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.alchim31.maven<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>scala-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">id</span>&gt;</span>scala-compile-first<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">phase</span>&gt;</span>process-resources<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>add-source<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">id</span>&gt;</span>scala-test-compile<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">phase</span>&gt;</span>process-test-resources<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>testCompile<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- This plugin compiles Java files --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">phase</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- This plugin adds all dependencies to JAR file during &#x27;package&#x27; command.</span></span><br><span class="line"><span class="comment">        Pay EXTRA attention to the &#x27;mainClass&#x27; tag.</span></span><br><span class="line"><span class="comment">        You have to set name of class with entry point to program (&#x27;main&#x27; method) --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-assembly-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">descriptorRefs</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">descriptorRef</span>&gt;</span>jar-with-dependencies<span class="tag">&lt;/<span class="name">descriptorRef</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">descriptorRefs</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">archive</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">manifest</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>ScalaRunner<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">archive</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">phase</span>&gt;</span>package<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>single<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.cnblogs.com/zhoudayang/p/5027307.html">scala和maven整合实践</a></p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-平台工具 | 工程架构和工具/[3]计算机基础/编程语言/Python/Python语法学习笔记" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">[3]计算机基础</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/">Python</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2018/12/" onclick="onclickRoute(event, '/archives/2018/12/')">
+            <time datetime="2018-12-02T03:55:57.000Z" itemprop="datePublished">2018-12-02</time>
+        </a>
+    </div>
+
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/e39e2a4e/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/e39e2a4e/" onclick="onclickRoute(event, '/wiki/e39e2a4e/')">Python学习</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p></p><h2 id="语言比较"><a href="#语言比较" class="headerlink" title="语言比较"></a>语言比较</h2><ul>
+<li>有非常完善的基础代码库</li>
+<li>定位:“优雅”、“明确”、“简单”</li>
+</ul>
+<blockquote>
+<p>
+                
+            
+        
+        
+            </p></blockquote></div> 
+            <div class="article-more-link">
+                <a href="/wiki/e39e2a4e/#more" onclick="onclickRoute(event, '/wiki/e39e2a4e/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-算法 | AI与机器学习/2|机器学习/其它资料/机器学习100天/2.KNN" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">2|机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%85%B6%E5%AE%83%E8%B5%84%E6%96%99/">其它资料</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%85%B6%E5%AE%83%E8%B5%84%E6%96%99/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0100%E5%A4%A9/">机器学习100天</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/TML/" rel="tag">TML</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2018/12/" onclick="onclickRoute(event, '/archives/2018/12/')">
+            <time datetime="2018-12-02T03:55:57.000Z" itemprop="datePublished">2018-12-02</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="TML">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/7c10b52f/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/7c10b52f/" onclick="onclickRoute(event, '/wiki/7c10b52f/')">KNN</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p></p><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>简单的说,K-近邻算法采用测量不同特征值之间的距离方法进行分类.</p>
+<p>工作原理: 存在一个样本数据集合, 也称作<strong>训练样本集</strong>, 并且样本集中的每个数据都存在标签(即我们知道样本集中每一数据与所属分类的对应关系),输入没有标签的新数据后.将新数据的每个特征与样本集中数据对应的特征进行比较,然后算法提取样本集中特征最相似数据(最近邻)的分类标签.</p>
+<p>特性: </p>
+<ul>
+<li>优点: 精度高,对异常值不敏感,无数据输入假设</li>
+<p>
+                
+            
+        
+        
+            </p></ul></div> 
+            <div class="article-more-link">
+                <a href="/wiki/7c10b52f/#more" onclick="onclickRoute(event, '/wiki/7c10b52f/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-数据 | 核心生产要素/[1]数据工程/03.处理与计算/[0]数据处理/技术文章/Start" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/">数据 | 核心生产要素</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/">[1]数据工程</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/">03.处理与计算</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">[0]数据处理</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2018/12/" onclick="onclickRoute(event, '/archives/2018/12/')">
+            <time datetime="2018-12-02T03:55:57.000Z" itemprop="datePublished">2018-12-02</time>
+        </a>
+    </div>
+
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/de08339/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/de08339/" onclick="onclickRoute(event, '/wiki/de08339/')">数据处理相关</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+            
+        
+        
+            <p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.iteblog.com/archives/1947.html">https://www.iteblog.com/archives/1947.html</a></p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="http://www.xuetimes.com/archives/2165">事件驱动编程、消息驱动编程、数据驱动编程</a> 不错的概念解释</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-数据 | 核心生产要素/[1]数据工程/03.处理与计算/[0]数据处理/DataStore/Kafka/Kakfa监控" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/">数据 | 核心生产要素</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/">[1]数据工程</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/">03.处理与计算</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">[0]数据处理</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/">DataStore</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Kafka/">Kafka</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2018/12/" onclick="onclickRoute(event, '/archives/2018/12/')">
+            <time datetime="2018-12-02T03:55:57.000Z" itemprop="datePublished">2018-12-02</time>
+        </a>
+    </div>
+
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/f2f4947b/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/f2f4947b/" onclick="onclickRoute(event, '/wiki/f2f4947b/')">Kafak监控</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+            
+        
+        
+            <h3 id="推荐的监控工具"><a href="#推荐的监控工具" class="headerlink" title="推荐的监控工具"></a>推荐的监控工具</h3><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/Morningstar/kafka-offset-monitor">kafka-offset-monitor</a></p>
+<h3 id="Python实现监控"><a href="#Python实现监控" class="headerlink" title="Python实现监控"></a>Python实现监控</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br></pre></td><td class="code"><pre><span class="line">topics = [<span class="string">&#x27;heimdallr-dev&#x27;</span>]</span><br><span class="line"><span class="comment"># 要监控的groupid</span></span><br><span class="line">monitor_group_ids = [<span class="string">&#x27;heimdallr&#x27;</span>]</span><br><span class="line"><span class="comment"># broker-list</span></span><br><span class="line">servers = <span class="string">&#x27;localhost:9092&#x27;</span></span><br><span class="line"><span class="comment"># 监控数据上报间隔 秒</span></span><br><span class="line">time_interval = <span class="number">10</span></span><br><span class="line"><span class="comment"># 历史全量数据上报间隔</span></span><br><span class="line">history_time_interval = <span class="number">5</span> * <span class="number">60</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> kafka.client <span class="keyword">import</span> KafkaClient</span><br><span class="line"><span class="keyword">from</span> kafka.protocol.commit <span class="keyword">import</span> OffsetFetchRequest_v1, OffsetFetchResponse_v1, OffsetFetchRequest_v0, \</span><br><span class="line">    OffsetFetchResponse_v0</span><br><span class="line"><span class="keyword">from</span> kafka.protocol.offset <span class="keyword">import</span> OffsetRequest_v0, OffsetResponse_v0</span><br><span class="line"></span><br><span class="line"><span class="comment">#from monitor_constants import *</span></span><br><span class="line"></span><br><span class="line">duration = <span class="number">0</span></span><br><span class="line">client = <span class="literal">None</span></span><br><span class="line">conn = <span class="literal">None</span></span><br><span class="line">partition_cache = &#123;&#125;</span><br><span class="line">brokers_cache = []</span><br><span class="line">kafka_type = [<span class="string">&#x27;heimdallr&#x27;</span>]</span><br><span class="line">zk_type = []</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_brokers</span>():</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> brokers_cache:</span><br><span class="line">        brokers = client.cluster.brokers()</span><br><span class="line">        <span class="keyword">if</span> brokers:</span><br><span class="line">            brokers_cache.extend([x.nodeId <span class="keyword">for</span> x <span class="keyword">in</span> brokers])</span><br><span class="line">    <span class="keyword">return</span> brokers_cache</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_partitions</span>(<span class="params">topic</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> partition_cache <span class="keyword">or</span> topic <span class="keyword">not</span> <span class="keyword">in</span> partition_cache:</span><br><span class="line">        partitions = client.cluster.available_partitions_for_topic(topic)</span><br><span class="line">        <span class="keyword">if</span> partitions:</span><br><span class="line">            partition_cache[topic] = [x <span class="keyword">for</span> x <span class="keyword">in</span> partitions]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">    <span class="keyword">return</span> partition_cache[topic]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_logsize</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        获取topic 下每个partition的logsize(各个broker的累加)</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    tp = &#123;&#125;  <span class="comment"># topic : partition_dict</span></span><br><span class="line">    brokers = get_brokers()</span><br><span class="line">    <span class="keyword">for</span> topic <span class="keyword">in</span> topics:</span><br><span class="line">        partitions = get_partitions(topic)</span><br><span class="line">        pl = &#123;&#125;  <span class="comment"># partition : logsize</span></span><br><span class="line">        <span class="keyword">for</span> broker <span class="keyword">in</span> brokers:</span><br><span class="line">            <span class="comment"># 这里取笛卡尔积可能有问题,但是不影响parse中解析了</span></span><br><span class="line">            <span class="keyword">for</span> partition <span class="keyword">in</span> partitions:</span><br><span class="line">                client.send(broker, OffsetRequest_v0(replica_id=-<span class="number">1</span>, topics=[(topic, [(partition, -<span class="number">1</span>, <span class="number">1</span>)])]))</span><br><span class="line">                responses = client.poll()</span><br><span class="line">                pdict = parse_logsize(topic, partition, responses)</span><br><span class="line">                append(pl, pdict)</span><br><span class="line">        tp[topic] = pl</span><br><span class="line">    <span class="keyword">return</span> tp</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">append</span>(<span class="params">rdict, pdict</span>):</span><br><span class="line">    <span class="keyword">if</span> rdict:</span><br><span class="line">        <span class="comment"># 已经有记录,累加</span></span><br><span class="line">        <span class="keyword">for</span> k, v <span class="keyword">in</span> pdict.items():</span><br><span class="line">            <span class="keyword">if</span> k <span class="keyword">in</span> rdict:</span><br><span class="line">                rdict[k] = rdict[k] + v</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                rdict[k] = v</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        rdict.update(pdict)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">parse_logsize</span>(<span class="params">t, p, responses</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        单个broker中单个partition的logsize</span></span><br><span class="line"><span class="string">    :param responses:</span></span><br><span class="line"><span class="string">    :param p:</span></span><br><span class="line"><span class="string">    :param t:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> response <span class="keyword">in</span> responses:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(response, OffsetResponse_v0):</span><br><span class="line">            <span class="keyword">return</span> &#123;&#125;</span><br><span class="line">        tps = response.topics</span><br><span class="line">        topic = tps[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">        partition_list = tps[<span class="number">0</span>][<span class="number">1</span>]</span><br><span class="line">        partition = partition_list[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 异步poll来的数据可能不准</span></span><br><span class="line">        <span class="keyword">if</span> topic == t <span class="keyword">and</span> partition == p <span class="keyword">and</span> partition_list[<span class="number">0</span>][<span class="number">1</span>] == <span class="number">0</span>:</span><br><span class="line">            logsize_list = partition_list[<span class="number">0</span>][<span class="number">2</span>]</span><br><span class="line">            logsize = logsize_list[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">return</span> &#123;partition: logsize&#125;</span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">parse_offsets</span>(<span class="params">t, responses</span>):</span><br><span class="line">    dr = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> response <span class="keyword">in</span> responses:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(response, (OffsetFetchResponse_v1, OffsetFetchResponse_v0)):</span><br><span class="line">            <span class="keyword">return</span> &#123;&#125;</span><br><span class="line">        tps = response.topics</span><br><span class="line">        topic = tps[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">        partition_list = tps[<span class="number">0</span>][<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> topic == t:</span><br><span class="line">            <span class="keyword">for</span> partition_tunple <span class="keyword">in</span> partition_list:</span><br><span class="line">                <span class="keyword">if</span> partition_tunple[<span class="number">3</span>] == <span class="number">0</span>:</span><br><span class="line">                    offset = partition_tunple[<span class="number">1</span>]</span><br><span class="line">                    dr[partition_tunple[<span class="number">0</span>]] = offset</span><br><span class="line">    <span class="keyword">return</span> dr</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_offsets</span>():</span><br><span class="line">    <span class="comment"># &#123;gid: dict&#125;</span></span><br><span class="line">    gd = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> gid <span class="keyword">in</span> monitor_group_ids:</span><br><span class="line">        td = &#123;&#125;  <span class="comment"># &#123;topic:dict&#125;</span></span><br><span class="line">        <span class="keyword">for</span> topic <span class="keyword">in</span> topics:</span><br><span class="line">            pd = &#123;&#125;  <span class="comment"># &#123;partition:dict&#125;</span></span><br><span class="line">            <span class="keyword">for</span> broker <span class="keyword">in</span> get_brokers():</span><br><span class="line">                partitions = get_partitions(topic)</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> partitions:</span><br><span class="line">                    <span class="keyword">return</span> &#123;&#125;</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    responses = optionnal_send(broker, gid, topic, partitions)</span><br><span class="line">                    dr = parse_offsets(topic, responses)</span><br><span class="line">                    append(pd, dr)</span><br><span class="line">            td[topic] = pd</span><br><span class="line">        gd[gid] = td</span><br><span class="line">    <span class="keyword">return</span> gd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">optionnal_send</span>(<span class="params">broker, gid, topic, partitions</span>):</span><br><span class="line">    <span class="keyword">if</span> gid <span class="keyword">in</span> kafka_type:</span><br><span class="line">        <span class="keyword">return</span> kafka_send(broker, gid, topic, partitions)</span><br><span class="line">    <span class="keyword">elif</span> gid <span class="keyword">in</span> zk_type:</span><br><span class="line">        <span class="keyword">return</span> zk_send(broker, gid, topic, partitions)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        responses = zk_send(broker, gid, topic, partitions)</span><br><span class="line">        dct = parse_offsets(topic, responses)</span><br><span class="line">        <span class="keyword">if</span> is_suitable(dct):</span><br><span class="line">            zk_type.append(gid)</span><br><span class="line">            <span class="keyword">return</span> responses</span><br><span class="line">        responses = kafka_send(broker, gid, topic, partitions)</span><br><span class="line">        dct = parse_offsets(topic, responses)</span><br><span class="line">        <span class="keyword">if</span> is_suitable(dct):</span><br><span class="line">            kafka_type.append(gid)</span><br><span class="line">        <span class="keyword">return</span> responses</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">is_suitable</span>(<span class="params">dct</span>):</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> dct.values():</span><br><span class="line">        <span class="keyword">if</span> x != -<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">kafka_send</span>(<span class="params">broker, gid, topic, partitions</span>):</span><br><span class="line">    client.send(broker, OffsetFetchRequest_v1(consumer_group=gid, topics=[(topic, partitions)]))</span><br><span class="line">    <span class="keyword">return</span> client.poll()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">zk_send</span>(<span class="params">broker, gid, topic, partitions</span>):</span><br><span class="line">    client.send(broker, OffsetFetchRequest_v0(consumer_group=gid, topics=[(topic, partitions)]))</span><br><span class="line">    <span class="keyword">return</span> client.poll()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">do_task</span>():</span><br><span class="line">    offset_dict = get_offsets()</span><br><span class="line">    <span class="comment">#print (offset_dict)</span></span><br><span class="line">    logsize_dict = get_logsize()</span><br><span class="line">    <span class="comment">#print (logsize_dict)</span></span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;----------kafka monitor, info:-------------&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> gk, gv <span class="keyword">in</span> offset_dict.items():</span><br><span class="line">        <span class="keyword">for</span> tk, tv <span class="keyword">in</span> gv.items():</span><br><span class="line">            <span class="keyword">for</span> pk, pv <span class="keyword">in</span> tv.items():</span><br><span class="line">                <span class="keyword">if</span> logsize_dict <span class="keyword">and</span> tk <span class="keyword">in</span> logsize_dict:</span><br><span class="line">                    dr = logsize_dict[tk]  <span class="comment"># partition:logsize</span></span><br><span class="line">                    <span class="keyword">if</span> dr <span class="keyword">and</span> pk <span class="keyword">in</span> dr:</span><br><span class="line">                        param = (gk, tk, pk, pv, dr[pk],</span><br><span class="line">                                 time.strftime(<span class="string">&#x27;%Y-%m-%d %H:%M:%S&#x27;</span>, time.localtime(time.time())))</span><br><span class="line">                        <span class="built_in">print</span>(param)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    client = KafkaClient(bootstrap_servers=servers, request_timeout_ms=<span class="number">3000</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        do_task()</span><br><span class="line">        time.sleep(time_interval)</span><br><span class="line">        duration += time_interval</span><br></pre></td></tr></table></figure>
+<p>参考:<a target="_blank" rel="external nofollow noopener noreferrer" href="https://my.oschina.net/ktlb/blog/863308">https://my.oschina.net/ktlb/blog/863308</a></p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        <nav id="page-nav">
+        <a class="extend prev" rel="prev" href="/list/page/54/">« Prev</a><a class="page-number" href="/list/">1</a><span class="space">&hellip;</span><a class="page-number" href="/list/page/53/">53</a><a class="page-number" href="/list/page/54/">54</a><span class="page-number current">55</span><a class="page-number" href="/list/page/56/">56</a><a class="page-number" href="/list/page/57/">57</a><span class="space">&hellip;</span><a class="page-number" href="/list/page/59/">59</a><a class="extend next" rel="next" href="/list/page/56/">Next »</a>
+        </nav>
+    
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

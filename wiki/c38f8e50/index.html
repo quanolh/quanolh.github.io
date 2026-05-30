@@ -1,0 +1,505 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>1.特征工程方案 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="特征工程">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.特征工程方案">
+<meta property="og:url" content="https://waisec.cn/wiki/c38f8e50/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-18T16:48:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.153Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="特征工程">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "1.特征工程方案",
+    "url": "https://waisec.cn/wiki/c38f8e50/",
+    "datePublished": "2024-03-18T16:48:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.153Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "特征工程"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/6|算法工程/[2]特征工程/001.特征工程方案" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B"><span class="toc-text">1. 特征工程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E5%AE%9A%E4%B9%89"><span class="toc-text">1.1 定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E7%9B%AE%E7%9A%84"><span class="toc-text">1.2 目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E7%89%B9%E5%BE%81%E5%A4%84%E7%90%86%E3%80%81%E7%89%B9%E5%BE%81%E8%AE%A1%E7%AE%97"><span class="toc-text">1.3 特征处理、特征计算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1-%E7%89%B9%E5%BE%81%E5%A4%84%E7%90%86"><span class="toc-text">1.3.1 特征处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2-%E7%89%B9%E5%BE%81%E8%AE%A1%E7%AE%97"><span class="toc-text">1.3.2 特征计算</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%E6%96%B9%E6%A1%88"><span class="toc-text">2. 特征工程方案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%EF%BC%88Feature-Extraction%EF%BC%89"><span class="toc-text">2.1 特征提取（Feature Extraction）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E7%89%B9%E5%BE%81%E6%9E%84%E9%80%A0%EF%BC%88Feature-Construction%EF%BC%89"><span class="toc-text">2.2 特征构造（Feature Construction）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%EF%BC%88Feature-Selection%EF%BC%89"><span class="toc-text">2.3 特征选择（Feature Selection）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E7%89%B9%E5%BE%81%E5%8F%98%E6%8D%A2%EF%BC%88Feature-Transformation%EF%BC%89"><span class="toc-text">2.4 特征变换（Feature Transformation）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-%E7%B1%BB%E5%88%AB%E7%89%B9%E5%BE%81%E5%A4%84%E7%90%86%EF%BC%88Categorical-Feature-Processing%EF%BC%89"><span class="toc-text">2.5 类别特征处理（Categorical Feature Processing）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-%E7%BC%BA%E5%A4%B1%E5%80%BC%E5%A4%84%E7%90%86%EF%BC%88Handling-Missing-Values%EF%BC%89"><span class="toc-text">2.6 缺失值处理（Handling Missing Values）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-7-%E5%BC%82%E5%B8%B8%E5%80%BC%E5%A4%84%E7%90%86%EF%BC%88Handling-Outliers%EF%BC%89"><span class="toc-text">2.7 异常值处理（Handling Outliers）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-8-%E6%95%B0%E6%8D%AE%E5%90%88%E6%88%90%EF%BC%88Data-Synthesis%EF%BC%89"><span class="toc-text">2.8 数据合成（Data Synthesis）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-9-%E9%A2%86%E5%9F%9F%E7%89%B9%E5%AE%9A%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%EF%BC%88Domain-Specific-Feature-Engineering%EF%BC%89"><span class="toc-text">2.9 领域特定特征工程（Domain-Specific Feature Engineering）</span></a></li></ol></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/6-%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/">6|算法工程</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/6-%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/2-%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/">[2]特征工程</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/" rel="tag">特征工程</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/03/" onclick="onclickRoute(event, '/archives/2024/03/')">
+            <time datetime="2024-03-18T16:48:57.000Z" itemprop="datePublished">2024-03-19</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="特征工程">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/c38f8e50/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            特征工程方案
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <h1 id="1-特征工程"><a href="#1-特征工程" class="headerlink" title="1. 特征工程"></a>1. 特征工程</h1><h2 id="1-1-定义"><a href="#1-1-定义" class="headerlink" title="1.1 定义"></a>1.1 定义</h2><p>从原始数据中提取、构造和选择特征的过程。 主要包括以下活动：</p>
+<ul>
+<li>特征提取(Feature Extraction)： 从原始数据中提取有用的信息。</li>
+<li>特征构造(Feature Construction)：根据现有数据创建 新的特征（如 组合特征、交叉特征）</li>
+<li>特征选择(Feature Selection)：选择对模型有显著影响的特征，去除冗余或无关的特征。</li>
+<li>特征变换(Feature Transformation)：将特征转换为模型更易处理的形式（如使用主成分分析(PCA)来降维）</li>
+</ul>
+<h2 id="1-2-目的"><a href="#1-2-目的" class="headerlink" title="1.2 目的"></a>1.2 目的</h2><p>创造出对机器学习模型有用的特征，能够有效地捕捉数据中的信息和模式。</p>
+<h2 id="1-3-特征处理、特征计算"><a href="#1-3-特征处理、特征计算" class="headerlink" title="1.3 特征处理、特征计算"></a>1.3 特征处理、特征计算</h2><h3 id="1-3-1-特征处理"><a href="#1-3-1-特征处理" class="headerlink" title="1.3.1 特征处理"></a>1.3.1 特征处理</h3><p>指 对特征数据进行预处理和转换的过程。通常包括（清洗、标准化、归一化等操作）</p>
+<p>其目的是使特征数据符合模型的要求， 提升模型性能。</p>
+<p>（特征处理）  是特征工程中一个具体步骤。 主要关注数据的 清晰和预处理。 </p>
+<p>主要的活动包括： 缺失值处理（填补或处理缺失值数据，如使用均值填补）， 数据标准化和归一化（调整数据尺度，使得不同特征具有相似的尺度，例如：将数据缩放到0到1之间）， 数据编码（将分类特征转换为数据值特征，例如：独热编码），异常值处理（检测并处理数据中的异常值，如截断或调整异常值）。</p>
+<h3 id="1-3-2-特征计算"><a href="#1-3-2-特征计算" class="headerlink" title="1.3.2 特征计算"></a>1.3.2 特征计算</h3><p>根据现有数据计算特征值的过程。这通常包括对数据进行数学运算、统计计算或其他变换，以生成新的特征或调整现有特征。</p>
+<p>（特征计算）  是特征工程的一部分， 专注于通过 数学运算或统计 方法生成或 调整特征。<br>特征计算可能在 特征构造和特征变换 阶段进行，是生成有用特征的关键操作之一。</p>
+<p>总结<br>特征工程 是整个数据预处理和特征生成的过程，包括特征提取、构造、选择和变换。<br>特征处理 是特征工程中的具体步骤，处理数据质量问题，确保特征在模型训练前符合要求。<br>特征计算 是特征工程中的一个关键操作，通过数学和统计方法计算和生成特征，以支持特征提取和构造。</p>
+<h1 id="2-特征工程方案"><a href="#2-特征工程方案" class="headerlink" title="2. 特征工程方案"></a>2. 特征工程方案</h1><p>特征工程方案（Feature Engineering Approaches）指的是在数据科学和机器学习项目中，用于生成、选择和优化特征的各种方法和策略。这些方案通常根据具体任务、数据类型和模型需求来设计。以下是一些常见的特征工程方案和方法：</p>
+<h2 id="2-1-特征提取（Feature-Extraction）"><a href="#2-1-特征提取（Feature-Extraction）" class="headerlink" title="2.1 特征提取（Feature Extraction）"></a>2.1 特征提取（Feature Extraction）</h2><p>从原始数据中提取特征：<br>时间特征提取：从时间戳数据中提取日期、时间、星期几、季度等特征。<br>文本特征提取：从文本数据中提取词频、TF-IDF（词频-逆文档频率）、主题模型特征（如LDA）、词嵌入（如Word2Vec、BERT）等。<br>图像特征提取：使用卷积神经网络（CNN）提取图像的特征，如边缘、纹理、形状等。</p>
+<h2 id="2-2-特征构造（Feature-Construction）"><a href="#2-2-特征构造（Feature-Construction）" class="headerlink" title="2.2 特征构造（Feature Construction）"></a>2.2 特征构造（Feature Construction）</h2><p>创建新的特征：<br>数学运算：对现有特征进行数学运算，如加法、乘法、平方根等。例如，创建“总消费金额”特征，作为“每次消费金额”与“消费次数”的乘积。<br>特征组合：组合多个特征生成新特征，如两个特征的交互项（特征A × 特征B）。<br>衍生特征：基于现有特征衍生新的特征，如通过对数变换、平方变换等。</p>
+<h2 id="2-3-特征选择（Feature-Selection）"><a href="#2-3-特征选择（Feature-Selection）" class="headerlink" title="2.3 特征选择（Feature Selection）"></a>2.3 特征选择（Feature Selection）</h2><p>选择对模型最有帮助的特征：<br>过滤法（Filter Methods）：使用统计方法（如卡方检验、相关系数）评估特征的重要性，并选择显著特征。<br>包裹法（Wrapper Methods）：使用机器学习模型进行特征选择（如递归特征消除，RFE），通过模型性能评估特征的重要性。<br>嵌入法（Embedded Methods）：特征选择与模型训练同时进行（如LASSO回归，决策树的重要性评分）。</p>
+<h2 id="2-4-特征变换（Feature-Transformation）"><a href="#2-4-特征变换（Feature-Transformation）" class="headerlink" title="2.4 特征变换（Feature Transformation）"></a>2.4 特征变换（Feature Transformation）</h2><p>对特征进行变换以优化模型性能：<br>标准化（Standardization）：将特征调整为均值为0、方差为1的标准正态分布。<br>归一化（Normalization）：将特征缩放到一个特定的范围（如0到1）。<br>主成分分析（PCA）：通过线性变换将特征投影到主成分上，进行降维。<br>线性判别分析（LDA）：进行特征降维，强调类别分离。</p>
+<h2 id="2-5-类别特征处理（Categorical-Feature-Processing）"><a href="#2-5-类别特征处理（Categorical-Feature-Processing）" class="headerlink" title="2.5 类别特征处理（Categorical Feature Processing）"></a>2.5 类别特征处理（Categorical Feature Processing）</h2><p>将类别特征转换为数值特征：<br>独热编码（One-Hot Encoding）：将类别特征转化为二进制向量。<br>标签编码（Label Encoding）：将类别特征转化为整数。<br>目标编码（Target Encoding）：根据目标变量的均值对类别特征进行编码。</p>
+<h2 id="2-6-缺失值处理（Handling-Missing-Values）"><a href="#2-6-缺失值处理（Handling-Missing-Values）" class="headerlink" title="2.6 缺失值处理（Handling Missing Values）"></a>2.6 缺失值处理（Handling Missing Values）</h2><p>处理缺失数据以提高数据质量：<br>填补缺失值：使用均值、中位数、众数、插值法等方法填补缺失数据。<br>删除缺失值：删除包含缺失值的记录或特征（适用于缺失值比例较小的情况）。</p>
+<h2 id="2-7-异常值处理（Handling-Outliers）"><a href="#2-7-异常值处理（Handling-Outliers）" class="headerlink" title="2.7 异常值处理（Handling Outliers）"></a>2.7 异常值处理（Handling Outliers）</h2><p>识别和处理异常值：<br>截断异常值：将异常值限制在一定范围内。<br>变换数据：使用对数变换或其他数学变换减少异常值的影响。<br>检测方法：使用统计方法（如Z-score、IQR）或模型方法（如孤立森林）检测异常值。</p>
+<h2 id="2-8-数据合成（Data-Synthesis）"><a href="#2-8-数据合成（Data-Synthesis）" class="headerlink" title="2.8 数据合成（Data Synthesis）"></a>2.8 数据合成（Data Synthesis）</h2><p>创建额外的数据以增强训练集：<br>数据增强（Data Augmentation）：在图像数据中通过旋转、缩放、翻转等操作增强数据集。<br>合成少数类样本：使用SMOTE（Synthetic Minority Over-sampling Technique）等方法生成新的少数类样本以平衡类别分布。</p>
+<h2 id="2-9-领域特定特征工程（Domain-Specific-Feature-Engineering）"><a href="#2-9-领域特定特征工程（Domain-Specific-Feature-Engineering）" class="headerlink" title="2.9 领域特定特征工程（Domain-Specific Feature Engineering）"></a>2.9 领域特定特征工程（Domain-Specific Feature Engineering）</h2><p>根据特定领域知识设计特征：<br>金融领域：创建“交易频率”、“账户余额波动”等特征。<br>医疗领域：从医疗记录中提取“病史”、“体征指标”等特征。<br>电商领域：提取“用户购物习惯”、“产品评分”等特征。</p>
+<p>特征工程方案的选择和实施应根据数据类型、问题需求和模型要求来决定。特征工程是一个迭代的过程，需要不断实验和调整，以生成最能提升模型性能的特征。通过有效的特征工程，可以显著提高模型的预测能力和泛化性能。</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/d1e15ecd/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/d1e15ecd/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    2.机器学习网络流量识别的应用
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/751ad76f/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/751ad76f/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">1.模型压缩与加速</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

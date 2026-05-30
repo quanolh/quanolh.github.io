@@ -1,0 +1,411 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>003.Netty线程模型和其他WebServer的比较 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="Netty">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="003.Netty线程模型和其他WebServer的比较">
+<meta property="og:url" content="https://waisec.cn/wiki/7961baa4/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-08T17:13:34.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.111Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="Netty">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "003.Netty线程模型和其他WebServer的比较",
+    "url": "https://waisec.cn/wiki/7961baa4/",
+    "datePublished": "2022-03-08T17:13:34.000Z",
+    "dateModified": "2026-04-23T14:13:12.111Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "Netty"
+    
+}
+</script>
+
+<article id="post-平台工具 | 工程架构和工具/MicroService/技术框架/Netty/004.Netty线程模型和其他WebServer的比较" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/">MicroService</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/">技术框架</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/">Netty</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Netty/" rel="tag">Netty</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2022/03/" onclick="onclickRoute(event, '/archives/2022/03/')">
+            <time datetime="2022-03-08T17:13:34.000Z" itemprop="datePublished">2022-03-09</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="Netty">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/7961baa4/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            Netty线程模型和其他WebServer的比较
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p>大家都知晓的是 Netty比其他Server相对性能好，可定制化高. 那具体区别在哪里。</p>
+<p>详细探讨下,上一篇详细讲了Netty的线程模型.</p>
+<h2 id="一、Netty线程模型"><a href="#一、Netty线程模型" class="headerlink" title="一、Netty线程模型."></a>一、Netty线程模型.</h2><p>一个boss线程、32(核数2倍)个work线程.</p>
+<p>下面看看其他WebSever的线程模型.</p>
+<h2 id="二、webmvc"><a href="#二、webmvc" class="headerlink" title="二、webmvc"></a>二、webmvc</h2><p>常见的 spring-webmvc.  (用于 后端API、graphqlServer)</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-tomcat线程"><a href="#1-tomcat线程" class="headerlink" title="1. tomcat线程"></a>1. tomcat线程</h3><p>NioEndpoint组件. Tomcat的NioEndpoint实现了I/O多路复用模型。</p>
+<ul>
+<li>创建一个Selector, 在其上注册 事件，等待感兴趣的事件发生.</li>
+<li>发生后（比如可读），就创建一个新的线程从Channel读数据.</li>
+</ul>
+<p>NioEndpoint包含LimitLatch、Acceptor、Poller、SocketProcessor和Executor共5个组件。</p>
+<h4 id="LimitLatch"><a href="#LimitLatch" class="headerlink" title="LimitLatch"></a>LimitLatch</h4><p>连接控制器，控制最大连接数，NIO模式下默认8192.</p>
+<h4 id="Acceptor"><a href="#Acceptor" class="headerlink" title="Acceptor"></a>Acceptor</h4><p>Acceptor实现了Runnable接口，因此可以跑在单独线程里，在死循环里调用accept接受新连接，<br>一旦有新连接请求到达，accept方法返回一个Channel对象，接着把Channel对象交给Poller去处理.</p>
+<h4 id="Poller"><a href="#Poller" class="headerlink" title="Poller"></a>Poller</h4><p>本质上是一个Selector,跑在单独线程里。</p>
+<p>Poller在内部维护一个Channel数组，它在一个死循环里不断检测Channel的数据就绪状态，一旦有Channel可读，就生成一个SocketProcessor任务对象扔给Executor去处理。</p>
+<h4 id="Tomcat的高并发设计"><a href="#Tomcat的高并发设计" class="headerlink" title="Tomcat的高并发设计"></a>Tomcat的高并发设计</h4><p>NioEndpoint完成的三件事： 接受连接、检测IO事件和处理请求，关键是把这三件事情分布定制线程数处理：</p>
+<ul>
+<li>专门的线程组去跑Acceptor，并且Acceptor的个数可以配置</li>
+<li>专门的线程组去跑Poller，Poller的个数也可以配置</li>
+<li>具体任务的执行也由专门的线程池来处理，也可以配置线程池的大小</li>
+</ul>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://zhuanlan.zhihu.com/p/393390855">Tomcat线程模型—全网最清晰的讲解</a></p>
+<h3 id="2-实际线程情况"><a href="#2-实际线程情况" class="headerlink" title="2. 实际线程情况"></a>2. 实际线程情况</h3><p>下面是实际的线程情况：</p>
+<p>Catalina-utility(2个)[TIMED_WAITING][ at sun.misc.Unsafe.park(Native Method)]<br>container-0(1个)[TIMED_WAITING][at java.lang.Thread.sleep(Native Method)]<br>Live Reload Server(1)[RUNNABLE][at java.net.PlainSocketImpl.socketAccept(Native Method)]<br>http-nio-8869-BlockPoller(1)[RUNNABLE][at sun.nio.ch.EPollArrayWrapper.epollWait(Native Method)]<br>http-nio-8869-ClientPoller(1)[RUNNABLE][at sun.nio.ch.EPollArrayWrapper.epollWait(Native Method)]<br>http-nio-8869-Acceptor(1)[RUNNABLE][at sun.nio.ch.ServerSocketChannelImpl.accept0(Native Method)]<br>http-nio-8869-exec-213(10)[WAITING][at sun.misc.Unsafe.park(Native Method)]</p>
+<p>解释：</p>
+<h3 id="3-tomcat线程和netty线程对比【重点】"><a href="#3-tomcat线程和netty线程对比【重点】" class="headerlink" title="3. tomcat线程和netty线程对比【重点】"></a>3. tomcat线程和netty线程对比【重点】</h3><h2 id="三、webflux"><a href="#三、webflux" class="headerlink" title="三、webflux"></a>三、webflux</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webflux<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="四、dubbo"><a href="#四、dubbo" class="headerlink" title="四、dubbo"></a>四、dubbo</h2><h2 id="五、thrift"><a href="#五、thrift" class="headerlink" title="五、thrift"></a>五、thrift</h2>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/b4375f89/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/b4375f89/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    003.Netty线程模型
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/5f251a23/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/5f251a23/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">向量点乘与叉乘的概念及几何意义</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

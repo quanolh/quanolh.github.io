@@ -1,0 +1,661 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>1.CNN | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="CNN,深度学习">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.CNN">
+<meta property="og:url" content="https://waisec.cn/wiki/97cc83a3/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-27T14:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.150Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="CNN">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "1.CNN",
+    "url": "https://waisec.cn/wiki/97cc83a3/",
+    "datePublished": "2024-01-27T14:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.150Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "CNN,深度学习"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/3|深度学习/002.常见算法/001.CNN" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D"><span class="toc-text">一、概念介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E5%8D%B7%E7%A7%AF%E7%9A%84%E6%95%B0%E5%AD%A6%E6%84%8F%E4%B9%89"><span class="toc-text">1.1 卷积的数学意义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1-%E5%AE%9A%E4%B9%89%E5%92%8C%E5%85%AC%E5%BC%8F"><span class="toc-text">1.1.1 定义和公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-%E6%84%8F%E4%B9%89"><span class="toc-text">1.1.2 意义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3-%E4%B8%BE%E4%BE%8B"><span class="toc-text">1.1.3 举例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-CNN%E4%B8%AD%E7%9A%84%E5%8D%B7%E7%A7%AF%E6%A6%82%E5%BF%B5"><span class="toc-text">2.CNN中的卷积概念</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-CNN"><span class="toc-text">二、卷积神经网络-CNN</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-CNN%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">2.1 CNN的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-CNN%E7%9A%84%E7%94%B1%E6%9D%A5"><span class="toc-text">2.2 CNN的由来</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-CNN%E7%9A%84%E4%BB%8B%E7%BB%8D-%E9%87%8D%E7%82%B9"><span class="toc-text">2.3 CNN的介绍(重点)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%B7%E7%A7%AF%E5%B1%82%EF%BC%88Convolutional-Layer%EF%BC%89"><span class="toc-text">卷积层（Convolutional Layer）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%A0%E5%8C%96%E5%B1%82%EF%BC%88Pooling-Layer%EF%BC%89"><span class="toc-text">池化层（Pooling Layer）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%EF%BC%88Activation-Function%EF%BC%89"><span class="toc-text">激活函数（Activation Function）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82%EF%BC%88Fully-Connected-Layer%EF%BC%89"><span class="toc-text">全连接层（Fully Connected Layer）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-CNN%E6%A8%A1%E5%9E%8B-LeNet-5"><span class="toc-text">2.4 CNN模型:LeNet-5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86"><span class="toc-text">2.5 图像处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-text">图像处理核心概念</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">3|深度学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/002-%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/">002.常见算法</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/CNN/" rel="tag">CNN</a>, <a class="tag-link-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/01/" onclick="onclickRoute(event, '/archives/2024/01/')">
+            <time datetime="2024-01-27T14:55:57.000Z" itemprop="datePublished">2024-01-27</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="CNN,深度学习">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/97cc83a3/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            CNN
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <h1 id="一、概念介绍"><a href="#一、概念介绍" class="headerlink" title="一、概念介绍"></a>一、概念介绍</h1><h2 id="1-1-卷积的数学意义"><a href="#1-1-卷积的数学意义" class="headerlink" title="1.1 卷积的数学意义"></a>1.1 卷积的数学意义</h2><p>卷积在数学中 是一种数学运算，是一种<strong><em>积分变换</em></strong>的数学方法；在两个函数之间产生第三个函数的一种运算.<br><span style="color: red;">所谓两个函数的卷积，本质上就是先将一个函数翻转，然后进行滑动叠加。</span></p>
+<p><span style="font-size: 12px;">“卷积的“卷”，指的的函数的翻转，从 g(t) 变成 g(-t) 的这个过程；卷积的“积”，指的是积分/加权求和.  ”</span></p>
+<h3 id="1-1-1-定义和公式"><a href="#1-1-1-定义和公式" class="headerlink" title="1.1.1 定义和公式"></a>1.1.1 定义和公式</h3><p>设：$f(t), g(t) $是R1上的两个可积函数，作积分：$ \int_{-\infty}^{\infty} f(\tau) \cdot g(t - \tau) \, d\tau $<br>随着t的不同取值，这个积分就定义了一个新函数，称为函数 f 与 g 的卷积，记为:  ℎ(t) = (f * g) (t)</p>
+<p><strong>卷积的公式</strong></p>
+<p><strong><em>a. 连续形式(连续时间卷积)</em></strong>：</p>
+<p>给定两个函数 f(t) 和 g(t)，它们的卷积 ℎ(t) 定义为：​</p>
+<p> $ (f \ast g)(t) = \int_{-\infty}^{\infty} f(\tau) \cdot g(t - \tau) \, d\tau $</p>
+<p>这里的积分表示对变量 $ \tau $ 的积分。</p>
+<p><strong><em>b. 离线形式(离散时间卷积)</em></strong>：<br>对于离散时间的情况，给定两个序列 f[n] 和 g[n]，它们的卷积 (f∗g)[n] 定义为：</p>
+<p> $ (f \ast g)[n] = \sum_{k=-\infty}^{\infty} f[k] \cdot g[n - k] $</p>
+<p>这里的求和表示对变量 k 的求和。</p>
+<blockquote>
+<p>解释：对函数 f ， g的卷积  (f∗g)(n) 的卷积，实际操作是：<br>先对g函数进行翻转，相当于在数轴上把g函数从右边褶到左边去，也就是卷积的“卷”的由来。<br>然后再把g函数平移到n，在这个位置对两个函数的对应点相乘，然后相加，这个过程是卷积的“积”的过程。</p>
+</blockquote>
+<p><span style="font-size: 12px;">在连续情况下，叠加指的是对两个函数的乘积求积分，在离散情况下就是加权求和，为简单起见就统一称为叠加。整体看来是这么个过程：<br>翻转——&gt;滑动——&gt;叠加——&gt;滑动——&gt;叠加——&gt;滑动——&gt;叠加…..多次滑动得到的一系列叠加值，构成了卷积函数。</span></p>
+<h3 id="1-1-2-意义"><a href="#1-1-2-意义" class="headerlink" title="1.1.2 意义"></a>1.1.2 意义</h3><p><span style="font-size: 12px;">以上是教科书上 对于卷积数学运算(一种积分变换) 给出的定义. 那究竟为什么这么设计，这么计算，背后的意义是什么？</span></p>
+<p>先看两个问题：1.卷积这个名词是怎么解释？“卷”是什么意思？“积”又是什么意思？2.卷积背后的意义是什么，该如何解释？</p>
+<p>卷积公式表示f和g在一个变量上加权平均，其中g经过翻转和平移后与f相乘，并在整个定义域上积分；在这个积分过程中， g(t-T)表示的是 g在t时刻的局部模式，而f(T)表示f在t时刻的局部贡献。</p>
+<p><span style="color: red;">本质意义：提供一种有效的方法 来描述和处理 2个函数（序列、信号）之间的交互效应。</span></p>
+<p><strong><em>卷积的定义和性质，使得它成为一种强大的工具，有助于理解和处理 具有复杂相互作用的系统；<br>卷积的<span style="color: red;">局部感知</span>和<span style="color: red;">权重共享</span>的特性，使得它能够感知输入信号的局部模式。</em></strong></p>
+<h3 id="1-1-3-举例"><a href="#1-1-3-举例" class="headerlink" title="1.1.3 举例"></a>1.1.3 举例</h3><p>两个函数的卷积 $ f(t) = e^{-t} ；g(t)=u(t)$</p>
+<p>其中，u(t) 是单位阶跃函数，表示在 t=0 处跃升为1。</p>
+<div id="f_plot" style="width: 70%; height: 200px;"></div>
+<div id="g_plot" style="width: 70%; height: 200px;"></div>
+<div id="convolution_plot" style="width: 70%; height: 200px;"></div>
+
+<script src="https://cdn.plot.ly/plotly-2.20.0.min.js"></script>
+
+<details>
+<summary>点击查看python绘制代码</summary>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">t</span>):</span><br><span class="line">    <span class="keyword">return</span> np.exp(-t)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">g</span>(<span class="params">t</span>):</span><br><span class="line">    <span class="keyword">return</span> np.piecewise(t, [t &lt; <span class="number">0</span>, t &gt;= <span class="number">0</span>], [<span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 连续时间范围</span></span><br><span class="line">t = np.linspace(-<span class="number">1</span>, <span class="number">5</span>, <span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算函数值</span></span><br><span class="line">ft = f(t)</span><br><span class="line">gt = g(t)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算卷积结果</span></span><br><span class="line">convolution_result = np.convolve(ft, gt, mode=<span class="string">&#x27;full&#x27;</span>) * (t[<span class="number">1</span>] - t[<span class="number">0</span>])  <span class="comment"># 使用 np.convolve 计算卷积</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘图</span></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>, <span class="number">6</span>))</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">3</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">plt.plot(t, ft, label=<span class="string">&#x27;$f(t) = e^&#123;-t&#125;$&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Function $f(t)$&#x27;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">plt.plot(t, gt, label=<span class="string">&#x27;$g(t) = u(t)$&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Function $g(t)$ (Unit Step)&#x27;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 仅绘制有效范围内的卷积结果</span></span><br><span class="line">plt.subplot(<span class="number">3</span>, <span class="number">1</span>, <span class="number">3</span>)</span><br><span class="line">plt.plot(t, convolution_result[:<span class="built_in">len</span>(t)], label=<span class="string">&#x27;$f * g$&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Convolution Result: $(f * g)(t) = 1 - e^&#123;-t&#125;$&#x27;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</details>
+
+<p>还有信号分析的例子：输入信号是 f(t) ，是随时间变化的。 系统响应函数是 g(t) 《比如：随时间指数下降的》。</p>
+<h2 id="2-CNN中的卷积概念"><a href="#2-CNN中的卷积概念" class="headerlink" title="2.CNN中的卷积概念"></a>2.CNN中的卷积概念</h2><p>以上，数学中的卷积，提供了一种方法来描述和处理2个函数(序列、信号)之间的交互效应。<br>因此 作为一种强大的工具，有助于理解和处理 复杂相互作用的系统。<br>并且 卷积具备的局部感知、权重共享的特性，使得它能够感知输入信号的局部模式。 </p>
+<p>基于以上理解 和意义，衍生到机器学习中，也利用卷积 局部感知、权重共享的特性，来学习和理解一些图像或者其它内容场景。</p>
+<p>衍生出的CNN，是一种包含卷积操作的 深度神经网络(或者说是一类深度学习神经网络).<br>专门用于处理和分析具有<span style="color: red;">网格状结构</span>的数据，CNN的设计灵感来自于生物学中对动物视觉系统的理解，通过卷积层和池化层等结构实现对图像特征的提取。</p>
+<p><span style="font-size: 12px;">tips:CNN中的卷积是一种操作，用来提取输入数据中的特征模式，比如图片中的边缘、角点或纹理</span></p>
+<h1 id="二、卷积神经网络-CNN"><a href="#二、卷积神经网络-CNN" class="headerlink" title="二、卷积神经网络-CNN"></a>二、卷积神经网络-CNN</h1><h2 id="2-1-CNN的定义"><a href="#2-1-CNN的定义" class="headerlink" title="2.1 CNN的定义"></a>2.1 CNN的定义</h2><p>一种包含卷积操作的 深度神经网络(或者说是一类深度学习神经网络).<br>CNN的主要特点包括： 卷积层、池化层、权重共享、多层网络结构、适用于图像处理任务.</p>
+<p><strong>核心思想</strong>： 通过使用卷积层（Convolutional Layer）和池化层（Pooling Layer）对输入数据进行<span style="color: red;">局部感知</span>和<span style="color: red;">共享权重</span>，从而实现对图像等结构化数据的特征提取和高效处理。</p>
+<p>CNN通常包含多个卷积层、池化层和全连接层。</p>
+<h2 id="2-2-CNN的由来"><a href="#2-2-CNN的由来" class="headerlink" title="2.2 CNN的由来"></a>2.2 CNN的由来</h2><p>CNN的发展历程是深度学习研究的一个关键里程碑.</p>
+<p>Yann LeCun等人于1998年提出的卷积神经网络结构，用于手写数字的识别。<strong>卷积层的出现在LeNet-5模型，用于手写数字识别</strong>。<br>LeNet-5是一个经典的卷积神经网络.包括 卷积层、池化层和全连接层。 其中卷积层和池化层的引入使其在<strong>处理图像数据上具有优势</strong>。</p>
+<p>深度学习的复兴： 2012年AlexNet的成功标志着深度学习的复兴。随后，研究者们陆续提出了一系列基于CNN的模型，包括VGG、GoogLeNet、ResNet等，这些模型在图像分类、目标检测、语义分割等领域取得了显著的成果。</p>
+<h2 id="2-3-CNN的介绍-重点"><a href="#2-3-CNN的介绍-重点" class="headerlink" title="2.3 CNN的介绍(重点)"></a>2.3 CNN的介绍(重点)</h2><h3 id="卷积层（Convolutional-Layer）"><a href="#卷积层（Convolutional-Layer）" class="headerlink" title="卷积层（Convolutional Layer）"></a>卷积层（Convolutional Layer）</h3><p>卷积层是CNN的核心组件，通过卷积操作从输入数据中提取局部特征。卷积操作使用卷积核（filter）在输入数据上滑动，计算局部区域的加权和。</p>
+<h3 id="池化层（Pooling-Layer）"><a href="#池化层（Pooling-Layer）" class="headerlink" title="池化层（Pooling Layer）"></a>池化层（Pooling Layer）</h3><p>池化层用于减小特征图的空间尺寸，降低计算复杂度，并增强模型对平移和旋转的不变性。常见的池化操作包括<strong>最大池化</strong>和<strong>平均池化</strong>。</p>
+<p>（1）最大池化<br>对于每个<strong>池化窗口</strong>（通常是2x2或3x3的小区域）中的值，选择其中的最大值作为池化后的值。这个过程可以通过以下公式表示：</p>
+<p>$ \text{Max Pooling}(x, i, j) = \max<em>{p,q} x</em>{(i \times \text{stride} + p),(j \times \text{stride} + q)} $</p>
+<p>（2）平均池化<br>对于每个池化窗口中的值，计算其平均值作为池化后的值。</p>
+<p>$ \text{Average Pooling}(x, i, j) = \frac{1}{\text{pool_size}} \sum<em>{p,q} x</em>{(i \times \text{stride} + p),(j \times \text{stride} + q)} $</p>
+<h3 id="激活函数（Activation-Function）"><a href="#激活函数（Activation-Function）" class="headerlink" title="激活函数（Activation Function）"></a>激活函数（Activation Function）</h3><p>在卷积层之后，通常会应用激活函数，如ReLU（Rectified Linear Unit），用于引入非线性特性，增强模型的表达能力。</p>
+<h3 id="全连接层（Fully-Connected-Layer）"><a href="#全连接层（Fully-Connected-Layer）" class="headerlink" title="全连接层（Fully Connected Layer）"></a>全连接层（Fully Connected Layer）</h3><p>通常会有全连接层用于<strong>将高级特征映射到输出类别</strong>。在图像分类任务中，全连接层用于输出各个类别的概率分布</p>
+<p>除了映射作用，还可以通过全连接<strong>引入非线性映射，增加模型的表达能力</strong>，使其能够适应更复杂的数据分布。</p>
+<h2 id="2-4-CNN模型-LeNet-5"><a href="#2-4-CNN模型-LeNet-5" class="headerlink" title="2.4 CNN模型:LeNet-5"></a>2.4 CNN模型:LeNet-5</h2><p>一种经典的 CNN架构模型，是CNN的重要里程碑。</p>
+<p>（1）三层卷积<br>出于对任务的需求、计算资源的考虑。（通过增加卷积层数，模型可以学习更多复杂的特征，但也会增加计算负担。）</p>
+<p>（2）激活函数<br>每一层都使用了 Sigmoid 激活函数。这是在网络设计初期常用的一种激活函数。</p>
+<p><strong>引入非线性性</strong>，允许网络学习更复杂的特征；<strong>捕捉输入数据的复杂关系</strong>。</p>
+<blockquote>
+<p>在当时的研究时期，Sigmoid 激活函数是常用的选择，但在后来的深度学习研究中，ReLU（Rectified Linear Unit）等激活函数逐渐成为更为流行的选择，因为它们在训练中具有更好的性能。</p>
+</blockquote>
+<h2 id="2-5-图像处理"><a href="#2-5-图像处理" class="headerlink" title="2.5 图像处理"></a>2.5 图像处理</h2><p>在图像处理中，卷积是<strong>一种常用的操作</strong>，用于处理图像的特征提取、滤波和边缘检测等任务. 理解图像处理中的卷积可以通过以下几个关键点：</p>
+<p><strong><em>局部特征提取、滤波操作、权重共享、下采样、卷积神经网络（CNN）</em></strong></p>
+<p>图像一般可以表示为矩阵形式。对图像的处理函数（如平滑，或者边缘提取），也可以用一个g矩阵来表示。</p>
+<p>我们在处理平面空间的问题，已经是二维函数了</p>
+<p>给定图像 I 和卷积核 K，卷积操作的结果图像 I_{\text{conv}} 的每个像素可以通过以下公式计算：</p>
+<p>$I<em>{\text{conv}}(x, y) = \sum</em>{i=0}^{h-1} \sum_{j=0}^{w-1} I(x - i, y - j) \cdot K(i, j)$</p>
+<p>其中：</p>
+<ul>
+<li>$ I_{\text{conv}}(x, y) $ 是卷积操作后得到的图像的像素值.</li>
+<li>I(x - i, y - j) 是原始图像的像素值，i 和 j 是卷积核的坐标.</li>
+<li>K(i,j) 是卷积核的权重.</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这个公式表示，在卷积操作中，卷积核在图像上滑动，每个位置都与图像的局部区域进行加权相乘并求和，得到卷积后的像素值。卷积核的选择和权重决定了卷积操作的具体效果，例如边缘检测、模糊等。</span><br><span class="line"></span><br><span class="line">需要注意的是，这是一个简化的二维卷积公式。在实际应用中，可能还涉及到通道（颜色通道）的处理，以及不同类型的卷积操作（如反卷积、分离卷积等）。</span><br></pre></td></tr></table></figure>
+<h3 id="图像处理核心概念"><a href="#图像处理核心概念" class="headerlink" title="图像处理核心概念"></a>图像处理核心概念</h3><p>上文介绍了CNN(卷积神经网络相关概念和实现)。那CNN实质是一种图像处理算法。 不管是CNN还是其他算法，在图像处理中，都涉及到一些核心概念和操作，如：局部特征提取、滤波操作、权重共享、下采样</p>
+<p>下面具体介绍下这些概念。</p>
+<p><strong>局部特征提取</strong>：从原始数据中提取有意义、具有代表性的信息的过程。比如卷积操作，从原始图像中提取为特征图(卷积的结果)。卷积操作常用于提取图像中的局部特征，例如边缘、纹理等。</p>
+<p><strong>滤波操作</strong>：通过卷积运算在信号或图像上应用滤波器的过程。滤波的目的是通过去除或增强信号中的特定频率成分，达到平滑、降噪、边缘检测等目的。<br>因此，滤波操作通常涉及卷积操作，可以看作卷积的一种应用。</p>
+<p>区别：滤波操作和特征提取在某种程度上有交叉，但它们的重点和目的略有不同。</p>
+<p>可以理解为：滤波操作指</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">滤波操作目的主要用于对信号或图像进行平滑、降噪、锐化等处理。</span><br><span class="line">特征提取目的主要从原始数据中提取具有代表性和有用信息的特征，以便更好地表示数据的本质。</span><br><span class="line">滤波操作有时也能起到特征提取的作用，但它们的设计和目标通常更倾向于信号处理的需求。相反，特征提取更注重从数据中提炼有意义的信息，使得后续的任务（如分类、检测）能够更好地利用这些信息。</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>todo: 滤波操作、卷积操作、特征提取 三者概念的关系和区别.</p>
+</blockquote>
+<ol>
+<li>滤波操作就是卷积操作，通过卷积实现 图像的平滑、降噪、锐化等处理</li>
+<li>卷积操作还可以用于特征提取</li>
+<li>滤波和特征提取是相关但不完全相同的概念。（相关在于都是通过卷积操作实现、都应用于信号或图像处理、都是属于对数据的局部感知）</li>
+</ol>
+<p>只是目的不同： 滤波的目标通常是改变输入数据的频谱特性，实现平滑、去噪等效果；而特征提取的目标是从输入数据中提取有用的信息，例如图像中的纹理、形状等。</p>
+<p>其他相关概念：填充、步长、通道数</p>
+<p>（1）填充（ Padding ）<br>指在输入数据的边缘添加一定数量的像素，使得输出数据的尺寸能够与输入数据相匹配。也就是在矩阵的边界上填充一些值，以增加矩阵的大小，通常用 0 或者复制边界像素来进行填充。<br>（2）步长（Stride）<br>是指卷积核在每一次卷积操作中滑动的距离。步长的大小可以影响输出数据的大小，也可以影响特征提取能力和计算复杂度。当步长增大时，输出数据的尺寸会减小，特征提取能力会变弱，但计算速度会加快。<br>（3）通道数（Channel）<br>也称为深度或特征图数量，是指卷积神经网络中每一层输出的特征图数量。通道数的大小直接影响了卷积神经网络的特征提取能力和计算复杂度。通过增加通道数，可以增强卷积神经网络的特征提取能力，但也会增加计算复杂度。</p>
+<p>多通道卷积.</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
+<li>学习的过程：系统架构，涉及的概念，每个<strong>概念的目的</strong>、关系。 这是一个学习的过程. </li>
+<li>其中相关概念的目的，可以通过追溯历史、重要里程碑去发现.</li>
+<li>还可以通过一些工具辅助加深理解，比如python实现具体的计算逻辑，展示具体的数学计算图形.</li>
+</ol>
+<p>资料：<br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.zhihu.com/question/22298352">如何通俗易懂地解释卷积</a><br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://zhuanlan.zhihu.com/p/616996325">卷积神经网络经典回顾之LeNet-5</a></p>
+<script>
+// 定义数据范围
+const t = Array.from({length: 1000}, (_, i) => -1 + i * (6 / 999)); // t from -1 to 5
+const dt = t[1] - t[0];
+
+// 定义 f(t) = e^(-t)
+const f = t.map(val => Math.exp(-val));
+
+// 定义 g(t) = u(t)
+const g = t.map(val => (val >= 0 ? 1 : 0));
+
+// 计算卷积 (f * g)(t)
+const convolution = [];
+for (let n = 0; n < t.length; n++) {
+    let sum = 0;
+    for (let k = 0; k <= n; k++) {
+        sum += (f[k] || 0) * (g[n - k] || 0) * dt;
+    }
+    convolution.push(sum);
+}
+
+// 通用布局设置
+const baseLayout = {
+    margin: {l: 40, r: 20, t: 30, b: 40}, // 减小图形四周间距
+    xaxis: {title: 't'},
+    yaxis: {title: ''},
+};
+
+// 添加 MathJax 支持的注释函数
+function addMathAnnotation(layout, x, y, text) {
+    layout.annotations = layout.annotations || [];
+    layout.annotations.push({
+        x: x,
+        y: y,
+        text: text,
+        xref: 'paper',
+        yref: 'paper',
+        xanchor: 'right',
+        yanchor: 'top',
+        showarrow: false,
+        font: {size: 14},
+    });
+}
+
+// Plot f(t)
+const fLayout = JSON.parse(JSON.stringify(baseLayout));
+fLayout.title = 'Function f(t)';
+fLayout.yaxis.title = 'f(t)';
+addMathAnnotation(fLayout, 0.95, 0.9, '$f(t) = e^{-t}$');
+
+Plotly.newPlot('f_plot', [{
+    x: t,
+    y: f,
+    mode: 'lines',
+    name: 'f(t) = e^{-t}'
+}], fLayout, {displayModeBar: false}); // 关闭工具栏
+
+// Plot g(t)
+const gLayout = JSON.parse(JSON.stringify(baseLayout));
+gLayout.title = 'Function g(t)';
+gLayout.yaxis.title = 'g(t)';
+addMathAnnotation(gLayout, 0.95, 0.9, '$g(t) = u(t)$');
+
+Plotly.newPlot('g_plot', [{
+    x: t,
+    y: g,
+    mode: 'lines',
+    name: 'g(t) = u(t)'
+}], gLayout, {displayModeBar: false}); // 关闭工具栏
+
+// Plot Convolution
+const convolutionLayout = JSON.parse(JSON.stringify(baseLayout));
+convolutionLayout.title = 'Convolution Result';
+convolutionLayout.yaxis.title = 'f * g(t)';
+addMathAnnotation(convolutionLayout, 0.95, 0.9, '$(f * g)(t) = 1 - e^{-t}$');
+
+Plotly.newPlot('convolution_plot', [{
+    x: t,
+    y: convolution,
+    mode: 'lines',
+    name: 'Convolution (f * g)(t)'
+}], convolutionLayout, {displayModeBar: false, staticPlot: true}); // 关闭工具栏
+</script>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/4779e906/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/4779e906/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    3.xgboost
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/1204b396/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/1204b396/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">2.Transformer</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

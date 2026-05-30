@@ -1,0 +1,660 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>1.分布式架构体系_专题-开篇介绍(架构概述) | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="Architecture">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.分布式架构体系_专题-开篇介绍(架构概述)">
+<meta property="og:url" content="https://waisec.cn/wiki/64922ed4/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-09T16:05:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.115Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="Architecture">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "1.分布式架构体系_专题-开篇介绍(架构概述)",
+    "url": "https://waisec.cn/wiki/64922ed4/",
+    "datePublished": "2024-09-09T16:05:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.115Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "Architecture"
+    
+}
+</script>
+
+<article id="post-平台工具 | 工程架构和工具/[2]架构设计/03.大型系统设计_专题/001.架构设计概述" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9"><span class="toc-text">1.主要特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96"><span class="toc-text">1.1 去中心化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2"><span class="toc-text">1.2 分布式部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1"><span class="toc-text">1.3 网络通信</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%9B%AE%E6%A0%87"><span class="toc-text">2.目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%B8%B8%E7%94%A8%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-text">3. 常用架构设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93"><span class="toc-text">3.1 架构模式总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F"><span class="toc-text">3.1 整体架构模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%BC%8F"><span class="toc-text">4. 分布式系统模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E9%9A%BE%E7%82%B9"><span class="toc-text">5. 难点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E4%B8%8E%E5%BB%B6%E8%BF%9F"><span class="toc-text">5.1 网络通信与延迟</span></a></li></ol></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/2-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">[2]架构设计</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/2-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/03-%E5%A4%A7%E5%9E%8B%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E4%B8%93%E9%A2%98/">03.大型系统设计_专题</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Architecture/" rel="tag">Architecture</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/09/" onclick="onclickRoute(event, '/archives/2024/09/')">
+            <time datetime="2024-09-09T16:05:57.000Z" itemprop="datePublished">2024-09-10</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="Architecture">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/64922ed4/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            分布式架构体系_专题-开篇介绍(架构概述)
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p>单体架构早已成过去， 随着互联网和业务规模的发展，分布式系统已经随处可见，掌握分布式架构的知识体系 显得尤为重要.</p>
+<p>这里主要是对 分布式架构的认识总结. </p>
+<p><span style="color: red;">分布式架构体系设计</span> 是一种将系统得 <span style="color: red;">不同组件和功能分布在多个节点上</span>，通过<span style="color: red;">网络进行协同</span>工作的<span style="color: red;">架构设计理念和方法</span>.</p>
+<h2 id="1-主要特点"><a href="#1-主要特点" class="headerlink" title="1.主要特点"></a>1.主要特点</h2><h3 id="1-1-去中心化"><a href="#1-1-去中心化" class="headerlink" title="1.1 去中心化"></a>1.1 去中心化</h3><p>不存在单一的中心控制节点，各个节点相互独立又相互协作.</p>
+<h3 id="1-2-分布式部署"><a href="#1-2-分布式部署" class="headerlink" title="1.2 分布式部署"></a>1.2 分布式部署</h3><p>系统的各个部分运行在<span style="color: red;">不同的物理或逻辑节点上</span></p>
+<h3 id="1-3-网络通信"><a href="#1-3-网络通信" class="headerlink" title="1.3 网络通信"></a>1.3 网络通信</h3><p>节点之间通过网络进行信息传递和协调</p>
+<h2 id="2-目标"><a href="#2-目标" class="headerlink" title="2.目标"></a>2.目标</h2><ul>
+<li><p>高可用：通过冗余和容错机制，减少单点故障对系统的影响，确保系统持续可用。</p>
+</li>
+<li><p>可扩展性：能够方便地添加或移除节点来适应业务增长或变化的需求</p>
+</li>
+<li><p>高性能：通过分布式处理和负载均衡，提升系统整体的处理能力和响应速度。</p>
+</li>
+<li><p>容错性和可靠性：即使部分节点出现故障，系统仍能正确运行或快速恢复</p>
+</li>
+<li><p>数据一致性： 保证在分布式环境下数据的完整性和一致性</p>
+</li>
+<li><p>弹性：可以动态调整资源分配以应对不同的工作负载</p>
+</li>
+</ul>
+<p>todo： 怎么实现这些目标？都有哪些实践？常见的中间件都有哪些解决方案？ 如何和别人直观的描述这些内容？</p>
+<h2 id="3-常用架构设计模式"><a href="#3-常用架构设计模式" class="headerlink" title="3. 常用架构设计模式"></a>3. 常用架构设计模式</h2><p>如何选择适合的架构设计模式.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>架构模式</th>
+<th>说明</th>
+<th>优缺点</th>
+<th>具体的实现技术</th>
+<th>相关的中间件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*分层架构模式</td>
+<td>将系统分为不同的层次，如表示层、业务逻辑层、数据访问层等，各层职责明确。</td>
+<td>优缺点</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>*微服务架构模式</td>
+<td>将系统拆分成多个独立的微服务</td>
+<td>-</td>
+<td>数据6</td>
+<td>-</td>
+</tr>
+<tr>
+<td>*事件驱动模式</td>
+<td>客户端与服务器</td>
+<td>-</td>
+<td>数据6</td>
+<td>-</td>
+</tr>
+<tr>
+<td>*微核模式</td>
+<td>客户端与服务器</td>
+<td>-</td>
+<td>数据6</td>
+<td>-</td>
+</tr>
+<tr>
+<td>*整体架构</td>
+<td>是一种用于设计和构建企业信息系统的框架和方法</td>
+<td>通过包含多个层次或视角，例如业务架构、应用架构、数据架构和技术架构等</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>分布式对象模式</td>
+<td>客户端与服务器</td>
+<td>-</td>
+<td>数据6</td>
+<td>-</td>
+</tr>
+<tr>
+<td>管道-过滤器模式</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>主从模式</td>
+<td>有主节点负责主要任务处理，从节点提供辅助或备份</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>C/S 模式</td>
+<td>客户端与服务器</td>
+<td>-</td>
+<td>数据6</td>
+<td>-</td>
+</tr>
+<tr>
+<td>MVP模式</td>
+<td>客户端与服务器</td>
+<td>-</td>
+<td>数据6</td>
+<td>-</td>
+</tr>
+<tr>
+<td>分布式缓存模式</td>
+<td>利用缓存提高数据访问效率</td>
+<td>-</td>
+<td>数据6</td>
+<td>-</td>
+</tr>
+<tr>
+<td>分布式缓存储模式</td>
+<td>如分布式文件系统、分布式数据库等</td>
+<td>-</td>
+<td>数据6</td>
+<td>-</td>
+</tr>
+<tr>
+<td>分布式协调模式</td>
+<td>如使用zookeeper等进行分布式协调</td>
+<td>-</td>
+<td>数据6</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>优点：分布式系统的目标， 解决了高可用、扩展性、高性能、容错、弹性等问题。<br>缺点：负责性增加、 数据一致性挑战、分布式事务难题、部署和管理复杂、成本高(构建和维护分布式架构 需要更多的硬件资源和人力)、网络延迟和开销</p>
+<h3 id="3-1-架构模式总结"><a href="#3-1-架构模式总结" class="headerlink" title="3.1 架构模式总结"></a>3.1 架构模式总结</h3><p>不同分类的架构（技术架构、产品架构、算法架构、云计算架构、解决方案架构、业务架构）<br>todo 这些模式怎么划分？</p>
+<p>软件设计模式？区别？<br>todo：自己的认识和总结？</p>
+<h3 id="3-1-整体架构模式"><a href="#3-1-整体架构模式" class="headerlink" title="3.1 整体架构模式"></a>3.1 整体架构模式</h3><p>整体架构模式的目的是： 确保企业信息系统能够支持企业的战略目标，同时保持灵活性、可扩展性和可维护性。</p>
+<p>整体架构模式通常包括以下几个关键组成部分：</p>
+<ol>
+<li>业务架构：定义企业的业务流程、组成结构和业务策略，以支持企业目标</li>
+<li>应用架构：定义企业应用系统的结构和交互方式，包括应用的功能、接口和服务</li>
+<li>数据架构：定义企业数据的组织、管理和访问方式，包括数据模型、数据存储和数据交换</li>
+<li>技术架构：定义支持企业信息系统的安全策略和控制措施，以保护企业资产和数据</li>
+<li>安全架构：定义企业信息系统的安全策略和控制措施，以保护企业资产和数据</li>
+<li>集成架构：定义不同系统和组件之间的集成方式，以实现数据和流程的无缝流动</li>
+</ol>
+<p>整体架构模式还可以能包括 治理、风险管理、合规性和其他方面的考虑。 通过采用整体架构模式，企业可以确保其信息系统的设计和实施与企业战略保持一致，并且能够适应不断变化的业务需求和技术环境。</p>
+<h2 id="4-分布式系统模式"><a href="#4-分布式系统模式" class="headerlink" title="4. 分布式系统模式"></a>4. 分布式系统模式</h2><p>架构模式 相比分布式系统模式，是一个更广泛的概念，不仅适用于分布式系统，也适用于单体系统。 架构模式提供了一种高层次的抽象， 用于知道软件系统的组织和设计。</p>
+<p>架构模式通常关注于系统的结构、组件、它们之间的关系以及它们如何交互。架构模式可以包括分布式系统模式，但它们也包括其他类型的模式，如：</p>
+<ul>
+<li>MVC（模型-视图-控制器）模式：用于分离用户界面和业务逻辑。</li>
+<li>管道-过滤器模式：将数据流通过一系列过滤器进行处理。</li>
+<li>分层架构模式：将系统分解为不同的逻辑层，每层负责不同的职责。</li>
+</ul>
+<p>总的来说，分布式系统模式是架构模式的一个子集，专注于解决分布式环境中特有的问题。而架构模式提供了更广泛的设计原则和实践，适用于各种类型的软件系统。</p>
+<p>分布式系统模式都有哪些呢？</p>
+<ul>
+<li>代理模式：一个中间代理(代理服务器) 代表客户端与服务端进行通信，可以提供负载均衡、缓存、安全等功能</li>
+<li>断路器模式：</li>
+<li>命令查询责任分离(CQRS)：将读取(查询)操作和写入(命令)操作分离， 以提高性能和可伸缩性</li>
+<li>事件溯源：</li>
+<li>领导者选举：</li>
+<li>发布者/订阅者：kafka等。 消息生产者、消息消费者 订阅.</li>
+<li>分片模式：</li>
+</ul>
+<h2 id="5-难点"><a href="#5-难点" class="headerlink" title="5. 难点"></a>5. 难点</h2><ul>
+<li>分布式一致性</li>
+<li>分布式事务管理</li>
+<li>网络通信与延迟</li>
+<li>分布式故障处理</li>
+<li>资源管理与调度</li>
+<li>数据分布与管理</li>
+<li>分布式锁与同步</li>
+<li>性能优化</li>
+<li>监控与调试</li>
+<li>安全问题</li>
+</ul>
+<h3 id="5-1-网络通信与延迟"><a href="#5-1-网络通信与延迟" class="headerlink" title="5.1 网络通信与延迟"></a>5.1 网络通信与延迟</h3><p>在分布式架构体系设计中，如何避免网络延迟和开销？</p>
+<p>对网络延迟赫尔开销的理解： 这是分布式系统固有的挑战之一，但为了获得诸多优势需要面对现实困难问题，需要在性能优化和系统特性之间权衡和取舍</p>
+<ul>
+<li>解决办法包括： 优化网络架构、数据压缩、缓存策略、就近访问、异步通信、协议优化、资源预分配、负载均衡策略 等</li>
+</ul>
+<p>合并请求、优化网络协议、智能路由(负载均衡)、流量控制、系统优化(减少不必要的通信)</p>
+<p>如何评估网络延迟和开销问题呢？</p>
+<ul>
+<li>基准测试、监控工具、性能分析工具、日志分析、压力测试、分布式跟踪(系统)</li>
+</ul>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/79a800b3/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/79a800b3/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    2.特征工程方案v2
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/1b32398c/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/1b32398c/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">C++数据类型</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

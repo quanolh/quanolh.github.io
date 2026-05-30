@@ -1,0 +1,503 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>3.系统架构师工作日常 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="Architecture">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3.系统架构师工作日常">
+<meta property="og:url" content="https://waisec.cn/wiki/25731cfb/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-07T14:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.115Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="Architecture">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "3.系统架构师工作日常",
+    "url": "https://waisec.cn/wiki/25731cfb/",
+    "datePublished": "2024-04-07T14:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.115Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "Architecture"
+    
+}
+</script>
+
+<article id="post-平台工具 | 工程架构和工具/[2]架构设计/01.架构设计体系与方法论/003.系统架构师日常" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E4%B8%8E%E6%8A%80%E6%9C%AF%E8%B0%83%E7%A0%94"><span class="toc-text">一、需求分析与技术调研</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E7%90%86%E8%A7%A3%E4%B8%9A%E5%8A%A1%E9%9C%80%E6%B1%82"><span class="toc-text">1.1 理解业务需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E6%8A%80%E6%9C%AF%E8%B0%83%E7%A0%94"><span class="toc-text">1.2 技术调研</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1"><span class="toc-text">二、系统设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">2.1 架构设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B"><span class="toc-text">2.2 技术选型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E6%96%87%E6%A1%A3%E7%BC%96%E5%86%99"><span class="toc-text">2.3 文档编写</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%8A%80%E6%9C%AF%E6%8C%87%E5%AF%BC%E4%B8%8E%E5%9B%A2%E9%98%9F%E5%8D%8F%E4%BD%9C"><span class="toc-text">三、技术指导与团队协作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E6%8A%80%E6%9C%AF%E6%8C%87%E5%AF%BC"><span class="toc-text">3.1 技术指导</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E5%9B%A2%E9%98%9F%E5%8D%8F%E4%BD%9C"><span class="toc-text">3.2 团队协作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B8%8E%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7%E8%AE%BE%E8%AE%A1"><span class="toc-text">四、性能优化与可扩展性设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-text">4.1 性能优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7%E8%AE%BE%E8%AE%A1"><span class="toc-text">4.2 可扩展性设计</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%AE%89%E5%85%A8%E6%80%A7%E8%AE%BE%E8%AE%A1"><span class="toc-text">五、安全性设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">5.1 安全架构设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E5%AE%89%E5%85%A8%E8%AF%84%E4%BC%B0"><span class="toc-text">5.2 安全评估</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E4%B8%8E%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1"><span class="toc-text">六、系统集成与接口设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90"><span class="toc-text">6.1 系统集成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1"><span class="toc-text">6.2 接口设计</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4%E6%94%AF%E6%8C%81"><span class="toc-text">七、部署与运维支持</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-%E9%83%A8%E7%BD%B2%E8%AE%BE%E8%AE%A1"><span class="toc-text">7.1 部署设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-%E8%BF%90%E7%BB%B4%E6%94%AF%E6%8C%81"><span class="toc-text">7.2 运维支持</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E6%8A%80%E6%9C%AF%E5%80%BA%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="toc-text">八、技术债务管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1-%E8%AF%86%E5%88%AB%E6%8A%80%E6%9C%AF%E5%80%BA%E5%8A%A1"><span class="toc-text">8.1 识别技术债务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2-%E5%88%B6%E5%AE%9A%E5%81%BF%E8%BF%98%E8%AE%A1%E5%88%92"><span class="toc-text">8.2 制定偿还计划</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD%E4%B8%8E%E7%9F%A5%E8%AF%86%E5%88%86%E4%BA%AB"><span class="toc-text">九、技术培训与知识分享</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#9-1-%E6%8A%80%E6%9C%AF%E5%9F%B9%E8%AE%AD"><span class="toc-text">9.1 技术培训</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-2-%E7%9F%A5%E8%AF%86%E5%88%86%E4%BA%AB"><span class="toc-text">9.2 知识分享</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E4%B8%8E%E6%B2%9F%E9%80%9A"><span class="toc-text">十、项目管理与沟通</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#10-1-%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86"><span class="toc-text">10.1 项目管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-2-%E6%B2%9F%E9%80%9A%E5%8D%8F%E8%B0%83"><span class="toc-text">10.2 沟通协调</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E6%96%B0%E6%8A%80%E6%9C%AF%E6%8E%A2%E7%B4%A2%E4%B8%8E%E5%88%9B%E6%96%B0"><span class="toc-text">十一、新技术探索与创新</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#11-1-%E6%96%B0%E6%8A%80%E6%9C%AF%E6%8E%A2%E7%B4%A2"><span class="toc-text">11.1 新技术探索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-2-%E5%88%9B%E6%96%B0%E8%AE%BE%E8%AE%A1"><span class="toc-text">11.2 创新设计</span></a></li></ol></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/2-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">[2]架构设计</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/2-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/01-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E4%BD%93%E7%B3%BB%E4%B8%8E%E6%96%B9%E6%B3%95%E8%AE%BA/">01.架构设计体系与方法论</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Architecture/" rel="tag">Architecture</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/04/" onclick="onclickRoute(event, '/archives/2024/04/')">
+            <time datetime="2024-04-07T14:55:57.000Z" itemprop="datePublished">2024-04-07</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="Architecture">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/25731cfb/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            系统架构师工作日常
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <h1 id="一、需求分析与技术调研"><a href="#一、需求分析与技术调研" class="headerlink" title="一、需求分析与技术调研"></a>一、需求分析与技术调研</h1><h2 id="1-1-理解业务需求"><a href="#1-1-理解业务需求" class="headerlink" title="1.1 理解业务需求"></a>1.1 理解业务需求</h2><p>与业务团队、产品经理和客户沟通，明确系统的功能需求和非功能需求（如性能、安全性、可扩展性）。</p>
+<p>todo：整理待沟通的清单、沟通方法、可能的问题。</p>
+<h2 id="1-2-技术调研"><a href="#1-2-技术调研" class="headerlink" title="1.2 技术调研"></a>1.2 技术调研</h2><p>研究最新的技术趋势和工具，评估其适用性。<br>选择合适的技术栈（如编程语言、框架、数据库、云服务）。</p>
+<h1 id="二、系统设计"><a href="#二、系统设计" class="headerlink" title="二、系统设计"></a>二、系统设计</h1><h2 id="2-1-架构设计"><a href="#2-1-架构设计" class="headerlink" title="2.1 架构设计"></a>2.1 架构设计</h2><p>设计系统的整体架构，包括模块划分、组件交互和数据流。<br>选择适当的架构模式（如微服务、单体架构、事件驱动架构）。</p>
+<h2 id="2-2-技术选型"><a href="#2-2-技术选型" class="headerlink" title="2.2 技术选型"></a>2.2 技术选型</h2><p>选择合适的技术组件（如数据库、消息队列、缓存系统）。<br>评估技术的优缺点，确保其满足系统需求。</p>
+<h2 id="2-3-文档编写"><a href="#2-3-文档编写" class="headerlink" title="2.3 文档编写"></a>2.3 文档编写</h2><p>编写架构设计文档，包括系统架构图、数据流图、接口定义等。</p>
+<h1 id="三、技术指导与团队协作"><a href="#三、技术指导与团队协作" class="headerlink" title="三、技术指导与团队协作"></a>三、技术指导与团队协作</h1><h2 id="3-1-技术指导"><a href="#3-1-技术指导" class="headerlink" title="3.1 技术指导"></a>3.1 技术指导</h2><p>指导开发团队理解架构设计，确保开发过程符合架构规范。<br>解决开发过程中遇到的技术难题。</p>
+<h2 id="3-2-团队协作"><a href="#3-2-团队协作" class="headerlink" title="3.2 团队协作"></a>3.2 团队协作</h2><p>与开发团队、测试团队、运维团队紧密合作，确保系统顺利开发和部署。<br>参与代码评审，确保代码质量。</p>
+<h1 id="四、性能优化与可扩展性设计"><a href="#四、性能优化与可扩展性设计" class="headerlink" title="四、性能优化与可扩展性设计"></a>四、性能优化与可扩展性设计</h1><h2 id="4-1-性能优化"><a href="#4-1-性能优化" class="headerlink" title="4.1 性能优化"></a>4.1 性能优化</h2><p>分析系统性能瓶颈，提出优化方案（如数据库优化、缓存策略、负载均衡）。</p>
+<h2 id="4-2-可扩展性设计"><a href="#4-2-可扩展性设计" class="headerlink" title="4.2 可扩展性设计"></a>4.2 可扩展性设计</h2><p>设计可扩展的系统架构，支持未来业务增长。<br>考虑水平扩展和垂直扩展的策略。</p>
+<h1 id="五、安全性设计"><a href="#五、安全性设计" class="headerlink" title="五、安全性设计"></a>五、安全性设计</h1><h2 id="5-1-安全架构设计"><a href="#5-1-安全架构设计" class="headerlink" title="5.1 安全架构设计"></a>5.1 安全架构设计</h2><p>设计系统的安全架构，确保数据安全和系统安全。<br>实施身份验证、授权、加密等安全措施。</p>
+<h2 id="5-2-安全评估"><a href="#5-2-安全评估" class="headerlink" title="5.2 安全评估"></a>5.2 安全评估</h2><p>定期进行安全评估，识别潜在的安全风险。<br>制定应急预案，应对安全事件。</p>
+<h1 id="六、系统集成与接口设计"><a href="#六、系统集成与接口设计" class="headerlink" title="六、系统集成与接口设计"></a>六、系统集成与接口设计</h1><h2 id="6-1-系统集成"><a href="#6-1-系统集成" class="headerlink" title="6.1 系统集成"></a>6.1 系统集成</h2><p>设计系统与外部系统（如第三方API、遗留系统）的集成方案。<br>确保数据的一致性和完整性。</p>
+<h2 id="6-2-接口设计"><a href="#6-2-接口设计" class="headerlink" title="6.2 接口设计"></a>6.2 接口设计</h2><p>设计系统内部和外部的接口（如REST API、GraphQL）。<br>定义接口的输入、输出和错误处理机制。</p>
+<h1 id="七、部署与运维支持"><a href="#七、部署与运维支持" class="headerlink" title="七、部署与运维支持"></a>七、部署与运维支持</h1><h2 id="7-1-部署设计"><a href="#7-1-部署设计" class="headerlink" title="7.1 部署设计"></a>7.1 部署设计</h2><p>设计系统的部署架构，包括云部署、容器化（如Docker、Kubernetes）。<br>制定持续集成和持续交付（CI/CD）流程。</p>
+<h2 id="7-2-运维支持"><a href="#7-2-运维支持" class="headerlink" title="7.2 运维支持"></a>7.2 运维支持</h2><p>与运维团队合作，确保系统的稳定运行。<br>设计监控和告警系统，及时发现和解决问题。</p>
+<h1 id="八、技术债务管理"><a href="#八、技术债务管理" class="headerlink" title="八、技术债务管理"></a>八、技术债务管理</h1><h2 id="8-1-识别技术债务"><a href="#8-1-识别技术债务" class="headerlink" title="8.1 识别技术债务"></a>8.1 识别技术债务</h2><p>识别系统中的技术债务（如过时的技术、低效的代码）。</p>
+<h2 id="8-2-制定偿还计划"><a href="#8-2-制定偿还计划" class="headerlink" title="8.2 制定偿还计划"></a>8.2 制定偿还计划</h2><p>制定技术债务的偿还计划，逐步优化系统。</p>
+<h1 id="九、技术培训与知识分享"><a href="#九、技术培训与知识分享" class="headerlink" title="九、技术培训与知识分享"></a>九、技术培训与知识分享</h1><h2 id="9-1-技术培训"><a href="#9-1-技术培训" class="headerlink" title="9.1 技术培训"></a>9.1 技术培训</h2><p>为开发团队提供技术培训，提升团队的技术能力。</p>
+<h2 id="9-2-知识分享"><a href="#9-2-知识分享" class="headerlink" title="9.2 知识分享"></a>9.2 知识分享</h2><p>组织技术分享会，分享最新的技术趋势和最佳实践。</p>
+<h1 id="十、项目管理与沟通"><a href="#十、项目管理与沟通" class="headerlink" title="十、项目管理与沟通"></a>十、项目管理与沟通</h1><h2 id="10-1-项目管理"><a href="#10-1-项目管理" class="headerlink" title="10.1 项目管理"></a>10.1 项目管理</h2><p>参与项目计划制定，评估技术风险和资源需求。<br>跟踪项目进度，确保按时交付。</p>
+<h2 id="10-2-沟通协调"><a href="#10-2-沟通协调" class="headerlink" title="10.2 沟通协调"></a>10.2 沟通协调</h2><p>与业务团队、开发团队、测试团队、运维团队保持良好沟通，确保项目顺利进行。</p>
+<h1 id="十一、新技术探索与创新"><a href="#十一、新技术探索与创新" class="headerlink" title="十一、新技术探索与创新"></a>十一、新技术探索与创新</h1><h2 id="11-1-新技术探索"><a href="#11-1-新技术探索" class="headerlink" title="11.1 新技术探索"></a>11.1 新技术探索</h2><p>持续关注新技术（如人工智能、区块链、边缘计算），评估其在系统中的应用潜力。</p>
+<h2 id="11-2-创新设计"><a href="#11-2-创新设计" class="headerlink" title="11.2 创新设计"></a>11.2 创新设计</h2><p>提出创新的技术解决方案，提升系统的竞争力。</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/f5e72406/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/f5e72406/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    1.高中_62中常考函数图像
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/85fae825/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/85fae825/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">6.架构师职责及基本的理解</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

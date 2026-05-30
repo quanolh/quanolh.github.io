@@ -1,0 +1,1102 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>数据领域知识体系 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="data">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据领域知识体系">
+<meta property="og:url" content="https://waisec.cn/wiki/bf114d1c/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/quano/www/raw/master/img/data/data_arch_v3.png">
+<meta property="article:published_time" content="2025-12-07T14:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.129Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="data">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/quano/www/raw/master/img/data/data_arch_v3.png">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "数据领域知识体系",
+    "url": "https://waisec.cn/wiki/bf114d1c/",
+    "datePublished": "2025-12-07T14:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.129Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "data"
+    
+}
+</script>
+
+<article id="post-数据 | 核心生产要素/DataStart" class="article article-type-post">
+    
+        <meta name="referrer" content="no-referrer">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%95%B0%E6%8D%AE%E4%BD%93%E7%B3%BB%E6%A6%82%E8%BF%B0"><span class="toc-text">一、数据体系概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E4%BC%81%E4%B8%9A%E6%95%B0%E6%8D%AE%E8%93%9D%E5%9B%BE"><span class="toc-text">1.1 企业数据蓝图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%86%B3%E7%AD%96"><span class="toc-text">1.2 核心概念决策</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E4%BB%8B%E7%BB%8D"><span class="toc-text">1.3 数据架构介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E5%9B%9B%E5%A4%A7%E6%A0%B8%E5%BF%83%E5%88%86%E6%94%AF"><span class="toc-text">1.4 四大核心分支</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%95%B0%E6%8D%AE%E6%9E%B6%E6%9E%84%E6%A6%82%E8%BF%B0"><span class="toc-text">二、数据架构概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E4%BC%81%E4%B8%9A%E6%95%B0%E6%8D%AE%E8%93%9D%E5%9B%BE"><span class="toc-text">2.1 企业数据蓝图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0%E6%9E%B6%E6%9E%84"><span class="toc-text">2.2 数据平台架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E4%B8%93%E9%A1%B9%E5%AD%90%E6%9E%B6%E6%9E%84"><span class="toc-text">2.3 专项子架构</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%9B%9B%E5%A4%A7%E6%A0%B8%E5%BF%83%E5%88%86%E6%94%AF"><span class="toc-text">三、四大核心分支</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B"><span class="toc-text">3.1 数据工程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1-%E9%87%87%E9%9B%86%E4%B8%8E%E9%9B%86%E6%88%90"><span class="toc-text">3.1.1 采集与集成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2-%E5%AD%98%E5%82%A8%E4%B8%8E%E6%9E%B6%E6%9E%84"><span class="toc-text">3.1.2 存储与架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-3-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97"><span class="toc-text">3.1.3 处理与计算</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90"><span class="toc-text">3.2 数据分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E6%95%B0%E6%8D%AE%E6%B2%BB%E7%90%86-%E5%90%88%E8%A7%84"><span class="toc-text">3.3 数据治理&#x2F;合规</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1-%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8"><span class="toc-text">3.3.1 数据安全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2-%E6%95%B0%E6%8D%AE%E5%90%88%E8%A7%84"><span class="toc-text">3.3.2 数据合规</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6"><span class="toc-text">3.4 数据科学</span></a></li></ol></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/">数据 | 核心生产要素</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/data/" rel="tag">data</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2025/12/" onclick="onclickRoute(event, '/archives/2025/12/')">
+            <time datetime="2025-12-07T14:55:57.000Z" itemprop="datePublished">2025-12-07</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="data">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/bf114d1c/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            数据领域知识体系
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p><strong><em>「背景」</em></strong>当下无论是企业需求还是社会发展趋势，数据领域的知识都非常重要。具体体现在企业决策与创新需要、<strong style="color: #6f42c1;">数字化转型的适应、前沿技术和趋势的探索</strong>。<em>「企业需求」</em>数据已成为现代企业的核心资产，企业<strong style="color: #6f42c1;">通过数据驱动决策、通过数据推动业务创新</strong>(掌握数据帮助企业发现新的商业模式和市场机会)；<em>「社会发展趋势」</em>另外随着数字化转型的浪潮，数据作为其核心要素发挥重要作用、推送技术和业务的融合；<em>「前沿技术基础」</em>在如今人工智能迅速发展，数据也作为其基础，为探索前沿技术奠定基础。</p>
+<p><strong><em>「目的」</em></strong>因此，本部分主要围绕数据领域的知识，逐一拆解核心分支的技术属性和业务价值。让读者有清晰、完整、详细的认识，以提升数据相关的职业竞争力。</p>
+<p>首先是数据体系概述，介绍演进过程中的核心概念和和解决的问题。其次 围绕4大核心分支，展开具体的定义和实践，其中包括常见的数据工程任务，还有数据分析、数据科学、数据合规与治理，另外包括数据工程架构/数据仓库等核心概念的下探总结。旨在帮助读者系统的了解数据领域相关技能和知识，能运用在企业和前沿技术实践中，助力个人职业发展。</p>
+<span id="more"></span>
+<h1 id="一、数据体系概述"><a href="#一、数据体系概述" class="headerlink" title="一、数据体系概述"></a>一、数据体系概述</h1>
+      <div class="tip-container tip-info" style="
+        background-color: #e8f4f8;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #4299e1;
+        ">
+          <i class="fa fa-info-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>每一个技术概念和体系，到底解决了什么问题？ 先定义问题，再介绍是什么，以及怎么做（why、what、how）</p>
+<ul>
+<li>黄金圈法则（Golden Circle） 的实践。 「这里有些偏差，Golden Circle是why、how、what」<br>“问题驱动 → 概念定义 → 落地实践” 的逻辑链，既符合技术研发的底层逻辑，也适合学习、求职、项目落地等场景。<br>「核心项解决的问题」<br>大数据平台：作为技术基础，在数字化时代数据驱动决策，解决决策效率/风险问题、趋势预判、成本问题、核心资产问题等。<br>数据仓库：数据杂乱无章、使用效率低；企业的账算明白、数据驱动的实现基础；是大数据平台的核心组成部分。<br>数据湖：数据仓库互补、非结构化数据、AI依赖的数据<br>湖仓一体：数据湖无法解决数据仓库的规矩，未治理的数据湖就是Data Swamp，不能发挥价值。<br>数据中台：重复造轮子、烟囱式发展。What：方法论、组织、技术架构的顶层设计和融合。OneData！OneService！
+            </li></ul></div>
+        </div>
+      </div>
+    
+
+
+<h2 id="1-1-企业数据蓝图"><a href="#1-1-企业数据蓝图" class="headerlink" title="1.1 企业数据蓝图"></a>1.1 企业数据蓝图</h2><p>如今数据的核心价值主要作用在<strong style="color: #6f42c1;">商业智能</strong>和<strong style="color: #6f42c1;">人工智能</strong>，以及各行业智能化应用。BI方面包括：决策支持、趋势分析、实时分析；AI方面包括自动化、智能应用等<br>数据不仅是企业做出决策的基础，还推动了AI技术的发展，改变了企业的运营方式和市场竞争方式。(对决策的支持和对智能化应用的推动作用)</p>
+
+      <div class="tip-container tip-question" style="
+        background-color: #fef7fb;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #e53e3e;
+        ">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>那数据到底是如何推动的？以及如何在企业实践数据架构以解决BI和AI的问题呢？<br>以下从(多层次的)企业数据架构及数字化蓝图，系统的介绍下数据的价值和如何构建数据架构。</p>
+<ul>
+<li>顶层的是业务价值：解决企业BI、AI、创新与产品研发、运营效率、风险控制等业务问题。</li>
+<li>左侧的核心问题：是在构建数据仓库/数据体系过程中涉及的核心数据问题，主要影响数据效率和数据成本</li>
+<li>中间层：是核心的数据架构，包括数据仓库以及自底向上的数据构建链路</li>
+<li>右侧的大数据平台：是企业数据架构的核心技术实现，助力数据生命周期高效安全的发挥价值「<strong style="color: #6f42c1;">技术基础</strong>」</li>
+<li>数据中台：在大数据平台基础上，提供更加业务导向的、高效的数据服务。「<strong style="color: #6f42c1;">面向业务的数据服务化</strong>」<br>核心解决效率和成本问题、实现数据可信、为业务赋能(驱动创新与智能决策)</li>
+</ul>
+            </div>
+        </div>
+      </div>
+    
+<div>
+  <img src="https://gitee.com/quano/www/raw/master/img/data/data_arch_v3.png" style="display: inline-block; width: 70%">
+</div>
+
+
+<h2 id="1-2-核心概念决策"><a href="#1-2-核心概念决策" class="headerlink" title="1.2 核心概念决策"></a>1.2 核心概念决策</h2>
+      <div class="tip-container tip-question" style="
+        background-color: #fef7fb;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #e53e3e;
+        ">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>1.概念轰炸：隔壁老张的公司都上“湖仓一体”了！咱们现在到底是个啥？是还在搞仓库？ 还是上了中台？能不能给个准活！<br>回答：A，老板我们底层是大数据平台； B，不核心架构是数据仓库！ C，明年规划做数据湖！<br>2.灵魂拷问：别管那些词。我就问一句：销售部要的那个新指标，从提需求到看见数，周期缩短了吗？口径赫尔财务对上了吗？<br>3.尴尬的沉默：如果都没有解决，那你堆砌再多名词，也是给破车刷绿漆——-假装新能源。<br>4.一图破迷障：这五个词根本不是线性升级的关系！大家之所以晕，是因为没想清楚<br>是因为没想清楚 自己是想“算账”、“存货”、还是“搞政治”<br>
+            </p></div>
+        </div>
+      </div>
+    <p></p>
+<table class="_table">
+<thead>
+  <tr>
+     <th style="width: 15%;">概念（角色定义）</th>
+     <th style="width: 32%;">问题定义</th>
+     <th style="width: 35%;">解释</th>
+     <th>解决的问题</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="3" style="background-color: #e8f6f0;">(1)数据仓库<br>Data Warehourse</td>
+    <td>(老会计)就是给老板算账的地方。是企业的“后视镜”。</td>
+    <td>别跟我谈什么“探索”! 我要的是确定性！入库必须清洗！口径必须统一！模型必须星型！</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td colspan="2">(老会计)<span style="color: #6f42c1">严苛的门槛</span>（新业务非结构化数据）拿走！格式不对！字段补全！这脏数据进来了，老板的额报表就不准了！我容不得沙子！</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>(市场变化)<span style="color: #6f42c1">现实的痛点</span> 市场都变了！我要看实时的！我要改指标！
+    </td>
+    <td>改模型要走流程，排期三周。痛点：业务野蛮生长时，这位严谨的老爷子就是最大的瓶颈。</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td rowspan="1" style="background-color: #e8f6f0;">(2)大数据平台<br>Big Data Platform</td>
+    <td>(光有厨房没有初始)（秀肌肉的误区）海量数据随便存！亿级计算秒级跑！我是基础设施！</td>
+    <td>有肌肉没脑子？ 不关心报表什么时候出</td>
+  </tr>
+</tbody>
+</table>
+
+<p>数据湖：是“后路”还是“沼泽”？？囤积癖的狂欢：来着不拒！先存进来再说（Schema-on-read）！<br>万一以后有用呢？ 这叫保留数据的原汁原味！</p>
+<p>理想VS现实： （核心问题）没有治理的数据湖 ，就是垃圾场。 它现在的唯一作用就是做做个心里安慰备份盘———-看着东西都在，其实谁也不敢用！</p>
+<p>Data Swamp（数据沼泽）。 问题如何解决。</p>
+<p>数据中台： 其实是场“权利的游戏”。  为什么每个部门都在重复造轮子？！ 为什么数据大家？！<br>中台真面目：以后公共指标 我说了算！ 轮子统一去库里领！（OneData！OneService！）</p>
+<p>激烈的博弈：凭什么把我的数据拿出来共享？ 这是我的私产！（数据资产）  「中台本质是组织变革」</p>
+<ul>
+<li>很多中台烂尾，不是技术不行，是“人”搞不定。 没人愿意为公共资产负责。</li>
+</ul>
+<p>湖仓一体：“成年人务实折中”。 混血儿诞生。 仓的规矩不能丢，湖的便宜和灵活也饿想要。 于是搞出了这个折中的方案。</p>
+<h2 id="1-3-数据架构介绍"><a href="#1-3-数据架构介绍" class="headerlink" title="1.3 数据架构介绍"></a>1.3 数据架构介绍</h2><p>数据领域架构，除了常见的 数据处理架构 之外，还包括数仓架构。 另外还包括 数据中台架构、数据湖架构、数据治理架构、实时数据架构、湖仓一体架构、云原生数据架构、数据安全架构等。以上架构的理解以及核心架构的深入，是数据架构师必备的技能和知识体系。</p>
+
+      <div class="tip-container tip-info" style="
+        background-color: #e8f4f8;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #4299e1;
+        ">
+          <i class="fa fa-info-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>架构理解。对这些架构的核心关联理解，可以用 “<strong style="color: #6f42c1;">底座 - 处理 - 服务 - 保障</strong>” 四层逻辑串联所有架构：</p>
+<ol>
+<li>存储底座层：数据湖架构、数仓架构、湖仓一体架构</li>
+<li>数据处理层：Lambda/Kappa 架构、实时数据架</li>
+<li>能力服务层：数据中台架构</li>
+<li>安全保障层：数据治理架构、数据安全架构</li>
+<li>部署形态层：云原生数据架构</li>
+</ol>
+<p><strong style="color: #6f42c1;">它们并非孤立存在，而是相互支撑、层层递进，共同构成企业数据能力的完整技术底座。</strong><br>
+            </p></div>
+        </div>
+      </div>
+    <p></p>
+<p>具体的架构介绍和实践在<a href>[5]数据架构</a>中详细展开。</p>
+<h2 id="1-4-四大核心分支"><a href="#1-4-四大核心分支" class="headerlink" title="1.4 四大核心分支"></a>1.4 四大核心分支</h2><p>企业级数据架构主要从更高层面解决数据流转问题。但除此之外，数据领域的核心应用及工作也围绕各个环节、各个应用分支展开，<br>按 “技术属性 + 业务价值” 可拆解为 4 大核心分支，覆盖从底层技术到上层应用的全链条。</p>
+<table class="_table">
+<thead>
+  <tr>
+     <th style="width: 15%;">核心分支</th>
+     <th style="width: 32%;">核心定义</th>
+     <th style="width: 23%;">典型工作/岗位</th>
+     <th>解决的问题</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="1" style="background-color: #e8f6f0;">(1)数据工程<br>Data Engineering</td>
+    <td>负责数据 “采集、存储、流转、加工” 的底层技术搭建，是数据领域的 “<span style="color: #6f42c1">基础设施</span>建设”</td>
+    <td><span style="color: #6f42c1">数据开发工程师</span>、ETL 工程师、数据平台运维、
+      <span style="color: #6f42c1">数据架构师</span></td>
+    <td>数据湖 / 数仓搭建、实时流计算链路设计、数据治理</td>
+  </tr>
+  <tr>
+    <td rowspan="1" style="background-color: #e8f6f0;">(2)数据分析<br>Data Analysis</td>
+    <td>衔接数据与业务，负责 “数据解读、报表呈现、业务诊断”，是数据领域的 “业务连接器”  </td>
+    <td>业务分析师、商业分析师、BI 分析师</td>
+    <td>销售报表制作、业务问题诊断（之前的描述性 / 诊断性问题）</td>
+  </tr>
+  <tr>
+    <td rowspan="1" style="background-color: #e8f6f0;">(3)数据合规与治理<br>Data Governance</td>
+    <td>负责数据 “质量、安全、合规” 的规则制定与落地，是数据领域的 “安全保障”</td>
+    <td>数据治理专员、数据安全专家、合规顾问</td>
+    <td>数据标准制定、隐私脱敏、合规审查（之前的跨组织数据协同合规问题）</td>
+  </tr>
+  <tr>
+    <td rowspan="1" style="background-color: #e8f6f0;">(4)数据科学<br>Data Science</td>
+    <td>聚焦数据 “规律挖掘、预测、决策支持”，是数据领域的 “价值提炼核心” </td>
+    <td>数据科学家、<span style="color: #6f42c1">数据挖掘</span>工程师、算法工程师（偏分析）</td>
+    <td>用户分群、销量预测、风险识别（之前的预测性 / 决策性问题）</td>
+  </tr>
+</tbody>
+</table>
+
+<p>除了以上 4 大核心分支， 大家常关注和工作相关的的内容还包括： <span style="color: #6f42c1">数据架构/工程/仓库</span> 的建设，数据平台架构、存储等架构。</p>
+<h1 id="二、数据架构概述"><a href="#二、数据架构概述" class="headerlink" title="二、数据架构概述"></a>二、数据架构概述</h1><h2 id="2-1-企业数据蓝图"><a href="#2-1-企业数据蓝图" class="headerlink" title="2.1 企业数据蓝图"></a>2.1 企业数据蓝图</h2><h2 id="2-2-数据平台架构"><a href="#2-2-数据平台架构" class="headerlink" title="2.2 数据平台架构"></a>2.2 数据平台架构</h2><h2 id="2-3-专项子架构"><a href="#2-3-专项子架构" class="headerlink" title="2.3 专项子架构"></a>2.3 专项子架构</h2><h1 id="三、四大核心分支"><a href="#三、四大核心分支" class="headerlink" title="三、四大核心分支"></a>三、四大核心分支</h1><p>数据架构和数据领域的四大核心分支（数据工程、数据分析、数据科学、数据合规治理）是相互联系的，共同构成了数据管理与应用的完整体系。</p>
+<p>数据架构为数据的各个领域提供了支持的框架，而四大核心分支分别从不同的角度管理和利用数据，协同工作形成了完整的数据管理和应用体系。在实际操作中，数据架构与各个领域紧密相连，确保数据从采集到使用的全过程中能够高效、合规、准确地流动和分析。</p>
+<h2 id="3-1-数据工程"><a href="#3-1-数据工程" class="headerlink" title="3.1 数据工程"></a>3.1 数据工程</h2><p><strong style="color: #6f42c1;">「定义」</strong><br>用工程化手段打通数据全链路，把 “原始数据” 变成 “可信资产”，为所有数据相关工作提供稳定、高效的底层支撑，解决业务的实际问题<br><span style="font-size: 12px; color: #008075;">数据工程涵盖了数据的整个生命周期，包括采集集成、存储架构、处理计算、治理质量、平台服务等；数据架构是更高层次的设计，以高效、可靠、高质量的交付数据</span></p>
+<p><strong style="color: #6f42c1;">「划分」</strong><br><div class="note info"><p>数据工程工作的2大核心方向（从业务价值落地和技术效率角度看） ，可以划分为：<br> （1）数据链路的建设（业务导向）：通过数据工程链路解决业务实际问题<br> （2）数据平台开发（效率导向）：解决数据链路的效率问题，包括数据开发、生产、分析、使用等全链路的效率</p>
+</div></p>
+<p>从技术属性、业务价值角度看，可拆解为以下几个核心的分支：<br>（其它抽象的核心关键词：(方法论)[数据建模、数仓建模] ）</p>
+<table class="_table">
+<thead>
+  <tr>
+     <th style="width: 10%;">核心分支</th>
+     <th style="width: 20%;">核心定义</th>
+     <th style="width: 21%;">解决的问题</th>
+     <th style="width: 25%;">业务价值</th>
+     <th>典型场景 / 工具</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="1" style="background-color: #e8f6f0;">采集与集成</td>
+    <td>多源异构数据接入（批量 / 实时）、数据源对接、数据传输链路搭建与监控 </td>
+    <td>数据 “拿不到、传不畅”：跨系统<span style="color: #6f42c1">数据孤岛</span>、实时数据延迟、
+      <span style="color: #6f42c1">异构数据源</span>格式不兼容  </td>
+    <td>全渠道<span style="color: #6f42c1">数据统一汇聚</span>，标准化。为后续所有数据工作提供 “源头活水”，支撑实时 / 离线业务需求</td>
+    <td>APP 埋点实时采集(Kafka)、ERP 与 CRM 数据批量同步（CDC 工具）、物联网传感器数据接入（Flume）</td>
+  </tr>
+  <tr>
+    <td rowspan="1" style="background-color: #e8f6f0;">存储与架构</td>
+    <td>存储方案选型、分布式存储搭建、数据分层建模（数仓 / 数据湖 / 中台）、存储性能优化  </td>
+    <td>数据 “存不下、查的慢”：海量数据存储成本高、结构化/非结构化数据存储冲突、查询响应慢  </td>
+    <td>构建<span style="color: #6f42c1">灵活可扩展</span>的数据存储底座，
+      平衡存储成本与访问效率，支撑多场景数据应用（离线分析 / 实时决策）</td>
+    <td>湖仓一体架构搭建（Delta Lake+Snowflake）、数仓分层设计（ODS/DWD/DWS）、非结构化数据存储（MinIO）</td>
+  </tr>
+  <tr>
+    <td rowspan="1" style="background-color: #e8f6f0;">处理与计算</td>
+    <td>批量 / 实时数据处理、ETL/ELT 流程开发、数据清洗 / 转换 / 标准化、分布式计算性能优化  </td>
+    <td>数据 “用不了、算得慢”：原始数据质量差、海量数据计算效率低、数据格式不统一  </td>
+    <td>把原始数据转化为 “<span style="color: #6f42c1">干净、标准、可用</span>” 的数据集，降低下游分析 / 建模的数据准备成本，提升<span style="color: #6f42c1">数据处理效率</span>  </td>
+    <td>订单数据批量清洗（Spark）、实时销量计算（Flink）、用户 ID 统一标准化处理（Python 脚本）</td>
+  </tr>
+  <tr>
+    <td rowspan="1" style="background-color: #e8f6f0;">治理与质量</td>
+    <td>数据标准制定、数据质量监控、元数据管理、数据血缘追踪、数据安全合规（脱敏 / 权限）  </td>
+    <td>数据 “不可信、不合规”：数据质量低导致决策偏差、敏感数据泄露风险、数据权责不清晰 </td>
+    <td>保障数据的准确性、一致性、安全性，让数据成为 “可信资产”，规避合规风险，提升数据使用效率 </td>
+    <td>订单金额完整性监控（Great Expectations）、用户手机号脱敏（DataMasking 工具）、数据血缘可视化（Atlas）</td>
+  </tr>
+  <tr>
+    <td rowspan="1" style="background-color: #e8f6f0;">服务与平台</td>
+    <td>数据接口开发、数据服务封装、数据平台搭建（含运维监控）、BI 工具对接、自助数据服务支撑  </td>
+    <td>数据 “不好用、用不起”：业务人员取数门槛高、数据接口不稳定、平台运维成本高  </td>
+    <td>降低数据使用门槛，实现数据 “按需取用”，支撑业务快速决策与创新，同时保障数据平台稳定运行</td>
+    <td>用户画像查询 API 开发（Spring Boot）、数据可视化看板搭建（Superset）、大数据平台监控告警（Prometheus）</td>
+  </tr>
+</tbody>
+</table>
+
+
+<!-- 其中数据工程专注于构建和维护数据基础设施，目标是构建一个高效、可靠、可扩展的数据基础架构，确保数据能够以正确的方式、在正确的时间、以正确的质量交付给数据科学家、分析师、业务用户或机器学习系统。***「范围」***其范围包括数据的采集、存储、处理和分析、数据管应用等，涵盖了数据源到数据应用的整个生命周期。我们从技术的应用层划分为 实时数仓(风控/安全/搜推等领域)「采集/管道、处理、存储、访问/服务；也需考虑数据治理」、实时数据分析。
+
+## 1.1 核心价值
+效率：自动化数据处理流程，减少人工干预。
+质量：确保数据准确、一致、可信。
+速度：支持实时或近实时的业务决策。
+规模：处理海量数据，适应业务增长。
+
+## 1.2 应用场景
+从应用场景上看，包括：
+
+
+<div class="table-container" style="margin-top: -10px">
+<table>
+<thead>
+  <tr>
+     <th style="width: 70px;">域</th>
+     <th colspan="2" style="width: 30px;">-</th>
+     <th>说明</th>
+     <th style="width: 90px;">关键词</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="3">实时数据<br>分析与监控</td>
+    <td colspan="2">场景</td>
+    <td rowspan="1">实时监控业务指标、用户行为或系统性能。</td>
+    <td rowspan="3"><span style="font-size: 12px">Flink、实时数仓(ClickHouse)、行为分析、监控</span></td>
+  </tr>
+  <tr>
+    <td colspan="2">例子</td>
+    <td><span style="font-size: 12px">电商平台：实时分析用户购买行为，监测库存变化，提供动态定价<br>（如双11期间订单量激增时的实时数据处理）。<br>金融行业：实时检测欺诈交易，通过流式数据管道分析交易模式。</span></td>
+  </tr>
+   <tr>
+    <td colspan="2">作用</td>
+    <td><span style="font-size: 12px">构建实时</span><span style="font-size: 12px; color: red;">数据管道</span><span style="font-size: 12px">（如 Kafka + Flink），支持</span><span style="font-size: 12px; color: red;">实时数仓</span><span style="font-size: 12px">（如 ClickHouse），实现低延迟查询。</span></td>
+  </tr>
+   <tr>
+    <td rowspan="3">商业智能与报表生成</td>
+    <td colspan="2">场景</td>
+    <td rowspan="1">为管理层或业务团队提供数据洞察。</td>
+    <td rowspan="3"><span style="font-size: 12px">数据洞察、ETL、数据仓库、报表</span></td>
+  </tr>
+  <tr>
+    <td colspan="2">例子</td>
+    <td><span style="font-size: 12px">零售业：生成每日销售报表，分析不同门店的业绩。<br>营销团队：跟踪广告投放效果（如点击率、转化率），优化预算分配。</span>
+    </td>
+  </tr>
+   <tr>
+    <td colspan="2">作用</td>
+    <td><span style="font-size: 12px">设计 </span><span style="font-size: 12px; color: red;">ETL流程</span><span style="font-size: 12px">，将分散的数据整合到</span><span style="font-size: 12px; color: red;">数据仓库</span><span style="font-size: 12px">（如 Snowflake），<br>支持 BI 工具（如 Tableau、Power BI）。</span></td>
+  </tr>
+  <tr>
+    <td rowspan="3">机器学习与人工智能</td>
+    <td colspan="2">场景</td>
+    <td rowspan="1">为模型训练和推理提供高质量数据；基于数据提供个性化服务</td>
+    <td rowspan="3"><span style="font-size: 12px">特征工程、数据预处理、采集、存储、HBase</span></td>
+  </tr>
+  <tr>
+    <td colspan="2">例子</td>
+    <td><span style="font-size: 12px">推荐系统：为 Netflix 或抖音的推荐算法提供用户行为数据（如观看记录、点赞）。<br>自动驾驶：处理传感器数据（如激光雷达、摄像头），为模型训练提供结构化数据集。</span></td>
+  </tr>
+   <tr>
+    <td colspan="2">作用</td>
+    <td><span style="font-size: 12px">清洗和预处理数据，构建数据湖（如 AWS S3），支持</span><span style="font-size: 12px; color: red;">特征工程</span><span style="font-size: 12px">和模型部署<br>实时采集用户数据，存储到分布式系统（如 HBase），支持快速查询和分析</span></td>
+  </tr>
+  <tr>
+    <td rowspan="3">数据合规与治理</td>
+    <td colspan="2">场景</td>
+    <td rowspan="1">满足法律或行业监管要求</td>
+    <td rowspan="3"><span style="font-size: 12px">数据治理、数据管理、数据血缘、数据安全</span></td>
+  </tr>
+  <tr>
+    <td colspan="2">例子</td>
+    <td><span style="font-size: 12px">医疗行业：确保患者数据的隐私性，符合 HIPAA 法规。<br>金融服务：追踪交易数据以满足反洗钱（AML）要求。</span></td>
+  </tr>
+   <tr>
+    <td colspan="2">作用</td>
+    <td><span style="font-size: 12px">构建元</span><span style="font-size: 12px; color: red;">数据管理</span><span style="font-size: 12px">系统，实施数据加密和访问控制，记录</span><span style="font-size: 12px; color: red;">数据血缘</span><span style="font-size: 12px">。</span></td>
+  </tr>
+  <tr>
+    <td rowspan="3">大数据分析处理</td>
+    <td colspan="2">场景</td>
+    <td rowspan="1">支持学术研究或前沿技术开发</td>
+    <td rowspan="3"><span style="font-size: 12px">分布式存储和计算、Hadoop、Spark、大规模并行处理</span></td>
+  </tr>
+  <tr>
+    <td colspan="2">例子</td>
+    <td><span style="font-size: 12px">天文学：处理望远镜产生的海量观测数据，寻找新星系<br>基因研究：分析 DNA 序列数据，研究疾病相关基因。</span></td>
+  </tr>
+   <tr>
+    <td colspan="2">作用</td>
+    <td><span style="font-size: 12px">构建分布式存储和计算系统（如 Hadoop、Spark），支持大规模并行处理</span></td>
+  </tr>
+  <tr>
+    <td rowspan="3">数据平台</td>
+    <td colspan="2">目的</td>
+    <td rowspan="1">数据平台：基础设施(管理、处理、使用数据，支持决策、业务运营和创新)</td>
+    <td rowspan="3"><span style="font-size: 12px">数据平台、数据集成、数据孤岛</span></td>
+  </tr>
+  <tr>
+    <td colspan="2">例子</td>
+    <td><span style="font-size: 12px">数据整合与集中化：数据集成、整合到统一环境，打破数据孤岛，便于全局访问和管理<br>支持数据处理与分析：通过提供ETL（提取、转换、加载）流程、数据清洗和存储功能，让原始数据变成可分析的格式，为报表、预测模型或实时分析奠定基础。<br>支持扩展与创新、数据治理与安全性、提高效率与自动化、提升业务决策能力</span></td>
+  </tr>
+   <tr>
+    <td colspan="2">作用</td>
+    <td><span style="font-size: 12px">将数据转化为企业的核心资产，帮助组织更高效地利用数据来实现业务目标</span></td>
+  </tr>
+ </tbody>
+</table>
+</div>
+ -->
+<!-- 风控、安全、搜索、推荐 场景 ETL(数据处理流程：提取、转换、加载)；机器学习； 规则引擎(CEP)；特征工程等。 -->
+<h3 id="3-1-1-采集与集成"><a href="#3-1-1-采集与集成" class="headerlink" title="3.1.1 采集与集成"></a>3.1.1 采集与集成</h3><p> 「「定义」」<br><strong style="color: #6f42c1;">「数据采集」</strong><br>数据采集（Data Collection / Data Ingestion）<br>是整个数据体系的第一层，用于将不同来源、不同格式、不同协议的数据获取并传输到<span style="color: #6f42c1;">数据平台或数据湖</span>（存储层）内。<br><span style="font-size: 12px; color: #008075;">数据采集是整个 数据中台、数仓、MLOps Pipeline 的入口</span></p>
+<p><strong style="color: #6f42c1;">「数据集成」</strong><br>采集 = 把数据拉/推出来<br>集成 = 把拉出来的数据洗好、分发好、落库好</p>
+<p>各企业包括大厂的完整链路：数据源 → 采集 → 集成 → 存储 → 消费</p>
+<p>「「体系架构」」<br>数据采集&amp;集成体系：把几百上千个异构数据源的数据可靠、可控、可观测地搬到数据湖/数据仓库里</p>
+<p><strong><em>1.数据采集（Ingestion）</em></strong>：把数据从源头“搬出来”。提供多源的数据采集能力，实现不同渠道的数据高效采集<br><strong><em>2.数据集成（Integration / Pipeline）</em></strong>：通过<strong>集成平台化</strong>，实现把采集到的“脏数据”清洗、标准化、再路由。<br><strong><em>3.存储层</em></strong>：数据仓库和数据湖，核心的数据存储（提供高效读写）<br><strong><em>4.数据治理层</em></strong>：纵向贯穿整个数据生命周期的“全局控制层”（<em>绘图工具限制</em>）</p>
+<p>集成通道-消息队列：Streaming Bus(Kafka) 统一消息队列，实现缓冲、解耦、支持重放<br>采集层负责“把数据搬出来” → 交给Kafka → 集成层（Flink为主）负责“把数据洗好用好” → 落湖（Hudi/Iceberg为主）</p>
+<!-- 
+然而，由于大数据领域，hadoop生态的统治级影响力，大部分的组件都支持hdfs存储或直接利用hive元数据服务。 所以对于大厂来说，数据迁移成本较大，因而数据湖组件在大厂并未广泛使用起来。
+ -->
+<!-- 
+我们希望有一种全能的数据库，既能支持大数据量，又能做到高qps，既能做到快速搜索，又能做各种聚合计算。 但现实往往是各种因素的妥协，永远会有困难和无穷的架构智慧。
+ -->
+<pre class="mermaid">flowchart LR
+    style B1 fill:#FFE599
+    style B4 fill:#FFE599
+    style B2 fill:#FFE599
+    style A1 fill:#FFE599
+    style A2 fill:#FFE599
+    style A5 fill:#FFE599
+    style Governance fill:#FFE599
+    style Ingestion fill:#e8f6f0
+    style Pipeline fill:#e8f6f0
+    style C0 fill:#e8f6f0,stroke:#D6B656;
+    style E0 fill:#FFE599,stroke:#D6B656;
+    style D0 fill:#ffffde,stroke:#D6B656;
+    style Table fill:#FFE599
+    %% =========== 数据来源 ==============
+    subgraph Sources[数据来源层-Sources]
+        A1[业务数据库<br>MySQL / PostgreSQL / Oracle]
+        A2[日志系统<br>Nginx / App Log]
+        A3[消息系统<br>MQ / Kafka]
+        A4[第三方服务<br>API / Webhook]
+        A5[IoT设备<br>传感器 / APP埋点]
+    end
+
+    %% =========== 数据采集方式 ==============
+    subgraph Ingestion[数据采集层-Ingestion]
+        B1[批量采集<br>Sqoop / DataX]
+        B2[实时采集<br>Flume / Filebeat]
+        B3[日志采集<br>Logstash / Fluentd]
+        B4[CDC 变更数据捕获<br>Debezium / Canal]
+        B5[API 拉取<br>Airflow / Python 脚本]
+    end
+
+    %% =========== 数据接入通道 ==============
+    subgraph Pipeline[数据集成-接入/加工通道]
+        C0[数据清洗 / 标准化]
+        C1[消息队列<br>Kafka / Pulsar]
+        C2[实时处理引擎<br>Flink / Spark Streaming]
+        C4[Airflow + Python<br>dbt]
+        C3[批处理引擎<br>Spark / Hive]
+    end
+
+    %% =========== 数据落地存储 ==============
+    subgraph Storage[存储层-Lakehouse]
+        D1[对象存储<br>S3 / OSS / COS]
+        D0[数据存储]
+        D2[数据湖<br>Hudi / Iceberg / Delta Lake]
+        Table[Hudi表、Iceberg表、Delta Lake]
+        D3[数据仓库<br>Hive / ClickHouse / Snowflake]
+    end
+
+    %% =========== 数据治理（纵向） ==============
+    subgraph Governance[数据治理层-Governance]
+        direction TB
+        E1[元数据管理<br>Atlas / DataHub]
+        E0[数据合规与治理-贯穿全局]
+        E2[数据质量<br>DQ / Great Expectations]
+        E3[数据血缘<br>Amundsen]
+        E4[审计 & 安全<br>Ranger]
+    end
+
+    %% =========== 数据消费 ==============
+    subgraph Consumption[数据消费层]
+        F1[指标平台<br>Superset / Grafana]
+        F2[数仓模型<br>DIM / DWD / DWS / ADS]
+        F3[数据服务<br>API Gateway]
+        F4[机器学习<br>Feature Store / MLflow]
+    end
+
+    %% ============== 把“数据接入通道-集成”大框改成虚线 ==============
+    classDef dashedBox stroke-dasharray: 8 4, stroke:#555, stroke-width: 1px
+    class Pipeline dashedBox
+    class Governance dashedBox
+
+    %% ======== 数据流动 ===========
+    A1 --> B1
+    A1 --> B4
+    A2 --> B3
+    A3 --> B2
+    A4 --> B5
+    A5 --> B2
+
+    B1 --> C3
+    B2 --> C1
+    B3 --> C1
+    B4 --> C1
+    B5 --> C3
+
+    C1 --> C2
+    C2 --> D1
+    C2 --> D2
+    C3 --> D3
+    C2 -.-> D3
+
+    D0 --> E0
+    Storage --> Governance
+
+    Governance --> F1</pre>
+
+<p>「「体系详解」」</p>
+<p><strong style="color: #6f42c1;">「数据来源」</strong></p>
+<table class="_table">
+<thead>
+  <tr>
+     <th style="width: 15%;">分类</th>
+     <th style="width: 60%;">核心定义</th>
+  </tr>
+</thead>
+<tbody style="font-size: 12px;">
+  <tr>
+    <td rowspan="1" style="background-color: #e8f6f0;">① 业务数据库（OLTP）</td>
+    <td>结构化数据：MySQL、PostgreSQL、SQL Server、Oracle、MariaDB<br>采集方式：CDC（Change Data Capture）</td>
+  </tr>
+  <tr>
+    <td rowspan="1" style="background-color: #e8f6f0;">② 日志与事件数据</td>
+    <td>非结构化或半结构化：Nginx / Apache Logs、App 埋点数据、SDK 上传事件、Server Logs（业务日志）、业务事件流（event logs）
+        <br>格式：JSON、KV、Text、Protobuf </td>
+  </tr>
+  <tr>
+    <td rowspan="1" style="background-color: #e8f6f0;">③ 第三方 API / SaaS 服务</td>
+    <td>微信小程序、Stripe / PayPal、阿里云 / AWS Cloudwatch、Google Analytics、CRM（Salesforce、Hubspot）
+      <br>方式：Pull / Webhook / Batch</td>
+  </tr>
+  <tr>
+    <td rowspan="1" style="background-color: #e8f6f0;">④ IoT 与传感器数据</td>
+    <td>设备传感器（温湿度、心率、GPS）；车辆、工业、智能硬件<br>特点：高频、实时、持续流式</td>
+  </tr>
+  <tr>
+    <td rowspan="1" style="background-color: #e8f6f0;">⑤ 文件系统数据</td>
+    <td>CSV、Excel；图片、音频、视频；文档（PDF、文本）
+      <br>来源：FTP / SFTP；企业 NAS；Object Storage（S3 / OSS / COS / MinIO）
+      <br>用于 ML（CV、NLP）时尤其关键。</td>
+  </tr>
+  <tr>
+    <td rowspan="1" style="background-color: #e8f6f0;">⑥ 消息队列 / 流系统</td>
+    <td>Kafka、Pulsar、RabbitMQ、Kinesis、MQTT（IoT 常用）<br>这里的数据本身已经是流式数据。
+  </td></tr>
+</tbody>
+</table>
+
+<p><strong style="color: #6f42c1;">「采集方式」</strong><br>按照时间维度</p>
+<table class="_table">
+<thead>
+  <tr>
+     <th style="width: 20%;">方式</th>
+     <th style="width: 60%;">核心定义</th>
+  </tr>
+</thead>
+<tbody style="font-size: 12px;">
+  <tr>
+    <td rowspan="1" style="background-color: #e8f6f0;">① 批处理（Batch Ingestion）</td>
+    <td>周期：分钟、小时、天<br>常见工具：DataX（阿里）、Sqoop（Hadoop：大量数据导入）、Airflow 批作业
+      <br>特点：数据量大、延迟高、成本低；适合：报表、数仓数据</td>
+  </tr>
+  <tr>
+    <td rowspan="1" style="background-color: #e8f6f0;">② 实时采集（Streaming Ingestion）</td>
+    <td>采集延迟：毫秒 - 秒级<br>常见工具：Flume、Flink、Kafka Connect、Logstash
+      <br>特点：高吞吐、连续流式；适合：监控、风控、实时推荐系统</td>
+  </tr>
+  <tr>
+    <td rowspan="1" style="background-color: #e8f6f0;">③ CDC（Change Data Capture）</td>
+    <td>捕获数据库增量变化<br>工具：Debezium（通用 CDC（强推荐））、Maxwell（MySQL CDC → JSON）、Canal（阿里）、
+      <br>Kafka Connect（标准化 CDC 组件）
+      <br>特点：实时同步、对源库压力小；适合：业务库到数仓的同步（强烈推荐）</td>
+  </tr>
+</tbody>
+</table>
+
+<p><strong style="color: #6f42c1;">「典型工具 / 组件」</strong><br><strong>数据库同步类</strong>： DataX、Sqoop、Canal、Maxwell、Debezium、Kafka Connect<br><strong>日志 / 事件流采集</strong>：Flume[日志采集 → HDFS / Kafka]、Logstash[日志解析与转换]、Filebeat[轻量日志采集]、Fluentd[日志收集与转发]、Vector（Datadog 开源）[高性能日志采集（新趋势）]<br><strong>流处理与实时加工</strong>：Flink[实时计算 + 流式 ETL]、Spark Streaming[微批处理]、Kafka Streams[轻量实时逻辑]、Pulsar Functions[事件函数]<br><strong>API / 外部数据获取</strong>：Airflow[定时调用 API 抓取]、Prefect[编排 + API 抓取]、python[requests / aiohttp]<br><strong>IoT 数据采集</strong>：MQTT Broker（EMQX、Mosquitto）、AWS IoT / 阿里云 IoT Hub<br><strong>文件数据采集</strong>：MinIO Client (mc)、S3 API、Hadoop FS、FTP/SFTP 同步工具、Airflow 定时同步</p>
+<p><strong style="color: #6f42c1;">「工程最佳实践」</strong></p>
+<ol>
+<li>优先使用 CDC，同步成本最低、稳定性最高</li>
+<li>日志 → 优先 Kafka + Flink，保证实时性 + 容错</li>
+<li>多来源 → 用 Kafka Connect 形成标准化 Connector 系统</li>
+<li>所有数据最终进入数据湖（Iceberg/Hudi）再分层处理</li>
+<li>ML 场景：数据采集要关联元数据（s3 路径、标签、特征版本）</li>
+<li>配合 MLOps → 接入 MLflow、Feature Store（Feast）</li>
+<li><strong>构建统一 Data Ingestion API，避免大量 ad-hoc 脚本</strong></li>
+</ol>
+<h3 id="3-1-2-存储与架构"><a href="#3-1-2-存储与架构" class="headerlink" title="3.1.2 存储与架构"></a>3.1.2 存储与架构</h3><p>「「定义」」<br>作为采集集成的目的地，存储是以“数据资产化”为最高目标，实现<strong>低成本</strong>、<strong>高性能读写</strong>、<strong>一体化(批流)</strong>、<strong>事务一致性与</strong>的企业级统一存储底座。</p>
+<p>同时兼顾Schema演化、多场景查询加速。提供分层、分格式、分时效管理。<br>也是下游分析、报表、AI、实时服务的数据唯一来源。</p>
+<p>「「体系架构」」<br>存储架构 = 采集集成的终点站 + 数据资产的托管银行 + 全公司所有分析场景的唯一数据源<br><div class="note info"><p>我们的存储架构不是简单的磁盘，而是全公司数据资产的银行金库——采集集成只管把钱（数据）存进来，我们负责保值、增值、随时取用、还能生利息（新业务、新模型）。</p>
+</div></p>
+<pre class="mermaid">flowchart LR
+    %% 采集与集成
+    subgraph Ingestion[数据采集与集成]
+        direction TB
+        In[全量数据<br>统一接入<br><br>Kafka <br> Flink <br> Spark]
+    end
+
+
+    %% 核心：大数据存储架构（重点高亮）
+    subgraph Storage[大数据存储架构\n唯一目的地 & 唯一来源]
+        direction TB
+        Raw[Raw Zone<br>原始落地区]
+        Bronze[Bronze 层<br>原始结构化副本]
+        Silver[Silver 层<br>清洗宽表区<br>Hudi / Iceberg / Delta]
+        Gold[Gold 层<br>业务指标区<br>高性能聚合表]
+    end
+
+    %% 消费场景
+    subgraph Down[消费场景]
+        BI[BI 大屏 / 报表]
+        API[实时 API 服务]
+        ML[机器学习 / 推荐]
+        SEARCH[日志 / 站内搜索]
+    end
+
+    %% 连线
+    Ingestion --> Raw
+    Raw --> Bronze --> Silver --> Gold
+    Gold --> BI
+    Gold --> API
+    Gold --> ML
+    Silver --> SEARCH
+
+    %% 高亮存储架构金库
+    classDef core fill:#e3f2fd,stroke:#1976d2,stroke-width:1px
+    class Storage core
+
+    %% 可选：把采集集成也标个颜色
+    classDef up fill:#fff3e0,stroke:#ef6c00
+    class Up up</pre>
+
+<!-- 
+架构模式,核心存储引擎,优点,缺点,适合公司规模,代表公司
+经典Lambda,HDFS + Hive + Spark,成熟、生态好,批流分离、维护成本高,传统大厂,早期阿里、腾讯
+纯数据湖湖仓一体,Hudi + Iceberg + Flink,批流统一、成本低、Schema可演化,OLAP性能弱（需配合加速引擎）,中大型互联网,字节、美团、滴滴、小红书
+Lakehouse+OLAP,Hudi/Iceberg + StarRocks,湖仓一体 + 实时OLAP最强,技术栈稍复杂,高并发报表需求公司,阿里（新体系）、美团、快手 -->
+<!-- 层级,价值点（一句话）,没有它会怎样？,真实案例（2025年）
+1,防丢、防篡改、可审计（合规底座）,被监管罚款、打官司输证据、业务回滚无法恢复,某银行因日志只能留6个月，被罚几千万
+2,数据可重跑、可回溯源（故障归因&问题定位）,线上事故查不出原因、背锅、修复周期翻10倍,字节某次推荐异常，靠Raw区全量日志1小时定位问题
+3,历史数据可回滚、可重算（避免“一锤子业务”）,需求改了、模型重训、策略调整就得重头来一遍,美团靠Bronze层历史快照，3天重算了过去3年宽表
+4,一次加工、多处复用（降本增效的根本）,每个团队各自拉一份数据，算力、存储×N倍,阿里OneData体系：一份宽表供200+团队复用
+5,数据资产化、可变现（真正的“新石油”）,数据只能用一次，永远无法产生新价值,滴滴把脱敏后的轨迹数据卖给城市交通部门，年入数亿
+6,支撑AI大模型训练（2025年最硬核的价值）,没有高质量历史数据，训练出来的模型就是垃圾,所有大厂的千亿参数大模型，90%训练语料来自自己的数据湖 -->
+<!-- 短期看：存下来 = 不丢数据、不背锅、出了事能查。
+中期看：存得好 = 一份数据大家复用，省几百上千万算力和存储成本。
+长期看：存得久 + 存得全 + 治理好 =
+→ 可以反复挖出新价值
+→ 可以对外卖数据产品
+→ 可以喂自研大模型
+这才是真正把数据变成“企业资产”而不是“一次性消耗品”。 -->
+<h3 id="3-1-3-处理与计算"><a href="#3-1-3-处理与计算" class="headerlink" title="3.1.3 处理与计算"></a>3.1.3 处理与计算</h3><h2 id="3-2-数据分析"><a href="#3-2-数据分析" class="headerlink" title="3.2 数据分析"></a>3.2 数据分析</h2><p>todo</p>
+<h2 id="3-3-数据治理-合规"><a href="#3-3-数据治理-合规" class="headerlink" title="3.3 数据治理/合规"></a>3.3 数据治理/合规</h2><h3 id="3-3-1-数据安全"><a href="#3-3-1-数据安全" class="headerlink" title="3.3.1 数据安全"></a>3.3.1 数据安全</h3><h3 id="3-3-2-数据合规"><a href="#3-3-2-数据合规" class="headerlink" title="3.3.2 数据合规"></a>3.3.2 数据合规</h3><h2 id="3-4-数据科学"><a href="#3-4-数据科学" class="headerlink" title="3.4 数据科学"></a>3.4 数据科学</h2><style type="text/css">
+    .article-entry table {
+        width: 90%;
+    }
+    .post-body .note.info {
+        width: 75%;
+    }
+</style>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/64d49170/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/64d49170/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    2.如何应用AI做好开发(研发新范式)
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/ea4b430f/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/ea4b430f/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">1. 数据开发</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

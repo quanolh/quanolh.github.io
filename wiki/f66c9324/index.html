@@ -1,0 +1,450 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>Tair分布式KV存储架构解读 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="AI工程师,大模型应用,数据架构,Agent,AI知识库,风控架构,Novus,Wiki,Quinoa,quanoc">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tair分布式KV存储架构解读">
+<meta property="og:url" content="https://waisec.cn/wiki/f66c9324/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-08T03:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.130Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="AI工程师,大模型应用,数据架构,Agent,AI知识库,风控架构,Novus,Wiki,Quinoa,quanoc">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Tair分布式KV存储架构解读",
+    "url": "https://waisec.cn/wiki/f66c9324/",
+    "datePublished": "2021-01-08T03:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.130Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png"
+}
+</script>
+
+<article id="post-数据 | 核心生产要素/[1]数据工程/02.存储与架构/[3]数据存储/[1]OLTP存储/001.Tair架构解读" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/">数据 | 核心生产要素</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/">[1]数据工程</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/02-%E5%AD%98%E5%82%A8%E4%B8%8E%E6%9E%B6%E6%9E%84/">02.存储与架构</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/02-%E5%AD%98%E5%82%A8%E4%B8%8E%E6%9E%B6%E6%9E%84/3-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/">[3]数据存储</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/02-%E5%AD%98%E5%82%A8%E4%B8%8E%E6%9E%B6%E6%9E%84/3-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/1-OLTP%E5%AD%98%E5%82%A8/">[1]OLTP存储</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2021/01/" onclick="onclickRoute(event, '/archives/2021/01/')">
+            <time datetime="2021-01-08T03:55:57.000Z" itemprop="datePublished">2021-01-08</time>
+        </a>
+    </div>
+
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/f66c9324/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            Tair分布式KV存储架构解读
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <h1 id="一、Tair介绍"><a href="#一、Tair介绍" class="headerlink" title="一、Tair介绍"></a>一、Tair介绍</h1><p>Tair 是一个由 淘宝（Taobao） 团队开发的分布式缓存系统，类似于 Redis。</p>
+<h2 id="1-1-🎯-Tair特性"><a href="#1-1-🎯-Tair特性" class="headerlink" title="1.1 🎯 Tair特性"></a>1.1 🎯 Tair特性</h2><ul>
+<li>可插拔存储引擎设计：rdb、mdb、ldb、kdb 等这几种存储引擎可以很方便的替换.</li>
+<li>高性能：多线程架构，性能优于单线程的Redis.</li>
+<li>支持多种数据模型(类似Redis)： todo</li>
+<li>天然的分布式能力(自动分片)：不想redis需要通过复杂配置，以及RedisCluster等组件</li>
+<li>持久化：支持数据落盘，适合缓存+存储一体</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">存储引擎分为 持久化和非持久化两种方式：</span><br><span class="line">- 非持久化：mdb(Memcached)、Redis(rdb)</span><br><span class="line">- 持久化：fdb(SQL-DB使用FireBird)；kdb(Kyoto Cabinet)、ldb(LevelDB) 为NoSQL-DB</span><br></pre></td></tr></table></figure>
+<p><strong><em>「既然这么优秀，为什么还要用redis？」</em></strong></p>
+<h2 id="1-2-🔎-与-Redis-对比的优势点"><a href="#1-2-🔎-与-Redis-对比的优势点" class="headerlink" title="1.2 🔎 与 Redis 对比的优势点"></a>1.2 🔎 与 Redis 对比的优势点</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>特性维度</th>
+<th>Tair</th>
+<th>Redis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>多线程支持</td>
+<td>✅ 支持多线程并发处理，性能更强</td>
+<td>❌ 单线程处理，容易成为瓶颈</td>
+</tr>
+<tr>
+<td>分布式能力</td>
+<td>✅ 内建自动分片，客户端自动路由</td>
+<td>❌ 需要 Redis Cluster，配置复杂</td>
+</tr>
+<tr>
+<td>数据结构扩展</td>
+<td>✅ 支持扩展结构（如 TairDoc、TairHash）</td>
+<td>❌ 仅支持固定的基础数据结构</td>
+</tr>
+<tr>
+<td>一致性保障</td>
+<td>✅ 支持 CAS、强一致性操作</td>
+<td>❌ 仅部分操作原子性，无强一致性保障</td>
+</tr>
+<tr>
+<td>高可用机制</td>
+<td>✅ 主从 + 自动容灾，原生高可用</td>
+<td>✅ Sentinel 或 Redis Cluster</td>
+</tr>
+<tr>
+<td>持久化能力</td>
+<td>✅ 支持数据落盘，适合缓存+存储一体</td>
+<td>✅ 支持 RDB/AOF 持久化</td>
+</tr>
+<tr>
+<td>运维能力</td>
+<td>✅ 内建监控、慢查询、热点Key分析等</td>
+<td>❌ 需额外接入监控方案</td>
+</tr>
+<tr>
+<td>插件扩展性</td>
+<td>✅ 支持自定义模块插件</td>
+<td>❌ 无插件机制</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="1-3-架构"><a href="#1-3-架构" class="headerlink" title="1.3 架构"></a>1.3 架构</h2><p>但针对大规模高并发的应用场景进行了优化，尤其适用于电商平台等需要高吞吐量、低延迟的系统。<br>Tair 基于 Redis 协议，并且进行了性能和功能的扩展，特别适用于 大数据存储、高并发访问、以及大规模分布式部署的场景。</p>
+<p>相比于mysql。它有更好的扩展性、更适合高并发场景。  但mysql支持ACID 事务（原子性、一致性、隔离性、持久性），适用于需要保证数据一致性和完整性的应用场景。适合金融、银行等对数据一致性要求高的场景。。</p>
+<ul>
+<li>mysql扩展性相对复杂。</li>
+</ul>
+<p>tair适用于高并发场景，数据读取频繁、更新较少的场景。</p>
+<p>分为几个层级：</p>
+<ol>
+<li>架构设计 技术引领 ， 举例</li>
+<li>高级开发</li>
+<li>初中级开发</li>
+</ol>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/32cab70d/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/32cab70d/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    0.数据可视化概述
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/a416ad14/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/a416ad14/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">数据存储</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

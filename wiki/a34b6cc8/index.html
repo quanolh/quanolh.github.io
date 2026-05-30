@@ -1,0 +1,538 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>2.数据集成平台 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="private,data">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2.数据集成平台">
+<meta property="og:url" content="https://waisec.cn/wiki/a34b6cc8/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-10-26T16:05:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.130Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="private">
+<meta property="article:tag" content="data">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "2.数据集成平台",
+    "url": "https://waisec.cn/wiki/a34b6cc8/",
+    "datePublished": "2025-10-26T16:05:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.130Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "private,data"
+    
+}
+</script>
+
+<article id="post-数据 | 核心生产要素/[1]数据工程/01.采集与集成/002.数据集成平台" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article" style="display:none">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%A7%E5%93%81%E6%A6%82%E8%BF%B0"><span class="toc-text">产品概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%A7%E5%93%81%E7%89%B9%E6%80%A7"><span class="toc-text">产品特性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5%E5%92%8C%E5%8E%9F%E7%90%86"><span class="toc-text">概念和原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6"><span class="toc-text">调度运行机制</span></a></li></ol></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/">数据 | 核心生产要素</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/">[1]数据工程</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/01-%E9%87%87%E9%9B%86%E4%B8%8E%E9%9B%86%E6%88%90/">01.采集与集成</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/data/" rel="tag">data</a>, <a class="tag-link-link" href="/tags/private/" rel="tag">private</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2025/10/" onclick="onclickRoute(event, '/archives/2025/10/')">
+            <time datetime="2025-10-26T16:05:57.000Z" itemprop="datePublished">2025-10-27</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="private,data">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/a34b6cc8/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            数据集成平台
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉，您输入的密码错误，请检查后重新输入。" data-whm="抱歉, 当前文章不能被校验, 不过您还是可以看看解密后的内容。">
+  <script id="hbeData" type="hbeData" data-hmacdigest="13eeeabd3497e4e1645e1886637d6f09b92b1f9fcf50ff09bcde6717f946cfa9">6529a249a0af82b27e00ec9fb492a165f752466310d4246f48138ad63b8c02386c764807c86706611dd479b30f8004073d5cada993e9a475014751e8920250951a09b32fd53cab7f683b4392919f507b400182447189815db44162b7ae01bf94f287bf9c87fd70133366a65055c333a1f4694f07193db2192a4c91b9864d944d58afe0c011dc7505ef5500e98906215cac19f57a4d2e8d46e90f52140b1d8462c493aa3a68306e3bdb87eea500a62d6da67c1fa299d34d3dca3cb1d3d192112cc34a16c12710e33a97da4d5761d92bd3e03f332f947cadfe28396b8018a423a0270d066ef0e67ff6516aad9ea4eb43302ecf686bd2d8d5659fce8126ed6efb5e787a8bf608ddae98b1d7e21700187a4896b14fac958240db0c4004790aba4813517cba9e488019f5aaf349dc6ddece4700443396a4d020861e19ef8bb9ec8974772e30f1d8e7fd459d390a59854dbed7e917e6dd75f96e3dcb6645bee6602de4888013e85ae2fe6052cda3d293d7e7d47c2d04f7464cf126e8d2063927f6dfba54d0ef0bf6baa80c72bab86c1f0b823d1dabccd84f661b89c9bf8e88c2c05e55ea8d6287c3e4dea2238e4cfb5134e9af463029e99cb479a1ca3dd1ebd783c4671609f83c634ce32770160dc4aac4741f26ed26fc682cc9a7a968a1d16dd14480d32afabb15228004e10f4b80530d0cc72bad5b22feb1344cd1996f1db388fbfe1887e74dbe04e936d990445b46ff6fac1a6c72af6f025f56b73f655ecb413152b8c7d888e6b88a575749225612848dce4c447fa57418d8edfa9e463594c5b5f0778f099d42573ec4458e4095a5e5fab0dd8c322ecad5e5ab2614a6b7f4696ec40e2e8e15e944bf758e372042df4a5e256ed5d4f7397f50c5ef9b60575434154ecf12391c280e9e64aac4b227e3f58bf80d4905040f420c4d86a5905363bf74461193b70f2b616109e30fcbb63801dc2ee3a8832d1765092d90ba2478d835a48521093dd5a960bd9421989ba230df42d9f6f5bdbc3d21855a0cdcc0e5f148ef9c78eb0cf5ce5ad5a238a68ee973bc5b9848536f83633f3acc983add7daf807cc66d2398ab960189826133b502ed7a77eabf0cb22fb49e2cf8efa1eb42fb9552374930e524c3b2da21ab8f813b1e043e5cbb1a4d4d521c3a1ae28831796ec2f2caf567eb8bdd6d2e0a17b1be7269c993812a8a8e134a44bb65a3e89a3adad130c9054ce096ec8ebb80307988bfaf0b188230941053e217ea37bb3d616c1950564991f9cf41ab1cba3c99d14c6d3dfab357e2d22fd9f980da1d4dcccba77de4c4240c9dc09cd82f6b77d7f95c4803c8461c767aa22cd06642a2f09c5d9916f68a8b79f5f08392ae9e2a75132de9674266ef98dc21b06a14571c26753faed174af5479d9984ee1e40c487b7364614a94bb3e8df32d9559b12e4cb0bcb7b0e72c4288c6f30bd6e5cb8431adc4461b963c6319e43969ecaaca51fc4540761d48bb983f4e2204543fe3c5752f63283b2d77099bc280c974a9f3543e45550a9311cfdf0860314abeadae5865f915538ade3ba82a03c134f8f86e767f74cf19ee428fdc1518338bf834d75da19949e522fba3cfe8014a0e500c3968d524dfffddad431d016272dbbb20cafe03229d6280250a4dcd70b959b66b0d581b1b7e7f2c24c67845c18721e39e8ea02ee0d8b2720fcc227c92d2f592dfc8f971f2f31e0429316bbc4a9088a33e42763186bc5121f7c263250f5700ca0f3984ae9f8c0c782b6d645b45039ad5321f88d9f3dc4886d415ddce525751cd9158ac094710115aa7cf8cf06fd701fa228b4259d92ad21f93fdae9dc231023fc106e49f041eef931a1c435d42c9e1fa4c88d356f08343506914a2e20774a0ef254e543a83379863d2c0fe5814df44ee2ba2fbabdb62b7a303e82821a7f3174e276fdc704879d758b3ff04eb8f724892f644a1203dfd38692fb7a50482698afd99de9f8c046068b4554da14490d76ec590b3b8ade42083f5d26f5c76535b2a3575ba0e352259bc3002e5add95958933fbeafb8257103406b4239758e199a3340ddfa774f63eabf95397c0317976f631e3a160e92ddbfcaef73c5aef1a124800d7c7d4db443e64edf1e8fc10f0b5f6709afef2bb0f33270fa709635729798cb08c9ca8a4f283394fd5619bf94e51ca0215e528163935f6bd19847c5dd62af45de2eccbce2d069766cd8356bfcad7aa51f25f3523135f7f1fcf648e41ffe06b74848c514a843fd12ef1aca3740d28f3e5123a40f956cc877cc1a8f2210</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">当前文章暂不对外可见，请输入密码后查看！</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/c5af1455/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/c5af1455/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    1.数据采集体系和应用
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/51d435b9/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/51d435b9/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">1.数据管理</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+<!-- 加密文章 TOC 显示控制 -->
+<script data-pjax>
+(function() {
+    var toc = document.getElementById('toc');
+    if (!toc) return;
+    
+    // 检查文章是否已解密（文章内容是否可见且有实际内容）
+    function checkDecrypted() {
+        var articleEntry = document.querySelector('.article-entry');
+        if (!articleEntry) return false;
+        
+        // 检查内容是否可见且有实际内容（超过100字符）
+        var hasContent = articleEntry.innerHTML.length > 100;
+        var isVisible = articleEntry.offsetParent !== null;
+        
+        return hasContent && isVisible;
+    }
+    
+    // 根据解密状态显示/隐藏 TOC
+    function updateTocVisibility() {
+        if (checkDecrypted()) {
+            toc.style.display = 'block';
+        } else {
+            toc.style.display = 'none';
+        }
+    }
+    
+    // 初始检查
+    updateTocVisibility();
+    
+    // 监听点击事件（解密/加密按钮）
+    document.addEventListener('click', function() {
+        // 延迟检查，等待解密/加密操作完成
+        setTimeout(updateTocVisibility, 100);
+        setTimeout(updateTocVisibility, 500);
+    });
+    
+    // 提供全局函数供外部调用
+    window.showEncryptedToc = function() {
+        toc.style.display = 'block';
+    };
+    window.hideEncryptedToc = function() {
+        toc.style.display = 'none';
+    };
+})();
+</script>
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

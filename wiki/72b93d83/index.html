@@ -1,0 +1,624 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>计算机网络总结 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="AI工程师,大模型应用,数据架构,Agent,AI知识库,风控架构,Novus,Wiki,Quinoa,quanoc">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络总结">
+<meta property="og:url" content="https://waisec.cn/wiki/72b93d83/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/quano/www/raw/master/img/network_layer.png">
+<meta property="article:published_time" content="2024-07-20T15:11:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.121Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="AI工程师,大模型应用,数据架构,Agent,AI知识库,风控架构,Novus,Wiki,Quinoa,quanoc">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/quano/www/raw/master/img/network_layer.png">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "计算机网络总结",
+    "url": "https://waisec.cn/wiki/72b93d83/",
+    "datePublished": "2024-07-20T15:11:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.121Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png"
+}
+</script>
+
+<article id="post-平台工具 | 工程架构和工具/[3]计算机基础/计算机网络/001.计算机网络总结" class="article article-type-post">
+    
+        <meta name="referrer" content="no-referrer">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0"><span class="toc-text">一、计算机网络概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E4%BA%92%E8%81%94%E7%BD%91%E8%BE%B9%E7%BC%98%E3%80%81%E6%A0%B8%E5%BF%83"><span class="toc-text">1.1 互联网边缘、核心</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-0-%E4%BB%80%E4%B9%88%E6%98%AF%E5%9B%A0%E7%89%B9%E7%BD%91"><span class="toc-text">1.1.0 什么是因特网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1-%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%BC%98"><span class="toc-text">1.1.1 网络边缘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83"><span class="toc-text">1.1.2 网络核心</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%94%B5%E8%B7%AF%E4%BA%A4%E6%8D%A2"><span class="toc-text">1.电路交换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2"><span class="toc-text">2.分组交换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%95%B0%E6%8D%AE%E6%8A%A5-%E8%99%9A%E7%94%B5%E8%B7%AF%E7%BD%91%E7%BB%9C"><span class="toc-text">3. 数据报&#x2F;虚电路网络</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2%E4%B8%8E%E7%94%B5%E8%B7%AF%E4%BA%A4%E6%8D%A2%E5%AF%B9%E6%AF%94"><span class="toc-text">4. 分组交换与电路交换对比</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E7%BD%91%E7%BB%9C%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-text">1.2 网络的性能指标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-text">1.3 计算机网络体系结构</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%89%A9%E7%90%86%E5%B1%82"><span class="toc-text">二、物理层</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="toc-text">三、数据链路层</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="toc-text">四、网络层</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-0-%E7%BD%91%E7%BB%9C%E5%B1%82%E5%8D%8F%E8%AE%AE"><span class="toc-text">4.0 网络层协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-IP%E5%8D%8F%E8%AE%AE"><span class="toc-text">4.1 IP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-1-IPV4%E6%95%B0%E6%8D%AE%E6%8A%A5%E6%A0%BC%E5%BC%8F"><span class="toc-text">4.1.1 IPV4数据报格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-2-IPv4%E7%BC%96%E5%9D%80-%E9%87%8D%E7%82%B9"><span class="toc-text">4.1.2 IPv4编址(重点)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%8E%B7%E5%8F%96%E4%B8%80%E5%9D%97%E5%9C%B0%E5%9D%80"><span class="toc-text">1. 获取一块地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%8E%B7%E5%8F%96%E4%B8%BB%E6%9C%BA%E5%9C%B0%E5%9D%80"><span class="toc-text">2. 获取主机地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-NAT-%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2"><span class="toc-text">3. NAT(网络地址转换)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-IPv6"><span class="toc-text">4. IPv6</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%85%B6%E5%AE%83"><span class="toc-text">5. 其它</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-3-%E9%80%89%E8%B7%AF%E7%AE%97%E6%B3%95"><span class="toc-text">4.1.3 选路算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%BC%A0%E8%BE%93%E5%B1%82"><span class="toc-text">五、传输层</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E5%AF%BB%E5%9D%80%E5%92%8C%E7%AB%AF%E5%8F%A3"><span class="toc-text">5.1 寻址和端口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-UDP%E6%95%B0%E6%8D%AE%E6%8A%A5"><span class="toc-text">5.2 UDP数据报</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-TCP%E6%AE%B5"><span class="toc-text">5.3 TCP段</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%85%B6%E5%AE%83"><span class="toc-text">六、其它</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0%E5%AD%97%E8%B0%83%E5%88%B6"><span class="toc-text">5.1 二进制数字调制</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E4%B9%A6"><span class="toc-text">参考书</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">[3]计算机基础</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/07/" onclick="onclickRoute(event, '/archives/2024/07/')">
+            <time datetime="2024-07-20T15:11:57.000Z" itemprop="datePublished">2024-07-20</time>
+        </a>
+    </div>
+
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/72b93d83/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            计算机网络总结
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p>本篇主要总结计算机网络核心的知识点，包括网络概述、网络性能指标、网络体系结构以及其中的分层细节。</p>
+<h1 id="一、计算机网络概述"><a href="#一、计算机网络概述" class="headerlink" title="一、计算机网络概述"></a>一、计算机网络概述</h1><p>主要内容包括：</p>
+<ul>
+<li>互联网边缘部分、核心部分的作用。包括分组交换的概念</li>
+<li>计算机网络的性能指标</li>
+<li>计算机网络分层次的体系结构，包含协议和服务的概念。(比较抽象，需要理解概念)</li>
+</ul>
+<p>计算机网络通信的一个显著特点是：间歇性、突发性。</p>
+<h2 id="1-1-互联网边缘、核心"><a href="#1-1-互联网边缘、核心" class="headerlink" title="1.1 互联网边缘、核心"></a>1.1 互联网边缘、核心</h2><h3 id="1-1-0-什么是因特网"><a href="#1-1-0-什么是因特网" class="headerlink" title="1.1.0 什么是因特网"></a>1.1.0 什么是因特网</h3><ul>
+<li>协议：一系列规则和约定的集合。这些规则和约定用于管理<strong><em>两个或多个实体之间</em></strong>的通信、数据交换和交互操作。</li>
+</ul>
+<h3 id="1-1-1-网络边缘"><a href="#1-1-1-网络边缘" class="headerlink" title="1.1.1 网络边缘"></a>1.1.1 网络边缘</h3><h3 id="1-1-2-网络核心"><a href="#1-1-2-网络核心" class="headerlink" title="1.1.2 网络核心"></a>1.1.2 网络核心</h3><p><span style="color: red;"><strong><em>电路交换、分组交换(数据报、虚电路)</em></strong></span></p>
+<p>构建网络核心有两种基本方式：电路交换、分组交换。</p>
+<ul>
+<li>电话交换：在通信双方进行通信之前，网络会在发送方和接收方之间简历一条专用的物理电路路径，该路径在整个通信过程中保持，直到通信结束才释放。（优点：通信质量稳定，实时性强；缺点：资源利用率低、灵活性差）</li>
+<li>分组交换：将需要传输的数据分割成一个个较小的数据包，称为分组。每个分组都包含一个源地址、目标地址和一些控制信息，然后这些分组独立地在网络中传输，并通过网络中的节点(如路由器)根据分组的目的地址和网络的当前状态，选择合适的路径进行转发。</li>
+</ul>
+<p><span style="font-size: 12px;"><strong><em>一个简单的类比如：考虑两家餐厅，一个需要预定，而另一家不需要预定但不保证能安排</em></strong>。 对于需要预定的餐厅，我们离开家之前要承受必须先打电话预定的麻烦，但到达餐厅时，原则上能够立即点菜。 不需要预定的餐厅，没有预定餐桌的麻烦，但也许不得都不先等到有空闲餐桌才能找服务员点菜</span></p>
+<p>计算机网络书中主要和因特网、分组交换有关。然而，理解因特网和其他计算机网络为什么使用分组交换，而非更为传统的用于电话网的电路交换，这一点很重要。</p>
+<h4 id="1-电路交换"><a href="#1-电路交换" class="headerlink" title="1.电路交换"></a>1.电路交换</h4><p>频分复用(FDM)、时分复用(TDM)</p>
+<h4 id="2-分组交换"><a href="#2-分组交换" class="headerlink" title="2.分组交换"></a>2.分组交换</h4><p>现代计算机网络中，源主机将长报文划分为较小的数据块，并称之为分组。 这些分组的每一个都通过通信链路和分组交换机(路由器或者链路层交换机)传送。</p>
+<p>分组交换机(路由器、链路交换机)： 多数分组交换机在链路的输入端使用<strong><em>存储转发传输机制</em></strong>。 是指：在交换机能够开始向输出链路传输该分组的第一个比特之前，必须接受到整个分组。</p>
+<p>存储转发时延：由于存储转发机制，分组交换机沿着该分组的路径在每条链路的输入端引入了存储转发时延。时延和分组的长度成正比。</p>
+<p>排队时延：如果到达的分组需要跨越链路传输，但发现该链路正忙于传输其它分组，该到达分组必须在该输出缓存中等待。</p>
+<p>分组丢失：如果一个到达的分组发现该缓存被等待传输的分组占满了，在这种情况下将出现分组丢失。（分组丢失怎么解决：超时重传、分组编号、ACK机制、流量控制、拥塞控制等待）</p>
+<h4 id="3-数据报-虚电路网络"><a href="#3-数据报-虚电路网络" class="headerlink" title="3. 数据报/虚电路网络"></a>3. 数据报/虚电路网络</h4><p>分组交换网络有两大类：数据报网络和虚电路网络。它们的差异在于：其交换机是使用<strong><em>目的地址</em></strong>还是使用所谓的<strong><em>虚电路号</em></strong>朝其目的地转发分组。</p>
+<p>因特网中路由器根据主机目的地址转发分组，因此因特网是一个数据报网络。</p>
+<ul>
+<li><strong><em>数据报网络</em></strong></li>
+</ul>
+<ul>
+<li><strong><em>虚电路网络</em></strong></li>
+</ul>
+<h4 id="4-分组交换与电路交换对比"><a href="#4-分组交换与电路交换对比" class="headerlink" title="4. 分组交换与电路交换对比"></a>4. 分组交换与电路交换对比</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>电路交换</th>
+<th>分组交换</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>时延</td>
+<td>时延低</td>
+<td>端到端时延:变动不可预测</td>
+</tr>
+<tr>
+<td>成本</td>
+<td>较高</td>
+<td>低</td>
+</tr>
+<tr>
+<td>效率</td>
+<td>利用率低</td>
+<td>简单有效</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="1-2-网络的性能指标"><a href="#1-2-网络的性能指标" class="headerlink" title="1.2 网络的性能指标"></a>1.2 网络的性能指标</h2><p>常用的7个性能指标：速率、带宽、吞吐量、时延(发送时延、传播时延、处理时延、排队时延)、时延带宽积、往返时间RTT、利用率</p>
+<p>非性能指标：费用、质量、标准化、可靠性、可扩展性和可升级性、易于管理和维护</p>
+<h2 id="1-3-计算机网络体系结构"><a href="#1-3-计算机网络体系结构" class="headerlink" title="1.3 计算机网络体系结构"></a>1.3 计算机网络体系结构</h2><div>
+    <img src="https://gitee.com/quano/www/raw/master/img/network_layer.png" style="display: inline-block;margin-left: 18px; width: 55%">
+    <span style="display: block; margin-left: 18%;width: 50%"></span>
+</div>
+
+<p>主要重点学习五层协议。</p>
+<h1 id="二、物理层"><a href="#二、物理层" class="headerlink" title="二、物理层"></a>二、物理层</h1><p>信道、单工、半双工、全双工</p>
+<p>物理层设备：</p>
+<p>传输介质：双绞线、光纤、电缆<br>数据通信基础：<br>信道复用技术：</p>
+<h1 id="三、数据链路层"><a href="#三、数据链路层" class="headerlink" title="三、数据链路层"></a>三、数据链路层</h1><p>(数据单元：帧(Frame))<br>网络分类： LAN(局域网)、MAN(城域网)、WAN(广域网)。它们的划分主要基于覆盖范围、传输速度、网络拓扑结构、管理和控制方式等因素。比如：</p>
+<ul>
+<li>覆盖范围：局域网一般在几千米以内，通常是一个办公室、一栋建筑物、一个校内的网络。城域网一般覆盖一个城市，通常5-50千米。</li>
+<li>传输速度：局域网内一般10Mbps到10Gbps之间；城域网一般1Mbps-100Mbps之间，广域网一般几kbps-几Mbps之间。</li>
+<li>网络拓扑结构：局域网(星形、总线型、环形、树形)；城域网(环形、双总线型等)；广域网(通常不规则的网络拓扑)</li>
+<li>应用场景：局域网一般用于企业内部办公、学校教学、家庭网络；城域网一般公共服务设施、企业之间通信；广域网实现跨地区、跨国家的通信和数据传输，如互联网。</li>
+</ul>
+<p>这几种网络技术细节后续展开。比如WAN技术包括专线(VPN)等.</p>
+<p>差错控制、流量控制、介质访问控制协议。</p>
+<h1 id="四、网络层"><a href="#四、网络层" class="headerlink" title="四、网络层"></a>四、网络层</h1><p>(重点)</p>
+<h2 id="4-0-网络层协议"><a href="#4-0-网络层协议" class="headerlink" title="4.0 网络层协议"></a>4.0 网络层协议</h2><p>IP、ICMP、ARP、RARP、OSPF…</p>
+<h2 id="4-1-IP协议"><a href="#4-1-IP协议" class="headerlink" title="4.1 IP协议"></a>4.1 IP协议</h2><p>网际协议：因特网中的转发和编址</p>
+<p>因特网的网络层有三个主要的组件：IP协议、选路组件、网际控制报文协议(ICMP).</p>
+<h3 id="4-1-1-IPV4数据报格式"><a href="#4-1-1-IPV4数据报格式" class="headerlink" title="4.1.1 IPV4数据报格式"></a>4.1.1 IPV4数据报格式</h3><p>由首部(包含选项)、数据 组成</p>
+<p>IP数据包分片</p>
+<ul>
+<li>MTU(最大传输单元)：一个链路层数据报能承载的最大数据量叫做最大传输单元。</li>
+</ul>
+<h3 id="4-1-2-IPv4编址-重点"><a href="#4-1-2-IPv4编址-重点" class="headerlink" title="4.1.2 IPv4编址(重点)"></a>4.1.2 IPv4编址(重点)</h3><p>全球因特网中的每台主机和路由器上的每个接口必须有一个全球唯一的IP地址。<br><span style="font-size: 12px; color: blue;">这些地址不能以随意的方式自由选择，一个接口的IP地址的组成部分需要<strong><em>由其连接的子网来决定</em></strong></span></p>
+<p>核心概念：子网、子网掩码、无类别域际路由选择、分类编址(A/B/C类)</p>
+<ul>
+<li>子网：子网是将较大的网络通过划分逻辑地分成较小的网络。其主要目的是为了更好的管理网络、提高网路性能、增强网络安全性和减少网络广播流量。</li>
+<li>子网掩码：是确定IP地址中网络地址和主机地址的分隔表示。</li>
+<li>CIDR(无类别域际路由选择)：因特网的地址分配策略。传统的IP地址分类(A/B/C类)存在地址分配不灵活和浪费的问题。CIDR摒弃了这种固定的分类方式，采用可变长子网掩码(VLSM),通过指定网络前缀的长度来标识网络。</li>
+</ul>
+<p>模拟信号和数字信号 是通信和电子领域中两种不同的信号类型。</p>
+<ul>
+<li>模拟信号 ：是一种连续的信号，其信号的幅度、频率或相位等参数随着时间连续变化。例如：传统的音频磁带记录的声音信号、有限电视的电视信号。</li>
+<li>数字信号：是一种离散的数值表示。这些数值通常是二进制的，代表不同的状态或信息。计算机处理和存储的数据、通过数字通信线路传输的数据等都是数字信号。</li>
+</ul>
+<p>调制解调器(Modem)是一种在通信领域中用于在模拟信号和数字信号之间进行转换的设备。</p>
+<h4 id="1-获取一块地址"><a href="#1-获取一块地址" class="headerlink" title="1. 获取一块地址"></a>1. 获取一块地址</h4><p><strong><em>为了获取一块IP地址用于一个组织的子网， 一个网络管理员也许首先会与其ISP联系；ISP会从已分给它的更大地址块中提供一些地址。</em></strong><br>例如：某ISP自己被分配了地址块 200.23.16.0/20。 该ISP可以依次将该地址块分成8个长度相等的较小地址块，为该ISP支持的最多达8个组织中的一个分配一小块， 如：200.23.16.0/23；200.23.18.0/23；….<br><span style="font-size: 12px; color: blue;">外界其它部分不需要知道在地址块200.23.16.0/20内实际上还存在8个其他组织，每个组织有自己的子网</span></p>
+<p><span style="font-size: 12px; color: blue;">一块地址的分配取决于组织的具体需求和应用场景。网络规模较大、对网络的功能/性能有较高的要求，或者有特殊的网络应用需求</span></p>
+<h4 id="2-获取主机地址"><a href="#2-获取主机地址" class="headerlink" title="2. 获取主机地址"></a>2. 获取主机地址</h4><p>一个组织一旦获得了一块地址，它就可以为该组织内的主机与路由器接口分配独立的IP地址。对于路由器接口地址，系统管理员手工配置路由器中的IP地址。 两种方式为一台主机分配一个IP地址： 手工配置、动态主机配置协议(DHCP).</p>
+<p>除了为主机和路由器接口配置独立的IP，主要的工作还包括：规划IP地址分配方案、配置路由功能、配置访问控制列表等。</p>
+<p><span style="font-size: 12px; color: blue;">那第1条获取一块地址我理解是从ISP获取一块公网IP， 在一个组织中，IP地址的分配、路由的配置等 实际配置的是什么？是和公网IP有什么关系呢？是怎么通过公网IP访问互联网的呢？</span></p>
+<h4 id="3-NAT-网络地址转换"><a href="#3-NAT-网络地址转换" class="headerlink" title="3. NAT(网络地址转换)"></a>3. NAT(网络地址转换)</h4><p>背景：如果一个局域网变大了，则需要分配一块较大的地址，这时应该怎么办呢？<br>NAT：应用更广泛、更简单的地址分配方法(网络地址转换)<br>NAT中的地址用于 专用网络或具有专用地址的地域。指其地址仅对该网络中的设备有意义。<br>数以万计的家庭网络的事实，许多网络使用相同的地址空间。<br><span style="font-size: 12px; color: blue;">NAT使能路由器对于外界来说甚至不像一台路由器。对外界的行为就如同一个具有单一IP地址的单一设备。 </span><br><em>所有离开家庭路由器通向较大因特网的报文都拥有同一个源的IP地址，例如：138.76.29.7 ,且所有进入家庭路由器的报文都拥有同一个目的IP地址。</em></p>
+<p>路由器通过从ISP的DHCP服务器得到它的地址，它再运行一个DHCP服务器(NAT-DHCP)，为家庭网络的地址空间中的计算机提供地址。<br>来自广域网到达<strong><em>NAT路由器</em></strong>的所有数据都有相同的目的IP地址，那该路由器是怎么知道它应将一个给定数据报转发给哪个内部主机呢？ <strong><em>NAT转换表</em></strong>。<br>家庭路由器一般都是NAT路由器.</p>
+<p>虽然NAT在近几年得到广泛应用，但它也存在一些问题比如违反了所谓端到端主张、妨碍P2P应用程序等。</p>
+<h4 id="4-IPv6"><a href="#4-IPv6" class="headerlink" title="4. IPv6"></a>4. IPv6</h4><h4 id="5-其它"><a href="#5-其它" class="headerlink" title="5. 其它"></a>5. 其它</h4><ul>
+<li><p>怎么确认一个ip是哪类地址？<br>根据第一个字节(网络号部分)判断：A类地址范围(1-126);B类地址范围(128-191);C类地址范围(192-223);D类地址范围(224-239);E类范围(240-255)</p>
+</li>
+<li><p>私有地址(IETF定义，对私有IP地址的范围明确定义：满足企业、家庭等内部网络的需求，同时避免与公共网络的IP地址产生冲突)<br>A 类私有地址：10.0.0.0 到 10.255.255.255<br>B 类私有地址：172.16.0.0 到 172.31.255.255<br>C 类私有地址：192.168.0.0 到 192.168.255.255<br>这些私有地址通常用于家庭、企业等内部网络，在互联网上不可路由。 </p>
+</li>
+<li><p><strong><em>子网掩码：网段划分？子网掩码和IP，如何区分是否同一个网段？</em></strong>(重点)<br>当子网掩码为 255.255.0.0 时，这表示前两个字节是网络号，后两个字节是主机号。<br>假设网络地址为 192.168.0.0 ，那么同一网段中可能的 IP 地址范围是 192.168.0.1 到 192.168.255.254 。<br>需要注意的是，网络地址（192.168.0.0）和广播地址（192.168.255.255）通常不分配给具体的主机使用。<br>例如，如果网络地址是 10.10.0.0 ，那么同一网段中可用的 IP 地址就是 10.10.0.1 到 10.10.255.254 。<br>举例2：与10.110.12.29 mask 255.255.255.224 属于同一网段的主机IP地址是？<br>子网掩码 255.255.255.224 对应的子网块大小为 256 - 224 = 32 。<br>所以子网的地址范围如下：10.110.12.0 - 10.110.12.31<br>其中网络地址为 10.110.12.0 ，广播地址为 10.110.12.31 。<br>因此，与 10.110.12.29 掩码 255.255.255.224 属于同一网段的主机 IP 地址有：10.110.12.1 到 10.110.12.28 ，10.110.12.30  </p>
+</li>
+<li><p>组播地址<br>指在IP网络中实现一对多通信的一种特殊地址类型；<br>组播地址的范围在IPv4中是224.0.0.0 - 239.255.255.255<br>例如：视频会议、在线直播、网络教学等应用中，可以使用组播技术。</p>
+</li>
+</ul>
+<h3 id="4-1-3-选路算法"><a href="#4-1-3-选路算法" class="headerlink" title="4.1.3 选路算法"></a>4.1.3 选路算法</h3><p>以上介绍了网络层的转发功能。</p>
+<h1 id="五、传输层"><a href="#五、传输层" class="headerlink" title="五、传输层"></a>五、传输层</h1><p>传输层的功能：传输寻址与端口；无连接服务(UDP) 和 面向连接服务(TCP)</p>
+
+      <div class="tip-container tip-warning" style="
+        background-color: #fffaf0;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #ed8936;
+        ">
+          <i class="fa fa-exclamation-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>数据链路层 提供链路上相邻结点之间的逻辑通信<br>网络层 提供主机之间的逻辑通信<br>传输层位于 网络层之上、应用层之下， <strong style="color: #6f42c1;">为不同主机上的进程之间提供逻辑通信</strong>。</p>
+<p>网络层(如IP) 是不可靠的、无连接的， 会出现分组丢失、乱序、重复， 它只负责尽力转发， 不做差错恢复和重传。<br>
+            </p></div>
+        </div>
+      </div>
+    <p></p>
+<h2 id="5-1-寻址和端口"><a href="#5-1-寻址和端口" class="headerlink" title="5.1 寻址和端口"></a>5.1 寻址和端口</h2><p>「端口的作用」<br>让应用层的各种进程 将其数据通过端口向下交付给 传输层。 让传输层知道应对将其报文段中的数据向上通过端口交付给应用层响应的<strong style="color: #6f42c1;">进程</strong>。</p>
+<p>「套接字」<br>端口号 拼接到IP地址即构成  套接字（Socket）。 在网络中采用发送方和接收方的<strong style="color: #6f42c1;">套接字来 识别端点</strong>。</p>
+<p>套接字 = （IP地址: 端口号） = 通信端点</p>
+<h2 id="5-2-UDP数据报"><a href="#5-2-UDP数据报" class="headerlink" title="5.2 UDP数据报"></a>5.2 UDP数据报</h2><p>「UDP检验和」<br>UDP 检验和是用于检测 UDP 数据报在传输过程中是否出现差错的机制，其计算规则有明确的标准定义</p>
+<h2 id="5-3-TCP段"><a href="#5-3-TCP段" class="headerlink" title="5.3 TCP段"></a>5.3 TCP段</h2><h1 id="六、其它"><a href="#六、其它" class="headerlink" title="六、其它"></a>六、其它</h1><h2 id="5-1-二进制数字调制"><a href="#5-1-二进制数字调制" class="headerlink" title="5.1 二进制数字调制"></a>5.1 二进制数字调制</h2><p>FSK、DPSK</p>
+<p>VLAN</p>
+<p>学习过程： 按7层从下到上依次学习。 再看TCP/IP体系结构，五层模型。</p>
+<h1 id="参考书"><a href="#参考书" class="headerlink" title="参考书"></a>参考书</h1><p>计算机网络 - 第7版 谢希…</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/af4b9e1b/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/af4b9e1b/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    202501
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/93932d2a/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/93932d2a/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">业务风控体系</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

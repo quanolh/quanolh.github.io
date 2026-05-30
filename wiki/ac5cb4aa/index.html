@@ -1,0 +1,594 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>机器学习概述 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="ML">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习概述">
+<meta property="og:url" content="https://waisec.cn/wiki/ac5cb4aa/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-02T14:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.147Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="ML">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "机器学习概述",
+    "url": "https://waisec.cn/wiki/ac5cb4aa/",
+    "datePublished": "2020-10-02T14:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.147Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "ML"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/2|机器学习/001.机器学习基本概念和算法" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="toc-text">一、线性回归</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="toc-text">1. 什么是线性回归</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E4%B8%AD%E7%9A%84%E7%BA%BF%E6%80%A7"><span class="toc-text">1.1 线性回归中的线性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E4%BA%86%E8%A7%A3%E2%80%9C%E7%BA%BF%E6%80%A7%E2%80%9D"><span class="toc-text">1.2 了解“线性”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E7%AE%80%E5%8D%95%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="toc-text">1.3 简单线性回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="toc-text">1.4 多元线性回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-text">1.5 线性回归的应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E5%AE%9E%E7%8E%B0"><span class="toc-text">1.6 线性回归的原理和实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-1-%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83"><span class="toc-text">1.6.1 模型训练</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-2-%E9%A2%84%E6%B5%8B-%E6%8E%A8%E7%90%86-%E5%92%8C%E8%AF%84%E4%BC%B0"><span class="toc-text">1.6.2 预测(推理)和评估</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-3-%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95"><span class="toc-text">1.6.3 最小二乘法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E5%81%87%E8%AE%BE"><span class="toc-text">1.7 线性回归的假设</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E8%AE%A4%E8%AF%86"><span class="toc-text">2. 线性回归的认识</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92"><span class="toc-text">二、逻辑回归</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A8%A1%E5%9E%8B%E5%BD%A2%E5%BC%8F-%E5%8E%9F%E7%90%86"><span class="toc-text">1. 模型形式(原理)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1"><span class="toc-text">2. 参数估计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1-MLE"><span class="toc-text">2.1 最大似然估计(MLE)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%86%B3%E7%AD%96%E8%BE%B9%E7%95%8C"><span class="toc-text">3. 决策边界</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-softmax%E5%9B%9E%E5%BD%92%E5%92%8C%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92"><span class="toc-text">4. softmax回归和逻辑回归</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%85%B1%E6%80%A7"><span class="toc-text">4.1 共性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%B7%AE%E5%BC%82"><span class="toc-text">4.2 差异</span></a></li></ol></li></ol></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">2|机器学习</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/ML/" rel="tag">ML</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2020/10/" onclick="onclickRoute(event, '/archives/2020/10/')">
+            <time datetime="2020-10-02T14:55:57.000Z" itemprop="datePublished">2020-10-02</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="ML">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/ac5cb4aa/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            机器学习概述
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p>这部分(文件夹)的内容是对机器学习较宽泛的概念，包括了深度学习以及在不同数据类型和任务领域的应用<br>(NLP、CV等)，不仅仅是传统的机器学习方法。</p>
+<p>但是本文的内容主要还是介绍机器学习基本概念和算法(后续整理).<br>包括 线性回归、逻辑回归、决策树、随机森林、SVM等.</p>
+<h1 id="一、线性回归"><a href="#一、线性回归" class="headerlink" title="一、线性回归"></a>一、线性回归</h1><p>先提出一个问题：线性代数、线性方程、线性变换、线性空间(向量空间)等概念都与线性相关，那什么是线性呢，这些概念的含义又有什么区别？</p>
+<h2 id="1-什么是线性回归"><a href="#1-什么是线性回归" class="headerlink" title="1. 什么是线性回归"></a>1. 什么是线性回归</h2><p>是一种统计学方法，用于<strong><em>建模和分析一个因变量与一个或多个自变量 之间的线性关系</em></strong>.<br>主要目标是做出一个预测模型，该模型能够预测连续的输出值</p>
+<h3 id="1-1-线性回归中的线性"><a href="#1-1-线性回归中的线性" class="headerlink" title="1.1 线性回归中的线性"></a>1.1 线性回归中的线性</h3><p>是指<span style="color: red;">模型中自变量(特征)与因变量之间的关系是线性的</span>。<br>具体来说： 线性回归假设自变量与因变量之间的关系<span style="color: red;">可以用一个线性方程来描述</span>，即自变量的线性组合与因变量之间存在一个线性关系.</p>
+<h3 id="1-2-了解“线性”"><a href="#1-2-了解“线性”" class="headerlink" title="1.2 了解“线性”"></a>1.2 了解“线性”</h3><p>这些线性 通常指 线性关系或线性性质： 它描述了<strong><em><span style="color: red;">一种简单、直接、成比例的关系</span></em></strong>，这种关系遵循特定的数学规律， 如<strong>可加性和齐次性</strong>.<br>线性的意义：在线性系统中，<span style="color: red;">小的变化通常会导致 小的响应， 这使得线性系统相对容易 分析和预测</span>。<br><span style="font-size: 12px;"><em>现实世界的许多现象是非线性的，行为更复杂、可能涉及阈值、突变或反馈机制。 就需要更复杂的算法解决相关问题。</em></span></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">数学中的线性：变量或函数之间直接成比例关系。例如：直线方程y=mx+b.</span><br><span class="line">线性方程：变量的最高次数为1的方程。 是可解的，通常有唯一解或一组解.</span><br><span class="line">线性代数：“线性”用于描述向量空间、线性变换、线性映射等概念。 这些概念 满足 ***加法、标量乘法的封闭性、齐次性、可加性***.</span><br><span class="line">线性系统：输入和输出成线性关系的系统。 意味着系统的响应 可以分解为各个输入的线性组合.</span><br><span class="line">线性回归：在统计学中，用于预测一个变量(因变量)基于另一个或多个变量(自变量)的统计方法.</span><br></pre></td></tr></table></figure>
+<h3 id="1-3-简单线性回归"><a href="#1-3-简单线性回归" class="headerlink" title="1.3 简单线性回归"></a>1.3 简单线性回归</h3><p>只有一个自变量和一个因变量时。  它试图找出最佳 拟合的直线。 这条直线能够最大程度的减少实际预测值和通过直线预测的值之间的差异.</p>
+<p>$ y = \beta_0 + \beta_1x + \epsilon $</p>
+<p>其中:</p>
+<ul>
+<li>y 是因变量（预测的输出）</li>
+<li>x 是自变量（输入特征）</li>
+<li>$ \beta_0 是截距项，它是当 x=0 时 y 的预期值。 $</li>
+<li>$ \beta_1 是斜率，表示 ( x ) 每变化一个单位，( y ) 预期变化的数量。$</li>
+<li>$ \epsilon 是误差项，代表模型无法解释的随机变异。 $</li>
+</ul>
+<h3 id="1-4-多元线性回归"><a href="#1-4-多元线性回归" class="headerlink" title="1.4 多元线性回归"></a>1.4 多元线性回归</h3><p>当有多个自变量时，线性回归可以扩展为多元线性回归。</p>
+<p>$ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon $</p>
+<p>其中:</p>
+<ul>
+<li>$  x_1 , x_2 , \ldots ,x_n $   是自变量， </li>
+<li>$ \beta_1, \beta_2,\ldots  ,\beta_n $ 是对应的斜率</li>
+</ul>
+<h3 id="1-5-线性回归的应用"><a href="#1-5-线性回归的应用" class="headerlink" title="1.5 线性回归的应用"></a>1.5 线性回归的应用</h3><ul>
+<li>预测分析：根据自变量的值预测因变量的值。</li>
+<li>趋势分析：分析自变量和因变量之间的关系趋势。</li>
+<li>决策支持：为决策提供数据驱动的见解。</li>
+</ul>
+<p>todo 各种机器学习算法的比较和选型.</p>
+<h3 id="1-6-线性回归的原理和实现"><a href="#1-6-线性回归的原理和实现" class="headerlink" title="1.6 线性回归的原理和实现"></a>1.6 <span style="color: red;">线性回归的原理和实现</span></h3><p>一种统计学习方法，用于建立一个或多个自变量与因变量之间的线性关系。 实现线性回归(其它模型类似)的步骤：<br>问题定义、数据收集、数据探索分析、特征选择、数据预处理、模型选择(简单线性、多元线性回归)、划分数据集、模型训练、模型评估、模型诊断、模型优化；预测、结果解释、模型部署、持续监控和维护.</p>
+<h4 id="1-6-1-模型训练"><a href="#1-6-1-模型训练" class="headerlink" title="1.6.1 模型训练"></a>1.6.1 模型训练</h4><p><span style="font-size: 12px;"><strong><em>基本原理：通过</em></strong></span><span style="color: blue;font-size: 12px"><strong><em>最小化误差的平方和</em></strong></span><span style="font-size: 12px;"><strong><em>来找到一个线性方程，该方程能够最好地拟合数据点</em></strong></span>.</p>
+<ol>
+<li><p>线性回归模型的假设<br>假设线性回归模型为：$ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon $<br>其中$  x_1 , x_2 , \ldots ,x_n $   是自变量，  $ \beta_1, \beta_2,\ldots  ,\beta_n $ 是模型参数，$ \epsilon $是误差项.</p>
+</li>
+<li><p><span style="color: red;">最小二乘法</span><br>(最常用的线性回归<strong><em>模型拟合技术</em></strong>，通过<strong><em>最小化误差项的平方和</em></strong>来<strong><em>估计模型参数</em></strong>)<br>最小化误差的平方和，即 $  S = \sum_{i=1}^{m} (y_i - \hat{y}_i)^2  $<br>其中，$ y_i $ 是实际值， $ \hat{y}_i $ 是模型预测值。</p>
+</li>
+<li><p><span style="color: blue;">构建目标函数</span><br>构建损失函数（通常是均方误差）：$ J(\beta) = \frac{1}{2m} \sum_{i=1}^{m} (y_i - \hat{y}_i)^2 $<br>其中，$m$是样本数量. （<strong>损失函数是预测误差的平方和</strong>）</p>
+</li>
+<li><p><span style="color: blue;">求解模型参数</span>.<br>使用<strong><em>梯度下降</em></strong>或解析方法求解参数。对于解析方法，求解参数的公式为： $ \beta = (X^TX)^{-1}X^Ty $<br>其中，$ \beta $是模型参数向量，$X$ 是设计矩阵，$X^T$是$X$的转置，$(X^TX)^{-1}$ 是 $X^TX$的逆矩阵，$y$是因变量的值向量。</p>
+</li>
+<li><p>设计矩阵<br>设计矩阵 $X$ 的构造通常如下：$ X = \begin{bmatrix} 1 &amp; x<em>{11} &amp; x</em>{12} &amp; \ldots &amp; x<em>{1n} \\<br>1 &amp; x</em>{21} &amp; x<em>{22} &amp; \ldots &amp; x</em>{2n} \\<br>\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\<br>1 &amp; x<em>{m1} &amp; x</em>{m2} &amp; \ldots &amp; x_{mn} \end{bmatrix} $</p>
+</li>
+</ol>
+<hr>
+<h4 id="1-6-2-预测-推理-和评估"><a href="#1-6-2-预测-推理-和评估" class="headerlink" title="1.6.2 预测(推理)和评估"></a>1.6.2 预测(推理)和评估</h4><ol>
+<li><span style="color: blue;">预测新数据</span><br>使用训练得到的参数$\beta$来预测新数据点$x<em>{new}$ 的$y$值：$ \hat{y}</em>{\text{new}} = \beta<em>0 + \beta_1 x</em>{\text{new1}} + \beta<em>2 x</em>{\text{new2}} + \ldots + \beta<em>n x</em>{\text{newn}} $<br>简写：$ \hat{y}<em>{\text{new}} = X</em>{\text{new}} \beta $</li>
+</ol>
+<ol>
+<li><p>模型评估<br>使用测试集计算模型的评估指标，如均方误差(MSE)、均方根误差(RMSE)、决定系统(R^2)</p>
+</li>
+<li><p>模型诊断<br>检查残差图、Q-Q图等，以确保模型满足线性回归的基本假设.</p>
+</li>
+<li><p>模型优化<br>如果模型不满足假设，可能需要进行特征选择、正则化、转换等步骤来优化模型.</p>
+</li>
+</ol>
+<h4 id="1-6-3-最小二乘法"><a href="#1-6-3-最小二乘法" class="headerlink" title="1.6.3 最小二乘法"></a>1.6.3 最小二乘法</h4><p>最小化平方差 来进行参数估计.</p>
+<h3 id="1-7-线性回归的假设"><a href="#1-7-线性回归的假设" class="headerlink" title="1.7 线性回归的假设"></a>1.7 线性回归的假设</h3><p>线性关系：自变量和因变量之间应存在线性关系。<br>独立性：自变量之间相互独立，误差项相互独立。<br>同方差性：对于所有的观测值，误差项具有恒定的方差。<br>正态分布：误差项呈正态分布。</p>
+<h2 id="2-线性回归的认识"><a href="#2-线性回归的认识" class="headerlink" title="2. 线性回归的认识"></a>2. 线性回归的认识</h2><p>限制：现实世界的数据往往存在 非线性关系， 如果数据的真实关系是非线性的， 线性回归模型将无法准确捕捉这种复杂的模式.</p>
+<p>怎么理解回归：在统计学和机器学习中 指<span style="color: red;">一种分析方法</span>。 用于建立一个模型，该模型能够预测或估计一个连续的响应变量(因变量)的值，基于一个或多个解释变量(自变量)的信息. </p>
+<ul>
+<li>在线下回归的上下文中，回归有以下关键点：关系的推断(帮我们推断变量之间的因果关系或关联性)、预测(给的自变量的值，可以预测因变量的值)、线性关系、趋势分析、参数估计、数据拟合.</li>
+</ul>
+<p>对回归的理解：推荐系统中，深度学习模型可以用于预测药物分子的活性，这是一个典型的回归问题。</p>
+<p>回归的定义：<span style="color: red;">一种统计学习方法，用于分析两个或多个变量之间的关系， 并建立一个模型来预测或估计一个连续的因变量的值，基于一个或多个自变量的值。<br>在机器学习和深度学习中，回归问题通常指那些目标是预测连续值输出的问题，这与分类问题形成对比，分类问题的目标是预测离散的类别标签。</span></p>
+<p>回归和分类 在建模过程、模型评估、应用实践中有许多相似之处。 是数据分析和机器学习中的核心方法.</p>
+<h1 id="二、逻辑回归"><a href="#二、逻辑回归" class="headerlink" title="二、逻辑回归"></a>二、逻辑回归</h1><p>一种广泛应用于统计学和机器学习中的回归算法，它用于处理分类问题，尤其是二分类问题.</p>
+<p><span style="color: red;">主要思想是 通过一个或多个自变量的线性组合来估计某个事件发生的概率。</span><br>线性回归的主要思想是：通过一个或多个自变量的线性组合来预测一个因变量的值</p>
+<h2 id="1-模型形式-原理"><a href="#1-模型形式-原理" class="headerlink" title="1. 模型形式(原理)"></a>1. 模型形式(原理)</h2><p>逻辑回归模型使用<span style="color: red;">逻辑函数</span>（如<span style="color: red;">Sigmoid函数或双曲正切函数</span>）将<strong><em>线性回归模型的输出</em></strong>映射到概率空间（0, 1）上，表示概率。<br>这个概率表示某个实例属于特定类别的可能性。<br>预测公式为：（线性关系假设：假设特征与对数几率 之间存在线性关系）<br>$ \hat{p} = \sigma(z) = \frac{1}{1 + e^{-z}} $<br>其中：</p>
+<ul>
+<li>$\hat{p}$ 是事件发生的概率</li>
+<li>e是自然对数的底，即欧拉常数，约等于2.71828</li>
+<li>公式(函数)的输入$z$是 线性函数的输出，即$z$由下面公式得出：</li>
+</ul>
+<p>$z = w_0 + w_1x_1 + w_2x_2 + \ldots + w_nx_n + b$</p>
+<p>采用向量的写法，上述公式可以写成为：<br>$ \mathbf{z} = \mathbf{w}^T \mathbf{x} + b $<br>其中：</p>
+<ul>
+<li>$\mathbf{z} $ 是输出值（标量）。</li>
+<li>$\mathbf{w} $ 是权重向量，大小为 $ n \times 1 $，其中 $ n $ 是特征的数量。</li>
+<li>$\mathbf{x} $ 是输入特征向量，大小也为 $ n \times 1 $。</li>
+<li>$b $ 是偏置项（截距）。</li>
+</ul>
+<p>假设函数：逻辑回归使用一个成为逻辑函数 来表示事件发生的概率 $ h_\theta(x) = \frac{1}{1 + e^{-\theta^Tx}} $</p>
+<h2 id="2-参数估计"><a href="#2-参数估计" class="headerlink" title="2. 参数估计"></a>2. 参数估计</h2><p>参数估计的方法：<strong><em>最优化理论(最大似然估计、最小化损失函数(最小二乘法、梯度下降法)) 、贝叶斯估计</em></strong></p>
+<p>参数估计的方法详见：<a href="/wk/算法/001.机器学习/002.数学知识/机器学习/001.参数估计/">参数估计方法</a></p>
+<p>逻辑回归中 最大似然估计(MLE)和梯度下降都可以使用</p>
+<p>todo: 使用方式 实践.</p>
+<h3 id="2-1-最大似然估计-MLE"><a href="#2-1-最大似然估计-MLE" class="headerlink" title="2.1 最大似然估计(MLE)"></a>2.1 最大似然估计(MLE)</h3><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">假设(相较于线性回归的假设)</span><br><span class="line">逻辑回归不假设数据呈正态分布，它适用于分类问题.</span><br></pre></td></tr></table></figure>
+<p><a href="/wk/算法/001.机器学习/002.数学知识/机器学习/002.最优化理论_模型训练中的数学/">数学原理:最优化理论/梯度下降最优化算法</a></p>
+<h2 id="3-决策边界"><a href="#3-决策边界" class="headerlink" title="3. 决策边界"></a>3. 决策边界</h2><p>根据模型参数和输入特征，确定一个决策边界，将样本分到不同的类别中.</p>
+<p>为什么是分类问题, 是离散的类别标签？<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">实际上，逻辑回归的输出不是离线的类别标签，这是一个常见的误解。 LR实际上是一种回归方法，它用于预测一个连续的输出值， </span><br><span class="line">该输出值表示某个事件发生的概率。在二分类问题中，逻辑回归的输出是一个介于0和1之间的概率值，然后通常根据这个概率值</span><br><span class="line">来确定一个阈值， 以将概率映射到两个类别标签上。</span><br></pre></td></tr></table></figure></p>
+<p>LR在二分类问题中非常流行，因为它提供了一种<strong><em>自然的方式来估计和解释类别概率</em></strong>， 并且模型的参数估计具有很好的数学性质。<br>在多分类问题中，LR可以扩展为多项式逻辑回归。</p>
+<h2 id="4-softmax回归和逻辑回归"><a href="#4-softmax回归和逻辑回归" class="headerlink" title="4. softmax回归和逻辑回归"></a>4. softmax回归和逻辑回归</h2><h3 id="4-1-共性"><a href="#4-1-共性" class="headerlink" title="4.1 共性"></a>4.1 共性</h3><p>基于线性回归（首先计算输入特征的 <strong>线性组合</strong>）、 分类任务(一个二分类、一个多分类)</p>
+<ul>
+<li><p>损失函数<br>它们都使用<strong><em>交叉熵损失函数（Cross-Entropy Loss）</em></strong>来衡量模型预测与实际标签之间的差异。逻辑回归使用二元交叉熵损失，而Softmax回归使用多类别交叉熵损失。</p>
+</li>
+<li><p>最大似然估计<br>在训练过程中，它们通常使用最大似然估计来优化模型参数，通过最小化损失函数来找到最佳参数。</p>
+</li>
+<li><p>梯度下降优化<br>两者在训练时都可以通过梯度下降或其变体（如随机梯度下降）来更新模型权重。</p>
+</li>
+<li><p>特征重要性<br>在模型训练完成后，线性回归系数可以提供关于特征对预测结果影响的重要性的洞察。</p>
+</li>
+</ul>
+<p>都应用于线性可分问题.</p>
+<ul>
+<li>模型泛化(todo 泛化的理解，和规则的区别和优势)<br>它们都关注模型的泛化能力，即在新的、未见过的数据上的表现。</li>
+</ul>
+<h3 id="4-2-差异"><a href="#4-2-差异" class="headerlink" title="4.2 差异"></a>4.2 差异</h3><p>Softmax回归：专为多分类问题设计，它可以输出每个类别的预测概率。</p>
+<ul>
+<li>概率解释<br>逻辑回归：输出的是事件发生的单个概率值； Softmax回归：输出的是每个类别的相对概率分布。)</li>
+</ul>
+<p>Softmax回归：模型输出一个概率向量，其中每个元素代表一个类别的相对概率，概率最高的类别被选为预测结果。</p>
+<ul>
+<li>应用场景<br>逻辑回归：适用于二分类问题，如垃圾邮件检测、疾病诊断等。<br>Softmax回归：适用于多分类问题，如手写数字识别（MNIST）、图像分类等。</li>
+</ul>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/ab08ef35/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/ab08ef35/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    Word2vec
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/36a78ddc/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/36a78ddc/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">NLP与人工智能的关系</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

@@ -1,0 +1,545 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>3.AI对软件工程的影响 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="AI">
+
+    <meta name="description" content="AI对数据工程的影响，有哪些事情会被取代">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3.AI对软件工程的影响">
+<meta property="og:url" content="https://waisec.cn/wiki/7c40c2b3/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="AI对数据工程的影响，有哪些事情会被取代">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-01-31T03:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.145Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="AI">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "3.AI对软件工程的影响",
+    "url": "https://waisec.cn/wiki/7c40c2b3/",
+    "datePublished": "2026-01-31T03:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.145Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "AI"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/1|大模型应用/02.Agent应用/02.AICoding/004.AI对软件工程的影响" class="article article-type-post">
+    
+        <meta name="referrer" content="no-referrer">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AF%B9%E5%90%84%E8%A1%8C%E4%B8%9A%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-text">一、对各行业的影响</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E5%8F%98%E9%9D%A9%E7%9A%84%E6%A0%B8%E5%BF%83%E9%80%BB%E8%BE%91"><span class="toc-text">1.1 变革的核心逻辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E9%80%9A%E7%94%A8%E5%85%B1%E8%AF%86%E5%BD%B1%E5%93%8D"><span class="toc-text">1.2 通用共识影响</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E5%AF%B9%E6%95%99%E8%82%B2%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-text">1.3 对教育的影响</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E5%AF%B9%E5%8C%BB%E7%96%97%E7%9A%84%E5%BD%B1%E5%93%8D%EF%BC%9F"><span class="toc-text">1.4 对医疗的影响？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-%E5%A6%82%E4%BD%95%E5%BA%94%E5%AF%B9%EF%BC%9F"><span class="toc-text">1.5 如何应对？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AF%B9%E6%99%BA%E8%83%BD%E9%A3%8E%E6%8E%A7%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-text">二、对智能风控的影响</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-text">三、对数据工程的影响</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AF%B9Iot%E7%9B%B8%E5%85%B3%E5%BD%B1%E5%93%8D"><span class="toc-text">四、对Iot相关影响</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E4%BA%A7%E5%93%81%E5%BD%A2%E6%80%81"><span class="toc-text">4.1 产品形态</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%A6%82%E4%BD%95%E5%BA%94%E5%AF%B9%EF%BC%9F"><span class="toc-text">五、如何应对？</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/">1|大模型应用</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/02-Agent%E5%BA%94%E7%94%A8/">02.Agent应用</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/02-Agent%E5%BA%94%E7%94%A8/02-AICoding/">02.AICoding</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/AI/" rel="tag">AI</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/01/" onclick="onclickRoute(event, '/archives/2026/01/')">
+            <time datetime="2026-01-31T03:55:57.000Z" itemprop="datePublished">2026-01-31</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="AI">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/7c40c2b3/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            AI对软件工程的影响
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p>首先要明确的是，26年的AI一定是 信息革命的拐点。以前电影里看到的画面，已经照进了现实。AI现在真的很强。</p>
+<p>这一点毋庸置疑。 那为什么很多人感知不到？<br>当前属于过渡期，分多个层次吧：</p>
+<ul>
+<li>一些人</li>
+<li>一些人</li>
+<li>一些人</li>
+</ul>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/openclaw/openclaw">https://github.com/openclaw/openclaw</a></p>
+<h1 id="一、对各行业的影响"><a href="#一、对各行业的影响" class="headerlink" title="一、对各行业的影响"></a>一、对各行业的影响</h1><h2 id="1-1-变革的核心逻辑"><a href="#1-1-变革的核心逻辑" class="headerlink" title="1.1 变革的核心逻辑"></a>1.1 变革的核心逻辑</h2><h2 id="1-2-通用共识影响"><a href="#1-2-通用共识影响" class="headerlink" title="1.2 通用共识影响"></a>1.2 通用共识影响</h2><h2 id="1-3-对教育的影响"><a href="#1-3-对教育的影响" class="headerlink" title="1.3 对教育的影响"></a>1.3 对教育的影响</h2><h2 id="1-4-对医疗的影响？"><a href="#1-4-对医疗的影响？" class="headerlink" title="1.4 对医疗的影响？"></a>1.4 对医疗的影响？</h2><h2 id="1-5-如何应对？"><a href="#1-5-如何应对？" class="headerlink" title="1.5 如何应对？"></a>1.5 如何应对？</h2><p>谁动作快， 贴近 产品和架构/</p>
+<!-- 假期除了浪亲戚。 还vibe了一个平台，深切的体会到AI coding的强大
+也试了下openclaw，好玩是好玩但目前还有些费token
+还看到春晚的机器人，看到背后的具身智能的迅速发展
+
+AI已经越来越多的作用在更多场景
+
+软件工程来说，coding和很多细分的技巧已经不重要了，重要的是设计(产品、项目管理、架构)
+什么样的功能和产品是用户想要的，需要的是很高的品味和判断力、速度，品牌和信任
+
+犹如18世纪的纺织业变革，从纺织工到纺织机，最开始也是做出的东西粗糙、样式单一
+但机器的迭代速度是指数级的，不知疲倦，边际成本几乎为零，而且每天都在进化。
+
+本质上来说，AI在把“知识性劳动”工业化。抹平了很多信息差，实现知识平权。所以人需要在更高的决策层面、更贴近业务场景的方向做工 -->
+<h1 id="二、对智能风控的影响"><a href="#二、对智能风控的影响" class="headerlink" title="二、对智能风控的影响"></a>二、对智能风控的影响</h1><p>包括金融</p>
+<h1 id="三、对数据工程的影响"><a href="#三、对数据工程的影响" class="headerlink" title="三、对数据工程的影响"></a>三、对数据工程的影响</h1><p>数据工程都有哪些事情？ </p>
+<p>有哪些是会被AI取代的，有哪些不会被AI取代。</p>
+
+      <div class="tip-container tip-warning" style="
+        background-color: #fffaf0;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #ed8936;
+        ">
+          <i class="fa fa-exclamation-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>(英伟达)未来将只提供<strong style="color: #6f42c1;">数字劳动力</strong>，而不是工具和软件！！<br>编程就是打字，过去只有程序员会写，现在只需要用自然语言告诉AI，你想要什么，他就能帮你写代码<br><strong style="color: #6f42c1;">刚毕业的程序员会写代码， 但他不知道客户要什么！也不知道该解决什么问题！ 你们知道，这才是真真的价值！！</strong></p>
+<p>传统公司处理的是原子，技术公司处理的是电子， 但是电子数量无限，这就是为什么CD光盘到电子下载，公司估值可以涨1000倍。</p>
+            </div>
+        </div>
+      </div>
+    
+
+      <div class="tip-container tip-question" style="
+        background-color: #fef7fb;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #e53e3e;
+        ">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>企业上AI第一步该怎么做？怎么计算ROI？<br>（先别谈ROI）任何新技术刚出来的时候，都不可能在excel表格中算清楚ROI， 如果等一切都看懂了，算清了，再行动那你已经输了。</p>
+<p>怎么办？<strong style="color: #6f42c1;">让一千朵花盛开（we just let 1000 flowers bloom）</strong><br>在英伟达，有员工说 我想试试这个AI工具。 先yes! 再why。 先同意再了解原因，而不是让员工先证明这件事能给公司带来价值。<br>等到时机成熟，再重新开始规划花园，挑出最好的方向，集中资源。<br>找到你公司最核心的工作， 用AI彻底的革新它！ 要想象你的竞争对手正在做这件事。 一旦他做成，他的成本是你的1/10，效率是你的10倍。</p>
+<p>AI会从工具变成员工，而不是取代工具。 举例：传统汽车是个工具，代步上下班。 但自动驾驶不一样，同样花30万，里面的AI司机可以早上送你去上班，你下车后他自己去跑滴滴赚钱，晚上准时接你下班。 数字司机的经济价值 远远大于车。</p>
+            </div>
+        </div>
+      </div>
+    
+<h1 id="四、对Iot相关影响"><a href="#四、对Iot相关影响" class="headerlink" title="四、对Iot相关影响"></a>四、对Iot相关影响</h1><h2 id="4-1-产品形态"><a href="#4-1-产品形态" class="headerlink" title="4.1 产品形态"></a>4.1 产品形态</h2><h1 id="五、如何应对？"><a href="#五、如何应对？" class="headerlink" title="五、如何应对？"></a>五、如何应对？</h1>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/80e98d95/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/80e98d95/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    5.AI知识平权带来的机遇和挑战
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/80d872c1/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/80d872c1/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">1.NLP方向概述</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

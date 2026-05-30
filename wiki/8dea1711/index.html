@@ -1,0 +1,578 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>1.Deepseek本地部署 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="llm,deepseek">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.Deepseek本地部署">
+<meta property="og:url" content="https://waisec.cn/wiki/8dea1711/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-10-03T03:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.146Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="llm">
+<meta property="article:tag" content="deepseek">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "1.Deepseek本地部署",
+    "url": "https://waisec.cn/wiki/8dea1711/",
+    "datePublished": "2025-10-03T03:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.146Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "llm,deepseek"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/1|大模型应用/04.基础设施/deepseek/001.关于本地部署deepseek" class="article article-type-post">
+    
+        <meta name="referrer" content="no-referrer">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81DeepSeek%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%88%E6%9C%AC"><span class="toc-text">一、DeepSeek的主要版本</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%96%B9%E6%B3%95"><span class="toc-text">二、本地部署方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%9F%BA%E4%BA%8EOllama%E7%9A%84%E9%83%A8%E7%BD%B2%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-text">1. 基于Ollama的部署（推荐）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%9F%BA%E4%BA%8ELM-Studio%E7%9A%84%E9%83%A8%E7%BD%B2%EF%BC%88%E9%80%82%E5%90%88%E5%B0%8F%E7%99%BD%EF%BC%89"><span class="toc-text">2. 基于LM Studio的部署（适合小白）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E4%BC%81%E4%B8%9A%E7%BA%A7%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2"><span class="toc-text">3. 企业级私有化部署</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%A1%AC%E4%BB%B6%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE"><span class="toc-text">三、硬件配置建议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%BC%98%E5%8A%BF%E5%92%8C%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-text">四、优势和局限性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%95%88%E6%9E%9C%E6%80%BB%E7%BB%93"><span class="toc-text">五、效果总结</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/">1|大模型应用</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/04-%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/">04.基础设施</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/04-%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/deepseek/">deepseek</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/deepseek/" rel="tag">deepseek</a>, <a class="tag-link-link" href="/tags/llm/" rel="tag">llm</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2025/10/" onclick="onclickRoute(event, '/archives/2025/10/')">
+            <time datetime="2025-10-03T03:55:57.000Z" itemprop="datePublished">2025-10-03</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="llm,deepseek">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/8dea1711/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            Deepseek本地部署
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p>出于对数据隐私与安全、延迟和实时性要求、根据业务灵活定制、以及企业级需求(对数据安全、业务连续型要求高的金融、医疗等)的考量，大模型本地化部署是各个公司和个人的必要的选择。那不同的大模型如何部署呢，在这里以deepseek模型为例，详细介绍大模型的本地部署方法。<br>首先，deepseek有多个系列：R1、V3， R1指的是”Reasoning Models”（推理模型），指能够模拟人类推理能力的计算系统。而V3作为基础模型，是通用型NLP预训练模型，是混合专家（MoE）架构，支持智能路由和动态负载均衡，优化不同专家的协作与分配。R1是基于 V3 的 MoE 架构，强化动态门控机制，选择性激活专家以适配推理任务；并且支持“深度思考模式”，展示了推理过程，提升透明度和可信度。</p>
+<p>由于V3仅提供满血版671B参数的模型，对硬件要求较高，我们本文主要讲R1的本地部署和蒸馏版本地实践。</p>
+<span id="more"></span>
+<h1 id="一、DeepSeek的主要版本"><a href="#一、DeepSeek的主要版本" class="headerlink" title="一、DeepSeek的主要版本"></a>一、DeepSeek的主要版本</h1><p><strong><em>「标准版（蒸馏版）」</em></strong></p>
+<p>1.5B/7B/8B/14B/32B/70B参数模型：通过量化技术压缩的轻量级版本，适合个人用户和普通硬件部署。例如：</p>
+<ul>
+<li>1.5B：适合显存≥4GB的显卡，16GB内存。</li>
+<li>7B/8B：需显存≥8GB，如RTX 3060以上显卡。</li>
+<li>14B/32B：需显存≥16GB，如RTX 4090显卡。</li>
+</ul>
+<p>适用场景：日常问答、简单文本生成、低算力需求任务。</p>
+<p><strong><em>「满血版（原始版）」</em></strong></p>
+<p>DeepSeek-R1 671B：完整未压缩的版本，参数高达671B，需显存≥320GB，仅适合企业级服务器或高性能计算集群</p>
+<h1 id="二、本地部署方法"><a href="#二、本地部署方法" class="headerlink" title="二、本地部署方法"></a>二、本地部署方法</h1><h2 id="1-基于Ollama的部署（推荐）"><a href="#1-基于Ollama的部署（推荐）" class="headerlink" title="1. 基于Ollama的部署（推荐）"></a>1. 基于Ollama的部署（推荐）</h2><p>步骤：</p>
+<p>1.安装Ollama框架：访问官网（<a target="_blank" rel="external nofollow noopener noreferrer" href="https://ollama.com/">https://ollama.com/</a>) 下载并安装对应操作系统的客户端。</p>
+<ul>
+<li>下载ollam的坑.  命令行下载 总是因为访问github.com失败导致下载不成功。</li>
+<li>解决：采用手动下载 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/ollama/ollama/blob/main/docs/linux.md">https://github.com/ollama/ollama/blob/main/docs/linux.md</a></li>
+</ul>
+<p>2.下载模型：打开命令行工具（Windows为CMD/PowerShell，Mac/Linux为Terminal），输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ollama run deepseek-r1:8b  <span class="comment"># 以8B模型为例，可替换为1.5b/14b等</span></span><br></pre></td></tr></table></figure>
+<p>重点(在run模型前执行)：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置环境变量（开启listen的ip，默认是127.0.0.1，即只有本地才能访问）</span></span><br><span class="line"><span class="built_in">export</span> OLLAMA_HOST=0.0.0.0:11434</span><br><span class="line"><span class="comment"># 启动server</span></span><br><span class="line">ollama serve &gt; ollam.log 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure></p>
+<p>3.启动Web交互界面：推荐安装Open-WebUI插件，通过Docker运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main</span><br></pre></td></tr></table></figure>
+<p>优势：支持多平台，操作流程标准化，适合开发者410。</p>
+<h2 id="2-基于LM-Studio的部署（适合小白）"><a href="#2-基于LM-Studio的部署（适合小白）" class="headerlink" title="2. 基于LM Studio的部署（适合小白）"></a>2. 基于LM Studio的部署（适合小白）</h2><p>步骤：</p>
+<ol>
+<li><p>下载LM Studio：访问官网（<a target="_blank" rel="external nofollow noopener noreferrer" href="https://lmstudio.ai/）安装软件。">https://lmstudio.ai/）安装软件。</a></p>
+</li>
+<li><p>搜索并下载模型：在软件内搜索“DeepSeek”，选择适合的模型版本（如7B）并下载。</p>
+</li>
+<li><p>加载模型：下载完成后，在软件主界面选择模型并加载，即可本地使用。</p>
+</li>
+</ol>
+<p>优势：零代码操作，界面友好，适合非技术用户5。</p>
+<h2 id="3-企业级私有化部署"><a href="#3-企业级私有化部署" class="headerlink" title="3. 企业级私有化部署"></a>3. 企业级私有化部署</h2><p>适用场景：企业自有智算环境，需集成行业大模型（如医疗、政务）。</p>
+<p>步骤：</p>
+<ol>
+<li><p>下载开源版本：获取DeepSeek开源代码和模型权重。</p>
+</li>
+<li><p>硬件适配：根据需求配置GPU集群（如NVIDIA A100、RTX 5090D）。</p>
+</li>
+<li><p>集成到业务系统：通过API或SDK接入企业应用（如万达信息的数字智脑平台）79。</p>
+</li>
+</ol>
+<h1 id="三、硬件配置建议"><a href="#三、硬件配置建议" class="headerlink" title="三、硬件配置建议"></a>三、硬件配置建议</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>模型参数</strong></th>
+<th><strong>推荐配置</strong></th>
+<th><strong>适用场景</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.5B-8B</td>
+<td>显存≥4GB，内存≥16GB（如RTX 3060）</td>
+<td>个人办公、轻度生成任务</td>
+</tr>
+<tr>
+<td>14B-32B</td>
+<td>显存≥16GB，内存≥32GB（如RTX 4090）</td>
+<td>创意写作、代码生成</td>
+</tr>
+<tr>
+<td>70B+</td>
+<td>显存≥24GB，服务器级硬件（如A100）</td>
+<td>企业级数据分析、科研计算</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="note info"><p>1.5B的模型大小为1.1G，7b的为4.7G，满血版671b的为404G。 参考：<a target="_blank" rel="external nofollow noopener noreferrer" href="https://ollama.com/library/deepseek-r1:7b/blobs/96c415656d37">https://ollama.com/library/deepseek-r1:7b</a></p>
+</div>
+<h1 id="四、优势和局限性"><a href="#四、优势和局限性" class="headerlink" title="四、优势和局限性"></a>四、优势和局限性</h1><p>优势：</p>
+<ol>
+<li><p>数据隐私：敏感数据无需上传云端，符合GDPR等法规19。</p>
+</li>
+<li><p>低延迟：本地计算无网络延迟，适合实时任务（如语音识别）8。</p>
+</li>
+<li><p>离线使用：无网络环境下仍可运行（如飞机、远程地区）10。</p>
+</li>
+</ol>
+<p>局限性：</p>
+<ol>
+<li><p>硬件成本高：高性能模型需高端显卡（如RTX 5090D）4。</p>
+</li>
+<li><p>生成质量受限：蒸馏版模型性能弱于云端满血版510。</p>
+</li>
+<li><p>技术门槛：需掌握命令行工具、Docker等基础技能</p>
+</li>
+<li><p>安全注意：权限管控、物理安全(避免物理入侵)</p>
+</li>
+</ol>
+<h1 id="五、效果总结"><a href="#五、效果总结" class="headerlink" title="五、效果总结"></a>五、效果总结</h1><p>相比较671b的原始模型，泛化能力和准确性上有些不足。例如1b的模型会把规培理解为规则，应该属于对下一次生成的概率问题，8b的模型在回答上没有原始模型全面。处理长文本或多轮对话时没有原始模型强，不能记住之前的对话内容。</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/9683a6d6/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/9683a6d6/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    1.Flink运维记录
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/2ce0622/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/2ce0622/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">大模型学习概述</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

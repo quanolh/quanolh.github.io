@@ -1,0 +1,568 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>0.大模型技术发展和应用 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="AI">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="0.大模型技术发展和应用">
+<meta property="og:url" content="https://waisec.cn/wiki/5c8ca5ff/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-03T03:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.139Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="AI">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "0.大模型技术发展和应用",
+    "url": "https://waisec.cn/wiki/5c8ca5ff/",
+    "datePublished": "2023-03-03T03:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.139Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "AI"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/1|大模型应用/00.基础入门/大模型学习/历史资料/000.大模型技术发展和应用" class="article article-type-post">
+    
+        <meta name="referrer" content="no-referrer">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%F0%9F%A7%A0-%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E4%BB%A3%E8%A1%A8%E6%A8%A1%E5%9E%8B"><span class="toc-text">🧠 核心技术与代表模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%EF%BC%88LLM%EF%BC%89"><span class="toc-text">1. 大语言模型（LLM）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B"><span class="toc-text">2. 多模态模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%96%87%E6%9C%AC%E5%88%B0%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B"><span class="toc-text">3. 文本到视频生成模型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%F0%9F%93%8A-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%85%A8%E6%99%AF%E5%9B%BE"><span class="toc-text">📊 应用场景全景图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%80%9A%E7%94%A8AI%E5%8A%A9%E6%89%8B"><span class="toc-text">1. 通用AI助手</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%86%85%E5%AE%B9%E5%88%9B%E4%BD%9C%E4%B8%8E%E7%94%9F%E6%88%90"><span class="toc-text">2. 内容创作与生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E4%BC%81%E4%B8%9A%E7%BA%A7%E5%BA%94%E7%94%A8"><span class="toc-text">3. 企业级应用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%F0%9F%94%AE-%E6%9C%AA%E6%9D%A5%E5%8F%91%E5%B1%95%E8%B6%8B%E5%8A%BF"><span class="toc-text">🔮 未来发展趋势</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%F0%9F%A7%A0-Agent%E6%8A%80%E6%9C%AF"><span class="toc-text">🧠 Agent技术</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A0-%E4%BB%80%E4%B9%88%E6%98%AF-AI-Agent%EF%BC%9F"><span class="toc-text">🧠 什么是 AI Agent？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A9-Agent-%E5%9C%A8%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%94%9F%E6%80%81%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-text">🧩 Agent 在大模型生态中的位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%A7-Agent-%E7%9A%84%E5%85%B3%E9%94%AE%E7%BB%84%E6%88%90%E6%A8%A1%E5%9D%97"><span class="toc-text">🔧 Agent 的关键组成模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8C%90-%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">🌐 典型应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9A%80-%E6%9C%AA%E6%9D%A5%E5%8F%91%E5%B1%95%E8%B6%8B%E5%8A%BF"><span class="toc-text">🚀 未来发展趋势</span></a></li></ol></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/">1|大模型应用</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/00-%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/">00.基础入门</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/00-%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0/">大模型学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/00-%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0/%E5%8E%86%E5%8F%B2%E8%B5%84%E6%96%99/">历史资料</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/AI/" rel="tag">AI</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2023/03/" onclick="onclickRoute(event, '/archives/2023/03/')">
+            <time datetime="2023-03-03T03:55:57.000Z" itemprop="datePublished">2023-03-03</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="AI">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/5c8ca5ff/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            大模型技术发展和应用
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p>人工智能（AI）和大模型（LLM）技术正以前所未有的速度发展，广泛应用于各个领域。以下是当前AI和大模型技术发展的全景图，涵盖核心技术、代表模型、关键应用场景以及未来趋势。​</p>
+<h1 id="🧠-核心技术与代表模型"><a href="#🧠-核心技术与代表模型" class="headerlink" title="🧠 核心技术与代表模型"></a>🧠 核心技术与代表模型</h1><h2 id="1-大语言模型（LLM）"><a href="#1-大语言模型（LLM）" class="headerlink" title="1. 大语言模型（LLM）"></a>1. 大语言模型（LLM）</h2><p>主流架构：​Transformer、MoE（Mixture of Experts）、SSM（State Space Model）等。</p>
+<p>代表模型：</p>
+<ul>
+<li><p>GPT-4o：​OpenAI推出的多模态模型，支持文本、图像和音频输入，增强了跨模态理解能力。​</p>
+</li>
+<li><p>Claude 3：​Anthropic开发的模型，强调安全性和可控性，适用于需要高可靠性的应用场景。​</p>
+</li>
+<li><p>Gemini 2.5：​Google DeepMind发布的多模态模型，具备推理能力，能够在生成响应前进行“思考”。 ​<br>Wikipedia</p>
+</li>
+<li><p>DeepSeek-V3：​中国公司DeepSeek推出的开源模型，强调通用能力与编程能力的融合，提升了自然语言理解和文本生成性能。​</p>
+</li>
+<li><p>Mamba 系列：​引入状态空间模型（SSM），如 MambaByte 直接处理原始字节序列，MoE-Mamba 结合了混合专家技术，提高了训练效率。 </p>
+</li>
+</ul>
+<h2 id="2-多模态模型"><a href="#2-多模态模型" class="headerlink" title="2. 多模态模型"></a>2. 多模态模型</h2><p>发展趋势：​从单一模态（如文本）向多模态（文本、图像、音频、视频）扩展。</p>
+<p>代表模型：</p>
+<ul>
+<li><p>Gemini：​Google推出的多模态模型，支持文本、图像和音频输入，增强了跨模态理解能力。​</p>
+</li>
+<li><p>GPT-4o：​OpenAI 的多模态模型，具备强大的跨模态理解能力。</p>
+</li>
+<li><p>LLaVA：​结合视觉和语言模型，提升图像理解和描述能力。​</p>
+</li>
+</ul>
+<h2 id="3-文本到视频生成模型"><a href="#3-文本到视频生成模型" class="headerlink" title="3. 文本到视频生成模型"></a>3. 文本到视频生成模型</h2><p>技术突破：​利用扩散模型和Transformer架构，实现从文本描述生成高质量视频。</p>
+<p>代表模型：</p>
+<ul>
+<li><p>Sora：​OpenAI推出的文本到视频生成模型，能够根据文本描述生成高质量视频。​</p>
+</li>
+<li><p>Lumiere：​Google开发的下一代文本到视频生成器，提升了视频生成的质量和效率。​</p>
+</li>
+<li><p>Kling AI：​快手推出的文本到视频模型，已扩展到国际用户，增强了全球化应用能力。​</p>
+</li>
+</ul>
+<h1 id="📊-应用场景全景图"><a href="#📊-应用场景全景图" class="headerlink" title="📊 应用场景全景图"></a>📊 应用场景全景图</h1><h2 id="1-通用AI助手"><a href="#1-通用AI助手" class="headerlink" title="1. 通用AI助手"></a>1. 通用AI助手</h2><p>代表产品：</p>
+<ul>
+<li><p>ChatGPT：​OpenAI的聊天机器人，支持多轮对话和任务执行，广泛应用于客户服务和内容创作。​</p>
+</li>
+<li><p>Kimi：​由北京月之暗面科技有限公司开发的聊天机器人，支持超长文本输入和多模态交互，提升了用户体验。​</p>
+</li>
+</ul>
+<h2 id="2-内容创作与生成"><a href="#2-内容创作与生成" class="headerlink" title="2. 内容创作与生成"></a>2. 内容创作与生成</h2><p>应用方向：</p>
+<ul>
+<li><p>图像生成：​如DALL·E、Stable Diffusion，能够根据文本描述生成高质量图像。​</p>
+</li>
+<li><p>视频生成：​如Sora、Lumiere、Kling AI，实现从文本描述生成高质量视频。​</p>
+</li>
+<li><p>音频生成：​如Whisper、MusicLM，支持语音识别和音乐生成。​</p>
+</li>
+</ul>
+<h2 id="3-企业级应用"><a href="#3-企业级应用" class="headerlink" title="3. 企业级应用"></a>3. 企业级应用</h2><p>应用领域：</p>
+<ul>
+<li><p>客户服务：​智能客服、自动回复，提高了服务效率和用户满意度。​</p>
+</li>
+<li><p>数据分析：​自动化报告生成、数据洞察，辅助企业决策。​</p>
+</li>
+<li><p>编程辅助：​代码生成、错误检测，提升了开发效率。​</p>
+</li>
+</ul>
+<h1 id="🔮-未来发展趋势"><a href="#🔮-未来发展趋势" class="headerlink" title="🔮 未来发展趋势"></a>🔮 未来发展趋势</h1><p>模型小型化与边缘部署：​提升模型效率，实现本地化部署，满足隐私和实时性要求。​</p>
+<p>多模态融合深化：​实现更自然的人机交互，增强AI的理解和生成能力。​</p>
+<p>可解释性与安全性提升：​增强模型的透明度和可靠性，确保AI系统的可信度。​</p>
+<p>行业定制化模型：​开发针对特定行业的专用模型，满足不同行业的特定需求。</p>
+<h1 id="🧠-Agent技术"><a href="#🧠-Agent技术" class="headerlink" title="🧠 Agent技术"></a>🧠 Agent技术</h1><p>在当前的人工智能（AI）和大模型（LLM）技术生态中，<strong>Agent（智能体）</strong>扮演着将大模型能力转化为实际应用的关键角色。​它们不仅扩展了大模型的功能边界，还推动了人工通用智能（AGI）的实现。​</p>
+<h2 id="🧠-什么是-AI-Agent？"><a href="#🧠-什么是-AI-Agent？" class="headerlink" title="🧠 什么是 AI Agent？"></a>🧠 什么是 AI Agent？</h2><p>AI Agent 是基于大语言模型的智能系统，能够感知环境、制定计划、调用工具，并自主执行复杂任务。​它们通常具备以下核心能力：​<br>Wikipedia – Die freie Enzyklopädie</p>
+<p>自然语言理解与生成：​通过大语言模型处理人类语言，实现高效沟通。</p>
+<p>任务规划与推理：​根据目标制定执行步骤，进行逻辑推理。</p>
+<p>工具调用与操作：​集成外部工具（如浏览器、数据库）以完成特定任务。</p>
+<p>记忆与学习：​存储和利用历史信息，持续优化行为策略。​</p>
+<h2 id="🧩-Agent-在大模型生态中的位置"><a href="#🧩-Agent-在大模型生态中的位置" class="headerlink" title="🧩 Agent 在大模型生态中的位置"></a>🧩 Agent 在大模型生态中的位置</h2><p>Agent 作为大模型的“执行层”，将模型的语言理解和生成能力转化为具体行动。​它们通过以下方式扩展大模型的应用范围：​</p>
+<p>任务自动化：​如 OpenAI 的 Operator Agent 能够根据用户指令自动完成网页浏览、预订等任务。</p>
+<p>多模态交互：​结合文本、图像、音频等多种输入形式，实现更丰富的人机交互。</p>
+<p>自我改进：​通过反馈机制和外部工具的集成，Agent 能够在执行过程中不断优化自身策略。​<br>Business Insider</p>
+<h2 id="🔧-Agent-的关键组成模块"><a href="#🔧-Agent-的关键组成模块" class="headerlink" title="🔧 Agent 的关键组成模块"></a>🔧 Agent 的关键组成模块</h2><p>大语言模型（LLM）：​作为核心“思维引擎”，处理语言理解与生成。</p>
+<p>记忆系统：​存储历史对话、任务状态等信息，支持长期交互。</p>
+<p>工具接口：​连接外部应用程序，实现如网页操作、数据查询等功能。</p>
+<p>规划与执行模块：​制定任务执行计划，并根据环境反馈进行调整。​</p>
+<h2 id="🌐-典型应用场景"><a href="#🌐-典型应用场景" class="headerlink" title="🌐 典型应用场景"></a>🌐 典型应用场景</h2><p>智能助理：​如 ChatGPT、Kimi，提供多轮对话和任务执行能力。</p>
+<p>企业自动化：​如 HubSpot 的 Breeze Agents，优化客户服务、内容生成等业务流程。</p>
+<p>内容创作：​如 Adobe 的 AI Agents，辅助用户进行图像、视频等多媒体内容的创作。</p>
+<p>科学研究：​如 AlphaFold，利用 AI 预测蛋白质结构，推动生物医药领域的发展。​</p>
+<h2 id="🚀-未来发展趋势"><a href="#🚀-未来发展趋势" class="headerlink" title="🚀 未来发展趋势"></a>🚀 未来发展趋势</h2><p>多 Agent 协作：​实现多个 Agent 之间的协同工作，完成更复杂的任务。</p>
+<p>个性化定制：​根据用户需求，定制专属 Agent，实现更贴合的服务。</p>
+<p>边缘部署：​将 Agent 部署到本地设备，提高响应速度，保护用户隐私。</p>
+<p>安全性与可控性：​加强对 Agent 行为的监控，防止潜在风险。​</p>
+<p>总之，Agent 是连接大模型与实际应用的桥梁，赋予 AI 系统感知、决策和执行的能力。​随着技术的不断进步，Agent 将在各行各业中发挥越来越重要的作用。​</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/35532790/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/35532790/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    1.大模型学习过程
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/8eb54796/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/8eb54796/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">2.大模型最新进展</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

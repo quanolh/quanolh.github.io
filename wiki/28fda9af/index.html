@@ -1,0 +1,1550 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>0_1.研发平台与Agent集成 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="Agent,AICoding,软件工程">
+
+    <meta name="description" content="研发平台与Agent集成整体方案">
+<meta property="og:type" content="article">
+<meta property="og:title" content="0_1.研发平台与Agent集成">
+<meta property="og:url" content="https://waisec.cn/wiki/28fda9af/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="研发平台与Agent集成整体方案">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-14T03:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.143Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="AICoding">
+<meta property="article:tag" content="软件工程">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "0_1.研发平台与Agent集成",
+    "url": "https://waisec.cn/wiki/28fda9af/",
+    "datePublished": "2026-03-14T03:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.143Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "Agent,AICoding,软件工程"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/1|大模型应用/02.Agent应用/01.软件工程/3AI研发体系智能化/00_1.研发平台与Agent集成" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A0%94%E5%8F%91%E5%B9%B3%E5%8F%B0%E4%B8%8E-Agent-%E9%9B%86%E6%88%90%E6%95%B4%E4%BD%93%E6%96%B9%E6%A1%88"><span class="toc-text">研发平台与 Agent 集成整体方案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E6%A6%82%E8%A7%88"><span class="toc-text">一、整体架构概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%B9%B3%E5%8F%B0%E9%9B%86%E6%88%90%E7%9F%A9%E9%98%B5"><span class="toc-text">二、平台集成矩阵</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%AB%AF%E5%88%B0%E7%AB%AF%E7%A0%94%E5%8F%91%E6%B5%81%E7%A8%8B%E4%B8%8E-Agent-%E5%8D%8F%E4%BD%9C"><span class="toc-text">三、端到端研发流程与 Agent 协作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%B9%B3%E5%8F%B0%E9%9B%86%E6%88%90%E8%AF%A6%E7%BB%86%E6%96%B9%E6%A1%88"><span class="toc-text">四、平台集成详细方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E9%9C%80%E6%B1%82%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E9%9B%86%E6%88%90"><span class="toc-text">4.1 需求管理平台集成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E4%BB%A3%E7%A0%81%E4%BB%93%E5%BA%93%E5%B9%B3%E5%8F%B0%E9%9B%86%E6%88%90"><span class="toc-text">4.2 代码仓库平台集成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-CI-CD-%E5%B9%B3%E5%8F%B0%E9%9B%86%E6%88%90"><span class="toc-text">4.3 CI&#x2F;CD 平台集成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E8%BF%90%E7%BB%B4%E5%B9%B3%E5%8F%B0%E9%9B%86%E6%88%90"><span class="toc-text">4.4 运维平台集成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E7%9F%A5%E8%AF%86%E5%BA%93%E5%B9%B3%E5%8F%B0%E9%9B%86%E6%88%90"><span class="toc-text">4.5 知识库平台集成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%95%B0%E6%8D%AE%E6%B5%81%E8%BD%AC%E4%B8%8E%E7%8A%B6%E6%80%81%E5%90%8C%E6%AD%A5"><span class="toc-text">五、数据流转与状态同步</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E7%BB%9F%E4%B8%80%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-text">5.1 统一数据模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E7%8A%B6%E6%80%81%E6%B5%81%E8%BD%AC%E5%9B%BE"><span class="toc-text">5.2 状态流转图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81Agent-%E7%BC%96%E6%8E%92%E5%B1%82%E8%AE%BE%E8%AE%A1"><span class="toc-text">六、Agent 编排层设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E7%BC%96%E6%8E%92%E5%B1%82%E8%81%8C%E8%B4%A3"><span class="toc-text">6.1 编排层职责</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E7%BC%96%E6%8E%92%E5%B1%82%E6%9E%B6%E6%9E%84"><span class="toc-text">6.2 编排层架构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E5%AE%9E%E6%96%BD%E8%B7%AF%E7%BA%BF%E5%9B%BE"><span class="toc-text">七、实施路线图</span></a></li></ol></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/">1|大模型应用</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/02-Agent%E5%BA%94%E7%94%A8/">02.Agent应用</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/02-Agent%E5%BA%94%E7%94%A8/01-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">01.软件工程</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/02-Agent%E5%BA%94%E7%94%A8/01-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/3AI%E7%A0%94%E5%8F%91%E4%BD%93%E7%B3%BB%E6%99%BA%E8%83%BD%E5%8C%96/">3AI研发体系智能化</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/AICoding/" rel="tag">AICoding</a>, <a class="tag-link-link" href="/tags/Agent/" rel="tag">Agent</a>, <a class="tag-link-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" rel="tag">软件工程</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-14T03:55:57.000Z" itemprop="datePublished">2026-03-14</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="Agent,AICoding,软件工程">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/28fda9af/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            0_1.研发平台与Agent集成
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <h1 id="研发平台与-Agent-集成整体方案"><a href="#研发平台与-Agent-集成整体方案" class="headerlink" title="研发平台与 Agent 集成整体方案"></a>研发平台与 Agent 集成整体方案</h1><h2 id="一、整体架构概览"><a href="#一、整体架构概览" class="headerlink" title="一、整体架构概览"></a>一、整体架构概览</h2><svg viewbox="0 0 950 620" xmlns="http://www.w3.org/2000/svg">
+  <rect width="950" height="620" fill="#f8fafc"/>
+
+  <text x="475" y="25" text-anchor="middle" fill="#1e293b" font-family="system-ui, sans-serif" font-size="18" font-weight="bold">研发平台与 Agent 集成架构</text>
+
+  <!-- 用户层 -->
+  <rect x="30" y="45" width="890" height="50" rx="6" fill="#1e293b"/>
+  <text x="475" y="75" text-anchor="middle" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="13" font-weight="bold">用户层：产品经理 / 开发者 / 测试 / 运维 / 管理者</text>
+
+  <!-- 统一入口层 -->
+  <rect x="30" y="110" width="890" height="70" rx="8" fill="#3b82f6"/>
+  <text x="70" y="135" fill="#fff" font-family="system-ui, sans-serif" font-size="12" font-weight="bold">统一入口（研发效能平台）</text>
+
+  <rect x="70" y="145" width="120" height="28" rx="4" fill="#1e40af"/>
+  <text x="130" y="164" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">工作台首页</text>
+
+  <rect x="200" y="145" width="120" height="28" rx="4" fill="#1e40af"/>
+  <text x="260" y="164" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">需求中心</text>
+
+  <rect x="330" y="145" width="120" height="28" rx="4" fill="#1e40af"/>
+  <text x="390" y="164" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">代码中心</text>
+
+  <rect x="460" y="145" width="120" height="28" rx="4" fill="#1e40af"/>
+  <text x="520" y="164" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">流水线中心</text>
+
+  <rect x="590" y="145" width="120" height="28" rx="4" fill="#1e40af"/>
+  <text x="650" y="164" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">运维中心</text>
+
+  <rect x="720" y="145" width="120" height="28" rx="4" fill="#1e40af"/>
+  <text x="780" y="164" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">知识中心</text>
+
+  <!-- Agent 编排层 -->
+  <rect x="30" y="195" width="890" height="90" rx="8" fill="#8b5cf6"/>
+  <text x="70" y="220" fill="#fff" font-family="system-ui, sans-serif" font-size="12" font-weight="bold">Agent 编排层（统一调度、状态管理、结果汇聚）</text>
+
+  <rect x="70" y="235" width="95" height="40" rx="4" fill="#5b21b6"/>
+  <text x="117" y="260" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">需求 Agent</text>
+
+  <rect x="175" y="235" width="95" height="40" rx="4" fill="#5b21b6"/>
+  <text x="222" y="260" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">设计 Agent</text>
+
+  <rect x="280" y="235" width="95" height="40" rx="4" fill="#5b21b6"/>
+  <text x="327" y="260" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">编码 Agent</text>
+
+  <rect x="385" y="235" width="95" height="40" rx="4" fill="#5b21b6"/>
+  <text x="432" y="260" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">测试 Agent</text>
+
+  <rect x="490" y="235" width="95" height="40" rx="4" fill="#5b21b6"/>
+  <text x="537" y="260" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">部署 Agent</text>
+
+  <rect x="595" y="235" width="95" height="40" rx="4" fill="#5b21b6"/>
+  <text x="642" y="260" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">运维 Agent</text>
+
+  <rect x="700" y="235" width="95" height="40" rx="4" fill="#5b21b6"/>
+  <text x="747" y="260" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">维护 Agent</text>
+
+  <rect x="805" y="235" width="100" height="40" rx="4" fill="#c084fc"/>
+  <text x="855" y="260" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">Workflow 引擎</text>
+
+  <!-- 业务平台层 -->
+  <rect x="30" y="305" width="890" height="130" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="70" y="330" fill="#334155" font-family="system-ui, sans-serif" font-size="12" font-weight="bold">业务平台层</text>
+
+  <!-- 需求管理 -->
+  <rect x="70" y="345" width="130" height="75" rx="6" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="135" y="367" text-anchor="middle" fill="#334155" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">需求管理平台</text>
+  <text x="135" y="385" text-anchor="middle" fill="#64748b" font-family="system-ui, sans-serif" font-size="10">Jira / 飞书 / Confluence</text>
+  <text x="135" y="405" text-anchor="middle" fill="#3b82f6" font-family="system-ui, sans-serif" font-size="9">集成：需求 Agent</text>
+
+  <!-- 代码仓库 -->
+  <rect x="215" y="345" width="130" height="75" rx="6" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="280" y="367" text-anchor="middle" fill="#334155" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">代码仓库平台</text>
+  <text x="280" y="385" text-anchor="middle" fill="#64748b" font-family="system-ui, sans-serif" font-size="10">GitLab / GitHub / Gitee</text>
+  <text x="280" y="405" text-anchor="middle" fill="#8b5cf6" font-family="system-ui, sans-serif" font-size="9">集成：编码/维护 Agent</text>
+
+  <!-- CI/CD -->
+  <rect x="360" y="345" width="130" height="75" rx="6" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="425" y="367" text-anchor="middle" fill="#334155" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">CI/CD 平台</text>
+  <text x="425" y="385" text-anchor="middle" fill="#64748b" font-family="system-ui, sans-serif" font-size="10">GitLab CI / Jenkins</text>
+  <text x="425" y="405" text-anchor="middle" fill="#f59e0b" font-family="system-ui, sans-serif" font-size="9">集成：测试/部署 Agent</text>
+
+  <!-- 制品仓库 -->
+  <rect x="505" y="345" width="130" height="75" rx="6" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="570" y="367" text-anchor="middle" fill="#334155" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">制品仓库</text>
+  <text x="570" y="385" text-anchor="middle" fill="#64748b" font-family="system-ui, sans-serif" font-size="10">Nexus / Harbor</text>
+  <text x="570" y="405" text-anchor="middle" fill="#64748b" font-family="system-ui, sans-serif" font-size="9">集成：安全扫描</text>
+
+  <!-- 运维平台 -->
+  <rect x="650" y="345" width="130" height="75" rx="6" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="715" y="367" text-anchor="middle" fill="#334155" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">运维平台</text>
+  <text x="715" y="385" text-anchor="middle" fill="#64748b" font-family="system-ui, sans-serif" font-size="10">K8s / Prometheus</text>
+  <text x="715" y="405" text-anchor="middle" fill="#06b6d4" font-family="system-ui, sans-serif" font-size="9">集成：运维 Agent</text>
+
+  <!-- 知识库 -->
+  <rect x="795" y="345" width="110" height="75" rx="6" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="850" y="367" text-anchor="middle" fill="#334155" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">知识库</text>
+  <text x="850" y="385" text-anchor="middle" fill="#64748b" font-family="system-ui, sans-serif" font-size="10">Wiki / 文档</text>
+  <text x="850" y="405" text-anchor="middle" fill="#10b981" font-family="system-ui, sans-serif" font-size="9">集成：设计 Agent</text>
+
+  <!-- DevTools 层 -->
+  <rect x="30" y="455" width="430" height="70" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+  <text x="70" y="480" fill="#047857" font-family="system-ui, sans-serif" font-size="12" font-weight="bold">DevTools 层</text>
+  <rect x="70" y="490" width="100" height="25" rx="4" fill="#d1fae5"/>
+  <text x="120" y="507" text-anchor="middle" fill="#047857" font-family="system-ui, sans-serif" font-size="10">Cursor / VS Code</text>
+  <rect x="180" y="490" width="100" height="25" rx="4" fill="#d1fae5"/>
+  <text x="230" y="507" text-anchor="middle" fill="#047857" font-family="system-ui, sans-serif" font-size="10">JetBrains AI</text>
+  <rect x="290" y="490" width="100" height="25" rx="4" fill="#d1fae5"/>
+  <text x="340" y="507" text-anchor="middle" fill="#047857" font-family="system-ui, sans-serif" font-size="10">Claude Code</text>
+
+  <!-- 基础设施层 -->
+  <rect x="480" y="455" width="440" height="70" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="520" y="480" fill="#92400e" font-family="system-ui, sans-serif" font-size="12" font-weight="bold">基础设施层</text>
+  <rect x="520" y="490" width="80" height="25" rx="4" fill="#fef9c3"/>
+  <text x="560" y="507" text-anchor="middle" fill="#92400e" font-family="system-ui, sans-serif" font-size="10">LLM 服务</text>
+  <rect x="610" y="490" width="80" height="25" rx="4" fill="#fef9c3"/>
+  <text x="650" y="507" text-anchor="middle" fill="#92400e" font-family="system-ui, sans-serif" font-size="10">向量数据库</text>
+  <rect x="700" y="490" width="80" height="25" rx="4" fill="#fef9c3"/>
+  <text x="740" y="507" text-anchor="middle" fill="#92400e" font-family="system-ui, sans-serif" font-size="10">消息队列</text>
+  <rect x="790" y="490" width="80" height="25" rx="4" fill="#fef9c3"/>
+  <text x="830" y="507" text-anchor="middle" fill="#92400e" font-family="system-ui, sans-serif" font-size="10">日志/监控</text>
+
+  <!-- 数据流向标注 -->
+  <text x="475" y="555" text-anchor="middle" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">数据流向：平台事件 → Agent 编排 → Agent 执行 → 结果回写平台</text>
+  <text x="475" y="575" text-anchor="middle" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">状态同步：Agent 状态 → 编排层 → 平台展示 | 结果存储：执行记录 → 知识库 → RAG 增强</text>
+</svg>
+
+<hr>
+<h2 id="二、平台集成矩阵"><a href="#二、平台集成矩阵" class="headerlink" title="二、平台集成矩阵"></a>二、平台集成矩阵</h2><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>平台</th>
+      <th>集成 Agent</th>
+      <th>集成方式</th>
+      <th>触发机制</th>
+      <th>数据交互</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">需求管理平台</strong></td>
+      <td>需求 Agent</td>
+      <td>Webhook + API</td>
+      <td>需求创建/更新事件</td>
+      <td>需求文档 ↔ Agent 处理 ↔ 结构化输出</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">代码仓库平台</strong></td>
+      <td>编码 Agent、维护 Agent</td>
+      <td>Webhook + API + IDE 插件</td>
+      <td>Push / PR / Issue 事件</td>
+      <td>代码变更 ↔ Agent 分析 ↔ PR/评论</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">CI/CD 平台</strong></td>
+      <td>测试 Agent、部署 Agent</td>
+      <td>流水线 Step / Job</td>
+      <td>流水线触发</td>
+      <td>代码/配置 → Agent 执行 → 测试报告/部署结果</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">运维平台</strong></td>
+      <td>运维 Agent</td>
+      <td>后台服务 + API</td>
+      <td>告警事件 / 定时任务</td>
+      <td>监控数据 → Agent 分析 → 执行操作</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">知识库平台</strong></td>
+      <td>设计 Agent、所有 Agent</td>
+      <td>API + RAG</td>
+      <td>文档更新 / Agent 写入</td>
+      <td>知识沉淀 ↔ RAG 检索 ↔ Agent 增强</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+<h2 id="三、端到端研发流程与-Agent-协作"><a href="#三、端到端研发流程与-Agent-协作" class="headerlink" title="三、端到端研发流程与 Agent 协作"></a>三、端到端研发流程与 Agent 协作</h2><pre style="background: #f1f5f9; padding: 16px 20px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 13px; color: #334155; line-height: 1.6; border-left: 3px solid #3b82f6; overflow-x: auto;">
+需求阶段（需求管理平台）
+┌─────────────────────────────────────────────────────────────────────────┐
+│ 产品经理创建需求 → 触发 Webhook → 需求 Agent 接收                         │
+│     ↓                                                                   │
+│ 需求 Agent：解析需求 → 拆分用户故事 → 生成验收标准 → 回写需求平台          │
+│     ↓                                                                   │
+│ 输出：结构化需求文档 + 用户故事列表 + 估算工时                            │
+└─────────────────────────────────────────────────────────────────────────┘
+                                    ↓
+设计阶段（知识库平台 + 终端）
+┌─────────────────────────────────────────────────────────────────────────┐
+│ 开发者拉取需求 → 触发设计 Agent → 生成技术方案                            │
+│     ↓                                                                   │
+│ 设计 Agent：架构设计 → API 定义 → 数据库设计 → 输出到知识库               │
+│     ↓                                                                   │
+│ 输出：架构图 + OpenAPI Spec + DDL + 技术选型报告                         │
+└─────────────────────────────────────────────────────────────────────────┘
+                                    ↓
+开发阶段（代码仓库 + IDE + CLI）
+┌─────────────────────────────────────────────────────────────────────────┐
+│ 开发者领取任务 → IDE 内编码 Agent 辅助开发                                │
+│     ↓                                                                   │
+│ 编码 Agent：代码补全 → 代码生成 → 单元测试生成 → 代码审查                  │
+│     ↓                                                                   │
+│ 开发者提交代码 → Push 事件触发流水线                                      │
+└─────────────────────────────────────────────────────────────────────────┘
+                                    ↓
+测试阶段（CI/CD 平台）
+┌─────────────────────────────────────────────────────────────────────────┐
+│ CI 流水线触发 → 测试 Agent 作为流水线 Step 执行                           │
+│     ↓                                                                   │
+│ 测试 Agent：分析变更 → 生成测试 → 执行测试 → 生成报告                      │
+│     ↓                                                                   │
+│ 输出：测试报告 + 覆盖率 + 风险评估 → 决定是否阻断                          │
+└─────────────────────────────────────────────────────────────────────────┘
+                                    ↓
+部署阶段（CD 平台 + 运维平台）
+┌─────────────────────────────────────────────────────────────────────────┐
+│ CD 流水线触发 → 部署 Agent 执行                                          │
+│     ↓                                                                   │
+│ 部署 Agent：预检查 → 决策策略 → 执行部署 → 渐进扩量                        │
+│     ↓                                                                   │
+│ 输出：部署报告 + 监控指标 → 通知运维平台                                   │
+└─────────────────────────────────────────────────────────────────────────┘
+                                    ↓
+运维阶段（运维平台）
+┌─────────────────────────────────────────────────────────────────────────┐
+│ 运维 Agent 后台常驻 → 监控告警触发 → 自动介入                             │
+│     ↓                                                                   │
+│ 运维 Agent：故障诊断 → 自动修复/人工确认 → 故障报告                        │
+│     ↓                                                                   │
+│ 输出：故障报告 → 知识库沉淀 → 触发维护 Agent                              │
+└─────────────────────────────────────────────────────────────────────────┘
+                                    ↓
+维护阶段（代码仓库 + Issue 系统）
+┌─────────────────────────────────────────────────────────────────────────┐
+│ Issue 创建 / 故障上报 → 触发维护 Agent                                    │
+│     ↓                                                                   │
+│ 维护 Agent：定位问题 → 生成修复 → 创建 PR → 更新文档                       │
+│     ↓                                                                   │
+│ 输出：修复 PR + 知识库更新 → 流程闭环                                      │
+└─────────────────────────────────────────────────────────────────────────┘
+</pre>
+
+<hr>
+<h2 id="四、平台集成详细方案"><a href="#四、平台集成详细方案" class="headerlink" title="四、平台集成详细方案"></a>四、平台集成详细方案</h2><h3 id="4-1-需求管理平台集成"><a href="#4-1-需求管理平台集成" class="headerlink" title="4.1 需求管理平台集成"></a>4.1 需求管理平台集成</h3><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>集成项</th>
+      <th>具体方案</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">集成平台</strong></td>
+      <td>Jira / 飞书多维表格 / Confluence / 钉钉</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">集成方式</strong></td>
+      <td>平台 Webhook → Agent 服务 → 平台 API 回写</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">触发事件</strong></td>
+      <td>需求创建、需求更新、评论添加</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">数据流向</strong></td>
+      <td>需求描述 → Agent 解析 → 结构化文档 → 回写平台</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre style="background: #f1f5f9; padding: 16px 20px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 13px; color: #334155; line-height: 1.6; border-left: 3px solid #3b82f6; overflow-x: auto;">
+【飞书集成实现】
+
+1. 飞书开放平台配置
+   ├── 创建企业自建应用
+   ├── 配置事件订阅 URL: https://agent.example.com/webhook/feishu
+   ├── 订阅事件：im.message.receive_v1（消息接收）
+   └── 权限配置：im:message, im:message:send_as_bot, docx:document
+
+2. Webhook 服务实现
+   # 接收飞书消息
+   POST /webhook/feishu
+   {
+     "event": {
+       "message": {
+         "content": "帮我分析这个需求：用户登录功能...",
+         "chat_id": "oc_xxx"
+       }
+     }
+   }
+
+3. Agent 处理流程
+   接收消息 → 解析意图 → 调用需求 Agent → 生成结果 → 调用飞书 API 回写
+
+4. 回写方式
+   ├── 回复消息（即时反馈）
+   ├── 创建飞书文档（详细文档）
+   ├── 写入多维表格（结构化数据）
+   └── 创建任务（待办事项）
+
+【Jira 集成实现】
+
+1. Jira Webhook 配置
+   ├── 系统设置 → Webhooks → 添加
+   ├── URL: https://agent.example.com/webhook/jira
+   └── 事件：issue.created, issue.updated
+
+2. 触发流程
+   Issue 创建 → Webhook 触发 Agent → 分析需求 → 添加评论/子任务
+
+3. 输出示例
+   Agent 自动创建子任务：
+   ├── 用户故事：作为用户，我想用密码登录
+   ├── 用户故事：作为用户，我想用验证码登录
+   └── 验收标准：Given-When-Then 格式
+</pre>
+
+<hr>
+<h3 id="4-2-代码仓库平台集成"><a href="#4-2-代码仓库平台集成" class="headerlink" title="4.2 代码仓库平台集成"></a>4.2 代码仓库平台集成</h3><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>集成项</th>
+      <th>具体方案</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">集成平台</strong></td>
+      <td>GitLab / GitHub / Gitee</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">集成方式</strong></td>
+      <td>Webhook + API + IDE 插件 + 流水线</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">触发事件</strong></td>
+      <td>Push、Merge Request、Issue、评论</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">集成 Agent</strong></td>
+      <td>编码 Agent（IDE）、维护 Agent（Webhook/API）</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre style="background: #f1f5f9; padding: 16px 20px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 13px; color: #334155; line-height: 1.6; border-left: 3px solid #8b5cf6; overflow-x: auto;">
+【GitLab 集成实现】
+
+1. Webhook 配置
+   Settings → Webhooks → 添加
+   ├── URL: https://agent.example.com/webhook/gitlab
+   ├── Secret Token: xxx
+   └── 触发器：Push events, Merge request events, Issues events
+
+2. 事件处理映射
+
+   Issue 创建事件 → 维护 Agent
+   ├── 解析 Issue 描述
+   ├── 定位相关代码
+   ├── 生成修复方案
+   └── 创建 MR 或添加评论
+
+   Merge Request 创建 → 代码审查 Agent
+   ├── 获取 MR diff
+   ├── 分析代码变更
+   ├── 生成审查意见
+   └── 添加到 MR 讨论
+
+   Push 事件 → 触发 CI 流水线
+   ├── 测试 Agent 执行
+   └── 结果回写到 Commit Status
+
+3. API 回写方式
+   ├── 创建 Merge Request（自动修复）
+   ├── 添加 Issue 评论（诊断报告）
+   ├── 添加 MR 讨论（审查意见）
+   ├── 设置 Commit Status（CI 状态）
+   └── 更新文件（自动修复）
+
+【GitHub 集成实现】
+
+1. GitHub App 配置
+   ├── 创建 GitHub App
+   ├── 配置 Webhook URL
+   ├── 权限：contents, issues, pull_requests
+   └── 订阅事件：issues, pull_request, push
+
+2. 自动化流程
+   Issue 标记 bug → 维护 Agent 自动分析
+   PR 创建 → 代码审查 Agent 自动审查
+   Codeowners 文件变更 → 通知相关 Reviewer
+
+【IDE 集成实现】
+
+1. VS Code 插件
+   ├── marketplace 发布企业插件
+   ├── 配置企业 LLM 端点
+   ├── 集成代码仓库认证
+   └── 关联 Issue/PR 功能
+
+2. Cursor 企业版
+   ├── 配置企业模型服务
+   ├── 开启 Codebase Indexing
+   └── 集成内部知识库
+</pre>
+
+<hr>
+<h3 id="4-3-CI-CD-平台集成"><a href="#4-3-CI-CD-平台集成" class="headerlink" title="4.3 CI/CD 平台集成"></a>4.3 CI/CD 平台集成</h3><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>集成项</th>
+      <th>具体方案</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">集成平台</strong></td>
+      <td>GitLab CI / Jenkins / GitHub Actions / ArgoCD</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">集成方式</strong></td>
+      <td>流水线 Step / Job / Stage</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">触发方式</strong></td>
+      <td>流水线自动触发</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">集成 Agent</strong></td>
+      <td>测试 Agent（CI）、部署 Agent（CD）</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre style="background: #f1f5f9; padding: 16px 20px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 13px; color: #334155; line-height: 1.6; border-left: 3px solid #f59e0b; overflow-x: auto;">
+【GitLab CI 集成配置】
+
+# .gitlab-ci.yml
+
+stages:
+  - analyze
+  - test
+  - build
+  - deploy
+
+# 代码分析阶段 - 测试 Agent
+code-analysis:
+  stage: analyze
+  image: agent/testing-agent:latest
+  script:
+    - testing-agent analyze --diff $CI_COMMIT_SHA
+    - testing-agent generate --output ./generated-tests
+  artifacts:
+    paths:
+      - generated-tests/
+    expire_in: 1 hour
+
+# 测试阶段 - 测试 Agent
+testing:
+  stage: test
+  image: agent/testing-agent:latest
+  script:
+    - testing-agent run
+      --tests "./generated-tests/**,./tests/**"
+      --coverage
+      --report-format html,junit
+      --fail-threshold 80
+  artifacts:
+    reports:
+      junit: test-results/junit.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: test-results/coverage.xml
+    paths:
+      - test-results/html/
+  coverage: '/Coverage: \d+\.\d+/'
+
+# 部署阶段 - 部署 Agent
+deploy:
+  stage: deploy
+  image: agent/deploy-agent:latest
+  script:
+    - deploy-agent precheck --env $CI_ENVIRONMENT_NAME
+    - deploy-agent decide --change-analysis
+    - deploy-agent execute --strategy auto
+  environment:
+    name: production
+    url: https://app.example.com
+  when: manual
+  only:
+    - main
+
+【Jenkins 集成配置】
+
+# Jenkinsfile
+
+pipeline {
+  agent any
+
+  stages {
+    stage('AI Test') {
+      agent { docker 'agent/testing-agent:latest' }
+      steps {
+        sh 'testing-agent analyze --diff ${GIT_COMMIT}'
+        sh 'testing-agent generate --output ./generated-tests'
+        sh 'testing-agent run --report-format junit'
+      }
+      post {
+        always {
+          junit 'test-results/junit.xml'
+          publishHTML([
+            reportDir: 'test-results/html',
+            reportFiles: 'index.html',
+            reportName: 'Test Report'
+          ])
+        }
+      }
+    }
+
+    stage('AI Deploy') {
+      when {
+        branch 'main'
+      }
+      agent { docker 'agent/deploy-agent:latest' }
+      steps {
+        sh 'deploy-agent precheck --env production'
+        sh 'deploy-agent execute --strategy canary'
+      }
+    }
+  }
+}
+
+【GitHub Actions 集成配置】
+
+# .github/workflows/ai-pipeline.yml
+
+name: AI Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+
+jobs:
+  ai-test:
+    runs-on: ubuntu-latest
+    container: agent/testing-agent:latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Testing Agent
+        run: |
+          testing-agent analyze --diff $
+          testing-agent run --coverage --report-format junit
+      - name: Upload Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: test-results/
+
+  ai-deploy:
+    needs: ai-test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    container: agent/deploy-agent:latest
+    steps:
+      - name: Deploy
+        run: |
+          deploy-agent precheck --env production
+          deploy-agent execute --strategy auto
+</pre>
+
+<hr>
+<h3 id="4-4-运维平台集成"><a href="#4-4-运维平台集成" class="headerlink" title="4.4 运维平台集成"></a>4.4 运维平台集成</h3><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>集成项</th>
+      <th>具体方案</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">集成平台</strong></td>
+      <td>Prometheus + AlertManager / K8s / ELK / Datadog</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">集成方式</strong></td>
+      <td>Webhook 接收告警 + API 执行操作</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">触发方式</strong></td>
+      <td>告警事件触发 / 定时巡检</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">集成 Agent</strong></td>
+      <td>运维 Agent（Autonomous 后台服务）</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre style="background: #f1f5f9; padding: 16px 20px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 13px; color: #334155; line-height: 1.6; border-left: 3px solid #06b6d4; overflow-x: auto;">
+【Prometheus AlertManager 集成】
+
+1. AlertManager 配置
+   route:
+     receiver: 'ops-agent'
+     match:
+       severity: critical
+
+   receivers:
+   - name: 'ops-agent'
+     webhook_configs:
+     - url: 'https://agent.example.com/webhook/alertmanager'
+       send_resolved: true
+
+2. 告警数据流转
+   Prometheus 触发告警 → AlertManager → 运维 Agent Webhook
+         ↓
+   运维 Agent 处理：
+   ├── 解析告警内容
+   ├── 收集关联数据（日志、指标、变更）
+   ├── 根因分析
+   ├── 决策执行（自动/人工）
+   └── 回写处理结果
+
+3. 执行能力配置
+   运维 Agent 通过以下 API 执行操作：
+   ├── K8s API：重启 Pod、扩缩容、更新配置
+   ├── 云厂商 API：扩容实例、切换流量
+   ├── 自定义脚本：清理缓存、重启服务
+
+【K8s 集成】
+
+1. 运维 Agent 部署
+   apiVersion: apps/v1
+   kind: Deployment
+   metadata:
+     name: ops-agent
+   spec:
+     replicas: 1
+     template:
+       spec:
+         serviceAccountName: ops-agent-sa
+         containers:
+         - name: agent
+           image: agent/ops-agent:latest
+           env:
+           - name: KUBERNETES_MASTER
+             value: "https://kubernetes.default"
+
+2. RBAC 权限配置
+   apiVersion: rbac.authorization.k8s.io/v1
+   kind: ClusterRole
+   metadata:
+     name: ops-agent-role
+   rules:
+   - apiGroups: [""]
+     resources: ["pods", "services", "configmaps"]
+     verbs: ["get", "list", "watch", "update", "patch", "delete"]
+   - apiGroups: ["apps"]
+     resources: ["deployments", "replicasets"]
+     verbs: ["get", "list", "watch", "update", "patch"]
+
+【可观测性集成】
+
+运维 Agent 数据源：
+├── Prometheus：指标查询（错误率、延迟、资源使用）
+├── ELK/Loki：日志检索（错误日志、异常模式）
+├── Jaeger：链路追踪（调用链、性能瓶颈）
+└── 变更平台：近期变更记录（关联分析）
+
+输出渠道：
+├── 飞书/钉钉：故障通知、处理进度
+├── 运维平台：处理记录、知识沉淀
+└── 监控系统：标记事件、关联图表
+</pre>
+
+<hr>
+<h3 id="4-5-知识库平台集成"><a href="#4-5-知识库平台集成" class="headerlink" title="4.5 知识库平台集成"></a>4.5 知识库平台集成</h3><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>集成项</th>
+      <th>具体方案</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">集成平台</strong></td>
+      <td>Confluence / 语雀 / Notion / Wiki</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">集成方式</strong></td>
+      <td>API 读写 + RAG 检索增强</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">数据流向</strong></td>
+      <td>Agent 输出 → 知识库存储 → RAG 索引 → Agent 增强</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">集成 Agent</strong></td>
+      <td>设计 Agent（写）、所有 Agent（读）</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre style="background: #f1f5f9; padding: 16px 20px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 13px; color: #334155; line-height: 1.6; border-left: 3px solid #10b981; overflow-x: auto;">
+【知识库架构】
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│                        知识库平台                                        │
+├─────────────────────────────────────────────────────────────────────────┤
+│  文档类型：                                                               │
+│  ├── 需求文档（需求 Agent 生成）                                          │
+│  ├── 设计文档（设计 Agent 生成）                                          │
+│  ├── API 文档（设计 Agent 生成）                                          │
+│  ├── 故障报告（运维 Agent 生成）                                          │
+│  ├── 最佳实践（Agent 执行记录沉淀）                                        │
+│  └── 代码知识（代码库索引）                                               │
+├─────────────────────────────────────────────────────────────────────────┤
+│  RAG 增强流程：                                                           │
+│  文档更新 → 向量化 → 存入向量数据库                                        │
+│  Agent 查询 → 语义检索 → 相关上下文 → 增强 Prompt                          │
+└─────────────────────────────────────────────────────────────────────────┘
+
+【Confluence 集成】
+
+1. API 写入（Agent 生成文档）
+   POST /wiki/rest/api/content
+   {
+     "type": "page",
+     "title": "用户登录功能设计文档",
+     "space": {"key": "DEV"},
+     "body": {
+       "storage": {
+         "value": "<p>架构设计内容...</p>",
+         "representation": "storage"
+       }
+     }
+   }
+
+2. API 读取（RAG 检索）
+   GET /wiki/rest/api/content/search?cql=text ~ "登录"
+
+3. 向量化流程
+   Confluence 文档 → 定时同步 → 文本分块 → Embedding → 向量数据库
+
+【知识库对 Agent 的增强】
+
+需求 Agent：
+├── 检索：历史需求文档、产品规划
+├── 增强：参考相似需求的处理方式
+└── 输出：符合团队规范的需求文档
+
+设计 Agent：
+├── 检索：现有架构文档、技术规范、最佳实践
+├── 增强：复用已有设计方案，保持一致性
+└── 输出：符合团队架构风格的设计
+
+编码 Agent：
+├── 检索：代码规范、API 文档、示例代码
+├── 增强：生成符合团队规范的代码
+└── 输出：风格一致的代码
+
+运维 Agent：
+├── 检索：历史故障报告、处理记录
+├── 增强：参考相似故障的处理方案
+└── 输出：准确的故障诊断
+</pre>
+
+<hr>
+<h2 id="五、数据流转与状态同步"><a href="#五、数据流转与状态同步" class="headerlink" title="五、数据流转与状态同步"></a>五、数据流转与状态同步</h2><h3 id="5-1-统一数据模型"><a href="#5-1-统一数据模型" class="headerlink" title="5.1 统一数据模型"></a>5.1 统一数据模型</h3><pre style="background: #f1f5f9; padding: 16px 20px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 13px; color: #334155; line-height: 1.6; border-left: 3px solid #3b82f6; overflow-x: auto;">
+# 研发过程核心数据模型
+
+需求（Requirement）
+├── id: 需求 ID
+├── title: 标题
+├── description: 描述
+├── status: 状态（draft/reviewing/developing/testing/deployed）
+├── user_stories: 用户故事列表
+├── acceptance_criteria: 验收标准
+├── linked_design: 关联设计文档
+├── linked_code: 关联代码变更
+└── linked_issues: 关联 Issue
+
+代码变更（Change）
+├── id: 变更 ID
+├── type: 类型（feature/fix/refactor）
+├── branch: 分支名
+├── commits: 提交列表
+├── mr_id: MR ID
+├── linked_requirement: 关联需求
+├── test_results: 测试结果
+└── deploy_records: 部署记录
+
+测试结果（TestResult）
+├── id: 结果 ID
+├── change_id: 变更 ID
+├── passed: 是否通过
+├── coverage: 覆盖率
+├── test_cases: 测试用例列表
+├── generated_by_agent: 是否 Agent 生成
+└── report_url: 报告链接
+
+部署记录（DeployRecord）
+├── id: 记录 ID
+├── change_id: 变更 ID
+├── environment: 环境
+├── strategy: 策略（rolling/canary/blue-green）
+├── status: 状态
+├── rollback_version: 回滚版本
+└── metrics: 部署后指标
+
+故障记录（Incident）
+├── id: 故障 ID
+├── service: 服务名
+├── severity: 严重程度
+├── root_cause: 根因
+├── resolution: 解决方案
+├── resolved_by_agent: 是否 Agent 解决
+├── linked_change: 关联变更
+└── knowledge_entry: 知识库条目
+</pre>
+
+<h3 id="5-2-状态流转图"><a href="#5-2-状态流转图" class="headerlink" title="5.2 状态流转图"></a>5.2 状态流转图</h3><svg viewbox="0 0 900 350" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="350" fill="#f8fafc"/>
+
+  <text x="450" y="25" text-anchor="middle" fill="#1e293b" font-family="system-ui, sans-serif" font-size="14" font-weight="bold">研发过程状态流转</text>
+
+  <!-- 需求状态 -->
+  <rect x="30" y="50" width="120" height="40" rx="20" fill="#3b82f6"/>
+  <text x="90" y="75" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">需求 Draft</text>
+
+  <rect x="170" y="50" width="120" height="40" rx="20" fill="#3b82f6"/>
+  <text x="230" y="75" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">需求 Reviewing</text>
+
+  <rect x="310" y="50" width="120" height="40" rx="20" fill="#3b82f6"/>
+  <text x="370" y="75" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">需求 Approved</text>
+
+  <!-- 代码状态 -->
+  <rect x="450" y="50" width="120" height="40" rx="20" fill="#8b5cf6"/>
+  <text x="510" y="75" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">开发中</text>
+
+  <rect x="590" y="50" width="120" height="40" rx="20" fill="#8b5cf6"/>
+  <text x="650" y="75" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">Code Review</text>
+
+  <rect x="730" y="50" width="120" height="40" rx="20" fill="#8b5cf6"/>
+  <text x="790" y="75" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">Merged</text>
+
+  <!-- Agent 标注 -->
+  <text x="150" y="115" text-anchor="middle" fill="#3b82f6" font-family="system-ui, sans-serif" font-size="10">需求 Agent</text>
+  <text x="600" y="115" text-anchor="middle" fill="#8b5cf6" font-family="system-ui, sans-serif" font-size="10">编码 Agent</text>
+
+  <!-- 箭头 -->
+  <polygon points="165,70 155,65 155,75" fill="#64748b"/>
+  <polygon points="305,70 295,65 295,75" fill="#64748b"/>
+  <polygon points="445,70 435,65 435,75" fill="#64748b"/>
+  <polygon points="585,70 575,65 575,75" fill="#64748b"/>
+  <polygon points="725,70 715,65 715,75" fill="#64748b"/>
+
+  <!-- 测试/部署状态 -->
+  <rect x="30" y="150" width="120" height="40" rx="20" fill="#f59e0b"/>
+  <text x="90" y="175" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">测试中</text>
+
+  <rect x="170" y="150" width="120" height="40" rx="20" fill="#f59e0b"/>
+  <text x="230" y="175" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">测试通过</text>
+
+  <rect x="310" y="150" width="120" height="40" rx="20" fill="#ec4899"/>
+  <text x="370" y="175" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">部署中</text>
+
+  <rect x="450" y="150" width="120" height="40" rx="20" fill="#ec4899"/>
+  <text x="510" y="175" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">已上线</text>
+
+  <rect x="590" y="150" width="120" height="40" rx="20" fill="#10b981"/>
+  <text x="650" y="175" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">运行中</text>
+
+  <rect x="730" y="150" width="120" height="40" rx="20" fill="#ef4444"/>
+  <text x="790" y="175" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="11">故障处理</text>
+
+  <text x="230" y="215" text-anchor="middle" fill="#f59e0b" font-family="system-ui, sans-serif" font-size="10">测试 Agent</text>
+  <text x="420" y="215" text-anchor="middle" fill="#ec4899" font-family="system-ui, sans-serif" font-size="10">部署 Agent</text>
+  <text x="760" y="215" text-anchor="middle" fill="#06b6d4" font-family="system-ui, sans-serif" font-size="10">运维 Agent</text>
+
+  <!-- 数据同步说明 -->
+  <rect x="30" y="240" width="840" height="90" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="50" y="265" fill="#334155" font-family="system-ui, sans-serif" font-size="12" font-weight="bold">状态同步机制</text>
+  <text x="50" y="290" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">1. 平台事件触发 → Agent 编排层接收 → 调度对应 Agent</text>
+  <text x="50" y="310" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">2. Agent 执行 → 状态实时更新 → 平台展示（WebSocket/轮询）</text>
+  <text x="450" y="290" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">3. 执行结果 → 统一存储 → 关联数据模型更新</text>
+  <text x="450" y="310" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">4. 知识沉淀 → 向量化 → RAG 增强 Agent 能力</text>
+</svg>
+
+<hr>
+<h2 id="六、Agent-编排层设计"><a href="#六、Agent-编排层设计" class="headerlink" title="六、Agent 编排层设计"></a>六、Agent 编排层设计</h2><h3 id="6-1-编排层职责"><a href="#6-1-编排层职责" class="headerlink" title="6.1 编排层职责"></a>6.1 编排层职责</h3><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>职责</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">统一调度</strong></td>
+      <td>接收平台事件，路由到对应 Agent</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">状态管理</strong></td>
+      <td>跟踪 Agent 执行状态，支持查询和取消</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">结果汇聚</strong></td>
+      <td>收集 Agent 输出，回写到对应平台</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">工作流编排</strong></td>
+      <td>支持多 Agent 协作的 Workflow 定义</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">权限控制</strong></td>
+      <td>Agent 操作权限管理，敏感操作审批</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">审计日志</strong></td>
+      <td>记录所有 Agent 操作，可追溯</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="6-2-编排层架构"><a href="#6-2-编排层架构" class="headerlink" title="6.2 编排层架构"></a>6.2 编排层架构</h3><pre style="background: #f1f5f9; padding: 16px 20px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 13px; color: #334155; line-height: 1.6; border-left: 3px solid #8b5cf6; overflow-x: auto;">
+┌─────────────────────────────────────────────────────────────────────────┐
+│                        Agent 编排层                                      │
+├─────────────────────────────────────────────────────────────────────────┤
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐   │
+│  │ 事件接收器   │  │ 路由分发器   │  │ 状态管理器   │  │ 结果处理器   │   │
+│  └─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘   │
+├─────────────────────────────────────────────────────────────────────────┤
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐   │
+│  │ Workflow    │  │ 权限控制    │  │ 审计日志    │  │ 通知服务    │   │
+│  │ 引擎        │  │             │  │             │  │             │   │
+│  └─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘   │
+├─────────────────────────────────────────────────────────────────────────┤
+│  Agent 注册表                                                            │
+│  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐│
+│  │需求     │ │设计     │ │编码     │ │测试     │ │部署     │ │运维     ││
+│  │Agent    │ │Agent    │ │Agent    │ │Agent    │ │Agent    │ │Agent    ││
+│  └─────────┘ └─────────┘ └─────────┘ └─────────┘ └─────────┘ └─────────┘│
+└─────────────────────────────────────────────────────────────────────────┘
+
+【事件处理流程】
+
+1. 事件接收
+   平台 Webhook → 编排层 API → 事件队列
+
+2. 事件路由
+   事件类型 → Agent 映射规则 → 目标 Agent
+
+   映射规则示例：
+   {
+     "jira.issue.created": ["requirement-agent"],
+     "gitlab.push": ["testing-agent"],
+     "gitlab.merge_request": ["coding-agent", "testing-agent"],
+     "prometheus.alert": ["ops-agent"],
+     "issue.bug.created": ["maintenance-agent"]
+   }
+
+3. Agent 调度
+   调用 Agent API → 传递上下文 → 跟踪执行
+
+4. 结果处理
+   Agent 完成 → 结果转换 → 回写平台 API
+
+【Workflow 编排示例】
+
+# 多 Agent 协作 Workflow：新功能上线
+
+name: feature-release
+trigger:
+  event: requirement.approved
+  requirement_id: ${requirement.id}
+
+steps:
+  - name: design
+    agent: design-agent
+    input:
+      requirement: ${requirement}
+    output:
+      design_doc: ${result.document}
+      api_spec: ${result.api_spec}
+
+  - name: code
+    agent: coding-agent
+    input:
+      design: ${steps.design.output}
+    output:
+      branch: ${result.branch}
+      pr_id: ${result.pr_id}
+
+  - name: test
+    agent: testing-agent
+    trigger: gitlab.merge_request.created
+    input:
+      change: ${steps.code.output}
+    output:
+      passed: ${result.passed}
+      coverage: ${result.coverage}
+
+  - name: deploy
+    agent: deploy-agent
+    condition: ${steps.test.output.passed} == true
+    input:
+      change: ${steps.code.output}
+    output:
+      deployment_id: ${result.id}
+
+notification:
+  on_complete:
+    - platform: feishu
+      template: "需求 ${requirement.id} 已上线"
+</pre>
+
+<hr>
+<h2 id="七、实施路线图"><a href="#七、实施路线图" class="headerlink" title="七、实施路线图"></a>七、实施路线图</h2><svg viewbox="0 0 900 280" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="280" fill="#f8fafc"/>
+
+  <text x="450" y="25" text-anchor="middle" fill="#1e293b" font-family="system-ui, sans-serif" font-size="14" font-weight="bold">集成实施路线图</text>
+
+  <!-- Phase 1 -->
+  <rect x="30" y="50" width="270" height="210" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="165" y="75" text-anchor="middle" fill="#1e40af" font-family="system-ui, sans-serif" font-size="13" font-weight="bold">Phase 1：基础设施</text>
+  <text x="165" y="95" text-anchor="middle" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">1-2 个月</text>
+
+  <text x="50" y="120" fill="#334155" font-family="system-ui, sans-serif" font-size="11">• 部署 LLM 服务（云端/私有化）</text>
+  <text x="50" y="140" fill="#334155" font-family="system-ui, sans-serif" font-size="11">• 搭建 Agent 编排层框架</text>
+  <text x="50" y="160" fill="#334155" font-family="system-ui, sans-serif" font-size="11">• 配置知识库 RAG</text>
+  <text x="50" y="180" fill="#334155" font-family="system-ui, sans-serif" font-size="11">• 对接现有平台 Webhook</text>
+
+  <rect x="50" y="200" width="230" height="50" rx="4" fill="#dbeafe"/>
+  <text x="165" y="220" text-anchor="middle" fill="#1e40af" font-family="system-ui, sans-serif" font-size="11">里程碑：Agent 编排层可用</text>
+  <text x="165" y="240" text-anchor="middle" fill="#1e40af" font-family="system-ui, sans-serif" font-size="11">平台事件可触发 Agent</text>
+
+  <!-- Phase 2 -->
+  <rect x="315" y="50" width="270" height="210" rx="8" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="450" y="75" text-anchor="middle" fill="#5b21b6" font-family="system-ui, sans-serif" font-size="13" font-weight="bold">Phase 2：流水线集成</text>
+  <text x="450" y="95" text-anchor="middle" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">2-3 个月</text>
+
+  <text x="335" y="120" fill="#334155" font-family="system-ui, sans-serif" font-size="11">• 测试 Agent 集成到 CI 流水线</text>
+  <text x="335" y="140" fill="#334155" font-family="system-ui, sans-serif" font-size="11">• 部署 Agent 集成到 CD 流水线</text>
+  <text x="335" y="160" fill="#334155" font-family="system-ui, sans-serif" font-size="11">• 代码仓库 Webhook 打通</text>
+  <text x="335" y="180" fill="#334155" font-family="system-ui, sans-serif" font-size="11">• IDE Agent 企业部署</text>
+
+  <rect x="335" y="200" width="230" height="50" rx="4" fill="#ede9fe"/>
+  <text x="450" y="220" text-anchor="middle" fill="#5b21b6" font-family="system-ui, sans-serif" font-size="11">里程碑：CI/CD 全面智能化</text>
+  <text x="450" y="240" text-anchor="middle" fill="#5b21b6" font-family="system-ui, sans-serif" font-size="11">测试覆盖率 +30%，部署效率 +50%</text>
+
+  <!-- Phase 3 -->
+  <rect x="600" y="50" width="270" height="210" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+  <text x="735" y="75" text-anchor="middle" fill="#047857" font-family="system-ui, sans-serif" font-size="13" font-weight="bold">Phase 3：全面集成</text>
+  <text x="735" y="95" text-anchor="middle" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">3-4 个月</text>
+
+  <text x="620" y="120" fill="#334155" font-family="system-ui, sans-serif" font-size="11">• 需求管理平台集成</text>
+  <text x="620" y="140" fill="#334155" font-family="system-ui, sans-serif" font-size="11">• 运维平台集成</text>
+  <text x="620" y="160" fill="#334155" font-family="system-ui, sans-serif" font-size="11">• 知识库全面打通</text>
+  <text x="620" y="180" fill="#334155" font-family="system-ui, sans-serif" font-size="11">• Workflow 编排上线</text>
+
+  <rect x="620" y="200" width="230" height="50" rx="4" fill="#d1fae5"/>
+  <text x="735" y="220" text-anchor="middle" fill="#047857" font-family="system-ui, sans-serif" font-size="11">里程碑：研发全流程智能化</text>
+  <text x="735" y="240" text-anchor="middle" fill="#047857" font-family="system-ui, sans-serif" font-size="11">MTTR -50%，研发效率 +40%</text>
+
+  <!-- 箭头 -->
+  <polygon points="310,155 300,150 300,160" fill="#64748b"/>
+  <polygon points="595,155 585,150 585,160" fill="#64748b"/>
+</svg>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/d60dda05/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/d60dda05/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    0_2.AI提效落地整体设计
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/145be1bf/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/145be1bf/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">5. 企业AI智能体构建指南</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

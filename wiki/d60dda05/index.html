@@ -1,0 +1,1434 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>0_2.AI提效落地整体设计 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="Agent,AICoding,软件工程">
+
+    <meta name="description" content="AI提效落地整体设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="0_2.AI提效落地整体设计">
+<meta property="og:url" content="https://waisec.cn/wiki/d60dda05/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="AI提效落地整体设计">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-14T03:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.144Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="AICoding">
+<meta property="article:tag" content="软件工程">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "0_2.AI提效落地整体设计",
+    "url": "https://waisec.cn/wiki/d60dda05/",
+    "datePublished": "2026-03-14T03:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.144Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "Agent,AICoding,软件工程"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/1|大模型应用/02.Agent应用/01.软件工程/3AI研发体系智能化/00_2.AI提效落地整体设计" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-Agent-%E4%BD%93%E7%B3%BB%E8%AE%BE%E8%AE%A1%EF%BC%88%E5%AE%8C%E6%95%B4%E8%90%BD%E5%9C%B0%E7%89%88%EF%BC%89"><span class="toc-text">软件工程 Agent 体系设计（完整落地版）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%9C%80%E6%B1%82-Agent-%E8%90%BD%E5%9C%B0%E6%96%B9%E6%A1%88%EF%BC%88Requirement-Agent%EF%BC%89"><span class="toc-text">一、需求 Agent 落地方案（Requirement Agent）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%BD%A2%E6%80%81%E4%B8%8E%E8%BD%BD%E4%BD%93"><span class="toc-text">1.1 形态与载体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%85%B7%E4%BD%93%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0"><span class="toc-text">1.2 具体功能实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88"><span class="toc-text">1.3 集成方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-Prompt-%E6%A8%A1%E6%9D%BF%E7%A4%BA%E4%BE%8B"><span class="toc-text">1.4 Prompt 模板示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%AE%BE%E8%AE%A1-Agent-%E8%90%BD%E5%9C%B0%E6%96%B9%E6%A1%88%EF%BC%88Design-Agent%EF%BC%89"><span class="toc-text">二、设计 Agent 落地方案（Design Agent）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%BD%A2%E6%80%81%E4%B8%8E%E8%BD%BD%E4%BD%93"><span class="toc-text">2.1 形态与载体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%85%B7%E4%BD%93%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0"><span class="toc-text">2.2 具体功能实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-CLI-%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="toc-text">2.3 CLI 使用示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%BC%96%E7%A0%81-Agent-%E8%90%BD%E5%9C%B0%E6%96%B9%E6%A1%88%EF%BC%88Coding-Agent%EF%BC%89"><span class="toc-text">三、编码 Agent 落地方案（Coding Agent）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%BD%A2%E6%80%81%E4%B8%8E%E8%BD%BD%E4%BD%93"><span class="toc-text">3.1 形态与载体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-IDE-Agent-%E5%85%B7%E4%BD%93%E5%8A%9F%E8%83%BD"><span class="toc-text">3.2 IDE Agent 具体功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-CLI-Agent-%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">3.3 CLI Agent 使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E4%BC%81%E4%B8%9A%E8%87%AA%E7%A0%94-IDE-%E6%8F%92%E4%BB%B6%E6%96%B9%E6%A1%88"><span class="toc-text">3.4 企业自研 IDE 插件方案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%B5%8B%E8%AF%95-Agent-%E8%90%BD%E5%9C%B0%E6%96%B9%E6%A1%88%EF%BC%88Testing-Agent%EF%BC%89"><span class="toc-text">四、测试 Agent 落地方案（Testing Agent）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%BD%A2%E6%80%81%E4%B8%8E%E8%BD%BD%E4%BD%93"><span class="toc-text">4.1 形态与载体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%B5%81%E6%B0%B4%E7%BA%BF%E9%9B%86%E6%88%90%E9%85%8D%E7%BD%AE"><span class="toc-text">4.2 流水线集成配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E7%94%9F%E6%88%90%E8%83%BD%E5%8A%9B"><span class="toc-text">4.3 测试用例生成能力</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E9%83%A8%E7%BD%B2-Agent-%E8%90%BD%E5%9C%B0%E6%96%B9%E6%A1%88%EF%BC%88Deploy-Agent%EF%BC%89"><span class="toc-text">五、部署 Agent 落地方案（Deploy Agent）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E5%BD%A2%E6%80%81%E4%B8%8E%E8%BD%BD%E4%BD%93"><span class="toc-text">5.1 形态与载体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E9%83%A8%E7%BD%B2%E6%B5%81%E7%A8%8B"><span class="toc-text">5.2 部署流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E6%99%BA%E8%83%BD%E5%86%B3%E7%AD%96%E9%80%BB%E8%BE%91"><span class="toc-text">5.3 智能决策逻辑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E8%BF%90%E7%BB%B4-Agent-%E8%90%BD%E5%9C%B0%E6%96%B9%E6%A1%88%EF%BC%88Ops-Agent%EF%BC%89"><span class="toc-text">六、运维 Agent 落地方案（Ops Agent）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E5%BD%A2%E6%80%81%E4%B8%8E%E8%BD%BD%E4%BD%93"><span class="toc-text">6.1 形态与载体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="toc-text">6.2 故障处理流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%83%BD%E5%8A%9B%E7%9F%A9%E9%98%B5"><span class="toc-text">6.3 自动化能力矩阵</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E7%BB%B4%E6%8A%A4-Agent-%E8%90%BD%E5%9C%B0%E6%96%B9%E6%A1%88%EF%BC%88Maintenance-Agent%EF%BC%89"><span class="toc-text">七、维护 Agent 落地方案（Maintenance Agent）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-%E5%BD%A2%E6%80%81%E4%B8%8E%E8%BD%BD%E4%BD%93"><span class="toc-text">7.1 形态与载体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-Issue-%E9%A9%B1%E5%8A%A8%E7%9A%84%E8%87%AA%E5%8A%A8%E4%BF%AE%E5%A4%8D"><span class="toc-text">7.2 Issue 驱动的自动修复</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81Agent-%E5%BD%A2%E6%80%81%E6%80%BB%E7%BB%93"><span class="toc-text">八、Agent 形态总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E8%90%BD%E5%9C%B0%E8%B7%AF%E5%BE%84%E5%BB%BA%E8%AE%AE"><span class="toc-text">九、落地路径建议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%E5%BB%BA%E8%AE%AE"><span class="toc-text">十、技术选型建议</span></a></li></ol></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/">1|大模型应用</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/02-Agent%E5%BA%94%E7%94%A8/">02.Agent应用</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/02-Agent%E5%BA%94%E7%94%A8/01-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">01.软件工程</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/02-Agent%E5%BA%94%E7%94%A8/01-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/3AI%E7%A0%94%E5%8F%91%E4%BD%93%E7%B3%BB%E6%99%BA%E8%83%BD%E5%8C%96/">3AI研发体系智能化</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/AICoding/" rel="tag">AICoding</a>, <a class="tag-link-link" href="/tags/Agent/" rel="tag">Agent</a>, <a class="tag-link-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" rel="tag">软件工程</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-14T03:55:57.000Z" itemprop="datePublished">2026-03-14</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="Agent,AICoding,软件工程">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/d60dda05/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            0_2.AI提效落地整体设计
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <h1 id="软件工程-Agent-体系设计（完整落地版）"><a href="#软件工程-Agent-体系设计（完整落地版）" class="headerlink" title="软件工程 Agent 体系设计（完整落地版）"></a>软件工程 Agent 体系设计（完整落地版）</h1><h2 id="一、需求-Agent-落地方案（Requirement-Agent）"><a href="#一、需求-Agent-落地方案（Requirement-Agent）" class="headerlink" title="一、需求 Agent 落地方案（Requirement Agent）"></a>一、需求 Agent 落地方案（Requirement Agent）</h2><h3 id="1-1-形态与载体"><a href="#1-1-形态与载体" class="headerlink" title="1.1 形态与载体"></a>1.1 形态与载体</h3><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>具体内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">Agent 形态</strong></td>
+      <td>Web Agent（主）+ API Agent（辅）</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">宿主平台</strong></td>
+      <td>飞书 / 钉钉 / Jira / Confluence</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">技术实现</strong></td>
+      <td>LLM API + RAG + 平台 Webhook</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">底层模型</strong></td>
+      <td>GPT-4 / Claude 3.5 / 私有化部署模型</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="1-2-具体功能实现"><a href="#1-2-具体功能实现" class="headerlink" title="1.2 具体功能实现"></a>1.2 具体功能实现</h3><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>功能</th>
+      <th>输入</th>
+      <th>输出</th>
+      <th>Prompt 示例</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">需求解析</strong></td>
+      <td>会议录音转文字 / 产品描述</td>
+      <td>结构化需求列表</td>
+      <td>分析以下需求描述，提取核心功能点、用户角色、业务规则</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">用户故事拆分</strong></td>
+      <td>需求文档</td>
+      <td>用户故事列表（INVEST 格式）</td>
+      <td>将需求拆分为用户故事，格式：作为[角色]，我想[行为]，以便[目的]</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">验收标准生成</strong></td>
+      <td>用户故事</td>
+      <td>Given-When-Then 格式验收标准</td>
+      <td>为该用户故事生成验收标准，使用 Gherkin 格式</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">优先级建议</strong></td>
+      <td>需求列表 + 业务目标</td>
+      <td>MoSCoW 优先级排序</td>
+      <td>基于业务价值和实现成本，给出优先级建议</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="1-3-集成方案"><a href="#1-3-集成方案" class="headerlink" title="1.3 集成方案"></a>1.3 集成方案</h3><pre style="background: #f1f5f9; padding: 16px 20px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 13px; color: #334155; line-height: 1.6; border-left: 3px solid #3b82f6; overflow-x: auto;">
+【飞书集成方案】
+
+1. 机器人配置
+   ├── 创建飞书机器人应用
+   ├── 配置事件订阅：im.message.receive_v1
+   └── 配置权限：im:message, im:message:send_as_bot
+
+2. 调用流程
+   用户 @需求机器人 发送需求描述
+         ↓
+   飞书 Webhook 推送消息到 Agent 服务
+         ↓
+   Agent 调用 LLM API 处理
+         ↓
+   返回结构化需求 → 自动创建飞书文档/多维表格
+
+3. 核心代码结构
+   requirement-agent/
+   ├── server.py          # Webhook 服务
+   ├── llm_client.py      # LLM 调用封装
+   ├── prompts/
+   │   ├── parse.py       # 需求解析 Prompt
+   │   ├── story.py       # 用户故事拆分 Prompt
+   │   └── acceptance.py  # 验收标准 Prompt
+   └── integrations/
+       ├── feishu.py      # 飞书 API 封装
+       └── jira.py        # Jira API 封装
+</pre>
+
+<h3 id="1-4-Prompt-模板示例"><a href="#1-4-Prompt-模板示例" class="headerlink" title="1.4 Prompt 模板示例"></a>1.4 Prompt 模板示例</h3><pre style="background: #f1f5f9; padding: 16px 20px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 13px; color: #334155; line-height: 1.6; border-left: 3px solid #8b5cf6; overflow-x: auto;">
+# 需求解析 Prompt 模板
+
+你是一位资深产品经理，擅长需求分析和文档编写。
+
+## 任务
+分析以下需求描述，输出结构化的需求文档。
+
+## 输入
+{user_input}
+
+## 输出格式
+### 1. 需求概述
+- 需求背景：
+- 目标用户：
+- 核心价值：
+
+### 2. 功能列表
+| 功能模块 | 功能点 | 优先级 | 复杂度 |
+|---------|-------|-------|-------|
+| ... | ... | P0/P1/P2 | 高/中/低 |
+
+### 3. 用户故事
+- 作为 [角色]，我想 [行为]，以便 [目的]
+- ...
+
+### 4. 非功能需求
+- 性能要求：
+- 安全要求：
+- 兼容性要求：
+
+### 5. 验收标准
+- Given [前置条件], When [触发动作], Then [预期结果]
+- ...
+</pre>
+
+<hr>
+<h2 id="二、设计-Agent-落地方案（Design-Agent）"><a href="#二、设计-Agent-落地方案（Design-Agent）" class="headerlink" title="二、设计 Agent 落地方案（Design Agent）"></a>二、设计 Agent 落地方案（Design Agent）</h2><h3 id="2-1-形态与载体"><a href="#2-1-形态与载体" class="headerlink" title="2.1 形态与载体"></a>2.1 形态与载体</h3><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>具体内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">Agent 形态</strong></td>
+      <td>CLI Agent（主）+ Web Agent（辅）</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">宿主工具</strong></td>
+      <td>终端 / 设计文档平台</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">技术栈</strong></td>
+      <td>Python + LangChain + PlantUML/Mermaid</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">输出格式</strong></td>
+      <td>Markdown + Mermaid + OpenAPI Spec + SQL</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="2-2-具体功能实现"><a href="#2-2-具体功能实现" class="headerlink" title="2.2 具体功能实现"></a>2.2 具体功能实现</h3><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>功能</th>
+      <th>输入</th>
+      <th>输出</th>
+      <th>实现方式</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">架构设计</strong></td>
+      <td>需求文档 + 性能指标</td>
+      <td>架构图（Mermaid/C4 Model）</td>
+      <td>LangChain + 架构知识库 RAG</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">API 设计</strong></td>
+      <td>功能需求</td>
+      <td>OpenAPI 3.0 Spec</td>
+      <td>结构化 Prompt + JSON Schema 校验</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">数据库设计</strong></td>
+      <td>业务模型</td>
+      <td>ER 图 + DDL SQL</td>
+      <td>领域建模 Prompt + SQL 生成器</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">技术选型</strong></td>
+      <td>场景描述 + 约束条件</td>
+      <td>技术选型对比表</td>
+      <td>技术栈知识库 + 多维度评估</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="2-3-CLI-使用示例"><a href="#2-3-CLI-使用示例" class="headerlink" title="2.3 CLI 使用示例"></a>2.3 CLI 使用示例</h3><pre style="background: #f1f5f9; padding: 16px 20px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 13px; color: #334155; line-height: 1.6; border-left: 3px solid #8b5cf6; overflow-x: auto;">
+# 安装
+$ pip install design-agent
+
+# 架构设计
+$ design-agent architecture \
+    --input requirements.md \
+    --output architecture.md \
+    --style microservice \
+    --diagram mermaid
+
+# API 设计
+$ design-agent api \
+    --input requirements.md \
+    --output openapi.yaml \
+    --base-path /api/v1
+
+# 数据库设计
+$ design-agent database \
+    --input requirements.md \
+    --output schema.sql \
+    --db-type postgresql
+
+# 完整设计（一键生成）
+$ design-agent full \
+    --input requirements.md \
+    --output ./design-docs/ \
+    --tech-stack "spring-boot,postgresql,redis,kafka"
+
+输出目录结构：
+design-docs/
+├── README.md           # 设计文档总览
+├── architecture.md     # 架构设计（含 Mermaid 图）
+├── api-spec.yaml       # OpenAPI 规范
+├── database/
+│   ├── schema.sql      # DDL 语句
+│   └── er-diagram.md   # ER 图
+└── tech-stack.md       # 技术选型报告
+</pre>
+
+<hr>
+<h2 id="三、编码-Agent-落地方案（Coding-Agent）"><a href="#三、编码-Agent-落地方案（Coding-Agent）" class="headerlink" title="三、编码 Agent 落地方案（Coding Agent）"></a>三、编码 Agent 落地方案（Coding Agent）</h2><h3 id="3-1-形态与载体"><a href="#3-1-形态与载体" class="headerlink" title="3.1 形态与载体"></a>3.1 形态与载体</h3><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>具体内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">Agent 形态</strong></td>
+      <td>IDE Agent（主）+ CLI Agent（辅）+ API Agent</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">IDE 集成</strong></td>
+      <td>Cursor / VS Code + Copilot / JetBrains AI</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">CLI 工具</strong></td>
+      <td>Claude Code / Aider / 自研 CLI Agent</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">技术栈</strong></td>
+      <td>IDE 插件开发 + LSP + LLM API</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="3-2-IDE-Agent-具体功能"><a href="#3-2-IDE-Agent-具体功能" class="headerlink" title="3.2 IDE Agent 具体功能"></a>3.2 IDE Agent 具体功能</h3><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>功能</th>
+      <th>触发方式</th>
+      <th>工具支持</th>
+      <th>效果</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">代码补全</strong></td>
+      <td>实时自动</td>
+      <td>Copilot / Cursor Tab</td>
+      <td>提升编码速度 40%+</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">代码生成</strong></td>
+      <td>Cmd+K / Ctrl+K</td>
+      <td>Cursor / Copilot Chat</td>
+      <td>根据注释生成代码</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">代码解释</strong></td>
+      <td>选中 → 右键菜单</td>
+      <td>Copilot / Cursor</td>
+      <td>解释复杂代码逻辑</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">重构建议</strong></td>
+      <td>Cmd+Shift+R</td>
+      <td>Cursor / JetBrains AI</td>
+      <td>识别代码坏味道并重构</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">单元测试生成</strong></td>
+      <td>右键 → Generate Tests</td>
+      <td>Copilot / Cursor</td>
+      <td>自动生成测试用例</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">代码审查</strong></td>
+      <td>提交前自动 / 手动触发</td>
+      <td>自研插件 / CodeRabbit</td>
+      <td>发现潜在问题</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="3-3-CLI-Agent-使用场景"><a href="#3-3-CLI-Agent-使用场景" class="headerlink" title="3.3 CLI Agent 使用场景"></a>3.3 CLI Agent 使用场景</h3><pre style="background: #f1f5f9; padding: 16px 20px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 13px; color: #334155; line-height: 1.6; border-left: 3px solid #10b981; overflow-x: auto;">
+# Claude Code 使用示例
+
+# 1. 功能开发
+$ claude-code
+> 请帮我实现用户登录功能，需要支持用户名密码和手机验证码两种方式
+
+Agent 执行：
+├── 分析现有代码结构
+├── 生成 LoginService.java
+├── 生成 LoginController.java
+├── 生成 LoginTest.java
+├── 运行测试确认通过
+└── 提交变更摘要供确认
+
+# 2. Bug 修复
+$ claude-code
+> 修复 Issue #123：用户登录时偶现超时问题
+
+Agent 执行：
+├── 读取 Issue 描述
+├── 分析相关代码
+├── 定位问题：数据库连接池配置过小
+├── 修改配置文件
+├── 生成修复说明
+└── 创建 PR
+
+# 3. 代码重构
+$ claude-code
+> 重构 OrderService，提取支付逻辑到独立的 PaymentService
+
+Agent 执行：
+├── 分析 OrderService 代码
+├── 识别支付相关方法
+├── 创建 PaymentService 类
+├── 迁移相关代码
+├── 更新依赖注入
+├── 运行测试确保无回归
+└── 提交重构 PR
+</pre>
+
+<h3 id="3-4-企业自研-IDE-插件方案"><a href="#3-4-企业自研-IDE-插件方案" class="headerlink" title="3.4 企业自研 IDE 插件方案"></a>3.4 企业自研 IDE 插件方案</h3><pre style="background: #f1f5f9; padding: 16px 20px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 13px; color: #334155; line-height: 1.6; border-left: 3px solid #f59e0b; overflow-x: auto;">
+# VS Code 插件开发结构
+
+coding-agent-extension/
+├── package.json           # 插件配置
+├── src/
+│   ├── extension.ts       # 入口文件
+│   ├── providers/
+│   │   ├── completion.ts  # 代码补全 Provider
+│   │   ├── chat.ts        # 对话 Provider
+│   │   └── review.ts      # 代码审查 Provider
+│   ├── llm/
+│   │   ├── client.ts      # LLM 客户端封装
+│   │   └── prompts.ts     # Prompt 模板
+│   └── utils/
+│       ├── context.ts     # 上下文提取
+│       └── diff.ts        # Diff 生成
+└── README.md
+
+# 核心功能注册
+export function activate(context: vscode.ExtensionContext) {
+  // 注册代码补全
+  const completionProvider = new CodeCompletionProvider();
+  context.subscriptions.push(
+    vscode.languages.registerInlineCompletionItemProvider(
+      { pattern: '**' }, completionProvider
+    )
+  );
+
+  // 注册对话命令
+  const chatCommand = vscode.commands.registerCommand(
+    'codingAgent.chat', () => openChatPanel()
+  );
+  context.subscriptions.push(chatCommand);
+
+  // 注册代码审查
+  const reviewCommand = vscode.commands.registerCommand(
+    'codingAgent.review', () => reviewCurrentFile()
+  );
+  context.subscriptions.push(reviewCommand);
+}
+</pre>
+
+<hr>
+<h2 id="四、测试-Agent-落地方案（Testing-Agent）"><a href="#四、测试-Agent-落地方案（Testing-Agent）" class="headerlink" title="四、测试 Agent 落地方案（Testing Agent）"></a>四、测试 Agent 落地方案（Testing Agent）</h2><h3 id="4-1-形态与载体"><a href="#4-1-形态与载体" class="headerlink" title="4.1 形态与载体"></a>4.1 形态与载体</h3><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>具体内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">Agent 形态</strong></td>
+      <td>CLI Agent（流水线集成）</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">宿主环境</strong></td>
+      <td>GitLab CI / Jenkins / GitHub Actions</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">触发条件</strong></td>
+      <td>代码提交 / PR 创建 / 定时触发</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">输出产物</strong></td>
+      <td>测试报告 HTML + JUnit XML + 覆盖率报告</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="4-2-流水线集成配置"><a href="#4-2-流水线集成配置" class="headerlink" title="4.2 流水线集成配置"></a>4.2 流水线集成配置</h3><pre style="background: #f1f5f9; padding: 16px 20px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 13px; color: #334155; line-height: 1.6; border-left: 3px solid #f59e0b; overflow-x: auto;">
+# GitLab CI 集成示例
+
+stages:
+  - test
+
+testing-agent:
+  stage: test
+  image: testing-agent:latest
+  script:
+    # 1. 分析代码变更
+    - testing-agent analyze --diff $CI_COMMIT_SHA
+
+    # 2. 生成针对性测试用例
+    - testing-agent generate --output ./generated-tests/
+
+    # 3. 执行测试（包含生成测试 + 现有测试）
+    - testing-agent run
+      --tests "./generated-tests/**,./tests/**"
+      --coverage
+      --report-format html,junit
+
+    # 4. 风险评估
+    - testing-agent assess --output risk-report.json
+
+  artifacts:
+    reports:
+      junit: test-results/junit.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: test-results/coverage.xml
+    paths:
+      - test-results/html/
+      - risk-report.json
+
+  # 阻断策略：高风险变更需要人工确认
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      allow_failure: false
+</pre>
+
+<h3 id="4-3-测试用例生成能力"><a href="#4-3-测试用例生成能力" class="headerlink" title="4.3 测试用例生成能力"></a>4.3 测试用例生成能力</h3><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>测试类型</th>
+      <th>生成方式</th>
+      <th>示例输出</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">单元测试</strong></td>
+      <td>分析函数签名 + 边界值分析</td>
+      <td>Jest/JUnit/TestNG 测试代码</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">API 测试</strong></td>
+      <td>解析 OpenAPI Spec</td>
+      <td>Postman Collection / REST Assured</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">集成测试</strong></td>
+      <td>分析服务依赖关系</td>
+      <td>Testcontainers + 端到端测试</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">性能测试</strong></td>
+      <td>基于接口定义生成负载脚本</td>
+      <td>JMeter / k6 / Gatling 脚本</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+<h2 id="五、部署-Agent-落地方案（Deploy-Agent）"><a href="#五、部署-Agent-落地方案（Deploy-Agent）" class="headerlink" title="五、部署 Agent 落地方案（Deploy Agent）"></a>五、部署 Agent 落地方案（Deploy Agent）</h2><h3 id="5-1-形态与载体"><a href="#5-1-形态与载体" class="headerlink" title="5.1 形态与载体"></a>5.1 形态与载体</h3><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>具体内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">Agent 形态</strong></td>
+      <td>CLI Agent（流水线集成）</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">宿主环境</strong></td>
+      <td>GitLab CI / Jenkins / ArgoCD</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">部署策略</strong></td>
+      <td>蓝绿部署 / 金丝雀发布 / 滚动更新</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">决策依据</strong></td>
+      <td>监控指标 + 历史数据 + 风险评估</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="5-2-部署流程"><a href="#5-2-部署流程" class="headerlink" title="5.2 部署流程"></a>5.2 部署流程</h3><pre style="background: #f1f5f9; padding: 16px 20px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 13px; color: #334155; line-height: 1.6; border-left: 3px solid #ec4899; overflow-x: auto;">
+# 部署 Agent 工作流程
+
+触发：测试通过 → 进入 CD 阶段
+
+┌─────────────────────────────────────────────────────────────┐
+│ Step 1: 预检查                                                │
+├─────────────────────────────────────────────────────────────┤
+│ $ deploy-agent precheck --env production                     │
+│                                                               │
+│ 检查项：                                                       │
+│ ├── ✓ 数据库迁移脚本已准备                                     │
+│ ├── ✓ 配置项已同步（12 项）                                    │
+│ ├── ✓ 回滚脚本已验证                                          │
+│ ├── ✓ 监控告警已配置                                          │
+│ └── ✓ 上次部署时间：2026-03-14 18:30                          │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ Step 2: 部署决策                                              │
+├─────────────────────────────────────────────────────────────┤
+│ $ deploy-agent decide --change-analysis                      │
+│                                                               │
+│ 变更分析：                                                     │
+│ ├── 变更文件：15 个                                            │
+│ ├── 数据库变更：有（2 张表）                                   │
+│ ├── API 变更：有（新增 3 个接口）                              │
+│ └── 风险等级：中                                               │
+│                                                               │
+│ 推荐策略：金丝雀发布（先 10% 流量）                            │
+│ 理由：涉及数据库变更，建议渐进式发布                            │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ Step 3: 执行部署                                              │
+├─────────────────────────────────────────────────────────────┤
+│ $ deploy-agent execute --strategy canary --percentage 10    │
+│                                                               │
+│ 执行步骤：                                                     │
+│ ├── [1/5] 执行数据库迁移... ✓                                 │
+│ ├── [2/5] 部署新版本 Pod（10%）... ✓                          │
+│ ├── [3/5] 配置路由权重... ✓                                   │
+│ ├── [4/5] 等待稳定（5分钟）... ✓                              │
+│ └── [5/5] 健康检查... ✓                                       │
+│                                                               │
+│ 当前状态：10% 流量到新版本                                     │
+│ 监控指标：错误率 0.1%，P99 延迟 120ms                          │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ Step 4: 渐进扩量（自动/人工确认）                              │
+├─────────────────────────────────────────────────────────────┤
+│ 监控指标正常，自动扩量到 50%... ✓                              │
+│ 监控指标正常，自动扩量到 100%... ✓                             │
+│                                                               │
+│ 部署完成！                                                     │
+│ ├── 总耗时：12 分钟                                            │
+│ ├── 新版本：v2.3.0                                            │
+│ └── 回滚命令：deploy-agent rollback --version v2.2.1         │
+└─────────────────────────────────────────────────────────────┘
+</pre>
+
+<h3 id="5-3-智能决策逻辑"><a href="#5-3-智能决策逻辑" class="headerlink" title="5.3 智能决策逻辑"></a>5.3 智能决策逻辑</h3><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>决策点</th>
+      <th>输入数据</th>
+      <th>决策逻辑</th>
+      <th>输出</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">发布策略选择</strong></td>
+      <td>变更范围、风险等级、历史数据</td>
+      <td>低风险→滚动更新；中风险→金丝雀；高风险→蓝绿</td>
+      <td>部署策略推荐</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">扩量时机</strong></td>
+      <td>错误率、延迟、CPU/内存</td>
+      <td>错误率&lt;0.5% 且延迟&lt;P99 基线</td>
+      <td>扩量/暂停决策</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">回滚决策</strong></td>
+      <td>错误率激增、关键指标异常</td>
+      <td>错误率&gt;5% 或连续 3 次健康检查失败</td>
+      <td>自动回滚</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+<h2 id="六、运维-Agent-落地方案（Ops-Agent）"><a href="#六、运维-Agent-落地方案（Ops-Agent）" class="headerlink" title="六、运维 Agent 落地方案（Ops Agent）"></a>六、运维 Agent 落地方案（Ops Agent）</h2><h3 id="6-1-形态与载体"><a href="#6-1-形态与载体" class="headerlink" title="6.1 形态与载体"></a>6.1 形态与载体</h3><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>具体内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">Agent 形态</strong></td>
+      <td>Autonomous Agent（后台常驻服务）</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">部署方式</strong></td>
+      <td>K8s Deployment / Systemd Service</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">数据源</strong></td>
+      <td>Prometheus / ELK / Jaeger / 告警系统</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">执行能力</strong></td>
+      <td>重启服务、扩缩容、清理缓存、切换流量</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="6-2-故障处理流程"><a href="#6-2-故障处理流程" class="headerlink" title="6.2 故障处理流程"></a>6.2 故障处理流程</h3><pre style="background: #f1f5f9; padding: 16px 20px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 13px; color: #334155; line-height: 1.6; border-left: 3px solid #06b6d4; overflow-x: auto;">
+# 运维 Agent 故障处理实例
+
+[2026-03-15 10:23:45] 告警触发
+├── 告警类型：服务错误率飙升
+├── 服务：order-service
+├── 当前错误率：8.5%（阈值：1%）
+└── 触发来源：Prometheus AlertManager
+
+[2026-03-15 10:23:46] Agent 自动介入
+├── 收集上下文
+│   ├── 近期变更：10:15 部署 v2.3.0
+│   ├── 日志分析：数据库连接超时激增
+│   ├── 关联服务：mysql-master 延迟升高
+│   └── 历史相似故障：3 次，根因均为连接池耗尽
+│
+├── 根因定位
+│   ├── PRIMARY：数据库连接池配置过小
+│   ├── CONFIDENCE：92%
+│   └── EVIDENCE：活跃连接数=100，最大配置=100
+│
+└── 生成修复方案
+    ├── 方案 A：扩容连接池（需重启）
+    ├── 方案 B：扩容数据库实例（无需重启）
+    └── 推荐：方案 A（风险低，见效快）
+
+[2026-03-15 10:24:15] 执行决策
+├── 风险等级：低
+├── 自动执行：是
+├── 执行操作
+│   ├── 1. 修改 order-service 连接池配置 100→200
+│   ├── 2. 重启 order-service（滚动重启）
+│   └── 3. 验证服务健康
+└── 执行结果：成功
+
+[2026-03-15 10:28:30] 故障恢复
+├── 错误率：0.3%（恢复正常）
+├── 恢复耗时：4 分 45 秒
+├── 人工介入：无
+└── 自动生成故障报告 → 飞书通知
+</pre>
+
+<h3 id="6-3-自动化能力矩阵"><a href="#6-3-自动化能力矩阵" class="headerlink" title="6.3 自动化能力矩阵"></a>6.3 自动化能力矩阵</h3><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>故障类型</th>
+      <th>自动处理</th>
+      <th>人工确认</th>
+      <th>具体操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">服务 OOM</strong></td>
+      <td>✓</td>
+      <td>-</td>
+      <td>重启 Pod + 调整内存限制</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">连接池耗尽</strong></td>
+      <td>✓</td>
+      <td>-</td>
+      <td>扩容连接池 + 重启服务</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">磁盘空间不足</strong></td>
+      <td>✓</td>
+      <td>-</td>
+      <td>清理日志/临时文件 + 扩容</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">流量激增</strong></td>
+      <td>✓</td>
+      <td>-</td>
+      <td>自动 HPA 扩容</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">数据库主从延迟</strong></td>
+      <td>-</td>
+      <td>✓</td>
+      <td>切换从库 / 扩容主库</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">数据丢失风险</strong></td>
+      <td>-</td>
+      <td>✓</td>
+      <td>备份恢复 / 数据修复</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+<h2 id="七、维护-Agent-落地方案（Maintenance-Agent）"><a href="#七、维护-Agent-落地方案（Maintenance-Agent）" class="headerlink" title="七、维护 Agent 落地方案（Maintenance Agent）"></a>七、维护 Agent 落地方案（Maintenance Agent）</h2><h3 id="7-1-形态与载体"><a href="#7-1-形态与载体" class="headerlink" title="7.1 形态与载体"></a>7.1 形态与载体</h3><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>具体内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">Agent 形态</strong></td>
+      <td>IDE Agent + CLI Agent + API Agent</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">触发方式</strong></td>
+      <td>Issue 创建 / 错误上报 / 手动调用</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">核心能力</strong></td>
+      <td>Bug 定位、自动修复、重构建议、技术债治理</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">输出产物</strong></td>
+      <td>修复 PR / 诊断报告 / 重构方案</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="7-2-Issue-驱动的自动修复"><a href="#7-2-Issue-驱动的自动修复" class="headerlink" title="7.2 Issue 驱动的自动修复"></a>7.2 Issue 驱动的自动修复</h3><pre style="background: #f1f5f9; padding: 16px 20px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 13px; color: #334155; line-height: 1.6; border-left: 3px solid #ef4444; overflow-x: auto;">
+# Issue 自动修复流程
+
+Issue 创建：#456 用户登录偶现 500 错误
+├── 标签：bug, high-priority
+├── 描述：部分用户登录时报 500，错误日志显示 NPE
+└── 附件：错误堆栈截图
+
+     ↓ Agent 自动介入
+
+[1] 错误日志分析
+├── 异常类型：NullPointerException
+├── 位置：LoginService.java:156
+├── 触发条件：user.getProfile() 返回 null
+
+[2] 代码分析
+├── 定位问题代码：
+│   String avatar = user.getProfile().getAvatar();
+│   // 当 profile 为 null 时抛出 NPE
+│
+├── 影响范围：约 5% 用户（未完善个人资料）
+└── 相关测试：缺失该场景的测试用例
+
+[3] 生成修复方案
+├── 方案：添加空值检查
+├── 风险：低
+└── 自动创建修复 PR
+
+[4] 修复代码
+- String avatar = user.getProfile().getAvatar();
++ String avatar = Optional.ofNullable(user.getProfile())
++     .map(Profile::getAvatar)
++     .orElse("/default-avatar.png");
+
+[5] 补充测试
++ @Test
++ void testLogin_UserWithoutProfile() {
++     User user = new User("user001");
++     user.setProfile(null);
++     LoginResponse response = loginService.login(user);
++     assertNotNull(response.getAvatar());
++ }
+
+     ↓ 自动创建 PR
+
+PR #789: fix: 处理用户 profile 为空时的 NPE
+├── 修改文件：2 个
+├── 测试覆盖：已补充
+├── CI 状态：✓ 通过
+└── 等待人工 Review & Merge
+</pre>
+
+<hr>
+<h2 id="八、Agent-形态总结"><a href="#八、Agent-形态总结" class="headerlink" title="八、Agent 形态总结"></a>八、Agent 形态总结</h2><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>Agent</th>
+      <th>形态</th>
+      <th>宿主/载体</th>
+      <th>触发方式</th>
+      <th>人工介入</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">需求 Agent</strong></td>
+      <td>Web + API</td>
+      <td>飞书/Jira/Confluence</td>
+      <td>手动触发</td>
+      <td>高（审核确认）</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">设计 Agent</strong></td>
+      <td>CLI + Web</td>
+      <td>终端/设计平台</td>
+      <td>手动触发</td>
+      <td>高（评审决策）</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">编码 Agent</strong></td>
+      <td>IDE + CLI + API</td>
+      <td>Cursor/VS Code/终端</td>
+      <td>手动/实时</td>
+      <td>中（审查确认）</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">测试 Agent</strong></td>
+      <td>CLI（流水线）</td>
+      <td>GitLab CI/Jenkins</td>
+      <td>自动触发</td>
+      <td>低（异常介入）</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">部署 Agent</strong></td>
+      <td>CLI（流水线）</td>
+      <td>GitLab CI/ArgoCD</td>
+      <td>自动触发</td>
+      <td>低（异常决策）</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">运维 Agent</strong></td>
+      <td>Autonomous</td>
+      <td>K8s/后台服务</td>
+      <td>告警触发</td>
+      <td>低（高风险确认）</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">维护 Agent</strong></td>
+      <td>IDE + CLI + API</td>
+      <td>IDE/Issue系统</td>
+      <td>手动/自动</td>
+      <td>中（复杂确认）</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+<h2 id="九、落地路径建议"><a href="#九、落地路径建议" class="headerlink" title="九、落地路径建议"></a>九、落地路径建议</h2><svg viewbox="0 0 900 220" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="220" fill="#f8fafc"/>
+
+  <!-- Phase 1 -->
+  <rect x="30" y="20" width="270" height="180" rx="10" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="165" y="50" text-anchor="middle" fill="#1e40af" font-family="system-ui, sans-serif" font-size="14" font-weight="bold">Phase 1：即时落地</text>
+  <text x="165" y="72" text-anchor="middle" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">无需开发，直接使用</text>
+  <text x="50" y="100" fill="#334155" font-family="system-ui, sans-serif" font-size="12">• IDE Agent：Cursor / Copilot</text>
+  <text x="50" y="120" fill="#334155" font-family="system-ui, sans-serif" font-size="12">• CLI Agent：Claude Code / Aider</text>
+  <text x="50" y="140" fill="#334155" font-family="system-ui, sans-serif" font-size="12">• 开发者日常使用，零成本</text>
+  <text x="50" y="170" fill="#10b981" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">预期效果：编码效率提升 40%+</text>
+
+  <!-- Phase 2 -->
+  <rect x="315" y="20" width="270" height="180" rx="10" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="450" y="50" text-anchor="middle" fill="#5b21b6" font-family="system-ui, sans-serif" font-size="14" font-weight="bold">Phase 2：流程集成</text>
+  <text x="450" y="72" text-anchor="middle" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">集成现有流水线</text>
+  <text x="335" y="100" fill="#334155" font-family="system-ui, sans-serif" font-size="12">• 测试 Agent → CI 流水线</text>
+  <text x="335" y="120" fill="#334155" font-family="system-ui, sans-serif" font-size="12">• 部署 Agent → CD 流水线</text>
+  <text x="335" y="140" fill="#334155" font-family="system-ui, sans-serif" font-size="12">• 配置流水线步骤即可</text>
+  <text x="335" y="170" fill="#10b981" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">预期效果：测试覆盖率提升 30%</text>
+
+  <!-- Phase 3 -->
+  <rect x="600" y="20" width="270" height="180" rx="10" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+  <text x="735" y="50" text-anchor="middle" fill="#047857" font-family="system-ui, sans-serif" font-size="14" font-weight="bold">Phase 3：平台建设</text>
+  <text x="735" y="72" text-anchor="middle" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">定制化开发</text>
+  <text x="620" y="100" fill="#334155" font-family="system-ui, sans-serif" font-size="12">• 需求 Agent → 飞书机器人</text>
+  <text x="620" y="120" fill="#334155" font-family="system-ui, sans-serif" font-size="12">• 运维 Agent → 后台服务</text>
+  <text x="620" y="140" fill="#334155" font-family="system-ui, sans-serif" font-size="12">• 需要开发资源投入</text>
+  <text x="620" y="170" fill="#10b981" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">预期效果：MTTR 降低 50%</text>
+
+  <!-- 箭头 -->
+  <polygon points="310,110 300,105 300,115" fill="#64748b"/>
+  <polygon points="595,110 585,105 585,115" fill="#64748b"/>
+</svg>
+
+<hr>
+<h2 id="十、技术选型建议"><a href="#十、技术选型建议" class="headerlink" title="十、技术选型建议"></a>十、技术选型建议</h2><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>技术层</th>
+      <th>选型建议</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">LLM 服务</strong></td>
+      <td>GPT-4 / Claude 3.5 / 私有化</td>
+      <td>根据安全要求选择云端或私有化</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">Agent 框架</strong></td>
+      <td>LangChain / LlamaIndex</td>
+      <td>成熟的 Agent 开发框架</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">知识库</strong></td>
+      <td>Pinecone / Milvus / pgvector</td>
+      <td>代码库 + 文档的 RAG 检索</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">私有化模型</strong></td>
+      <td>Ollama + Qwen/DeepSeek</td>
+      <td>本地部署，数据不出域</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">IDE 插件开发</strong></td>
+      <td>VS Code Extension API</td>
+      <td>企业定制化功能</td>
+    </tr>
+  </tbody>
+</table>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/a7b1fb54/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/a7b1fb54/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    0_4.AgentTeam 研发团队技术方案
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/28fda9af/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/28fda9af/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">0_1.研发平台与Agent集成</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

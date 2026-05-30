@@ -1,0 +1,1408 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>2.智能风控决策平台 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="AI工程师,大模型应用,数据架构,Agent,AI知识库,风控架构,Novus,Wiki,Quinoa,quanoc">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2.智能风控决策平台">
+<meta property="og:url" content="https://waisec.cn/wiki/4aec6d57/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-09T16:48:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.108Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="AI工程师,大模型应用,数据架构,Agent,AI知识库,风控架构,Novus,Wiki,Quinoa,quanoc">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "2.智能风控决策平台",
+    "url": "https://waisec.cn/wiki/4aec6d57/",
+    "datePublished": "2024-02-09T16:48:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.108Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png"
+}
+</script>
+
+<article id="post-信息安全 | 安全可信数字环境/[1]风险控制/信贷风控/架构策略蓝图/002.智能风控决策平台" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8-%E5%AE%89%E5%85%A8%E5%8F%AF%E4%BF%A1%E6%95%B0%E5%AD%97%E7%8E%AF%E5%A2%83/">信息安全 | 安全可信数字环境</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8-%E5%AE%89%E5%85%A8%E5%8F%AF%E4%BF%A1%E6%95%B0%E5%AD%97%E7%8E%AF%E5%A2%83/1-%E9%A3%8E%E9%99%A9%E6%8E%A7%E5%88%B6/">[1]风险控制</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8-%E5%AE%89%E5%85%A8%E5%8F%AF%E4%BF%A1%E6%95%B0%E5%AD%97%E7%8E%AF%E5%A2%83/1-%E9%A3%8E%E9%99%A9%E6%8E%A7%E5%88%B6/%E4%BF%A1%E8%B4%B7%E9%A3%8E%E6%8E%A7/">信贷风控</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8-%E5%AE%89%E5%85%A8%E5%8F%AF%E4%BF%A1%E6%95%B0%E5%AD%97%E7%8E%AF%E5%A2%83/1-%E9%A3%8E%E9%99%A9%E6%8E%A7%E5%88%B6/%E4%BF%A1%E8%B4%B7%E9%A3%8E%E6%8E%A7/%E6%9E%B6%E6%9E%84%E7%AD%96%E7%95%A5%E8%93%9D%E5%9B%BE/">架构策略蓝图</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/02/" onclick="onclickRoute(event, '/archives/2024/02/')">
+            <time datetime="2024-02-09T16:48:57.000Z" itemprop="datePublished">2024-02-10</time>
+        </a>
+    </div>
+
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/4aec6d57/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            智能风控决策平台
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能风控决策平台架构图</title>
+    <style>
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        /* 问题域 */
+        .problem-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .problem-section h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .problem-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .problem-card h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .problem-card ul {
+            list-style: none;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .problem-card li {
+            padding: 5px 0;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .problem-card li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+        }
+
+        /* 架构层 */
+        .layer {
+            margin-bottom: 30px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .layer-header {
+            padding: 15px 25px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .layer-header .left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .layer-header .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+
+        .business-layer .layer-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .strategy-layer .layer-header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .platform-layer .layer-header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .support-layer .layer-header {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .data-layer .layer-header {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .layer-content {
+            padding: 25px;
+            background: #fafafa;
+        }
+
+        /* 业务分类网格 */
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .business-card {
+            background: white;
+            border-radius: 8px;
+            padding: 18px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s;
+        }
+
+        .business-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .business-card h3 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .business-card ul {
+            list-style: none;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .business-card li {
+            padding: 4px 0;
+            padding-left: 12px;
+            position: relative;
+        }
+
+        .business-card li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+
+        /* 策略模型网格 */
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .strategy-section {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .strategy-section h3 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f093fb;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .strategy-items {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .strategy-item {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #f093fb;
+        }
+
+        .strategy-item-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .strategy-item-desc {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* 平台核心能力 */
+        .capability-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .capability-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .capability-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #4facfe;
+        }
+
+        .capability-icon {
+            font-size: 28px;
+        }
+
+        .capability-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .capability-features {
+            list-style: none;
+        }
+
+        .capability-features li {
+            padding: 6px 0;
+            padding-left: 15px;
+            font-size: 13px;
+            color: #555;
+            position: relative;
+        }
+
+        .capability-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4facfe;
+            font-weight: bold;
+        }
+
+        /* 支撑层 */
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .support-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .support-card-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .support-card-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .support-card-items {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* 数据层 */
+        .data-flow {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .data-source {
+            flex: 1;
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #ffc107;
+        }
+
+        .data-source h4 {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .data-source-list {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .arrow {
+            font-size: 24px;
+            color: #999;
+        }
+
+        /* 价值主张 */
+        .value-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .value-section h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .value-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.3);
+            text-align: center;
+        }
+
+        .value-card-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .value-card-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .value-card-desc {
+            font-size: 13px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            font-size: 11px;
+            margin: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 智能风控决策平台架构图</h1>
+            <p>构建统一、智能、实时的风控决策中台 | 支撑全业务场景风险管理</p>
+        </div>
+
+        <div class="content">
+            <!-- 问题域 -->
+            <div class="problem-section">
+                <h2>💡 平台解决的核心问题</h2>
+                <div class="problem-grid">
+                    <div class="problem-card">
+                        <h3>🔧 业务痛点</h3>
+                        <ul>
+                            <li>决策流程分散，缺乏统一平台</li>
+                            <li>策略配置复杂，依赖开发</li>
+                            <li>规则难以快速调整和验证</li>
+                            <li>人工审核效率低，体验差</li>
+                            <li>跨产品风控能力无法复用</li>
+                        </ul>
+                    </div>
+                    <div class="problem-card">
+                        <h3>📊 数据挑战</h3>
+                        <ul>
+                            <li>数据孤岛，无法统一调用</li>
+                            <li>特征加工重复建设</li>
+                            <li>实时性要求高，计算复杂</li>
+                            <li>数据质量参差不齐</li>
+                            <li>外部数据接入成本高</li>
+                        </ul>
+                    </div>
+                    <div class="problem-card">
+                        <h3>🤖 模型困境</h3>
+                        <ul>
+                            <li>模型训练部署周期长</li>
+                            <li>模型效果监控不足</li>
+                            <li>缺乏A/B测试能力</li>
+                            <li>模型迭代困难</li>
+                            <li>模型可解释性差</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 业务层 -->
+            <div class="layer business-layer">
+                <div class="layer-header">
+                    <div class="left">
+                        <span>📊 业务应用层</span>
+                    </div>
+                    <span class="badge">业务场景与产品形态</span>
+                </div>
+                <div class="layer-content">
+                    <div class="business-grid">
+                        <div class="business-card">
+                            <h3>💳 消费信贷</h3>
+                            <ul>
+                                <li>现金贷</li>
+                                <li>信用卡</li>
+                                <li>消费分期</li>
+                                <li>循环贷</li>
+                                <li>账单分期</li>
+                            </ul>
+                        </div>
+
+                        <div class="business-card">
+                            <h3>🏢 企业信贷</h3>
+                            <ul>
+                                <li>供应链金融</li>
+                                <li>小微企业贷</li>
+                                <li>发票融资</li>
+                                <li>经营贷</li>
+                                <li>保理业务</li>
+                            </ul>
+                        </div>
+
+                        <div class="business-card">
+                            <h3>🏠 场景金融</h3>
+                            <ul>
+                                <li>房贷/车贷</li>
+                                <li>装修贷</li>
+                                <li>教育分期</li>
+                                <li>旅游分期</li>
+                                <li>医疗分期</li>
+                            </ul>
+                        </div>
+
+                        <div class="business-card">
+                            <h3>🎯 互联网金融</h3>
+                            <ul>
+                                <li>P2P/P2B</li>
+                                <li>众筹</li>
+                                <li>联合贷款</li>
+                                <li>助贷业务</li>
+                                <li>金融科技输出</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 策略模型层 -->
+            <div class="layer strategy-layer">
+                <div class="layer-header">
+                    <div class="left">
+                        <span>🎲 策略与模型层</span>
+                    </div>
+                    <span class="badge">决策规则与智能模型</span>
+                </div>
+                <div class="layer-content">
+                    <div class="strategy-grid">
+                        <!-- 策略类型 -->
+                        <div class="strategy-section">
+                            <h3>⚙️ 策略体系</h3>
+                            <div class="strategy-items">
+                                <div class="strategy-item">
+                                    <div class="strategy-item-title">准入策略</div>
+                                    <div class="strategy-item-desc">年龄/地域/职业/黑名单/白名单等基础准入规则</div>
+                                </div>
+                                <div class="strategy-item">
+                                    <div class="strategy-item-title">反欺诈策略</div>
+                                    <div class="strategy-item-desc">设备指纹/IP风险/行为异常/身份核验规则</div>
+                                </div>
+                                <div class="strategy-item">
+                                    <div class="strategy-item-title">信用策略</div>
+                                    <div class="strategy-item-desc">多头借贷/负债率/还款能力/历史表现</div>
+                                </div>
+                                <div class="strategy-item">
+                                    <div class="strategy-item-title">额度定价策略</div>
+                                    <div class="strategy-item-desc">基于风险分层的差异化授信和定价规则</div>
+                                </div>
+                                <div class="strategy-item">
+                                    <div class="strategy-item-title">监控预警策略</div>
+                                    <div class="strategy-item-desc">异常交易/额度使用/还款行为监控规则</div>
+                                </div>
+                                <div class="strategy-item">
+                                    <div class="strategy-item-title">催收策略</div>
+                                    <div class="strategy-item-desc">逾期分层/催收通道/催收时机/话术策略</div>
+                                </div>
+                                <div class="strategy-item">
+                                    <div class="strategy-item-title">风险缓释策略</div>
+                                    <div class="strategy-item-desc">保证金/担保/保险/风险分散规则</div>
+                                </div>
+                                <div class="strategy-item">
+                                    <div class="strategy-item-title">流控策略</div>
+                                    <div class="strategy-item-desc">通过率/放款率/风险敞口控制规则</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 模型类型 -->
+                        <div class="strategy-section">
+                            <h3>🤖 模型体系</h3>
+                            <div class="strategy-items">
+                                <div class="strategy-item">
+                                    <div class="strategy-item-title">申请评分卡 (A卡)</div>
+                                    <div class="strategy-item-desc">基于申请信息预测违约概率，Logistic回归/XGBoost</div>
+                                </div>
+                                <div class="strategy-item">
+                                    <div class="strategy-item-title">行为评分卡 (B卡)</div>
+                                    <div class="strategy-item-desc">基于用信行为动态评估风险，适用贷中管理</div>
+                                </div>
+                                <div class="strategy-item">
+                                    <div class="strategy-item-title">催收评分卡 (C卡)</div>
+                                    <div class="strategy-item-desc">预测逾期客户还款概率，优化催收资源分配</div>
+                                </div>
+                                <div class="strategy-item">
+                                    <div class="strategy-item-title">反欺诈模型</div>
+                                    <div class="strategy-item-desc">设备指纹/关联图谱/异常检测/深度学习识别</div>
+                                </div>
+                                <div class="strategy-item">
+                                    <div class="strategy-item-title">预授信模型</div>
+                                    <div class="strategy-item-desc">基于大数据预估客户额度，提升转化率</div>
+                                </div>
+                                <div class="strategy-item">
+                                    <div class="strategy-item-title">LTV模型</div>
+                                    <div class="strategy-item-desc">预测客户生命周期价值，支持精准营销</div>
+                                </div>
+                                <div class="strategy-item">
+                                    <div class="strategy-item-title">流失预警模型</div>
+                                    <div class="strategy-item-desc">识别潜在流失客户，提前干预挽留</div>
+                                </div>
+                                <div class="strategy-item">
+                                    <div class="strategy-item-title">风险预警模型</div>
+                                    <div class="strategy-item-desc">早期识别风险信号，触发人工审核或限额</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 平台核心层 -->
+            <div class="layer platform-layer">
+                <div class="layer-header">
+                    <div class="left">
+                        <span>🏗️ 平台核心层</span>
+                    </div>
+                    <span class="badge">智能风控决策引擎</span>
+                </div>
+                <div class="layer-content">
+                    <div class="capability-grid">
+                        <div class="capability-card">
+                            <div class="capability-header">
+                                <span class="capability-icon">🎯</span>
+                                <span class="capability-title">决策引擎</span>
+                            </div>
+                            <ul class="capability-features">
+                                <li>可视化决策流编排</li>
+                                <li>规则链路灵活配置</li>
+                                <li>多策略并行/串行执行</li>
+                                <li>决策结果实时返回</li>
+                                <li>支持同步/异步调用</li>
+                                <li>决策日志全链路追踪</li>
+                                <li>拒绝推理与原因解释</li>
+                                <li>决策模板快速复用</li>
+                            </ul>
+                        </div>
+
+                        <div class="capability-card">
+                            <div class="capability-header">
+                                <span class="capability-icon">⚙️</span>
+                                <span class="capability-title">规则引擎</span>
+                            </div>
+                            <ul class="capability-features">
+                                <li>拖拽式规则配置界面</li>
+                                <li>支持复杂逻辑表达式</li>
+                                <li>规则集版本管理</li>
+                                <li>规则优先级与冲突处理</li>
+                                <li>规则热更新零停机</li>
+                                <li>规则测试沙箱环境</li>
+                                <li>规则命中率统计分析</li>
+                                <li>规则效果回溯验证</li>
+                            </ul>
+                        </div>
+
+                        <div class="capability-card">
+                            <div class="capability-header">
+                                <span class="capability-icon">🤖</span>
+                                <span class="capability-title">模型服务</span>
+                            </div>
+                            <ul class="capability-features">
+                                <li>模型在线/离线训练</li>
+                                <li>自动化特征工程</li>
+                                <li>模型一键部署上线</li>
+                                <li>模型版本灰度发布</li>
+                                <li>A/B测试框架</li>
+                                <li>模型性能实时监控</li>
+                                <li>模型衰减自动告警</li>
+                                <li>Champion/Challenger机制</li>
+                            </ul>
+                        </div>
+
+                        <div class="capability-card">
+                            <div class="capability-header">
+                                <span class="capability-icon">📊</span>
+                                <span class="capability-title">特征平台</span>
+                            </div>
+                            <ul class="capability-features">
+                                <li>特征统一定义与管理</li>
+                                <li>实时特征在线计算</li>
+                                <li>离线特征批量加工</li>
+                                <li>特征存储与缓存</li>
+                                <li>特征血缘关系追溯</li>
+                                <li>特征重要性分析</li>
+                                <li>特征商店共享复用</li>
+                                <li>特征监控与质量保障</li>
+                            </ul>
+                        </div>
+
+                        <div class="capability-card">
+                            <div class="capability-header">
+                                <span class="capability-icon">🔍</span>
+                                <span class="capability-title">审核工作台</span>
+                            </div>
+                            <ul class="capability-features">
+                                <li>智能案件分配与路由</li>
+                                <li>风险信息全景展示</li>
+                                <li>审核建议智能推荐</li>
+                                <li>审核流程可配置</li>
+                                <li>审核质检与抽检</li>
+                                <li>审核效率统计分析</li>
+                                <li>审核知识库沉淀</li>
+                                <li>人机协同审批</li>
+                            </ul>
+                        </div>
+
+                        <div class="capability-card">
+                            <div class="capability-header">
+                                <span class="capability-icon">📈</span>
+                                <span class="capability-title">监控分析</span>
+                            </div>
+                            <ul class="capability-features">
+                                <li>风控指标实时大盘</li>
+                                <li>多维度下钻分析</li>
+                                <li>异常指标自动告警</li>
+                                <li>策略效果对比分析</li>
+                                <li>模型性能监控看板</li>
+                                <li>业务漏斗转化分析</li>
+                                <li>风险趋势预测</li>
+                                <li>自定义报表生成</li>
+                            </ul>
+                        </div>
+
+                        <div class="capability-card">
+                            <div class="capability-header">
+                                <span class="capability-icon">🧪</span>
+                                <span class="capability-title">实验平台</span>
+                            </div>
+                            <ul class="capability-features">
+                                <li>A/B测试实验设计</li>
+                                <li>流量分层与分组</li>
+                                <li>实验效果实时监控</li>
+                                <li>多变量测试支持</li>
+                                <li>实验结果统计分析</li>
+                                <li>快速止损机制</li>
+                                <li>实验模板库</li>
+                                <li>实验知识沉淀</li>
+                            </ul>
+                        </div>
+
+                        <div class="capability-card">
+                            <div class="capability-header">
+                                <span class="capability-icon">🔗</span>
+                                <span class="capability-title">数据接入</span>
+                            </div>
+                            <ul class="capability-features">
+                                <li>标准化API接入</li>
+                                <li>第三方数据源管理</li>
+                                <li>数据缓存与降级</li>
+                                <li>接口限流与熔断</li>
+                                <li>数据质量校验</li>
+                                <li>数据成本统计</li>
+                                <li>数据调用监控</li>
+                                <li>数据字典映射</li>
+                            </ul>
+                        </div>
+
+                        <div class="capability-card">
+                            <div class="capability-header">
+                                <span class="capability-icon">📋</span>
+                                <span class="capability-title">策略管理</span>
+                            </div>
+                            <ul class="capability-features">
+                                <li>策略生命周期管理</li>
+                                <li>策略审批流程</li>
+                                <li>策略灰度发布</li>
+                                <li>策略回滚机制</li>
+                                <li>策略效果评估</li>
+                                <li>策略文档自动生成</li>
+                                <li>策略变更历史追踪</li>
+                                <li>策略知识库</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 技术支撑层 -->
+            <div class="layer support-layer">
+                <div class="layer-header">
+                    <div class="left">
+                        <span>🛠️ 技术支撑层</span>
+                    </div>
+                    <span class="badge">基础设施与服务</span>
+                </div>
+                <div class="layer-content">
+                    <div class="support-grid">
+                        <div class="support-card">
+                            <div class="support-card-icon">🗄️</div>
+                            <div class="support-card-title">存储服务</div>
+                            <div class="support-card-items">
+                                MySQL / PostgreSQL<br>
+                                Redis / MongoDB<br>
+                                HBase / Cassandra<br>
+                                Elasticsearch
+                            </div>
+                        </div>
+
+                        <div class="support-card">
+                            <div class="support-card-icon">⚡</div>
+                            <div class="support-card-title">计算服务</div>
+                            <div class="support-card-items">
+                                Flink 实时计算<br>
+                                Spark 批量计算<br>
+                                规则引擎 Drools<br>
+                                分布式调度
+                            </div>
+                        </div>
+
+                        <div class="support-card">
+                            <div class="support-card-icon">📡</div>
+                            <div class="support-card-title">消息服务</div>
+                            <div class="support-card-items">
+                                Kafka 消息队列<br>
+                                RocketMQ<br>
+                                事件总线<br>
+                                异步通知
+                            </div>
+                        </div>
+
+                        <div class="support-card">
+                            <div class="support-card-icon">🌐</div>
+                            <div class="support-card-title">网关服务</div>
+                            <div class="support-card-items">
+                                API Gateway<br>
+                                限流熔断<br>
+                                认证鉴权<br>
+                                路由转发
+                            </div>
+                        </div>
+
+                        <div class="support-card">
+                            <div class="support-card-icon">📊</div>
+                            <div class="support-card-title">监控服务</div>
+                            <div class="support-card-items">
+                                Prometheus<br>
+                                Grafana<br>
+                                ELK 日志<br>
+                                链路追踪
+                            </div>
+                        </div>
+
+                        <div class="support-card">
+                            <div class="support-card-icon">🔐</div>
+                            <div class="support-card-title">安全服务</div>
+                            <div class="support-card-items">
+                                数据加密<br>
+                                权限控制<br>
+                                审计日志<br>
+                                数据脱敏
+                            </div>
+                        </div>
+
+                        <div class="support-card">
+                            <div class="support-card-icon">🐳</div>
+                            <div class="support-card-title">容器服务</div>
+                            <div class="support-card-items">
+                                Docker 容器<br>
+                                Kubernetes<br>
+                                弹性伸缩<br>
+                                灰度发布
+                            </div>
+                        </div>
+
+                        <div class="support-card">
+                            <div class="support-card-icon">🔧</div>
+                            <div class="support-card-title">配置服务</div>
+                            <div class="support-card-items">
+                                配置中心<br>
+                                服务发现<br>
+                                热更新<br>
+                                版本管理
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 数据层 -->
+            <div class="layer data-layer">
+                <div class="layer-header">
+                    <div class="left">
+                        <span>💾 数据资源层</span>
+                    </div>
+                    <span class="badge">数据来源与数据治理</span>
+                </div>
+                <div class="layer-content">
+                    <div class="data-flow">
+                        <div class="data-source">
+                            <h4>📋 内部数据</h4>
+                            <div class="data-source-list">
+                                • 客户基本信息<br>
+                                • 账户交易流水<br>
+                                • 授信还款记录<br>
+                                • 客户行为日志<br>
+                                • 风控历史决策<br>
+                                • 催收跟进记录
+                            </div>
+                        </div>
+
+                        <span class="arrow">→</span>
+
+                        <div class="data-source">
+                            <h4>🌐 外部数据</h4>
+                            <div class="data-source-list">
+                                • 央行征信报告<br>
+                                • 第三方征信<br>
+                                • 运营商数据<br>
+                                • 电商消费数据<br>
+                                • 社交网络数据<br>
+                                • 设备指纹数据
+                            </div>
+                        </div>
+
+                        <span class="arrow">→</span>
+
+                        <div class="data-source">
+                            <h4>🛠️ 数据加工</h4>
+                            <div class="data-source-list">
+                                • 数据清洗标准化<br>
+                                • 数据质量监控<br>
+                                • 特征衍生计算<br>
+                                • 实时/离线加工<br>
+                                • 数据血缘管理<br>
+                                • 数据资产目录
+                            </div>
+                        </div>
+
+                        <span class="arrow">→</span>
+
+                        <div class="data-source">
+                            <h4>📊 数据服务</h4>
+                            <div class="data-source-list">
+                                • 特征查询 API<br>
+                                • 数据订阅推送<br>
+                                • 数据缓存加速<br>
+                                • 数据脱敏输出<br>
+                                • 数据权限控制<br>
+                                • 数据成本核算
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 价值主张 -->
+            <div class="value-section">
+                <h2>🎁 平台核心价值</h2>
+                <div class="value-grid">
+                    <div class="value-card">
+                        <div class="value-card-icon">🚀</div>
+                        <div class="value-card-title">提升效率</div>
+                        <div class="value-card-desc">
+                            自动化决策替代人工审核<br>
+                            策略配置从周级到分钟级<br>
+                            模型迭代从月级到周级<br>
+                            <span class="tag">审批效率提升80%</span>
+                            <span class="tag">上线周期缩短90%</span>
+                        </div>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-card-icon">🎯</div>
+                        <div class="value-card-title">降低风险</div>
+                        <div class="value-card-desc">
+                            多维度实时风险识别<br>
+                            模型持续优化迭代<br>
+                            早期预警及时干预<br>
+                            <span class="tag">不良率下降30%</span>
+                            <span class="tag">欺诈损失降低50%</span>
+                        </div>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-card-icon">💰</div>
+                        <div class="value-card-title">降低成本</div>
+                        <div class="value-card-desc">
+                            减少人工审核投入<br>
+                            数据采购精准化<br>
+                            运营成本大幅降低<br>
+                            <span class="tag">人力成本降低60%</span>
+                            <span class="tag">数据成本降低40%</span>
+                        </div>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-card-icon">😊</div>
+                        <div class="value-card-title">优化体验</div>
+                        <div class="value-card-desc">
+                            秒级审批实时反馈<br>
+                            差异化额度定价<br>
+                            智能化服务体验<br>
+                            <span class="tag">通过率提升20%</span>
+                            <span class="tag">客户满意度提升35%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+<p>🎯 核心内容结构<br>1️⃣ 平台解决的核心问题</p>
+<p>业务痛点：决策分散、配置复杂、效率低下<br>数据挑战：数据孤岛、重复建设、实时性差<br>模型困境：周期长、监控弱、迭代难</p>
+<p>2️⃣ 业务应用层（4大业务分类）</p>
+<p>💳 消费信贷：现金贷、信用卡、消费分期等<br>🏢 企业信贷：供应链金融、小微贷、经营贷等<br>🏠 场景金融：房车贷、装修贷、教育分期等<br>🎯 互联网金融：P2P、助贷、金融科技输出等</p>
+<p>3️⃣ 策略与模型层<br>策略体系（8类）：</p>
+<p>准入策略、反欺诈策略、信用策略、额度定价策略<br>监控预警、催收策略、风险缓释、流控策略</p>
+<p>模型体系（8类）：</p>
+<p>A卡（申请）、B卡（行为）、C卡（催收）<br>反欺诈模型、预授信、LTV、流失预警、风险预警</p>
+<p>4️⃣ 平台核心层（9大能力模块）</p>
+<p>🎯 决策引擎：可视化编排、实时决策<br>⚙️ 规则引擎：拖拽配置、热更新<br>🤖 模型服务：训练部署、A/B测试<br>📊 特征平台：统一管理、实时计算<br>🔍 审核工作台：智能分配、人机协同<br>📈 监控分析：实时大盘、异常告警<br>🧪 实验平台：A/B测试、效果分析<br>🔗 数据接入：标准API、质量校验<br>📋 策略管理：全生命周期管理</p>
+<p>5️⃣ 技术支撑层 + 数据资源层</p>
+<p>完整的技术栈支撑（存储、计算、消息、监控等）<br>数据全链路管理（内外部数据→加工→服务）</p>
+<p>6️⃣ 平台核心价值</p>
+<p>🚀 效率提升80%<br>🎯 不良率下降30%<br>💰 成本降低60%<br>😊 客户满意度提升35%</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/d509d12a/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/d509d12a/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    1.信贷风控体系
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/295722b0/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/295722b0/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">4.深度学习与大模型在金融风控中的应用</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

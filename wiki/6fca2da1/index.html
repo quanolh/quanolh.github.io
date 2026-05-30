@@ -1,0 +1,786 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>2.异常检测方法综述 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="security,anomaly">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2.异常检测方法综述">
+<meta property="og:url" content="https://waisec.cn/wiki/6fca2da1/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-10-12T16:48:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.148Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="security">
+<meta property="article:tag" content="anomaly">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "2.异常检测方法综述",
+    "url": "https://waisec.cn/wiki/6fca2da1/",
+    "datePublished": "2024-10-12T16:48:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.148Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "security,anomaly"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/2|机器学习/004.应用场景/002.异常检测方法综述" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E6%A6%82%E8%BF%B0"><span class="toc-text">1.异常检测概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E5%AE%9A%E4%B9%89"><span class="toc-text">1.1 定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E5%BC%82%E5%B8%B8%E7%82%B9"><span class="toc-text">1.2 异常点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E9%97%AE%E9%A2%98%E9%9A%BE%E7%82%B9"><span class="toc-text">1.3 问题难点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="toc-text">1.4 检测方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E6%A6%82%E8%A7%88"><span class="toc-text">2.应用场景概览</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8"><span class="toc-text">2.1 网络安全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E5%85%B6%E5%AE%83%E9%A2%86%E5%9F%9F"><span class="toc-text">2.2 其它领域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B"><span class="toc-text">2.3 应用案例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E5%8F%91%E5%B1%95%E8%B6%8B%E5%8A%BF"><span class="toc-text">2.4 发展趋势</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95"><span class="toc-text">3.机器学习方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E6%96%B9%E6%B3%95%E6%A6%82%E8%A7%88"><span class="toc-text">3.1 方法概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9"><span class="toc-text">3.2 如何选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8"><span class="toc-text">3.3 自编码器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">4.参考资料</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B5"><span class="toc-text">4.1 项目实践</span></a></li></ol></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">2|机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/004-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/">004.应用场景</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/anomaly/" rel="tag">anomaly</a>, <a class="tag-link-link" href="/tags/security/" rel="tag">security</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/10/" onclick="onclickRoute(event, '/archives/2024/10/')">
+            <time datetime="2024-10-12T16:48:57.000Z" itemprop="datePublished">2024-10-13</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="security,anomaly">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/6fca2da1/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            异常检测方法综述
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p>异常检测作为数据挖掘和机器学习领域中一个重要的方向，用于识别数据集中不符合预期模式的数据点(异常点)或模式。</p>
+<p>它有广泛的应用场景，其中包括金融场景欺诈识别、网络安全场景网络异常流量识别、电商场景基于交易数据的羊毛党/恶意刷评等识别，监控预警类的包括生态灾难的预警(基于风速、降雨、气温等指标预测未来极端异常)、互联网平台的系统异常智能化识别预警。<br>除此之外，还有很多行业都在使用异常检测技术来帮助企业降低风险，并为业务提供指导建议。</p>
+<p>那异常检测都有哪些方法和难点呢，不同场景和条件下如何选择合适的方法？<br>本文将较为全面、系统地介绍异常检测方法，重点对基于机器学习的方法展开阐述。<br>同时，会分析异常检测中的难点，对各方法进行比较，并探讨适用场景的选择。</p>
+<span id="more"></span>
+<h1 id="1-异常检测概述"><a href="#1-异常检测概述" class="headerlink" title="1.异常检测概述"></a>1.异常检测概述</h1><p>异常检测（Anomaly Detection 或 Outlier Detection）指的是通过数据挖掘手段识别数据中的“异常点”</p>
+<h2 id="1-1-定义"><a href="#1-1-定义" class="headerlink" title="1.1 定义"></a>1.1 定义</h2><p>What is anomaly detection?<br>什么是异常检测?</p>
+<p>Anomaly detection (aka outlier analysis) is a step in data mining that identifies data points, events, and/or observations that deviate from a dataset’s normal behavior. Anomalous data can indicate critical incidents, such as a technical glitch, or potential opportunities, for instance a change in consumer behavior. Machine learning is progressively being used to automate anomaly detection.<br>异常检测（也称为离群值分析）是数据挖掘中的一个步骤，它可以识别偏离数据集正常行为的数据点、事件和 / 或观察结果。异常数据可以指示关键事件，例如技术故障，或者潜在的机会，例如消费者行为的变化。机器学习正逐渐被用于实现异常检测的自动化。</p>
+<h2 id="1-2-异常点"><a href="#1-2-异常点" class="headerlink" title="1.2 异常点"></a>1.2 异常点</h2><p>目前比较公认的分类方式为是那种：</p>
+<blockquote>
+<p>1.单点异常（参数异常等）： 也称为全局异常， 即某个点与 全局大多数点都不一样，那么这个点构成了单点异常。<br>2.上下文异常（一个用户的多个行为）：这一类异常多为 时间序列数据 中的异常， 即某个时间点的表现与前后时间段内存中较大的差异，那么该异常为一个上下文异常点。例如，在某个温带城市 夏天的气温的时序数据中，其中有一天温度为10度，而前后的气温都在25-35度。<br>3.集体异常（一个群体、批量）：是由多个对象组合构成的，即单独看 某个个体可能并不存在异常，但个体同时出现，则构成了一种异常。<br>集体异常可能存在多种组成方式，可能是由若干个 单点组成，也可能是由几个序列组成。</p>
+</blockquote>
+<h2 id="1-3-问题难点"><a href="#1-3-问题难点" class="headerlink" title="1.3 问题难点"></a>1.3 问题难点</h2><blockquote>
+<ol>
+<li>有监督学习：很多实际场景中，数据是没有标签的，或者有标签的标签可信度很低。这就导致很难使用很多成熟的有监督学习方法</li>
+<li>数据噪音问题：噪音和异常点混杂在一起，难以区分</li>
+<li>业务风险分类问题：很多场景的不同类型风险的数据混在一起，没有区分类型，不了解每周风险类型的定义。以致于没有更准确的标签。</li>
+</ol>
+</blockquote>
+<p>由于没有准确的标签、没有对风险类型的准确理解，就会导致陷入鸡生蛋 or 蛋生鸡的循环中。 因此需要(人和系统)准确的理解风险类型，准确的定义风险和对风险数据打标，或者通过无监督方法结合专家经验反复迭代模型。</p>
+<p>那具体的技术手段是将无监督学习方法和专家经验相结合。基于无监督学习得到检测结果， 并让领域专家基于检测结果给出反馈，以便我们及时调整模型，反复进行迭代，最终得到一个越来越准确的模型。</p>
+<h2 id="1-4-检测方法"><a href="#1-4-检测方法" class="headerlink" title="1.4 检测方法"></a>1.4 检测方法</h2><p>检测方法主要分4大类：基于统计的方法、基于距离的方法、基于密度的方法、基于机器学习的方法。</p>
+<table class="_table">
+<thead>
+  <tr>
+     <th style="width: 60px;">方法</th>
+     <th colspan="2" style="width: 120px;">-</th>
+     <th>说明</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="3">统计检验</td>
+    <td colspan="2">原理</td>
+    <td rowspan="1">假设数据符合某种统计分布（如正态分布、泊松分布等）<br>通过对正常数据的统计分析来确定数据的分布参数，如均值、方差等</td>
+  </tr>
+  <tr>
+    <td colspan="2">条件和优势</td>
+    <td>在数据分布相对简单且符合已知统计分布的情况下非常有效。<br>优势在于计算简单、易于理解，并且在数据量较大且分布较为稳定的情况下能够快速有效地发现异常</td>
+  </tr>
+   <tr>
+    <td colspan="2">局限性</td>
+    <td>对数据的分布假设要求较高<br><span style="font-size: 12px">如果实际数据的分布不符合假设的分布，或者数据受到噪声、离群点的干扰，检测效果可能会很差<br>例如，在网络流量数据中，流量模式复杂多变，很难用简单的统计分布来描述</span></td>
+  </tr>
+   <tr>
+    <td rowspan="3">基于距离</td>
+    <td colspan="2">原理</td>
+    <td rowspan="1">主要考虑数据点之间的距离关系<br>计算每个数据点与其他数据点之间的距离（如欧几里得距离、曼哈顿距离等），并根据距离来判断异常</td>
+  </tr>
+  <tr>
+    <td colspan="2">条件和优势</td>
+    <td>不需要对数据的分布做过多假设，适用于各种类型的数据<br>在聚类分析场景中，如果数据点明显偏离已有的聚类中心，就可以通过基于距离的方法将其检测为异常。<br>优势在于能够处理复杂形状的数据分布，并且对数据的局部异常比较敏感。</td>
+  </tr>
+   <tr>
+    <td colspan="2">局限性</td>
+    <td>计算复杂度较高，尤其是在处理大规模数据集时，需要计算大量的数据点之间的距离。<br>距离阈值的选择比较困难，如果阈值设置不当，可能会导致过多的误报或漏报。</td>
+  </tr>
+  <tr>
+    <td rowspan="3">基于密度</td>
+    <td colspan="2">原理</td>
+    <td rowspan="1">主要关注数据点周围的密度情况<br><span style="font-size: 12px">正常数据点通常处于高密度区域，而异常点则处于低密度区域<br>局部离群因子（LOF）算法是一种典型的基于密度的方法</span></td>
+  </tr>
+  <tr>
+    <td colspan="2">条件/优势</td>
+    <td>在发现数据集中的局部异常方面表现出色<br>势在于能够有效地处理具有不同密度区域的数据，并且可以发现各种形状和大小的异常模式</td>
+  </tr>
+   <tr>
+    <td colspan="2">局限性</td>
+    <td>计算密度的过程比较复杂，尤其是对于高维数据，计算成本较高</td>
+  </tr>
+  <tr>
+    <td rowspan="8">机器学习方法</td>
+    <td rowspan="3" style="width: 60px;">监督学习方法</td>
+    <td>原理</td>
+    <td rowspan="1">数据打标，正常数据和异常数据都有明确的标签<br>利用分类算法（如支持向量机、决策树、神经网络等）来训练模型，使模型能够根据输入的数据特征预测数据是否异常</td>
+  </tr>
+  <tr>
+    <td style="width: 63px;">条件/优势</td>
+    <td>有足够多的标记数据时，监督学习方法能够达到较高的准确性</td>
+  </tr>
+   <tr>
+    <td>局限性</td>
+    <td>获取足够的标记数据往往比较困难，尤其是对于异常数据，因为异常事件通常是罕见的<br>模型的泛化能力可能受到训练数据的限制，对于新出现的异常模式与训练数据差异较大时可能无法有效识别</td>
+  </tr>
+  <tr>
+    <td rowspan="3">无监督学习</td>
+    <td>原理</td>
+    <td>不需要标记数据，而是通过对数据的内在结构进行挖掘来发现异常<br><span style="font-size: 12px">聚类算法：可以将数据分为不同的簇，那些不属于任何簇或者与各个簇中心距离较远的数据点可能就是异常点<br>主成分分析(PCA)：将数据投影到低维空间，观察数据在新空间中的分布情况来发现异常，<br>如果某个数据点在低维空间中的投影偏离了正常数据的分布范围，就可以判定为异常。</span></td>
+  </tr>
+  <tr>
+    <td>条件/优势</td>
+    <td>由于无序标记数据，在实际应用中更容易实施<br>可以处理大规模的、未标记的数据，并且自动发现数据中的潜在模式和异常</td>
+   </tr>
+   <tr>
+    <td>局限性</td>
+    <td>对数据的质量和数据的内在结构假设比较敏感<br><span style="font-size: 12px">如果数据的噪声较大或者数据的结构不符合假设，可能会导致误判<br>无监督学习方法通常难以解释检测结果，即难以确定为什么某个数据点被判定为异常</span></td>
+  </tr>
+  <tr>
+    <td rowspan="2" style="background-color: #e8f6f0;">半监督学习</td>
+    <td>原理</td>
+    <td>结合了监督学习和无监督学习的特点。通常利用少量的标记数据和大量的未标记数据来进行学习<br><span style="font-size: 12px">通过两个或多个不同的学习器分别对标记数据和未标记数据进行学习，然后相互补充和修正，以提高异常检测的性能<br>例如，在医疗数据异常检测中，少量的已确诊病例数据作为标记数据，结合大量的未确诊病例数据，<br>通过半监督学习方法可以更准确地发现异常的医疗指标</span><br></td>
+  </tr>
+  <tr>
+    <td>局限性</td>
+    <td>依赖于标记数据的质量和未标记数据分布情况<br><span style="font-size: 12px">如果数据的分布差异较大、标记数据的质量不高，会影响模型学习效果<br>半监督学习方法的模型设计和训练过程相对复杂，需要合理地选择学习策略和算法</span></td>
+  </tr>
+ </tbody>
+</table>
+
+<p>另外异常检测算法依据数据特性和输出形式等从4个角度划分为：时序相关、时序独立；全局检测、局部检测；标签、异常分数的输出形式。</p>
+<p>除以上主要的四种，还包括基于深度、基于偏差的方法。现在很多流行的算法借鉴了这些思想，如孤立森林等。<br>如今 用于异常检测的算法已经非常多了，但万变不离其宗，无论优化到什么程度，他们都是由一些原始的模型和思想衍生出来的。</p>
+<h1 id="2-应用场景概览"><a href="#2-应用场景概览" class="headerlink" title="2.应用场景概览"></a>2.应用场景概览</h1><p>本文开头介绍的，应用场景包括金融场景欺诈识别、网络安全场景网络异常流量识别、电商场景基于交易数据的羊毛党/恶意刷评等识别，监控预警类的包括生态灾难的预警(基于风速、降雨、气温等指标预测未来极端异常)、互联网平台的系统异常智能化识别预警。<br>除此之外，还有很多行业都在使用异常检测技术来帮助企业降低风险，并为业务提供指导建议。</p>
+<h2 id="2-1-网络安全"><a href="#2-1-网络安全" class="headerlink" title="2.1 网络安全"></a>2.1 网络安全</h2><p>另外着重在网络安全领域，包括<br>（1）网络入侵检测：网络系统中会产生大量的网络流量数据，包括数据包的源地址、目的地址、协议类型、流量大小等信息。(自编码器等)异常检测可以对正常的网络流量模式进行学习，当出现与正常模式不同的异常流量时，如大量的恶意扫描、DDoS 攻击等，能够检测到这种异常，及时发出警报并采取相应的防护措施，保护网络系统的安全。<br>（2）用户行为异常检测：对于企业的内部网络系统或在线服务平台，(自编码器等)异常检测可以分析用户的行为数据，如登录时间、访问的页面、操作行为等，检测出异常的用户行为，例如异常的频繁登录失败、异常的大量数据下载等，可能是用户账号被盗用或内部员工的违规操作等情况。</p>
+<h2 id="2-2-其它领域"><a href="#2-2-其它领域" class="headerlink" title="2.2 其它领域"></a>2.2 其它领域</h2><p>其他领域包括：<br>工业制造领域：设备故障预测与诊断、产品质量检测；金融领域：信用卡欺诈检测、金融市场异常检测；医疗健康领域：疾病早起预警、医疗影像异常检测；智慧交通领域：交通流量异常检测、车辆故障检测；能源领域：电力系统异常检测、能源消耗异常检测</p>
+<h2 id="2-3-应用案例"><a href="#2-3-应用案例" class="headerlink" title="2.3 应用案例"></a>2.3 应用案例</h2><p>一些典型的应用案例（自编码器异常检测技术在网络安全、用户行为分析上的应用）：<br>1.网络入侵检测：基于堆叠自编码器的入侵检测、结合深度学习模型的入侵检测<br>2.用户行为异常检测：在线服务平台用户行为检测、企业内部网络用户行为分析<br>3.恶意软件检测：基于行为特征的恶意软件检测、恶意软件变种检测<br>4.网络流量异常检测：异常流量模式识别、流量特征异常检测</p>
+<p>这些典型的案例（异常流量模式识别、流量特征异常检测、结合深度学习模型的入侵检测、在线服务平台用户行为检测）如何做呢？<br>当前主流的做法主要是通过机器学习、数据挖掘技术来实现数据集中的异常点或模式。</p>
+<h2 id="2-4-发展趋势"><a href="#2-4-发展趋势" class="headerlink" title="2.4 发展趋势"></a>2.4 发展趋势</h2><p>Autoencoder-based anomaly detection</p>
+<p>与其它技术的融合 - 与深度学习其它模型结合：实时性和适应性的增强：实时检测、动态使用。<br>实时检测：随着网络攻击的速度和复杂性不断增加，对异常检测的实时性要求越来越高。未来，自编码异常检测技术将不断优化算法和模型结构，提高检测的速度和效率，以满足实时检测的需求。例如，采用硬件加速技术，如使用 GPU、FPGA 等硬件设备来加速自编码器的计算，减少检测的时间延迟；或者开发轻量级的自编码器模型，在保证检测准确性的前提下，降低模型的计算复杂度，提高实时性。</p>
+<h1 id="3-机器学习方法"><a href="#3-机器学习方法" class="headerlink" title="3.机器学习方法"></a>3.机器学习方法</h1><p>关于异常检测，首先 从数据类型角度，异常检测可以基于以下几种类型的数据： 数值类型(非时间序列)、序列类、图像类、文本类.<br>而图像和文本类在安全领域更多的是存在于网络舆情、内容类风控场景，另外其它领域包括医学影响等场景。</p>
+<p>所以安全领域(流量、反作弊、交易、营销等场景)，我们更多的是基于 数值类、序列类数据。<br>那从识别的算法角度，主要有以下几类：机器学习类(孤立森林、SVM、xgb)； 深度学习算法(自编码器、长短期记忆网络)；统计方法(正态分布)；聚类等.<br>另外，除了安全领域的异常检测，其它一些场景的<span style="color: #58b3d8;">基于序列类的异常检测</span>都可以基于自编码器和以下算法去做.</p>
+<h2 id="3-1-方法概览"><a href="#3-1-方法概览" class="headerlink" title="3.1 方法概览"></a>3.1 方法概览</h2><p>这些方法的优缺点如下(AD指对anomaly detection的适用性)，其中深度学习算法包括：Autoencoder、LSTM或RNN、GAN、CNN.</p>
+<table class="_table">
+<thead>
+  <tr>
+     <th style="width: 60px;">算法</th>
+     <th>优点</th>
+     <th>缺点</th>
+     <th>序列数据</th>
+     <th>可解释性</th>
+     <th>计算资源</th>
+     <th>数据适应性</th>
+     <th>数据质量要求</th>
+     <th>AD</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="1">XGBoost</td>
+    <td>高效性：训练和推理速度快；灵活性好；可解释性好</td>
+    <td>对序列数据的特殊性考虑不足； 特征工程的依赖性(模型性能好很大程度上依赖特征工程的质量)；超参数调整复杂</td>
+    <td>较差：无法有效处理时间依赖关系和顺序信息</td>
+    <td>优：可以通过特征重要性分析和理解模型决策过程</td>
+    <td>适中: 树集成算法，可并行计算, 效率高</td>
+    <td>支持各种类型数据(数值、文本等);适合结构化数据</td>
+    <td>较灵活: 对异常值和噪声有一定的容忍度。通过集成多个弱学习器，在一定程度上可以减轻个别数据点的不良影响；同时支持缺失值处理策略。</td>
+    <td>适用性好</td>
+  </tr>
+  <tr style="background-color: #eef5f8;">
+    <td rowspan="1">Autoencoder</td>
+    <td>强大的特征提取能力；无监督学习</td>
+    <td>训练难度较大； 解释性较差；信息丢失问题；对异常值敏感。异常数据比例较低时,效果可能不佳</td>
+    <td>较好：对复杂时间依赖关系的捕获有限</td>
+    <td>较差：学习到的低维表示通常难以直观解释，难以理解模型是如何识别序列数据中的模式的</td>
+    <td>适中：结构相对简单，不需要特别强大的计算能力</td>
+    <td>较好：序列数据、图像数据、文本数据等都可以支持，在不同领域发挥作用</td>
+    <td>要求较低：算法具有一定的鲁棒性，能够从含有噪声的数据中学习潜在特征表示。无监督对数据的标注要求不高；即使存在异常值或缺失值，也可能学到相对稳定的特征表示</td>
+    <td>很好</td>
+  </tr>
+  <tr>
+    <td rowspan="1">LSTM</td>
+    <td>处理序列数据(专业的,能够捕捉长期依赖关系和时间动态性)；适应性强；学习能力强</td>
+    <td>计算复杂度高；超参数调整困难；对数据的质量要求高</td>
+    <td>优：专门设计用于处理序列数据</td>
+    <td>较弱：通过一些方法可以提升模型理解和解释能力</td>
+    <td>较高：内部结构复杂，包含多个门控单元</td>
+    <td>较好：支持时间序列、文本数据、音频数据</td>
+    <td>较高：受到数据量和数据分布的影响，如果量小或者分布不均衡，可能会导致过拟合或欠拟合；噪声过大影响性能</td>
+    <td>一般</td>
+  </tr>
+  <tr style="background-color: #eef5f8;">
+    <td rowspan="1">Isolation Forest<br>(隔离森林)</td>
+    <td>基于决策树的无监督算法，尤其适用于异常检测任务；速度快</td>
+    <td>对局部异常不敏感、不适合高噪声数据、数据不平衡的性能下降</td>
+    <td>-</td>
+    <td>-</td>
+    <td>较低：树模型,并行计算优势、内存需求量低</td>
+    <td>-</td>
+    <td>-</td>
+    <td>很好</td>
+  </tr>
+  <tr>
+    <td rowspan="1">GAN</td>
+    <td>思路类似自编码,学习到正常流量的模式;学习能力好</td>
+    <td>训练不稳定、模式坍塌、可解释性差</td>
+    <td>-</td>
+    <td>-</td>
+    <td>较低：树模型,并行计算优势、内存需求量低</td>
+    <td>-</td>
+    <td>较高：数据多样性要求较高、数据准确性</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td rowspan="1">Seq2Seq</td>
+    <td>能够处理长期依赖，扩展性好；</td>
+    <td>训练难度大，对数据质量要求高，推理速度相对较慢</td>
+    <td>-</td>
+    <td>-</td>
+    <td>较高：推理速度相对较慢</td>
+    <td>-</td>
+    <td>较高：需要大量高质量标注数据来训练；存在噪音、错误标注或者数据不均匀等，影响模型性能</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td rowspan="1" colspan="8">GRU(门控循环单元)</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td rowspan="1" colspan="8">Hidden Markov Model(HMM-隐马尔可夫模型)</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td rowspan="1" colspan="8">LOF(局部离群因子)</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td rowspan="1" colspan="8">One-Class SVM</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td rowspan="1" colspan="8">多模态</td>
+    <td>-</td>
+  </tr>
+ </tbody>
+</table>
+
+<div class="note info"><p>识别的效果往往依赖于特征工程，选择一些好的特征尤为重要. 例如：在滑块的人机识别场景中，滑动速度的变化、滑块的停顿和抖动、路径中的微小偏移、点击和按下的时间等</p>
+</div>
+<h2 id="3-2-如何选择"><a href="#3-2-如何选择" class="headerlink" title="3.2 如何选择"></a>3.2 如何选择</h2><p>如何选择合适的模型<br>主要从以下几个方向考虑：数据特点、异常的性质和定义、模型的性能和资源限制。</p>
+<table class="_table">
+<thead>
+  <tr>
+     <th style="width: 60px;">方向</th>
+     <th style="width: 70px;">子项</th>
+     <th>原定义公式</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="3">数据特点</td>
+    <td>数据类型</td>
+    <td>结构化数据（表格数据）：(如交易记录、传感器数值等)传统统计 / 机器学习 / 深度学习<br>非结构化数据（图像、音频、文本）：特定深度学习（图像 - CNN、音频 - RNN、文本 - NLP）</td>
+  </tr>
+  <tr>
+    <td>数据分布</td>
+    <td>已知分布的数据（如正态分布）：已知 - 基于分布假设的统计<br>复杂或未知分布的（如多峰、偏态）：当数据分布未知或具有复杂的形态，如网络流量数据、金融市场数据等。无监督学习模型（如聚类模型、自动编码器系列）/ 非参数统计模型（如核密度估计）更能适应这种情况，它们可以在<span style="color: #e35757">不依赖于特定分布假设的情况下，挖掘数据中的异常模式</span>。</td>
+  </tr>
+  <tr>
+    <td>数据量</td>
+    <td>小数据量：简单统计 / 距离法<br>大数据量（样本数量多）深度学习 / 集成学习。能够处理大规模的数据，<span style="color: #e35757">挖掘数据中的复杂模式和关系</span>，从而更有效地检测异常。不过，在使用深度学习模型时，需要考虑计算资源和训练时间等因素。</td>
+  </tr>
+  <tr>
+    <td rowspan="2">异常特征</td>
+    <td>比例</td>
+    <td>高 - 监督学习；如果异常数据在总体数据中占比较高，那么可以考虑使用监督学习模型，将异常检测作为一个分类问题来处理<br>低 - 不平衡处理模型 / 无监督（孤立森林）。需要考虑模型对少数类（异常类）的识别能力,可以选择对不平衡数据处理效果较好的模型，如带有平衡数据机制的集成学习模型（如 SMOTE + 随机森林），或者专门用于异常检测的无监督模型（如孤立森林，它对少数异常数据敏感）。</td>
+  </tr>
+  <tr>
+    <td rowspan="1">定义/形式</td>
+    <td>规则可定义 - 规则 / 阈值法；复杂 - 深度学习 / 复杂无监督（聚类）:对于复杂的异常情况，如数据的整体模式发生变化（如时间序列数据的趋势改变）或语义上的异常（如文本中的语义不符合正常语境），深度学习模型（如 VAE 用于学习数据模式、基于 Transformer 的模型用于文本语义理解）或复杂的无监督模型（如基于聚类的模型用于发现模式变化）更适合用来检测这种复杂的异常。
+    </td>
+  </tr>
+  <tr>
+    <td rowspan="2">模型性能</td>
+    <td>高准优先<br>(低误报率)</td>
+    <td>考虑<span style="color: #e35757">基于规则的模型</span>（因为规则明确）或具有<span style="color: #e35757">良好可解释性的模型</span>（如决策树），这样可以通过调整规则或参数来控制准确性。同时，一些异常检测模型提供了调整阈值的功能，通过合理设置阈值也可以提高准确性。</td>
+  </tr>
+  <tr>
+    <td>高召优先<br>(低漏报率)</td>
+    <td>为尽可能多地检测出异常。对异常数据敏感的模型（如<span style="color: #e35757">孤立森林</span>，它倾向于将与众不同的数据点识别为异常）或具有强大学习能力的<span style="color: #e35757">深度学习模型</span>（如自动编码器系列）。但在实际应用中，需要结合后续的验证和过滤机制来平衡召回率和准确性</td>
+  </tr>
+  <tr>
+    <td rowspan="2">资源方面</td>
+    <td>计算资源</td>
+    <td>有限的计算资源（如内存、CPU、GPU）：选择计算复杂度较低的模型。xgb、自编码器..</td>
+  </tr>
+  <tr>
+    <td>时间限制</td>
+    <td>实时性要求（快速检测）：需要实时进行异常检测的场景，如工业监控系统、网络入侵检测系统等。选择<span style="color: #e35757">简单快速的模型</span>（如基于阈值的快速判断方法、轻量级的机器学习模型经过优化后）或通过<span style="color: #e35757">模型压缩和加速</span>技术（如量化、剪枝后的深度学习模型）来满足实时性需求</td>
+  </tr>
+ </tbody>
+</table>
+
+<h2 id="3-3-自编码器"><a href="#3-3-自编码器" class="headerlink" title="3.3 自编码器"></a>3.3 自编码器</h2><p>What is Autoencoder?<br>自编码器尽可能地学习产生与输入相同的输出。通过这个学习过程，输入的表示可以在潜在空间中被有效地压缩。换句话说，它压缩了维度并将输入的表示存储在潜在空间中。</p>
+<blockquote>
+<p>自编码器的目标是学习如何将输入数据编码为低维表示，然后再将这个低维表示解码回尽可能接近原始输入的数据。所以在训练自编码器时，输入数据既是期</p>
+</blockquote>
+<h1 id="4-参考资料"><a href="#4-参考资料" class="headerlink" title="4.参考资料"></a>4.参考资料</h1><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://zhuanlan.zhihu.com/p/83601244">知乎:异常检测算法分类及经典模型概览</a></p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.csdn.net/weixin_42605076/article/details/143029606">CSDN:基于深度学习的异常检测</a><br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.nvidia.cn/content/dam/en-zz/zh_cn/Solutions/deep-learning/resources/course-intro/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%BA%94%E7%94%A8_%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B.pdf">nvidia异常检测课程</a></p>
+<ul>
+<li>企业安全领域异常检测，算法包括xgboost、自编码器、GAN。 实施和比较 有监督和无监督学习技术。 [很好的课程]</li>
+</ul>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.nvidia.cn/training/">NVIDIA深度学习培训中心</a></p>
+<div class="note info"><p>其实有很多官方的资料都很先进，重要的是如何快速吸收，达到目的。如何有效的获取信息(比如找到关键的高质量的内容)。 第二点是 也是重要的是如何应用这些新技术和新知识，我理解是一个怎么提出问题的事。</p>
+</div>
+<h2 id="4-1-项目实践"><a href="#4-1-项目实践" class="headerlink" title="4.1 项目实践"></a>4.1 项目实践</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.kaggle.com/code/sunilkumarmuduli/credit-card-fraud-detection-99acc-sampling-anomaly">kaggle:IsolationForest方法识别信用卡欺诈</a></p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.kaggle.com/code/ahmedkhaledhemida/credit-card-fraud-detection">kaggle:逻辑回归识别信用卡欺诈</a></p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.kaggle.com/code/claudezwang/eda-credit-card-fraud/notebook">kaggle:主成分分析相关项目</a></p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.kaggle.com/discussions/general/414526">kaggle的话题：基于时间序列数据的异常检测</a><br>其中很有意思或者insightful的观点是：不相信95%的时间序列异常检测的论文。相关是youtube视频见：<a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.youtube.com/watch?v=Vg1p3DouX8w">https://www.youtube.com/watch?v=Vg1p3DouX8w</a></p>
+<blockquote>
+<p>原因分析。其中主要的一个是 机器学习方法的复杂性和过拟合：像LSTM复杂性比较高，不一定适合所有的应用场景，并且往往缺乏可解释性和有较高的计算成本。</p>
+</blockquote>
+<p>LSTM对于序列数据的捕获能力或者效果比较高，但由于其模型的复杂度较高，不具有普适性。<br>对于一些简单的时间序列问题，使用LSTM可能显得“杀鸡用牛刀”，导致复杂度增加而未显著提升效果。<br>此外，LSTM对数据特性较为敏感，在数据具有高噪声或非线性模式时，表现可能较差。<br>对于实时性要求较高的应用场景，如在线监测和实时异常检测，LSTM的计算效率难以满足需求。</p>
+<p>模型可解释性差了将影响 难以建立信任、针对错误和改进、影响最终正确决策。</p>
+<p>RNN Autoencoder、VAE 「循环自编码器、变分自编码器」： 能够捕获时间序列中的时间依赖性。</p>
+<p>循环自编码器、VAE 在实时场景可以用吗。对计算资源要求高吗。相比较 标准的自编码器？<br>它们对计算资源的要求通常较高，但可以通过适当的优化方法来降低对资源的消耗。</p>
+<p>优化方案：<br>分批处理：可以通过对数据进行分批处理（batching）来提高计算效率，尽量减少延迟。<br>模型压缩：通过量化、剪枝、权重共享等方法压缩模型，减少计算资源消耗。<br>硬件加速：使用GPU、TPU等硬件加速设备来提高计算效率。</p>
+<p>近似推理：通过使用更高效的推理算法（如重要性采样等）来减少计算负担。<br>简化模型：通过减少网络层数、隐藏单元数，或者使用轻量化的变种（如β-VAE）来降低计算资源需求。<br>增量学习：在实时场景中，可以使用增量学习方法，使得模型在新的数据到来时逐步更新，而不需要完全重新训练。</p>
+<p>VAE是一个平衡推理时间和建模能力的选择</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/ee2435bf/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/ee2435bf/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    3.自编码在ECG场景异常检测
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/5dfedf14/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/5dfedf14/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">1.策略的重要性</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

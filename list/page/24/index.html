@@ -1,0 +1,1612 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="AI工程师,大模型应用,数据架构,Agent,AI知识库,风控架构,Novus,Wiki,Quinoa,quanoc">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Novus·Wiki | 个人知识库">
+<meta property="og:url" content="https://waisec.cn/list/page/24/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="AI工程师,大模型应用,数据架构,Agent,AI知识库,风控架构,Novus,Wiki,Quinoa,quanoc">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+        
+<article id="post-平台工具 | 工程架构和工具/[2]架构设计/05.学习资料及实践总结/设计模板_架构设计文档模板" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/2-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">[2]架构设计</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/2-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/05-%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E5%8F%8A%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/">05.学习资料及实践总结</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/private/" rel="tag">private</a>, <a class="tag-link-link" href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" rel="tag">架构设计</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/04/" onclick="onclickRoute(event, '/archives/2024/04/')">
+            <time datetime="2024-04-07T14:55:57.000Z" itemprop="datePublished">2024-04-07</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="private,架构设计">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/9c24dcec/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/9c24dcec/" onclick="onclickRoute(event, '/wiki/9c24dcec/')">设计模板_架构设计文档模板</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                <p>这是一篇加密文章，需要密码才能继续阅读。</p>
+            
+        
+        
+            </div> 
+            <div class="article-more-link">
+                <a href="/wiki/9c24dcec/#more" onclick="onclickRoute(event, '/wiki/9c24dcec/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-Meaning | 关于人和系统/2|知识技能(存储扩展)/[2]领导力原则/01面试总结/002.针对性面试/03.GD面试问题匹配和SOP" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/">Meaning | 关于人和系统</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/">2|知识技能(存储扩展)</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/2-%E9%A2%86%E5%AF%BC%E5%8A%9B%E5%8E%9F%E5%88%99/">[2]领导力原则</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/2-%E9%A2%86%E5%AF%BC%E5%8A%9B%E5%8E%9F%E5%88%99/01%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/">01面试总结</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/2-%E9%A2%86%E5%AF%BC%E5%8A%9B%E5%8E%9F%E5%88%99/01%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/002-%E9%92%88%E5%AF%B9%E6%80%A7%E9%9D%A2%E8%AF%95/">002.针对性面试</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/private/" rel="tag">private</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/03/" onclick="onclickRoute(event, '/archives/2024/03/')">
+            <time datetime="2024-03-26T14:55:57.000Z" itemprop="datePublished">2024-03-26</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="private">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/e7e1603/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/e7e1603/" onclick="onclickRoute(event, '/wiki/e7e1603/')">GD面试问题匹配和SOP</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                <p>这是一篇加密文章，需要密码才能继续阅读。</p>
+            
+        
+        
+            </div> 
+            <div class="article-more-link">
+                <a href="/wiki/e7e1603/#more" onclick="onclickRoute(event, '/wiki/e7e1603/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-Meaning | 关于人和系统/2|知识技能(存储扩展)/[2]领导力原则/01面试总结/002.针对性面试/06.GH面试SOP" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/">Meaning | 关于人和系统</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/">2|知识技能(存储扩展)</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/2-%E9%A2%86%E5%AF%BC%E5%8A%9B%E5%8E%9F%E5%88%99/">[2]领导力原则</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/2-%E9%A2%86%E5%AF%BC%E5%8A%9B%E5%8E%9F%E5%88%99/01%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/">01面试总结</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/2-%E9%A2%86%E5%AF%BC%E5%8A%9B%E5%8E%9F%E5%88%99/01%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/002-%E9%92%88%E5%AF%B9%E6%80%A7%E9%9D%A2%E8%AF%95/">002.针对性面试</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/private/" rel="tag">private</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/03/" onclick="onclickRoute(event, '/archives/2024/03/')">
+            <time datetime="2024-03-26T14:55:57.000Z" itemprop="datePublished">2024-03-26</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="private">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/295c7190/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/295c7190/" onclick="onclickRoute(event, '/wiki/295c7190/')">GH面试SOP</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                <p>这是一篇加密文章，需要密码才能继续阅读。</p>
+            
+        
+        
+            </div> 
+            <div class="article-more-link">
+                <a href="/wiki/295c7190/#more" onclick="onclickRoute(event, '/wiki/295c7190/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-Meaning | 关于人和系统/2|知识技能(存储扩展)/[2]领导力原则/01面试总结/002.针对性面试/05.GH_面试问题和SOP" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/">Meaning | 关于人和系统</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/">2|知识技能(存储扩展)</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/2-%E9%A2%86%E5%AF%BC%E5%8A%9B%E5%8E%9F%E5%88%99/">[2]领导力原则</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/2-%E9%A2%86%E5%AF%BC%E5%8A%9B%E5%8E%9F%E5%88%99/01%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/">01面试总结</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/2-%E9%A2%86%E5%AF%BC%E5%8A%9B%E5%8E%9F%E5%88%99/01%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/002-%E9%92%88%E5%AF%B9%E6%80%A7%E9%9D%A2%E8%AF%95/">002.针对性面试</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/private/" rel="tag">private</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/03/" onclick="onclickRoute(event, '/archives/2024/03/')">
+            <time datetime="2024-03-26T14:55:57.000Z" itemprop="datePublished">2024-03-26</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="private">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/dc74c101/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/dc74c101/" onclick="onclickRoute(event, '/wiki/dc74c101/')">GH面试问题匹配和SOP</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                <p>这是一篇加密文章，需要密码才能继续阅读。</p>
+            
+        
+        
+            </div> 
+            <div class="article-more-link">
+                <a href="/wiki/dc74c101/#more" onclick="onclickRoute(event, '/wiki/dc74c101/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-信息安全 | 安全可信数字环境/[4]Web端安全/000.Web端安全" class="article article-type-post">
+    
+        <meta name="referrer" content="no-referrer">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8-%E5%AE%89%E5%85%A8%E5%8F%AF%E4%BF%A1%E6%95%B0%E5%AD%97%E7%8E%AF%E5%A2%83/">信息安全 | 安全可信数字环境</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8-%E5%AE%89%E5%85%A8%E5%8F%AF%E4%BF%A1%E6%95%B0%E5%AD%97%E7%8E%AF%E5%A2%83/4-Web%E7%AB%AF%E5%AE%89%E5%85%A8/">[4]Web端安全</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/03/" onclick="onclickRoute(event, '/archives/2024/03/')">
+            <time datetime="2024-03-25T07:55:57.000Z" itemprop="datePublished">2024-03-25</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="安全">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/bf0b9415/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/bf0b9415/" onclick="onclickRoute(event, '/wiki/bf0b9415/')">Web端安全</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+            
+        
+        
+            <p>常见Web系统安全漏洞原理，利用方式(含工具)、以及对应解决方案.</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-Meaning | 关于人和系统/2|知识技能(存储扩展)/[2]领导力原则/01面试总结/002.针对性面试/02.GD项目经验" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/">Meaning | 关于人和系统</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/">2|知识技能(存储扩展)</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/2-%E9%A2%86%E5%AF%BC%E5%8A%9B%E5%8E%9F%E5%88%99/">[2]领导力原则</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/2-%E9%A2%86%E5%AF%BC%E5%8A%9B%E5%8E%9F%E5%88%99/01%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/">01面试总结</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/2-%E9%A2%86%E5%AF%BC%E5%8A%9B%E5%8E%9F%E5%88%99/01%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/002-%E9%92%88%E5%AF%B9%E6%80%A7%E9%9D%A2%E8%AF%95/">002.针对性面试</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/private/" rel="tag">private</a>, <a class="tag-link-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/03/" onclick="onclickRoute(event, '/archives/2024/03/')">
+            <time datetime="2024-03-25T07:55:57.000Z" itemprop="datePublished">2024-03-25</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="private,面试">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/c5497f93/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/c5497f93/" onclick="onclickRoute(event, '/wiki/c5497f93/')">GD项目经验</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                <p>这是一篇加密文章，需要密码才能继续阅读。</p>
+            
+        
+        
+            </div> 
+            <div class="article-more-link">
+                <a href="/wiki/c5497f93/#more" onclick="onclickRoute(event, '/wiki/c5497f93/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-平台工具 | 工程架构和工具/[2]架构设计/04.领域架构总结/03.ERP/002.ERP系统架构设计" class="article article-type-post">
+    
+        <meta name="referrer" content="no-referrer">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/2-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">[2]架构设计</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/2-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/04-%E9%A2%86%E5%9F%9F%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/">04.领域架构总结</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/2-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/04-%E9%A2%86%E5%9F%9F%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/03-ERP/">03.ERP</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/03/" onclick="onclickRoute(event, '/archives/2024/03/')">
+            <time datetime="2024-03-24T07:55:57.000Z" itemprop="datePublished">2024-03-24</time>
+        </a>
+    </div>
+
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/f5cf0651/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/f5cf0651/" onclick="onclickRoute(event, '/wiki/f5cf0651/')">ERP系统架构设计</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p></p><h2 id="1-ERP系统理解"><a href="#1-ERP系统理解" class="headerlink" title="1. ERP系统理解"></a>1. ERP系统理解</h2><h3 id="1-1-ERP系统与智能工厂"><a href="#1-1-ERP系统与智能工厂" class="headerlink" title="1.1 ERP系统与智能工厂"></a>1.1 ERP系统与智能工厂</h3><p>首先所属行业是铸造业，所以先从铸造业智能工厂系统整体开始， 先分析ERP在智能工厂中的应用。<br>下图简述了 智能工厂的分层架构概览以及ERP系统在智能工厂中的位置。那ERP系统的作用是什么呢？<br><span style="font-size: 12px;"><em>tips: 只是一个大致的简述，参考了车企智能工厂的概述. 相较于共享的铸造智能工厂系统架构，此图比较粗略、分层和细节有所差异。不过在这里不是重点，我们重点关注上层的ERP在其中的应用</em>. </span></p>
+<div>
+    <img src="https://gitee.com/quano/www/raw/master/img/intell_factory_arch.png" style="display: inline-block;margin-left: 18px; width: 50%">
+    <span style="display: block; margin-left: 18%;width: 50%">智能制造系统分层框架概览</span>
+<p>
+                
+            
+        
+        
+            </p></div> 
+            <div class="article-more-link">
+                <a href="/wiki/f5cf0651/#more" onclick="onclickRoute(event, '/wiki/f5cf0651/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</div></article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-Meaning | 关于人和系统/2|知识技能(存储扩展)/[2]领导力原则/01面试总结/001.结构化面试/001.结构化面试总结" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/">Meaning | 关于人和系统</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/">2|知识技能(存储扩展)</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/2-%E9%A2%86%E5%AF%BC%E5%8A%9B%E5%8E%9F%E5%88%99/">[2]领导力原则</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/2-%E9%A2%86%E5%AF%BC%E5%8A%9B%E5%8E%9F%E5%88%99/01%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/">01面试总结</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/2-%E9%A2%86%E5%AF%BC%E5%8A%9B%E5%8E%9F%E5%88%99/01%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/001-%E7%BB%93%E6%9E%84%E5%8C%96%E9%9D%A2%E8%AF%95/">001.结构化面试</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/iview/" rel="tag">iview</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/03/" onclick="onclickRoute(event, '/archives/2024/03/')">
+            <time datetime="2024-03-24T07:55:57.000Z" itemprop="datePublished">2024-03-24</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="iview">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/ad6f6148/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/ad6f6148/" onclick="onclickRoute(event, '/wiki/ad6f6148/')">结构化面试总结</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+            
+        
+        
+            
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-Meaning | 关于人和系统/2|知识技能(存储扩展)/[2]领导力原则/01面试总结/001.结构化面试/002.结构化面试题" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/">Meaning | 关于人和系统</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/">2|知识技能(存储扩展)</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/2-%E9%A2%86%E5%AF%BC%E5%8A%9B%E5%8E%9F%E5%88%99/">[2]领导力原则</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/2-%E9%A2%86%E5%AF%BC%E5%8A%9B%E5%8E%9F%E5%88%99/01%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/">01面试总结</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/2-%E9%A2%86%E5%AF%BC%E5%8A%9B%E5%8E%9F%E5%88%99/01%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/001-%E7%BB%93%E6%9E%84%E5%8C%96%E9%9D%A2%E8%AF%95/">001.结构化面试</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/03/" onclick="onclickRoute(event, '/archives/2024/03/')">
+            <time datetime="2024-03-24T07:55:57.000Z" itemprop="datePublished">2024-03-24</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="面试">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/44ef3a9b/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/44ef3a9b/" onclick="onclickRoute(event, '/wiki/44ef3a9b/')">结构化面试</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p></p><p>结构化面试题</p>
+<h1 id="专业知识与技能类"><a href="#专业知识与技能类" class="headerlink" title="专业知识与技能类"></a>专业知识与技能类</h1><p>在 Java 编程中，Spring 框架的核心功能是什么？请详细阐述依赖注入（DI）和面向切面编程（AOP）在实际项目中的应用场景，并举例说明如何使用 Spring 的 AOP 实现日志记录功能。<br>当处理大量数据时，MySQL 和 Oracle 数据库在性能优化方面有哪些不同的策略？请结合具体的索引优化、查询语句优化等方面进行说明。<br>前端开发中，常见的跨域问题是如何产生的？你通常会采用哪些方法解决跨域问题？每种方法的优缺点是什么？</p>
+<h1 id="项目经验类"><a href="#项目经验类" class="headerlink" title="项目经验类"></a>项目经验类</h1><p>请描述一个你负责过的最具挑战性的大型软件项目，项目的背景、目标是什么？</p>
+<p>在项目推进过程中，遇到了哪些技术难题和协调问题？你是如何解决这些问题并确保项目顺利完成的？<br>在之前的项目中，你是如何进行项目成本控制的？请举例说明在预算紧张的情况下，你采取了哪些措施来保证项目的质量和进度不受影响。<br>请分享一次你在项目中对需求变更的处理经验。需求变更的原因是什么？你是如何评估变更对项目范围、成本、进度和质量的影响的？又是如何协调各方资源来实现需求变更的？</p>
+<h1 id="团队管理类"><a href="#团队管理类" class="headerlink" title="团队管理类"></a>团队管理类</h1><p>假设你带领一个软件研发团队，团队成员之间出现了意见分歧，影响了项目进度。你会如何处理这种情况？请详细描述你的解决步骤和方法。</p>
+<p>
+                
+            
+        
+        
+            </p></div> 
+            <div class="article-more-link">
+                <a href="/wiki/44ef3a9b/#more" onclick="onclickRoute(event, '/wiki/44ef3a9b/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-Meaning | 关于人和系统/2|知识技能(存储扩展)/[2]领导力原则/02沟通能力/表达练习/001.part_one" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/">Meaning | 关于人和系统</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/">2|知识技能(存储扩展)</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/2-%E9%A2%86%E5%AF%BC%E5%8A%9B%E5%8E%9F%E5%88%99/">[2]领导力原则</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/2-%E9%A2%86%E5%AF%BC%E5%8A%9B%E5%8E%9F%E5%88%99/02%E6%B2%9F%E9%80%9A%E8%83%BD%E5%8A%9B/">02沟通能力</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Meaning-%E5%85%B3%E4%BA%8E%E4%BA%BA%E5%92%8C%E7%B3%BB%E7%BB%9F/2-%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD-%E5%AD%98%E5%82%A8%E6%89%A9%E5%B1%95/2-%E9%A2%86%E5%AF%BC%E5%8A%9B%E5%8E%9F%E5%88%99/02%E6%B2%9F%E9%80%9A%E8%83%BD%E5%8A%9B/%E8%A1%A8%E8%BE%BE%E7%BB%83%E4%B9%A0/">表达练习</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/private/" rel="tag">private</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/03/" onclick="onclickRoute(event, '/archives/2024/03/')">
+            <time datetime="2024-03-24T07:55:57.000Z" itemprop="datePublished">2024-03-24</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="private">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/f3e2a452/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/f3e2a452/" onclick="onclickRoute(event, '/wiki/f3e2a452/')">part_one</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                <p>这是一篇加密文章，需要密码才能继续阅读。</p>
+            
+        
+        
+            </div> 
+            <div class="article-more-link">
+                <a href="/wiki/f3e2a452/#more" onclick="onclickRoute(event, '/wiki/f3e2a452/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        <nav id="page-nav">
+        <a class="extend prev" rel="prev" href="/list/page/23/">« Prev</a><a class="page-number" href="/list/">1</a><span class="space">&hellip;</span><a class="page-number" href="/list/page/22/">22</a><a class="page-number" href="/list/page/23/">23</a><span class="page-number current">24</span><a class="page-number" href="/list/page/25/">25</a><a class="page-number" href="/list/page/26/">26</a><span class="space">&hellip;</span><a class="page-number" href="/list/page/59/">59</a><a class="extend next" rel="next" href="/list/page/25/">Next »</a>
+        </nav>
+    
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

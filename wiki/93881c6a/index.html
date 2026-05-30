@@ -1,0 +1,535 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>1.参数估计方法 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="ML">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.参数估计方法">
+<meta property="og:url" content="https://waisec.cn/wiki/93881c6a/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-14T14:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.147Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="ML">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "1.参数估计方法",
+    "url": "https://waisec.cn/wiki/93881c6a/",
+    "datePublished": "2024-09-14T14:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.147Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "ML"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/2|机器学习/002.数学知识/概率论/001.参数估计" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%9C%80%E4%BC%98%E5%8C%96%E7%90%86%E8%AE%BA"><span class="toc-text">一、最优化理论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1"><span class="toc-text">1.1 最大似然估计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1-%E6%A2%AF%E5%BA%A6%E4%B8%8A%E5%8D%87%E6%B3%95"><span class="toc-text">1.1.1 梯度上升法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%A2%AF%E5%BA%A6%E4%B8%8A%E5%8D%87%E7%9A%84%E8%BF%AD%E4%BB%A3"><span class="toc-text">1. 梯度上升的迭代</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%AE%AD%E7%BB%83%E7%AE%97%E6%B3%95-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92"><span class="toc-text">2. 训练算法:逻辑回归</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E6%9C%80%E5%B0%8F%E5%8C%96%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-text">1.2 最小化损失函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95"><span class="toc-text">1.2.1 最小二乘法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95"><span class="toc-text">1.2.2 梯度下降法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%B4%9D%E5%8F%B6%E6%96%AF%E4%BC%B0%E8%AE%A1"><span class="toc-text">二、贝叶斯估计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%9F%A9%E4%BC%B0%E8%AE%A1"><span class="toc-text">三、矩估计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0%E5%92%8C%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-text">关于目标函数和损失函数</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">2|机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002-%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/">002.数学知识</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002-%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E6%A6%82%E7%8E%87%E8%AE%BA/">概率论</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/ML/" rel="tag">ML</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/09/" onclick="onclickRoute(event, '/archives/2024/09/')">
+            <time datetime="2024-09-14T14:55:57.000Z" itemprop="datePublished">2024-09-14</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="ML">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/93881c6a/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            参数估计方法
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p>定义：<br>参数估计过程中，我们的目的是找到一组参数值， 使得<strong><em>目标函数</em></strong>达到最优(如最小或最大)。</p>
+<p><span style="font-size: 12px;">tips: 损失函数是目标函数的一种常见形式。 很多情况下，优化目标函数主要就是通过最小化损失函数来实现的。</span></p>
+<p>参数估计的方法有：<br><strong><em>最优化理论(最大似然估计、最小化损失函数(最小二乘法、梯度下降法)) 、贝叶斯估计、矩估计</em></strong></p>
+<p>以上 也说明了 参数估计 与最小化损失函数 的关系.</p>
+<h1 id="一、最优化理论"><a href="#一、最优化理论" class="headerlink" title="一、最优化理论"></a>一、最优化理论</h1><p><a href="/wk/算法/001.机器学习/002.数学知识/机器学习/002.最优化理论_模型训练中的数学/">数学原理:最优化理论/梯度下降最优化算法</a></p>
+<h2 id="1-1-最大似然估计"><a href="#1-1-最大似然估计" class="headerlink" title="1.1 最大似然估计"></a>1.1 最大似然估计</h2><p><span style="color: red;">通过最大似然估计(MLE)或其他优化算法来估计模型的参数 θ</span>而不是最小化平方差.</p>
+<p>可以 通过 梯度上升法 实现最大似然估计， 帮助找到 使得似然最大的 参数组合. </p>
+<p>另外用于 最大似然估计的方法还有：</p>
+<ul>
+<li>牛顿法： 利用目标函数的 一阶导数和二阶导数来更新参数。</li>
+<li>拟牛顿法：是对牛顿法的改进，避免了计算二阶导数。</li>
+<li>期望最大化(EM)算法：在一些含有隐变量的模型中经常使用。</li>
+</ul>
+<p>这里重点介绍 梯度上升法：</p>
+<h3 id="1-1-1-梯度上升法"><a href="#1-1-1-梯度上升法" class="headerlink" title="1.1.1 梯度上升法"></a>1.1.1 梯度上升法</h3><p>基于的思想：要<span style="color: red;">找到某函数的最大值</span>，最好的方法是<strong><em>沿着该函数的梯度方向探寻</em></strong>。</p>
+<p><span style="font-size: 12px;">tips: 关于<strong><em>梯度</em></strong>的概念， <a href="/wk/%E7%AE%97%E6%B3%95/001.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/002.%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E5%BE%AE%E7%A7%AF%E5%88%86/001.%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/#4-2-%E6%A2%AF%E5%BA%A6-Gradient">梯度</a>是多元函数在某一点的导数，是一个向量， 其各个分量分别是函数对各个自变量的偏导数。</span></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">梯度是多元函数在某一点的导数，是一个向量，其各个分量分别是函数对各个自变量的偏导数</span><br><span class="line">1. 在单变量情况下，导数和梯度是等价的概念，因为梯度只有一个分量.</span><br><span class="line">2. 在多变量情况下，导数是一个标量，而梯度是一个向量，包含了所有偏导数的信息.</span><br><span class="line">3. 梯度 的每个分量，表示了函数在 对应方向上的变化率，可以看作是函数在该点的局部导数.</span><br><span class="line">在优化问题中，特别是在机器学习和数值优化中，我们经常需要最小化或最大化函数。梯度提供了函数在给定点的局部变化方向，</span><br><span class="line">因此可以被用来指导优化算法（如梯度下降法、梯度上升法）在参数空间中搜索最优解。</span><br></pre></td></tr></table></figure>
+<h4 id="1-梯度上升的迭代"><a href="#1-梯度上升的迭代" class="headerlink" title="1. 梯度上升的迭代"></a>1. 梯度上升的迭代</h4><p>迭代公式如下：<br>$ \mathbf{w}^{(t+1)} = \mathbf{w}^{(t)} + \eta \nabla f(\mathbf{w}^{(t)}) $</p>
+<p>其中：</p>
+<ul>
+<li>$\mathbf{w}^{(t+1)}$ 是第 $t$ 次迭代后的参数向量</li>
+<li>$\eta$ 是学习率，控制每次迭代中参数更新的步长</li>
+<li>$f(\mathbf{w}^{(t)})$ 是目标函数$f$在参数向量 $\mathbf{w}^{(t)}$ 处的梯度向量</li>
+</ul>
+<p>该公式将一直被迭代执行，直到达到某个停止条件为止，比如迭代次数达到某个指定值 或者算法达到某个可以允许的误差范围.</p>
+<h4 id="2-训练算法-逻辑回归"><a href="#2-训练算法-逻辑回归" class="headerlink" title="2. 训练算法:逻辑回归"></a>2. 训练算法:逻辑回归</h4><p>使用梯度上升找到最佳参数</p>
+<p>逻辑回归假设输出$y$是二分类问题。 对于给定的输入特征 $\mathbf{x}$ ，逻辑回归模型的输出 $ \hat{y}$ 由一下逻辑函数给出：<br>$ \hat{y} = \sigma(\mathbf{w}^\top \mathbf{x} + b) = \frac{1}{1 + e^{-(\mathbf{w}^\top \mathbf{x} + b)}} $</p>
+<ol>
+<li>损失函数<br>逻辑回归使用<strong><em>交叉熵损失函数</em></strong>来衡量预测值 $\hat{y}$ 与真实标签 $y$ 之间的差异：<br>$\mathcal{L}(\mathbf{w}, b) = - \frac{1}{N} \sum_{i=1}^N \left[ y^{(i)} \log \hat{y}^{(i)} + (1 - y^{(i)}) \log (1 - \hat{y}^{(i)}) \right]$<br>其中：<ul>
+<li>$N$ 是训练样本数量</li>
+<li>$y^{(i)} = \sigma(\mathbf{w}^\top \mathbf{x^{(i)}} + b)$ 是对样本 $i$ 的预测概率</li>
+<li>$y^{(i)}$ 是样本 $i$ 的真实标签</li>
+</ul>
+</li>
+<li>梯度上升优化过程<br>梯度上升法<strong><em>用于最大化对数似然函数</em></strong> $ \ell(\mathbf{w}, b) = \sum_{i=1}^N \left[ y^{(i)} \log \hat{y}^{(i)} + (1 - y^{(i)}) \log (1 - \hat{y}^{(i)}) \right] $<br>即使得损失函数 $ \mathcal{L}(w, b) $ 最小化。<br>梯度上升法的步骤如下：<ul>
+<li>(1)初始化参数：随机初始化权重$\mathbf{w}$和偏置$b$</li>
+<li>(2)计算梯度： 计算损失函数对参数 $\mathbf{w}$和$b$ 的梯度<br>  对于权重 $\mathbf{w}$ 的梯度： $ \frac{\partial \mathcal{L}}{\partial \mathbf{w}} = \frac{1}{N} \sum<em>{i=1}^N (\hat{y}^{(i)} - y^{(i)}) \mathbf{x}^{(i)} $<br>  对于偏置 b 的梯度：$ \frac{\partial \mathcal{L}}{\partial b} = \frac{1}{N} \sum</em>{i=1}^N (\hat{y}^{(i)} - y^{(i)}) $</li>
+<li>(3)参数更新：根据梯度方向和学习率 $\eta$，更新参数  $\mathbf{w}$和$b$<br>  $ \mathbf{w} := \mathbf{w} + \eta \frac{\partial \mathcal{L}}{\partial \mathbf{w}} $<br>  $ b:= b + \eta \frac{\partial \mathcal{L}}{\partial b} $</li>
+<li>(4) 重复迭代：重复步骤2和步骤3，直到损失函数收敛或达到预定的迭代次数</li>
+</ul>
+</li>
+</ol>
+<p>理解 梯度上升、 最大似然估计(似然函数)、 损失函数的关系：</p>
+<ul>
+<li>逻辑回归中 通过 最大化似然函数(假设观测数据服从伯努利分布) 来估计参数</li>
+<li>而 最大化的方法 是通过 梯度上升法</li>
+<li>梯度上升 是通过 计算损失函数 $\mathcal{L}(\mathbf{w}, b)$ 对参数  $\mathbf{w}$和$b$  的梯度来更新参数.</li>
+</ul>
+<p>梯度上升 只是定义了 迭代的方法(看迭代公式) . 而损失函数 的梯度用来计算 更新方向和大小，从而逐步优化.</p>
+<p>损失函数的梯度被用来计算参数的更新方向和大小，从而逐步优化模型的参数以最小化或最大化损失函数的值。</p>
+<p>逻辑回归中， 损失函数是怎么来的？？<br>通过最大化对数似然函数（log-likelihood）得到的， 推导过程：<br>(重要)在统计推断中，通过最大化对数似然函数来估计参数是常用的方法。对于逻辑回归，我们实际上是最大化对数似然函数的负数的相反数，即最小化负对数似然函数（Negative Log-Likelihood）：<br>$\mathcal{L}(\mathbf{w}, b) = - \frac{1}{N} \sum_{i=1}^N \left[ y^{(i)} \log \hat{y}^{(i)} + (1 - y^{(i)}) \log (1 - \hat{y}^{(i)}) \right]$</p>
+<p>这个负对数似然函数就是逻辑回归中常用的损失函数，用于衡量模型预测值与真实标签之间的差异。</p>
+<p>损失函数是 对数似然函数的负数除以样本数.</p>
+<h2 id="1-2-最小化损失函数"><a href="#1-2-最小化损失函数" class="headerlink" title="1.2 最小化损失函数"></a>1.2 最小化损失函数</h2><h3 id="1-2-1-最小二乘法"><a href="#1-2-1-最小二乘法" class="headerlink" title="1.2.1 最小二乘法"></a>1.2.1 最小二乘法</h3><h3 id="1-2-2-梯度下降法"><a href="#1-2-2-梯度下降法" class="headerlink" title="1.2.2 梯度下降法"></a>1.2.2 梯度下降法</h3><h1 id="二、贝叶斯估计"><a href="#二、贝叶斯估计" class="headerlink" title="二、贝叶斯估计"></a>二、贝叶斯估计</h1><h1 id="三、矩估计"><a href="#三、矩估计" class="headerlink" title="三、矩估计"></a>三、矩估计</h1><h1 id="关于目标函数和损失函数"><a href="#关于目标函数和损失函数" class="headerlink" title="关于目标函数和损失函数"></a>关于目标函数和损失函数</h1><p>损失函数是目标函数的一种常见形式。 很多情况下，优化目标函数主要就是通过最小化损失函数来实现的。</p>
+<p>假设我们训练 图像分类模型， 目标函数 除了考虑分类错误的损失（损失函数部分）， 还可能考虑模型的复杂度，如参数的数量或某些正则化项， 以避免过拟合吗，这就是损失之外的其它因素。</p>
+<p>包含约束条件的例子： 比如在资源分配问题中，目标函数可能是 最大化总收益， 但同时有约束条件如每个资源的分配量不能超过其上限，或者总资源使用量不能超过某个固定值等。</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/92d8d11e/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/92d8d11e/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    2.最优化理论_模型训练中的数学原理
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/35a04dc8/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/35a04dc8/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">3.特征工程系列_降维</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

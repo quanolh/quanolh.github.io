@@ -1,0 +1,559 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>1.SQL基本功 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="SQL">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.SQL基本功">
+<meta property="og:url" content="https://waisec.cn/wiki/70efc0d/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-12-09T15:23:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.137Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="SQL">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "1.SQL基本功",
+    "url": "https://waisec.cn/wiki/70efc0d/",
+    "datePublished": "2025-12-09T15:23:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.137Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "SQL"
+    
+}
+</script>
+
+<article id="post-数据 | 核心生产要素/[2]数据分析/002.SQL基本功" class="article article-type-post">
+    
+        <meta name="referrer" content="no-referrer">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E9%87%8D%E7%82%B9"><span class="toc-text">SQL重点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-text">1. 执行顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%A1%A8%E8%BF%9E%E6%8E%A5"><span class="toc-text">2. 表连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0"><span class="toc-text">3. 聚合函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%97%B6%E9%97%B4%E5%87%BD%E6%95%B0"><span class="toc-text">4. 时间函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0"><span class="toc-text">5. 窗口函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%A4%9A%E8%A1%A8JOIN"><span class="toc-text">一、多表JOIN</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0"><span class="toc-text">二、窗口函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-LAG%E5%87%BD%E6%95%B0"><span class="toc-text">2.1 LAG函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-SUM-CASE%E5%87%BD%E6%95%B0"><span class="toc-text">2.2 SUM+CASE函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-DATE-SUB%E5%87%BD%E6%95%B0"><span class="toc-text">2.3 DATE_SUB函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-DATE-DIFF%E5%87%BD%E6%95%B0"><span class="toc-text">2.4 DATE_DIFF函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%88%86%E5%8C%BA%E5%88%86%E6%A1%B6"><span class="toc-text">三、分区分桶</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81SQL%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-text">四、SQL核心知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%E4%B8%8E%E8%81%9A%E5%90%88"><span class="toc-text">4.1 基础操作与聚合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%84%E5%AF%B9%E6%AF%94%EF%BC%9ACTE-%E5%AD%90%E6%9F%A5%E8%AF%A2-%E8%A7%86%E5%9B%BE-%E4%B8%B4%E6%97%B6%E8%A1%A8"><span class="toc-text">4.2 查询结构对比：CTE&#x2F;子查询&#x2F;视图&#x2F;临时表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E5%88%86%E5%B8%83%E5%BC%8F%E7%8E%AF%E5%A2%83%E4%B8%AD%E7%9A%84SQL%E9%80%BB%E8%BE%91"><span class="toc-text">4.3 分布式环境中的SQL逻辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0%EF%BC%9A%E9%9D%A2%E8%AF%95%E9%AB%98%E9%A2%91%E8%80%83%E7%82%B9"><span class="toc-text">4.4 窗口函数：面试高频考点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B5%84%E6%96%99"><span class="toc-text">资料</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/">数据 | 核心生产要素</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/2-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">[2]数据分析</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/SQL/" rel="tag">SQL</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2025/12/" onclick="onclickRoute(event, '/archives/2025/12/')">
+            <time datetime="2025-12-09T15:23:57.000Z" itemprop="datePublished">2025-12-09</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="SQL">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/70efc0d/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            SQL基本功
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <h1 id="SQL重点"><a href="#SQL重点" class="headerlink" title="SQL重点"></a>SQL重点</h1><h2 id="1-执行顺序"><a href="#1-执行顺序" class="headerlink" title="1. 执行顺序"></a>1. 执行顺序</h2><h2 id="2-表连接"><a href="#2-表连接" class="headerlink" title="2. 表连接"></a>2. 表连接</h2><h2 id="3-聚合函数"><a href="#3-聚合函数" class="headerlink" title="3. 聚合函数"></a>3. 聚合函数</h2><h2 id="4-时间函数"><a href="#4-时间函数" class="headerlink" title="4. 时间函数"></a>4. 时间函数</h2><h2 id="5-窗口函数"><a href="#5-窗口函数" class="headerlink" title="5. 窗口函数"></a>5. 窗口函数</h2><h1 id="一、多表JOIN"><a href="#一、多表JOIN" class="headerlink" title="一、多表JOIN"></a>一、多表JOIN</h1><h1 id="二、窗口函数"><a href="#二、窗口函数" class="headerlink" title="二、窗口函数"></a>二、窗口函数</h1><h2 id="2-1-LAG函数"><a href="#2-1-LAG函数" class="headerlink" title="2.1 LAG函数"></a>2.1 LAG函数</h2><p>用于 在查询结果集中 访问 前一行数据。<br>该函数 可用于 <strong style="color: #6f42c1;">计算当前行和前一行 之间的差异</strong>，或者 <strong style="color: #6f42c1;">将前一行的数据与 当前行数据 进行比较</strong>。</p>
+<p>例如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> user_id,<span class="type">time</span>,<span class="built_in">LAG</span>(<span class="type">time</span>,<span class="number">1</span>, <span class="keyword">NULL</span>) <span class="keyword">OVER</span>(<span class="keyword">PARTITION</span> <span class="keyword">BY</span> user_id <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="type">time</span>) <span class="keyword">as</span> last_time <span class="keyword">from</span> user_behavior_v2</span><br></pre></td></tr></table></figure>
+
+      <div class="tip-container tip-info" style="
+        background-color: #e8f4f8;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #4299e1;
+        ">
+          <i class="fa fa-info-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>语法如下：<br>LAG(expression [,offset] [,default]) OVER([partition_by_clause] order_by_clause)</p>
+<ul>
+<li>expression：要访问前一行数据的列 或表达式。</li>
+<li>offset：要访问前一行的偏移量，默认为1</li>
+<li>default：前一行不存在，的默认
+            </li></ul></div>
+        </div>
+      </div>
+    
+
+
+<p>「使用场景」</p>
+<p>计算当前行和前行之间的差异。 将前一行的数据与当前行数据进行比较。<br>识别数据中的趋势和模式。在分析数据时使用滑动窗口函数。</p>
+<h2 id="2-2-SUM-CASE函数"><a href="#2-2-SUM-CASE函数" class="headerlink" title="2.2 SUM+CASE函数"></a>2.2 SUM+CASE函数</h2><p>统计多维销售数据用<br>计算不同状态或渠道的呃呃订单总额</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"> <span class="built_in">SUM</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> status <span class="operator">=</span> <span class="number">1</span> <span class="keyword">THEN</span> amount <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span>) <span class="keyword">AS</span> total_amount,</span><br><span class="line"> <span class="built_in">SUM</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> channel <span class="operator">=</span> <span class="string">&#x27;online&#x27;</span> <span class="keyword">THEN</span>  amount <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span>) <span class="keyword">as</span> onlin_channel_total_amount</span><br><span class="line"><span class="keyword">FROM</span> orders;</span><br></pre></td></tr></table></figure>
+<h2 id="2-3-DATE-SUB函数"><a href="#2-3-DATE-SUB函数" class="headerlink" title="2.3 DATE_SUB函数"></a>2.3 DATE_SUB函数</h2><p>从指定日期减去一个时间间隔。结合NOW()函数，可以动态获取当前时间并进行时间筛选。</p>
+<h2 id="2-4-DATE-DIFF函数"><a href="#2-4-DATE-DIFF函数" class="headerlink" title="2.4 DATE_DIFF函数"></a>2.4 DATE_DIFF函数</h2><p>计算两个日期之间的差异。</p>
+<h1 id="三、分区分桶"><a href="#三、分区分桶" class="headerlink" title="三、分区分桶"></a>三、分区分桶</h1><h1 id="四、SQL核心知识点"><a href="#四、SQL核心知识点" class="headerlink" title="四、SQL核心知识点"></a>四、SQL核心知识点</h1><h2 id="4-1-基础操作与聚合"><a href="#4-1-基础操作与聚合" class="headerlink" title="4.1 基础操作与聚合"></a>4.1 基础操作与聚合</h2><p>JOIN类型：重点掌握INNER JOIN、LEFT JOIN、FULL OUTER JOIN、几乎不用RIGHT JOIN</p>
+<p>GROUP BY聚合：明确COUNT 与 COUNT(DISTINCT)的区别「分布式环境中COUNT(DISTINCT)速度慢」</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 基数缩减：将高基数维度 转为低基数，例如按年龄分桶：</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CASE</span> <span class="keyword">WHEN</span> age <span class="operator">&gt;</span> <span class="number">30</span> <span class="keyword">THEN</span> <span class="string">&#x27;old&#x27;</span> <span class="keyword">ELSE</span> <span class="string">&#x27;young&#x27;</span> <span class="keyword">END</span> <span class="keyword">as</span> <span class="string">&#x27;age_bucket&#x27;</span>,</span><br><span class="line"> <span class="built_in">count</span>(<span class="number">1</span>) </span><br><span class="line"><span class="keyword">FROM</span> USERS</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># <span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="operator">+</span> 聚合：例如按统计过期订单数：</span><br><span class="line"><span class="built_in">COUNT</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> status <span class="operator">=</span> <span class="string">&#x27;expired&#x27;</span> <span class="keyword">THEN</span> order_id <span class="keyword">END</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="4-2-查询结构对比：CTE-子查询-视图-临时表"><a href="#4-2-查询结构对比：CTE-子查询-视图-临时表" class="headerlink" title="4.2 查询结构对比：CTE/子查询/视图/临时表"></a>4.2 查询结构对比：CTE/子查询/视图/临时表</h2><table class="_table">
+<thead>
+<tr>
+<th style="width: 13%;">类型</th>
+<th style="width: 50%;">使用场景</th>
+<th>注意事项</th>
+</tr>
+</thead>
+<tbody>
+    <tr>
+    <td rowspan="1" style="background-color: #f0f8fb;">子查询<br>Subquery</td>
+    <td>几乎不用<br>比如：WHERE筛选时查辅助条件、SELECT里算派生字段、关联临时结果。</td>
+    <td>别套太多层！3层以上可读性爆炸，性能差；尽量用JOIN替代IN子查询（大数据量必卡）！</td>
+    </tr>
+    <tr>
+        <td rowspan="1" style="background-color: #f5f5f5;">临时表<br>Temporary Table</td>
+        <td>需重复使用某段逻辑<br>比如：大数据量分步计算、多报表共用中间数据、复杂JOIN拆分。</td>
+        <td>用完记得清！会话结束自动删（部分库需手动），占存储，别建索引过度（小表没必要）！</td>
+    </tr>
+    <tr>
+        <td rowspan="1" style="background-color: #fef7fb;">视图<br>View</td>
+        <td>(固定模板)把常用SQL保存成“虚拟表”，多人复用统一口径。<br>比如：核心指标口径、固定维度的报表底表、权限管控的脱敏数据。</td>
+        <td>不存储数据，仅保存查询逻辑。多层视图嵌套会慢到崩溃，无存储、改源表结构可能崩！</td>
+    </tr>
+    <tr>
+        <td rowspan="1" style="background-color: #e8f6f0;">CTE<br>公共表表达式</td>
+        <td>(临时草稿纸)写复杂SQL时拆逻辑，一次性用、可读性优先。<br>比如：多层嵌套统计、一次性数据校验、递归查询（如组织架构）。</td>
+        <td>最提升代码可读性，优先用。适合当前SQL会话生效，重复用会重复计算，大数据量递归易卡壳！</td>
+    </tr>
+</tbody>
+</table>
+
+<h2 id="4-3-分布式环境中的SQL逻辑"><a href="#4-3-分布式环境中的SQL逻辑" class="headerlink" title="4.3 分布式环境中的SQL逻辑"></a>4.3 分布式环境中的SQL逻辑</h2><p>触发“数据混洗（Shuffle）”的关键字：JOIN、GROUP BY、ORDER BY（需注意性能）<br>高可扩展性关键字（Map端直接执行）：SELECT 、FROM、WHERE、LIMIT（效率高）</p>
+<h2 id="4-4-窗口函数：面试高频考点"><a href="#4-4-窗口函数：面试高频考点" class="headerlink" title="4.4 窗口函数：面试高频考点"></a>4.4 窗口函数：面试高频考点</h2><p>基础语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">RAND() <span class="keyword">OVER</span> (</span><br><span class="line">	PARTTION <span class="keyword">BY</span> <span class="operator">&lt;</span>分区字段<span class="operator">&gt;</span> <span class="comment">-- 按什么分组（如部门、国家）</span></span><br><span class="line">	<span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="operator">&lt;</span>排序字段<span class="operator">&gt;</span>  <span class="comment">-- 组内排序规则</span></span><br><span class="line">	<span class="keyword">rows</span> <span class="keyword">BETWEEN</span> <span class="operator">&lt;</span>前n行<span class="operator">&gt;</span> PRECEDING <span class="keyword">AND</span> <span class="operator">&lt;</span>后n行<span class="operator">&gt;</span> FOLLWING <span class="comment">-- 窗口范围</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h1 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h1><p>推荐学习资源</p>
+<ul>
+<li>Leetcode：侧重sql题目的练习</li>
+<li>DataLemur：侧重面试级SQL题，贴近实战</li>
+<li>StrataScratch：含真实业务场景的SQL练习</li>
+</ul>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/39eca0b9/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/39eca0b9/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    1.Doris部署
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/9964522c/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/9964522c/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">0.SQLBoy</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

@@ -1,0 +1,666 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>1.物联网入门概述 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="iot">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.物联网入门概述">
+<meta property="og:url" content="https://waisec.cn/wiki/85213413/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/quano/www/raw/master/img/iot/iot_four_layer.svg">
+<meta property="og:image" content="https://gitee.com/quano/www/raw/master/img/iot/ioT_p202711.png">
+<meta property="article:published_time" content="2024-02-03T14:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.113Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="iot">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/quano/www/raw/master/img/iot/iot_four_layer.svg">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "1.物联网入门概述",
+    "url": "https://waisec.cn/wiki/85213413/",
+    "datePublished": "2024-02-03T14:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.113Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "iot"
+    
+}
+</script>
+
+<article id="post-平台工具 | 工程架构和工具/[0]平台建设/[01]物联网平台/001.IOT入门概述" class="article article-type-post">
+    
+        <meta name="referrer" content="no-referrer">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%89%A9%E8%81%94%E7%BD%91%EF%BC%88IoT%EF%BC%89%E4%BB%8B%E7%BB%8D"><span class="toc-text">一、物联网（IoT）介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E4%BA%A7%E5%93%81%E6%9E%B6%E6%9E%84"><span class="toc-text">1.1 产品架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-text">1.2 核心概念</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%A0%B8%E5%BF%83%E7%9B%AE%E6%A0%87"><span class="toc-text">二、核心目标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E6%A0%B8%E5%BF%83%E7%9B%AE%E6%A0%87"><span class="toc-text">2.1 核心目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%A0%B8%E5%BF%83%E4%BB%B7%E5%80%BC"><span class="toc-text">2.2 核心价值</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%8A%80%E6%9C%AF%E6%8C%91%E6%88%98"><span class="toc-text">三、技术挑战</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E9%AB%98%E5%B9%B6%E5%8F%91"><span class="toc-text">2.1 高并发</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">2.1.1 解决方案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E9%AB%98%E5%8F%AF%E7%94%A8"><span class="toc-text">2.2 高可用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">2.2.1 解决方案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E6%95%B0%E6%99%BA%E5%8C%96"><span class="toc-text">2.3 数智化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">2.3.1 解决方案</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF"><span class="toc-text">四、核心技术</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E8%AE%BE%E5%A4%87%E6%8E%A5%E5%85%A5%E4%B8%8E%E5%8D%8F%E8%AE%AE%E9%80%82%E9%85%8D"><span class="toc-text">2.1 设备接入与协议适配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%B6%88%E6%81%AF%E9%80%9A%E4%BF%A1%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81%E8%BD%AC"><span class="toc-text">2.2 消息通信与数据流转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86%EF%BC%88%E6%9C%80%E6%A0%B8%E5%BF%83%E8%83%BD%E5%8A%9B%EF%BC%89"><span class="toc-text">2.3 设备管理（最核心能力）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E-%E4%B8%9A%E5%8A%A1%E7%BC%96%E6%8E%92"><span class="toc-text">2.4 规则引擎&#x2F;业务编排</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-%E6%97%B6%E5%BA%8F%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E4%B8%8E%E5%A4%84%E7%90%86"><span class="toc-text">2.5 时序数据存储与处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-%E8%BE%B9%E7%BC%98%E8%AE%A1%E7%AE%97"><span class="toc-text">2.6 边缘计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-7-%E5%AE%89%E5%85%A8%E4%BD%93%E7%B3%BB"><span class="toc-text">2.7 安全体系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-8-%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0-amp-API%E6%9C%8D%E5%8A%A1"><span class="toc-text">2.8 开放平台&amp;API服务</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E7%89%A9%E8%81%94%E7%BD%91%E5%B9%B3%E5%8F%B0%E6%9E%B6%E6%9E%84"><span class="toc-text">五、物联网平台架构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%BC%94%E8%BF%9B%E8%BF%87%E7%A8%8B"><span class="toc-text">六、演进过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5"><span class="toc-text">七、应用实践</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/0-%E5%B9%B3%E5%8F%B0%E5%BB%BA%E8%AE%BE/">[0]平台建设</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/0-%E5%B9%B3%E5%8F%B0%E5%BB%BA%E8%AE%BE/01-%E7%89%A9%E8%81%94%E7%BD%91%E5%B9%B3%E5%8F%B0/">[01]物联网平台</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/iot/" rel="tag">iot</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/02/" onclick="onclickRoute(event, '/archives/2024/02/')">
+            <time datetime="2024-02-03T14:55:57.000Z" itemprop="datePublished">2024-02-03</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="iot">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/85213413/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            物联网入门概述
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <h1 id="一、物联网（IoT）介绍"><a href="#一、物联网（IoT）介绍" class="headerlink" title="一、物联网（IoT）介绍"></a>一、物联网（IoT）介绍</h1><p>IoT(Internet of Things)，即物联网。通过互联网将各种物理设备（如传感器、家电、汽车等）连接起来，实现数据交换、信息共享和自动化控制的系统。</p>
+<p><strong style="color: #6f42c1;">物联网</strong>：万物互联 的整个体系、整个生态。 包括所有智能设备、网络、数据传输等等。<br><strong style="color: #6f42c1;">物联网平台</strong>：中间的“大脑 + 中转站”。 是软件系统/云服务。  专门用来：管理设备、接受设备上报数据、下发控制指令、存储/分析数据、做联动规则。 「支撑物联网运行的核心后台系统」</p>
+
+      <div class="tip-container tip-note" style="
+        background-color: #e8f4f8;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #4299e1;
+        ">
+          <i class="fa fa-info-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>IoT物联网平台的基本原理是通过传感器、标签、RFID等技术将物理设备与互联网连接起来，使其能够实时收集、传输和分析数据。这些数据可以包括设备的状态、位置、温度、湿度等各种信息，通过云计算和大数据分析，这些数据可以被处理和利用，以实现更高效、智能和自动化的应用。<br>
+            </p></div>
+        </div>
+      </div>
+    <p></p>
+<h2 id="1-1-产品架构"><a href="#1-1-产品架构" class="headerlink" title="1.1 产品架构"></a>1.1 产品架构</h2><p><strong style="color: #6f42c1;">传统的四层架构</strong>：感知层、网络层、平台层、应用层</p>
+<div>
+  <img src="https://gitee.com/quano/www/raw/master/img/iot/iot_four_layer.svg" style="display: inline-block; width: 70%">
+</div>
+
+<p>阿里云产品架构</p>
+<div>
+  <img src="https://gitee.com/quano/www/raw/master/img/iot/ioT_p202711.png" style="display: inline-block; width: 70%">
+</div>
+
+<h2 id="1-2-核心概念"><a href="#1-2-核心概念" class="headerlink" title="1.2 核心概念"></a>1.2 核心概念</h2><table border="1" cellpadding="10" class="_table">
+  <thead>
+    <tr>
+      <th>分类</th>
+      <th>核心概念</th>
+      <th>相关概念</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="3">设备与硬件</td>
+      <td>物联网设备</td>
+      <td>传感器、执行器、智能硬件</td>
+    </tr>
+    <tr>
+      <td>传感器</td>
+      <td>温度传感器、湿度传感器、光传感器、运动传感器</td>
+    </tr>
+    <tr>
+      <td>执行器</td>
+      <td>电机、阀门、马达、灯泡</td>
+    </tr>
+    <tr>
+      <td rowspan="2">通信与网络</td>
+      <td>通信协议</td>
+      <td>Wi-Fi、蓝牙、Zigbee、LoRa、5G</td>
+    </tr>
+    <tr>
+      <td>网络架构</td>
+      <td>边缘计算、云计算、局域网（LAN）、广域网（WAN）</td>
+    </tr>
+    <tr>
+      <td rowspan="2">数据处理与分析</td>
+      <td>数据采集与存储</td>
+      <td>数据库、数据仓库、流处理平台</td>
+    </tr>
+    <tr>
+      <td>数据分析</td>
+      <td>大数据分析、机器学习、人工智能、预测分析</td>
+    </tr>
+    <tr>
+      <td rowspan="2">安全与隐私</td>
+      <td>设备安全</td>
+      <td>身份认证、加密协议、固件更新</td>
+    </tr>
+    <tr>
+      <td>数据安全</td>
+      <td>数据加密、隐私保护、防火墙</td>
+    </tr>
+    <tr>
+      <td rowspan="2">平台与管理</td>
+      <td>物联网平台</td>
+      <td>AWS IoT、Azure IoT、Google Cloud IoT、IBM Watson IoT</td>
+    </tr>
+    <tr>
+      <td>标准化与协议</td>
+      <td>MQTT、CoAP、HTTP、REST API</td>
+    </tr>
+    <tr>
+      <td rowspan="2">应用层</td>
+      <td>智能家居</td>
+      <td>智能灯光、智能空调、智能门锁</td>
+    </tr>
+    <tr>
+      <td>工业物联网（IIoT）</td>
+      <td>设备监控、远程诊断、智能工厂</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<p>设备与硬件：物联网的核心是硬件设备，这些设备包括传感器（感知信息）和执行器（执行命令）。这些硬件是物联网系统的基础。<br>通信与网络：设备通过不同的通信协议（如Wi-Fi、蓝牙、5G等）相互连接，并通过网络架构（边缘计算、云计算等）实现数据传输和远程控制。网络是支撑物联网运行的中枢。</p>
+<p>数据处理与分析：收集到的数据会被存储、处理和分析，分析结果可以用于决策或自动化控制。数据采集与存储和数据分析（如机器学习、大数据分析等）是物联网运作的智能化核心。</p>
+<p>安全与隐私：在数据传输和设备运行过程中，物联网的安全性非常重要，包括设备安全（如认证和固件更新）和数据安全（如加密和隐私保护）来防止恶意攻击。</p>
+<p>平台与管理：物联网平台负责设备管理、数据处理、规则引擎等任务。平台通常提供API接口，并采用标准化协议（如MQTT、CoAP等）保证设备与平台之间的互操作性。</p>
+<p>应用层：最终，物联网技术会应用到各种领域中，常见的包括智能家居（如智能灯光、空调等）和工业物联网（IIoT）（如设备监控、智能工厂等）。</p>
+<h1 id="二、核心目标"><a href="#二、核心目标" class="headerlink" title="二、核心目标"></a>二、核心目标</h1><p>物联网平台的目标，和价值是什么呢？</p>
+<p>实现智能设备的互联、信息共享、自动化控制。 </p>
+<h2 id="2-1-核心目标"><a href="#2-1-核心目标" class="headerlink" title="2.1 核心目标"></a>2.1 核心目标</h2>
+      <div class="tip-container tip-warning" style="
+        background-color: #fffaf0;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #ed8936;
+        ">
+          <i class="fa fa-exclamation-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>核心目标：让设备“好用、好管、好值钱”</p>
+<ol>
+<li>统一接入：不管什么设备、什么协议、都能接进来</li>
+<li>统一管理：百万级设备，能监控、能运维、能升级</li>
+<li>数据可用：把设备上报的原始数据编程有用信息</li>
+<li>业务可快速落地： 不用每个项目从头写连接、通讯、存储</li>
+<li>安全可控：设备不被乱连、指令不被篡改、数据不泄漏。 </li>
+</ol>
+<p>让“万物互联” 从技术难题， 变为开箱即用的能力。<br>
+            </p></div>
+        </div>
+      </div>
+    <p></p>
+<h2 id="2-2-核心价值"><a href="#2-2-核心价值" class="headerlink" title="2.2 核心价值"></a>2.2 核心价值</h2><p><strong style="color: #6f42c1;">平台化（降本）</strong>：不用每个业务场景 从头造一套“设备联网系统”<br>协议转换、消息转发、存储、告警都通过平台搞定<br>开发周期从月-&gt; 天</p>
+<p><strong style="color: #6f42c1;">提效</strong>: 设备远程运维、远程升级、远程诊断<br>自动告警、自动联动、批量控制； 人不用跑现场， 平台全搞定。</p>
+<p><strong style="color: #6f42c1;">数据变现(最核心)</strong>：设备只是入口，数据才是价值。<br>设备运行数据 ——&gt; 预测维护； 用户行为数据 ——&gt; 优化产品 ；行业数据 -&gt; 做分析、做服务、做新模式。</p>
+<p><strong style="color: #6f42c1;">开放能力</strong>：把物联网能力封装成API/SDK。 让APP、小程序、第三方系统都能调用。IOT能力变成一种公共服务。</p>
+<p>省成本、 提效率、挖数据、开放能力。</p>
+<h1 id="三、技术挑战"><a href="#三、技术挑战" class="headerlink" title="三、技术挑战"></a>三、技术挑战</h1><p>随着大量物联网场景不断涌现，海量设备的管理运维、海量数据的分析处理，以及业务全球化的发展趋势，都给物联网平 台带来了一系列新的要求和新的技术挑战。</p>
+<h2 id="2-1-高并发"><a href="#2-1-高并发" class="headerlink" title="2.1 高并发"></a>2.1 高并发</h2>
+      <div class="tip-container tip-question" style="
+        background-color: #fef7fb;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #e53e3e;
+        ">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>（物联网设备规模随着行业发展不断增多，设备逐步增多要求平台的系统容量能不停的水平扩展）<br>什么样的系统架构来支撑不断增多的设备？ 千万级设备的并发建连 怎么解决？<br>怎么维持百亿级 设备的长连接稳定性、怎么保障百万级/千万级消息通信的实时性是个非常复杂的系统工程。</p>
+            </div>
+        </div>
+      </div>
+    
+<h3 id="2-1-1-解决方案"><a href="#2-1-1-解决方案" class="headerlink" title="2.1.1 解决方案"></a>2.1.1 解决方案</h3><h2 id="2-2-高可用"><a href="#2-2-高可用" class="headerlink" title="2.2 高可用"></a>2.2 高可用</h2>
+      <div class="tip-container tip-question" style="
+        background-color: #fef7fb;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #e53e3e;
+        ">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>（早期主要应用在消费类智能家居场景。最近从文旅、园区、地产、城市、农 业，再到工业、汽车等场景）<br>高可用能力决定了能够支撑客户 业务持续运行的底线，在应对大量影响民生安全、工业制造、社会稳定的场景时，需要提供极近苛刻的高可用能力。</p>
+<p>物联网链路的高可用如何做？</p>
+            </div>
+        </div>
+      </div>
+    
+<h3 id="2-2-1-解决方案"><a href="#2-2-1-解决方案" class="headerlink" title="2.2.1 解决方案"></a>2.2.1 解决方案</h3><h2 id="2-3-数智化"><a href="#2-3-数智化" class="headerlink" title="2.3 数智化"></a>2.3 数智化</h2><p>物联网的数据如何应用？以实现智能化应用， 给企业带来价值。</p>
+<h3 id="2-3-1-解决方案"><a href="#2-3-1-解决方案" class="headerlink" title="2.3.1 解决方案"></a>2.3.1 解决方案</h3><h1 id="四、核心技术"><a href="#四、核心技术" class="headerlink" title="四、核心技术"></a>四、核心技术</h1><p>物联网平台的核心技术，就是围绕： <strong style="color: #6f42c1;">怎么接进来、怎么管得住、怎么传的稳、怎么存的下、怎么用得好、怎么保安全。</strong></p>
+<h2 id="2-1-设备接入与协议适配"><a href="#2-1-设备接入与协议适配" class="headerlink" title="2.1 设备接入与协议适配"></a>2.1 设备接入与协议适配</h2><h2 id="2-2-消息通信与数据流转"><a href="#2-2-消息通信与数据流转" class="headerlink" title="2.2 消息通信与数据流转"></a>2.2 消息通信与数据流转</h2><h2 id="2-3-设备管理（最核心能力）"><a href="#2-3-设备管理（最核心能力）" class="headerlink" title="2.3 设备管理（最核心能力）"></a>2.3 设备管理（最核心能力）</h2><h2 id="2-4-规则引擎-业务编排"><a href="#2-4-规则引擎-业务编排" class="headerlink" title="2.4 规则引擎/业务编排"></a>2.4 规则引擎/业务编排</h2><h2 id="2-5-时序数据存储与处理"><a href="#2-5-时序数据存储与处理" class="headerlink" title="2.5 时序数据存储与处理"></a>2.5 时序数据存储与处理</h2><h2 id="2-6-边缘计算"><a href="#2-6-边缘计算" class="headerlink" title="2.6 边缘计算"></a>2.6 边缘计算</h2><h2 id="2-7-安全体系"><a href="#2-7-安全体系" class="headerlink" title="2.7 安全体系"></a>2.7 安全体系</h2><h2 id="2-8-开放平台-amp-API服务"><a href="#2-8-开放平台-amp-API服务" class="headerlink" title="2.8 开放平台&amp;API服务"></a>2.8 开放平台&amp;API服务</h2><h1 id="五、物联网平台架构"><a href="#五、物联网平台架构" class="headerlink" title="五、物联网平台架构"></a>五、物联网平台架构</h1><p>经典的四层：</p>
+<p>补充的： 数据服务（时序数据、流计算、数据分析）、安全（身份认证、加密、权限）、运维（告警、日志、链路追踪）、边缘计算（云边协同）。 这些作为横切层、支撑能力。贯穿整个物联网平台。</p>
+<h1 id="六、演进过程"><a href="#六、演进过程" class="headerlink" title="六、演进过程"></a>六、演进过程</h1><h1 id="七、应用实践"><a href="#七、应用实践" class="headerlink" title="七、应用实践"></a>七、应用实践</h1><p>资料：<br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://geekdaxue.co/read/chaining@iot/zfcdps">物联网核心技术手册</a><br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://help.aliyun.com/zh/iot/product-overview/service-architecture">阿里云物联网平台产品架构</a><br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://developer.baidu.com/article/detail.html?id=3383933">百度物联网平台架构设计:模型能力</a><br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://zhuanlan.zhihu.com/p/1936542343420437901">知乎：企业IoT物联网平台技术架构白皮书</a><br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://zhuanlan.zhihu.com/p/508386165">知乎：IOT物联网概述及应用层架构入门篇</a></p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/c8690248/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/c8690248/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    2.相关问题
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/42ae1a3/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/42ae1a3/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">2.AI中台建设概述</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

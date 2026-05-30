@@ -1,0 +1,518 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>k8s安装指南 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="MicroService">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="k8s安装指南">
+<meta property="og:url" content="https://waisec.cn/wiki/496db2a2/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-21T14:56:24.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.109Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="MicroService">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "k8s安装指南",
+    "url": "https://waisec.cn/wiki/496db2a2/",
+    "datePublished": "2021-06-21T14:56:24.000Z",
+    "dateModified": "2026-04-23T14:13:12.109Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "MicroService"
+    
+}
+</script>
+
+<article id="post-平台工具 | 工程架构和工具/MicroService/容器云平台/001.k8s安装指南" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="toc-text">1. 安装命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">2. 初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AE%89%E8%A3%85Kubernetes"><span class="toc-text">3. 安装Kubernetes.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%94%A8kind%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAk8s%E9%9B%86%E7%BE%A4"><span class="toc-text">4. 用kind创建一个k8s集群.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%9C%A8%E9%9B%86%E7%BE%A4%E4%B8%AD%E9%83%A8%E7%BD%B2%E5%BA%94%E7%94%A8"><span class="toc-text">5. 在集群中部署应用.</span></a></li></ol></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%81%97%E7%95%99%E9%97%AE%E9%A2%98"><span class="toc-text">遗留问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%A0%E4%B8%BA-etc-docker-daemon-json-%E9%85%8D%E7%BD%AE%E5%8E%9F%E5%9B%A0%E5%AF%BC%E8%87%B4docker%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5"><span class="toc-text">因为&#x2F;etc&#x2F;docker&#x2F;daemon.json 配置原因导致docker启动失败.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker%E9%BB%98%E8%AE%A4%E7%9A%84%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E4%B8%BA"><span class="toc-text">docker默认的数据文件路径为</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="toc-text">参考文档</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#K8s%E6%95%99%E7%A8%8B"><span class="toc-text">K8s教程</span></a>
+                    
+                </li></div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/">MicroService</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/%E5%AE%B9%E5%99%A8%E4%BA%91%E5%B9%B3%E5%8F%B0/">容器云平台</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/MicroService/" rel="tag">MicroService</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2021/06/" onclick="onclickRoute(event, '/archives/2021/06/')">
+            <time datetime="2021-06-21T14:56:24.000Z" itemprop="datePublished">2021-06-21</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="MicroService">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/496db2a2/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            k8s安装指南
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p>首先选择docker适配的k8s版本.</p>
+<p>docker 版本  20.10.1<br>k8s 1.23.1-00 amd64</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装前做的事</p>
+<ul>
+<li>关闭swap.</li>
+<li>添加k8s源.</li>
+<li>版本选择</li>
+<li>如果是window wsl. 需要确保 可以使用systemctl 而不是service.<a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.cnblogs.com/MorStar/p/15078738.html">方案</a></li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># k8s 的阿里源</span></span><br><span class="line">apt-get update &amp;&amp; apt-get install -y apt-transport-https</span><br><span class="line">apt upgrade -y</span><br><span class="line">curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add - </span><br><span class="line"><span class="built_in">tee</span> /etc/apt/sources.list.d/kubernetes.list &lt;&lt;-<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main</span><br><span class="line">EOF</span><br><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+<h3 id="1-安装命令"><a href="#1-安装命令" class="headerlink" title="1. 安装命令"></a>1. 安装命令</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt install kubelet=1.23.1-00 kubeadm=1.23.1-00 kubectl=1.23.1-00 -y</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="2-初始化"><a href="#2-初始化" class="headerlink" title="2. 初始化"></a>2. 初始化</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm init --image-repository registry.aliyuncs.com/google_containers --pod-network-cidr=10.244.0.0/16</span><br></pre></td></tr></table></figure>
+<h3 id="3-安装Kubernetes"><a href="#3-安装Kubernetes" class="headerlink" title="3. 安装Kubernetes."></a>3. 安装Kubernetes.</h3><p>安装 Kubernetes 集群有很多成熟的方案，在本地搭建也有 minikube、microk8s 等等，我们这里选择使用 KinD：在容器中来运行 Kubernetes 的一种简单方式。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载 KinD 二进制文件</span></span><br><span class="line">curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.8.1/kind-$(<span class="built_in">uname</span>)-amd64</span><br><span class="line"><span class="comment"># 标记为可执行文件</span></span><br><span class="line"><span class="built_in">chmod</span> +x ./kind</span><br><span class="line"><span class="comment"># 移动到 PATH 目录下去</span></span><br><span class="line"><span class="built_in">mv</span> ./kind /usr/local/bin/</span><br><span class="line"><span class="comment"># TODO，记得提前下载安装 kubectl 二进制文件</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载 KinD 二进制文件</span></span><br><span class="line">curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.8.1/kind-$(<span class="built_in">uname</span>)-amd64</span><br><span class="line"><span class="comment"># 标记为可执行文件</span></span><br><span class="line"><span class="built_in">chmod</span> +x ./kind</span><br><span class="line"><span class="comment"># 移动到 PATH 目录下去</span></span><br><span class="line"><span class="built_in">mv</span> ./kind /usr/local/bin/</span><br><span class="line"><span class="comment"># TODO，记得提前下载安装 kubectl 二进制文件</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-用kind创建一个k8s集群"><a href="#4-用kind创建一个k8s集群" class="headerlink" title="4. 用kind创建一个k8s集群."></a>4. 用kind创建一个k8s集群.</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查是否设置了 KUBECONFIG 环境变量</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$KUBECONFIG</span></span><br><span class="line"><span class="comment"># 检查是否存在 .kube 目录，不需要手动创建</span></span><br><span class="line"><span class="built_in">ls</span> <span class="variable">$HOME</span>/.kube</span><br><span class="line"><span class="comment"># 使用 kind 命令创建一个名为 wslk8s 的集群</span></span><br><span class="line">kind create cluster --name wslk8s</span><br><span class="line"><span class="comment"># 创建后检查 .kube 目录</span></span><br><span class="line"><span class="built_in">ls</span> <span class="variable">$HOME</span>/.kube</span><br></pre></td></tr></table></figure>
+<h3 id="5-在集群中部署应用"><a href="#5-在集群中部署应用" class="headerlink" title="5. 在集群中部署应用."></a>5. 在集群中部署应用.</h3><p>比如安装一个kubernetes Dashboard.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在集群中安装 Dashboard</span></span><br><span class="line">kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.1/aio/deploy/recommended.yaml</span><br><span class="line"><span class="comment"># 获取 dashboard 的资源对象</span></span><br><span class="line">kubectl get all -n kubernetes-dashboard</span><br></pre></td></tr></table></figure>
+<h1 id="遗留问题"><a href="#遗留问题" class="headerlink" title="遗留问题"></a>遗留问题</h1><ul>
+<li>k8s的网络环境.</li>
+<li>DNS服务.</li>
+<li>wsl每次启动 怎么重启k8s.</li>
+<li>kubectl proxy 是什么 什么用.</li>
+<li>共享资源下的 占用问题. 分配权重？？ 针对高性能计算性服务.</li>
+<li>服务优雅性. 上下线.</li>
+</ul>
+<p>其他的概念.</p>
+<ul>
+<li>网络环境： <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.cnblogs.com/wangxu01/articles/11675865.html">k8s的dns服务</a></li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f dig.yaml</span><br></pre></td></tr></table></figure>
+<p>dig.yaml<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: Pod</span><br><span class="line">metadata:</span><br><span class="line">        name: dig</span><br><span class="line">        namespace: default</span><br><span class="line">spec:</span><br><span class="line">        containers:</span><br><span class="line">        - name: dig</span><br><span class="line">          image:  docker.io/azukiapp/dig</span><br><span class="line">          command:</span><br><span class="line">                  - sleep</span><br><span class="line">                  - &quot;3600&quot;</span><br><span class="line">          imagePullPolicy: IfNotPresent</span><br><span class="line">        restartPolicy: Always</span><br></pre></td></tr></table></figure></p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.jianshu.com/p/8fb1b1265ec8">k8s dns原理</a></p>
+<h2 id="因为-etc-docker-daemon-json-配置原因导致docker启动失败"><a href="#因为-etc-docker-daemon-json-配置原因导致docker启动失败" class="headerlink" title="因为/etc/docker/daemon.json 配置原因导致docker启动失败."></a>因为/etc/docker/daemon.json 配置原因导致docker启动失败.</h2><p>{<br>        “exec-opts”: [“native.cgroupdriver=systemd”],<br>        “log-driver”: “json-file”,<br>        “log-opts”: {<br>                “max-size”: “100m”<br>        },<br>        “data-root”: “/mnt/d/DockerData/dockerDatas”,<br>        “storage-driver”: “overlay2”,<br>        “storage-opts”: [“overlay2.override_kernel_check=true”],<br>        “registry-mirrors”: [“<a target="_blank" rel="external nofollow noopener noreferrer" href="https://tabss8zh.mirror.aliyuncs.com">https://tabss8zh.mirror.aliyuncs.com</a>“],<br>        “runtimes”: {<br>                “nvidia”: {<br>                        “path”: “/usr/bin/nvidia-container-runtime”,<br>                        “runtimeArgs”: []<br>                }<br>        }<br>}</p>
+<p>“data-root”: “/mnt/d/DockerData/docker”,<br>docker pull registry.aliyuncs.com/google_containers/kube-apiserver:v1.23.1</p>
+<h2 id="docker默认的数据文件路径为"><a href="#docker默认的数据文件路径为" class="headerlink" title="docker默认的数据文件路径为"></a>docker默认的数据文件路径为</h2><p>/var/lib/docker</p>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://cloud.tencent.com/developer/article/1645054">wsl上k8s</a></p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.csdn.net/weixin_44797299/article/details/111906721">代码自动发布—docker版本(20.10.1)+k8s版本(1.20.1)</a></p>
+<h1 id="K8s教程"><a href="#K8s教程" class="headerlink" title="K8s教程"></a>K8s教程</h1><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://kuboard.cn/learning/">https://kuboard.cn/learning/</a><br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://kubernetes.io/zh/">https://kubernetes.io/zh/</a><br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.kubernetes.org.cn/doc-11">k8s中文文档</a></p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/a377ceed/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/a377ceed/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    001什么是服务治理
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/de7c53fe/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/de7c53fe/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">线程池</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

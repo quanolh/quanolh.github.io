@@ -1,0 +1,444 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>Reactive | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="AI工程师,大模型应用,数据架构,Agent,AI知识库,风控架构,Novus,Wiki,Quinoa,quanoc">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reactive">
+<meta property="og:url" content="https://waisec.cn/wiki/51731531/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-01-08T03:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.121Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="AI工程师,大模型应用,数据架构,Agent,AI知识库,风控架构,Novus,Wiki,Quinoa,quanoc">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Reactive",
+    "url": "https://waisec.cn/wiki/51731531/",
+    "datePublished": "2019-01-08T03:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.121Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png"
+}
+</script>
+
+<article id="post-平台工具 | 工程架构和工具/[3]计算机基础/编程领域/响应式编程" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">[3]计算机基础</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BC%96%E7%A8%8B%E9%A2%86%E5%9F%9F/">编程领域</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2019/01/" onclick="onclickRoute(event, '/archives/2019/01/')">
+            <time datetime="2019-01-08T03:55:57.000Z" itemprop="datePublished">2019-01-08</time>
+        </a>
+    </div>
+
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/51731531/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            Reactive
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <h2 id="响应式编程"><a href="#响应式编程" class="headerlink" title="响应式编程"></a>响应式编程</h2><p>基于事件驱动(事件模式，或者订阅者模式)，类似于Netty异步事件编程模型．</p>
+<p>对不同的事件做不同的处理．所有信息都通过一个编程模型处理．</p>
+<h3 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h3><p>传统模型相比</p>
+<ol>
+<li>JavaWeb开发，基于Servlet. Servlet3.0之前 线程阻塞模型，只有当业务处理完成并返回后时结束Servlet线程．</li>
+<li>3.0规范新特性，支持异步处理－Servlet线程将耗时操作委派给另一个线程完成.在不生成响应的情况下返回至容器．（问题）</li>
+</ol>
+<h3 id="Guava的EventBus实现"><a href="#Guava的EventBus实现" class="headerlink" title="Guava的EventBus实现"></a>Guava的EventBus实现</h3><p>订阅者模式，观察者模式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EventBusDemo</span> &#123;</span><br><span class="line">    <span class="meta">@Subscribe</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sendMessageByMail</span><span class="params">(String message)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;邮件发送一条信息：&quot;</span> + message);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Subscribe</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sendMessageByPhone</span><span class="params">(String message)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;短信发送一条信息:&quot;</span> + message);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">EventBus</span> <span class="variable">eventBus</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">EventBus</span>();</span><br><span class="line">        eventBus.register(<span class="keyword">new</span> <span class="title class_">EventBusDemo</span>());</span><br><span class="line">        eventBus.post(<span class="string">&quot;hi, boys&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Mono和Flux常用API"><a href="#Mono和Flux常用API" class="headerlink" title="Mono和Flux常用API"></a>Mono和Flux常用API</h3><p>都是数据反应式编程的核心组件．</p>
+<p>Reactor是JVM的完全非阻塞响应式编程基础，具有高效的需求管理（以管理”背压”的形式）<br>它直接与Java 8功能的API，特别是整合CompletableFuture，Stream和 Duration</p>
+<p>Flux 相当于一个 RxJava Observable 观察者</p>
+<h3 id="WebFlux"><a href="#WebFlux" class="headerlink" title="WebFlux"></a>WebFlux</h3><p>Spring WebFlux是随Spring 5推出的响应式Web框架。</p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.csdn.net/get_set/article/details/79480233">Spring WebFlux快速上手——响应式Spring的道法术器</a></p>
+<p>微服务,部署包大小,应用占用内存大小.</p>
+<h3 id="Rsocket"><a href="#Rsocket" class="headerlink" title="Rsocket"></a>Rsocket</h3><p>用于响应式应用程序的新网络协议(应用层协议)．</p>
+<p>提供Java，JavaScript，C ++和Kotlin等实现</p>
+<p>它是一种基于Reactive Streams背压的双向，多路复用，基于消息的二进制协议</p>
+<p>语言无关.</p>
+<h4 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h4><p>该协议专门设计用于与Reactive风格应用配合使用，这些应用程序基本上是非阻塞的，并且通常（但不总是）与异步行为配对</p>
+<p>所谓Reactive背压: 即发布者无法向订户发送数据直到该订户已经准备就绪的想法，这是与“异步”的关键区别。（服务端主动）</p>
+<p>问题: 很多个客户端对于同一个消息，准备好的时间层次不一，服务端怎么控制这个(这个消息需要一直保存着吗，什么时候清理)．</p>
+<blockquote>
+<p>反应式编程(响应式reactive)是 Java 中高效应用的下一个前沿。但有两个主要障碍 -数据访问和网络。RSocket旨在解决后一个问题，而R2DBC旨在解决前者问题。</p>
+</blockquote>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.codercto.com/a/29868.html">响应式应用新协议RSocket</a></p>
+<p>iPhone和Andriod手机，与后端服务交互，提供数据统计，所有这些互动模型，http并不是为此设计．</p>
+<blockquote>
+<p>http. 超文本传输协议,用于从WWW服务器传输超文本到本地浏览器的传输协议。它可以使浏览器更加高效，使网络传输减少.</p>
+<p>rest. 基于HTTP的REST服务. restTemplate. 获取http资源, 通过指定的一些格式(json等)．</p>
+</blockquote>
+<ul>
+<li>数据统计收集</li>
+<li>消息推送</li>
+<li>异步响应</li>
+</ul>
+<h4 id="RSocket、-Envoy和-Istio"><a href="#RSocket、-Envoy和-Istio" class="headerlink" title="RSocket、. Envoy和. Istio"></a>RSocket、. Envoy和. Istio</h4><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://yq.aliyun.com/articles/683037?utm_content=g_1000035441">从微服务治理的角度看RSocket、. Envoy和. Istio</a></p>
+<p>重点是把反应流的实现，提升到应用层上来。<br>其实在底层的协议中，就有反应流的实现，tcp的滑动窗口就是很好的例子。</p>
+<p>很大一部分的线上故障是由于阻塞链接造成的.</p>
+<p>简单的例子是如果所有的通讯都是反应式的，那就不用容断了.</p>
+<h4 id="与http不同的四种交互模式-（重点）"><a href="#与http不同的四种交互模式-（重点）" class="headerlink" title="与http不同的四种交互模式 （重点）"></a>与http不同的四种交互模式 （重点）</h4><ul>
+<li><p>Fire-and-Forget<br>优化请求/响应，在不需要响应时非常有用，例如非关键事件日志记录。</p>
+</li>
+<li><p>请求/响应<br>当您发送一个请求并收到一个响应时，就像HTTP一样。即使在这里，该协议也具有优于HTTP的优点，因为它是异步和多路复用的。</p>
+</li>
+<li><p>请求/流<br>类似于返回集合的请求/响应，集合被回送而不是查询直到完成，因此例如发送银行帐号，用实时的帐户事务流进行响应。</p>
+</li>
+<li><p>频道<br>允许任意交互模型的双向消息流。</p>
+</li>
+</ul>
+<p>Unix网络编程模型中，底层操作系统的通道都是全双工的，同时支持读写操作．</p>
+<p>多路复用的Selector不短的轮询注册在其上的Channel.如果某个Channel上面发生读或者写事件，这个Channel就处于就绪状态，会被Selector轮询出来．然后通过SelectionKey可以获取就绪的Channel的集合，进行后续的I/O操作.</p>
+<p>TomcatNio　针对网络IO层面的异步－多路复用.(读写)</p>
+<p>Rsocket是交互模式的异步.(或者说Rsocket的请求和响应与Http的请求和响应有什么区别，优点在那里.)</p>
+<p>Http的异步通过callBack回调实现.(比如短信交互流程)</p>
+<p>客户端使用http发送，短信平台和网关再到运营商都是长链接协议.短信平台受到同一链路上的送达之后．会callBack客户端.客户端收到后，处理回调．如果回调资源处理不当(处理不过来),会导致回调消息丢失．　(Rsocket回压场景)</p>
+<p>这种http的异步是通过应用程序多次请求实现.再就是客户端层面控制异步. 将请求后的等待丢进线程池或者队列来存储 AsyncCall，然后去做其他的事情．</p>
+<blockquote>
+<p>将 AsycnCall 添加到队列中。将任务交给 Dispatcher 去执行。<br>比如　OKHTTP实现的异步请求．</p>
+</blockquote>
+<ul>
+<li>使用线程池处理异步任务（这种开销太大，很少做）.真正的异步执行者 AsyncCall</li>
+<li>使用队列.将 AsycnCall 添加到队列中。将任务交给 Dispatcher 去执行</li>
+</ul>
+<p>在使用 Dispatcher 会将 AsyncCall 交给指定的线程去执行，而 AsyncCall 是 NamedRunnable 的子类</p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.jianshu.com/p/3214ef86a52d">OKHTTP异步和同步请求简单分析</a></p>
+<p>Rsocket的异步，理解为没有收到响应，链接保持，但可以做其他事情，受到响应后再做处理.Rsocket天然支持?</p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.jianshu.com/p/76ff17bc6dea">深度解读Tomcat中的NIO模型</a></p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.jdon.com/tags/24484">异步编程：协作性多任务处理</a></p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/345f977/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/345f977/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    伪集群模式安装
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/897196e0/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/897196e0/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">开发工具</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

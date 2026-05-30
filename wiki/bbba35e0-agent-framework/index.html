@@ -1,0 +1,1689 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>1.2026年Agent顶级框架解读 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="LLM,Agent">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.2026年Agent顶级框架解读">
+<meta property="og:url" content="https://waisec.cn/wiki/bbba35e0-agent-framework/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-08T03:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.140Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="LLM">
+<meta property="article:tag" content="Agent">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "1.2026年Agent顶级框架解读",
+    "url": "https://waisec.cn/wiki/bbba35e0-agent-framework/",
+    "datePublished": "2026-03-08T03:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.140Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "LLM,Agent"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/1|大模型应用/01.Agent原理/01_Agent认识/001.2026年Agent顶级框架解读" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2026-%E5%B9%B4-14-%E4%B8%AA-Agent-%E9%A1%B6%E7%BA%A7%E6%A1%86%E6%9E%B6%E6%B7%B1%E5%BA%A6%E8%A7%A3%E8%AF%BB"><span class="toc-text">2026 年 14 个 Agent 顶级框架深度解读</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Agent-%E6%A1%86%E6%9E%B6%E5%85%A8%E6%99%AF%E5%9B%BE"><span class="toc-text">Agent 框架全景图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6%E6%A6%82%E8%A7%88%E9%80%9F%E6%9F%A5%E8%A1%A8"><span class="toc-text">框架概览速查表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#01-%C2%B7-LangChain"><span class="toc-text">01 · LangChain</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#02-%C2%B7-LangGraph"><span class="toc-text">02 · LangGraph</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#03-%C2%B7-CrewAI"><span class="toc-text">03 · CrewAI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#04-%C2%B7-Microsoft-Agent-Framework"><span class="toc-text">04 · Microsoft Agent Framework</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#05-%C2%B7-AutoGen"><span class="toc-text">05 · AutoGen</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#06-%C2%B7-Semantic-Kernel"><span class="toc-text">06 · Semantic Kernel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#07-%C2%B7-Rasa"><span class="toc-text">07 · Rasa</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#08-%C2%B7-LlamaIndex"><span class="toc-text">08 · LlamaIndex</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#09-%C2%B7-MetaGPT"><span class="toc-text">09 · MetaGPT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%C2%B7-Camel-AI"><span class="toc-text">10 · Camel-AI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%C2%B7-Haystack"><span class="toc-text">11 · Haystack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%C2%B7-Agno"><span class="toc-text">12 · Agno</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%C2%B7-Dify"><span class="toc-text">13 · Dify</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%C2%B7-OpenAI-Agents-SDK"><span class="toc-text">14 · OpenAI Agents SDK</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6%E9%80%89%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91"><span class="toc-text">框架选型决策树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%BC%E5%90%88%E5%AF%B9%E6%AF%94%E9%9B%B7%E8%BE%BE%E5%9B%BE"><span class="toc-text">综合对比雷达图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A2026-%E5%B9%B4%E6%A1%86%E6%9E%B6%E6%A0%BC%E5%B1%80"><span class="toc-text">总结：2026 年框架格局</span></a></li></ol></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/">1|大模型应用</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/01-Agent%E5%8E%9F%E7%90%86/">01.Agent原理</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/01-Agent%E5%8E%9F%E7%90%86/01-Agent%E8%AE%A4%E8%AF%86/">01_Agent认识</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Agent/" rel="tag">Agent</a>, <a class="tag-link-link" href="/tags/LLM/" rel="tag">LLM</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-08T03:55:57.000Z" itemprop="datePublished">2026-03-08</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="LLM,Agent">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/bbba35e0-agent-framework/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            2026年Agent顶级框架解读
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <h1 id="2026-年-14-个-Agent-顶级框架深度解读"><a href="#2026-年-14-个-Agent-顶级框架深度解读" class="headerlink" title="2026 年 14 个 Agent 顶级框架深度解读"></a>2026 年 14 个 Agent 顶级框架深度解读</h1><blockquote>
+<p>AI Agent 正在从实验室走向生产。框架格局从”百花齐放”收敛为清晰的梯队分布——本文系统梳理当下最值得关注的 14 个框架，覆盖架构设计、核心特性、优缺点与适用场景，帮助你在技术选型时少走弯路。</p>
+</blockquote>
+<span id="more"></span>
+<hr>
+<h2 id="Agent-框架全景图"><a href="#Agent-框架全景图" class="headerlink" title="Agent 框架全景图"></a>Agent 框架全景图</h2><p><strong>人工智能Agent（智能体）</strong>彻底改变了软件开发者构建智能应用的方式。<br>这些AI Agent框架提供了所需的基础设施、工具集和方法论，用以创建能够自主进行推理、规划并执行复杂任务的智能系统。</p>
+<p>Agent已从简单的聊天机器人演变为能进行多步骤推理、工具使用和协同解决问题的复杂系统。 对于Agent的构建，选择合适的框架至关重要。</p>
+<p>本文深入解读当前最有效的11个AI Agent框架，比较他们的特性、优势、劣势以及理想的应用场景。以便您在构建Agent时做出合适的选择。</p>
+<svg viewbox="0 0 900 480" width="860px" xmlns="http://www.w3.org/2000/svg" font-family="'Helvetica Neue', Arial, sans-serif" style="max-width:900px;width:100%;background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0">
+  <defs>
+    <marker id="arr" markerwidth="8" markerheight="6" refx="8" refy="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <text x="450" y="26" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e293b">2026 Agent 框架生态全景</text>
+
+  <rect x="14" y="48" width="108" height="26" rx="6" fill="#dbeafe"/>
+  <text x="68" y="66" text-anchor="middle" font-size="11" font-weight="bold" fill="#1d4ed8">🎛 高控制力</text>
+  <rect x="14" y="395" width="108" height="26" rx="6" fill="#fce7f3"/>
+  <text x="68" y="413" text-anchor="middle" font-size="11" font-weight="bold" fill="#9d174d">🚀 快速原型</text>
+
+  <line x1="140" y1="440" x2="870" y2="430" stroke="#cbd5e1" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="505" y="450" text-anchor="middle" font-size="10.5" fill="#64748b">← 单智能体 · 编排复杂度 · 多智能体协作 →
+</text>
+
+  <line x1="140" y1="440" x2="140" y2="44" stroke="#cbd5e1" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="28" y="240" text-anchor="middle" font-size="10.5" fill="#64748b" transform="rotate(-90,28,240)">← 易用 · 控制力 · 复杂 →</text>
+
+  <!-- LangGraph -->
+  <ellipse cx="790" cy="70" rx="66" ry="27" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="790" y="66" text-anchor="middle" font-size="11" font-weight="bold" fill="#1d4ed8">LangGraph</text>
+  <text x="790" y="82" text-anchor="middle" font-size="9" fill="#3b82f6">图状态机 · 开源</text>
+
+  <!-- LangChain -->
+  <ellipse cx="560" cy="128" rx="60" ry="26" fill="#bfdbfe" stroke="#2563eb" stroke-width="2"/>
+  <text x="560" y="124" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e40af">LangChain</text>
+  <text x="560" y="140" text-anchor="middle" font-size="9" fill="#2563eb">链式编排 · 开源</text>
+
+  <!-- Semantic Kernel -->
+  <ellipse cx="660" cy="96" rx="64" ry="26" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="660" y="92" text-anchor="middle" font-size="11" font-weight="bold" fill="#5b21b6">Semantic Kernel</text>
+  <text x="660" y="108" text-anchor="middle" font-size="9" fill="#7c3aed">插件内核 · 开源</text>
+
+  <!-- MS Agent FW -->
+  <ellipse cx="760" cy="155" rx="70" ry="27" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="760" y="151" text-anchor="middle" font-size="11" font-weight="bold" fill="#4338ca">MS Agent FW</text>
+  <text x="760" y="167" text-anchor="middle" font-size="9" fill="#6366f1">AutoGen+SK · 开源</text>
+
+  <!-- AutoGen -->
+  <ellipse cx="640" cy="188" rx="56" ry="26" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <text x="640" y="184" text-anchor="middle" font-size="11" font-weight="bold" fill="#0c4a6e">AutoGen</text>
+  <text x="640" y="200" text-anchor="middle" font-size="9" fill="#0284c7">对话多智能体 · 开源</text>
+
+  <!-- CrewAI -->
+  <ellipse cx="700" cy="262" rx="56" ry="26" fill="#fef9c3" stroke="#ca8a04" stroke-width="2"/>
+  <text x="700" y="258" text-anchor="middle" font-size="11" font-weight="bold" fill="#854d0e">CrewAI</text>
+  <text x="700" y="274" text-anchor="middle" font-size="9" fill="#ca8a04">角色团队 · 开源</text>
+
+  <!-- MetaGPT -->
+  <ellipse cx="828" cy="290" rx="56" ry="26" fill="#fce7f3" stroke="#db2777" stroke-width="2"/>
+  <text x="828" y="286" text-anchor="middle" font-size="11" font-weight="bold" fill="#9d174d">MetaGPT</text>
+  <text x="828" y="302" text-anchor="middle" font-size="9" fill="#db2777">软件SOP · 开源</text>
+
+  <!-- Camel-AI -->
+  <ellipse cx="828" cy="212" rx="54" ry="26" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="828" y="208" text-anchor="middle" font-size="11" font-weight="bold" fill="#92400e">Camel-AI</text>
+  <text x="828" y="224" text-anchor="middle" font-size="9" fill="#d97706">角色扮演 · 开源</text>
+
+  <!-- LlamaIndex -->
+  <ellipse cx="500" cy="248" rx="58" ry="26" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+  <text x="500" y="244" text-anchor="middle" font-size="11" font-weight="bold" fill="#9a3412">LlamaIndex</text>
+  <text x="500" y="260" text-anchor="middle" font-size="9" fill="#ea580c">RAG驱动 · 开源</text>
+
+  <!-- Haystack -->
+  <ellipse cx="360" cy="198" rx="54" ry="26" fill="#f0fdf4" stroke="#15803d" stroke-width="2"/>
+  <text x="360" y="194" text-anchor="middle" font-size="11" font-weight="bold" fill="#14532d">Haystack</text>
+  <text x="360" y="210" text-anchor="middle" font-size="9" fill="#15803d">NLP流水线 · 开源</text>
+
+  <!-- Rasa -->
+  <ellipse cx="230" cy="126" rx="52" ry="26" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+  <text x="230" y="122" text-anchor="middle" font-size="11" font-weight="bold" fill="#065f46">Rasa</text>
+  <text x="230" y="138" text-anchor="middle" font-size="9" fill="#059669">对话管理 · 开源</text>
+
+  <!-- Agno -->
+  <ellipse cx="420" cy="318" rx="50" ry="26" fill="#fdf4ff" stroke="#c026d3" stroke-width="2"/>
+  <text x="420" y="314" text-anchor="middle" font-size="11" font-weight="bold" fill="#86198f">Agno</text>
+  <text x="420" y="330" text-anchor="middle" font-size="9" fill="#c026d3">极速多模态 · 开源</text>
+
+  <!-- Dify -->
+  <ellipse cx="230" cy="360" rx="50" ry="26" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
+  <text x="230" y="356" text-anchor="middle" font-size="11" font-weight="bold" fill="#991b1b">Dify</text>
+  <text x="230" y="372" text-anchor="middle" font-size="9" fill="#ef4444">可视化 · 开源</text>
+
+  <!-- OpenAI Agents 闭源虚线 -->
+  <ellipse cx="325" cy="350" rx="64" ry="26" fill="#f1f5f9" stroke="#64748b" stroke-width="2" stroke-dasharray="5 3"/>
+  <text x="325" y="346" text-anchor="middle" font-size="11" font-weight="bold" fill="#334155">OpenAI Agents</text>
+  <text x="325" y="362" text-anchor="middle" font-size="9" fill="#64748b">托管平台 · SDK ⚠</text>
+
+  <!-- 分组框 -->
+  <rect x="595" y="50" width="280" height="218" rx="10" fill="none" stroke="#3b82f6" stroke-width="1.2" stroke-dasharray="6 4" opacity="0.5"/>
+  <text x="734" y="44" text-anchor="middle" font-size="9.5" fill="#3b82f6" font-weight="bold">生产级复杂编排</text>
+
+  <rect x="155" y="88" width="228" height="318" rx="10" fill="none" stroke="#059669" stroke-width="1.2" stroke-dasharray="6 4" opacity="0.4"/>
+  <text x="268" y="418" text-anchor="middle" font-size="9.5" fill="#059669" font-weight="bold">对话 / 低代码 / 垂直场景</text>
+
+  <!-- 图例 -->
+  <line x1="160" y1="428" x2="190" y2="428" stroke="#475569" stroke-width="1.5"/>
+  <text x="194" y="432" font-size="9" fill="#475569">实线 = 开源</text>
+  <line x1="272" y1="428" x2="302" y2="428" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <text x="306" y="432" font-size="9" fill="#64748b">虚线 = 闭源/托管 ⚠</text>
+</svg>
+
+<hr>
+<h2 id="框架概览速查表"><a href="#框架概览速查表" class="headerlink" title="框架概览速查表"></a>框架概览速查表</h2><p>开源说明：MIT - 1 、Apache 2.0 - 2、MPL 2.0 - 3【⚠️ 修改的文件须开源】【三个都可商用】</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>框架</th>
+<th>出品方</th>
+<th>开/闭</th>
+<th>架构范式</th>
+<th>语言</th>
+<th>上手难度</th>
+<th>生产成熟度</th>
+<th>典型场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>LangChain</strong></td>
+<td>LangChain.</td>
+<td>MIT</td>
+<td>链式编排</td>
+<td>Python / JS</td>
+<td>★★☆☆☆</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>快速 PoC、工具集成、RAG 原型</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>LangGraph</strong></td>
+<td>LangChain.</td>
+<td>MIT</td>
+<td>图状态机</td>
+<td>Python / JS</td>
+<td>★★★★☆</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>复杂工作流、循环推理、审批流</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>CrewAI</strong></td>
+<td>CrewAI Inc.</td>
+<td>MIT</td>
+<td>角色团队</td>
+<td>Python</td>
+<td>★★☆☆☆</td>
+<td>⭐⭐⭐⭐</td>
+<td>内容生成流水线、多角色协作 MVP</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>MS Agent FW</strong></td>
+<td>Microsoft</td>
+<td>MIT</td>
+<td>图+对话融合</td>
+<td>Python / C# / Java</td>
+<td>★★★☆☆</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>Azure 企业部署、金融/医疗合规</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>AutoGen</strong></td>
+<td>Microsoft R</td>
+<td>MIT</td>
+<td>对话多智能体</td>
+<td>Python / .NET</td>
+<td>★★★☆☆</td>
+<td>⭐⭐⭐⭐</td>
+<td>代码生成助手、多智能体辩论评审</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Semantic Kernel</strong></td>
+<td>Microsoft</td>
+<td>MIT</td>
+<td>插件内核</td>
+<td>C# / Python / Java</td>
+<td>★★★☆☆</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>.NET 企业应用、Office/Teams 自动化</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Rasa</strong></td>
+<td>Rasa Tech..</td>
+<td>2</td>
+<td>对话状态机</td>
+<td>Python</td>
+<td>★★★☆☆</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>银行客服、电信工单、医疗预约</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>LlamaIndex</strong></td>
+<td>LlamaIndex</td>
+<td>MIT</td>
+<td>RAG + Agent</td>
+<td>Python / TS</td>
+<td>★★★☆☆</td>
+<td>⭐⭐⭐⭐</td>
+<td>企业知识库问答、文档检索溯源</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>MetaGPT</strong></td>
+<td>开源社区</td>
+<td>MIT</td>
+<td>角色 SOP</td>
+<td>Python</td>
+<td>★★★☆☆</td>
+<td>⭐⭐⭐</td>
+<td>代码项目自动生成、技术文档自动化</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>Camel-AI</strong></td>
+<td>KAUST/社区</td>
+<td>2</td>
+<td>角色对话</td>
+<td>Python</td>
+<td>★★★☆☆</td>
+<td>⭐⭐⭐</td>
+<td>LLM 研究、对话数据集构建、仿真</td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>Haystack</strong></td>
+<td>deepset</td>
+<td>2</td>
+<td>DAG 流水线</td>
+<td>Python</td>
+<td>★★☆☆☆</td>
+<td>⭐⭐⭐⭐</td>
+<td>企业搜索、NLP 流水线、严格评估</td>
+</tr>
+<tr>
+<td>12</td>
+<td><strong>Agno</strong></td>
+<td>Agno.ai</td>
+<td>3</td>
+<td>极速多模态</td>
+<td>Python</td>
+<td>★★☆☆☆</td>
+<td>⭐⭐⭐</td>
+<td>高并发 API 服务、图文/语音多模态</td>
+</tr>
+<tr>
+<td>13</td>
+<td><strong>Dify</strong></td>
+<td>LangGenius</td>
+<td>2</td>
+<td>无代码</td>
+<td>无需编码</td>
+<td>★☆☆☆☆</td>
+<td>⭐⭐⭐⭐</td>
+<td>团队自建工具、私有化 LLM 部署</td>
+</tr>
+<tr>
+<td>14</td>
+<td><strong>OpenAI Agents</strong></td>
+<td>OpenAI</td>
+<td>⚠️ 闭</td>
+<td>托管运行时</td>
+<td>Python</td>
+<td>★☆☆☆☆</td>
+<td>⭐⭐⭐⭐</td>
+<td>非敏感数据原型验证、个人项目</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="01-·-LangChain"><a href="#01-·-LangChain" class="headerlink" title="01 · LangChain"></a>01 · LangChain</h2><blockquote>
+<p><strong>定位：</strong> Agent 生态的”基础设施层”，最大社区，最广模型支持。</p>
+</blockquote>
+<div align="center">
+
+<svg viewbox="0 0 620 195" xmlns="http://www.w3.org/2000/svg" font-family="Arial,sans-serif" style="max-width:620px;width:100%;background:#eff6ff;border-radius:10px;border:1px solid #bfdbfe">
+  <defs>
+    <marker id="lc" markerwidth="8" markerheight="6" refx="8" refy="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#1d4ed8"/>
+    </marker>
+  </defs>
+  <text x="310" y="22" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e3a8a">LangChain — 链式编排架构</text>
+
+  <rect x="30" y="36" width="560" height="34" rx="6" fill="#1d4ed8"/>
+  <text x="310" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="white">LLM / Chat Models / Embeddings（模型无关抽象层）</text>
+  <text x="310" y="67" text-anchor="middle" font-size="9" fill="#bfdbfe">OpenAI · Anthropic · Ollama · HuggingFace · 100+ 模型提供商</text>
+
+  <rect x="30" y="86" width="110" height="52" rx="6" fill="#3b82f6" stroke="#1d4ed8" stroke-width="1.5"/>
+  <text x="85" y="108" text-anchor="middle" font-size="10" font-weight="bold" fill="white">Prompt</text>
+  <text x="85" y="124" text-anchor="middle" font-size="9" fill="#dbeafe">Templates</text>
+
+  <rect x="158" y="86" width="110" height="52" rx="6" fill="#3b82f6" stroke="#1d4ed8" stroke-width="1.5"/>
+  <text x="213" y="108" text-anchor="middle" font-size="10" font-weight="bold" fill="white">Chains</text>
+  <text x="213" y="124" text-anchor="middle" font-size="9" fill="#dbeafe">LCEL 表达式</text>
+
+  <rect x="286" y="86" width="110" height="52" rx="6" fill="#3b82f6" stroke="#1d4ed8" stroke-width="1.5"/>
+  <text x="341" y="108" text-anchor="middle" font-size="10" font-weight="bold" fill="white">Agents</text>
+  <text x="341" y="124" text-anchor="middle" font-size="9" fill="#dbeafe">ReAct / Tool Call</text>
+
+  <rect x="414" y="86" width="176" height="52" rx="6" fill="#3b82f6" stroke="#1d4ed8" stroke-width="1.5"/>
+  <text x="502" y="108" text-anchor="middle" font-size="10" font-weight="bold" fill="white">Memory / Callbacks</text>
+  <text x="502" y="124" text-anchor="middle" font-size="9" fill="#dbeafe">对话历史 / 追踪钩子</text>
+
+  <rect x="30" y="154" width="560" height="32" rx="6" fill="#1e40af"/>
+  <text x="310" y="169" text-anchor="middle" font-size="10.5" font-weight="bold" fill="white">Tools &amp; Integrations（700+ 工具 · 向量库 · 数据库 · API）</text>
+  <text x="310" y="181" text-anchor="middle" font-size="9" fill="#bfdbfe">Tavily · Pinecone · PostgreSQL · Slack · Gmail · ...</text>
+
+  <line x1="310" y1="70" x2="310" y2="86" stroke="#1d4ed8" stroke-width="1.5" marker-end="url(#lc)"/>
+  <line x1="310" y1="138" x2="310" y2="154" stroke="#1d4ed8" stroke-width="1.5" marker-end="url(#lc)"/>
+</svg>
+
+</div>
+
+<p><strong>核心架构</strong></p>
+<p>LangChain 是 Agent 框架的”瑞士军刀”，核心是 <strong>LCEL（LangChain Expression Language）</strong>——用 <code>|</code> 将 Prompt → LLM → Parser → Tool 声明式串联成链。它本身不是 Agent 运行时，而是提供模型无关的抽象层和 700+ 集成，LangGraph 在其之上构建图编排能力。</p>
+<p><strong>主要特性</strong></p>
+<ul>
+<li>模型无关：统一接口支持 100+ LLM 提供商</li>
+<li>LCEL 管道语法：声明式、可组合、支持流式输出</li>
+<li>700+ 工具/集成（搜索、数据库、云服务）</li>
+<li>LangSmith 内置可观测性</li>
+</ul>
+<p><strong>优点</strong></p>
+<ul>
+<li>社区最大，文档和示例极其丰富</li>
+<li>快速组装原型，生态整合能力无出其右</li>
+<li>作为 LangGraph 的底层，可无缝升级</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>版本迭代快，历史代码兼容性差（v0.1→v0.3 破坏性变更频繁）</li>
+<li>复杂状态管理需依赖 LangGraph</li>
+<li>抽象层过多，debug 时堆栈深难排查</li>
+</ul>
+<p><strong>适用场景</strong></p>
+<p>快速 PoC、需要广泛工具集成的应用、作为 LangGraph 底层依赖、RAG 应用开发。</p>
+<hr>
+<h2 id="02-·-LangGraph"><a href="#02-·-LangGraph" class="headerlink" title="02 · LangGraph"></a>02 · LangGraph</h2><blockquote>
+<p><strong>定位：</strong> 生产级复杂工作流的首选，图状态机范式。</p>
+</blockquote>
+<div align="center">
+
+<svg viewbox="0 0 600 240" xmlns="http://www.w3.org/2000/svg" font-family="Arial,sans-serif" style="max-width:600px;width:100%;background:#f0f9ff;border-radius:10px;border:1px solid #bae6fd">
+  <defs>
+    <marker id="a1" markerwidth="8" markerheight="6" refx="8" refy="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#0284c7"/>
+    </marker>
+  </defs>
+  <text x="300" y="24" text-anchor="middle" font-size="13" font-weight="bold" fill="#0c4a6e">LangGraph — 图状态机架构</text>
+
+  <!-- State -->
+  <rect x="230" y="40" width="140" height="40" rx="8" fill="#0284c7"/>
+  <text x="300" y="66" text-anchor="middle" font-size="12" font-weight="bold" fill="white">共享 State</text>
+
+  <!-- Node A -->
+  <rect x="60" y="120" width="110" height="40" rx="8" fill="#38bdf8" stroke="#0284c7" stroke-width="1.5"/>
+  <text x="115" y="144" text-anchor="middle" font-size="11" font-weight="bold" fill="#0c4a6e">Node A (工具调用)</text>
+
+  <!-- Node B -->
+  <rect x="240" y="120" width="110" height="40" rx="8" fill="#38bdf8" stroke="#0284c7" stroke-width="1.5"/>
+  <text x="295" y="144" text-anchor="middle" font-size="11" font-weight="bold" fill="#0c4a6e">Node B (LLM推理)</text>
+
+  <!-- Node C -->
+  <rect x="420" y="120" width="110" height="40" rx="8" fill="#38bdf8" stroke="#0284c7" stroke-width="1.5"/>
+  <text x="475" y="144" text-anchor="middle" font-size="11" font-weight="bold" fill="#0c4a6e">Node C (Human)</text>
+
+  <!-- END -->
+  <rect x="240" y="195" width="110" height="34" rx="8" fill="#0c4a6e"/>
+  <text x="295" y="217" text-anchor="middle" font-size="12" fill="white" font-weight="bold">END</text>
+
+  <!-- 连线 State → Nodes -->
+  <line x1="260" y1="80" x2="155" y2="120" stroke="#0284c7" stroke-width="1.5" marker-end="url(#a1)"/>
+  <line x1="300" y1="80" x2="300" y2="120" stroke="#0284c7" stroke-width="1.5" marker-end="url(#a1)"/>
+  <line x1="340" y1="80" x2="445" y2="120" stroke="#0284c7" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <!-- 条件边 -->
+  <path d="M 115 160 Q 115 185 240 212" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#a1)"/>
+  <line x1="295" y1="160" x2="295" y2="195" stroke="#0284c7" stroke-width="1.5" marker-end="url(#a1)"/>
+  <path d="M 475 160 Q 475 185 350 212" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#a1)"/>
+
+  <!-- 循环边 B→A -->
+  <path d="M 240 135 Q 180 100 175 135" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#a1)"/>
+  <text x="192" y="108" font-size="9" fill="#b45309">条件路由</text>
+</svg>
+
+</div>
+
+<p><strong>核心架构</strong></p>
+<p>LangGraph 将 Agent 工作流建模为<strong>有向图</strong>，每个节点是一个函数或 LLM 调用，边代表状态转移条件。所有节点共享一个中心 <code>State</code> 对象，支持持久化、断点续传和循环。2025 年底发布 v1.0，成为 LangChain 官方默认 Agent 运行时。</p>
+<p><strong>主要特性</strong></p>
+<ul>
+<li>图状态机，支持任意复杂的条件路由和循环</li>
+<li>持久化执行（Durable Execution），Agent 崩溃后可恢复</li>
+<li>Human-in-the-loop，可在任意节点暂停插入人工审核</li>
+<li>配合 LangSmith 提供最佳可观测性（逐节点 trace）</li>
+<li>同时支持 Python 和 JavaScript</li>
+</ul>
+<p><strong>优点</strong></p>
+<ul>
+<li>对复杂分支、循环、错误恢复有精细控制</li>
+<li>可观测性业界领先（LangSmith Trace）</li>
+<li>社区生态庞大，文档完善</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>学习曲线陡：需理解图范式和 Reducer 逻辑</li>
+<li>简单任务下样板代码多</li>
+<li>复杂状态可能引发冗余 Token 消耗（State 积累历史）</li>
+</ul>
+<p><strong>适用场景</strong></p>
+<p>需要高可靠性的生产工作流，如金融审批流、多步 RAG 推理、代码生成+审查流水线，以及任何要求循环和故障恢复的场景。</p>
+<hr>
+<h2 id="03-·-CrewAI"><a href="#03-·-CrewAI" class="headerlink" title="03 · CrewAI"></a>03 · CrewAI</h2><blockquote>
+<p><strong>定位：</strong> 最快上手的多 Agent 团队协作框架。</p>
+</blockquote>
+<div align="center">
+
+<svg viewbox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" font-family="Arial,sans-serif" style="max-width:600px;width:100%;background:#fffbeb;border-radius:10px;border:1px solid #fde68a">
+  <defs>
+    <marker id="a2" markerwidth="8" markerheight="6" refx="8" refy="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#92400e"/>
+    </marker>
+  </defs>
+  <text x="300" y="24" text-anchor="middle" font-size="13" font-weight="bold" fill="#78350f">CrewAI — 角色团队架构</text>
+
+  <!-- Manager/Crew -->
+  <rect x="215" y="38" width="170" height="40" rx="8" fill="#f59e0b"/>
+  <text x="300" y="63" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Crew (Manager)</text>
+
+  <!-- Agent 1 -->
+  <rect x="40" y="120" width="120" height="38" rx="8" fill="#fde68a" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="100" y="136" text-anchor="middle" font-size="11" font-weight="bold" fill="#78350f">Agent: Researcher</text>
+  <text x="100" y="151" text-anchor="middle" font-size="9" fill="#92400e">工具：Web Search</text>
+
+  <!-- Agent 2 -->
+  <rect x="230" y="120" width="120" height="38" rx="8" fill="#fde68a" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="290" y="136" text-anchor="middle" font-size="11" font-weight="bold" fill="#78350f">Agent: Analyst</text>
+  <text x="290" y="151" text-anchor="middle" font-size="9" fill="#92400e">工具：Code Exec</text>
+
+  <!-- Agent 3 -->
+  <rect x="420" y="120" width="120" height="38" rx="8" fill="#fde68a" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="480" y="136" text-anchor="middle" font-size="11" font-weight="bold" fill="#78350f">Agent: Writer</text>
+  <text x="480" y="151" text-anchor="middle" font-size="9" fill="#92400e">工具：File Write</text>
+
+  <!-- Task flow -->
+  <rect x="215" y="180" width="170" height="30" rx="8" fill="#78350f"/>
+  <text x="300" y="200" text-anchor="middle" font-size="11" fill="white" font-weight="bold">Task 输出 / 结果</text>
+
+  <!-- 连线 -->
+  <line x1="255" y1="78" x2="155" y2="120" stroke="#92400e" stroke-width="1.5" marker-end="url(#a2)"/>
+  <line x1="300" y1="78" x2="295" y2="120" stroke="#92400e" stroke-width="1.5" marker-end="url(#a2)"/>
+  <line x1="345" y1="78" x2="445" y2="120" stroke="#92400e" stroke-width="1.5" marker-end="url(#a2)"/>
+  <line x1="100" y1="158" x2="240" y2="183" stroke="#92400e" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#a2)"/>
+  <line x1="290" y1="158" x2="294" y2="180" stroke="#92400e" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#a2)"/>
+  <line x1="480" y1="158" x2="360" y2="183" stroke="#92400e" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#a2)"/>
+</svg>
+
+</div>
+
+<p><strong>核心架构</strong></p>
+<p>CrewAI 将多 Agent 协作抽象为一支”团队”（Crew）。每个 Agent 有明确的 <code>role</code>、<code>goal</code>、<code>backstory</code>，配合 <code>Task</code> 对象定义任务，支持顺序（Sequential）和层级（Hierarchical）两种执行模式。2025 年引入 <code>Flows</code> 事件驱动模式，增强生产场景的可预测性。</p>
+<p><strong>主要特性</strong></p>
+<ul>
+<li>声明式角色定义，非工程师也能理解 Agent 配置</li>
+<li>支持 Agent 间任务委派（Delegation）</li>
+<li>内置工具库（Web Search、文件读写、代码执行）</li>
+<li>Flows 模式：有限状态机式的事件驱动流水线</li>
+</ul>
+<p><strong>优点</strong></p>
+<ul>
+<li>上手速度最快，原型从零到可运行仅需数分钟</li>
+<li>角色抽象自然，业务人员可读</li>
+<li>线性工作流执行效率高</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>复杂分支和循环支持有限，6-12 个月后易撞天花板</li>
+<li>可观测性依赖外部工具（Langfuse 等）</li>
+<li>Token 消耗在复杂任务下偏高</li>
+</ul>
+<p><strong>适用场景</strong></p>
+<p>内容生成流水线（调研→分析→撰写）、营销自动化、结构化报告生成、快速 MVP 验证。</p>
+<hr>
+<h2 id="04-·-Microsoft-Agent-Framework"><a href="#04-·-Microsoft-Agent-Framework" class="headerlink" title="04 · Microsoft Agent Framework"></a>04 · Microsoft Agent Framework</h2><blockquote>
+<p><strong>定位：</strong> 企业级 Agent 平台，AutoGen + Semantic Kernel 的统一继承者。</p>
+</blockquote>
+<div align="center">
+
+<svg viewbox="0 0 600 230" xmlns="http://www.w3.org/2000/svg" font-family="Arial,sans-serif" style="max-width:600px;width:100%;background:#eef2ff;border-radius:10px;border:1px solid #c7d2fe">
+  <defs>
+    <marker id="a3" markerwidth="8" markerheight="6" refx="8" refy="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#4338ca"/>
+    </marker>
+  </defs>
+  <text x="300" y="24" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e1b4b">Microsoft Agent Framework — 融合架构</text>
+
+  <!-- AutoGen Layer -->
+  <rect x="30" y="45" width="240" height="50" rx="8" fill="#818cf8" stroke="#4338ca" stroke-width="1.5"/>
+  <text x="150" y="67" text-anchor="middle" font-size="12" font-weight="bold" fill="white">AutoGen 对话层</text>
+  <text x="150" y="84" text-anchor="middle" font-size="10" fill="#e0e7ff">多智能体对话 / 会话模式</text>
+
+  <!-- SK Layer -->
+  <rect x="330" y="45" width="240" height="50" rx="8" fill="#6366f1" stroke="#4338ca" stroke-width="1.5"/>
+  <text x="450" y="67" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Semantic Kernel 内核层</text>
+  <text x="450" y="84" text-anchor="middle" font-size="10" fill="#e0e7ff">插件 / 内存 / 规划</text>
+
+  <!-- 合并层 -->
+  <rect x="150" y="120" width="300" height="46" rx="8" fill="#4338ca"/>
+  <text x="300" y="140" text-anchor="middle" font-size="12" font-weight="bold" fill="white">统一 Agent Runtime</text>
+  <text x="300" y="157" text-anchor="middle" font-size="10" fill="#c7d2fe">Python · C# · Java | Azure 原生集成</text>
+
+  <!-- 连线合并 -->
+  <line x1="150" y1="95" x2="240" y2="120" stroke="#4338ca" stroke-width="1.8" marker-end="url(#a3)"/>
+  <line x1="450" y1="95" x2="360" y2="120" stroke="#4338ca" stroke-width="1.8" marker-end="url(#a3)"/>
+
+  <!-- 底部特性 -->
+  <rect x="40" y="188" width="150" height="28" rx="6" fill="#e0e7ff"/>
+  <text x="115" y="207" text-anchor="middle" font-size="10" fill="#3730a3" font-weight="bold">SOC2 / HIPAA 合规</text>
+  <rect x="225" y="188" width="150" height="28" rx="6" fill="#e0e7ff"/>
+  <text x="300" y="207" text-anchor="middle" font-size="10" fill="#3730a3" font-weight="bold">企业 SLA + 官方支持</text>
+  <rect x="410" y="188" width="150" height="28" rx="6" fill="#e0e7ff"/>
+  <text x="485" y="207" text-anchor="middle" font-size="10" fill="#3730a3" font-weight="bold">多语言 / 图API</text>
+</svg>
+
+</div>
+
+<p><strong>核心架构</strong></p>
+<p>2025 年 10 月，微软将 AutoGen 与 Semantic Kernel 合并为统一的 <strong>Microsoft Agent Framework</strong>，2026 年 Q1 正式 GA。架构上保留两者优势：AutoGen 的对话多智能体模式 + SK 的插件/内存/规划内核，并新增图式工作流 API。支持 Python、C#、Java 三种语言。</p>
+<p><strong>主要特性</strong></p>
+<ul>
+<li>原生 Azure 集成（Azure AI Foundry、Azure OpenAI Service）</li>
+<li>企业合规：SOC2、HIPAA、官方 SLA 和 24×7 支持</li>
+<li>多语言运行时（C# 生态尤为强大）</li>
+<li>向后兼容 AutoGen v0.4 和 Semantic Kernel 现有代码</li>
+</ul>
+<p><strong>优点</strong></p>
+<ul>
+<li>微软生态企业的最优选择，无缝对接 Azure 基础设施</li>
+<li>合规与安全开箱即用</li>
+<li>一个框架统一替代 AutoGen + SK，减少技术债</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>深度绑定 Azure，迁移成本高</li>
+<li>开源灵活性不如 LangGraph</li>
+<li>GA 时间较晚（Q1 2026），早期用户踩坑风险</li>
+</ul>
+<p><strong>适用场景</strong></p>
+<p>大型企业 Azure 部署、需要合规保障的金融/医疗场景、.NET/C# 技术栈团队。</p>
+<hr>
+<h2 id="05-·-AutoGen"><a href="#05-·-AutoGen" class="headerlink" title="05 · AutoGen"></a>05 · AutoGen</h2><blockquote>
+<p><strong>定位：</strong> 对话式多智能体先驱，Microsoft Research 出品。</p>
+</blockquote>
+<p><strong>核心架构</strong></p>
+<p>AutoGen 将 Agent 工作流视为<strong>结构化对话</strong>，Agent 之间通过消息传递（Message Passing）协调。支持多种对话模式：两代理对话、群组辩论、嵌套对话。人工智能与人类可在同一对话中自然协作。</p>
+<p><strong>主要特性</strong></p>
+<ul>
+<li>ConversableAgent：所有 Agent 统一为可对话实体</li>
+<li>GroupChat：支持多 Agent 群组决策和辩论</li>
+<li>Human-in-the-loop：对话流中随时插入人工审核</li>
+<li>代码执行沙箱，支持 Docker 隔离</li>
+</ul>
+<p><strong>优点</strong></p>
+<ul>
+<li>对话模式直观，调试交互友好</li>
+<li>研究场景和原型验证效率高</li>
+<li>Studio UI 提供可视化对话调试</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>新功能开发已移交 MS Agent Framework，AutoGen 仅维护安全补丁</li>
+<li>对话模式对非对话型工作流不够自然</li>
+<li>生产级监控能力弱于 LangGraph</li>
+</ul>
+<p><strong>适用场景</strong></p>
+<p>代码生成助手、多 Agent 辩论/评审、研究验证、需要人机对话交织的场景。</p>
+<hr>
+<h2 id="06-·-Semantic-Kernel"><a href="#06-·-Semantic-Kernel" class="headerlink" title="06 · Semantic Kernel"></a>06 · Semantic Kernel</h2><blockquote>
+<p><strong>定位：</strong> 微软企业级 LLM 集成 SDK，C#/.NET 首选。</p>
+</blockquote>
+<div align="center">
+
+<svg viewbox="0 0 560 190" xmlns="http://www.w3.org/2000/svg" font-family="Arial,sans-serif" style="max-width:560px;width:100%;background:#f5f3ff;border-radius:10px;border:1px solid #ddd6fe">
+  <text x="280" y="24" text-anchor="middle" font-size="13" font-weight="bold" fill="#4c1d95">Semantic Kernel — 插件内核架构</text>
+
+  <!-- Kernel -->
+  <ellipse cx="280" cy="100" rx="70" ry="44" fill="#7c3aed"/>
+  <text x="280" y="96" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Kernel</text>
+  <text x="280" y="112" text-anchor="middle" font-size="9" fill="#ede9fe">调度 / 规划 / 内存</text>
+
+  <!-- Plugins -->
+  <rect x="30" y="62" width="100" height="34" rx="6" fill="#a78bfa" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="80" y="83" text-anchor="middle" font-size="11" fill="white" font-weight="bold">Native Plugin</text>
+
+  <rect x="30" y="108" width="100" height="34" rx="6" fill="#a78bfa" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="80" y="129" text-anchor="middle" font-size="11" fill="white" font-weight="bold">Prompt Plugin</text>
+
+  <!-- Memory -->
+  <rect x="430" y="62" width="100" height="34" rx="6" fill="#6d28d9" stroke="#4c1d95" stroke-width="1.5"/>
+  <text x="480" y="83" text-anchor="middle" font-size="11" fill="white" font-weight="bold">向量记忆</text>
+
+  <rect x="430" y="108" width="100" height="34" rx="6" fill="#6d28d9" stroke="#4c1d95" stroke-width="1.5"/>
+  <text x="480" y="129" text-anchor="middle" font-size="11" fill="white" font-weight="bold">对话记忆</text>
+
+  <!-- Planner -->
+  <rect x="200" y="158" width="160" height="26" rx="6" fill="#4c1d95"/>
+  <text x="280" y="176" text-anchor="middle" font-size="11" fill="white" font-weight="bold">自动 Planner</text>
+
+  <!-- Lines -->
+  <line x1="130" y1="79" x2="210" y2="90" stroke="#7c3aed" stroke-width="1.5"/>
+  <line x1="130" y1="125" x2="210" y2="110" stroke="#7c3aed" stroke-width="1.5"/>
+  <line x1="430" y1="79" x2="350" y2="90" stroke="#7c3aed" stroke-width="1.5"/>
+  <line x1="430" y1="125" x2="350" y2="110" stroke="#7c3aed" stroke-width="1.5"/>
+  <line x1="280" y1="144" x2="280" y2="158" stroke="#4c1d95" stroke-width="1.5"/>
+</svg>
+
+</div>
+
+<p><strong>核心架构</strong></p>
+<p>Semantic Kernel 以 <code>Kernel</code> 为调度核心，开发者通过注册 <strong>Plugin</strong>（原生函数或 Prompt 模板）扩展能力。Kernel 内置 Planner，可自动将用户意图分解为 Plugin 调用序列。支持多种记忆后端。</p>
+<p><strong>主要特性</strong></p>
+<ul>
+<li>一流的 C# / .NET 支持，同时支持 Python 和 Java</li>
+<li>插件体系高度模块化，可复用</li>
+<li>内置多种 Planner（Sequential、Stepwise、Handlebars）</li>
+<li>已并入 MS Agent Framework，持续维护</li>
+</ul>
+<p><strong>优点</strong></p>
+<ul>
+<li>.NET 企业环境中最成熟的选择</li>
+<li>强类型插件降低 Prompt 工程出错风险</li>
+<li>与 Azure 服务无缝集成</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>对纯 Python 团队不够友好</li>
+<li>独立使用时不如 LangGraph 灵活</li>
+<li>Planner 在高度动态场景下表现不稳定</li>
+</ul>
+<p><strong>适用场景</strong></p>
+<p>企业 .NET 应用集成 LLM、Office 365 / Teams 自动化、需要强类型和企业合规的场景。</p>
+<hr>
+<h2 id="07-·-Rasa"><a href="#07-·-Rasa" class="headerlink" title="07 · Rasa"></a>07 · Rasa</h2><blockquote>
+<p><strong>定位：</strong> 对话式 AI 老牌框架，专注任务型对话管理，生产成熟度最高之一。</p>
+</blockquote>
+<div align="center">
+
+<svg viewbox="0 0 600 198" xmlns="http://www.w3.org/2000/svg" font-family="Arial,sans-serif" style="max-width:600px;width:100%;background:#ecfdf5;border-radius:10px;border:1px solid #a7f3d0">
+  <defs>
+    <marker id="ra" markerwidth="8" markerheight="6" refx="8" refy="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#065f46"/>
+    </marker>
+  </defs>
+  <text x="300" y="22" text-anchor="middle" font-size="13" font-weight="bold" fill="#064e3b">Rasa — 对话状态机架构</text>
+
+  <rect x="28" y="40" width="158" height="118" rx="8" fill="#059669"/>
+  <text x="107" y="64" text-anchor="middle" font-size="11" font-weight="bold" fill="white">NLU 模块</text>
+  <text x="107" y="82" text-anchor="middle" font-size="9.5" fill="#a7f3d0">意图识别 / 实体抽取</text>
+  <text x="107" y="98" text-anchor="middle" font-size="9.5" fill="#a7f3d0">情感分析 / 响应检索</text>
+  <text x="107" y="115" text-anchor="middle" font-size="9" fill="#d1fae5">DIET / TED 模型</text>
+  <text x="107" y="132" text-anchor="middle" font-size="9" fill="#d1fae5">+ CALM LLM 增强</text>
+  <text x="107" y="148" text-anchor="middle" font-size="9" fill="#d1fae5">（2024+ 新特性）</text>
+
+  <rect x="218" y="40" width="164" height="118" rx="8" fill="#10b981"/>
+  <text x="300" y="64" text-anchor="middle" font-size="11" font-weight="bold" fill="white">对话管理</text>
+  <text x="300" y="82" text-anchor="middle" font-size="9.5" fill="#d1fae5">Tracker 状态追踪</text>
+  <text x="300" y="98" text-anchor="middle" font-size="9.5" fill="#d1fae5">Stories 训练数据</text>
+  <text x="300" y="114" text-anchor="middle" font-size="9.5" fill="#d1fae5">Rules 规则引擎</text>
+  <text x="300" y="130" text-anchor="middle" font-size="9.5" fill="#d1fae5">TED Policy</text>
+  <text x="300" y="148" text-anchor="middle" font-size="9.5" fill="#d1fae5">Slots 槽位管理</text>
+
+  <rect x="414" y="40" width="158" height="118" rx="8" fill="#059669"/>
+  <text x="493" y="64" text-anchor="middle" font-size="11" font-weight="bold" fill="white">Action Server</text>
+  <text x="493" y="82" text-anchor="middle" font-size="9.5" fill="#a7f3d0">Custom Actions</text>
+  <text x="493" y="98" text-anchor="middle" font-size="9.5" fill="#a7f3d0">Forms 表单填充</text>
+  <text x="493" y="114" text-anchor="middle" font-size="9.5" fill="#a7f3d0">外部 API 调用</text>
+  <text x="493" y="130" text-anchor="middle" font-size="9.5" fill="#a7f3d0">数据库读写</text>
+  <text x="493" y="148" text-anchor="middle" font-size="9.5" fill="#a7f3d0">消息推送</text>
+
+  <line x1="186" y1="99" x2="218" y2="99" stroke="#065f46" stroke-width="2" marker-end="url(#ra)"/>
+  <line x1="382" y1="99" x2="414" y2="99" stroke="#065f46" stroke-width="2" marker-end="url(#ra)"/>
+
+  <text x="300" y="178" text-anchor="middle" font-size="10" fill="#065f46">私有化部署 · 数据完全本地 · 满足金融/医疗合规</text>
+</svg>
+
+</div>
+
+<p><strong>核心架构</strong></p>
+<p>Rasa 是专为<strong>任务型对话</strong>设计的框架，基于 NLU + 对话状态管理的经典架构。用户输入经 NLU 解析意图和实体，Tracker 维护对话状态，Policy 决定下一步动作，Action Server 执行业务逻辑。2024 年推出 <strong>CALM（Conversational AI with Language Models）</strong>，将 LLM 融入对话理解，弥补规则系统在开放域的短板。</p>
+<p><strong>主要特性</strong></p>
+<ul>
+<li>私有化部署，数据完全本地，满足金融/医疗合规要求</li>
+<li>Stories + Rules 双轨训练，对话路径可测试、可回归</li>
+<li>Slots 槽位管理，精准处理多轮表单填充</li>
+<li>CALM 模式：LLM 辅助意图理解，保留规则兜底</li>
+</ul>
+<p><strong>优点</strong></p>
+<ul>
+<li>生产案例最多（银行、电信、保险大量部署）</li>
+<li>对话路径可预测，不会出现 LLM 幻觉导致的跑偏</li>
+<li>完全开源可自托管，无数据出境风险</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>开放域问答能力弱于纯 LLM 方案</li>
+<li>需要大量 Stories 训练数据，冷启动成本高</li>
+<li>生态不如 LangChain 系丰富</li>
+</ul>
+<p><strong>适用场景</strong></p>
+<p>银行客服、电信工单、医疗预约、保险理赔——一切需要精确控制对话路径且数据安全要求高的任务型对话。</p>
+<hr>
+<h2 id="08-·-LlamaIndex"><a href="#08-·-LlamaIndex" class="headerlink" title="08 · LlamaIndex"></a>08 · LlamaIndex</h2><blockquote>
+<p><strong>定位：</strong> RAG 优先的数据驱动 Agent 框架。</p>
+</blockquote>
+<div align="center">
+
+<svg viewbox="0 0 580 200" xmlns="http://www.w3.org/2000/svg" font-family="Arial,sans-serif" style="max-width:580px;width:100%;background:#fff7ed;border-radius:10px;border:1px solid #fed7aa">
+  <defs>
+    <marker id="a7" markerwidth="8" markerheight="6" refx="8" refy="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#c2410c"/>
+    </marker>
+  </defs>
+  <text x="290" y="24" text-anchor="middle" font-size="13" font-weight="bold" fill="#7c2d12">LlamaIndex — RAG-first Agent 架构</text>
+
+  <!-- 数据层 -->
+  <rect x="20" y="45" width="130" height="110" rx="8" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5"/>
+  <text x="85" y="66" text-anchor="middle" font-size="11" font-weight="bold" fill="#7c2d12">数据层</text>
+  <text x="85" y="84" text-anchor="middle" font-size="9.5" fill="#9a3412">PDF / DB / API</text>
+  <text x="85" y="100" text-anchor="middle" font-size="9.5" fill="#9a3412">↓ 解析 + 切块</text>
+  <text x="85" y="116" text-anchor="middle" font-size="9.5" fill="#9a3412">Vector Index</text>
+  <text x="85" y="132" text-anchor="middle" font-size="9.5" fill="#9a3412">Retriever</text>
+
+  <!-- Agent 核心 -->
+  <rect x="210" y="55" width="150" height="90" rx="8" fill="#ea580c"/>
+  <text x="285" y="82" text-anchor="middle" font-size="12" font-weight="bold" fill="white">ReAct Agent</text>
+  <text x="285" y="100" text-anchor="middle" font-size="10" fill="#fed7aa">推理 → 行动 → 观察</text>
+  <text x="285" y="116" text-anchor="middle" font-size="10" fill="#fed7aa">QueryEngine Tool</text>
+  <text x="285" y="132" text-anchor="middle" font-size="10" fill="#fed7aa">FunctionCall Tool</text>
+
+  <!-- 输出 -->
+  <rect x="420" y="65" width="130" height="70" rx="8" fill="#fdba74" stroke="#ea580c" stroke-width="1.5"/>
+  <text x="485" y="88" text-anchor="middle" font-size="11" font-weight="bold" fill="#7c2d12">回答 / 报告</text>
+  <text x="485" y="106" text-anchor="middle" font-size="9.5" fill="#9a3412">引用溯源</text>
+  <text x="485" y="122" text-anchor="middle" font-size="9.5" fill="#9a3412">Faithfulness 评估</text>
+
+  <!-- 连线 -->
+  <line x1="150" y1="100" x2="210" y2="100" stroke="#c2410c" stroke-width="1.8" marker-end="url(#a7)"/>
+  <line x1="360" y1="100" x2="420" y2="100" stroke="#c2410c" stroke-width="1.8" marker-end="url(#a7)"/>
+
+  <!-- 标注 -->
+  <text x="290" y="170" text-anchor="middle" font-size="10" fill="#9a3412">支持 Multi-Agent / Sub-Agent 编排</text>
+</svg>
+
+</div>
+
+<p><strong>核心架构</strong></p>
+<p>LlamaIndex 以数据索引和检索为核心，<code>QueryEngine</code> 是最基础的智能检索工具，<code>Agent</code> 层在此之上构建 ReAct 循环，将 QueryEngine、函数调用等封装为工具。支持 Multi-Agent 编排和 Sub-Agent 嵌套。</p>
+<p><strong>主要特性</strong></p>
+<ul>
+<li>80+ 数据连接器（PDF、数据库、API、Notion 等）</li>
+<li>多种索引类型（向量、关键词、知识图谱）</li>
+<li>内置 RAG 评估套件（Faithfulness、Relevancy）</li>
+<li>支持 TypeScript，前后端统一</li>
+</ul>
+<p><strong>优点</strong></p>
+<ul>
+<li>数据密集型场景下最强的检索能力</li>
+<li>引用溯源开箱即用</li>
+<li>RAG 评估体系完善</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>Agent 编排能力弱于 LangGraph/CrewAI</li>
+<li>Token 上限管理需要手动处理</li>
+<li>大规模数据索引运维复杂</li>
+</ul>
+<p><strong>适用场景</strong></p>
+<p>企业知识库问答、法律/医疗文档检索、多文档交叉分析、需要引用溯源的 RAG 系统。</p>
+<hr>
+<h2 id="09-·-MetaGPT"><a href="#09-·-MetaGPT" class="headerlink" title="09 · MetaGPT"></a>09 · MetaGPT</h2><blockquote>
+<p><strong>定位：</strong> 模拟软件公司的多 Agent 框架，代码生成专家。</p>
+</blockquote>
+<p><strong>核心架构</strong></p>
+<p>MetaGPT 将 LLM Agent 分配到软件公司的标准角色：<strong>产品经理 → 架构师 → 工程师 → QA → DevOps</strong>。每个角色有标准化作业流程（SOP），通过共享消息池（Message Pool）传递结构化产物（PRD、技术文档、代码、测试报告）。</p>
+<p><strong>主要特性</strong></p>
+<ul>
+<li>内置完整软件开发 SOP（需求→设计→编码→测试）</li>
+<li>结构化输出（非自由文本，而是 JSON/代码/Markdown）</li>
+<li>支持增量开发模式（迭代修改已有代码库）</li>
+<li>多语言代码生成（Python、JavaScript、Go 等）</li>
+</ul>
+<p><strong>优点</strong></p>
+<ul>
+<li>从一句话需求生成完整项目，包含代码、文档、测试</li>
+<li>SOP 约束提升输出一致性和可重复性</li>
+<li>非常适合原型和 MVP 快速生成</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>角色固化，定制化场景需改动底层</li>
+<li>生成代码质量高但仍需人工审查</li>
+<li>对复杂业务逻辑理解能力有限</li>
+</ul>
+<p><strong>适用场景</strong></p>
+<p>快速原型开发、重复性代码生成任务、技术文档自动化、软件开发流程自动化研究。</p>
+<hr>
+<h2 id="10-·-Camel-AI"><a href="#10-·-Camel-AI" class="headerlink" title="10 · Camel-AI"></a>10 · Camel-AI</h2><blockquote>
+<p><strong>定位：</strong> 角色扮演驱动的多智能体研究框架，出自 KAUST 学术团队。</p>
+</blockquote>
+<div align="center">
+
+<svg viewbox="0 0 600 192" xmlns="http://www.w3.org/2000/svg" font-family="Arial,sans-serif" style="max-width:600px;width:100%;background:#fffbeb;border-radius:10px;border:1px solid #fde68a">
+  <defs>
+    <marker id="cam" markerwidth="8" markerheight="6" refx="8" refy="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#92400e"/>
+    </marker>
+  </defs>
+  <text x="300" y="22" text-anchor="middle" font-size="13" font-weight="bold" fill="#78350f">Camel-AI — Inception Prompting 架构</text>
+
+  <rect x="28" y="44" width="172" height="108" rx="8" fill="#fcd34d" stroke="#d97706" stroke-width="2"/>
+  <text x="114" y="70" text-anchor="middle" font-size="12" font-weight="bold" fill="#78350f">User Agent</text>
+  <text x="114" y="90" text-anchor="middle" font-size="9.5" fill="#92400e">角色：需求方</text>
+  <text x="114" y="108" text-anchor="middle" font-size="9.5" fill="#92400e">目标：驱动任务完成</text>
+  <text x="114" y="126" text-anchor="middle" font-size="9.5" fill="#92400e">Inception Prompting 注入</text>
+  <text x="114" y="142" text-anchor="middle" font-size="9" fill="#78350f">系统级角色指令</text>
+
+  <rect x="216" y="68" width="168" height="64" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="300" y="90" text-anchor="middle" font-size="11" font-weight="bold" fill="#78350f">结构化对话</text>
+  <text x="300" y="108" text-anchor="middle" font-size="9.5" fill="#92400e">多轮消息协商</text>
+  <text x="300" y="124" text-anchor="middle" font-size="9.5" fill="#92400e">任务逐步完成</text>
+
+  <rect x="400" y="44" width="172" height="108" rx="8" fill="#fcd34d" stroke="#d97706" stroke-width="2"/>
+  <text x="486" y="70" text-anchor="middle" font-size="12" font-weight="bold" fill="#78350f">Assistant Agent</text>
+  <text x="486" y="90" text-anchor="middle" font-size="9.5" fill="#92400e">角色：执行方</text>
+  <text x="486" y="108" text-anchor="middle" font-size="9.5" fill="#92400e">目标：完成具体任务</text>
+  <text x="486" y="126" text-anchor="middle" font-size="9.5" fill="#92400e">工具调用 / 代码</text>
+  <text x="486" y="142" text-anchor="middle" font-size="9" fill="#78350f">结构化输出</text>
+
+  <line x1="200" y1="92" x2="216" y2="92" stroke="#92400e" stroke-width="1.8" marker-end="url(#cam)"/>
+  <line x1="216" y1="108" x2="200" y2="108" stroke="#92400e" stroke-width="1.8" marker-end="url(#cam)"/>
+  <line x1="384" y1="92" x2="400" y2="92" stroke="#92400e" stroke-width="1.8" marker-end="url(#cam)"/>
+  <line x1="400" y1="108" x2="384" y2="108" stroke="#92400e" stroke-width="1.8" marker-end="url(#cam)"/>
+
+  <text x="300" y="175" text-anchor="middle" font-size="10" fill="#92400e">Society of Mind：支持多对 Agent 构成复杂社会结构</text>
+</svg>
+
+</div>
+
+<p><strong>核心架构</strong></p>
+<p>Camel-AI 全称 <strong>Communicative Agents for “Mind” Exploration</strong>，出自 KAUST 2023 年论文。核心思想是 <strong>Inception Prompting</strong>：在会话开始时向两个 Agent 分别注入精心设计的角色指令，之后两者完全自主对话完成任务，无需人工干预。支持更高层的 <code>Society</code> 概念，构建多对 Agent 的复杂社会结构。</p>
+<p><strong>主要特性</strong></p>
+<ul>
+<li>Inception Prompting：系统级角色注入，两 Agent 自主协商</li>
+<li>Society of Mind：多 Agent 社会模拟</li>
+<li>支持 30+ 模型，数据集构建工具完善</li>
+</ul>
+<p><strong>优点</strong></p>
+<ul>
+<li>学术引用量高，研究场景基础设施完善</li>
+<li>角色扮演产生的对话数据质量高，适合数据集构建</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>生产落地案例相对少，工程化程度不及 LangGraph/CrewAI</li>
+<li>两 Agent 对话容易进入死循环或跑偏</li>
+<li>缺乏内置的可观测性和持久化</li>
+</ul>
+<p><strong>适用场景</strong></p>
+<p>LLM 研究、对话数据集生成、多 Agent 社会行为仿真、角色扮演应用、教育场景模拟。</p>
+<hr>
+<h2 id="11-·-Haystack"><a href="#11-·-Haystack" class="headerlink" title="11 · Haystack"></a>11 · Haystack</h2><blockquote>
+<p><strong>定位：</strong> 生产级 NLP 流水线框架，RAG + Agent 双栖。</p>
+</blockquote>
+<p><strong>核心架构</strong></p>
+<p>Haystack 以<strong>有向无环图（DAG）Pipeline</strong> 为核心，每个组件（Retriever、Reader、LLM、Ranker）是 Pipeline 中的一个节点。Pipeline 可序列化为 YAML，版本控制友好。Agent 模式通过工具调用 Pipeline 组件实现。</p>
+<p><strong>主要特性</strong></p>
+<ul>
+<li>Pipeline 完全序列化（YAML 配置驱动）</li>
+<li>内置评估框架（F1、EM、Faithfulness 等）</li>
+<li>支持多模态（文本、图像、音频）</li>
+<li>与主流向量库（Weaviate、Pinecone、Milvus）深度集成</li>
+</ul>
+<p><strong>优点</strong></p>
+<ul>
+<li>Pipeline 可测试、可版本控制，DevOps 友好</li>
+<li>生产级评估体系完善</li>
+<li>文档质量高，上手相对容易</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>Agent 自主性相对弱，更适合确定性流水线</li>
+<li>社区规模小于 LangChain 系列</li>
+<li>动态分支场景灵活性不足</li>
+</ul>
+<p><strong>适用场景</strong></p>
+<p>企业搜索系统、文档问答、多模态内容处理、需要严格测试和评估的 NLP 生产系统。</p>
+<hr>
+<h2 id="12-·-Agno"><a href="#12-·-Agno" class="headerlink" title="12 · Agno"></a>12 · Agno</h2><blockquote>
+<p><strong>定位：</strong> 极速轻量的多模态 Agent SDK，模型无关。</p>
+</blockquote>
+<p><strong>核心架构</strong></p>
+<p>Agno 主打<strong>极致性能</strong>：Agent 实例化约 3 微秒，内存占用约 6.5 KB。架构高度模块化，支持 23+ LLM 提供商，原生支持文本、图像、音频、视频多模态输入输出。内置 Team 机制支持 Agent 协作。</p>
+<p><strong>主要特性</strong></p>
+<ul>
+<li>实例化速度比主流框架快 10000 倍（官方基准）</li>
+<li>23+ 模型提供商，真正模型无关</li>
+<li>原生多模态：文本/图像/音频/视频</li>
+<li>内置 Session 存储和 Long-term Memory</li>
+</ul>
+<p><strong>优点</strong></p>
+<ul>
+<li>高并发场景下资源消耗极低</li>
+<li>多模态支持开箱即用</li>
+<li>API 简洁，学习成本低</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>社区生态相对年轻，生产案例较少</li>
+<li>复杂编排能力不及 LangGraph</li>
+<li>托管平台功能仍在完善</li>
+</ul>
+<p><strong>适用场景</strong></p>
+<p>高并发 API 服务、多模态应用（图文理解、语音交互）、资源受限环境、快速原型。</p>
+<hr>
+<h2 id="13-·-Dify"><a href="#13-·-Dify" class="headerlink" title="13 · Dify"></a>13 · Dify</h2><blockquote>
+<p><strong>定位：</strong> 面向非开发者的可视化 Agent 构建平台，开源可私有化部署。</p>
+</blockquote>
+<div align="center">
+
+<svg viewbox="0 0 580 200" xmlns="http://www.w3.org/2000/svg" font-family="Arial,sans-serif" style="max-width:580px;width:100%;background:#fff1f2;border-radius:10px;border:1px solid #fecdd3">
+  <text x="290" y="24" text-anchor="middle" font-size="13" font-weight="bold" fill="#9f1239">Dify — 可视化 Agent 工作流</text>
+
+  <!-- 画布 -->
+  <rect x="20" y="40" width="370" height="140" rx="8" fill="white" stroke="#fda4af" stroke-width="1.5"/>
+  <text x="205" y="60" text-anchor="middle" font-size="11" fill="#9f1239" font-weight="bold">🖱 拖拽画布（Workflow Editor）</text>
+
+  <!-- 节点 -->
+  <rect x="40" y="72" width="80" height="32" rx="6" fill="#fecdd3" stroke="#f43f5e" stroke-width="1"/>
+  <text x="80" y="92" text-anchor="middle" font-size="10" fill="#881337">用户输入</text>
+
+  <rect x="150" y="72" width="80" height="32" rx="6" fill="#fecdd3" stroke="#f43f5e" stroke-width="1"/>
+  <text x="190" y="92" text-anchor="middle" font-size="10" fill="#881337">LLM节点</text>
+
+  <rect x="260" y="72" width="100" height="32" rx="6" fill="#fecdd3" stroke="#f43f5e" stroke-width="1"/>
+  <text x="310" y="92" text-anchor="middle" font-size="10" fill="#881337">工具/知识库</text>
+
+  <rect x="40" y="130" width="80" height="32" rx="6" fill="#fda4af" stroke="#f43f5e" stroke-width="1"/>
+  <text x="80" y="150" text-anchor="middle" font-size="10" fill="#881337">条件分支</text>
+
+  <rect x="150" y="130" width="80" height="32" rx="6" fill="#fda4af" stroke="#f43f5e" stroke-width="1"/>
+  <text x="190" y="150" text-anchor="middle" font-size="10" fill="#881337">迭代循环</text>
+
+  <rect x="260" y="130" width="100" height="32" rx="6" fill="#fda4af" stroke="#f43f5e" stroke-width="1"/>
+  <text x="310" y="150" text-anchor="middle" font-size="10" fill="#881337">输出结果</text>
+
+  <!-- 箭头 -->
+  <line x1="120" y1="88" x2="150" y2="88" stroke="#f43f5e" stroke-width="1.5"/>
+  <line x1="230" y1="88" x2="260" y2="88" stroke="#f43f5e" stroke-width="1.5"/>
+  <line x1="80" y1="104" x2="80" y2="130" stroke="#f43f5e" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <line x1="120" y1="146" x2="150" y2="146" stroke="#f43f5e" stroke-width="1.5"/>
+  <line x1="230" y1="146" x2="260" y2="146" stroke="#f43f5e" stroke-width="1.5"/>
+
+  <!-- API部署 -->
+  <rect x="415" y="55" width="145" height="120" rx="8" fill="#fecdd3" stroke="#f43f5e" stroke-width="1.5"/>
+  <text x="487" y="78" text-anchor="middle" font-size="11" font-weight="bold" fill="#9f1239">一键发布</text>
+  <text x="487" y="98" text-anchor="middle" font-size="10" fill="#881337">REST API</text>
+  <text x="487" y="116" text-anchor="middle" font-size="10" fill="#881337">Web App</text>
+  <text x="487" y="134" text-anchor="middle" font-size="10" fill="#881337">嵌入 Widget</text>
+  <text x="487" y="152" text-anchor="middle" font-size="10" fill="#881337">私有化部署</text>
+</svg>
+
+</div>
+
+
+<h2 id="14-·-OpenAI-Agents-SDK"><a href="#14-·-OpenAI-Agents-SDK" class="headerlink" title="14 · OpenAI Agents SDK"></a>14 · OpenAI Agents SDK</h2><blockquote>
+<p><strong>定位：</strong> 最低门槛，专为 OpenAI 模型栈优化的轻量 Agent SDK。</p>
+</blockquote>
+<p><strong>核心架构</strong></p>
+<p>OpenAI Agents SDK（原 Assistants API 的升级形态）提供托管式 Agent 运行时。内置 Function Calling、File Search（RAG）、Code Interpreter，状态持久化由 OpenAI 平台托管，开发者无需自己管理状态和工具执行。</p>
+<p><strong>主要特性</strong></p>
+<ul>
+<li>最短 20 行代码即可运行一个功能完整的 Agent</li>
+<li>原生工具：Web Search、Code Interpreter、File Search</li>
+<li>Handoff 机制：Agent 之间无缝移交任务</li>
+<li>内置 Guardrails（输入/输出校验）</li>
+</ul>
+<p><strong>优点</strong></p>
+<ul>
+<li>上手极快，对 OpenAI 用户零额外学习成本</li>
+<li>平台托管状态，无需运维</li>
+<li>工具调用可靠性高（一方集成）</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>强绑定 OpenAI，切换模型成本极高</li>
+<li>对复杂自定义编排能力有限</li>
+<li>高并发下成本不可控</li>
+</ul>
+<p><strong>适用场景</strong></p>
+<p>快速原型、OpenAI 技术栈团队、客服机器人、简单任务自动化。</p>
+<hr>
+<p><strong>核心架构</strong></p>
+<p>Dify 提供基于 Web 的<strong>可视化工作流编辑器</strong>，通过拖拽节点构建 Agent 流程，无需编写代码。后端支持 RAG 知识库、工具调用、条件分支、迭代循环，构建完成后一键生成 REST API 或 Web App。支持 Docker 私有化部署。</p>
+<p><strong>主要特性</strong></p>
+<ul>
+<li>完全可视化，零代码构建 Agent 工作流</li>
+<li>内置知识库管理（文档解析、向量检索）</li>
+<li>100+ 内置工具（Google Search、代码执行、HTTP请求等）</li>
+<li>支持多模型切换（OpenAI、Claude、开源模型）</li>
+<li>企业版支持 SSO、审计日志、成员权限</li>
+</ul>
+<p><strong>优点</strong></p>
+<ul>
+<li>非技术人员也能构建和维护 Agent</li>
+<li>从构建到部署一站式，无需额外运维</li>
+<li>开源可私有化，数据安全可控</li>
+<li>活跃社区，迭代速度快</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>代码层定制能力有限（极度复杂逻辑需辅以 API 节点）</li>
+<li>性能调优空间小（黑盒较多）</li>
+<li>大规模并发下性能瓶颈明显</li>
+</ul>
+<p><strong>适用场景</strong></p>
+<p>业务团队自建 AI 应用、企业内部工具（HR 助手、法务问答）、快速验证 Agent 产品 idea、私有化 LLM 部署场景。</p>
+<hr>
+<h2 id="框架选型决策树"><a href="#框架选型决策树" class="headerlink" title="框架选型决策树"></a>框架选型决策树</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">你的核心需求是什么？</span><br><span class="line">│</span><br><span class="line">├── ❶ 数据不能出境 / 必须私有化</span><br><span class="line">│   ├── 任务型对话（银行/医疗/电信） → Rasa</span><br><span class="line">│   ├── 可视化零代码                → Dify（Docker 私有部署）</span><br><span class="line">│   └── 代码编排                   → LangGraph(高控制力首选) / LlamaIndex / Haystack</span><br><span class="line">│</span><br><span class="line">├── ❷ 微软 / Azure 生态</span><br><span class="line">│   ├── .NET / C# 团队 → Semantic Kernel → MS Agent FW</span><br><span class="line">│   └── Python 团队    → AutoGen(对话多智能体 / 研究验证) → MS Agent FW</span><br><span class="line">│</span><br><span class="line">├── ❸ 生产级复杂状态管理</span><br><span class="line">│   └── LangGraph（首选）+ LangChain（底层生态）</span><br><span class="line">│</span><br><span class="line">├── ❹ 快速原型 / 多角色团队协作</span><br><span class="line">│   └── CrewAI</span><br><span class="line">│</span><br><span class="line">├── ❺ 数据密集 / 企业知识库 RAG</span><br><span class="line">│   ├── RAG 首选      → LlamaIndex</span><br><span class="line">│   └── NLP 流水线    → Haystack(严格测评)</span><br><span class="line">│</span><br><span class="line">├── ❻ 软件代码生成自动化</span><br><span class="line">│   └── MetaGPT</span><br><span class="line">│</span><br><span class="line">├── ❼ 研究 / 数据集构建 / 多智能体仿真</span><br><span class="line">│   └── Camel-AI</span><br><span class="line">│</span><br><span class="line">├── ❽ 高并发 / 多模态场景</span><br><span class="line">│   └── Agno</span><br><span class="line">│</span><br><span class="line">├── ❾ 零代码 / 业务团队自建</span><br><span class="line">│   └── Dify</span><br><span class="line">│</span><br><span class="line">└── ❿ 原型验证（不涉及敏感数据，OpenAI 技术栈）</span><br><span class="line">    └── OpenAI Agents SDK（注意数据安全）</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="综合对比雷达图"><a href="#综合对比雷达图" class="headerlink" title="综合对比雷达图"></a>综合对比雷达图</h2><div align="center">
+
+<svg viewbox="0 0 800 510" xmlns="http://www.w3.org/2000/svg" font-family="Arial,sans-serif" style="max-width:800px;width:100%;background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0">
+  <text x="400" y="26" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e293b">14 个框架六维能力对比</text>
+
+  <rect x="16" y="38" width="772" height="34" rx="4" fill="#1e293b"/>
+  <text x="110" y="60" text-anchor="middle" font-size="10.5" font-weight="bold" fill="white">框架</text>
+  <text x="218" y="60" text-anchor="middle" font-size="10.5" font-weight="bold" fill="white">上手难度↓</text>
+  <text x="310" y="60" text-anchor="middle" font-size="10.5" font-weight="bold" fill="white">编排控制</text>
+  <text x="400" y="60" text-anchor="middle" font-size="10.5" font-weight="bold" fill="white">生产成熟</text>
+  <text x="490" y="60" text-anchor="middle" font-size="10.5" font-weight="bold" fill="white">多智能体</text>
+  <text x="580" y="60" text-anchor="middle" font-size="10.5" font-weight="bold" fill="white">社区生态</text>
+  <text x="706" y="60" text-anchor="middle" font-size="10.5" font-weight="bold" fill="white">开源</text>
+
+  <!-- 行：间隔 28px -->
+  <rect x="16" y="72" width="772" height="28" fill="#dbeafe"/>
+  <text x="110" y="91" text-anchor="middle" font-size="10.5" fill="#1e40af" font-weight="bold">LangChain</text>
+  <text x="218" y="91" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="310" y="91" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="400" y="91" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★★</text>
+  <text x="490" y="91" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="580" y="91" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★★</text>
+  <text x="706" y="91" text-anchor="middle" font-size="10" fill="#16a34a" font-weight="bold">✅ MIT</text>
+
+  <rect x="16" y="100" width="772" height="28" fill="#bfdbfe"/>
+  <text x="110" y="119" text-anchor="middle" font-size="10.5" fill="#1e40af" font-weight="bold">LangGraph</text>
+  <text x="218" y="119" text-anchor="middle" font-size="10.5" fill="#1e293b">★★☆☆☆</text>
+  <text x="310" y="119" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★★</text>
+  <text x="400" y="119" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★★</text>
+  <text x="490" y="119" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★☆</text>
+  <text x="580" y="119" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★★</text>
+  <text x="706" y="119" text-anchor="middle" font-size="10" fill="#16a34a" font-weight="bold">✅ MIT</text>
+
+  <rect x="16" y="128" width="772" height="28" fill="#fef9c3"/>
+  <text x="110" y="147" text-anchor="middle" font-size="10.5" fill="#854d0e" font-weight="bold">CrewAI</text>
+  <text x="218" y="147" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★☆</text>
+  <text x="310" y="147" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="400" y="147" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★☆</text>
+  <text x="490" y="147" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★★</text>
+  <text x="580" y="147" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★☆</text>
+  <text x="706" y="147" text-anchor="middle" font-size="10" fill="#16a34a" font-weight="bold">✅ MIT</text>
+
+  <rect x="16" y="156" width="772" height="28" fill="#e0e7ff"/>
+  <text x="110" y="175" text-anchor="middle" font-size="10.5" fill="#3730a3" font-weight="bold">MS Agent FW</text>
+  <text x="218" y="175" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="310" y="175" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★☆</text>
+  <text x="400" y="175" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★★</text>
+  <text x="490" y="175" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★★</text>
+  <text x="580" y="175" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★☆</text>
+  <text x="706" y="175" text-anchor="middle" font-size="10" fill="#16a34a" font-weight="bold">✅ MIT</text>
+
+  <rect x="16" y="184" width="772" height="28" fill="#e0f2fe"/>
+  <text x="110" y="203" text-anchor="middle" font-size="10.5" fill="#0c4a6e" font-weight="bold">AutoGen</text>
+  <text x="218" y="203" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="310" y="203" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="400" y="203" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★☆</text>
+  <text x="490" y="203" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★★</text>
+  <text x="580" y="203" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★☆</text>
+  <text x="706" y="203" text-anchor="middle" font-size="10" fill="#16a34a" font-weight="bold">✅ MIT</text>
+
+  <rect x="16" y="212" width="772" height="28" fill="#f5f3ff"/>
+  <text x="110" y="231" text-anchor="middle" font-size="10.5" fill="#4c1d95" font-weight="bold">Semantic Kernel</text>
+  <text x="218" y="231" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="310" y="231" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★☆</text>
+  <text x="400" y="231" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★★</text>
+  <text x="490" y="231" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="580" y="231" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★☆</text>
+  <text x="706" y="231" text-anchor="middle" font-size="10" fill="#16a34a" font-weight="bold">✅ MIT</text>
+
+  <rect x="16" y="240" width="772" height="28" fill="#ecfdf5"/>
+  <text x="110" y="259" text-anchor="middle" font-size="10.5" fill="#065f46" font-weight="bold">Rasa</text>
+  <text x="218" y="259" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="310" y="259" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★☆</text>
+  <text x="400" y="259" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★★</text>
+  <text x="490" y="259" text-anchor="middle" font-size="10.5" fill="#1e293b">★★☆☆☆</text>
+  <text x="580" y="259" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★☆</text>
+  <text x="706" y="259" text-anchor="middle" font-size="10" fill="#16a34a" font-weight="bold">✅ Apache</text>
+
+  <rect x="16" y="268" width="772" height="28" fill="#fff7ed"/>
+  <text x="110" y="287" text-anchor="middle" font-size="10.5" fill="#9a3412" font-weight="bold">LlamaIndex</text>
+  <text x="218" y="287" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="310" y="287" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="400" y="287" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★☆</text>
+  <text x="490" y="287" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="580" y="287" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★☆</text>
+  <text x="706" y="287" text-anchor="middle" font-size="10" fill="#16a34a" font-weight="bold">✅ MIT</text>
+
+  <rect x="16" y="296" width="772" height="28" fill="#fce7f3"/>
+  <text x="110" y="315" text-anchor="middle" font-size="10.5" fill="#9d174d" font-weight="bold">MetaGPT</text>
+  <text x="218" y="315" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="310" y="315" text-anchor="middle" font-size="10.5" fill="#1e293b">★★☆☆☆</text>
+  <text x="400" y="315" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="490" y="315" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★☆</text>
+  <text x="580" y="315" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="706" y="315" text-anchor="middle" font-size="10" fill="#16a34a" font-weight="bold">✅ MIT</text>
+
+  <rect x="16" y="324" width="772" height="28" fill="#fef3c7"/>
+  <text x="110" y="343" text-anchor="middle" font-size="10.5" fill="#92400e" font-weight="bold">Camel-AI</text>
+  <text x="218" y="343" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="310" y="343" text-anchor="middle" font-size="10.5" fill="#1e293b">★★☆☆☆</text>
+  <text x="400" y="343" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="490" y="343" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★☆</text>
+  <text x="580" y="343" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="706" y="343" text-anchor="middle" font-size="10" fill="#16a34a" font-weight="bold">✅ Apache</text>
+
+  <rect x="16" y="352" width="772" height="28" fill="#f0fdf4"/>
+  <text x="110" y="371" text-anchor="middle" font-size="10.5" fill="#14532d" font-weight="bold">Haystack</text>
+  <text x="218" y="371" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★☆</text>
+  <text x="310" y="371" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="400" y="371" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★☆</text>
+  <text x="490" y="371" text-anchor="middle" font-size="10.5" fill="#1e293b">★★☆☆☆</text>
+  <text x="580" y="371" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="706" y="371" text-anchor="middle" font-size="10" fill="#16a34a" font-weight="bold">✅ Apache</text>
+
+  <rect x="16" y="380" width="772" height="28" fill="#fdf4ff"/>
+  <text x="110" y="399" text-anchor="middle" font-size="10.5" fill="#86198f" font-weight="bold">Agno</text>
+  <text x="218" y="399" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★☆</text>
+  <text x="310" y="399" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="400" y="399" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="490" y="399" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="580" y="399" text-anchor="middle" font-size="10.5" fill="#1e293b">★★☆☆☆</text>
+  <text x="706" y="399" text-anchor="middle" font-size="10" fill="#16a34a" font-weight="bold">✅ MPL</text>
+
+  <rect x="16" y="408" width="772" height="28" fill="#fef2f2"/>
+  <text x="110" y="427" text-anchor="middle" font-size="10.5" fill="#991b1b" font-weight="bold">Dify</text>
+  <text x="218" y="427" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★★</text>
+  <text x="310" y="427" text-anchor="middle" font-size="10.5" fill="#1e293b">★★☆☆☆</text>
+  <text x="400" y="427" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★☆</text>
+  <text x="490" y="427" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="580" y="427" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★☆</text>
+  <text x="706" y="427" text-anchor="middle" font-size="10" fill="#16a34a" font-weight="bold">✅ Apache</text>
+
+  <rect x="16" y="436" width="772" height="28" fill="#f1f5f9"/>
+  <text x="110" y="455" text-anchor="middle" font-size="10.5" fill="#334155" font-weight="bold">OpenAI Agents ⚠️</text>
+  <text x="218" y="455" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★★</text>
+  <text x="310" y="455" text-anchor="middle" font-size="10.5" fill="#1e293b">★★☆☆☆</text>
+  <text x="400" y="455" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★★☆</text>
+  <text x="490" y="455" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="580" y="455" text-anchor="middle" font-size="10.5" fill="#1e293b">★★★☆☆</text>
+  <text x="706" y="455" text-anchor="middle" font-size="10" fill="#dc2626" font-weight="bold">⚠️ 闭源</text>
+
+  <!-- 边框和分割线 -->
+  <rect x="16" y="38" width="772" height="426" rx="4" fill="none" stroke="#e2e8f0" stroke-width="1.5"/>
+  <line x1="168" y1="38" x2="168" y2="464" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="262" y1="38" x2="262" y2="464" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="352" y1="38" x2="352" y2="464" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="440" y1="38" x2="440" y2="464" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="530" y1="38" x2="530" y2="464" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="640" y1="38" x2="640" y2="464" stroke="#e2e8f0" stroke-width="1"/>
+</svg>
+
+</div>
+
+<hr>
+<h2 id="总结：2026-年框架格局"><a href="#总结：2026-年框架格局" class="headerlink" title="总结：2026 年框架格局"></a>总结：2026 年框架格局</h2><p>Agent 框架的”战国时代”已经结束，2026 年呈现出清晰的三层格局：</p>
+<p><strong>第一梯队（生产级）</strong>：LangGraph（图范式+最佳可观测性）、MS Agent Framework（Azure 企业）、Rasa（任务型对话之王）。<br>前者以图状态机和 LangSmith 可观测性领跑，后者凭借微软企业背书统治 Azure 生态。</p>
+<p><strong>第二梯队（垂直场景）</strong>：LangChain（生态黏合剂）、CrewAI（团队协作-最快上手）、LlamaIndex（RAG 密集）、Semantic Kernel（.NET）、AutoGen（对话多智能体）、Haystack（NLP DevOps）。各有明确定位，在特定场景中不可替代。</p>
+<p><strong>第三梯队（新兴/研究）</strong>：MetaGPT（代码生成）、Camel-AI（学术研究）、Agno（高性能多模态）、Dify（零代码可视化）、OpenAI Agents SDK（原型验证，慎用于生产）。</p>
+<p><strong>选型核心原则</strong>：优先选你的团队能控制、能审计、能自托管的框架。你拥有的代码，才是真正属于你的基础设施。<br>（建议）不要追求”最好的框架”，而要找”最匹配你约束条件的框架”——团队技术栈、工作流复杂度、生产可靠性要求和长期维护成本，是比 GitHub Star 更重要的决策依据。<br>开源的选择：开源框架都有足够强大且成熟的选项，无需为了便利而接受数据锁定的风险（选择OpenAI Agents SDK）。风险包括 数据安全：敏感数据（客户信息、业务数据）强制出境 等。</p>
+<hr>
+<p><em>本文数据来源：OpenAgents Blog、agilesoftlabs.com、langfuse.com、aimultiple.com 及各框架官方文档，截止 2026 年 3 月。</em><br><em>最后附上项目案例 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/quanoc/ndp-ai-examples">ndp-ai-examples</a></em></p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/f2bec466/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/f2bec466/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    2.当前 Agent形态分类
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/a5ce6135-agent-builder/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/a5ce6135-agent-builder/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">1.AgentBuilder技术方案</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

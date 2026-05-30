@@ -1,0 +1,553 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>001.tensorflow学习.md | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="ML">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="001.tensorflow学习.md">
+<meta property="og:url" content="https://waisec.cn/wiki/1fb17c5f/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/quano/www/raw/master/img/TensorFlow%E5%AD%A6%E4%B9%A0.png">
+<meta property="article:published_time" content="2021-10-28T14:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.148Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="ML">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/quano/www/raw/master/img/TensorFlow%E5%AD%A6%E4%B9%A0.png">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "001.tensorflow学习.md",
+    "url": "https://waisec.cn/wiki/1fb17c5f/",
+    "datePublished": "2021-10-28T14:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.148Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "ML"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/2|机器学习/003.框架工具/001.tensorflow认识" class="article article-type-post">
+    
+        <meta name="referrer" content="no-referrer">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Tensorflow%E4%BB%8B%E7%BB%8D"><span class="toc-text">1 Tensorflow介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E4%BB%80%E4%B9%88%E6%98%AFTensorflow"><span class="toc-text">1.1 什么是Tensorflow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-Tensorflow%E7%89%88%E6%9C%AC%E9%80%89%E6%8B%A9"><span class="toc-text">1.2 Tensorflow版本选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-Tensorflow%E4%B8%8ELLM"><span class="toc-text">1.3 Tensorflow与LLM</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Tensorflow%E8%AE%A4%E8%AF%86"><span class="toc-text">Tensorflow认识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9%E5%92%8C%E5%8A%9F%E8%83%BD"><span class="toc-text">主要特点和功能</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Tensorflow%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83"><span class="toc-text">Tensorflow模型训练</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E6%AD%A5%E9%AA%A4"><span class="toc-text">训练步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="toc-text">相关概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%96%99"><span class="toc-text">资料</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Docekr%E9%95%9C%E5%83%8F%E7%9B%B8%E5%85%B3-%E4%BD%BF%E7%94%A8"><span class="toc-text">Docekr镜像相关(使用)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#tensorflow-tensorflow-latest-gpu"><span class="toc-text">tensorflow&#x2F;tensorflow:latest-gpu</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tensorflow-latest-gpu-jupyter"><span class="toc-text">tensorflow:latest-gpu-jupyter</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E8%A7%86%E8%A7%92%E8%A7%A3%E9%87%8Atensorflow"><span class="toc-text">面试视角解释tensorflow</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE"><span class="toc-text">思维导图</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">2|机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/003-%E6%A1%86%E6%9E%B6%E5%B7%A5%E5%85%B7/">003.框架工具</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/ML/" rel="tag">ML</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2021/10/" onclick="onclickRoute(event, '/archives/2021/10/')">
+            <time datetime="2021-10-28T14:55:57.000Z" itemprop="datePublished">2021-10-28</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="ML">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/1fb17c5f/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            tensorflow学习.md
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <h1 id="1-Tensorflow介绍"><a href="#1-Tensorflow介绍" class="headerlink" title="1 Tensorflow介绍"></a>1 Tensorflow介绍</h1><h2 id="1-1-什么是Tensorflow"><a href="#1-1-什么是Tensorflow" class="headerlink" title="1.1 什么是Tensorflow"></a>1.1 什么是Tensorflow</h2><p>TensorFlow是一个开源的<strong>机器学习框架</strong>。</p>
+<p>提供了一个强大的工具集，<span style="font-size: 12px;">用于构建和训练各种机器学习模型，包括神经网络</span>。</p>
+<p>TensorFlow的核心是<span style="font-size: 12px;"><strong><em>计算图（Computational Graph）</em></strong></span>和<span style="font-size: 12px;"><strong><em>张量（Tensor）</em></strong></span>的概念，它允许用户在高度灵活和可扩展的环境中定义和运行各种机器学习任务。</p>
+<h2 id="1-2-Tensorflow版本选择"><a href="#1-2-Tensorflow版本选择" class="headerlink" title="1.2 Tensorflow版本选择"></a>1.2 Tensorflow版本选择</h2><ul>
+<li>TensorFlow 1.x: 这是TensorFlow的早起版本， 具<strong><em>有广泛的应用和成熟的生态系统</em></strong>。 与2.x有一些语法和概念上的<strong><em>差异!</em></strong>.</li>
+<li>TensorFlow 2.x: 当前的主要版本，有<strong><em>重大的改进和更新</em></strong><span style="font-size: 12px;">TODO</span>。 具有更简介的API、更好的性能和更易于使用的特点。 兼容了Keras，使得模型构建更加方便。</li>
+</ul>
+<h2 id="1-3-Tensorflow与LLM"><a href="#1-3-Tensorflow与LLM" class="headerlink" title="1.3 Tensorflow与LLM"></a>1.3 Tensorflow与LLM</h2><p>在LLM中，PyTorch和TensorFlow这两个深度学习框架起着至关重要的作用。 它们<strong><em>为构建、训练和部署LLM提供了必要的工具和基础设施</em></strong>。</p>
+<ul>
+<li><p>提供了高级的API和工具，使得人们能够更容易的构建复杂的神经网络结构，如Transformer，这是LLM的核心组成部分。 自动微分功能也大大简化了梯度计算和反向传播的过程</p>
+</li>
+<li><p>分布式训练： LLM通常需要大量的计算资源。通过分布式训练，可以将模型的训练任务分配到多个GPU和TPU上，从而加快训练速度。</p>
+</li>
+</ul>
+<h1 id="Tensorflow认识"><a href="#Tensorflow认识" class="headerlink" title="Tensorflow认识"></a>Tensorflow认识</h1><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://tensorflow.google.cn/learn?hl=zh-cn">tensorflow官网：轻松创建机器学习模型</a></p>
+<p>借助 TensorFlow，初学者和专家可以轻松创建适用于<strong>桌面、移动、网络和云端环境</strong>的机器学习模型。请参阅以下几部分，了解如何开始使用。</p>
+<p>关键词：TensorFlow 基础知识、创建机器学习项目、TensorFlow.js 、部署现有模型、移动设备和边缘设备、针对生产</p>
+<p>移动设备和边缘设备：使用 TensorFlow Lite 在 Android、iOS、Edge TPU 和 Raspberry Pi 等移动设备和嵌入式设备上进行推断<br>针对生产：使用 TFX 部署可用于生产环境的机器学习流水线，以用于训练和推断。</p>
+<h2 id="主要特点和功能"><a href="#主要特点和功能" class="headerlink" title="主要特点和功能"></a>主要特点和功能</h2><p>（1）计算图<br>TensorFlow使用计算图来描述机器学习模型。计算图是一种图形表示，其中节点表示操作，边表示操作之间的数据流。这种图形模型使得 TensorFlow 能够高效地优化计算，分布式执行，以及方便地在不同平台上运行。</p>
+<p>（2）张量<br><strong>张量的概念是由 Google Brain 团队在开发 TensorFlow 框架时引入的</strong><br><strong>术语”张量”最早由德国数学家奥古斯特·费迪南德·莫比乌斯（August Ferdinand Möbius）在19世纪中期引入</strong></p>
+<p>然而，在机器学习和深度学习的上下文中，张量的概念经常被引用，它在这里更多地是指多维数组或矩阵的概念。</p>
+<p>张量是 TensorFlow 中的核心数据结构，它是多维数组，类似于 NumPy 中的数组。张量在计算图中流动，传递数据和梯度。</p>
+<p><strong><em>张量是一种广义的矩阵，它可以是零阶（标量）、一阶（向量）、二阶（矩阵）等。在深度学习框架中，例如 TensorFlow 和 PyTorch 中，张量是基本的数据结构，用于表示和处理多维数据。</em></strong></p>
+<p>具体到 TensorFlow，<strong><em>张量的概念是由 Google Brain 团队在开发 TensorFlow 框架时引入的</em></strong>。TensorFlow的名字中的 “Tensor” 指的就是这个多维数组的概念。TensorFlow的计算图模型使用张量作为数据的基本单位，计算图中的节点执行操作，边表示张量之间的流动关系。</p>
+<ul>
+<li><p>在线性代数中，术语 “向量” 通常指一维数组，即一个包含有序数值的集合。在这个上下文中，”向量” 与 “一维数组” 的概念是等价</p>
+</li>
+<li><p>然而，在机器学习和深度学习的上下文中，术语 “向量” 的使用可以更为广泛，不仅指一维数组，还可能指包含多个元素的任何数组，即多维数组。在这个语境下，一维数组被视为一种特殊情况，即长度为 1 的向量。</p>
+</li>
+</ul>
+<p>一维数组（一维向量）、二维数组（二维向量）、多维数组（多维向量）。</p>
+<p>在深度学习中，尤其是使用框架如 TensorFlow 或 PyTorch 时，通常将这些多维数组统称为 “张量”。因此，术语 “向量” 在这个上下文中可能包括一维、二维，乃至更高维度的数组。</p>
+<p>（3）灵活性<br>TensorFlow提供了灵活性，允许用户在不同的层次上构建模型，从高级的 Keras API 到低级的 TensorFlow 操作</p>
+<p> (4) 自动求导<br>TensorFlow提供了自动求导的功能，简化了梯度计算的过程，这对于训练神经网络是至关重要的。</p>
+<p>（5）跨平台支持<br>TensorFlow支持在多种硬件和平台上运行，包括 CPU、GPU 和 TPU（Tensor Processing Unit）等。</p>
+<p>（6）大型社区和生态系统</p>
+<h1 id="Tensorflow模型训练"><a href="#Tensorflow模型训练" class="headerlink" title="Tensorflow模型训练"></a>Tensorflow模型训练</h1><h2 id="训练步骤"><a href="#训练步骤" class="headerlink" title="训练步骤"></a>训练步骤</h2><p>主要分为以下几步：（以<a target="_blank" rel="external nofollow noopener noreferrer" href="https://tensorflow.google.cn/tutorials/customization/custom_training_walkthrough?hl=zh-CN#%E4%BD%BF%E7%94%A8_keras_%E5%88%9B%E5%BB%BA%E6%A8%A1%E5%9E%8B">自定义训练: 演示</a>为例）</p>
+<ul>
+<li>数据集（导入）</li>
+<li>模型构建（使用 Keras自定义创建神经网络模型：1个输入层、2个隐藏层和1个输出层）</li>
+<li>训练模型（损失和梯度函数、优化器、学习率、随机梯度下降-SGD等 todo）</li>
+<li>评估模型的有效性</li>
+<li>模型使用</li>
+</ul>
+<p>TensorBoard呈现进度.</p>
+<h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><p>损失和梯度函数、优化器、学习率、随机梯度下降-SGD</p>
+<p>TensorBoard、模型评估</p>
+<p>todo：用tensorflow将 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.kaggle.com/code/novatensor/digit-rec/edit">https://www.kaggle.com/code/novatensor/digit-rec/edit</a> 重写.</p>
+<ul>
+<li>PyTorch 和 TensorFlow的主要区别在于：1. PyTorch 使用动态计算图，运行时构建，更加灵活；2. PyTorch 的 API 设计更加直观和简洁..</li>
+</ul>
+<h2 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://tf.wiki/zh_hans/basic/models.html">TensorFlow 模型建立与训练</a><br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://tensorflow.google.cn/tutorials/customization/custom_training_walkthrough?hl=zh-CN">google.tensorflow教程</a></p>
+<ul>
+<li>Keras和Tensorflow：Keras 提供了一个简单易用的接口，适合快速原型设计和实验，而 TensorFlow 则更适合对模型进行定制和优化，以满足特定需求。由于 TensorFlow 集成了 Keras，因此在许多情况下，两者可以结合使用，根据需要灵活地切换。</li>
+</ul>
+<h1 id="Docekr镜像相关-使用"><a href="#Docekr镜像相关-使用" class="headerlink" title="Docekr镜像相关(使用)"></a>Docekr镜像相关(使用)</h1><h2 id="tensorflow-tensorflow-latest-gpu"><a href="#tensorflow-tensorflow-latest-gpu" class="headerlink" title="tensorflow/tensorflow:latest-gpu"></a>tensorflow/tensorflow:latest-gpu</h2><p>命令行模型调试<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-docker run -it tensorflow/tensorflow:latest-gpu</span><br></pre></td></tr></table></figure></p>
+<h2 id="tensorflow-latest-gpu-jupyter"><a href="#tensorflow-latest-gpu-jupyter" class="headerlink" title="tensorflow:latest-gpu-jupyter"></a>tensorflow:latest-gpu-jupyter</h2><p>可用于开发.<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">nvidia-docker run -it -p 8888:8888 tensorflow/tensorflow:latest-gpu-jupyter</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">nvidia-docker run --name vk-jupyter -e JUPYTER_ENABLE_LAB=yes --restart=always -d -p 8888:8888 -v /mnt/d/jupyter/quanoc:/home/quanoc tensorflow/tensorflow:latest-gpu</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">nvidia-docker run --name vk-jupyter -e JUPYTER_ENABLE_LAB=yes -d -p 8888:8888 -v /mnt/d/jupyter/quanoc:/home/quanoc tensorflow/tensorflow:latest-gpu</span><br></pre></td></tr></table></figure></p>
+<h1 id="面试视角解释tensorflow"><a href="#面试视角解释tensorflow" class="headerlink" title="面试视角解释tensorflow"></a>面试视角解释tensorflow</h1><ol>
+<li>定义</li>
+<li>用途</li>
+<li>核心概念</li>
+<li>原理：张量、计算图的定义 和 实现</li>
+<li>特性：自动求导、等</li>
+<li>实践：使用方式、常用的python类、 怎么工程化？</li>
+<li>拓展：构建形式(桌面、移动端、网络与云端)</li>
+<li>模型加速与压缩</li>
+</ol>
+<h1 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h1><div>
+    <img src="https://gitee.com/quano/www/raw/master/img/TensorFlow%E5%AD%A6%E4%B9%A0.png" style="display: inline-block; width: 88%">
+    <span style="display: block; margin-left: 40%;width: 65%">Tensorflow学习</span>
+</div>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/8eef054/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/8eef054/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    2.Jupyterlab开发环境搭建
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/c183c013/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/c183c013/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">2.CUDA相关概念介绍</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

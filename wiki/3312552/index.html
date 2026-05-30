@@ -1,0 +1,906 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>3.Skill案例 - tech-solution | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="Agent,Skill">
+
+    <meta name="description" content="Skill案例 - tech-solution">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3.Skill案例 - tech-solution">
+<meta property="og:url" content="https://waisec.cn/wiki/3312552/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Skill案例 - tech-solution">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-18T03:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.139Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="Skill">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "3.Skill案例 - tech-solution",
+    "url": "https://waisec.cn/wiki/3312552/",
+    "datePublished": "2026-03-18T03:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.139Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "Agent,Skill"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/1|大模型应用/00.基础入门/大模型学习/Skills/003.Skill案例_tech_solution" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88%E7%94%9F%E6%88%90"><span class="toc-text">技术方案生成</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-text">使用方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91%E8%A7%84%E5%88%99"><span class="toc-text">触发规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E8%A7%84%E8%8C%83"><span class="toc-text">输出规范</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99"><span class="toc-text">基本原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84"><span class="toc-text">文档结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E6%A0%BC%E5%BC%8F"><span class="toc-text">表格格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E5%9B%BE%E6%A0%BC%E5%BC%8F"><span class="toc-text">架构图格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E8%A7%84%E8%8C%83"><span class="toc-text">详细规范</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%96%B9%E6%A1%88%E6%A6%82%E8%BF%B0"><span class="toc-text">一、方案概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-%E8%83%8C%E6%99%AF%E4%B8%8E%E7%9B%AE%E6%A0%87"><span class="toc-text">1.1 背景与目标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90"><span class="toc-text">1.2 问题分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-%E9%A2%84%E6%9C%9F%E6%94%B6%E7%9B%8A"><span class="toc-text">1.3 预期收益</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%95%B4%E4%BD%93%E8%AE%BE%E8%AE%A1"><span class="toc-text">二、整体设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">2.1 架构设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B"><span class="toc-text">2.2 技术选型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF"><span class="toc-text">2.3 关键技术</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1"><span class="toc-text">三、详细设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E6%A8%A1%E5%9D%97%E5%88%92%E5%88%86"><span class="toc-text">3.1 模块划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1"><span class="toc-text">3.2 接口设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-%E6%95%B0%E6%8D%AE%E8%AE%BE%E8%AE%A1"><span class="toc-text">3.3 数据设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-%E5%AE%89%E5%85%A8%E8%AE%BE%E8%AE%A1"><span class="toc-text">3.4 安全设计</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%9E%E6%96%BD%E8%AE%A1%E5%88%92"><span class="toc-text">四、实施计划</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-%E9%98%B6%E6%AE%B5%E5%88%92%E5%88%86"><span class="toc-text">4.1 阶段划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-%E9%87%8C%E7%A8%8B%E7%A2%91"><span class="toc-text">4.2 里程碑</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-%E8%B5%84%E6%BA%90%E9%9C%80%E6%B1%82"><span class="toc-text">4.3 资源需求</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E9%A3%8E%E9%99%A9%E4%B8%8E%E5%BA%94%E5%AF%B9"><span class="toc-text">五、风险与应对</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-%E9%A3%8E%E9%99%A9%E8%AF%86%E5%88%AB"><span class="toc-text">5.1 风险识别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-%E5%BA%94%E5%AF%B9%E6%8E%AA%E6%96%BD"><span class="toc-text">5.2 应对措施</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-text">示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%E8%BE%93%E5%85%A5"><span class="toc-text">示例输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%E8%BE%93%E5%87%BA"><span class="toc-text">示例输出</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88%EF%BC%9A%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81%E7%B3%BB%E7%BB%9F"><span class="toc-text">技术方案：用户认证系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%96%B9%E6%A1%88%E6%A6%82%E8%BF%B0-1"><span class="toc-text">一、方案概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E8%83%8C%E6%99%AF%E4%B8%8E%E7%9B%AE%E6%A0%87-1"><span class="toc-text">1.1 背景与目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90-1"><span class="toc-text">1.2 问题分析</span></a></li></ol></li></ol></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/">1|大模型应用</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/00-%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/">00.基础入门</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/00-%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0/">大模型学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/00-%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0/Skills/">Skills</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Agent/" rel="tag">Agent</a>, <a class="tag-link-link" href="/tags/Skill/" rel="tag">Skill</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-18T03:55:57.000Z" itemprop="datePublished">2026-03-18</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="Agent,Skill">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/3312552/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            Skill案例 - tech-solution
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <h1 id="技术方案生成"><a href="#技术方案生成" class="headerlink" title="技术方案生成"></a>技术方案生成</h1><blockquote>
+<p>版本：v1.0<br>更新日期：2026-03-18</p>
+</blockquote>
+<p>生成结构化的技术方案文档，适用于项目立项、技术评审、方案汇报等场景。</p>
+<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/tech-solution [方案主题]</span><br></pre></td></tr></table></figure>
+<p>参数说明：</p>
+<ul>
+<li>方案主题：可选，指定方案的主题名称</li>
+</ul>
+<h2 id="触发规则"><a href="#触发规则" class="headerlink" title="触发规则"></a>触发规则</h2><p>当用户提到以下关键词时自动触发：</p>
+<ul>
+<li>“技术方案”</li>
+<li>“方案设计”</li>
+<li>“技术设计”</li>
+<li>“架构方案”</li>
+</ul>
+<h2 id="输出规范"><a href="#输出规范" class="headerlink" title="输出规范"></a>输出规范</h2><h3 id="基本原则"><a href="#基本原则" class="headerlink" title="基本原则"></a>基本原则</h3><ul>
+<li>使用 Markdown 格式</li>
+<li>结构清晰，层次分明</li>
+<li>技术术语准确</li>
+<li>图表使用 SVG 格式</li>
+</ul>
+<h3 id="文档结构"><a href="#文档结构" class="headerlink" title="文档结构"></a>文档结构</h3><pre style="background: #f1f5f9; padding: 16px 20px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 13px; color: #334155; line-height: 1.6; border-left: 3px solid #3b82f6; overflow-x: auto;">
+# 技术方案：{方案名称}
+
+## 一、方案概述
+├── 1.1 背景与目标
+├── 1.2 问题分析
+└── 1.3 预期收益
+
+## 二、整体设计
+├── 2.1 架构设计
+├── 2.2 技术选型
+└── 2.3 关键技术
+
+## 三、详细设计
+├── 3.1 模块划分
+├── 3.2 接口设计
+├── 3.3 数据设计
+└── 3.4 安全设计
+
+## 四、实施计划
+├── 4.1 阶段划分
+├── 4.2 里程碑
+└── 4.3 资源需求
+
+## 五、风险与应对
+├── 5.1 风险识别
+└── 5.2 应对措施
+
+## 六、附录
+├── 6.1 术语说明
+└── 6.2 参考资料
+</pre>
+
+<h3 id="表格格式"><a href="#表格格式" class="headerlink" title="表格格式"></a>表格格式</h3><p>使用 HTML 表格，第一列橙红色粗体：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">&quot;_table&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 75%&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>维度<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>说明<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span> <span class="attr">style</span>=<span class="string">&quot;color: #C15F3C&quot;</span>&gt;</span>示例项<span class="tag">&lt;/<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>示例内容<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="架构图格式"><a href="#架构图格式" class="headerlink" title="架构图格式"></a>架构图格式</h3><p>使用 SVG 绘制架构图，配色建议：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>元素类型</th>
+<th>颜色</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>蓝色 <code>#3b82f6</code></td>
+<td>核心模块</td>
+<td>主要功能组件</td>
+</tr>
+<tr>
+<td>绿色 <code>#10b981</code></td>
+<td>数据层</td>
+<td>数据库、缓存</td>
+</tr>
+<tr>
+<td>紫色 <code>#8b5cf6</code></td>
+<td>服务层</td>
+<td>API、微服务</td>
+</tr>
+<tr>
+<td>橙色 <code>#f59e0b</code></td>
+<td>外部依赖</td>
+<td>第三方服务</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="详细规范"><a href="#详细规范" class="headerlink" title="详细规范"></a>详细规范</h2><h3 id="一、方案概述"><a href="#一、方案概述" class="headerlink" title="一、方案概述"></a>一、方案概述</h3><h4 id="1-1-背景与目标"><a href="#1-1-背景与目标" class="headerlink" title="1.1 背景与目标"></a>1.1 背景与目标</h4><p><strong>必须包含</strong>：</p>
+<ul>
+<li>项目背景（为什么做）</li>
+<li>业务目标（达成什么）</li>
+<li>技术目标（解决什么技术问题）</li>
+</ul>
+<p><strong>格式示例</strong>：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">### 1.1 背景与目标</span><br><span class="line"></span><br><span class="line">**背景**：</span><br><span class="line">&#123;背景描述&#125;</span><br><span class="line"></span><br><span class="line">**业务目标**：</span><br><span class="line">- 目标1</span><br><span class="line">- 目标2</span><br><span class="line"></span><br><span class="line">**技术目标**：</span><br><span class="line">- 目标1</span><br><span class="line">- 目标2</span><br></pre></td></tr></table></figure></p>
+<h4 id="1-2-问题分析"><a href="#1-2-问题分析" class="headerlink" title="1.2 问题分析"></a>1.2 问题分析</h4><p>使用表格描述问题：</p>
+<table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>问题类型</th>
+      <th>问题描述</th>
+      <th>影响范围</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">性能问题</strong></td>
+      <td>问题详细描述</td>
+      <td>影响范围说明</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">扩展性问题</strong></td>
+      <td>问题详细描述</td>
+      <td>影响范围说明</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="1-3-预期收益"><a href="#1-3-预期收益" class="headerlink" title="1.3 预期收益"></a>1.3 预期收益</h4><p>分类描述收益：</p>
+<table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>收益类型</th>
+      <th>具体收益</th>
+      <th>量化指标</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">业务收益</strong></td>
+      <td>收益描述</td>
+      <td>可量化的指标</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">技术收益</strong></td>
+      <td>收益描述</td>
+      <td>可量化的指标</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+<h3 id="二、整体设计"><a href="#二、整体设计" class="headerlink" title="二、整体设计"></a>二、整体设计</h3><h4 id="2-1-架构设计"><a href="#2-1-架构设计" class="headerlink" title="2.1 架构设计"></a>2.1 架构设计</h4><p><strong>必须包含</strong>：</p>
+<ul>
+<li>架构图（SVG）</li>
+<li>架构说明</li>
+<li>核心流程</li>
+</ul>
+<p><strong>架构图示例</strong>：</p>
+<figure class="highlight svg"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">viewBox</span>=<span class="string">&quot;0 0 900 400&quot;</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">width</span>=<span class="string">&quot;900&quot;</span> <span class="attr">height</span>=<span class="string">&quot;400&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#f8fafc&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 标题 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;450&quot;</span> <span class="attr">y</span>=<span class="string">&quot;30&quot;</span> <span class="attr">text-anchor</span>=<span class="string">&quot;middle&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#1e293b&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;system-ui&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;16&quot;</span> <span class="attr">font-weight</span>=<span class="string">&quot;bold&quot;</span>&gt;</span>系统架构图<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 接入层 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">&quot;50&quot;</span> <span class="attr">y</span>=<span class="string">&quot;60&quot;</span> <span class="attr">width</span>=<span class="string">&quot;800&quot;</span> <span class="attr">height</span>=<span class="string">&quot;60&quot;</span> <span class="attr">rx</span>=<span class="string">&quot;8&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#eff6ff&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#3b82f6&quot;</span> <span class="attr">stroke-width</span>=<span class="string">&quot;2&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;450&quot;</span> <span class="attr">y</span>=<span class="string">&quot;95&quot;</span> <span class="attr">text-anchor</span>=<span class="string">&quot;middle&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#1e40af&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;system-ui&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;14&quot;</span> <span class="attr">font-weight</span>=<span class="string">&quot;bold&quot;</span>&gt;</span>接入层<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 应用层 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">&quot;50&quot;</span> <span class="attr">y</span>=<span class="string">&quot;140&quot;</span> <span class="attr">width</span>=<span class="string">&quot;800&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100&quot;</span> <span class="attr">rx</span>=<span class="string">&quot;8&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#f5f3ff&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#8b5cf6&quot;</span> <span class="attr">stroke-width</span>=<span class="string">&quot;2&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;450&quot;</span> <span class="attr">y</span>=<span class="string">&quot;170&quot;</span> <span class="attr">text-anchor</span>=<span class="string">&quot;middle&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#5b21b6&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;system-ui&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;14&quot;</span> <span class="attr">font-weight</span>=<span class="string">&quot;bold&quot;</span>&gt;</span>应用层<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 数据层 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">&quot;50&quot;</span> <span class="attr">y</span>=<span class="string">&quot;260&quot;</span> <span class="attr">width</span>=<span class="string">&quot;800&quot;</span> <span class="attr">height</span>=<span class="string">&quot;60&quot;</span> <span class="attr">rx</span>=<span class="string">&quot;8&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#f0fdf4&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#10b981&quot;</span> <span class="attr">stroke-width</span>=<span class="string">&quot;2&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;450&quot;</span> <span class="attr">y</span>=<span class="string">&quot;295&quot;</span> <span class="attr">text-anchor</span>=<span class="string">&quot;middle&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#166534&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;system-ui&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;14&quot;</span> <span class="attr">font-weight</span>=<span class="string">&quot;bold&quot;</span>&gt;</span>数据层<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-2-技术选型"><a href="#2-2-技术选型" class="headerlink" title="2.2 技术选型"></a>2.2 技术选型</h4><p>使用对比表格：</p>
+<table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>技术领域</th>
+      <th>选型方案</th>
+      <th>选型理由</th>
+      <th>备选方案</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">后端框架</strong></td>
+      <td>Spring Boot 3.x</td>
+      <td>生态成熟、团队熟悉</td>
+      <td>Go Gin</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">数据库</strong></td>
+      <td>MySQL 8.0</td>
+      <td>稳定可靠、运维成熟</td>
+      <td>PostgreSQL</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">缓存</strong></td>
+      <td>Redis 7.x</td>
+      <td>高性能、功能丰富</td>
+      <td>Memcached</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="2-3-关键技术"><a href="#2-3-关键技术" class="headerlink" title="2.3 关键技术"></a>2.3 关键技术</h4><pre style="background: #f1f5f9; padding: 16px 20px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 13px; color: #334155; line-height: 1.6; border-left: 3px solid #8b5cf6; overflow-x: auto;">
+关键技术点
+├── 技术点1：{技术名称}
+│   ├── 应用场景：{场景描述}
+│   ├── 实现方案：{方案描述}
+│   └── 预期效果：{效果描述}
+├── 技术点2：{技术名称}
+│   ├── 应用场景
+│   ├── 实现方案
+│   └── 预期效果
+└── 技术点3：{技术名称}
+    └── ...
+</pre>
+
+<hr>
+<h3 id="三、详细设计"><a href="#三、详细设计" class="headerlink" title="三、详细设计"></a>三、详细设计</h3><h4 id="3-1-模块划分"><a href="#3-1-模块划分" class="headerlink" title="3.1 模块划分"></a>3.1 模块划分</h4><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>模块名称</th>
+      <th>职责说明</th>
+      <th>依赖模块</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">用户模块</strong></td>
+      <td>用户注册、登录、权限管理</td>
+      <td>认证模块</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">订单模块</strong></td>
+      <td>订单创建、查询、状态管理</td>
+      <td>用户模块、支付模块</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="3-2-接口设计"><a href="#3-2-接口设计" class="headerlink" title="3.2 接口设计"></a>3.2 接口设计</h4><p><strong>接口文档格式</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">### 接口：&#123;接口名称&#125;</span><br><span class="line"></span><br><span class="line">**请求信息**</span><br><span class="line"></span><br><span class="line">| 属性 | 值 |</span><br><span class="line">|------|-----|</span><br><span class="line">| URL | /api/v1/resource |</span><br><span class="line">| Method | POST |</span><br><span class="line">| Content-Type | application/json |</span><br><span class="line"></span><br><span class="line">**请求参数**</span><br><span class="line"></span><br><span class="line">| 参数名 | 类型 | 必填 | 说明 |</span><br><span class="line">|--------|------|------|------|</span><br><span class="line">| param1 | string | 是 | 参数说明 |</span><br><span class="line"></span><br><span class="line">**响应参数**</span><br><span class="line"></span><br><span class="line">| 参数名 | 类型 | 说明 |</span><br><span class="line">|--------|------|------|</span><br><span class="line">| code | number | 状态码 |</span><br><span class="line">| data | object | 返回数据 |</span><br></pre></td></tr></table></figure>
+<h4 id="3-3-数据设计"><a href="#3-3-数据设计" class="headerlink" title="3.3 数据设计"></a>3.3 数据设计</h4><p><strong>ER 图使用 SVG</strong>：</p>
+<p><strong>数据表设计格式</strong>：</p>
+<table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>字段名</th>
+      <th>类型</th>
+      <th>说明</th>
+      <th>索引</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">id</strong></td>
+      <td>BIGINT</td>
+      <td>主键</td>
+      <td>PK</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">name</strong></td>
+      <td>VARCHAR(100)</td>
+      <td>名称</td>
+      <td>INDEX</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="3-4-安全设计"><a href="#3-4-安全设计" class="headerlink" title="3.4 安全设计"></a>3.4 安全设计</h4><pre style="background: #f1f5f9; padding: 16px 20px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 13px; color: #334155; line-height: 1.6; border-left: 3px solid #f59e0b; overflow-x: auto;">
+安全设计
+├── 认证与授权
+│   ├── 认证方式：JWT / OAuth2
+│   ├── 权限控制：RBAC 模型
+│   └── 会话管理：Redis 存储
+├── 数据安全
+│   ├── 敏感数据加密：AES-256
+│   ├── 传输加密：HTTPS
+│   └── 数据脱敏：日志、展示
+└── 接口安全
+    ├── 参数校验
+    ├── 防重放攻击
+    └── 限流保护
+</pre>
+
+<hr>
+<h3 id="四、实施计划"><a href="#四、实施计划" class="headerlink" title="四、实施计划"></a>四、实施计划</h3><h4 id="4-1-阶段划分"><a href="#4-1-阶段划分" class="headerlink" title="4.1 阶段划分"></a>4.1 阶段划分</h4><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>阶段</th>
+      <th>时间</th>
+      <th>主要任务</th>
+      <th>交付物</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">第一阶段</strong></td>
+      <td>Week 1-2</td>
+      <td>基础架构搭建</td>
+      <td>项目脚手架、CI/CD</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">第二阶段</strong></td>
+      <td>Week 3-4</td>
+      <td>核心功能开发</td>
+      <td>核心模块代码</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">第三阶段</strong></td>
+      <td>Week 5-6</td>
+      <td>测试与优化</td>
+      <td>测试报告、优化方案</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="4-2-里程碑"><a href="#4-2-里程碑" class="headerlink" title="4.2 里程碑"></a>4.2 里程碑</h4><p>使用 SVG 绘制里程碑图：</p>
+<figure class="highlight svg"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">viewBox</span>=<span class="string">&quot;0 0 900 150&quot;</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">width</span>=<span class="string">&quot;900&quot;</span> <span class="attr">height</span>=<span class="string">&quot;150&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#f8fafc&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 时间轴 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;50&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;75&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;850&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;75&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#cbd5e1&quot;</span> <span class="attr">stroke-width</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 里程碑节点 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">&quot;150&quot;</span> <span class="attr">cy</span>=<span class="string">&quot;75&quot;</span> <span class="attr">r</span>=<span class="string">&quot;12&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#3b82f6&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;150&quot;</span> <span class="attr">y</span>=<span class="string">&quot;110&quot;</span> <span class="attr">text-anchor</span>=<span class="string">&quot;middle&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#334155&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;system-ui&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;12&quot;</span>&gt;</span>M1: 架构完成<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">&quot;350&quot;</span> <span class="attr">cy</span>=<span class="string">&quot;75&quot;</span> <span class="attr">r</span>=<span class="string">&quot;12&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#8b5cf6&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;350&quot;</span> <span class="attr">y</span>=<span class="string">&quot;110&quot;</span> <span class="attr">text-anchor</span>=<span class="string">&quot;middle&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#334155&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;system-ui&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;12&quot;</span>&gt;</span>M2: 核心功能<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">&quot;550&quot;</span> <span class="attr">cy</span>=<span class="string">&quot;75&quot;</span> <span class="attr">r</span>=<span class="string">&quot;12&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#f59e0b&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;550&quot;</span> <span class="attr">y</span>=<span class="string">&quot;110&quot;</span> <span class="attr">text-anchor</span>=<span class="string">&quot;middle&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#334155&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;system-ui&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;12&quot;</span>&gt;</span>M3: 测试完成<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">&quot;750&quot;</span> <span class="attr">cy</span>=<span class="string">&quot;75&quot;</span> <span class="attr">r</span>=<span class="string">&quot;12&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#10b981&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;750&quot;</span> <span class="attr">y</span>=<span class="string">&quot;110&quot;</span> <span class="attr">text-anchor</span>=<span class="string">&quot;middle&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#334155&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;system-ui&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;12&quot;</span>&gt;</span>M4: 上线<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="4-3-资源需求"><a href="#4-3-资源需求" class="headerlink" title="4.3 资源需求"></a>4.3 资源需求</h4><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>资源类型</th>
+      <th>需求数量</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">开发人员</strong></td>
+      <td>3人</td>
+      <td>后端2人、前端1人</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">测试人员</strong></td>
+      <td>1人</td>
+      <td>功能测试、性能测试</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">服务器</strong></td>
+      <td>4台</td>
+      <td>2台应用、1台数据库、1台缓存</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+<h3 id="五、风险与应对"><a href="#五、风险与应对" class="headerlink" title="五、风险与应对"></a>五、风险与应对</h3><h4 id="5-1-风险识别"><a href="#5-1-风险识别" class="headerlink" title="5.1 风险识别"></a>5.1 风险识别</h4><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>风险类别</th>
+      <th>风险描述</th>
+      <th>影响程度</th>
+      <th>发生概率</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">技术风险</strong></td>
+      <td>新技术学习成本高</td>
+      <td>中</td>
+      <td>中</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">进度风险</strong></td>
+      <td>需求变更导致延期</td>
+      <td>高</td>
+      <td>中</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">资源风险</strong></td>
+      <td>人员流动</td>
+      <td>高</td>
+      <td>低</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="5-2-应对措施"><a href="#5-2-应对措施" class="headerlink" title="5.2 应对措施"></a>5.2 应对措施</h4><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>风险</th>
+      <th>应对措施</th>
+      <th>负责人</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">技术风险</strong></td>
+      <td>提前进行技术预研，准备备选方案</td>
+      <td>技术负责人</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">进度风险</strong></td>
+      <td>建立需求变更流程，预留缓冲时间</td>
+      <td>项目经理</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="示例输入"><a href="#示例输入" class="headerlink" title="示例输入"></a>示例输入</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/tech-solution 用户认证系统</span><br></pre></td></tr></table></figure>
+<h3 id="示例输出"><a href="#示例输出" class="headerlink" title="示例输出"></a>示例输出</h3><h1 id="技术方案：用户认证系统"><a href="#技术方案：用户认证系统" class="headerlink" title="技术方案：用户认证系统"></a>技术方案：用户认证系统</h1><h2 id="一、方案概述-1"><a href="#一、方案概述-1" class="headerlink" title="一、方案概述"></a>一、方案概述</h2><h3 id="1-1-背景与目标-1"><a href="#1-1-背景与目标-1" class="headerlink" title="1.1 背景与目标"></a>1.1 背景与目标</h3><p><strong>背景</strong>：<br>现有系统使用简单的用户名密码认证，存在安全风险，且无法支持多端登录、第三方登录等需求。</p>
+<p><strong>业务目标</strong>：</p>
+<ul>
+<li>支持多端登录（Web、App、小程序）</li>
+<li>支持第三方登录（微信、支付宝）</li>
+<li>提升账户安全性</li>
+</ul>
+<p><strong>技术目标</strong>：</p>
+<ul>
+<li>构建统一认证中心</li>
+<li>实现 OAuth2.0 标准协议</li>
+<li>支持高并发场景</li>
+</ul>
+<h3 id="1-2-问题分析-1"><a href="#1-2-问题分析-1" class="headerlink" title="1.2 问题分析"></a>1.2 问题分析</h3><table class="_table" style="width: 75%">
+  <thead>
+    <tr>
+      <th>问题类型</th>
+      <th>问题描述</th>
+      <th>影响范围</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: #C15F3C">安全问题</strong></td>
+      <td>密码明文存储，存在泄露风险</td>
+      <td>所有用户账户</td>
+    </tr>
+    <tr>
+      <td><strong style="color: #C15F3C">扩展性问题</strong></td>
+      <td>无法支持第三方登录</td>
+      <td>新用户注册转化率</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>（后续章节按规范继续…）</p>
+<hr>
+<pre style="background: #f1f5f9; padding: 16px 20px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 13px; color: #334155; line-height: 1.6; border-left: 3px solid #10b981; overflow-x: auto;">
+Skill 版本：v1.0
+更新日期：2026-03-18
+适用场景：项目立项、技术评审、方案汇报
+</pre>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/84fcddf1/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/84fcddf1/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    2.Claude Code Skill 完整指南
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/74d3077a/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/74d3077a/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">0.AI时代软件工程进化论</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

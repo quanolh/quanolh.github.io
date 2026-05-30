@@ -1,0 +1,594 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>4.VAE在pump_data中的应用 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="自编码器,异常检测,autoencoder,ECG,nova">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4.VAE在pump_data中的应用">
+<meta property="og:url" content="https://waisec.cn/wiki/7fe025ef/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-10-13T16:48:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.148Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="security">
+<meta property="article:tag" content="anomaly">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "4.VAE在pump_data中的应用",
+    "url": "https://waisec.cn/wiki/7fe025ef/",
+    "datePublished": "2024-10-13T16:48:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.148Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "自编码器,异常检测,autoencoder,ECG,nova"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/2|机器学习/004.应用场景/004.VAE在Pump_data中的应用" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+        
+<script src="/js/custom.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E9%97%AE%E9%A2%98%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D"><span class="toc-text">1.问题背景介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%9F%BA%E4%BA%8Evae-lstm%E7%9A%84%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B"><span class="toc-text">2. 基于vae+lstm的异常检测</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E4%BB%80%E4%B9%88%E6%98%AFvae-lstm"><span class="toc-text">2.1 什么是vae+lstm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AFvae-lstm"><span class="toc-text">2.2 为什么是vae+lstm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E5%8E%9F%E7%90%86%E4%BB%8B%E7%BB%8D"><span class="toc-text">2.3 原理介绍</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D-%E6%A8%A1%E5%9E%8B%E5%AE%9E%E8%B7%B5"><span class="toc-text">3. 项目介绍(模型实践)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-kaggle%E9%A1%B9%E7%9B%AE-%E6%B3%B5%E8%AE%BE%E5%A4%87%E6%80%A7%E8%83%BD%E7%9A%84%E7%A0%94%E7%A9%B6"><span class="toc-text">3.1 kaggle项目(泵设备性能的研究)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BB%8B%E7%BB%8D"><span class="toc-text">3.2 数据集介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-%E6%95%B0%E6%8D%AE%E5%86%85%E5%AE%B9"><span class="toc-text">3.2.1 数据内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">3.2.2 应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-3-Preprocessing"><span class="toc-text">3.2.3 Preprocessing</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83"><span class="toc-text">3.3 模型训练</span></a></li></ol></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">2|机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/004-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/">004.应用场景</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/anomaly/" rel="tag">anomaly</a>, <a class="tag-link-link" href="/tags/security/" rel="tag">security</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/10/" onclick="onclickRoute(event, '/archives/2024/10/')">
+            <time datetime="2024-10-13T16:48:57.000Z" itemprop="datePublished">2024-10-14</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="security,anomaly">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/7fe025ef/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            VAE在pump_data中的应用
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p>VAE-变分自编码器（Variational Autoencoder），是一种生成模型，广泛应用于深度学习和概率建模领域。<br>VAE 是在传统自编码器（Autoencoder）的基础上发展而来的，通过引入概率和统计的方法，使模型具备生成新数据的能力。</p>
+<p>因此，它可以有以下应用场景：图像生成：VAE 可以生成逼真的新图像（如手写数字、脸部图像等）；数据压缩：将高维数据压缩到低维潜在空间；特征提取：学习有意义的潜在表示，用于分类、聚类等任务；时间序列预测：结合 RNN，用于生成序列数据；文本生成：在 NLP 领域用于生成自然语言文本。</p>
+<p>另外，基于VAE将潜在空间建模为一个概率分布（通常是高斯分布），而不是映射到一个固定的潜在点。「有分布约束的潜在空间便于区分正常数据和异常数据，因为异常数据通常会偏离已知的潜在分布。」VAE可更适用于异常检测任务，例如在pump_data中的异常检测、网络流量中的异常检测等。</p>
+<span id="more"></span>
+<h1 id="1-问题背景介绍"><a href="#1-问题背景介绍" class="headerlink" title="1.问题背景介绍"></a>1.问题背景介绍</h1><p>在工业领域，泵作为关键的机械设备，广泛应用于石油、化工、制造业等场景。其运行状态对生产效率和安全性至关重要。然而，泵在运行过程中会受到磨损、振动、温度变化、液体流量波动等因素的影响，导致性能退化甚至发生故障。</p>
+<p>传统的泵状态监测和异常检测方法依赖于：</p>
+<p>经验规则。<br>信号处理（如傅里叶变换）。<br>基于特定领域知识的手动特征提取。<br>这些方法虽然有效，但存在以下问题：</p>
+<p>特征提取复杂：手动设计特征难以捕捉到潜在的复杂非线性关系。<br>泛化能力不足：对未知类型的故障或异常情况检测能力有限。<br>数据利用率低：无法充分挖掘泵运行数据中的潜在模式。<br>因此，基于深度学习的自动化特征提取和无监督学习方法，尤其是 VAE 的引入，成为一种高效的替代方案。</p>
+<h1 id="2-基于vae-lstm的异常检测"><a href="#2-基于vae-lstm的异常检测" class="headerlink" title="2. 基于vae+lstm的异常检测"></a>2. 基于vae+lstm的异常检测</h1><h2 id="2-1-什么是vae-lstm"><a href="#2-1-什么是vae-lstm" class="headerlink" title="2.1 什么是vae+lstm"></a>2.1 什么是vae+lstm</h2><p>变分自动编码器是一种结合了概率图模型和深度学习的生成模型。与传统自编码器不同，VAE不仅学习如何压缩和解压数据（即编码和解码），还尝试捕捉数据背后的概率分布。它通过引入隐变量的方式，将输入数据映射到一个潜在空间，并在这个空间中学习数据的概率分布。</p>
+<h2 id="2-2-为什么是vae-lstm"><a href="#2-2-为什么是vae-lstm" class="headerlink" title="2.2 为什么是vae+lstm"></a>2.2 为什么是vae+lstm</h2><p>相比较ae，vae更有的优势包括：结构化分布(有分布约束的潜在空间)，便于区分正常数据和异常数据；更好的泛化能力；可解释性高。<br>另外，结合lstm或者rnn可以捕捉时间序列的依赖性、处理非线性动态变化、增强异常检测能力、适应多变量时间序列</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>特点</strong></th>
+<th><strong>AE</strong></th>
+<th><strong>VAE</strong></th>
+<th><strong>VAE 的优势</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>潜在空间</strong></td>
+<td>无约束的点</td>
+<td>结构化分布</td>
+<td>潜在空间的分布可解释性强，更适合用于统计学方法分析。</td>
+</tr>
+<tr>
+<td><strong>生成能力</strong></td>
+<td>无生成能力</td>
+<td>学习数据分布，具有生成能力</td>
+<td>无法准确重建异常数据，更容易通过重建误差区分异常。</td>
+</tr>
+<tr>
+<td><strong>正则化</strong></td>
+<td>无显式正则化</td>
+<td>KL 散度正则化</td>
+<td>更鲁棒，避免过拟合，泛化能力强。</td>
+</tr>
+<tr>
+<td><strong>异常检测指标</strong></td>
+<td>重建误差</td>
+<td>重建误差 + KL 散度</td>
+<td>多维度的异常检测，更加可靠。</td>
+</tr>
+<tr>
+<td><strong>泛化能力</strong></td>
+<td>对未见数据鲁棒性较差</td>
+<td>对未见数据泛化能力更强</td>
+<td>适应性更强，能检测未知的异常模式。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>结合 RNN/LSTM 的总结：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>优点</strong></th>
+<th><strong>解释</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>捕捉时间依赖性</strong></td>
+<td>RNN/LSTM 能建模时间序列中当前时刻与历史时刻的关系。</td>
+</tr>
+<tr>
+<td><strong>增强检测能力</strong></td>
+<td>异常的时序模式偏离可以通过 LSTM 捕捉并反映在重建误差和潜在空间分布中。</td>
+</tr>
+<tr>
+<td><strong>处理多变量特性</strong></td>
+<td>对泵类数据中的多维度传感器信号建模效果更好，能捕捉变量间的动态关系。</td>
+</tr>
+<tr>
+<td><strong>适应长时间序列</strong></td>
+<td>LSTM 的长短期记忆机制能处理较长时间依赖的数据，而传统 VAE 难以做到。</td>
+</tr>
+<tr>
+<td><strong>提高泛化能力</strong></td>
+<td>VAE 中结合 RNN/LSTM 后，模型能学习时间序列的全局和局部特征，更有助于发现未知异常模式。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="2-3-原理介绍"><a href="#2-3-原理介绍" class="headerlink" title="2.3 原理介绍"></a>2.3 原理介绍</h2><h1 id="3-项目介绍-模型实践"><a href="#3-项目介绍-模型实践" class="headerlink" title="3. 项目介绍(模型实践)"></a>3. 项目介绍(模型实践)</h1><h2 id="3-1-kaggle项目-泵设备性能的研究"><a href="#3-1-kaggle项目-泵设备性能的研究" class="headerlink" title="3.1 kaggle项目(泵设备性能的研究)"></a>3.1 kaggle项目(泵设备性能的研究)</h2><p>泵设备性能的研究，属于 工业制造领域 设备故障预测与诊断的问题。</p>
+<h2 id="3-2-数据集介绍"><a href="#3-2-数据集介绍" class="headerlink" title="3.2 数据集介绍"></a>3.2 数据集介绍</h2><p>Kaggle 的 Pump Sensor Data 数据集，主要用于预测性维护、异常检测和时间序列分析，重点是分析泵的运行状态和传感器数据。</p>
+<p>用途：该数据集专注于泵设备性能的研究，通过传感器数据预测故障、检测异常或分析运行效率。</p>
+<h3 id="3-2-1-数据内容"><a href="#3-2-1-数据内容" class="headerlink" title="3.2.1 数据内容"></a>3.2.1 数据内容</h3><p>数据集中通常包含<strong><em>多个传感器</em></strong>的时间序列记录，包括以下信息(主要3种类型数据)：</p>
+<p>时间戳：标记每条数据的采集时间。<br>传感器数据：如流量、压力、温度、振动等传感器测量值。「 Sensor data(52 series): All values are raw values 」<br>状态标签（如果有）：标记泵是否处于正常、预警或故障状态​. 推断 Pump Failure</p>
+<!-- 在页面中显示表格 -->
+<p><div id="csv-table" class="csv-table"></div><br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.kaggle.com/datasets/nphantawee/pump-sensor-data/data">kaggle dataset:pump_sensor_data</a></p>
+<script type="text/javascript">
+    const csvData = `timestamp,sensor_00,sensor_01,sensor_02,sensor_03,sensor_04,sensor_05,sensor_06,sensor_07,sensor_08,sensor_09,sensor_10,sensor_11,sensor_12,sensor_13,sensor_14,sensor_15,sensor_16,sensor_17,sensor_18,sensor_19,sensor_20,sensor_21,sensor_22,sensor_23,sensor_24,sensor_25,sensor_26,sensor_27,sensor_28,sensor_29,sensor_30,sensor_31,sensor_32,sensor_33,sensor_34,sensor_35,sensor_36,sensor_37,sensor_38,sensor_39,sensor_40,sensor_41,sensor_42,sensor_43,sensor_44,sensor_45,sensor_46,sensor_47,sensor_48,sensor_49,sensor_50,sensor_51,machine_status
+2018-04-01 00:00:00,2.465394,47.092009999999995,53.2118,46.310759999999995,634.375,76.45975,13.41146,16.13136,15.567129999999999,15.053529999999999,37.2274,47.52422,31.11716,1.6813529999999999,419.5747,,461.8781,466.3284,2.565284,665.3993,398.9862,880.0001,498.8926,975.9409,627.674,741.7151,848.0708,429.0377,785.1935,684.9443,594.4445,682.8125,680.4416,433.7037,171.9375,341.9039,195.0655,90.32386,40.36458,31.51042,70.57291,30.98958,31.770832061767603,41.92708,39.6412,65.68287,50.92593,38.19444,157.9861,67.70834,243.0556,201.3889,NORMAL
+2018-04-01 00:01:00,2.465394,47.092009999999995,53.2118,46.310759999999995,634.375,76.45975,13.41146,16.13136,15.567129999999999,15.053529999999999,37.2274,47.52422,31.11716,1.6813529999999999,419.5747,,461.8781,466.3284,2.565284,665.3993,398.9862,880.0001,498.8926,975.9409,627.674,741.7151,848.0708,429.0377,785.1935,684.9443,594.4445,682.8125,680.4416,433.7037,171.9375,341.9039,195.0655,90.32386,40.36458,31.51042,70.57291,30.98958,31.770832061767603,41.92708,39.6412,65.68287,50.92593,38.19444,157.9861,67.70834,243.0556,201.3889,NORMAL
+2018-04-01 00:02:00,2.444734,47.35243,53.2118,46.39757,638.8889,73.54598,13.32465,16.037329999999997,15.617770000000002,15.010129999999998,37.86777,48.17723,32.08894,1.7084740000000003,420.848,,462.7798,459.6364,2.500062,666.2234,399.9418,880.4237,501.3617,982.7342,631.1326,740.8031,849.8997,454.23900000000003,778.5734,715.6266,661.574,721.875,694.7721,441.2635,169.982,343.1955,200.9694,93.90508,41.40625,31.25,69.53125,30.46875,31.77083,41.66666,39.3518524169922,65.39352,51.21528,38.1944427490234,155.9606,67.12963,241.3194,203.7037,NORMAL
+2018-04-01 00:03:00,2.460474,47.092009999999995,53.1684,46.3975677490234,628.125,76.98898,13.317420000000002,16.24711,15.697339999999999,15.08247,38.57977,48.65607,31.672209999999996,1.5794270000000001,420.7494,,462.898,460.8858,2.509521,666.0114,399.1046,878.8917,499.043,977.752,625.4076,739.2722,847.7579,474.8731,779.5091,690.4011,686.1111,754.6875,683.3831,446.2493,166.4987,343.9586,193.1689,101.0406,41.92708,31.51042,72.13541,30.46875,31.51042,40.88541,39.0625,64.81481,51.21528,38.19444,155.9606,66.84028,240.4514,203.125,NORMAL
+2018-04-01 00:04:00,2.445718,47.13541,53.2118,46.3975677490234,636.4583,76.58896999999999,13.353589999999999,16.21094,15.697339999999999,15.08247,39.48939,49.062979999999996,31.95202,1.683831,419.8926,,461.4906,468.2206,2.6047849999999997,663.2111,400.5426,882.5874,498.5383,979.5755,627.183,737.6033,846.9182,408.8159,785.2307,704.6937,631.4814,766.1458,702.4431,433.9081,164.7498,339.963,193.877,101.7038,42.70833,31.51042,76.82291,30.98958,31.51042,41.40625,38.77315,65.10416,51.79398,38.77315,158.2755,66.55093000000001,242.1875,201.3889,NORMAL`
+    displayTableFromCSV(csvData, false)
+</script>
+
+
+
+<h3 id="3-2-2-应用场景"><a href="#3-2-2-应用场景" class="headerlink" title="3.2.2 应用场景"></a>3.2.2 应用场景</h3><p>预测性维护：预测泵的故障时间或剩余寿命，提前采取措施。<br>异常检测：检测传感器数据中的异常模式，识别潜在问题。<br>时间序列建模：分析泵的长期运行趋势和周期性行为​</p>
+<h3 id="3-2-3-Preprocessing"><a href="#3-2-3-Preprocessing" class="headerlink" title="3.2.3 Preprocessing"></a>3.2.3 Preprocessing</h3><p>处理缺失值和异常值。<br>归一化或标准化传感器数据。<br>特征工程，例如计算移动平均、提取频率特征（如傅里叶变换）等</p>
+<h2 id="3-3-模型训练"><a href="#3-3-模型训练" class="headerlink" title="3.3 模型训练"></a>3.3 模型训练</h2>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/c9941638/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/c9941638/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    2.BTM方法综述
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/ee2435bf/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/ee2435bf/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">3.自编码在ECG场景异常检测</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

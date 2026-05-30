@@ -1,0 +1,643 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>2.Transformer | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="深度学习,Transformer">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2.Transformer">
+<meta property="og:url" content="https://waisec.cn/wiki/1204b396/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/quano/www/raw/master/img/NLP/transform.png">
+<meta property="og:image" content="https://gitee.com/quano/www/raw/master/img/NLP/encoder_structure.png">
+<meta property="og:image" content="https://gitee.com/quano/www/raw/master/img/NLP/self_attention.png">
+<meta property="article:published_time" content="2024-01-27T14:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.150Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="Transformer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/quano/www/raw/master/img/NLP/transform.png">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "2.Transformer",
+    "url": "https://waisec.cn/wiki/1204b396/",
+    "datePublished": "2024-01-27T14:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.150Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "深度学习,Transformer"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/3|深度学习/002.常见算法/002.Transformer" class="article article-type-post">
+    
+        <meta name="referrer" content="no-referrer">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81Transformer-%E7%AE%80%E4%BB%8B"><span class="toc-text">一、Transformer 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-Transformer%E8%83%8C%E6%99%AF"><span class="toc-text">1.1 Transformer背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-Transformer%E5%AE%9A%E4%B9%89"><span class="toc-text">1.2 Transformer定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-Transformer%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84"><span class="toc-text">1.3 Transformer模型架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6"><span class="toc-text">核心组件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-Transformer%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">1.4 Transformer应用场景</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E7%BC%96%E7%A0%81%E5%99%A8"><span class="toc-text">二、 编码器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6"><span class="toc-text">2.1 自注意力机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%83%8C%E6%99%AF%E5%BC%95%E5%85%A5"><span class="toc-text">1. 背景引入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%BA%86%E8%A7%A3"><span class="toc-text">2. 自注意力机制了解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-text">3. 实现原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%90%86%E8%A7%A3%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6"><span class="toc-text">4. 理解自注意力机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-%E7%AC%AC%E4%B8%80%E6%AD%A5-%E8%AE%A1%E7%AE%97%E6%9F%A5%E8%AF%A2%E7%9F%A9%E9%98%B5-Q-%E4%B8%8E%E9%94%AE%E7%9F%A9%E9%98%B5-K-T-%E7%9A%84%E7%82%B9%E7%A7%AF"><span class="toc-text">4.1 第一步:计算查询矩阵 $Q$ 与键矩阵 $K^T$ 的点积</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-%E7%AC%AC%E4%BA%8C%E6%AD%A5-%E5%B0%86-Q-cdot-K-T-%E7%9F%A9%E9%98%B5%E9%99%A4%E4%BB%A5%E9%94%AE%E5%90%91%E9%87%8F%E7%BB%B4%E5%BA%A6%E7%9A%84%E5%B9%B3%E6%96%B9%E6%A0%B9"><span class="toc-text">4.2 第二步:将$Q \cdot K^T$  矩阵除以键向量维度的平方根</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-%E7%AC%AC%E4%B8%89%E6%AD%A5-%E4%BD%BF%E7%94%A8-softmax-%E5%87%BD%E6%95%B0%E5%AF%B9%E5%85%B6%E8%BF%9B%E8%A1%8C%E5%BD%92%E4%B8%80%E5%8C%96%E5%A4%84%E7%90%86"><span class="toc-text">4.3 第三步:使用 softmax 函数对其进行归一化处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-%E7%AC%AC%E5%9B%9B%E6%AD%A5-%E9%80%9A%E8%BF%87%E5%B0%86%E5%88%86%E6%95%B0%E7%9F%A9%E9%98%B5%E4%B8%8E%E5%80%BC%E7%9F%A9%E9%98%B5-V-%E7%9B%B8%E4%B9%98%EF%BC%8C%E8%AE%A1%E7%AE%97%E5%87%BA%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%9F%A9%E9%98%B5-Z"><span class="toc-text">4.4 第四步:通过将分数矩阵与值矩阵$V$相乘，计算出注意力矩阵$Z$</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E8%AE%A1%E7%AE%97%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-text">5. 计算流程图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E5%A4%9A%E5%A4%B4%E6%B3%A8%E6%84%8F%E5%8A%9B%E5%B1%82"><span class="toc-text">2.2 多头注意力层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E9%80%9A%E8%BF%87%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81%E6%9D%A5%E5%AD%A6%E4%B9%A0%E4%BD%8D%E7%BD%AE"><span class="toc-text">2.3 通过位置编码来学习位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E5%89%8D%E9%A6%88%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="toc-text">2.4 前馈网络层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-%E5%8F%A0%E5%8A%A0%E5%92%8C%E5%BD%92%E4%B8%80%E7%BB%84%E4%BB%B6"><span class="toc-text">2.5 叠加和归一组件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E8%A7%A3%E7%A0%81%E5%99%A8"><span class="toc-text">三、 解码器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E5%B8%A6%E6%8E%A9%E7%A0%81%E7%9A%84%E5%A4%9A%E5%A4%B4%E6%B3%A8%E6%84%8F%E5%8A%9B%E5%B1%82"><span class="toc-text">3.1 带掩码的多头注意力层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E5%A4%9A%E5%A4%B4%E6%B3%A8%E6%84%8F%E5%8A%9B%E5%B1%82"><span class="toc-text">3.2 多头注意力层</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Transformer%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83"><span class="toc-text">四、Transformer模型训练</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">3|深度学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/3-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/002-%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/">002.常见算法</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Transformer/" rel="tag">Transformer</a>, <a class="tag-link-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/01/" onclick="onclickRoute(event, '/archives/2024/01/')">
+            <time datetime="2024-01-27T14:55:57.000Z" itemprop="datePublished">2024-01-27</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="深度学习,Transformer">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/1204b396/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            Transformer
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p>作为当下最先进的深度学习架构之一，Transformer 被广泛应用于自然语言处理领域。它不单替代了以前流行的循环神经网络（<span title="recurrent neural network">RNN</span>）和长短期记忆（<span title="long short-term memory">LSTM</span>）网络，<br>并且以它为基础衍生出了诸如 BERT、 GPT-3、T5 等知名架构。</p>
+<p>本文主要深入总结Transformer的实现细节及工作原理，具体内容包括：</p>
+<ul>
+<li>Transformer 简介</li>
+<li>理解编码器</li>
+<li>理解解码器</li>
+<li>整合编码器和解码器</li>
+<li>训练Transformer</li>
+</ul>
+<h1 id="一、Transformer-简介"><a href="#一、Transformer-简介" class="headerlink" title="一、Transformer 简介"></a>一、Transformer 简介</h1><h2 id="1-1-Transformer背景"><a href="#1-1-Transformer背景" class="headerlink" title="1.1 Transformer背景"></a>1.1 Transformer背景</h2><p>RNN和LSTM已经广泛应用于时序任务，比如文本预测、机器翻译、文章生成等。然而，它们面临的一大问题就是<strong><em>如何记录长期依赖</em></strong>。<br>&nbsp;&nbsp;&nbsp;<span style="font-size: 12px;color: #e96900;">tips.常见的时序任务：时间序列预测、机器翻译、语音识别、音乐/文本生成、视频分析与处理等等</span></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.RNN具有记忆能力，能够通过循环连接在时间步上传递信息，捕捉到先前时间步的信息。可以处理不同长度的输入序列。</span><br><span class="line">但是存在梯度消失和梯度爆炸问题、长期依赖性建模困难(由于梯度消失的问题，RNN难以有效地捕捉到长期依赖关系，</span><br><span class="line">即较早时间步的信息在后续时间步的影响衰减过快。)	</span><br><span class="line">2.LSTM具有长期依赖性，通过门控机制（遗忘门、输入门、输出门）有效地解决了梯度消失和长期依赖性的问题，</span><br><span class="line">能够更好地捕捉长期序列依赖关系。但其计算复杂度高、参数调整难度高(需要对其门控机制的参数进行精细调整,以获得最佳的性能)</span><br></pre></td></tr></table></figure>
+<p>为了解决这个问题，一个名为 Transformer 的新架构应运而生。从那以后，Transformer被应用到多个自然语言处理方向，到目前为止还未有新的架构能够将其替代。可以说，它的出现是自然语言处理领域的突破，并为新的革命性架构(BERT、GPT-3、T5 等)打下了理论基础。</p>
+<h2 id="1-2-Transformer定义"><a href="#1-2-Transformer定义" class="headerlink" title="1.2 Transformer定义"></a>1.2 Transformer定义</h2><p>Transformer是一种用于自然语言处理(NLP)和其他<span style="color: red;"><strong><em>序列到序列任务(sequence-to-sequence)</em></strong></span>的深度学习模型架构。<br>&nbsp;&nbsp;&nbsp;<span style="font-size: 12px;color: #e96900;">tips.能够将一个输入序列(比如一段文本)转换为另一个输出序列，例如翻译后的文本、生成的新文本等。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NLP中很多问题都可以被抽象为序列到序列的学习问题，比如机器翻译，文本摘要生成，问答系统。</span><br><em>Transformer 完全依赖于注意力机制，并摒弃了循环。它使用的是一种<strong><strong>特殊的注意力机制</strong></strong>，称为</em><span style="color: red;">自注意力(self-attention)</span><br>Transformer 是如何工作的呢？我们通过一个文本翻译实例来了解。Transformer 由 <span style="color: red;">编码器</span>和<span style="color: red;">解码器</span>两部分组成。</p>
+<ol>
+<li>首先向编码器输入一句话(原句)，让其学习这句话 的特征</li>
+<li>再将特征作为输入传输给解码器。</li>
+<li>最后，此特征会通过解码器生成输出句(目标句)。</li>
+</ol>
+<p>这个方法看起来简单，但是如何实现的呢？编码器和解码器是如何 将英文(原句)转换为法文(目标句)的呢？内部又是怎样工作的呢?<br>下面按照数据处理的顺序，依次介绍下 编码器和解码器的细节。</p>
+<h2 id="1-3-Transformer模型架构"><a href="#1-3-Transformer模型架构" class="headerlink" title="1.3 Transformer模型架构"></a>1.3 Transformer模型架构</h2><div>
+    <img src="https://gitee.com/quano/www/raw/master/img/NLP/transform.png" style="display: inline-block; width: 40%">
+    <span style="display: block; width: 40%"></span>
+</div>
+
+
+<h3 id="核心组件"><a href="#核心组件" class="headerlink" title="核心组件"></a>核心组件</h3><p><strong style="color: #008075;">输入输出嵌入（Embedding）</strong></p>
+<ul>
+<li>输入嵌入：将离散的词（或标记）映射为连续向量（与位置编码相加）。</li>
+<li>输出嵌入：解码器的输出通过线性变换 + Softmax 生成概率分布（预测下一个词）。</li>
+</ul>
+<p><strong style="color: #008075;">位置编码（Positional Encoding）</strong></p>
+<ul>
+<li><p><strong style="color: #6f42c1;">问题：</strong><br>Transformer没有循环或卷积结构，如何捕捉序列顺序？</p>
+</li>
+<li><p>解决方案：<br>对输入词嵌入（Word Embedding）添加位置编码（正弦/余弦函数）：<br>$ PE<em>{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d</em>{\text{model}}}}\right),\quad PE<em>{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d</em>{\text{model}}}}\right) $<br>作用：为模型注入词的位置信息（相对或绝对位置）。</p>
+</li>
+</ul>
+<p><strong style="color: #008075;">多头自注意力机制（Multi-Head Self-Attention）</strong></p>
+<ul>
+<li><strong style="color: #6f42c1;">核心计算：</strong><br>对每个输入词，计算它与序列中所有词（包括自己）的相关性（注意力分数）。<br>公式：<br>$\mathrm{Attention}(Q, K, V) = \mathrm{softmax}\left( \frac{Q K^T}{\sqrt{d_k}} \right) V$<br>$ \text{MultiHead}(Q, K, V) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h)W^O $<br>其中，<br>Q、K、V 是输入向量经过不同线性变换后的结果。<br>多头机制：并行计算多组注意力，增强模型对不同语义关系的捕捉能力。</li>
+</ul>
+<ul>
+<li><strong style="color: #6f42c1;">作用：</strong><ul>
+<li>捕捉长距离依赖（如句子开头和结尾的词之间的关系）。</li>
+<li>并行计算，效率高于RNN。</li>
+</ul>
+</li>
+</ul>
+<p><strong style="color: #008075;">前馈神经网络（Feed-Forward Network, FFN）</strong></p>
+<ul>
+<li><strong style="color: #6f42c1;">结构：</strong><br>两层全连接网络 + ReLU激活函数。<br>$ FFN(x) = \mathrm{ReLU}(xW_1 + b_1)W_2 + b_2 $<br>​ </li>
+<li><strong style="color: #6f42c1;">作用：</strong><br>对注意力层输出的特征进行非线性变换，增强表达能力。</li>
+</ul>
+<p><strong style="color: #008075;">残差连接 &amp; 层归一化（Add &amp; Norm）</strong></p>
+<ul>
+<li><p><strong style="color: #6f42c1;">残差连接：</strong><br>输入直接加到输出上（x + Sublayer(x)），缓解梯度消失。</p>
+</li>
+<li><p><strong style="color: #6f42c1;">层归一化（LayerNorm）：</strong><br>对每层输出进行标准化，加速训练。</p>
+</li>
+</ul>
+<p><strong style="color: #008075;">堆叠结构（Nx）</strong></p>
+<ul>
+<li><strong>编码器 &amp; 解码器均由6层堆叠</strong>（论文中N=6），每层结构相同但权重不同。</li>
+<li><strong>深层结构：</strong>允许模型逐步抽象更复杂的特征。</li>
+</ul>
+<p>核心优势</p>
+<ul>
+<li>并行计算：自注意力机制替代RNN，训练更快。</li>
+<li>长距离依赖：直接建模任意两词的关系，解决RNN的梯度消失问题。</li>
+<li>可解释性：注意力权重可视化（哪些词对预测重要）。</li>
+</ul>
+
+      <div class="tip-container tip-question" style="
+        background-color: #fef7fb;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #e53e3e;
+        ">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>Bert 、GPT、 Transformer 的认识？ 自回归、 文本分类单标签互斥问题<br>softmax &amp; sigmod  如何理解？</p>
+            </div>
+        </div>
+      </div>
+    
+<h2 id="1-4-Transformer应用场景"><a href="#1-4-Transformer应用场景" class="headerlink" title="1.4 Transformer应用场景"></a>1.4 Transformer应用场景</h2><p><strong>1.自然语言处理(NLP)</strong></p>
+<ul>
+<li>机器翻译：最初Transformer就是应用于机器翻译任务.</li>
+<li>文本生成：例如生成文章、对话等。</li>
+<li>语言建模：预测下一个单词或字符</li>
+</ul>
+<p><strong>2.计算机视觉(CV)</strong></p>
+<ul>
+<li>图像分类：利用Transformer强大的特征提取能力对图像进行分类</li>
+<li>目标检测：可作为目标检测模型的骨干网络。</li>
+<li>语义分割：例如Pyramid Vision Transformer(PVT)被用于处理高分辨率图像的语义分割任务</li>
+</ul>
+<p><strong>3.语音识别与合成</strong></p>
+<ul>
+<li>结合声学模型和语言模型，实现高质量的语音识别和语音合成。</li>
+</ul>
+<h1 id="二、-编码器"><a href="#二、-编码器" class="headerlink" title="二、 编码器"></a>二、 编码器</h1><p>Transformer 中的编码器不止一个，而是由一组 N 个编码器串联而成。一个编码器 的输出作为下一个编码器的输入。<br>&nbsp;&nbsp;&nbsp;<span style="font-size: 12px;color: #e96900;">需要注意的是，在 Transformer 原论文“Attention Is All You Need”中，作者使用 了 N = 6，也就是说，一共有 6 个编码器叠加在一起。</span></p>
+<p>先来看看编码器的内部结构:</p>
+<div>
+    <img src="https://gitee.com/quano/www/raw/master/img/NLP/encoder_structure.png" style="display: inline-block;margin-left: 18px; width: 20%">
+    <span style="display: block; margin-left: 18%;width: 50%"></span>
+</div>
+
+
+<p>每一个编码器的构造都是相同的，并且包含两个部分：多头注意力层、前馈网络层。<br>这两部分是如何工作的呢？ 我们先看看什么是<span style="color: red;">自注意力机制</span>。</p>
+<h2 id="2-1-自注意力机制"><a href="#2-1-自注意力机制" class="headerlink" title="2.1 自注意力机制"></a>2.1 <span style="color: red;">自注意力机制</span></h2><h3 id="1-背景引入"><a href="#1-背景引入" class="headerlink" title="1. 背景引入"></a>1. 背景引入</h3><p>看一个例子：A dog ate the food because it was hungry(一只狗吃了食物，因为它很饿)。</p>
+<p>例句中的代词 it(它) 可以指代 dog(狗)或者 food(食物)。 我们自然而然地认为 it 指代的是 dog，而不是 food。<br>但计算机改如何决定呢(指代消解)？这时，自注意力机制有助于解决这个问题。</p>
+<h3 id="2-自注意力机制了解"><a href="#2-自注意力机制了解" class="headerlink" title="2. 自注意力机制了解"></a>2. 自注意力机制了解</h3><p>模型首先计算 单词A 的特征值，其次计算 dog的特征值，以此类推。 <strong><em>当计算每个词的特征值时，模型都需要 遍历每个词与句子中其他词的关系。模型可以通过词与词之间的关系来更好地理解当 前词的意思。</em></strong></p>
+<p>比如，当计算 it 的特征值时，模型会将 it 与句子中的其他词一一关联，以便更好 地理解它的意思。</p>
+<p>it 的特征值由它本身与句子中其他词的关系计算所得。通过关系，模型可以明确知道原句中 it 所指代的是 dog 而不是 food，这是因为 it 与 dog 的 关系更紧密，关系连线相较于其他词也更粗。</p>
+<p>初步了解了什么是自注意力机制之后，我么具体看是怎么实现的</p>
+<h3 id="3-实现原理"><a href="#3-实现原理" class="headerlink" title="3. 实现原理"></a>3. 实现原理</h3><p>这个关系是怎么实现的呢？？ <span style="font-size: 12px;color: #e96900;">简单起见，假设输入句(原句)为 I am good(我很好)</span>。</p>
+<ol>
+<li>首先，我们将每 个词转化为其对应的词嵌入向量。（需要注意的是，嵌入只是词的特征向量，这个特征 向量也是需要通过训练获得的。）</li>
+<li>这样原句( I am good )就可以用一个矩阵 X(输入矩阵或嵌入矩阵)来表示.(矩阵结构是什么样子呢?)<span style="font-size: 12px;color: #e96900;">矩阵 X 的维度为[句子的长度×词嵌入向量维度]</span></li>
+<li>(重点)通过矩阵 X，我们再创建三个新的矩阵：查询(query)矩阵 Q、键(key) 矩阵 K，以及值(value)矩阵 V。 (why 三个矩阵， 作用是？)</li>
+</ol>
+<p>这三个矩阵在自注意力机制中的存在是<span style="color: red;">为了实现不同的功能和计算步骤，从而使得模型能够有效地学习输入序列中不同位置之间的关系和依赖。</span></p>
+<ul>
+<li>查询矩阵（Query Matrix）：通过输入序列的线性变换得到的矩阵。用来计算注意力权重。每个查询向量对应于输入序列中的一个位置或单词，通过与键矩阵进行点积运算来计算与所有位置或单词之间的关联度（注意力分数）。</li>
+<li>键矩阵（Key Matrix）：键矩阵也是通过输入序列的线性变换得到的矩阵，用来计算注意力权重。每个键向量同样对应于输入序列中的一个位置或单词，通过与查询矩阵进行点积运算来计算注意力分数。</li>
+<li>值矩阵（Value Matrix）：值矩阵同样是通过输入序列的线性变换得到的矩阵，包含了每个位置或单词的信息。值矩阵的每一行对应于输入序列中的一个位置或单词，注意力机制将根据查询和键的相似度来加权平均值矩阵的行，以生成自注意力输出。</li>
+</ul>
+<p>总结就是：自注意力机制通过查询矩阵和键矩阵之间的点积来计算每对位置或单词之间的相似度，然后通过 softmax 函数将这些相似度转换为注意力权重。这些注意力权重用来加权值矩阵的行，生成最终的自注意力输出，这样可以同时考虑输入序列中不同位置或单词之间的依赖关系，从而实现更有效的特征提取和建模。</p>
+<h3 id="4-理解自注意力机制"><a href="#4-理解自注意力机制" class="headerlink" title="4. 理解自注意力机制"></a>4. 理解自注意力机制</h3><h4 id="4-1-第一步-计算查询矩阵-Q-与键矩阵-K-T-的点积"><a href="#4-1-第一步-计算查询矩阵-Q-与键矩阵-K-T-的点积" class="headerlink" title="4.1 第一步:计算查询矩阵 $Q$ 与键矩阵 $K^T$ 的点积"></a>4.1 第一步:计算查询矩阵 $Q$ 与键矩阵 $K^T$ 的点积</h4><ol>
+<li>自注意力机制首先要计算查询矩阵 $Q$ 与键矩阵 $K^T$ 的点积，<br>但为何需要计算查询矩阵与键矩阵的点积呢? $Q \cdot K^T$ 到底是什么意思?下面，我们将通过细看$Q \cdot K^T$ 的结果来理解以上问题。</li>
+</ol>
+<p><span style="font-size: 12px;color: #e96900;">通过计 算两个向量的点积可以知道它们之间的相似度。</span></p>
+<p><span style="color: red;">$Q \cdot K^T$</span>  矩阵的第一行 表示原句子 第一个单词….<br>因此，通过计算查询向量( $q_1$ )和键向量( $k_1$ 、 $k_2$ 、 $k_3$ )的点积，可以了解<span style="color: red;">单词 I 与句子中的所有单词的相似度</span>。</p>
+<p><span style="font-size: 12px;color: #e96900;">我们了解到，I 这个词与自己的关系比与 am 和 good 这两个词的关系更紧密，因为点积值$q_1 \cdot k_1$ 大于$q_1 \cdot k_2$ 和$q_1 \cdot k_3$。</span></p>
+<h4 id="4-2-第二步-将-Q-cdot-K-T-矩阵除以键向量维度的平方根"><a href="#4-2-第二步-将-Q-cdot-K-T-矩阵除以键向量维度的平方根" class="headerlink" title="4.2 第二步:将$Q \cdot K^T$  矩阵除以键向量维度的平方根"></a>4.2 第二步:将$Q \cdot K^T$  矩阵除以键向量维度的平方根</h4><p>目的主要是获得稳定的梯度.</p>
+<h4 id="4-3-第三步-使用-softmax-函数对其进行归一化处理"><a href="#4-3-第三步-使用-softmax-函数对其进行归一化处理" class="headerlink" title="4.3 第三步:使用 softmax 函数对其进行归一化处理"></a>4.3 第三步:使用 softmax 函数对其进行归一化处理</h4><p>目前所得的相似度分数尚未被归一化，应用 softmax 函数将使数值分布在 0 到 1 的范围内，且每一 行的所有数之和等于 1。<br>为什么要归一化呢？？</p>
+<p>将得到的最终矩阵称为<span style="color: red;">分数矩阵</span>。通过这些分数，我们可以了解句子中的每 个词与所有词的相关程度。</p>
+<p>$<br>\text{Attention}(Q, K) = \text{softmax} \left( \frac{Q \cdot K^T}{\sqrt{d_k}} \right) =<br>$</p>
+<script type="math/tex; mode=display">
+X = \begin{bmatrix}
+0.90 0.07 0.03 \\
+\text{emb}(\text{am}) \\
+\text{emb}(\text{good})
+\end{bmatrix}</script><h4 id="4-4-第四步-通过将分数矩阵与值矩阵-V-相乘，计算出注意力矩阵-Z"><a href="#4-4-第四步-通过将分数矩阵与值矩阵-V-相乘，计算出注意力矩阵-Z" class="headerlink" title="4.4 第四步:通过将分数矩阵与值矩阵$V$相乘，计算出注意力矩阵$Z$"></a>4.4 第四步:通过将分数矩阵与值矩阵$V$相乘，计算出注意力矩阵$Z$</h4><p>至此，我们计算了查询矩阵与键矩阵的点积，得到了分数，然后用 softmax 函数<br>将分数归一化。自注意力机制的最后一步是计算注意力矩阵$Z$。</p>
+<p>注意力矩阵包含句子中每个单词的注意力值。它可以通过将分数矩阵 $\text{softmax} \left( \frac{Q \cdot K^T}{\sqrt{d_k}} \right) $ 乘以值矩阵$V$得出</p>
+<h3 id="5-计算流程图"><a href="#5-计算流程图" class="headerlink" title="5. 计算流程图"></a>5. 计算流程图</h3><div>
+    <img src="https://gitee.com/quano/www/raw/master/img/NLP/self_attention.png" style="display: inline-block;margin-left: 18px; width: 20%">
+    <span style="display: block; margin-left: 18%;width: 50%"></span>
+</div>
+
+<h2 id="2-2-多头注意力层"><a href="#2-2-多头注意力层" class="headerlink" title="2.2 多头注意力层"></a>2.2 多头注意力层</h2><p>顾名思义，多头注意力是指我们可以使用多个注意力头，而不是只用一个。</p>
+<h2 id="2-3-通过位置编码来学习位置"><a href="#2-3-通过位置编码来学习位置" class="headerlink" title="2.3 通过位置编码来学习位置"></a>2.3 通过位置编码来学习位置</h2><h2 id="2-4-前馈网络层"><a href="#2-4-前馈网络层" class="headerlink" title="2.4 前馈网络层"></a>2.4 前馈网络层</h2><h2 id="2-5-叠加和归一组件"><a href="#2-5-叠加和归一组件" class="headerlink" title="2.5 叠加和归一组件"></a>2.5 叠加和归一组件</h2><h1 id="三、-解码器"><a href="#三、-解码器" class="headerlink" title="三、 解码器"></a>三、 解码器</h1><h2 id="3-1-带掩码的多头注意力层"><a href="#3-1-带掩码的多头注意力层" class="headerlink" title="3.1 带掩码的多头注意力层"></a>3.1 带掩码的多头注意力层</h2><h2 id="3-2-多头注意力层"><a href="#3-2-多头注意力层" class="headerlink" title="3.2 多头注意力层"></a>3.2 多头注意力层</h2><h1 id="四、Transformer模型训练"><a href="#四、Transformer模型训练" class="headerlink" title="四、Transformer模型训练"></a>四、Transformer模型训练</h1><p>todo：</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/97cc83a3/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/97cc83a3/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    1.CNN
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/13894f49/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/13894f49/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">4.公有云_企业私有云</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

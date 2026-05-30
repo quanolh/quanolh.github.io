@@ -1,0 +1,521 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>读写事件流程分析与相关API | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="Netty">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读写事件流程分析与相关API">
+<meta property="og:url" content="https://waisec.cn/wiki/44cd3f13/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-11-16T17:13:34.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.112Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="Netty">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "读写事件流程分析与相关API",
+    "url": "https://waisec.cn/wiki/44cd3f13/",
+    "datePublished": "2018-11-16T17:13:34.000Z",
+    "dateModified": "2026-04-23T14:13:12.112Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "Netty"
+    
+}
+</script>
+
+<article id="post-平台工具 | 工程架构和工具/MicroService/技术框架/RPC/Netty/读写事件流程分析与相关API" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Channel"><span class="toc-text">Channel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ChannelHandler"><span class="toc-text">ChannelHandler</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ChannelHandler%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="toc-text">ChannelHandler的种类:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ChannelPipeline"><span class="toc-text">ChannelPipeline</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E7%9A%84%E4%BC%A0%E6%92%AD"><span class="toc-text">事件的传播</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ChannelHandlerContext"><span class="toc-text">ChannelHandlerContext</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/">MicroService</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/">技术框架</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/">RPC</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/RPC/Netty/">Netty</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Netty/" rel="tag">Netty</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2018/11/" onclick="onclickRoute(event, '/archives/2018/11/')">
+            <time datetime="2018-11-16T17:13:34.000Z" itemprop="datePublished">2018-11-17</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="Netty">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/44cd3f13/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            读写事件流程分析与相关API
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p><a target="_blank" rel="external nofollow noopener noreferrer" href="http://blog.csdn.net/youaremoon/article/details/50449867">netty5笔记-总体流程分析3-ChannelHandlerContext</a></p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="http://blog.csdn.net/zxhoo/article/details/17264263">Netty4学习笔记（1）— ChannelPipeline</a> </p>
+<p>处理链处理写操作流程、Pipeline，Context和Handler的协作处理。</p>
+<p>netty核心的概念：Channel、Buffer、Selecter</p>
+<h2 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h2><p>Channel是核心的一个接口，表示一个联络Socket的通道。通过Channel，可以对Socket进行各种操作。</p>
+<h2 id="ChannelHandler"><a href="#ChannelHandler" class="headerlink" title="ChannelHandler"></a>ChannelHandler</h2><p>在实际程序实现中，很少直接操作Channel，而是通过ChannelHandler来间接操纵Channel。（使用策略模式？）</p>
+<h3 id="ChannelHandler的种类"><a href="#ChannelHandler的种类" class="headerlink" title="ChannelHandler的种类:"></a>ChannelHandler的种类:</h3><p>ChannelHandler接口的子接口</p>
+<ul>
+<li>ChannelInboundHandler</li>
+<li>ChannelOutboundHandler </li>
+</ul>
+<blockquote>
+<p>5.0.0.Alpha1 版本已经没有了这两个接口，why。4.1.5存在。</p>
+</blockquote>
+<h2 id="ChannelPipeline"><a href="#ChannelPipeline" class="headerlink" title="ChannelPipeline"></a>ChannelPipeline</h2><p>ChannelPipeline里有一个双向链表，使用HashMap存放节点。节点类型为：ChannelHandlerContext。</p>
+<p>是一个ChandlerHandler的链表。当需要对Channel进行某种处理的时候，Pipeline负责依次调用每一个Handler进行处理。（责任链模式？）</p>
+<blockquote>
+<p>每个Channel都有一个属于自己的Pipeline.(一对一关系)</p>
+</blockquote>
+<p>ChannelPipeline的方法有很多，其中一部分是用来管理ChannelHandler的，如下面这些：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ChannelPipeline addFirst(String name, ChannelHandler handler);  </span><br><span class="line">ChannelPipeline addLast(String name, ChannelHandler handler);  </span><br><span class="line">ChannelPipeline addBefore(String baseName, String name, ChannelHandler handler);  </span><br><span class="line">ChannelPipeline addAfter(String baseName, String name, ChannelHandler handler);  </span><br><span class="line">ChannelPipeline remove(ChannelHandler handler);  </span><br><span class="line">ChannelHandler remove(String name);  </span><br><span class="line">ChannelHandler removeFirst();  </span><br><span class="line">ChannelHandler removeLast();  </span><br><span class="line">ChannelPipeline replace(ChannelHandler oldHandler, String newName, ChannelHandler newHandler);  </span><br><span class="line">ChannelHandler replace(String oldName, String newName, ChannelHandler newHandler);  </span><br><span class="line">ChannelHandler first();  </span><br><span class="line">ChannelHandler last();  </span><br><span class="line">ChannelHandler get(String name);  </span><br></pre></td></tr></table></figure>
+<h3 id="事件的传播"><a href="#事件的传播" class="headerlink" title="事件的传播"></a>事件的传播</h3><p>为了搞清楚事件如何在Pipeline里传播，</p>
+<ul>
+<li>让我们从Channel的抽象子类AbstractChannel开始：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public abstract class AbstractChannel extends DefaultAttributeMap implements Channel &#123;  </span><br><span class="line">    // ...  </span><br><span class="line">    @Override  </span><br><span class="line">    public Channel write(Object msg) &#123;  </span><br><span class="line">        return pipeline.write(msg);  </span><br><span class="line">    &#125;  </span><br><span class="line">    // ...  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+<ul>
+<li>再看DefaultChannelPipeline的write()方法实现</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">final class DefaultChannelPipeline implements ChannelPipeline &#123;  </span><br><span class="line">    // ...  </span><br><span class="line">    @Override  </span><br><span class="line">    public ChannelFuture write(Object msg) &#123;  </span><br><span class="line">        return tail.write(msg);  </span><br><span class="line">    &#125;  </span><br><span class="line">    // ...  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+<p>因为write是个outbound事件，所以DefaultChannelPipeline直接找到tail部分的context，调用其write()方法</p>
+<ul>
+<li>接着看DefaultChannelHandlerContext的write()方法</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">final class DefaultChannelHandlerContext extends DefaultAttributeMap implements ChannelHandlerContext &#123;  </span><br><span class="line">    // ...  </span><br><span class="line">    @Override  </span><br><span class="line">    public ChannelFuture write(Object msg) &#123;  </span><br><span class="line">        return write(msg, newPromise());  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    @Override  </span><br><span class="line">    public ChannelFuture write(final Object msg, final ChannelPromise promise) &#123;  </span><br><span class="line">        if (msg == null) &#123;  </span><br><span class="line">            throw new NullPointerException(&quot;msg&quot;);  </span><br><span class="line">        &#125;  </span><br><span class="line">  </span><br><span class="line">        validatePromise(promise, true);  </span><br><span class="line">  </span><br><span class="line">        write(msg, false, promise);  </span><br><span class="line">  </span><br><span class="line">        return promise;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    private void write(Object msg, boolean flush, ChannelPromise promise) &#123;  </span><br><span class="line">        DefaultChannelHandlerContext next = findContextOutbound();  </span><br><span class="line">        next.invokeWrite(msg, promise);  </span><br><span class="line">        if (flush) &#123;  </span><br><span class="line">            next.invokeFlush();  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    private DefaultChannelHandlerContext findContextOutbound() &#123;  </span><br><span class="line">        DefaultChannelHandlerContext ctx = this;  </span><br><span class="line">        do &#123;  </span><br><span class="line">            ctx = ctx.prev;  </span><br><span class="line">        &#125; while (!ctx.outbound);  </span><br><span class="line">        return ctx;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    private void invokeWrite(Object msg, ChannelPromise promise) &#123;  </span><br><span class="line">        try &#123;  </span><br><span class="line">            ((ChannelOutboundHandler) handler).write(this, msg, promise);  </span><br><span class="line">        &#125; catch (Throwable t) &#123;  </span><br><span class="line">            notifyOutboundHandlerException(t, promise);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    // ...  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+<p>context的write()方法沿着context链往前找，直至找到一个outbound类型的context为止，然后调用其invokeWrite()方法</p>
+<p>invokeWrite()接着调用handler的write()方法：</p>
+<h2 id="ChannelHandlerContext"><a href="#ChannelHandlerContext" class="headerlink" title="ChannelHandlerContext"></a>ChannelHandlerContext</h2><p>ChannelPipeline并不是直接管理ChannelHandler，而是通过ChannelHandlerContext来间接管理，这一点通过ChannelPipeline的默认实现DefaultChannelPipeline可以看出来。</p>
+<p>调用ChannelHandlerContext#channel()方法可以得到和Context绑定的Channel，调用ChannelHandlerContext#handler()方法可以得到和Context绑定的Handler。</p>
+<blockquote>
+<p>一个ChannelHandlerContext只能对应一个ChannelHander，只对应一个Channel，而一个ChannelHander则可以对应多个ChannelHandlerContext</p>
+</blockquote>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/6f2612a2/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/6f2612a2/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    SpringBoot
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/d4208ef/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/d4208ef/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">Netty学习目录</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

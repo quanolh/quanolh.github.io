@@ -1,0 +1,541 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>伪集群模式安装 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="hadoop">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="伪集群模式安装">
+<meta property="og:url" content="https://waisec.cn/wiki/345f977/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-02-16T04:56:24.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.134Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="hadoop">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "伪集群模式安装",
+    "url": "https://waisec.cn/wiki/345f977/",
+    "datePublished": "2019-02-16T04:56:24.000Z",
+    "dateModified": "2026-04-23T14:13:12.134Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "hadoop"
+    
+}
+</script>
+
+<article id="post-数据 | 核心生产要素/[1]数据工程/03.处理与计算/[0]数据处理/组件安装配置/Hadoop组件安装/2.伪集群模式安装" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CDH"><span class="toc-text">CDH</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85hadoop-2-6-0-cdh5-4-0"><span class="toc-text">安装hadoop-2.6.0-cdh5.4.0</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E4%BC%AA%E9%9B%86%E7%BE%A4"><span class="toc-text">配置伪集群</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96HDFS"><span class="toc-text">格式化HDFS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81"><span class="toc-text">验证</span></a></li></ol></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/">数据 | 核心生产要素</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/">[1]数据工程</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/">03.处理与计算</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">[0]数据处理</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">组件安装配置</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/Hadoop%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85/">Hadoop组件安装</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/hadoop/" rel="tag">hadoop</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2019/02/" onclick="onclickRoute(event, '/archives/2019/02/')">
+            <time datetime="2019-02-16T04:56:24.000Z" itemprop="datePublished">2019-02-16</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="hadoop">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/345f977/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            伪集群模式安装
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.liyang.io/108.html">搭建hadoop-2.6.0-cdh5.4.7伪分布式</a></p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="http://archive.cloudera.com/cdh5/cdh/5/">CDH版下载地址</a></p>
+<p>先来看看什么是CDH，为什么选择CHD版的Hadoop。</p>
+<h2 id="CDH"><a href="#CDH" class="headerlink" title="CDH"></a>CDH</h2><p>属于Hadoop的一个发行版。</p>
+<p>Hadoop有以下发行版：</p>
+<ul>
+<li>Apache Hadoop</li>
+<li>Cloudera’s Distribution Including Apache Hadoop（CDH）</li>
+<li>Hortonworks Data Platform (HDP)</li>
+<li>MapR</li>
+<li>EMR</li>
+</ul>
+<p>CDH版有以下优点：</p>
+<ul>
+<li>版本划分清晰</li>
+<li>版本更新速度快</li>
+<li>支持Kerberos安全认证</li>
+<li>文档清晰</li>
+<li>支持多种安装方式（Cloudera Manager方式）</li>
+</ul>
+<h2 id="安装hadoop-2-6-0-cdh5-4-0"><a href="#安装hadoop-2-6-0-cdh5-4-0" class="headerlink" title="安装hadoop-2.6.0-cdh5.4.0"></a>安装hadoop-2.6.0-cdh5.4.0</h2><p>首先到指定网站下载安装包<br><a target="_blank" rel="external nofollow noopener noreferrer" href="http://archive.cloudera.com/cdh5/cdh/5/">CDH版下载地址</a></p>
+<p>解压下载的安装包</p>
+<h3 id="配置伪集群"><a href="#配置伪集群" class="headerlink" title="配置伪集群"></a>配置伪集群</h3><ul>
+<li>1、进入 hadoop-2.6.0-cdh5.4.0/etc/hadoop</li>
+<li>2、编辑 hadoop-env.sh<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi hadoop-env.sh</span><br></pre></td></tr></table></figure></li>
+<li>3、修改JAVA_HOME的配置为<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/opt/tools/jdk1.8.0_131</span><br></pre></td></tr></table></figure></li>
+<li><p>4、编辑core-site.xml,添加如下配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">        &lt;property&gt;</span><br><span class="line">                &lt;name&gt;fs.defaultFS&lt;/name&gt;</span><br><span class="line">                &lt;value&gt;hdfs://node2:9000&lt;/value&gt;</span><br><span class="line">        &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>node2说明，如果没有配置hosts，请将node2换成IP地址:wp保存并退出。</p>
+</li>
+<li><p>5、编辑hdfs-site.xml,添加如下配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;!--开启web hdfs--&gt;</span><br><span class="line">        &lt;name&gt;dfs.webhdfs.enabled&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;true&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;dfs.replication&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;1&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;/opt/cdh/hadoop/name&lt;/value&gt;</span><br><span class="line">        &lt;description&gt; namenode 存放name table(fsimage)本地目录（需要修改）&lt;/description&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;dfs.namenode.edits.dir&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;$&#123;dfs.namenode.name.dir&#125;&lt;/value&gt;</span><br><span class="line">        &lt;description&gt;namenode存放 transactionfile(edits)本地目录（请自行修改）&lt;/description&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">       &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;</span><br><span class="line">       &lt;value&gt;/opt/cdh/hadoop/data&lt;/value&gt;</span><br><span class="line">       &lt;description&gt;datanode存放block本地目录（请自行修改）&lt;/description&gt;</span><br><span class="line">   &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>以上配置完成，还需要创建文件夹</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p cdh/hadoop/name</span><br><span class="line">mkdir  cdh/hadoop/data</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>6、配置mapred-site.xml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cp mapred-site.xml.template mapred-site.xml</span><br><span class="line">之后加入以下配置</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;mapreduce.framework.name&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;yarn&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>7、编辑yarn-site.xml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;!-- Site specific YARN configuration properties --&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;mapreduce_shuffle&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>到此，所有配置都已完成。</p>
+<h3 id="格式化HDFS"><a href="#格式化HDFS" class="headerlink" title="格式化HDFS"></a>格式化HDFS</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/hdfs namenode -format</span><br></pre></td></tr></table></figure>
+<p>看到如下信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">************************************************************/</span><br><span class="line">15/09/22 14:59:46 INFO namenode.NameNode: registered UNIX signal handlers for [TERM, HUP, INT]</span><br><span class="line">15/09/22 14:59:46 INFO namenode.NameNode: createNameNode [-format]</span><br><span class="line">15/09/22 14:59:48 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</span><br><span class="line">15/09/22 14:59:49 WARN common.Util: Path /opt/cdh/hadoop/name should be specified as a URI in configuration files. Please update hdfs configuration.</span><br><span class="line">15/09/22 14:59:49 WARN common.Util: Path /opt/cdh/hadoop/name should be specified as a URI in configuration files. Please update hdfs configuration.</span><br><span class="line">Formatting using clusterid: CID-41ea6672-a32e-4b16-b704-962381ed409a</span><br><span class="line">15/09/22 14:59:49 INFO namenode.FSNamesystem: No KeyProvider found.</span><br><span class="line">15/09/22 14:59:49 INFO namenode.FSNamesystem: fsLock is fair:true</span><br><span class="line">15/09/22 14:59:49 INFO blockmanagement.DatanodeManager: dfs.block.invalidate.limit=1000</span><br><span class="line">15/09/22 14:59:49 INFO blockmanagement.DatanodeManager: dfs.namenode.datanode.registration.ip-hostname-check=true</span><br><span class="line">15/09/22 14:59:49 INFO blockmanagement.BlockManager: dfs.namenode.startup.delay.block.deletion.sec is set to 000:00:00:00.000</span><br><span class="line">15/09/22 14:59:49 INFO blockmanagement.BlockManager: The block deletion will start around 2015 九月 22 14:59:49</span><br><span class="line">15/09/22 14:59:49 INFO util.GSet: Computing capacity for map BlocksMap</span><br><span class="line">15/09/22 14:59:49 INFO util.GSet: VM type       = 64-bit</span><br><span class="line">15/09/22 14:59:49 INFO util.GSet: 2.0% max memory 966.7 MB = 19.3 MB</span><br><span class="line">15/09/22 14:59:49 INFO util.GSet: capacity      = 2^21 = 2097152 entries</span><br><span class="line">15/09/22 14:59:50 INFO blockmanagement.BlockManager: dfs.block.access.token.enable=false</span><br><span class="line">15/09/22 14:59:50 INFO blockmanagement.BlockManager: defaultReplication         = 1</span><br><span class="line">15/09/22 14:59:50 INFO blockmanagement.BlockManager: maxReplication             = 512</span><br><span class="line">15/09/22 14:59:50 INFO blockmanagement.BlockManager: minReplication             = 1</span><br><span class="line">15/09/22 14:59:50 INFO blockmanagement.BlockManager: maxReplicationStreams      = 2</span><br><span class="line">15/09/22 14:59:50 INFO blockmanagement.BlockManager: shouldCheckForEnoughRacks  = false</span><br><span class="line">15/09/22 14:59:50 INFO blockmanagement.BlockManager: replicationRecheckInterval = 3000</span><br><span class="line">15/09/22 14:59:50 INFO blockmanagement.BlockManager: encryptDataTransfer        = false</span><br><span class="line">15/09/22 14:59:50 INFO blockmanagement.BlockManager: maxNumBlocksToLog          = 1000</span><br><span class="line">15/09/22 14:59:50 INFO namenode.FSNamesystem: fsOwner             = root (auth:SIMPLE)</span><br><span class="line">15/09/22 14:59:50 INFO namenode.FSNamesystem: supergroup          = supergroup</span><br><span class="line">15/09/22 14:59:50 INFO namenode.FSNamesystem: isPermissionEnabled = true</span><br><span class="line">15/09/22 14:59:50 INFO namenode.FSNamesystem: HA Enabled: false</span><br><span class="line">15/09/22 14:59:50 INFO namenode.FSNamesystem: Append Enabled: true</span><br><span class="line">15/09/22 14:59:50 INFO util.GSet: Computing capacity for map INodeMap</span><br><span class="line">15/09/22 14:59:50 INFO util.GSet: VM type       = 64-bit</span><br><span class="line">15/09/22 14:59:50 INFO util.GSet: 1.0% max memory 966.7 MB = 9.7 MB</span><br><span class="line">15/09/22 14:59:50 INFO util.GSet: capacity      = 2^20 = 1048576 entries</span><br><span class="line">15/09/22 14:59:50 INFO namenode.NameNode: Caching file names occuring more than 10 times</span><br><span class="line">15/09/22 14:59:50 INFO util.GSet: Computing capacity for map cachedBlocks</span><br><span class="line">15/09/22 14:59:50 INFO util.GSet: VM type       = 64-bit</span><br><span class="line">15/09/22 14:59:50 INFO util.GSet: 0.25% max memory 966.7 MB = 2.4 MB</span><br><span class="line">15/09/22 14:59:50 INFO util.GSet: capacity      = 2^18 = 262144 entries</span><br><span class="line">15/09/22 14:59:50 INFO namenode.FSNamesystem: dfs.namenode.safemode.threshold-pct = 0.9990000128746033</span><br><span class="line">15/09/22 14:59:50 INFO namenode.FSNamesystem: dfs.namenode.safemode.min.datanodes = 0</span><br><span class="line">15/09/22 14:59:50 INFO namenode.FSNamesystem: dfs.namenode.safemode.extension     = 30000</span><br><span class="line">15/09/22 14:59:50 INFO metrics.TopMetrics: NNTop conf: dfs.namenode.top.window.num.buckets = 10</span><br><span class="line">15/09/22 14:59:50 INFO metrics.TopMetrics: NNTop conf: dfs.namenode.top.num.users = 10</span><br><span class="line">15/09/22 14:59:50 INFO metrics.TopMetrics: NNTop conf: dfs.namenode.top.windows.minutes = 1,5,25</span><br><span class="line">15/09/22 14:59:50 INFO namenode.FSNamesystem: Retry cache on namenode is enabled</span><br><span class="line">15/09/22 14:59:50 INFO namenode.FSNamesystem: Retry cache will use 0.03 of total heap and retry cache entry expiry time is 600000 millis</span><br><span class="line">15/09/22 14:59:50 INFO util.GSet: Computing capacity for map NameNodeRetryCache</span><br><span class="line">15/09/22 14:59:50 INFO util.GSet: VM type       = 64-bit</span><br><span class="line">15/09/22 14:59:50 INFO util.GSet: 0.029999999329447746% max memory 966.7 MB = 297.0 KB</span><br><span class="line">15/09/22 14:59:50 INFO util.GSet: capacity      = 2^15 = 32768 entries</span><br><span class="line">15/09/22 14:59:50 INFO namenode.NNConf: ACLs enabled? false</span><br><span class="line">15/09/22 14:59:50 INFO namenode.NNConf: XAttrs enabled? true</span><br><span class="line">15/09/22 14:59:50 INFO namenode.NNConf: Maximum size of an xattr: 16384</span><br><span class="line">15/09/22 14:59:51 INFO namenode.FSImage: Allocated new BlockPoolId: BP-314159059-192.168.1.3-1442905191056</span><br><span class="line">15/09/22 14:59:51 INFO common.Storage: Storage directory /opt/cdh/hadoop/name has been successfully formatted.</span><br><span class="line">15/09/22 14:59:51 INFO namenode.NNStorageRetentionManager: Going to retain 1 images with txid &gt;= 0</span><br><span class="line">15/09/22 14:59:51 INFO util.ExitUtil: Exiting with status 0</span><br><span class="line">15/09/22 14:59:51 INFO namenode.NameNode: SHUTDOWN_MSG: </span><br><span class="line">/************************************************************</span><br><span class="line">SHUTDOWN_MSG: Shutting down NameNode at node2/192.168.1.3</span><br><span class="line">************************************************************/</span><br></pre></td></tr></table></figure>
+<p>如果不报错，则格式化成功。</p>
+<p>然后分别启动HDFS和Yarn：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sbin/start-dfs.sh</span><br><span class="line">sbin/start-yarn.sh</span><br></pre></td></tr></table></figure>
+<p>启动过程没有错误则启动成功。</p>
+<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><ul>
+<li>使用jps可以查看相关进程</li>
+</ul>
+<p>显示如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">nova@ubuntu208:~$ jps</span><br><span class="line">7667 Jps</span><br><span class="line">28532 DataNode</span><br><span class="line">28742 SecondaryNameNode</span><br><span class="line">29319 NodeManager</span><br><span class="line">28376 NameNode</span><br><span class="line">29018 ResourceManager</span><br></pre></td></tr></table></figure>
+<ul>
+<li>管理地址</li>
+</ul>
+<p>yarn: <a target="_blank" rel="external nofollow noopener noreferrer" href="http://192.168.1.34:8088/cluster">http://192.168.1.34:8088/cluster</a></p>
+<p>hdfs状态: <a target="_blank" rel="external nofollow noopener noreferrer" href="http://192.168.1.34:50070/dfshealth.html#tab-overview">http://192.168.1.34:50070/dfshealth.html#tab-overview</a></p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/3d505223/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/3d505223/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    常用操作命令与问题记录
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/51731531/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/51731531/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">Reactive</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

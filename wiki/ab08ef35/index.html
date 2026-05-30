@@ -1,0 +1,418 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>Word2vec | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="NLP">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Word2vec">
+<meta property="og:url" content="https://waisec.cn/wiki/ab08ef35/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-14T14:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.152Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="NLP">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Word2vec",
+    "url": "https://waisec.cn/wiki/ab08ef35/",
+    "datePublished": "2020-10-14T14:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.152Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "NLP"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/5|NLP方向/NLP/NLP系列/002.word2vec" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/5-NLP%E6%96%B9%E5%90%91/">5|NLP方向</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/5-NLP%E6%96%B9%E5%90%91/NLP/">NLP</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/5-NLP%E6%96%B9%E5%90%91/NLP/NLP%E7%B3%BB%E5%88%97/">NLP系列</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/NLP/" rel="tag">NLP</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2020/10/" onclick="onclickRoute(event, '/archives/2020/10/')">
+            <time datetime="2020-10-14T14:55:57.000Z" itemprop="datePublished">2020-10-14</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="NLP">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/ab08ef35/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            Word2vec
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://zhuanlan.zhihu.com/p/114538417">知乎-深入浅出Word2Vec原理解析</a></p>
+<p>借鉴其中思维导图.</p>
+<p><strong><em>语言模型</em></strong></p>
+<p>Word2Vec是语言模型中的一种， 它是从大量文本预料中以无监督方式学习语义知识的模型，被广泛地应用于自然语言处理中。</p>
+<p>Word2Vec是用来生成词向量的工具，而词向量与语言模型有着密切的关系。因此，我们先来了解一些语言模型方面的知识。</p>
+<h1 id="1-背景知识"><a href="#1-背景知识" class="headerlink" title="1.背景知识."></a>1.背景知识.</h1><p>统计语言模型、n-gram模型、神经概率语言模型</p>
+<h1 id="2-词向量"><a href="#2-词向量" class="headerlink" title="2.词向量"></a>2.词向量</h1><p>One-hot、Distributed Representation.</p>
+<h1 id="3-Word2Vec的网络结构"><a href="#3-Word2Vec的网络结构" class="headerlink" title="3.Word2Vec的网络结构"></a>3.Word2Vec的网络结构</h1><p>CBOW、Skip-gram model</p>
+<h1 id="4-基于分层softmax的模型"><a href="#4-基于分层softmax的模型" class="headerlink" title="4. 基于分层softmax的模型."></a>4. 基于分层softmax的模型.</h1><h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>word2vec是一个简单的神经网络，有以下几个层组成：</p>
+<p>（1）１个输入层：输入使用的是one-hot编码。即：假设有n个词，则每一个词可以用一个n维的向量来表示，这个n维向量只有一个位置是1，其余位置都是0。</p>
+<p>（2）1个隐藏层：隐藏层的神经单元数量，代表着每一个词用向量表示的维度大小。对于输入层和隐藏层之间的权值矩阵，它的形状应该是[vocab_size, hidden_size]的矩阵。</p>
+<p>（3）1个输出层：输出层是一个 [vocab_size] 大小的向量，每一个值代表着输出一个词的概率。</p>
+<h1 id="word2vec的应用场景-在工业界的应用"><a href="#word2vec的应用场景-在工业界的应用" class="headerlink" title="word2vec的应用场景 (在工业界的应用)"></a>word2vec的应用场景 (在工业界的应用)</h1><p>Word2Vec主要原理是根据上下文来预测单词，一个词的意义往往可以从其前后的句子中抽取出来。</p>
+<p>而用户的行为也是一种相似的时间序列，可以通过上下文进行推断。当用户浏览并与内容进行交互时，我们可以从用户前后的交互过程中判断行为的抽象特征，这就使得我们可以把词向量模型应用到推荐、广告领域当中。</p>
+<h2 id="NLP领域"><a href="#NLP领域" class="headerlink" title="NLP领域"></a>NLP领域</h2><p>Word2Vec学习到的词向量代表了词的语义，可以用来做分类、聚类、也可以做词的相似度计算。<br>把Word2Vec生成的向量直接作为深度神经网络的输入，可以做sentiment analysis等工作。</p>
+<h2 id="图嵌入"><a href="#图嵌入" class="headerlink" title="图嵌入"></a>图嵌入</h2><p>基于Word2Vec这一类的Graph Embedding方法有很多，具体可以参考论文：DeepWalk（是引入Word2Vec思想比较经典的图嵌入算法），node2vec，struc2vec 等等。</p>
+<h2 id="推荐领域"><a href="#推荐领域" class="headerlink" title="推荐领域"></a>推荐领域</h2><p>Airbnb在论文《Real-time Personalization using Embeddings for Search Ranking at Airbnb》中提出将用户的浏览行为组成List，通过Word2Vec方法学习item的向量，其点击率提升了21%，且带动了99%的预定转化率。该论文主要是在Skip-gram 模型的基础上做了改进。<br>Yahoo在论文《E-commerce in Your Inbox: Product Recommendations at Scale》中提出Yahoo邮箱从发送到用户的购物凭证中抽取商品并组成List，通过Word2Vec学习并为用户推荐潜在的商品；</p>
+<h2 id="广告领域"><a href="#广告领域" class="headerlink" title="广告领域"></a>广告领域</h2><p>Yahoo在论文《Scalable Semantic Matching of Queries to Ads in Sponsored Search Advertising》中提出将用户的搜索查询和广告组成List，并为其学习特征向量，以便对于给定的搜索查询可以匹配适合的广告。</p>
+<h1 id="关于Word2Vec若干问题的思考"><a href="#关于Word2Vec若干问题的思考" class="headerlink" title="关于Word2Vec若干问题的思考"></a>关于Word2Vec若干问题的思考</h1><p>（1）Word2Vec两个算法模型的原理是什么，网络结构怎么画？</p>
+<p>（2）网络输入输出是什么？隐藏层的激活函数是什么？输出层的激活函数是什么？</p>
+<p>（3）目标函数/损失函数是什么？</p>
+<p>（4）Word2Vec如何获取词向量？</p>
+<p>（5）推导一下Word2Vec参数如何更新？</p>
+<p>（6）Word2Vec的两个模型哪个效果好哪个速度快？为什么？</p>
+<p>（7）Word2Vec加速训练的方法有哪些？</p>
+<p>（8）介绍下Negative Sampling，对词频低的和词频高的单词有什么影响？为什么？</p>
+<p>（9）Word2Vec和隐狄利克雷模型(LDA)有什么区别与联系？</p>
+<p>以上问题可以通过本文和参考文章找到答案，这里不再详细解答。</p>
+<p>（10）介绍下Hierarchical Softmax的计算过程，怎么把 Huffman 放到网络中的？参数是如何更新的？对词频低的和词频高的单词有什么影响？为什么？</p>
+<p>Hierarchical Softmax利用了Huffman树依据词频建树，词频大的节点离根节点较近，词频低的节点离根节点较远，距离远参数数量就多，在训练的过程中，低频词的路径上的参数能够得到更多的训练，所以效果会更好。</p>
+<p>（11）Word2Vec有哪些参数，有没有什么调参的建议？</p>
+<p>Skip-Gram 的速度比CBOW慢一点，小数据集中对低频次的效果更好；<br>Sub-Sampling Frequent Words可以同时提高算法的速度和精度，Sample 建议取值为 [公式] ；<br>Hierarchical Softmax对低词频的更友好；<br>Negative Sampling对高词频更友好；<br>向量维度一般越高越好，但也不绝对；<br>Window Size，Skip-Gram一般10左右，CBOW一般为5左右。<br>（12）Word2Vec有哪些局限性？</p>
+<p>Word2Vec作为一个简单易用的算法，其也包含了很多局限性：</p>
+<p>Word2Vec只考虑到上下文信息，而忽略的全局信息；<br>Word2Vec只考虑了上下文的共现性，而忽略的了彼此之间的顺序性；</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/2dd3db4a/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/2dd3db4a/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    工具包整理
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/ac5cb4aa/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/ac5cb4aa/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">机器学习概述</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

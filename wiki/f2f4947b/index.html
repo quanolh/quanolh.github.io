@@ -1,0 +1,378 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>Kafak监控 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="AI工程师,大模型应用,数据架构,Agent,AI知识库,风控架构,Novus,Wiki,Quinoa,quanoc">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kafak监控">
+<meta property="og:url" content="https://waisec.cn/wiki/f2f4947b/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-12-02T03:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.132Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="AI工程师,大模型应用,数据架构,Agent,AI知识库,风控架构,Novus,Wiki,Quinoa,quanoc">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Kafak监控",
+    "url": "https://waisec.cn/wiki/f2f4947b/",
+    "datePublished": "2018-12-02T03:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.132Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png"
+}
+</script>
+
+<article id="post-数据 | 核心生产要素/[1]数据工程/03.处理与计算/[0]数据处理/DataStore/Kafka/Kakfa监控" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/">数据 | 核心生产要素</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/">[1]数据工程</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/">03.处理与计算</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">[0]数据处理</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/">DataStore</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Kafka/">Kafka</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2018/12/" onclick="onclickRoute(event, '/archives/2018/12/')">
+            <time datetime="2018-12-02T03:55:57.000Z" itemprop="datePublished">2018-12-02</time>
+        </a>
+    </div>
+
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/f2f4947b/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            Kafak监控
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <h3 id="推荐的监控工具"><a href="#推荐的监控工具" class="headerlink" title="推荐的监控工具"></a>推荐的监控工具</h3><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/Morningstar/kafka-offset-monitor">kafka-offset-monitor</a></p>
+<h3 id="Python实现监控"><a href="#Python实现监控" class="headerlink" title="Python实现监控"></a>Python实现监控</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br></pre></td><td class="code"><pre><span class="line">topics = [<span class="string">&#x27;heimdallr-dev&#x27;</span>]</span><br><span class="line"><span class="comment"># 要监控的groupid</span></span><br><span class="line">monitor_group_ids = [<span class="string">&#x27;heimdallr&#x27;</span>]</span><br><span class="line"><span class="comment"># broker-list</span></span><br><span class="line">servers = <span class="string">&#x27;localhost:9092&#x27;</span></span><br><span class="line"><span class="comment"># 监控数据上报间隔 秒</span></span><br><span class="line">time_interval = <span class="number">10</span></span><br><span class="line"><span class="comment"># 历史全量数据上报间隔</span></span><br><span class="line">history_time_interval = <span class="number">5</span> * <span class="number">60</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> kafka.client <span class="keyword">import</span> KafkaClient</span><br><span class="line"><span class="keyword">from</span> kafka.protocol.commit <span class="keyword">import</span> OffsetFetchRequest_v1, OffsetFetchResponse_v1, OffsetFetchRequest_v0, \</span><br><span class="line">    OffsetFetchResponse_v0</span><br><span class="line"><span class="keyword">from</span> kafka.protocol.offset <span class="keyword">import</span> OffsetRequest_v0, OffsetResponse_v0</span><br><span class="line"></span><br><span class="line"><span class="comment">#from monitor_constants import *</span></span><br><span class="line"></span><br><span class="line">duration = <span class="number">0</span></span><br><span class="line">client = <span class="literal">None</span></span><br><span class="line">conn = <span class="literal">None</span></span><br><span class="line">partition_cache = &#123;&#125;</span><br><span class="line">brokers_cache = []</span><br><span class="line">kafka_type = [<span class="string">&#x27;heimdallr&#x27;</span>]</span><br><span class="line">zk_type = []</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_brokers</span>():</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> brokers_cache:</span><br><span class="line">        brokers = client.cluster.brokers()</span><br><span class="line">        <span class="keyword">if</span> brokers:</span><br><span class="line">            brokers_cache.extend([x.nodeId <span class="keyword">for</span> x <span class="keyword">in</span> brokers])</span><br><span class="line">    <span class="keyword">return</span> brokers_cache</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_partitions</span>(<span class="params">topic</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> partition_cache <span class="keyword">or</span> topic <span class="keyword">not</span> <span class="keyword">in</span> partition_cache:</span><br><span class="line">        partitions = client.cluster.available_partitions_for_topic(topic)</span><br><span class="line">        <span class="keyword">if</span> partitions:</span><br><span class="line">            partition_cache[topic] = [x <span class="keyword">for</span> x <span class="keyword">in</span> partitions]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">    <span class="keyword">return</span> partition_cache[topic]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_logsize</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        获取topic 下每个partition的logsize(各个broker的累加)</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    tp = &#123;&#125;  <span class="comment"># topic : partition_dict</span></span><br><span class="line">    brokers = get_brokers()</span><br><span class="line">    <span class="keyword">for</span> topic <span class="keyword">in</span> topics:</span><br><span class="line">        partitions = get_partitions(topic)</span><br><span class="line">        pl = &#123;&#125;  <span class="comment"># partition : logsize</span></span><br><span class="line">        <span class="keyword">for</span> broker <span class="keyword">in</span> brokers:</span><br><span class="line">            <span class="comment"># 这里取笛卡尔积可能有问题,但是不影响parse中解析了</span></span><br><span class="line">            <span class="keyword">for</span> partition <span class="keyword">in</span> partitions:</span><br><span class="line">                client.send(broker, OffsetRequest_v0(replica_id=-<span class="number">1</span>, topics=[(topic, [(partition, -<span class="number">1</span>, <span class="number">1</span>)])]))</span><br><span class="line">                responses = client.poll()</span><br><span class="line">                pdict = parse_logsize(topic, partition, responses)</span><br><span class="line">                append(pl, pdict)</span><br><span class="line">        tp[topic] = pl</span><br><span class="line">    <span class="keyword">return</span> tp</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">append</span>(<span class="params">rdict, pdict</span>):</span><br><span class="line">    <span class="keyword">if</span> rdict:</span><br><span class="line">        <span class="comment"># 已经有记录,累加</span></span><br><span class="line">        <span class="keyword">for</span> k, v <span class="keyword">in</span> pdict.items():</span><br><span class="line">            <span class="keyword">if</span> k <span class="keyword">in</span> rdict:</span><br><span class="line">                rdict[k] = rdict[k] + v</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                rdict[k] = v</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        rdict.update(pdict)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">parse_logsize</span>(<span class="params">t, p, responses</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        单个broker中单个partition的logsize</span></span><br><span class="line"><span class="string">    :param responses:</span></span><br><span class="line"><span class="string">    :param p:</span></span><br><span class="line"><span class="string">    :param t:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> response <span class="keyword">in</span> responses:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(response, OffsetResponse_v0):</span><br><span class="line">            <span class="keyword">return</span> &#123;&#125;</span><br><span class="line">        tps = response.topics</span><br><span class="line">        topic = tps[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">        partition_list = tps[<span class="number">0</span>][<span class="number">1</span>]</span><br><span class="line">        partition = partition_list[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 异步poll来的数据可能不准</span></span><br><span class="line">        <span class="keyword">if</span> topic == t <span class="keyword">and</span> partition == p <span class="keyword">and</span> partition_list[<span class="number">0</span>][<span class="number">1</span>] == <span class="number">0</span>:</span><br><span class="line">            logsize_list = partition_list[<span class="number">0</span>][<span class="number">2</span>]</span><br><span class="line">            logsize = logsize_list[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">return</span> &#123;partition: logsize&#125;</span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">parse_offsets</span>(<span class="params">t, responses</span>):</span><br><span class="line">    dr = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> response <span class="keyword">in</span> responses:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(response, (OffsetFetchResponse_v1, OffsetFetchResponse_v0)):</span><br><span class="line">            <span class="keyword">return</span> &#123;&#125;</span><br><span class="line">        tps = response.topics</span><br><span class="line">        topic = tps[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">        partition_list = tps[<span class="number">0</span>][<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> topic == t:</span><br><span class="line">            <span class="keyword">for</span> partition_tunple <span class="keyword">in</span> partition_list:</span><br><span class="line">                <span class="keyword">if</span> partition_tunple[<span class="number">3</span>] == <span class="number">0</span>:</span><br><span class="line">                    offset = partition_tunple[<span class="number">1</span>]</span><br><span class="line">                    dr[partition_tunple[<span class="number">0</span>]] = offset</span><br><span class="line">    <span class="keyword">return</span> dr</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_offsets</span>():</span><br><span class="line">    <span class="comment"># &#123;gid: dict&#125;</span></span><br><span class="line">    gd = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> gid <span class="keyword">in</span> monitor_group_ids:</span><br><span class="line">        td = &#123;&#125;  <span class="comment"># &#123;topic:dict&#125;</span></span><br><span class="line">        <span class="keyword">for</span> topic <span class="keyword">in</span> topics:</span><br><span class="line">            pd = &#123;&#125;  <span class="comment"># &#123;partition:dict&#125;</span></span><br><span class="line">            <span class="keyword">for</span> broker <span class="keyword">in</span> get_brokers():</span><br><span class="line">                partitions = get_partitions(topic)</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> partitions:</span><br><span class="line">                    <span class="keyword">return</span> &#123;&#125;</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    responses = optionnal_send(broker, gid, topic, partitions)</span><br><span class="line">                    dr = parse_offsets(topic, responses)</span><br><span class="line">                    append(pd, dr)</span><br><span class="line">            td[topic] = pd</span><br><span class="line">        gd[gid] = td</span><br><span class="line">    <span class="keyword">return</span> gd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">optionnal_send</span>(<span class="params">broker, gid, topic, partitions</span>):</span><br><span class="line">    <span class="keyword">if</span> gid <span class="keyword">in</span> kafka_type:</span><br><span class="line">        <span class="keyword">return</span> kafka_send(broker, gid, topic, partitions)</span><br><span class="line">    <span class="keyword">elif</span> gid <span class="keyword">in</span> zk_type:</span><br><span class="line">        <span class="keyword">return</span> zk_send(broker, gid, topic, partitions)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        responses = zk_send(broker, gid, topic, partitions)</span><br><span class="line">        dct = parse_offsets(topic, responses)</span><br><span class="line">        <span class="keyword">if</span> is_suitable(dct):</span><br><span class="line">            zk_type.append(gid)</span><br><span class="line">            <span class="keyword">return</span> responses</span><br><span class="line">        responses = kafka_send(broker, gid, topic, partitions)</span><br><span class="line">        dct = parse_offsets(topic, responses)</span><br><span class="line">        <span class="keyword">if</span> is_suitable(dct):</span><br><span class="line">            kafka_type.append(gid)</span><br><span class="line">        <span class="keyword">return</span> responses</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">is_suitable</span>(<span class="params">dct</span>):</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> dct.values():</span><br><span class="line">        <span class="keyword">if</span> x != -<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">kafka_send</span>(<span class="params">broker, gid, topic, partitions</span>):</span><br><span class="line">    client.send(broker, OffsetFetchRequest_v1(consumer_group=gid, topics=[(topic, partitions)]))</span><br><span class="line">    <span class="keyword">return</span> client.poll()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">zk_send</span>(<span class="params">broker, gid, topic, partitions</span>):</span><br><span class="line">    client.send(broker, OffsetFetchRequest_v0(consumer_group=gid, topics=[(topic, partitions)]))</span><br><span class="line">    <span class="keyword">return</span> client.poll()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">do_task</span>():</span><br><span class="line">    offset_dict = get_offsets()</span><br><span class="line">    <span class="comment">#print (offset_dict)</span></span><br><span class="line">    logsize_dict = get_logsize()</span><br><span class="line">    <span class="comment">#print (logsize_dict)</span></span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;----------kafka monitor, info:-------------&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> gk, gv <span class="keyword">in</span> offset_dict.items():</span><br><span class="line">        <span class="keyword">for</span> tk, tv <span class="keyword">in</span> gv.items():</span><br><span class="line">            <span class="keyword">for</span> pk, pv <span class="keyword">in</span> tv.items():</span><br><span class="line">                <span class="keyword">if</span> logsize_dict <span class="keyword">and</span> tk <span class="keyword">in</span> logsize_dict:</span><br><span class="line">                    dr = logsize_dict[tk]  <span class="comment"># partition:logsize</span></span><br><span class="line">                    <span class="keyword">if</span> dr <span class="keyword">and</span> pk <span class="keyword">in</span> dr:</span><br><span class="line">                        param = (gk, tk, pk, pv, dr[pk],</span><br><span class="line">                                 time.strftime(<span class="string">&#x27;%Y-%m-%d %H:%M:%S&#x27;</span>, time.localtime(time.time())))</span><br><span class="line">                        <span class="built_in">print</span>(param)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    client = KafkaClient(bootstrap_servers=servers, request_timeout_ms=<span class="number">3000</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        do_task()</span><br><span class="line">        time.sleep(time_interval)</span><br><span class="line">        duration += time_interval</span><br></pre></td></tr></table></figure>
+<p>参考:<a target="_blank" rel="external nofollow noopener noreferrer" href="https://my.oschina.net/ktlb/blog/863308">https://my.oschina.net/ktlb/blog/863308</a></p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/de08339/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/de08339/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    数据处理相关
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/6ed7c5ef/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/6ed7c5ef/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">关于kafka的offset存储</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

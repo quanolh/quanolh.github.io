@@ -1,0 +1,600 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>Linux常用命令 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="组件安装配置">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常用命令">
+<meta property="og:url" content="https://waisec.cn/wiki/d0edc1ed/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-02-24T01:56:24.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.125Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="组件安装配置">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Linux常用命令",
+    "url": "https://waisec.cn/wiki/d0edc1ed/",
+    "datePublished": "2019-02-24T01:56:24.000Z",
+    "dateModified": "2026-04-23T14:13:12.125Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "组件安装配置"
+    
+}
+</script>
+
+<article id="post-平台工具 | 工程架构和工具/中间件_组件/组件安装配置/Linux常用命令" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">Linux常用命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JAVA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE"><span class="toc-text">JAVA开发环境常用软件安装及配置</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6-%E7%BB%84%E4%BB%B6/">中间件_组件</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6-%E7%BB%84%E4%BB%B6/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">组件安装配置</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" rel="tag">组件安装配置</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2019/02/" onclick="onclickRoute(event, '/archives/2019/02/')">
+            <time datetime="2019-02-24T01:56:24.000Z" itemprop="datePublished">2019-02-24</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="组件安装配置">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/d0edc1ed/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            Linux常用命令
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <h1 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a>Linux常用命令</h1><ul>
+<li><p>查看内存使用情况：<code>free -h</code></p>
+<p>  -h：显示可用mb单位</p>
+</li>
+<li><p>修改文件权限：<code>chmod 777 *</code></p>
+</li>
+<li><p>切换用户： <code>su root</code></p>
+</li>
+<li><p>解压 tar包：<code>tar -xvf file.tar</code></p>
+</li>
+<li>解压tar.gz：<code>tar -xzvf file.tar.gz</code></li>
+<li>解压tar.xz：<code>tar xvJf file.tar.xz</code></li>
+<li>解压rar：<code>unrar e file.rar</code></li>
+<li><p>解压zip：<code>unzip file.zip</code></p>
+</li>
+<li><p>下载网络文件 <code>wget http://file.zip</code></p>
+</li>
+<li><p>改变文件所有者 <code>chown [选项] [所有者]:[组] file</code></p>
+<p>  -R 处理指定目录以及其子目录下的所有文件</p>
+</li>
+<li><p>查看进程  <code>ps -ef | grep java</code> 或 <code>ps -aux | grep java</code></p>
+</li>
+</ul>
+<p>　　-aux 显示所有状态</p>
+<ul>
+<li><p>查看端口 <code>netstat -nap|grep 端口号</code></p>
+</li>
+<li><p>终止进程 <code>kill -9 [PID]</code></p>
+</li>
+<li><p>Tomcat查看日志 <code>cd logs   tail -f catalina.out</code></p>
+</li>
+<li><p><code>yum -y install</code> 包名（支持*） ：自动选择y，全自动</p>
+</li>
+<li><code>yum install</code> 包名（支持*） ：手动选择y or n</li>
+<li><code>yum remove</code> 包名（不支持*）</li>
+<li><code>rpm -ivh</code> 包名（支持*）：安装rpm包</li>
+<li><code>rpm -e</code> 包名（不支持*）：卸载rpm包<h1 id="JAVA开发环境常用软件安装及配置"><a href="#JAVA开发环境常用软件安装及配置" class="headerlink" title="JAVA开发环境常用软件安装及配置"></a>JAVA开发环境常用软件安装及配置</h1></li>
+<li><p>更新yum：<code>yum update</code></p>
+</li>
+<li><p>JDK1.8安装</p>
+<ul>
+<li>查看可安装JDK版本： <code>yum list java*</code></li>
+<li>安装指定1.8版本： <code>yum -y install java-1.8.0-openjdk*</code></li>
+<li>查看是否安装成功：<code>java -version</code></li>
+</ul>
+</li>
+<li>MariaDB(MySQL)数据库安装<ul>
+<li>注：默认CentOS7已没有MySQL源, MySQL隶属的sun公司被甲骨文收购，担心闭源的社区人员维护的一个新的分支</li>
+<li>安装：<code>yum install mariadb-server</code></li>
+<li>配置初始化 启动服务 <code>service mariadb start</code></li>
+<li>初始化命令 <code>mysql_secure_installation</code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Set root password? [Y/n] &lt;– 是否设置root用户密码，建议y</span><br><span class="line">New password: &lt;– 设置root用户的密码</span><br><span class="line">Re-enter new password: &lt;– 确认你设置的密码</span><br><span class="line"></span><br><span class="line">其他配置</span><br><span class="line"></span><br><span class="line">Remove anonymous users? [Y/n] &lt;– 是否删除匿名用户，建议y</span><br><span class="line"></span><br><span class="line">Disallow root login remotely? [Y/n] &lt;–是否禁止root远程登录，建议y</span><br><span class="line"></span><br><span class="line">Remove test database and access to it? [Y/n] &lt;– 是否删除test数据库，建议y</span><br><span class="line"></span><br><span class="line">Reload privilege tables now? [Y/n] &lt;– 是否重新加载权限表，建议y</span><br></pre></td></tr></table></figure></li>
+<li>新增远程管理用户 登录数据库：<code>mysql -u root -p</code> 输入密码，回车</li>
+<li>使用mysql数据库：<code>use mysql</code></li>
+<li>新增用户，name用户名，pwd密码，%代表任何客户端机器上能以该用户登录到MySQL服务器：<code>CREATE USER &#39;name&#39;@&#39;%&#39; IDENTIFIED BY &#39;pwd&#39;;</code></li>
+<li>授权<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//grant 普通 DBA 管理某个 MySQL 数据库的权限</span><br><span class="line">grant all privileges on 你的某个db名 to 用户名;</span><br><span class="line">//grant 高级 DBA 管理 MySQL 中所有数据库的权限 建议</span><br><span class="line">grant all on *.* to 用户名;</span><br><span class="line">//刷新权限</span><br><span class="line">flush privileges;­</span><br></pre></td></tr></table></figure></li>
+<li>输入exit或Ctrl+c退出，重启MySQL：<code>service mariadb restart</code></li>
+<li>设置开机启动：<code>systemctl enable mariadb</code></li>
+</ul>
+</li>
+<li>Maven安装(可不用安装)<ul>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="http://maven.apache.org/download.cgi">官网</a> 找到较新版本下载地址：<code>wget http://mirror.bit.edu.cn/apache/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz</code></li>
+<li>解压：<code>tar -zvxf apache-maven-3.5.2-bin.tar.gz</code></li>
+<li>打开/etc/profile，配置环境变量，在末尾加入：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MAVEN_HOME=/usr/local/maapache-maven-3.5.2</span><br><span class="line"></span><br><span class="line">PATH=$PATH:$MAVEN_HOME/bin</span><br><span class="line"></span><br><span class="line">export PATH MAVEN_HOME</span><br></pre></td></tr></table></figure></li>
+<li>使更改生效：<code>soucre /etc/profile</code></li>
+<li><code>mvn -v</code></li>
+</ul>
+</li>
+<li>Git安装<ul>
+<li><code>yum -y install git</code></li>
+<li><code>git --version</code></li>
+</ul>
+</li>
+<li>Nodejs安装1 推荐<ul>
+<li>安装更新一些依赖：<code>yum -y install gcc gcc-c++ openssl-devel make</code></li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://nodejs.org/en/download/">官网</a> 找到较新版本下载地址：<code>wget https://nodejs.org/dist/v8.9.1/node-v8.9.1.tar.gz</code></li>
+<li>解压：<code>tar -zvxf node-v8.9.1.tar.gz</code></li>
+<li>进入解压后文件夹后执行：<code>./configure</code></li>
+<li>编译安装：<code>make &amp;&amp; make install</code></li>
+<li><code>node -v</code></li>
+</ul>
+</li>
+<li>Nodejs安装2<ul>
+<li><code>yum -y install nodejs</code></li>
+<li><code>node -v</code></li>
+</ul>
+</li>
+<li>文件上传安装<ul>
+<li><code>yum -y install lrzsz</code></li>
+</ul>
+</li>
+<li>更换阿里yum源<ul>
+<li>默认源：<code>ll /etc/yum.repos.d</code></li>
+<li>备份 <code>/etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</code></li>
+<li>下载新的CentOS-Base.repo 到/etc/yum.repos.d/<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CentOS 5</span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-5.repo</span><br><span class="line">CentOS 6</span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo</span><br><span class="line">CentOS 7</span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure></li>
+<li>生成缓存：<code>yum makecache</code></li>
+</ul>
+</li>
+<li>端口开放与关闭<ul>
+<li>以防火墙开放3306端口为例 <code>firewall-cmd --add-port=3306/tcp --permanent</code></li>
+<li>关闭3306端口为例 <code>firewall-cmd --remove-port=3306/udp --permanent</code></li>
+<li>重启防火墙 <code>firewall-cmd --reload</code></li>
+</ul>
+</li>
+<li><p>防火墙</p>
+<ul>
+<li>开启firewall：<code>systemctl start firewalld.service</code></li>
+<li>停止firewall：<code>systemctl stop firewalld.service</code></li>
+<li>禁止firewall开机启动：<code>systemctl disable firewalld.service</code></li>
+<li>查看默认防火墙状态：<code>firewall-cmd --state</code></li>
+</ul>
+</li>
+<li><p>创建swap空间</p>
+<ul>
+<li>通常创建物理内存2~2.5倍大小的文件作为交换区，创建2G的swap交换区空白文件名为swapfile <code>dd if=/dev/zero of=/root/swapfile bs=1M count=2048</code></li>
+<li>格式化文件为swap文件系统 <code>mkswap swapfile</code></li>
+<li>启用：<code>swapon swapfile</code></li>
+<li>设置开机自动启用swap文件交换区，修改/etc/fstab，增加一行 <code>/root/swapfile swap swap defaults 0 0</code></li>
+<li>关闭swap：<code>swapoff swapfile</code></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/d32d37e5/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/d32d37e5/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    Elasticsearch
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/c7393176/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/c7393176/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">Redis-client安装配置</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

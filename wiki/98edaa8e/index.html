@@ -1,0 +1,541 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>1.政务云 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="云计算">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.政务云">
+<meta property="og:url" content="https://waisec.cn/wiki/98edaa8e/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-27T14:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.127Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="云计算">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "1.政务云",
+    "url": "https://waisec.cn/wiki/98edaa8e/",
+    "datePublished": "2024-01-27T14:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.127Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "云计算"
+    
+}
+</script>
+
+<article id="post-平台工具 | 工程架构和工具/云计算/政务云/001.政务云介绍" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%94%BF%E5%8A%A1%E4%BA%91"><span class="toc-text">什么是政务云</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BF%E5%8A%A1%E4%BA%91%E6%80%8E%E4%B9%88%E5%BB%BA%E8%AE%BE"><span class="toc-text">政务云怎么建设</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BF%E5%8A%A1%E4%BA%91%E6%80%8E%E4%B9%88%E7%BB%B4%E6%8A%A4%E3%80%81%E4%BD%BF%E7%94%A8%E3%80%81%E8%AF%84%E4%BC%B0"><span class="toc-text">政务云怎么维护、使用、评估</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%A7%84%E5%88%92"><span class="toc-text">网络规划</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/">云计算</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/%E4%BA%91%E8%AE%A1%E7%AE%97/%E6%94%BF%E5%8A%A1%E4%BA%91/">政务云</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" rel="tag">云计算</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/01/" onclick="onclickRoute(event, '/archives/2024/01/')">
+            <time datetime="2024-01-27T14:55:57.000Z" itemprop="datePublished">2024-01-27</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="云计算">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/98edaa8e/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            政务云
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <h1 id="什么是政务云"><a href="#什么是政务云" class="headerlink" title="什么是政务云"></a>什么是政务云</h1><p>标准定义：云技术在政府行业的应用。</p>
+<p>定义：是指运用云计算技术，统筹使用政府已有的机房、计算、存储、网络、安全等资源，为政府部门提供基础设施、支撑软件、应用系统等综合服务的平台。</p>
+<p>政务云： 政务云是一种云计算服务，专门为政府机构和公共部门提供的云服务。政务云通常具有高度安全性和合规性，以满足政府数据处理的特殊需求。政务云可以提供各种基础设施即服务（IaaS）、平台即服务（PaaS）和软件即服务（SaaS）等服务，以支持政府的信息化建设和数字化转型。</p>
+<blockquote>
+<p>信息化建设、转型目的：提高效率、优化决策制定、提升服务质量、加强安全和合规性、促进创新和科技发展、节约资源.</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">政务云可以降低政府信息化成本、提高政府工作效率、促进各部门间的信息共享和业务协同等方面的优势，是政府信息化发展的重要方向之一。</span><br><span class="line"></span><br><span class="line">政务云可以通过云服务平台的方式提供各种服务，如政务信息资源共享交换平台、电子政务服务平台、公共服务平台等。政务云的应用范围很广，可以涉及到政府办公、公共安全、城市管理、环境保护等各个领域。</span><br><span class="line"></span><br><span class="line">优势：严格的数据保密、高可用性、高容错性；具有天然防ARP攻击和MAC欺骗，快照备份，数据永久不丢失等特点；资源利用率高；可靠性、易用性、安全性、灵活性、成本控制；</span><br></pre></td></tr></table></figure>
+<h2 id="政务云怎么建设"><a href="#政务云怎么建设" class="headerlink" title="政务云怎么建设"></a>政务云怎么建设</h2><p>以下是政务云建设的一般步骤：</p>
+<ol>
+<li><p>需求分析： 明确政府机构的业务需求、数据规模、安全性要求等。有助于确定政务云的规模和功能。</p>
+</li>
+<li><p>基础设施规划：根据需求分析的结果，进行政务云基础设施的规划。这包括数据中心建设、服务器、存储设备、网络设备等硬件基础设施的选型和布局。</p>
+</li>
+<li><p>云平台选择：选择合适的云计算平台，可以是公有云、私有云，或混合云。政务云通常需要考虑数据隐私、安全性和合规性等因素，因此在选择云平台时需要仔细评估其安全性和服务能力。</p>
+</li>
+<li><p>网络建设： 建设稳定、高速的网络是政务云的关键。确保政务云与各级政府机构、企事业单位的网络连接畅通，提供可靠的服务。</p>
+</li>
+<li><p>数据安全： 由于政务涉及敏感数据，数据安全是政务云建设的重中之重。采用加密技术、访问控制、身份认证等手段，确保数据在存储和传输过程中的安全性。</p>
+</li>
+<li><p>服务管理：设计和实施政务云服务的管理体系，包括资源分配、性能监控、故障处理、用户权限管理等。政务云需要提供灵活的服务管理功能，以满足不同部门的需求。</p>
+</li>
+<li><p>培训和支持： 提供相关人员的培训，使其能够熟练使用政务云服务。同时建立支持和维护机制，确保政务云系统能够稳定运行，并及时响应和解决问题。</p>
+</li>
+<li><p>合规性和审计：确保政务云建设符合相关法规和合规标准。建立审计机制，对政务云的运行进行定期审查，以确保其合法性和安全性。</p>
+</li>
+<li><p>迁移和整合：如果政府机构已有一定的信息系统，需要考虑如何将现有系统迁移到政务云上，并确保与政务云平台的整合。</p>
+</li>
+<li><p>监测和优化：建设完成后，需要进行监测和性能优化，以确保政务云系统的稳定性和效率。</p>
+</li>
+</ol>
+<h2 id="政务云怎么维护、使用、评估"><a href="#政务云怎么维护、使用、评估" class="headerlink" title="政务云怎么维护、使用、评估"></a>政务云怎么维护、使用、评估</h2><p>政务云的维护、使用和评估是一个持续的过程，需要结合具体的业务需求和技术发展不断进行优化和改进。以下是关于政务云维护、使用和评估的一些建议：</p>
+<p>维护：<br>监控和管理： 建立监控系统，对政务云的硬件、网络和服务进行实时监测。及时发现并解决潜在问题，确保政务云的稳定运行。</p>
+<p>安全管理： 定期进行安全审查和漏洞扫描，确保政务云系统的安全性。更新安全策略、加密措施，并持续加强用户身份验证和访问控制。</p>
+<p>备份和恢复： 定期进行数据备份，并测试数据恢复的可行性。确保在数据丢失或系统故障时能够迅速进行恢复。</p>
+<p>性能优化： 定期进行性能评估，优化政务云的资源分配和服务性能。确保政务云能够满足日益增长的需求。</p>
+<p>升级和更新： 定期检查并升级政务云平台的软硬件组件，以应对新的技术挑战和提升系统性能。</p>
+<p>使用：<br>培训和支持： 提供政务云服务的培训，使使用人员熟悉系统的功能和操作方式。建立及时的技术支持渠道，解答用户的问题和解决技术难题。</p>
+<p>合理使用资源： 确保政务云资源的合理分配和使用，避免资源浪费。对于多部门共享的云资源，实施合理的资源隔离和分配机制。</p>
+<p>用户权限管理： 建立严格的用户权限管理体系，确保用户只能访问他们需要的信息和服务，降低数据泄露和滥用的风险。</p>
+<p>数据治理： 实施有效的数据管理策略，包括数据分类、保密级别划分等。确保政务云上的数据符合相关法规和政策。</p>
+<p>灵活扩展： 采用可扩展的架构，以便政务云能够根据需求进行灵活的扩展和缩减。</p>
+<p>评估：<br>服务水平协议（SLA）： 定期评估政务云服务提供商是否遵守服务水平协议，以确保政务云提供商履行合同中的承诺。</p>
+<p>业务成效评估： 评估政务云对业务效率和服务质量的影响。收集用户反馈，了解系统的优点和改进的空间。</p>
+<p>成本效益评估： 定期评估政务云的成本效益。比较使用云服务与传统部署方式的成本，确保政务云的投资带来了实际的经济效益。</p>
+<p>合规性和安全评估： 定期进行合规性和安全性评估，确保政务云满足法规和政策要求，并保障系统的安全性。</p>
+<p>技术趋势分析： 持续关注新的技术趋势和发展，评估是否有新的技术可以带来更好的性能、安全性和效率。</p>
+<p>政务云的维护、使用和评估需要与相关利益相关者密切合作，包括政府机构、IT专业人员、云服务提供商等，以确保政务云系统始终能够适应不断变化的需求和技术环境。</p>
+<h1 id="网络规划"><a href="#网络规划" class="headerlink" title="网络规划"></a>网络规划</h1><p>怎么做，有什么经验？</p>
+<p>网络规划是一项综合性的工作，涉及到网络拓扑、设备选择、带宽规划、安全性、扩展性等多个方面。以下是进行网络规划时需要考虑的一些建议：</p>
+<p>需求分析： 确定网络规划的目标和需求。了解组织的业务需求、用户数量、数据流量等信息，以便确定网络设计的基础。</p>
+<p>网络拓扑设计： 设计网络拓扑结构，包括局域网（LAN）、广域网（WAN）、子网划分等。选择合适的拓扑结构，考虑组织的业务特点和未来的扩展需求。</p>
+<p>设备选择： 根据网络规模和需求选择合适的网络设备，包括交换机、路由器、防火墙等。考虑设备的性能、可靠性、安全性等因素。</p>
+<p>IP地址规划： 进行IP地址规划，确保每个设备在网络中都有唯一的标识。考虑IP地址的分配方式、子网划分等因素，以支持未来的扩展。</p>
+<p>带宽规划： 根据业务需求和数据流量预测进行带宽规划。确保网络中的带宽能够满足各个业务部门的需求，避免瓶颈出现。</p>
+<p>安全性考虑： 强调网络安全性。考虑使用防火墙、入侵检测系统（IDS）、虚拟专用网络（VPN）等技术来保护网络的安全性。进行访问控制和身份验证的规划。</p>
+<p>无线网络规划： 如果需要无线网络，进行无线网络规划。确定无线接入点的位置、信道规划、安全性设置等。</p>
+<p>网络管理和监控： 设计网络管理和监控系统，确保能够及时发现和解决网络故障。使用网络管理工具和监控系统进行性能监测。</p>
+<p>扩展性考虑： 考虑未来的业务扩展，确保网络设计具有良好的扩展性。选择支持易于扩展的设备和技术。</p>
+<p>备份和灾难恢复： 设计网络的备份和灾难恢复策略。确保关键数据和系统能够在发生故障或灾难时迅速恢复。</p>
+<p>合规性： 确保网络规划符合法规和行业标准，特别是涉及敏感信息的行业，如金融、医疗等。</p>
+<p>培训和文档： 对网络管理员和用户提供培训，编写网络文档，确保相关人员了解网络结构和操作方法。</p>
+<p>网络规划是一个动态的过程，需要不断调整和优化以适应业务的发展和新的技术趋势。与业务部门、IT团队、安全团队等的紧密协作是成功网络规划的关键。</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/bc1e23bd/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/bc1e23bd/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    10.总结
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/49a0d7b8/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/49a0d7b8/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">2.ServiceMesh概述与实践</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

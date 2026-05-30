@@ -1,0 +1,1012 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>3. Agent构建方法详解 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="LLM,Agent">
+
+    <meta name="description" content="Agent的构建方式是什么样的？构建框架、有哪些组件、常见的架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3. Agent构建方法详解">
+<meta property="og:url" content="https://waisec.cn/wiki/46b71ca3/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Agent的构建方式是什么样的？构建框架、有哪些组件、常见的架构">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-01-20T03:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.141Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="LLM">
+<meta property="article:tag" content="Agent">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "3. Agent构建方法详解",
+    "url": "https://waisec.cn/wiki/46b71ca3/",
+    "datePublished": "2026-01-20T03:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.141Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "LLM,Agent"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/1|大模型应用/01.Agent原理/03_Agent架构/003.Agent构建方法详解" class="article article-type-post">
+    
+        <meta name="referrer" content="no-referrer">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Agent-%E6%9E%84%E5%BB%BA%E7%9A%84%E6%A0%B8%E5%BF%83%E8%A6%81%E7%B4%A0"><span class="toc-text">一、Agent 构建的核心要素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Agent-%E6%9E%84%E5%BB%BA%E7%9A%84%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-text">Agent 构建的整体架构图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%BB%E6%B5%81%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94"><span class="toc-text">二、主流框架横向对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81LangChain-%E6%B7%B1%E5%BA%A6%E6%8B%86%E8%A7%A3"><span class="toc-text">三、LangChain 深度拆解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6%E6%9E%B6%E6%9E%84"><span class="toc-text">3.1 核心组件架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E6%8F%90%E7%A4%BA%E7%AE%A1%E7%90%86%EF%BC%88Prompt-Management%EF%BC%89"><span class="toc-text">3.2 提示管理（Prompt Management）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8%EF%BC%88Tool-Use%EF%BC%89"><span class="toc-text">3.3 工具调用（Tool Use）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E4%BB%A3%E7%90%86%E5%86%B3%E7%AD%96%E6%A8%A1%E5%9D%97%EF%BC%88Agent-Core%EF%BC%89"><span class="toc-text">3.4 代理决策模块（Agent Core）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E5%AE%8C%E6%95%B4%E5%8F%AF%E8%BF%90%E8%A1%8C%E5%8E%9F%E5%9E%8B"><span class="toc-text">3.5 完整可运行原型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81AutoGen-%E6%B7%B1%E5%BA%A6%E6%8B%86%E8%A7%A3"><span class="toc-text">四、AutoGen 深度拆解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B8%8E%E8%A7%92%E8%89%B2%E8%AE%BE%E8%AE%A1"><span class="toc-text">4.1 核心概念与角色设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%8F%8C-Agent-%E5%AF%B9%E8%AF%9D%E5%8E%9F%E5%9E%8B"><span class="toc-text">4.2 双 Agent 对话原型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E5%A4%9A-Agent-%E7%BE%A4%E8%81%8A%E5%8E%9F%E5%9E%8B"><span class="toc-text">4.3 多 Agent 群聊原型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81LangGraph-%E6%B7%B1%E5%BA%A6%E6%8B%86%E8%A7%A3"><span class="toc-text">五、LangGraph 深度拆解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-text">5.1 核心概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E5%AE%8C%E6%95%B4%E5%8F%AF%E8%BF%90%E8%A1%8C%E5%8E%9F%E5%9E%8B"><span class="toc-text">5.2 完整可运行原型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81CrewAI-%E6%B7%B1%E5%BA%A6%E6%8B%86%E8%A7%A3"><span class="toc-text">六、CrewAI 深度拆解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-text">6.1 核心概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E5%AE%8C%E6%95%B4%E5%8F%AF%E8%BF%90%E8%A1%8C%E5%8E%9F%E5%9E%8B"><span class="toc-text">6.2 完整可运行原型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E4%BB%BB%E5%8A%A1%E8%A7%84%E5%88%92%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3"><span class="toc-text">七、任务规划模式详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-ReAct-%E6%A8%A1%E5%BC%8F%EF%BC%88%E6%8E%A8%E7%90%86-%E8%A1%8C%E5%8A%A8%EF%BC%89"><span class="toc-text">7.1 ReAct 模式（推理 + 行动）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-Plan-and-Execute-%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%85%88%E8%A7%84%E5%88%92%E5%90%8E%E6%89%A7%E8%A1%8C%EF%BC%89"><span class="toc-text">7.2 Plan-and-Execute 模式（先规划后执行）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-Reflection-%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%B8%A6%E8%87%AA%E6%88%91%E5%8F%8D%E6%80%9D%E7%9A%84-Agent%EF%BC%89"><span class="toc-text">7.3 Reflection 模式（带自我反思的 Agent）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E5%8E%9F%E5%9E%8B%EF%BC%9A%E5%AE%8C%E6%95%B4%E5%8F%82%E8%80%83%E6%9E%B6%E6%9E%84"><span class="toc-text">八、快速搭建原型：完整参考架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E5%85%B3%E9%94%AE%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5%E4%B8%8E%E9%81%BF%E5%9D%91%E6%8C%87%E5%8D%97"><span class="toc-text">九、关键工程实践与避坑指南</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E6%80%BB%E7%BB%93%EF%BC%9A%E6%A1%86%E6%9E%B6%E9%80%89%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91"><span class="toc-text">十、总结：框架选型决策树</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/">1|大模型应用</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/01-Agent%E5%8E%9F%E7%90%86/">01.Agent原理</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/01-Agent%E5%8E%9F%E7%90%86/03-Agent%E6%9E%B6%E6%9E%84/">03_Agent架构</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Agent/" rel="tag">Agent</a>, <a class="tag-link-link" href="/tags/LLM/" rel="tag">LLM</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/01/" onclick="onclickRoute(event, '/archives/2026/01/')">
+            <time datetime="2026-01-20T03:55:57.000Z" itemprop="datePublished">2026-01-20</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="LLM,Agent">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/46b71ca3/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+             Agent构建方法详解
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p>如何构建？构建框架、有哪些组件、常见的架构</p>
+<div align="center">
+
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 860 190" width="70%" height="190">
+  <defs>
+    <lineargradient id="hbg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#0c4a6e"/>
+    </lineargradient>
+    <lineargradient id="hline" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="50%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </lineargradient>
+  </defs>
+  <rect width="860" height="190" fill="url(#hbg)" rx="14"/>
+  <rect x="0" y="0" width="860" height="4" rx="2" fill="url(#hline)"/>
+  <!-- decorative dots -->
+  <circle cx="780" cy="50" r="40" fill="rgba(99,102,241,0.08)"/>
+  <circle cx="80" cy="150" r="30" fill="rgba(6,182,212,0.06)"/>
+  <circle cx="430" cy="20" r="60" fill="rgba(59,130,246,0.05)"/>
+  <!-- code brackets decoration -->
+  <text x="42" y="115" fill="rgba(99,102,241,0.25)" font-family="monospace" font-size="64" font-weight="700">{</text>
+  <text x="798" y="115" fill="rgba(6,182,212,0.25)" font-family="monospace" font-size="64" font-weight="700">}</text>
+  <text x="430" y="78" text-anchor="middle" fill="white" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="32" font-weight="700" letter-spacing="3">AI Agent 构建方法详解</text>
+  <text x="430" y="116" text-anchor="middle" fill="#a5b4fc" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="15" letter-spacing="1">框架选型 · 组件拆解 · 原型快速实现</text>
+  <text x="430" y="158" text-anchor="middle" fill="#475569" font-family="sans-serif" font-size="12" letter-spacing="1">LangChain · AutoGen · LangGraph · CrewAI · 2025</text>
+</svg>
+
+</div>
+
+<p><br></p>
+<div style="background:linear-gradient(135deg,#f0f9ff,#eff6ff);border-left:4px solid #6366f1;border-radius:8px;padding:16px 20px;margin:16px 0;font-family:'PingFang SC','Microsoft YaHei',sans-serif">
+<b style="color:#4338ca">📋 摘要</b><br>
+<span style="color:#1e1b4b;line-height:1.8">本文聚焦 AI Agent 的<b>工程实现层</b>，系统拆解主流构建框架（LangChain、AutoGen、LangGraph、CrewAI）的核心组件：提示管理、工具调用、代理决策、记忆机制。并提供可直接运行的原型代码，帮助读者快速搭建具备任务规划、工具使用和交互流程的 Agent 系统。</span>
+</div>
+
+<hr>
+<h2 id="一、Agent-构建的核心要素"><a href="#一、Agent-构建的核心要素" class="headerlink" title="一、Agent 构建的核心要素"></a>一、Agent 构建的核心要素</h2><p>在选择框架之前，先明确一个 Agent 系统需要哪些基础组件。无论使用哪种框架，这四个模块都不可或缺：</p>
+<div style="overflow-x:auto;margin:16px 0">
+<table style="width:100%;border-collapse:collapse;font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:14px">
+  <thead>
+    <tr style="background:#312e81;color:white">
+      <th style="padding:10px 14px;border:1px solid #4338ca">核心模块</th>
+      <th style="padding:10px 14px;border:1px solid #4338ca">职责</th>
+      <th style="padding:10px 14px;border:1px solid #4338ca">关键技术</th>
+      <th style="padding:10px 14px;border:1px solid #4338ca">对应框架组件</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f5f3ff">
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><b>🧠 推理引擎</b></td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">驱动决策、生成回复、规划任务</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">LLM API 调用、Prompt 工程</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">LangChain ChatModel、AutoGen LLM Config</td>
+    </tr>
+    <tr style="background:white">
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><b>🗄️ 记忆系统</b></td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">维护上下文、存储历史、检索知识</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">向量数据库、滑动窗口、摘要压缩</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">LangChain Memory、LangGraph State</td>
+    </tr>
+    <tr style="background:#f5f3ff">
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><b>🔧 工具系统</b></td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">扩展 Agent 能力边界，执行真实操作</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">Function Calling、Tool Schema</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">LangChain Tools、AutoGen FunctionCall</td>
+    </tr>
+    <tr style="background:white">
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><b>⚙️ 规划 & 控制</b></td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">任务分解、执行调度、流程编排</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">ReAct、CoT、状态机、DAG</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">LangGraph Graph、CrewAI Process</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="Agent-构建的整体架构图"><a href="#Agent-构建的整体架构图" class="headerlink" title="Agent 构建的整体架构图"></a>Agent 构建的整体架构图</h3><div align="center">
+
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 820 380" width="820" height="380" font-family="'PingFang SC','Microsoft YaHei',sans-serif">
+  <defs>
+    <lineargradient id="abg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0f172a"/><stop offset="100%" stop-color="#1e1b4b"/></lineargradient>
+    <lineargradient id="ag1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#312e81"/></lineargradient>
+    <lineargradient id="ag2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#4c1d95"/></lineargradient>
+    <lineargradient id="ag3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#164e63"/></lineargradient>
+    <lineargradient id="ag4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#064e3b"/></lineargradient>
+    <lineargradient id="ag5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></lineargradient>
+    <marker id="aarr" markerwidth="8" markerheight="8" refx="6" refy="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/></marker>
+    <marker id="aarr-i" markerwidth="8" markerheight="8" refx="6" refy="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#818cf8"/></marker>
+  </defs>
+  <rect width="820" height="380" fill="url(#abg)" rx="12"/>
+  <!-- User box -->
+  <rect x="20" y="160" width="110" height="60" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+  <text x="75" y="184" text-anchor="middle" fill="#94a3b8" font-size="10" font-weight="600">用户 / 环境</text>
+  <text x="75" y="202" text-anchor="middle" fill="white" font-size="12">📨 输入</text>
+  <text x="75" y="216" text-anchor="middle" fill="#64748b" font-size="8">Query / Observation</text>
+  <!-- Central Agent box -->
+  <rect x="200" y="60" width="420" height="260" rx="14" fill="rgba(99,102,241,0.08)" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="410" y="86" text-anchor="middle" fill="#a5b4fc" font-size="11" font-weight="600" letter-spacing="2">AGENT SYSTEM</text>
+  <!-- Prompt Manager -->
+  <rect x="222" y="100" width="168" height="70" rx="9" fill="url(#ag1)"/>
+  <text x="306" y="122" text-anchor="middle" fill="white" font-size="12" font-weight="700">📝 提示管理器</text>
+  <text x="306" y="139" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="9">System Prompt 组装</text>
+  <text x="306" y="154" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8">Few-shot · Context 注入</text>
+  <!-- LLM Core -->
+  <rect x="320" y="194" width="180" height="80" rx="10" fill="#0f172a" stroke="#3b82f6" stroke-width="2"/>
+  <text x="410" y="220" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="600" letter-spacing="1">CORE ENGINE</text>
+  <text x="410" y="242" text-anchor="middle" fill="white" font-size="16" font-weight="700">🧠 LLM</text>
+  <text x="410" y="262" text-anchor="middle" fill="#64748b" font-size="8">推理 · 规划 · 决策</text>
+  <!-- Decision Module -->
+  <rect x="450" y="100" width="150" height="70" rx="9" fill="url(#ag2)"/>
+  <text x="525" y="122" text-anchor="middle" fill="white" font-size="12" font-weight="700">🎯 决策模块</text>
+  <text x="525" y="139" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="9">ReAct / CoT / ToT</text>
+  <text x="525" y="154" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8">工具选择 · 行动规划</text>
+  <!-- Memory Module -->
+  <rect x="222" y="290" width="150" height="18" rx="6" fill="url(#ag5)" opacity="0.0"/>
+  <rect x="222" y="282" width="168" height="22" rx="6" fill="url(#ag5)"/>
+  <text x="306" y="297" text-anchor="middle" fill="white" font-size="10" font-weight="600">🗄️ 记忆系统</text>
+  <!-- Tool Module -->
+  <rect x="450" y="282" width="150" height="22" rx="6" fill="url(#ag4)"/>
+  <text x="525" y="297" text-anchor="middle" fill="white" font-size="10" font-weight="600">🔧 工具调用</text>
+  <!-- External tools box -->
+  <rect x="690" y="100" width="110" height="180" rx="10" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+  <text x="745" y="124" text-anchor="middle" fill="#34d399" font-size="10" font-weight="600">外部工具</text>
+  <line x1="710" y1="132" x2="780" y2="132" stroke="#10b981" stroke-width="0.5" opacity="0.4"/>
+  <text x="745" y="150" text-anchor="middle" fill="#6ee7b7" font-size="9">🔍 搜索</text>
+  <text x="745" y="170" text-anchor="middle" fill="#6ee7b7" font-size="9">💻 代码执行</text>
+  <text x="745" y="190" text-anchor="middle" fill="#6ee7b7" font-size="9">🗃️ 数据库</text>
+  <text x="745" y="210" text-anchor="middle" fill="#6ee7b7" font-size="9">🌐 API 调用</text>
+  <text x="745" y="230" text-anchor="middle" fill="#6ee7b7" font-size="9">📁 文件系统</text>
+  <text x="745" y="250" text-anchor="middle" fill="#6ee7b7" font-size="9">🔌 插件</text>
+  <!-- Output box -->
+  <rect x="690" y="310" width="110" height="50" rx="8" fill="#1e293b" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="745" y="331" text-anchor="middle" fill="#a5b4fc" font-size="10" font-weight="600">最终输出</text>
+  <text x="745" y="349" text-anchor="middle" fill="white" font-size="10">✅ 结果</text>
+  <!-- Arrows -->
+  <line x1="131" y1="190" x2="198" y2="190" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#aarr)"/>
+  <line x1="390" y1="170" x2="390" y2="192" stroke="#818cf8" stroke-width="1.5" marker-end="url(#aarr-i)"/>
+  <line x1="500" y1="170" x2="460" y2="192" stroke="#818cf8" stroke-width="1.5" marker-end="url(#aarr-i)"/>
+  <line x1="306" y1="282" x2="380" y2="276" stroke="#f59e0b" stroke-width="1.2" stroke-dasharray="3,2" marker-end="url(#aarr)"/>
+  <line x1="525" y1="282" x2="460" y2="276" stroke="#10b981" stroke-width="1.2" stroke-dasharray="3,2" marker-end="url(#aarr)"/>
+  <line x1="622" y1="293" x2="688" y2="190" stroke="#10b981" stroke-width="1.5" marker-end="url(#aarr)" stroke-dasharray="4,2"/>
+  <text x="648" y="230" fill="#34d399" font-size="8">调用工具</text>
+  <line x1="688" y1="240" x2="622" y2="270" stroke="#10b981" stroke-width="1.5" marker-end="url(#aarr)" stroke-dasharray="4,2"/>
+  <text x="630" y="263" fill="#34d399" font-size="8">返回结果</text>
+  <line x1="622" y1="310" x2="688" y2="325" stroke="#818cf8" stroke-width="1.5" marker-end="url(#aarr)"/>
+  <!-- Internal labels -->
+  <text x="410" y="348" text-anchor="middle" fill="#334155" font-size="9">Prompt → LLM → Decision → Tool → Observation → Output</text>
+</svg>
+
+</div>
+
+<hr>
+<h2 id="二、主流框架横向对比"><a href="#二、主流框架横向对比" class="headerlink" title="二、主流框架横向对比"></a>二、主流框架横向对比</h2><p>在动手之前，先选对工具。</p>
+<div style="overflow-x:auto;margin:16px 0">
+<table style="width:100%;border-collapse:collapse;font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:14px">
+  <thead>
+    <tr style="background:#312e81;color:white">
+      <th style="padding:10px 14px;border:1px solid #4338ca">框架</th>
+      <th style="padding:10px 14px;border:1px solid #4338ca">设计哲学</th>
+      <th style="padding:10px 14px;border:1px solid #4338ca">最适合场景</th>
+      <th style="padding:10px 14px;border:1px solid #4338ca">学习曲线</th>
+      <th style="padding:10px 14px;border:1px solid #4338ca">生产就绪</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f5f3ff">
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><b>LangChain</b></td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">链式组合，模块化，胶水层</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">RAG、单 Agent 原型、快速验证</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><span style="color:#f59e0b">★★★☆☆</span> 中等</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><span style="color:#10b981">✅</span> 生产可用</td>
+    </tr>
+    <tr style="background:white">
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><b>LangGraph</b></td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">状态机 + 有向图，精确控制</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">复杂多步流程、循环控制、生产级 Agent</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><span style="color:#ef4444">★★★★☆</span> 较难</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><span style="color:#10b981">✅</span> 强烈推荐</td>
+    </tr>
+    <tr style="background:#f5f3ff">
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><b>AutoGen</b></td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">对话驱动，多 Agent 协作</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">多 Agent 协作、代码生成与执行</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><span style="color:#f59e0b">★★★☆☆</span> 中等</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><span style="color:#f59e0b">⚠️</span> 需额外工作</td>
+    </tr>
+    <tr style="background:white">
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><b>CrewAI</b></td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">角色驱动，拟人化团队</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">内容生产、研究任务、角色分工</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><span style="color:#22c55e">★★☆☆☆</span> 最易上手</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><span style="color:#f59e0b">⚠️</span> 适合中等复杂度</td>
+    </tr>
+    <tr style="background:#f5f3ff">
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><b>原生 API</b><br><span style="color:#94a3b8;font-size:12px">OpenAI / Anthropic</span></td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">无框架依赖，最轻量</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">简单工具调用、学习理解底层原理</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><span style="color:#22c55e">★☆☆☆☆</span> 最简单</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><span style="color:#10b981">✅</span> 完全可控</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:6px;padding:12px 16px;margin:12px 0;font-family:'PingFang SC','Microsoft YaHei',sans-serif;color:#14532d">
+💡 <b>选型建议：</b>学习阶段用 <b>原生 API → LangChain</b>，理解底层逻辑；生产复杂流程用 <b>LangGraph</b>；多 Agent 协作用 <b>AutoGen</b>；快速出原型演示用 <b>CrewAI</b>。
+</div>
+
+<hr>
+<h2 id="三、LangChain-深度拆解"><a href="#三、LangChain-深度拆解" class="headerlink" title="三、LangChain 深度拆解"></a>三、LangChain 深度拆解</h2><p>LangChain 是目前生态最完整的 Agent 框架，核心理念是<strong>“一切皆组件，组件皆可链”</strong>。</p>
+<h3 id="3-1-核心组件架构"><a href="#3-1-核心组件架构" class="headerlink" title="3.1 核心组件架构"></a>3.1 核心组件架构</h3><div align="center">
+
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 800 320" width="800" height="320" font-family="'PingFang SC','Microsoft YaHei',sans-serif">
+  <defs>
+    <lineargradient id="lcbg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0f172a"/><stop offset="100%" stop-color="#0c4a6e"/></lineargradient>
+  </defs>
+  <rect width="800" height="320" fill="url(#lcbg)" rx="12"/>
+  <!-- Title -->
+  <text x="400" y="28" text-anchor="middle" fill="#7dd3fc" font-size="12" font-weight="600" letter-spacing="2">LANGCHAIN COMPONENT MAP</text>
+  <!-- Row 1: Input -->
+  <rect x="30" y="48" width="120" height="52" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="90" y="69" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="600">📥 Input</text>
+  <text x="90" y="84" text-anchor="middle" fill="#7dd3fc" font-size="9">HumanMessage</text>
+  <text x="90" y="96" text-anchor="middle" fill="#64748b" font-size="8">SystemMessage</text>
+  <!-- PromptTemplate -->
+  <rect x="190" y="48" width="140" height="52" rx="8" fill="#312e81" stroke="#6366f1" stroke-width="1.2"/>
+  <text x="260" y="69" text-anchor="middle" fill="#c7d2fe" font-size="10" font-weight="600">📝 PromptTemplate</text>
+  <text x="260" y="84" text-anchor="middle" fill="#a5b4fc" font-size="9">ChatPromptTemplate</text>
+  <text x="260" y="96" text-anchor="middle" fill="#64748b" font-size="8">FewShotPrompt · Partial</text>
+  <!-- ChatModel -->
+  <rect x="370" y="48" width="130" height="52" rx="8" fill="#1e3a8a" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="435" y="69" text-anchor="middle" fill="white" font-size="10" font-weight="700">🧠 ChatModel</text>
+  <text x="435" y="84" text-anchor="middle" fill="#93c5fd" font-size="9">ChatOpenAI · ChatAnthropic</text>
+  <text x="435" y="96" text-anchor="middle" fill="#64748b" font-size="8">invoke / stream / batch</text>
+  <!-- OutputParser -->
+  <rect x="540" y="48" width="120" height="52" rx="8" fill="#164e63" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="600" y="69" text-anchor="middle" fill="#a5f3fc" font-size="10" font-weight="600">🔄 OutputParser</text>
+  <text x="600" y="84" text-anchor="middle" fill="#67e8f9" font-size="9">StrOutput</text>
+  <text x="600" y="96" text-anchor="middle" fill="#64748b" font-size="8">JsonOutput · Pydantic</text>
+  <!-- Chain arrow row 1 -->
+  <line x1="152" y1="74" x2="188" y2="74" stroke="#475569" stroke-width="1.2" marker-end="url(#aarr)"/>
+  <line x1="332" y1="74" x2="368" y2="74" stroke="#475569" stroke-width="1.2" marker-end="url(#aarr)"/>
+  <line x1="502" y1="74" x2="538" y2="74" stroke="#475569" stroke-width="1.2" marker-end="url(#aarr)"/>
+  <line x1="662" y1="74" x2="700" y2="74" stroke="#475569" stroke-width="1.2" marker-end="url(#aarr)"/>
+  <!-- LCEL label -->
+  <rect x="700" y="58" width="80" height="32" rx="6" fill="rgba(99,102,241,0.2)" stroke="#6366f1" stroke-width="1"/>
+  <text x="740" y="74" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="600">LCEL</text>
+  <text x="740" y="86" text-anchor="middle" fill="#818cf8" font-size="8">| 管道符</text>
+  <!-- Row 2: Memory & Tools & Agent -->
+  <!-- Memory -->
+  <rect x="30" y="140" width="170" height="80" rx="8" fill="#292524" stroke="#f59e0b" stroke-width="1.2"/>
+  <text x="115" y="162" text-anchor="middle" fill="#fcd34d" font-size="10" font-weight="600">🗄️ Memory 记忆模块</text>
+  <line x1="45" y1="170" x2="185" y2="170" stroke="#92400e" stroke-width="0.5" opacity="0.5"/>
+  <text x="115" y="184" text-anchor="middle" fill="#fde68a" font-size="9">ConversationBuffer</text>
+  <text x="115" y="198" text-anchor="middle" fill="#fde68a" font-size="9">ConversationSummary</text>
+  <text x="115" y="210" text-anchor="middle" fill="#64748b" font-size="8">VectorStore Memory</text>
+  <!-- Tools -->
+  <rect x="220" y="140" width="170" height="80" rx="8" fill="#052e16" stroke="#10b981" stroke-width="1.2"/>
+  <text x="305" y="162" text-anchor="middle" fill="#34d399" font-size="10" font-weight="600">🔧 Tools 工具模块</text>
+  <line x1="235" y1="170" x2="375" y2="170" stroke="#065f46" stroke-width="0.5" opacity="0.5"/>
+  <text x="305" y="184" text-anchor="middle" fill="#6ee7b7" font-size="9">@tool 装饰器定义</text>
+  <text x="305" y="198" text-anchor="middle" fill="#6ee7b7" font-size="9">StructuredTool · BaseTool</text>
+  <text x="305" y="210" text-anchor="middle" fill="#64748b" font-size="8">DuckDuckGo · Wikipedia · Custom</text>
+  <!-- Agent -->
+  <rect x="410" y="140" width="180" height="80" rx="8" fill="#1e3a8a" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="500" y="162" text-anchor="middle" fill="white" font-size="10" font-weight="700">🤖 AgentExecutor</text>
+  <line x1="425" y1="170" x2="575" y2="170" stroke="#1e40af" stroke-width="0.5" opacity="0.5"/>
+  <text x="500" y="184" text-anchor="middle" fill="#93c5fd" font-size="9">create_react_agent</text>
+  <text x="500" y="198" text-anchor="middle" fill="#93c5fd" font-size="9">create_openai_functions_agent</text>
+  <text x="500" y="210" text-anchor="middle" fill="#64748b" font-size="8">max_iterations · verbose</text>
+  <!-- VectorStore / Retriever -->
+  <rect x="610" y="140" width="170" height="80" rx="8" fill="#1a0533" stroke="#a855f7" stroke-width="1.2"/>
+  <text x="695" y="162" text-anchor="middle" fill="#d8b4fe" font-size="10" font-weight="600">🔍 Retriever / VectorDB</text>
+  <line x1="625" y1="170" x2="765" y2="170" stroke="#7e22ce" stroke-width="0.5" opacity="0.5"/>
+  <text x="695" y="184" text-anchor="middle" fill="#c4b5fd" font-size="9">FAISS · Chroma · Pinecone</text>
+  <text x="695" y="198" text-anchor="middle" fill="#c4b5fd" font-size="9">similarity_search</text>
+  <text x="695" y="210" text-anchor="middle" fill="#64748b" font-size="8">RAG Pipeline</text>
+  <!-- Row 3: LCEL Chain -->
+  <rect x="30" y="258" width="740" height="42" rx="8" fill="rgba(99,102,241,0.1)" stroke="#6366f1" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="400" y="276" text-anchor="middle" fill="#a5b4fc" font-size="11" font-weight="600">LCEL Pipeline：</text>
+  <text x="400" y="293" text-anchor="middle" fill="#818cf8" font-size="10">prompt | llm | output_parser　　　　chain.invoke() / chain.stream() / chain.batch()</text>
+</svg>
+
+</div>
+
+<h3 id="3-2-提示管理（Prompt-Management）"><a href="#3-2-提示管理（Prompt-Management）" class="headerlink" title="3.2 提示管理（Prompt Management）"></a>3.2 提示管理（Prompt Management）</h3><p>提示管理是 Agent 行为的<strong>起点和控制器</strong>，决定了 LLM 如何思考和行动。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain_core.prompts <span class="keyword">import</span> ChatPromptTemplate, MessagesPlaceholder</span><br><span class="line"></span><br><span class="line"><span class="comment"># ① 系统提示：定义 Agent 身份和行为规范</span></span><br><span class="line">system_prompt = <span class="string">&quot;&quot;&quot;你是一个专业的研究助手，具备以下能力：</span></span><br><span class="line"><span class="string">- 使用搜索工具查找最新信息</span></span><br><span class="line"><span class="string">- 使用计算器进行数学计算</span></span><br><span class="line"><span class="string">- 综合多源信息给出准确回答</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">始终遵循 ReAct 格式：先思考(Thought)，再行动(Action)，再观察(Observation)。</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ② ChatPromptTemplate：结构化提示模板</span></span><br><span class="line">prompt = ChatPromptTemplate.from_messages([</span><br><span class="line">    (<span class="string">&quot;system&quot;</span>, system_prompt),</span><br><span class="line">    MessagesPlaceholder(variable_name=<span class="string">&quot;chat_history&quot;</span>),  <span class="comment"># 注入对话历史</span></span><br><span class="line">    (<span class="string">&quot;human&quot;</span>, <span class="string">&quot;&#123;input&#125;&quot;</span>),</span><br><span class="line">    MessagesPlaceholder(variable_name=<span class="string">&quot;agent_scratchpad&quot;</span>),  <span class="comment"># Agent 推理过程</span></span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="comment"># ③ FewShot 提示：提供示例引导 LLM 行为</span></span><br><span class="line"><span class="keyword">from</span> langchain_core.prompts <span class="keyword">import</span> FewShotChatMessagePromptTemplate</span><br><span class="line"></span><br><span class="line">examples = [</span><br><span class="line">    &#123;<span class="string">&quot;input&quot;</span>: <span class="string">&quot;今天北京天气怎么样？&quot;</span>, </span><br><span class="line">     <span class="string">&quot;output&quot;</span>: <span class="string">&quot;Thought: 需要查询实时天气\nAction: search\nAction Input: 北京今日天气&quot;</span>&#125;,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">few_shot_prompt = FewShotChatMessagePromptTemplate(</span><br><span class="line">    example_prompt=ChatPromptTemplate.from_messages([</span><br><span class="line">        (<span class="string">&quot;human&quot;</span>, <span class="string">&quot;&#123;input&#125;&quot;</span>), (<span class="string">&quot;ai&quot;</span>, <span class="string">&quot;&#123;output&#125;&quot;</span>)</span><br><span class="line">    ]),</span><br><span class="line">    examples=examples,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<div style="background:#f5f3ff;border-left:4px solid #6366f1;border-radius:6px;padding:12px 16px;margin:12px 0;font-family:'PingFang SC','Microsoft YaHei',sans-serif">
+🔑 <b style="color:#4338ca">提示工程要点：</b><br>
+<span style="color:#3730a3">① System Prompt 定义 Agent 的"人格"与约束边界；② <code>MessagesPlaceholder</code> 动态注入历史和推理轨迹；③ Few-shot 示例比指令更有效——用例子告诉模型怎么做。</span>
+</div>
+
+<h3 id="3-3-工具调用（Tool-Use）"><a href="#3-3-工具调用（Tool-Use）" class="headerlink" title="3.3 工具调用（Tool Use）"></a>3.3 工具调用（Tool Use）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain_core.tools <span class="keyword">import</span> tool</span><br><span class="line"><span class="keyword">from</span> langchain_community.tools <span class="keyword">import</span> DuckDuckGoSearchRun</span><br><span class="line"><span class="keyword">from</span> langchain_experimental.tools <span class="keyword">import</span> PythonREPLTool</span><br><span class="line"></span><br><span class="line"><span class="comment"># ① @tool 装饰器：最简单的工具定义方式</span></span><br><span class="line"><span class="meta">@tool</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">calculate</span>(<span class="params">expression: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;计算数学表达式。输入应为有效的 Python 数学表达式，如 &#x27;2 + 3 * 4&#x27;&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">str</span>(<span class="built_in">eval</span>(expression))</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">f&quot;计算错误: <span class="subst">&#123;e&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@tool  </span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_weather</span>(<span class="params">city: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;获取指定城市的当前天气信息。&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 实际场景替换为真实 API</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">f&quot;<span class="subst">&#123;city&#125;</span>：晴，25°C，东南风3级&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ② 使用内置工具</span></span><br><span class="line">search = DuckDuckGoSearchRun()</span><br><span class="line">python_repl = PythonREPLTool()</span><br><span class="line"></span><br><span class="line"><span class="comment"># ③ 工具列表 — 注册给 Agent</span></span><br><span class="line">tools = [calculate, get_weather, search, python_repl]</span><br><span class="line"></span><br><span class="line"><span class="comment"># ④ 查看工具 Schema（LLM 看到的工具描述）</span></span><br><span class="line"><span class="built_in">print</span>(calculate.name)         <span class="comment"># &quot;calculate&quot;</span></span><br><span class="line"><span class="built_in">print</span>(calculate.description)  <span class="comment"># &quot;计算数学表达式...&quot;</span></span><br><span class="line"><span class="built_in">print</span>(calculate.args_schema.schema())  <span class="comment"># JSON Schema</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-4-代理决策模块（Agent-Core）"><a href="#3-4-代理决策模块（Agent-Core）" class="headerlink" title="3.4 代理决策模块（Agent Core）"></a>3.4 代理决策模块（Agent Core）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain_openai <span class="keyword">import</span> ChatOpenAI</span><br><span class="line"><span class="keyword">from</span> langchain.agents <span class="keyword">import</span> AgentExecutor, create_openai_tools_agent</span><br><span class="line"><span class="keyword">from</span> langchain_core.messages <span class="keyword">import</span> HumanMessage, AIMessage</span><br><span class="line"></span><br><span class="line"><span class="comment"># ① 初始化 LLM</span></span><br><span class="line">llm = ChatOpenAI(model=<span class="string">&quot;gpt-4o&quot;</span>, temperature=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ② 创建 Agent（绑定工具和提示）</span></span><br><span class="line">agent = create_openai_tools_agent(llm, tools, prompt)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ③ AgentExecutor：负责循环执行直到任务完成</span></span><br><span class="line">agent_executor = AgentExecutor(</span><br><span class="line">    agent=agent,</span><br><span class="line">    tools=tools,</span><br><span class="line">    verbose=<span class="literal">True</span>,           <span class="comment"># 打印推理过程</span></span><br><span class="line">    max_iterations=<span class="number">10</span>,      <span class="comment"># 防止无限循环</span></span><br><span class="line">    return_intermediate_steps=<span class="literal">True</span>,  <span class="comment"># 返回中间步骤</span></span><br><span class="line">    handle_parsing_errors=<span class="literal">True</span>,      <span class="comment"># 优雅处理解析错误</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ④ 维护对话历史（多轮对话）</span></span><br><span class="line">chat_history = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">chat</span>(<span class="params">user_input: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    response = agent_executor.invoke(&#123;</span><br><span class="line">        <span class="string">&quot;input&quot;</span>: user_input,</span><br><span class="line">        <span class="string">&quot;chat_history&quot;</span>: chat_history,</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment"># 更新历史</span></span><br><span class="line">    chat_history.extend([</span><br><span class="line">        HumanMessage(content=user_input),</span><br><span class="line">        AIMessage(content=response[<span class="string">&quot;output&quot;</span>]),</span><br><span class="line">    ])</span><br><span class="line">    <span class="keyword">return</span> response[<span class="string">&quot;output&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># ⑤ 运行示例</span></span><br><span class="line">result = chat(<span class="string">&quot;帮我查一下今天上海的天气，然后换算成华氏度&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
+<h3 id="3-5-完整可运行原型"><a href="#3-5-完整可运行原型" class="headerlink" title="3.5 完整可运行原型"></a>3.5 完整可运行原型</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ====================================================</span></span><br><span class="line"><span class="comment"># LangChain ReAct Agent 完整原型</span></span><br><span class="line"><span class="comment"># pip install langchain langchain-openai duckduckgo-search</span></span><br><span class="line"><span class="comment"># ====================================================</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> langchain_openai <span class="keyword">import</span> ChatOpenAI</span><br><span class="line"><span class="keyword">from</span> langchain_core.prompts <span class="keyword">import</span> ChatPromptTemplate, MessagesPlaceholder</span><br><span class="line"><span class="keyword">from</span> langchain_core.tools <span class="keyword">import</span> tool</span><br><span class="line"><span class="keyword">from</span> langchain_community.tools <span class="keyword">import</span> DuckDuckGoSearchRun</span><br><span class="line"><span class="keyword">from</span> langchain.agents <span class="keyword">import</span> AgentExecutor, create_openai_tools_agent</span><br><span class="line"></span><br><span class="line">os.environ[<span class="string">&quot;OPENAI_API_KEY&quot;</span>] = <span class="string">&quot;your-api-key&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 1. 定义工具 ---</span></span><br><span class="line"><span class="meta">@tool</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">calculator</span>(<span class="params">expr: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;执行数学计算。示例：&#x27;100 * 1.13&#x27; 计算含税价格&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">str</span>(<span class="built_in">round</span>(<span class="built_in">eval</span>(expr), <span class="number">4</span>))</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;计算失败，请检查表达式&quot;</span></span><br><span class="line"></span><br><span class="line">search = DuckDuckGoSearchRun(name=<span class="string">&quot;web_search&quot;</span>)</span><br><span class="line">tools = [calculator, search]</span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 2. 构建提示 ---</span></span><br><span class="line">prompt = ChatPromptTemplate.from_messages([</span><br><span class="line">    (<span class="string">&quot;system&quot;</span>, <span class="string">&quot;你是一个严谨的助手，擅长搜索信息和数学计算。&quot;</span></span><br><span class="line">               <span class="string">&quot;分步骤思考，合理使用工具，给出准确答案。&quot;</span>),</span><br><span class="line">    MessagesPlaceholder(<span class="string">&quot;chat_history&quot;</span>, optional=<span class="literal">True</span>),</span><br><span class="line">    (<span class="string">&quot;human&quot;</span>, <span class="string">&quot;&#123;input&#125;&quot;</span>),</span><br><span class="line">    MessagesPlaceholder(<span class="string">&quot;agent_scratchpad&quot;</span>),</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 3. 创建 Agent ---</span></span><br><span class="line">llm = ChatOpenAI(model=<span class="string">&quot;gpt-4o-mini&quot;</span>, temperature=<span class="number">0</span>)</span><br><span class="line">agent = create_openai_tools_agent(llm, tools, prompt)</span><br><span class="line">executor = AgentExecutor(</span><br><span class="line">    agent=agent, tools=tools,</span><br><span class="line">    verbose=<span class="literal">True</span>, max_iterations=<span class="number">8</span>,</span><br><span class="line">    handle_parsing_errors=<span class="literal">True</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 4. 运行 ---</span></span><br><span class="line">result = executor.invoke(&#123;<span class="string">&quot;input&quot;</span>: <span class="string">&quot;特斯拉今天的股价是多少？如果我买100股需要多少钱？&quot;</span>&#125;)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n📊 最终答案:&quot;</span>, result[<span class="string">&quot;output&quot;</span>])</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="四、AutoGen-深度拆解"><a href="#四、AutoGen-深度拆解" class="headerlink" title="四、AutoGen 深度拆解"></a>四、AutoGen 深度拆解</h2><p>AutoGen 的核心哲学是<strong>对话即计算</strong>——一切复杂任务都通过 Agent 之间的对话协作来完成。</p>
+<h3 id="4-1-核心概念与角色设计"><a href="#4-1-核心概念与角色设计" class="headerlink" title="4.1 核心概念与角色设计"></a>4.1 核心概念与角色设计</h3><div style="overflow-x:auto;margin:16px 0">
+<table style="width:100%;border-collapse:collapse;font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:14px">
+  <thead>
+    <tr style="background:#1e3a8a;color:white">
+      <th style="padding:10px 14px;border:1px solid #2563eb">Agent 类型</th>
+      <th style="padding:10px 14px;border:1px solid #2563eb">能力</th>
+      <th style="padding:10px 14px;border:1px solid #2563eb">典型用途</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f8faff">
+      <td style="padding:9px 14px;border:1px solid #e2e8f0"><b>AssistantAgent</b></td>
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">LLM 驱动，生成代码和文本，不能直接执行代码</td>
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">主力执行者，负责思考和规划</td>
+    </tr>
+    <tr style="background:white">
+      <td style="padding:9px 14px;border:1px solid #e2e8f0"><b>UserProxyAgent</b></td>
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">可代理用户，执行代码（本地/Docker），调用工具</td>
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">代码执行器、用户代理、审批者</td>
+    </tr>
+    <tr style="background:#f8faff">
+      <td style="padding:9px 14px;border:1px solid #e2e8f0"><b>GroupChatManager</b></td>
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">协调多个 Agent 的发言顺序</td>
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">多 Agent 群聊的主持人</td>
+    </tr>
+    <tr style="background:white">
+      <td style="padding:9px 14px;border:1px solid #e2e8f0"><b>ConversableAgent</b></td>
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">基类，可高度自定义</td>
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">专家角色、Critic、Validator</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="4-2-双-Agent-对话原型"><a href="#4-2-双-Agent-对话原型" class="headerlink" title="4.2 双 Agent 对话原型"></a>4.2 双 Agent 对话原型</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ====================================================</span></span><br><span class="line"><span class="comment"># AutoGen 双 Agent 协作：AI助手 + 代码执行器</span></span><br><span class="line"><span class="comment"># pip install pyautogen</span></span><br><span class="line"><span class="comment"># ====================================================</span></span><br><span class="line"><span class="keyword">import</span> autogen</span><br><span class="line"></span><br><span class="line"><span class="comment"># LLM 配置</span></span><br><span class="line">llm_config = &#123;</span><br><span class="line">    <span class="string">&quot;config_list&quot;</span>: [&#123;<span class="string">&quot;model&quot;</span>: <span class="string">&quot;gpt-4o&quot;</span>, <span class="string">&quot;api_key&quot;</span>: <span class="string">&quot;your-key&quot;</span>&#125;],</span><br><span class="line">    <span class="string">&quot;temperature&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">&quot;timeout&quot;</span>: <span class="number">120</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 1. 定义 Assistant Agent（LLM 驱动，负责思考和生成代码）---</span></span><br><span class="line">assistant = autogen.AssistantAgent(</span><br><span class="line">    name=<span class="string">&quot;AI助手&quot;</span>,</span><br><span class="line">    system_message=<span class="string">&quot;&quot;&quot;你是一个数据分析专家。</span></span><br><span class="line"><span class="string">    当需要计算或处理数据时，编写 Python 代码。</span></span><br><span class="line"><span class="string">    代码必须完整可运行，包含所有必要的 import。</span></span><br><span class="line"><span class="string">    分析完成后说 &#x27;TERMINATE&#x27; 结束对话。&quot;&quot;&quot;</span>,</span><br><span class="line">    llm_config=llm_config,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 2. 定义 UserProxy Agent（代码执行器）---</span></span><br><span class="line">user_proxy = autogen.UserProxyAgent(</span><br><span class="line">    name=<span class="string">&quot;执行器&quot;</span>,</span><br><span class="line">    human_input_mode=<span class="string">&quot;NEVER&quot;</span>,       <span class="comment"># 完全自动，不需要人类介入</span></span><br><span class="line">    max_consecutive_auto_reply=<span class="number">5</span>,   <span class="comment"># 最多自动回复5次</span></span><br><span class="line">    is_termination_msg=<span class="keyword">lambda</span> x: <span class="string">&quot;TERMINATE&quot;</span> <span class="keyword">in</span> x.get(<span class="string">&quot;content&quot;</span>, <span class="string">&quot;&quot;</span>),</span><br><span class="line">    code_execution_config=&#123;</span><br><span class="line">        <span class="string">&quot;work_dir&quot;</span>: <span class="string">&quot;workspace&quot;</span>,    <span class="comment"># 代码执行目录</span></span><br><span class="line">        <span class="string">&quot;use_docker&quot;</span>: <span class="literal">False</span>,        <span class="comment"># 本地执行（生产环境建议用 Docker）</span></span><br><span class="line">    &#125;,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 3. 启动对话 ---</span></span><br><span class="line">user_proxy.initiate_chat(</span><br><span class="line">    assistant,</span><br><span class="line">    message=<span class="string">&quot;分析以下数字列表的统计特征并绘制直方图：[23,45,67,12,89,34,56,78,90,11,44,66]&quot;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="4-3-多-Agent-群聊原型"><a href="#4-3-多-Agent-群聊原型" class="headerlink" title="4.3 多 Agent 群聊原型"></a>4.3 多 Agent 群聊原型</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ====================================================</span></span><br><span class="line"><span class="comment"># AutoGen 多 Agent 群聊：研究团队协作</span></span><br><span class="line"><span class="comment"># ====================================================</span></span><br><span class="line"><span class="keyword">import</span> autogen</span><br><span class="line"></span><br><span class="line">llm_config = &#123;<span class="string">&quot;config_list&quot;</span>: [&#123;<span class="string">&quot;model&quot;</span>: <span class="string">&quot;gpt-4o&quot;</span>, <span class="string">&quot;api_key&quot;</span>: <span class="string">&quot;your-key&quot;</span>&#125;]&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义三个专业角色</span></span><br><span class="line">researcher = autogen.AssistantAgent(</span><br><span class="line">    name=<span class="string">&quot;研究员&quot;</span>,</span><br><span class="line">    system_message=<span class="string">&quot;你负责收集和整理信息，提供客观的研究发现。&quot;</span>,</span><br><span class="line">    llm_config=llm_config,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">critic = autogen.AssistantAgent(</span><br><span class="line">    name=<span class="string">&quot;评论家&quot;</span>,</span><br><span class="line">    system_message=<span class="string">&quot;你负责批判性地审查信息，指出潜在问题和局限性。&quot;</span>,</span><br><span class="line">    llm_config=llm_config,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">writer = autogen.AssistantAgent(</span><br><span class="line">    name=<span class="string">&quot;写作者&quot;</span>,</span><br><span class="line">    system_message=<span class="string">&quot;你负责将研究结论整理成清晰、结构化的报告。完成后说 TERMINATE。&quot;</span>,</span><br><span class="line">    llm_config=llm_config,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">user_proxy = autogen.UserProxyAgent(</span><br><span class="line">    name=<span class="string">&quot;用户&quot;</span>,</span><br><span class="line">    human_input_mode=<span class="string">&quot;NEVER&quot;</span>,</span><br><span class="line">    max_consecutive_auto_reply=<span class="number">1</span>,</span><br><span class="line">    is_termination_msg=<span class="keyword">lambda</span> x: <span class="string">&quot;TERMINATE&quot;</span> <span class="keyword">in</span> x.get(<span class="string">&quot;content&quot;</span>, <span class="string">&quot;&quot;</span>),</span><br><span class="line">    code_execution_config=<span class="literal">False</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建群聊</span></span><br><span class="line">groupchat = autogen.GroupChat(</span><br><span class="line">    agents=[user_proxy, researcher, critic, writer],</span><br><span class="line">    messages=[],</span><br><span class="line">    max_round=<span class="number">12</span>,                      <span class="comment"># 最多对话12轮</span></span><br><span class="line">    speaker_selection_method=<span class="string">&quot;auto&quot;</span>,   <span class="comment"># 自动选择下一个发言人</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">manager = autogen.GroupChatManager(groupchat=groupchat, llm_config=llm_config)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line">user_proxy.initiate_chat(</span><br><span class="line">    manager,</span><br><span class="line">    message=<span class="string">&quot;研究并分析：2025年 AI Agent 的主要应用场景和商业价值&quot;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="五、LangGraph-深度拆解"><a href="#五、LangGraph-深度拆解" class="headerlink" title="五、LangGraph 深度拆解"></a>五、LangGraph 深度拆解</h2><p>LangGraph 是构建<strong>生产级、有状态 Agent</strong> 的最佳选择，它将 Agent 的执行流程建模为<strong>有向状态图（DAG）</strong>，每个节点是一个处理步骤，边是流转条件。</p>
+<h3 id="5-1-核心概念"><a href="#5-1-核心概念" class="headerlink" title="5.1 核心概念"></a>5.1 核心概念</h3><div style="overflow-x:auto;margin:16px 0">
+<table style="width:100%;border-collapse:collapse;font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:14px">
+  <thead>
+    <tr style="background:#064e3b;color:white">
+      <th style="padding:10px 14px;border:1px solid #065f46">概念</th>
+      <th style="padding:10px 14px;border:1px solid #065f46">含义</th>
+      <th style="padding:10px 14px;border:1px solid #065f46">类比</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f0fdf4">
+      <td style="padding:9px 14px;border:1px solid #bbf7d0"><b>State</b></td>
+      <td style="padding:9px 14px;border:1px solid #bbf7d0">全局状态字典，贯穿整个图的执行</td>
+      <td style="padding:9px 14px;border:1px solid #bbf7d0">流水线上传递的"工件"</td>
+    </tr>
+    <tr style="background:white">
+      <td style="padding:9px 14px;border:1px solid #bbf7d0"><b>Node</b></td>
+      <td style="padding:9px 14px;border:1px solid #bbf7d0">纯函数，接收 State，返回更新后的 State</td>
+      <td style="padding:9px 14px;border:1px solid #bbf7d0">流水线上的工人</td>
+    </tr>
+    <tr style="background:#f0fdf4">
+      <td style="padding:9px 14px;border:1px solid #bbf7d0"><b>Edge</b></td>
+      <td style="padding:9px 14px;border:1px solid #bbf7d0">节点间的连接，可以是无条件或条件判断</td>
+      <td style="padding:9px 14px;border:1px solid #bbf7d0">流水线上的传送带</td>
+    </tr>
+    <tr style="background:white">
+      <td style="padding:9px 14px;border:1px solid #bbf7d0"><b>Conditional Edge</b></td>
+      <td style="padding:9px 14px;border:1px solid #bbf7d0">根据 State 内容决定下一个节点（实现循环/分支）</td>
+      <td style="padding:9px 14px;border:1px solid #bbf7d0">质检员决定继续还是返工</td>
+    </tr>
+    <tr style="background:#f0fdf4">
+      <td style="padding:9px 14px;border:1px solid #bbf7d0"><b>Checkpoint</b></td>
+      <td style="padding:9px 14px;border:1px solid #bbf7d0">状态持久化，支持暂停/恢复/人工介入</td>
+      <td style="padding:9px 14px;border:1px solid #bbf7d0">存档点</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="5-2-完整可运行原型"><a href="#5-2-完整可运行原型" class="headerlink" title="5.2 完整可运行原型"></a>5.2 完整可运行原型</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ====================================================</span></span><br><span class="line"><span class="comment"># LangGraph ReAct Agent 完整实现</span></span><br><span class="line"><span class="comment"># pip install langgraph langchain-openai</span></span><br><span class="line"><span class="comment"># ====================================================</span></span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> Annotated, TypedDict</span><br><span class="line"><span class="keyword">from</span> langchain_openai <span class="keyword">import</span> ChatOpenAI</span><br><span class="line"><span class="keyword">from</span> langchain_core.tools <span class="keyword">import</span> tool</span><br><span class="line"><span class="keyword">from</span> langchain_core.messages <span class="keyword">import</span> BaseMessage, HumanMessage, ToolMessage</span><br><span class="line"><span class="keyword">from</span> langgraph.graph <span class="keyword">import</span> StateGraph, END</span><br><span class="line"><span class="keyword">from</span> langgraph.prebuilt <span class="keyword">import</span> ToolNode</span><br><span class="line"><span class="keyword">import</span> operator, json</span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 1. 定义 State（图的全局状态）---</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AgentState</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    messages: Annotated[<span class="built_in">list</span>[BaseMessage], operator.add]  <span class="comment"># 消息自动追加</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 2. 定义工具 ---</span></span><br><span class="line"><span class="meta">@tool</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">search_web</span>(<span class="params">query: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;搜索互联网获取最新信息&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">f&quot;[搜索结果] 关于&#x27;<span class="subst">&#123;query&#125;</span>&#x27;：这是模拟的搜索结果，实际请接入真实搜索API&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@tool</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">run_python</span>(<span class="params">code: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;执行 Python 代码并返回结果&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">import</span> io, contextlib</span><br><span class="line">        output = io.StringIO()</span><br><span class="line">        <span class="keyword">with</span> contextlib.redirect_stdout(output):</span><br><span class="line">            <span class="built_in">exec</span>(code, &#123;&#125;)</span><br><span class="line">        <span class="keyword">return</span> output.getvalue() <span class="keyword">or</span> <span class="string">&quot;执行成功（无输出）&quot;</span></span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">f&quot;执行错误: <span class="subst">&#123;e&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line">tools = [search_web, run_python]</span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 3. 定义节点函数 ---</span></span><br><span class="line">llm = ChatOpenAI(model=<span class="string">&quot;gpt-4o&quot;</span>, temperature=<span class="number">0</span>).bind_tools(tools)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">agent_node</span>(<span class="params">state: AgentState</span>) -&gt; AgentState:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;核心推理节点：调用 LLM 决定下一步行动&quot;&quot;&quot;</span></span><br><span class="line">    response = llm.invoke(state[<span class="string">&quot;messages&quot;</span>])</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;messages&quot;</span>: [response]&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">should_continue</span>(<span class="params">state: AgentState</span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;条件边：决定是继续执行工具还是结束&quot;&quot;&quot;</span></span><br><span class="line">    last_message = state[<span class="string">&quot;messages&quot;</span>][-<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">hasattr</span>(last_message, <span class="string">&quot;tool_calls&quot;</span>) <span class="keyword">and</span> last_message.tool_calls:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;execute_tools&quot;</span>  <span class="comment"># 有工具调用 → 执行工具</span></span><br><span class="line">    <span class="keyword">return</span> END                  <span class="comment"># 无工具调用 → 结束</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 4. 构建图 ---</span></span><br><span class="line">tool_node = ToolNode(tools)  <span class="comment"># 自动处理工具调用</span></span><br><span class="line"></span><br><span class="line">graph = StateGraph(AgentState)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加节点</span></span><br><span class="line">graph.add_node(<span class="string">&quot;agent&quot;</span>, agent_node)</span><br><span class="line">graph.add_node(<span class="string">&quot;execute_tools&quot;</span>, tool_node)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置入口</span></span><br><span class="line">graph.set_entry_point(<span class="string">&quot;agent&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加条件边（循环核心！）</span></span><br><span class="line">graph.add_conditional_edges(</span><br><span class="line">    <span class="string">&quot;agent&quot;</span>,</span><br><span class="line">    should_continue,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;execute_tools&quot;</span>: <span class="string">&quot;execute_tools&quot;</span>,</span><br><span class="line">        END: END</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 工具执行完毕后回到 Agent 继续推理</span></span><br><span class="line">graph.add_edge(<span class="string">&quot;execute_tools&quot;</span>, <span class="string">&quot;agent&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译</span></span><br><span class="line">app = graph.<span class="built_in">compile</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 5. 运行 ---</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">run_agent</span>(<span class="params">question: <span class="built_in">str</span></span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;\n🔵 问题：<span class="subst">&#123;question&#125;</span>\n<span class="subst">&#123;<span class="string">&#x27;=&#x27;</span>*<span class="number">50</span>&#125;</span>&quot;</span>)</span><br><span class="line">    final_state = app.invoke(&#123;</span><br><span class="line">        <span class="string">&quot;messages&quot;</span>: [HumanMessage(content=question)]</span><br><span class="line">    &#125;)</span><br><span class="line">    answer = final_state[<span class="string">&quot;messages&quot;</span>][-<span class="number">1</span>].content</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;\n✅ 最终答案：<span class="subst">&#123;answer&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> answer</span><br><span class="line"></span><br><span class="line">run_agent(<span class="string">&quot;用 Python 计算斐波那契数列前10项，并说明规律&quot;</span>)</span><br></pre></td></tr></table></figure>
+<div style="background:#f0fdf4;border-left:4px solid #10b981;border-radius:6px;padding:12px 16px;margin:12px 0;font-family:'PingFang SC','Microsoft YaHei',sans-serif">
+💡 <b style="color:#065f46">LangGraph 核心优势：</b>条件边 + 循环边实现了 Agent 的"思考-行动-观察"循环，而且<b>每个节点都是纯函数，方便单独测试和替换</b>。这是它比 LangChain AgentExecutor 更适合生产的根本原因。
+</div>
+
+<hr>
+<h2 id="六、CrewAI-深度拆解"><a href="#六、CrewAI-深度拆解" class="headerlink" title="六、CrewAI 深度拆解"></a>六、CrewAI 深度拆解</h2><p>CrewAI 用最贴近人类直觉的方式构建 Multi-Agent：<strong>像组建一支团队一样</strong>，定义角色、分配任务、设置流程。</p>
+<h3 id="6-1-核心概念"><a href="#6-1-核心概念" class="headerlink" title="6.1 核心概念"></a>6.1 核心概念</h3><ul>
+<li><strong>Agent</strong>：有名字、角色、目标、背景故事的成员，由 LLM 驱动</li>
+<li><strong>Task</strong>：具体任务，指定负责人、期望输出</li>
+<li><strong>Crew</strong>：团队，包含成员列表和任务列表，负责协调执行</li>
+<li><strong>Process</strong>：执行模式——<code>sequential</code>（顺序）或 <code>hierarchical</code>（层级，有 Manager）</li>
+</ul>
+<h3 id="6-2-完整可运行原型"><a href="#6-2-完整可运行原型" class="headerlink" title="6.2 完整可运行原型"></a>6.2 完整可运行原型</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ====================================================</span></span><br><span class="line"><span class="comment"># CrewAI 研究报告生成团队</span></span><br><span class="line"><span class="comment"># pip install crewai crewai-tools</span></span><br><span class="line"><span class="comment"># ====================================================</span></span><br><span class="line"><span class="keyword">from</span> crewai <span class="keyword">import</span> Agent, Task, Crew, Process</span><br><span class="line"><span class="keyword">from</span> crewai_tools <span class="keyword">import</span> SerperDevTool, WebsiteSearchTool</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">os.environ[<span class="string">&quot;OPENAI_API_KEY&quot;</span>] = <span class="string">&quot;your-key&quot;</span></span><br><span class="line">os.environ[<span class="string">&quot;SERPER_API_KEY&quot;</span>] = <span class="string">&quot;your-serper-key&quot;</span>  <span class="comment"># Google搜索API</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 工具</span></span><br><span class="line">search_tool = SerperDevTool()</span><br><span class="line">web_tool = WebsiteSearchTool()</span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 1. 定义 Agent 角色 ---</span></span><br><span class="line">researcher = Agent(</span><br><span class="line">    role=<span class="string">&quot;资深研究员&quot;</span>,</span><br><span class="line">    goal=<span class="string">&quot;通过深度搜索收集关于&#123;topic&#125;的全面、准确的最新信息&quot;</span>,</span><br><span class="line">    backstory=<span class="string">&quot;&quot;&quot;你是一位有15年经验的技术研究员，擅长从复杂信息中</span></span><br><span class="line"><span class="string">    提炼关键洞察。你总是引用可靠来源，区分事实与观点。&quot;&quot;&quot;</span>,</span><br><span class="line">    tools=[search_tool, web_tool],</span><br><span class="line">    llm=<span class="string">&quot;gpt-4o&quot;</span>,</span><br><span class="line">    verbose=<span class="literal">True</span>,</span><br><span class="line">    allow_delegation=<span class="literal">False</span>,   <span class="comment"># 不允许再委派给其他 Agent</span></span><br><span class="line">    max_iter=<span class="number">5</span>,               <span class="comment"># 最多迭代5次</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">analyst = Agent(</span><br><span class="line">    role=<span class="string">&quot;战略分析师&quot;</span>,</span><br><span class="line">    goal=<span class="string">&quot;分析研究数据，识别趋势、机会和风险&quot;</span>,</span><br><span class="line">    backstory=<span class="string">&quot;&quot;&quot;你是顶级咨询公司的战略分析师，擅长将数据转化为</span></span><br><span class="line"><span class="string">    战略洞察，善用框架（SWOT、波特五力等）进行结构化分析。&quot;&quot;&quot;</span>,</span><br><span class="line">    tools=[],</span><br><span class="line">    llm=<span class="string">&quot;gpt-4o&quot;</span>,</span><br><span class="line">    verbose=<span class="literal">True</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">writer = Agent(</span><br><span class="line">    role=<span class="string">&quot;技术写作专家&quot;</span>,</span><br><span class="line">    goal=<span class="string">&quot;将研究和分析转化为清晰、专业的报告&quot;</span>,</span><br><span class="line">    backstory=<span class="string">&quot;&quot;&quot;你是技术博客作者和内容策略师，能将复杂技术内容</span></span><br><span class="line"><span class="string">    转化为易读的专业报告，结构清晰，逻辑严密。&quot;&quot;&quot;</span>,</span><br><span class="line">    tools=[],</span><br><span class="line">    llm=<span class="string">&quot;gpt-4o&quot;</span>,</span><br><span class="line">    verbose=<span class="literal">True</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 2. 定义任务 ---</span></span><br><span class="line">research_task = Task(</span><br><span class="line">    description=<span class="string">&quot;&quot;&quot;深入研究&#123;topic&#125;：</span></span><br><span class="line"><span class="string">    1. 收集最新市场数据和技术进展</span></span><br><span class="line"><span class="string">    2. 识别主要参与者和竞争格局  </span></span><br><span class="line"><span class="string">    3. 整理3-5个关键发现，每个附带信息来源&quot;&quot;&quot;</span>,</span><br><span class="line">    expected_output=<span class="string">&quot;包含关键数据和来源的结构化研究报告（Markdown格式）&quot;</span>,</span><br><span class="line">    agent=researcher,</span><br><span class="line">    output_file=<span class="string">&quot;research.md&quot;</span>,   <span class="comment"># 自动保存到文件</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">analysis_task = Task(</span><br><span class="line">    description=<span class="string">&quot;&quot;&quot;基于研究员的发现，进行深度战略分析：</span></span><br><span class="line"><span class="string">    1. SWOT 分析</span></span><br><span class="line"><span class="string">    2. 未来12个月的核心趋势预测</span></span><br><span class="line"><span class="string">    3. 对企业/开发者的实际建议&quot;&quot;&quot;</span>,</span><br><span class="line">    expected_output=<span class="string">&quot;战略分析报告，包含 SWOT 矩阵和可执行建议&quot;</span>,</span><br><span class="line">    agent=analyst,</span><br><span class="line">    context=[research_task],    <span class="comment"># 依赖研究任务的输出作为上下文</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">writing_task = Task(</span><br><span class="line">    description=<span class="string">&quot;&quot;&quot;整合研究和分析内容，撰写一篇专业报告：</span></span><br><span class="line"><span class="string">    - 标题和执行摘要（200字以内）</span></span><br><span class="line"><span class="string">    - 研究发现（分章节）</span></span><br><span class="line"><span class="string">    - 战略分析与建议</span></span><br><span class="line"><span class="string">    - 结论与展望</span></span><br><span class="line"><span class="string">    格式要求：Markdown，适合发布到技术博客&quot;&quot;&quot;</span>,</span><br><span class="line">    expected_output=<span class="string">&quot;完整的专业分析报告，Markdown格式，2000字以上&quot;</span>,</span><br><span class="line">    agent=writer,</span><br><span class="line">    context=[research_task, analysis_task],</span><br><span class="line">    output_file=<span class="string">&quot;final_report.md&quot;</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 3. 组建 Crew ---</span></span><br><span class="line">crew = Crew(</span><br><span class="line">    agents=[researcher, analyst, writer],</span><br><span class="line">    tasks=[research_task, analysis_task, writing_task],</span><br><span class="line">    process=Process.sequential,  <span class="comment"># 顺序执行：研究→分析→写作</span></span><br><span class="line">    verbose=<span class="literal">True</span>,</span><br><span class="line">    memory=<span class="literal">True</span>,                 <span class="comment"># 开启跨任务记忆共享</span></span><br><span class="line">    max_rpm=<span class="number">10</span>,                  <span class="comment"># 限速：每分钟最多10次API调用</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 4. 启动 ---</span></span><br><span class="line">result = crew.kickoff(inputs=&#123;<span class="string">&quot;topic&quot;</span>: <span class="string">&quot;2025年 AI Agent 商业化落地现状&quot;</span>&#125;)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="七、任务规划模式详解"><a href="#七、任务规划模式详解" class="headerlink" title="七、任务规划模式详解"></a>七、任务规划模式详解</h2><p>Agent 的任务规划是核心能力，这里介绍三种最主流的规划模式及实现。</p>
+<h3 id="7-1-ReAct-模式（推理-行动）"><a href="#7-1-ReAct-模式（推理-行动）" class="headerlink" title="7.1 ReAct 模式（推理 + 行动）"></a>7.1 ReAct 模式（推理 + 行动）</h3><p>ReAct 是目前使用最广泛的规划模式，核心是<strong>交替进行推理（Thought）和行动（Action）</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ReAct 的 Prompt 模板（核心是格式约束）</span></span><br><span class="line">REACT_TEMPLATE = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">你是一个智能助手，请按以下格式逐步解决问题：</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Thought: 分析当前状态，思考下一步行动</span></span><br><span class="line"><span class="string">Action: 选择工具名称（从 &#123;tool_names&#125; 中选择）</span></span><br><span class="line"><span class="string">Action Input: 工具的输入参数</span></span><br><span class="line"><span class="string">Observation: （工具返回的结果，自动填入）</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">重复以上步骤直到问题解决，最终输出：</span></span><br><span class="line"><span class="string">Final Answer: 最终答案</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">可用工具：&#123;tools&#125;</span></span><br><span class="line"><span class="string">问题：&#123;input&#125;</span></span><br><span class="line"><span class="string">&#123;agent_scratchpad&#125;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ReAct 执行轨迹示例：</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Thought: 用户询问特斯拉股价，我需要先搜索当前价格</span></span><br><span class="line"><span class="string">Action: web_search</span></span><br><span class="line"><span class="string">Action Input: &quot;Tesla TSLA stock price today&quot;</span></span><br><span class="line"><span class="string">Observation: TSLA 当前价格 $248.50，今日涨幅 +2.3%</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Thought: 已获得股价，现在计算购买100股的费用</span></span><br><span class="line"><span class="string">Action: calculator</span></span><br><span class="line"><span class="string">Action Input: 248.50 * 100</span></span><br><span class="line"><span class="string">Observation: 24850.0</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Final Answer: 特斯拉(TSLA)当前股价为 $248.50，购买100股需要 $24,850。</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-2-Plan-and-Execute-模式（先规划后执行）"><a href="#7-2-Plan-and-Execute-模式（先规划后执行）" class="headerlink" title="7.2 Plan-and-Execute 模式（先规划后执行）"></a>7.2 Plan-and-Execute 模式（先规划后执行）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain_openai <span class="keyword">import</span> ChatOpenAI</span><br><span class="line"><span class="keyword">from</span> langchain_core.prompts <span class="keyword">import</span> ChatPromptTemplate</span><br><span class="line"></span><br><span class="line">llm = ChatOpenAI(model=<span class="string">&quot;gpt-4o&quot;</span>, temperature=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 阶段一：Planner — 生成执行计划</span></span><br><span class="line">PLANNER_PROMPT = <span class="string">&quot;&quot;&quot;你是任务规划专家。将用户请求分解为具体的、可执行的步骤列表。</span></span><br><span class="line"><span class="string">每步骤必须明确：做什么、用什么工具、期望什么输出。</span></span><br><span class="line"><span class="string">以 JSON 数组格式返回，每项包含 step_id、action、tool、expected_output。&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">planner = ChatPromptTemplate.from_messages([</span><br><span class="line">    (<span class="string">&quot;system&quot;</span>, PLANNER_PROMPT),</span><br><span class="line">    (<span class="string">&quot;human&quot;</span>, <span class="string">&quot;任务：&#123;task&#125;&quot;</span>)</span><br><span class="line">]) | llm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 阶段二：Executor — 逐步执行</span></span><br><span class="line">EXECUTOR_PROMPT = <span class="string">&quot;&quot;&quot;根据计划执行当前步骤。</span></span><br><span class="line"><span class="string">当前步骤：&#123;current_step&#125;</span></span><br><span class="line"><span class="string">已完成步骤的结果：&#123;past_results&#125;</span></span><br><span class="line"><span class="string">使用合适的工具完成任务。&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 阶段三：Replanner — 根据结果动态调整计划</span></span><br><span class="line">REPLANNER_PROMPT = <span class="string">&quot;&quot;&quot;根据执行结果检查计划是否需要调整。</span></span><br><span class="line"><span class="string">原始计划：&#123;original_plan&#125;</span></span><br><span class="line"><span class="string">已完成：&#123;completed&#125;</span></span><br><span class="line"><span class="string">当前结果：&#123;current_result&#125;</span></span><br><span class="line"><span class="string">如果任务已完成，返回 &#123;&#123;&quot;done&quot;: true, &quot;final_answer&quot;: &quot;...&quot;&#125;&#125;</span></span><br><span class="line"><span class="string">如果需要调整，返回更新后的计划。&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">run_plan_execute</span>(<span class="params">task: <span class="built_in">str</span></span>):</span><br><span class="line">    <span class="comment"># 1. 生成初始计划</span></span><br><span class="line">    plan_response = planner.invoke(&#123;<span class="string">&quot;task&quot;</span>: task&#125;)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;📋 执行计划：<span class="subst">&#123;plan_response.content&#125;</span>&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 2. 逐步执行（此处简化，实际需循环执行每个步骤）</span></span><br><span class="line">    <span class="comment"># ... 循环执行逻辑 ...</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> plan_response.content</span><br></pre></td></tr></table></figure>
+<h3 id="7-3-Reflection-模式（带自我反思的-Agent）"><a href="#7-3-Reflection-模式（带自我反思的-Agent）" class="headerlink" title="7.3 Reflection 模式（带自我反思的 Agent）"></a>7.3 Reflection 模式（带自我反思的 Agent）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Reflection Agent：执行 → 评估 → 改进的循环</span></span><br><span class="line">REFLECTION_PROMPT = <span class="string">&quot;&quot;&quot;你是一个严格的质量审查员。</span></span><br><span class="line"><span class="string">评估以下输出是否满足要求，给出详细的改进建议。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">原始任务：&#123;task&#125;</span></span><br><span class="line"><span class="string">当前输出：&#123;output&#125;</span></span><br><span class="line"><span class="string">评估标准：&#123;criteria&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">请返回：</span></span><br><span class="line"><span class="string">1. 是否通过（pass/fail）</span></span><br><span class="line"><span class="string">2. 问题列表（如果 fail）</span></span><br><span class="line"><span class="string">3. 改进建议（如果 fail）&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">reflection_agent</span>(<span class="params">task: <span class="built_in">str</span>, max_attempts: <span class="built_in">int</span> = <span class="number">3</span></span>):</span><br><span class="line">    llm = ChatOpenAI(model=<span class="string">&quot;gpt-4o&quot;</span>)</span><br><span class="line">    output = <span class="literal">None</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> attempt <span class="keyword">in</span> <span class="built_in">range</span>(max_attempts):</span><br><span class="line">        <span class="comment"># 执行任务</span></span><br><span class="line">        <span class="keyword">if</span> attempt == <span class="number">0</span>:</span><br><span class="line">            output = llm.invoke(<span class="string">f&quot;完成以下任务：<span class="subst">&#123;task&#125;</span>&quot;</span>).content</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            output = llm.invoke(</span><br><span class="line">                <span class="string">f&quot;根据反馈改进：\n任务：<span class="subst">&#123;task&#125;</span>\n之前的输出：<span class="subst">&#123;output&#125;</span>\n改进建议：<span class="subst">&#123;feedback&#125;</span>&quot;</span></span><br><span class="line">            ).content</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 自我反思</span></span><br><span class="line">        reflection_chain = ChatPromptTemplate.from_messages([</span><br><span class="line">            (<span class="string">&quot;system&quot;</span>, REFLECTION_PROMPT),</span><br><span class="line">            (<span class="string">&quot;human&quot;</span>, <span class="string">&quot;开始评估&quot;</span>)</span><br><span class="line">        ]) | llm</span><br><span class="line">        </span><br><span class="line">        review = reflection_chain.invoke(&#123;</span><br><span class="line">            <span class="string">&quot;task&quot;</span>: task, <span class="string">&quot;output&quot;</span>: output,</span><br><span class="line">            <span class="string">&quot;criteria&quot;</span>: <span class="string">&quot;完整性、准确性、结构清晰度&quot;</span></span><br><span class="line">        &#125;)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;pass&quot;</span> <span class="keyword">in</span> review.content.lower():</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;✅ 第<span class="subst">&#123;attempt+<span class="number">1</span>&#125;</span>次通过质量审查&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> output</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            feedback = review.content</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;🔄 第<span class="subst">&#123;attempt+<span class="number">1</span>&#125;</span>次反思，继续改进...&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> output  <span class="comment"># 达到最大次数，返回最佳结果</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="八、快速搭建原型：完整参考架构"><a href="#八、快速搭建原型：完整参考架构" class="headerlink" title="八、快速搭建原型：完整参考架构"></a>八、快速搭建原型：完整参考架构</h2><p>下面是一个整合了所有核心模块的<strong>生产可用的 Agent 原型</strong>，可作为项目的起点直接使用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ====================================================</span></span><br><span class="line"><span class="comment"># 🚀 生产级 Agent 原型模板</span></span><br><span class="line"><span class="comment"># 整合：LangGraph + Memory + Tools + Streaming</span></span><br><span class="line"><span class="comment"># ====================================================</span></span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> Annotated, TypedDict, <span class="type">Optional</span></span><br><span class="line"><span class="keyword">from</span> langchain_openai <span class="keyword">import</span> ChatOpenAI</span><br><span class="line"><span class="keyword">from</span> langchain_core.messages <span class="keyword">import</span> BaseMessage, HumanMessage, SystemMessage</span><br><span class="line"><span class="keyword">from</span> langchain_core.tools <span class="keyword">import</span> tool</span><br><span class="line"><span class="keyword">from</span> langchain.memory <span class="keyword">import</span> ConversationSummaryBufferMemory</span><br><span class="line"><span class="keyword">from</span> langgraph.graph <span class="keyword">import</span> StateGraph, END</span><br><span class="line"><span class="keyword">from</span> langgraph.prebuilt <span class="keyword">import</span> ToolNode</span><br><span class="line"><span class="keyword">from</span> langgraph.checkpoint.memory <span class="keyword">import</span> MemorySaver</span><br><span class="line"><span class="keyword">import</span> operator</span><br><span class="line"></span><br><span class="line"><span class="comment"># ── 1. State 定义 ─────────────────────────────────────</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AgentState</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    messages: Annotated[<span class="built_in">list</span>[BaseMessage], operator.add]</span><br><span class="line">    user_id: <span class="built_in">str</span>                     <span class="comment"># 用户标识（用于隔离记忆）</span></span><br><span class="line">    task_context: <span class="type">Optional</span>[<span class="built_in">dict</span>]     <span class="comment"># 任务上下文（规划信息等）</span></span><br><span class="line">    iteration_count: <span class="built_in">int</span>             <span class="comment"># 迭代计数（防止无限循环）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ── 2. 工具定义 ───────────────────────────────────────</span></span><br><span class="line"><span class="meta">@tool</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">search_knowledge_base</span>(<span class="params">query: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;在内部知识库中搜索相关信息&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 替换为真实的向量检索</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">f&quot;[知识库] 关于&#x27;<span class="subst">&#123;query&#125;</span>&#x27;的相关内容...&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@tool</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">execute_code</span>(<span class="params">code: <span class="built_in">str</span>, language: <span class="built_in">str</span> = <span class="string">&quot;python&quot;</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;安全执行代码片段&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> language != <span class="string">&quot;python&quot;</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;当前仅支持 Python&quot;</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">import</span> io, contextlib</span><br><span class="line">        buf = io.StringIO()</span><br><span class="line">        <span class="keyword">with</span> contextlib.redirect_stdout(buf):</span><br><span class="line">            <span class="built_in">exec</span>(code, &#123;<span class="string">&quot;__builtins__&quot;</span>: &#123;&#125;&#125;)  <span class="comment"># 限制内置函数</span></span><br><span class="line">        <span class="keyword">return</span> buf.getvalue() <span class="keyword">or</span> <span class="string">&quot;执行成功&quot;</span></span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">f&quot;错误: <span class="subst">&#123;e&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@tool</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">save_to_memory</span>(<span class="params">key: <span class="built_in">str</span>, value: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;将重要信息保存到持久记忆&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 替换为真实的存储</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">f&quot;已保存：<span class="subst">&#123;key&#125;</span> = <span class="subst">&#123;value&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line">tools = [search_knowledge_base, execute_code, save_to_memory]</span><br><span class="line"></span><br><span class="line"><span class="comment"># ── 3. LLM 配置 ────────────────────────────────────────</span></span><br><span class="line">llm = ChatOpenAI(</span><br><span class="line">    model=<span class="string">&quot;gpt-4o&quot;</span>,</span><br><span class="line">    temperature=<span class="number">0.1</span>,</span><br><span class="line">    streaming=<span class="literal">True</span>,          <span class="comment"># 开启流式输出</span></span><br><span class="line">).bind_tools(tools)</span><br><span class="line"></span><br><span class="line">SYSTEM_PROMPT = <span class="string">&quot;&quot;&quot;你是一个专业、可靠的 AI 助手。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">工作原则：</span></span><br><span class="line"><span class="string">1. 遇到不确定的事实，使用搜索工具查证</span></span><br><span class="line"><span class="string">2. 需要计算时，编写并执行代码</span></span><br><span class="line"><span class="string">3. 重要信息及时保存到记忆</span></span><br><span class="line"><span class="string">4. 每次行动前明确说明原因</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">限制：</span></span><br><span class="line"><span class="string">- 每次对话最多进行10次工具调用</span></span><br><span class="line"><span class="string">- 不执行任何可能造成损害的操作&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ── 4. 节点函数 ────────────────────────────────────────</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">agent_node</span>(<span class="params">state: AgentState</span>) -&gt; AgentState:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;推理节点：带系统提示的 LLM 调用&quot;&quot;&quot;</span></span><br><span class="line">    messages = [SystemMessage(content=SYSTEM_PROMPT)] + state[<span class="string">&quot;messages&quot;</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 安全检查：防止无限循环</span></span><br><span class="line">    <span class="keyword">if</span> state.get(<span class="string">&quot;iteration_count&quot;</span>, <span class="number">0</span>) &gt;= <span class="number">10</span>:</span><br><span class="line">        <span class="keyword">from</span> langchain_core.messages <span class="keyword">import</span> AIMessage</span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="string">&quot;messages&quot;</span>: [AIMessage(content=<span class="string">&quot;已达到最大迭代次数，请重新提问。&quot;</span>)],</span><br><span class="line">                <span class="string">&quot;iteration_count&quot;</span>: state.get(<span class="string">&quot;iteration_count&quot;</span>, <span class="number">0</span>) + <span class="number">1</span>&#125;</span><br><span class="line">    </span><br><span class="line">    response = llm.invoke(messages)</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">&quot;messages&quot;</span>: [response],</span><br><span class="line">        <span class="string">&quot;iteration_count&quot;</span>: state.get(<span class="string">&quot;iteration_count&quot;</span>, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">route</span>(<span class="params">state: AgentState</span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;路由函数：决定下一步&quot;&quot;&quot;</span></span><br><span class="line">    last = state[<span class="string">&quot;messages&quot;</span>][-<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">hasattr</span>(last, <span class="string">&quot;tool_calls&quot;</span>) <span class="keyword">and</span> last.tool_calls:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;tools&quot;</span></span><br><span class="line">    <span class="keyword">return</span> END</span><br><span class="line"></span><br><span class="line"><span class="comment"># ── 5. 构建图 ──────────────────────────────────────────</span></span><br><span class="line">tool_node = ToolNode(tools)</span><br><span class="line">checkpointer = MemorySaver()  <span class="comment"># 持久化状态（生产可换 PostgresSaver）</span></span><br><span class="line"></span><br><span class="line">builder = StateGraph(AgentState)</span><br><span class="line">builder.add_node(<span class="string">&quot;agent&quot;</span>, agent_node)</span><br><span class="line">builder.add_node(<span class="string">&quot;tools&quot;</span>, tool_node)</span><br><span class="line">builder.set_entry_point(<span class="string">&quot;agent&quot;</span>)</span><br><span class="line">builder.add_conditional_edges(<span class="string">&quot;agent&quot;</span>, route, &#123;<span class="string">&quot;tools&quot;</span>: <span class="string">&quot;tools&quot;</span>, END: END&#125;)</span><br><span class="line">builder.add_edge(<span class="string">&quot;tools&quot;</span>, <span class="string">&quot;agent&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># compile 时注入 checkpointer，实现多轮对话记忆</span></span><br><span class="line">app = builder.<span class="built_in">compile</span>(checkpointer=checkpointer)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ── 6. 多轮对话接口 ────────────────────────────────────</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">chat</span>(<span class="params">user_id: <span class="built_in">str</span>, message: <span class="built_in">str</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;支持多轮对话的入口函数&quot;&quot;&quot;</span></span><br><span class="line">    config = &#123;<span class="string">&quot;configurable&quot;</span>: &#123;<span class="string">&quot;thread_id&quot;</span>: user_id&#125;&#125;  <span class="comment"># 用 user_id 隔离会话</span></span><br><span class="line">    </span><br><span class="line">    result = app.invoke(</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;messages&quot;</span>: [HumanMessage(content=message)],</span><br><span class="line">            <span class="string">&quot;user_id&quot;</span>: user_id,</span><br><span class="line">            <span class="string">&quot;task_context&quot;</span>: &#123;&#125;,</span><br><span class="line">            <span class="string">&quot;iteration_count&quot;</span>: <span class="number">0</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        config=config</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">return</span> result[<span class="string">&quot;messages&quot;</span>][-<span class="number">1</span>].content</span><br><span class="line"></span><br><span class="line"><span class="comment"># ── 7. 使用示例 ────────────────────────────────────────</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    user = <span class="string">&quot;user_001&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 第一轮</span></span><br><span class="line">    <span class="built_in">print</span>(chat(user, <span class="string">&quot;帮我搜索一下 LangGraph 的最新文档&quot;</span>))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 第二轮（自动携带上下文）</span></span><br><span class="line">    <span class="built_in">print</span>(chat(user, <span class="string">&quot;根据你刚才找到的内容，写一个简单示例&quot;</span>))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 第三轮</span></span><br><span class="line">    <span class="built_in">print</span>(chat(user, <span class="string">&quot;把这个示例保存到记忆里&quot;</span>))</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="九、关键工程实践与避坑指南"><a href="#九、关键工程实践与避坑指南" class="headerlink" title="九、关键工程实践与避坑指南"></a>九、关键工程实践与避坑指南</h2><div style="overflow-x:auto;margin:16px 0">
+<table style="width:100%;border-collapse:collapse;font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:14px">
+  <thead>
+    <tr style="background:#312e81;color:white">
+      <th style="padding:10px 14px;border:1px solid #4338ca">问题</th>
+      <th style="padding:10px 14px;border:1px solid #4338ca">原因</th>
+      <th style="padding:10px 14px;border:1px solid #4338ca">解决方案</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f5f3ff">
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">🔄 Agent 无限循环</td>
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">工具总返回错误，LLM 不断重试</td>
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">设置 <code>max_iterations</code>，工具错误要返回描述性消息而非抛异常</td>
+    </tr>
+    <tr style="background:white">
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">💸 Token 消耗过大</td>
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">System Prompt 过长 + 历史不压缩</td>
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">精简 System Prompt，用 <code>ConversationSummaryMemory</code> 压缩历史</td>
+    </tr>
+    <tr style="background:#f5f3ff">
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">🎯 工具调用不稳定</td>
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">工具描述不清晰，LLM 不知道何时用</td>
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">工具描述写清楚"何时用"和"输入格式"，加示例</td>
+    </tr>
+    <tr style="background:white">
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">📉 结果质量不稳定</td>
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">Temperature 过高，缺乏约束</td>
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">复杂任务 temperature=0，加入 Reflection 自检环节</td>
+    </tr>
+    <tr style="background:#f5f3ff">
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">🕐 响应延迟过高</td>
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">串行工具调用，等待时间长</td>
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">使用 LangGraph 并行节点，开启 streaming 输出</td>
+    </tr>
+    <tr style="background:white">
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">🔐 安全风险</td>
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">工具权限过大，无输入校验</td>
+      <td style="padding:9px 14px;border:1px solid #e2e8f0">最小权限原则，工具输入严格校验，敏感操作加人工确认</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<hr>
+<h2 id="十、总结：框架选型决策树"><a href="#十、总结：框架选型决策树" class="headerlink" title="十、总结：框架选型决策树"></a>十、总结：框架选型决策树</h2><div align="center">
+
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 780 400" width="780" height="400" font-family="'PingFang SC','Microsoft YaHei',sans-serif">
+  <defs>
+    <lineargradient id="dtbg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0f172a"/><stop offset="100%" stop-color="#1e1b4b"/></lineargradient>
+    <marker id="darr" markerwidth="8" markerheight="8" refx="6" refy="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/></marker>
+  </defs>
+  <rect width="780" height="400" fill="url(#dtbg)" rx="12"/>
+  <!-- Start -->
+  <ellipse cx="390" cy="38" rx="120" ry="24" fill="#312e81" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="390" y="43" text-anchor="middle" fill="white" font-size="12" font-weight="700">开始构建 Agent</text>
+  <!-- Q1 -->
+  <polygon points="390,82 490,120 390,158 290,120" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="390" y="116" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="600">是否需要</text>
+  <text x="390" y="131" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="600">多 Agent 协作？</text>
+  <line x1="390" y1="62" x2="390" y2="82" stroke="#6366f1" stroke-width="1.5" marker-end="url(#darr)"/>
+  <!-- No branch left -->
+  <line x1="290" y1="120" x2="160" y2="120" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#darr)"/>
+  <text x="220" y="112" fill="#64748b" font-size="9">否</text>
+  <!-- Q2 left -->
+  <polygon points="110,120 190,148 110,176 30,148" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="110" y="144" text-anchor="middle" fill="#fbbf24" font-size="9">流程</text>
+  <text x="110" y="158" text-anchor="middle" fill="#fbbf24" font-size="9">复杂？</text>
+  <!-- Result boxes left -->
+  <line x1="110" y1="176" x2="110" y2="230" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#darr)"/>
+  <text x="118" y="208" fill="#10b981" font-size="9">是</text>
+  <rect x="30" y="232" width="160" height="50" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+  <text x="110" y="253" text-anchor="middle" fill="white" font-size="11" font-weight="700">LangGraph</text>
+  <text x="110" y="270" text-anchor="middle" fill="#6ee7b7" font-size="9">状态图，生产首选</text>
+  <line x1="30" y1="148" x2="0" y2="148" stroke="none"/>
+  <!-- simple branch -->
+  <line x1="110" y1="120" x2="110" y2="310" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3"/>
+  <line x1="110" y1="310" x2="280" y2="310" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#darr)"/>
+  <text x="170" y="305" fill="#64748b" font-size="9">否（简单）</text>
+  <rect x="282" y="284" width="160" height="50" rx="8" fill="#1e3a8a" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="362" y="305" text-anchor="middle" fill="white" font-size="11" font-weight="700">LangChain</text>
+  <text x="362" y="322" text-anchor="middle" fill="#93c5fd" font-size="9">原型快速验证</text>
+  <!-- Yes branch right -->
+  <line x1="490" y1="120" x2="600" y2="120" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#darr)"/>
+  <text x="540" y="112" fill="#64748b" font-size="9">是</text>
+  <!-- Q3 right -->
+  <polygon points="650,120 730,148 650,176 570,148" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="650" y="144" text-anchor="middle" fill="#fbbf24" font-size="9">角色</text>
+  <text x="650" y="158" text-anchor="middle" fill="#fbbf24" font-size="9">驱动？</text>
+  <!-- CrewAI -->
+  <line x1="650" y1="176" x2="650" y2="232" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#darr)"/>
+  <text x="658" y="210" fill="#10b981" font-size="9">是</text>
+  <rect x="580" y="234" width="140" height="50" rx="8" fill="#7c2d12" stroke="#f97316" stroke-width="1.5"/>
+  <text x="650" y="255" text-anchor="middle" fill="white" font-size="11" font-weight="700">CrewAI</text>
+  <text x="650" y="272" text-anchor="middle" fill="#fdba74" font-size="9">快速角色协作</text>
+  <!-- AutoGen -->
+  <line x1="730" y1="148" x2="760" y2="148" stroke="#94a3b8" stroke-width="1.2"/>
+  <line x1="760" y1="148" x2="760" y2="310" stroke="#94a3b8" stroke-width="1.2"/>
+  <line x1="760" y1="310" x2="730" y2="310" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#darr)"/>
+  <text x="766" y="234" fill="#64748b" font-size="9">否</text>
+  <rect x="550" y="284" width="160" height="50" rx="8" fill="#1e3a8a" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="650" y="305" text-anchor="middle" fill="white" font-size="11" font-weight="700">AutoGen</text>
+  <text x="650" y="322" text-anchor="middle" fill="#a5b4fc" font-size="9">对话驱动协作</text>
+  <!-- Bottom note -->
+  <rect x="160" y="360" width="460" height="30" rx="6" fill="rgba(99,102,241,0.15)" stroke="#6366f1" stroke-width="0.8" stroke-dasharray="4,2"/>
+  <text x="390" y="380" text-anchor="middle" fill="#a5b4fc" font-size="10">💡 任何场景都可以从原生 API 开始，理解底层后再引入框架</text>
+</svg>
+
+</div>
+
+<p><br></p>
+<p><strong>核心原则回顾：</strong></p>
+<ul>
+<li><strong>从简单开始</strong>：先用原生 API 跑通流程，理解每一步在做什么，再引入框架</li>
+<li><strong>工具是 Agent 的手</strong>：工具描述的质量直接决定 Agent 调用的准确率，比优化 LLM 更有效</li>
+<li><strong>提示是 Agent 的大脑配置</strong>：System Prompt 是最高优先级的控制手段，优先在这里解决问题</li>
+<li><strong>状态图优于黑盒</strong>：LangGraph 的图结构让你知道 Agent 在哪步、做了什么，比黑盒 AgentExecutor 更易调试</li>
+<li><strong>记忆设计决定体验上限</strong>：Context 的质量 &gt; 模型的能力，精心设计记忆策略是 Agent 产品化的关键</li>
+</ul>
+<div style="text-align:center;margin:32px 0 16px">
+<div style="display:inline-block;background:linear-gradient(135deg,#eef2ff,#f0f9ff);border:1px solid #a5b4fc;border-radius:10px;padding:16px 36px;font-family:'PingFang SC','Microsoft YaHei',sans-serif">
+  <span style="color:#3730a3;font-size:16px;font-weight:700;font-style:italic">工具描述写清楚，胜过换一个更贵的模型。</span>
+</div>
+</div>
+
+<div align="center" style="color:#94a3b8;font-size:13px;font-family:sans-serif;margin-top:24px">
+
+© 2025 技术博客 · AI Agent 构建方法详解
+
+</div>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/ab3e4120/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/ab3e4120/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    4. Agent应用价值探索
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/8418cad2/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/8418cad2/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">1.Agent上下文构建</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

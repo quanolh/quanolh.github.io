@@ -1,0 +1,683 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>1.数据中心网络架构概述 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="数据中心">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.数据中心网络架构概述">
+<meta property="og:url" content="https://waisec.cn/wiki/91e34e5d/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/quano/www/raw/master/img/network/network_01.png">
+<meta property="article:published_time" content="2025-12-31T16:56:24.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.122Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="数据中心">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/quano/www/raw/master/img/network/network_01.png">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "1.数据中心网络架构概述",
+    "url": "https://waisec.cn/wiki/91e34e5d/",
+    "datePublished": "2025-12-31T16:56:24.000Z",
+    "dateModified": "2026-04-23T14:13:12.122Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "数据中心"
+    
+}
+</script>
+
+<article id="post-平台工具 | 工程架构和工具/[7]数据中心建设/001.数据中心网络架构概述" class="article article-type-post">
+    
+        <meta name="referrer" content="no-referrer">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84"><span class="toc-text">一、数据中心网络架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E4%BC%A0%E7%BB%9F%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84%EF%BC%88%E6%A0%B8%E5%BF%83-%E6%B1%87%E8%81%9A-%E6%8E%A5%E5%85%A5%EF%BC%89"><span class="toc-text">2.1 传统三层架构（核心 - 汇聚 - 接入）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-Spine-Leaf-%E6%89%81%E5%B9%B3%E5%8C%96%E6%9E%B6%E6%9E%84"><span class="toc-text">2.2 Spine-Leaf 扁平化架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E8%B6%85%E5%A4%A7%E8%A7%84%E6%A8%A1-Clos-%E6%9E%B6%E6%9E%84%EF%BC%88%E5%A4%9A%E7%BA%A7-Spine%EF%BC%89"><span class="toc-text">2.3 超大规模 Clos 架构（多级 Spine）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%AD%E5%9B%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%8B%93%E6%89%91%E7%BB%93%E6%9E%84"><span class="toc-text">二、中国计算机网络拓扑结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E9%AA%A8%E5%B9%B2%E7%BD%91"><span class="toc-text">2.1 骨干网</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E5%9F%8E%E5%9F%9F%E7%BD%91-MAN-Metropolitan-Area-Network"><span class="toc-text">2.2 城域网 (MAN, Metropolitan Area Network)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E6%8E%A5%E5%85%A5%E7%BD%91-Access-Network-AN"><span class="toc-text">2.3 接入网 (Access Network, AN)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BA%92%E8%81%94%E7%BD%91%E4%BC%81%E4%B8%9A%E7%BD%91%E7%BB%9C%E9%93%BE%E8%B7%AF"><span class="toc-text">三、互联网企业网络链路</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-text">3.1 核心概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1-%E7%89%A9%E7%90%86%E5%B1%82"><span class="toc-text">3.1.1 物理层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="toc-text">3.1.2 数据链路层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-3-%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="toc-text">3.1.3 网络层</span></a></li></ol></li></ol></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/7-%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E5%BB%BA%E8%AE%BE/">[7]数据中心建设</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/" rel="tag">数据中心</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/01/" onclick="onclickRoute(event, '/archives/2026/01/')">
+            <time datetime="2025-12-31T16:56:24.000Z" itemprop="datePublished">2026-01-01</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="数据中心">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/91e34e5d/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            数据中心网络架构概述
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p>关于企业的云计算选型决策。金融、政务等对数据合规有较高要求的企业，一般采用混合云架构。大型企业也更多的是以私有云为主的混合云架构。 中小型企业更多的是采用公有云，当发展到一定规模或者有特殊需求会考虑自建私有云形成混合云架构。「当前企业云计算选型的主流趋势和核心逻辑」</p>
+<p>基于以上云计算选型的逻辑，衍生出企业对数据中心网络建设的不同形式。<br><span id="more"></span></p>
+
+      <div class="tip-container tip-question" style="
+        background-color: #fef7fb;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #e53e3e;
+        ">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>那这些不同的云计算选型都有那几类网络架构，以及如何选型呢？<br>根据企业规模、业务需求和技术演进，主流架构可分为 <strong style="color: #6f42c1;">传统三层架构、扁平化 Spine-Leaf 架构、超大规模云数据中心架构</strong>三类<br><strong style="color: #6f42c1;">传统三层架构（核心 - 汇聚 - 接入）</strong>：从下到上分为接入层、汇聚层、核心层，层级职责清晰。<br><strong style="color: #6f42c1;">扁平化 Spine-Leaf 架构</strong>：二层全网状拓扑，由 Leaf 层和 Spine 层组成。是目前中大型企业数据中心的主流架构。<br><strong style="color: #6f42c1;">超大规模云数据中心架构（Clos 架构演进）</strong>：基于 Spine-Leaf 架构的多级扩展，又称 Fat-Tree（胖树）架构。核心层级：服务器 → ToR Leaf → Spine → Super Spine → 跨区域骨干网</p>
+            </div>
+        </div>
+      </div>
+    
+<h1 id="一、数据中心网络架构"><a href="#一、数据中心网络架构" class="headerlink" title="一、数据中心网络架构"></a>一、数据中心网络架构</h1><h2 id="2-1-传统三层架构（核心-汇聚-接入）"><a href="#2-1-传统三层架构（核心-汇聚-接入）" class="headerlink" title="2.1 传统三层架构（核心 - 汇聚 - 接入）"></a>2.1 传统三层架构（核心 - 汇聚 - 接入）</h2><pre class="mermaid">graph TD
+    %% 核心层
+    Core1["核心交换机A<br>100G/400G"]
+    Core2["核心交换机B<br>100G/400G"]
+
+    %% 汇聚层
+    Agg1["汇聚交换机A"]
+    Agg2["汇聚交换机B"]
+
+    %% 接入层
+    Access1["接入交换机A"]
+    Access2["接入交换机B"]
+
+    %% 终端层
+    Server1["应用服务器"]
+    Server2["数据库服务器"]
+    Storage["存储设备"]
+    Firewall["防火墙"]
+
+    %% 链路连接（简化冗余，优先保证渲染）
+    Core1 --> Agg1
+    Core2 --> Agg1
+    Core1 --> Agg2
+    Core2 --> Agg2
+
+    Agg1 --> Access1
+    Agg2 --> Access1
+    Agg1 --> Access2
+    Agg2 --> Access2
+
+    Access1 --> Server1
+    Access1 --> Server2
+    Access2 --> Storage
+    Access2 --> Firewall
+
+    %% 分组标注（兼容低版本渲染器）
+    style Core1 fill:#e1f5fe
+    style Core2 fill:#e1f5fe
+    style Agg1 fill:#f3e5f5
+    style Agg2 fill:#f3e5f5
+    style Access1 fill:#e8f5e8
+    style Access2 fill:#e8f5e8</pre>
+
+<h2 id="2-2-Spine-Leaf-扁平化架构"><a href="#2-2-Spine-Leaf-扁平化架构" class="headerlink" title="2.2 Spine-Leaf 扁平化架构"></a>2.2 Spine-Leaf 扁平化架构</h2><pre class="mermaid">graph TD
+    %% Spine层
+    Spine1["Spine交换机A<br>100G/400G"]
+    Spine2["Spine交换机B<br>100G/400G"]
+
+    %% Leaf层
+    Leaf1["Leaf交换机1<br>25G/100G"]
+    Leaf2["Leaf交换机2<br>25G/100G"]
+    Leaf3["Leaf交换机3<br>25G/100G"]
+
+    %% 业务集群
+    Cluster1["实时计算集群<br>Flink/Kafka"]
+    Cluster2["数据仓库集群<br>Hive/Doris"]
+    Cluster3["AI训练集群<br>GPU节点"]
+    Security["安全设备<br>IDS/WAF"]
+
+    %% 全网状互联（核心链路）
+    Leaf1 --> Spine1
+    Leaf1 --> Spine2
+    Leaf2 --> Spine1
+    Leaf2 --> Spine2
+    Leaf3 --> Spine1
+    Leaf3 --> Spine2
+
+    %% Leaf连接业务
+    Leaf1 --> Cluster1
+    Leaf2 --> Cluster2
+    Leaf3 --> Cluster3
+    Leaf3 --> Security
+
+    %% 分组着色
+    style Spine1 fill:#e1f5fe
+    style Spine2 fill:#e1f5fe
+    style Leaf1 fill:#f3e5f5
+    style Leaf2 fill:#f3e5f5
+    style Leaf3 fill:#f3e5f5</pre>
+
+<h2 id="2-3-超大规模-Clos-架构（多级-Spine）"><a href="#2-3-超大规模-Clos-架构（多级-Spine）" class="headerlink" title="2.3 超大规模 Clos 架构（多级 Spine）"></a>2.3 超大规模 Clos 架构（多级 Spine）</h2><pre class="mermaid">graph TD
+    %% Super Spine层
+    SuperSpine1["Super Spine交换机A<br>400G/800G"]
+    SuperSpine2["Super Spine交换机B<br>400G/800G"]
+
+    %% Spine层
+    SpineGroup1["Spine集群1<br>机房A"]
+    SpineGroup2["Spine集群2<br>机房B"]
+
+    %% Leaf层
+    LeafGroup1["ToR Leaf集群1<br>机架顶接入"]
+    LeafGroup2["ToR Leaf集群2<br>机架顶接入"]
+
+    %% 业务层
+    Tenant1["公有云租户集群<br>容器/虚拟机"]
+    Tenant2["AI大模型训练集群<br>RDMA网络"]
+    Tenant3["跨区域灾备集群<br>数据同步"]
+
+    %% 多级互联
+    SuperSpine1 --> SpineGroup1
+    SuperSpine1 --> SpineGroup2
+    SuperSpine2 --> SpineGroup1
+    SuperSpine2 --> SpineGroup2
+
+    SpineGroup1 --> LeafGroup1
+    SpineGroup2 --> LeafGroup2
+
+    LeafGroup1 --> Tenant1
+    LeafGroup2 --> Tenant2
+    LeafGroup1 --> Tenant3
+    LeafGroup2 --> Tenant3
+
+    %% 分组着色
+    style SuperSpine1 fill:#e1f5fe
+    style SuperSpine2 fill:#e1f5fe
+    style SpineGroup1 fill:#f3e5f5
+    style SpineGroup2 fill:#f3e5f5
+    style LeafGroup1 fill:#e8f5e8
+    style LeafGroup2 fill:#e8f5e8</pre>
+
+
+<h1 id="二、中国计算机网络拓扑结构"><a href="#二、中国计算机网络拓扑结构" class="headerlink" title="二、中国计算机网络拓扑结构"></a>二、中国计算机网络拓扑结构</h1><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://tenfy.cn/posts/china-topology-of-networks/">https://tenfy.cn/posts/china-topology-of-networks/</a></p>
+<p>主要是分层汇接方式。 纵向分为<strong style="color: #6f42c1;">骨干网、城域网、接入网</strong>三个层级.</p>
+<h2 id="2-1-骨干网"><a href="#2-1-骨干网" class="headerlink" title="2.1 骨干网"></a>2.1 骨干网</h2><p>骨干网（Backbone Network） 是互联网或电信网络的核心传输枢纽，是跨区域、跨城市甚至跨国的高速数据通道，相当于网络世界的 “国家级高速公路网”。</p>
+<p><strong>骨干网</strong>是最顶层的省际高速网络，基础电信运营商在各省会及主要城市设置骨干节点，并在节点间设置直联路，共同构成骨干网。<br>骨干网内分了核心节点和接入节点。基础电信运营商的公众互联网网间主要通过设置在北京、上海、广州等13个城市的骨干直联点，以及设置在北京、上海、广州的交互中心实现互联。</p>
+
+      <div class="tip-container tip-question" style="
+        background-color: #fef7fb;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #e53e3e;
+        ">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>一般企业的网络架构会走骨干网吗？用户终端的流量是如何到数据中心的？<br>本地小微企业（同城单数据中心）基本不走。 中大型企业（跨城市 / 跨省业务）一定会走。公有云 / 混合云的链路可能会走。 「骨干网的主要作用是 跨区域互联」</p>
+<p>流量路径：用户终端 → 接入网 → 城域网 → 企业数据中心</p>
+<ol>
+<li>接入网：终端（PC / 手机）通过无线 AP / 光纤 / 网线连接到企业接入交换机，完成物理层（L1） 和数据链路层（L2） 的连接（如 DHCP 获取 IP、VLAN 隔离）。</li>
+<li>城域网（城市级汇聚）：接入交换机将流量转发到城域网汇聚交换机，再经城域网核心路由器做网络层（L3） 路由转发；城域网内可部署L4/L7 负载均衡，对本地数据中心的流量做初步分发（如基于端口的 L4 分流、基于 URL 的 L7 路由）。</li>
+<li>企业数据中心：流量经数据中心公网接口进入，通过L4 层负载均衡器（基于 IP + 端口）分发到服务器集群，或通过L7 层负载均衡器（基于 HTTP 头部 / 域名）做智能路由；<br>最终到达数据中心内的服务器 / 存储 / 数据库。</li>
+<li>如果是跨区域链路。在城域网之前会经过骨干网：（入口节点一般由运营商部署）通过骨干路由器 + DWDM 传输设备，以超大带宽、低延迟将流量从A城传输到B城。
+            </li></ol></div>
+        </div>
+      </div>
+    
+
+
+<h2 id="2-2-城域网-MAN-Metropolitan-Area-Network"><a href="#2-2-城域网-MAN-Metropolitan-Area-Network" class="headerlink" title="2.2 城域网 (MAN, Metropolitan Area Network)"></a>2.2 城域网 (MAN, Metropolitan Area Network)</h2><p>城域网是覆盖一个城市或都市圈范围的高速数据网络，介于局域网 (LAN) 和广域网 (WAN) 之间，地理覆盖范围通常为几公里到几十公里 ，主要用于连接同一城市内的多个局域网、企业园区、数据中心和用户群体，实现城市范围内的高速数据传输和资源共享。</p>
+<h2 id="2-3-接入网-Access-Network-AN"><a href="#2-3-接入网-Access-Network-AN" class="headerlink" title="2.3 接入网 (Access Network, AN)"></a>2.3 接入网 (Access Network, AN)</h2><p>接入网是用户终端到运营商网络的 “最后一公里” 连接，位于网络边缘，负责将单个用户或小型用户群连接到城域网或骨干网，解决用户接入的物理链路和协议转换问题。 国际电信联盟 (ITU-T) 定义：接入网是用户网络接口 (UNI) 和业务节点接口 (SNI) 之间的一系列传送实体 (如线路设施和传输设备)。</p>
+<h1 id="三、互联网企业网络链路"><a href="#三、互联网企业网络链路" class="headerlink" title="三、互联网企业网络链路"></a>三、互联网企业网络链路</h1><div>
+  <img src="https://gitee.com/quano/www/raw/master/img/network/network_01.png" style="display: inline-block; width: 78%">
+</div>
+
+<h2 id="3-1-核心概念"><a href="#3-1-核心概念" class="headerlink" title="3.1 核心概念"></a>3.1 核心概念</h2><h3 id="3-1-1-物理层"><a href="#3-1-1-物理层" class="headerlink" title="3.1.1 物理层"></a>3.1.1 物理层</h3><p>作为通信的基础硬件层。核心作用是：在物理介质上实现相邻网络节点之间的比特流透明传输。<br>并定义物理介质、接口、信号等硬件相关的标准。</p>
+<p>「数据和信号」<br>通信的目的是传输<strong style="color: #6f42c1;">信息</strong>，如文字、图像和视频等。<br>数据是指传送信息的实体。 信号则是 数据的电气或电磁表现，是数据在传输过程中的而存在形式。<br>数据和信号都有 模拟和数字之分。 模拟数据的取值是连续的；数字数据的取值是离散的。</p>
+<p>「数字和模拟」<br>数据无论是数字的还是模拟的，为了传输的目的，都要转换成 <strong style="color: #6f42c1;">信号</strong>。 转化为信号的过程称作 编码和调制。</p>
+<p>模拟数据编码为数字信号，主要包括 三个步骤，<strong style="color: #6f42c1;">即采样、量化和编码</strong>，常用于对音频信号进行编码的PCM 编码。</p>
+<p>「带宽」<br>表示网络的通信线路所能传输数据的能力，单位是 b/s</p>
+<p>「传输介质」</p>
+<h3 id="3-1-2-数据链路层"><a href="#3-1-2-数据链路层" class="headerlink" title="3.1.2 数据链路层"></a>3.1.2 数据链路层</h3><p>主要作用是 实现帧在一段链路上或一个网络中进行传输。 基本的问题：封装成帧、 透明传输、差错检测。</p>
+<p>两种信道：点对点信道、广播信道。</p>
+<p>物理链路与逻辑链路： 物理链路是 实际的物理层到链路层再到网络层整个真实的链路； 而逻辑链路是 仅看数据链路层，由一条路径组成的链路。也叫数据链路。</p>
+<p>「帧」对等实体之间进行逻辑通信的协议数据单元。</p>
+<p>「为网络层提供的服务」</p>
+<ul>
+<li>无确认的无连接服务</li>
+<li>有确认的无连接服务</li>
+<li>有确认的面向连接服务</li>
+</ul>
+<p>「链路管理」主要针对 面向连接的服务。<br>计时器超时重发，是解决传输过程中帧的丢失的方法。</p>
+<p><strong style="color: #6f42c1;">数据链路层有一个核心参数叫 MTU（最大传输单元），它规定了帧的数据部分的最大长度。</strong></p>
+<h3 id="3-1-3-网络层"><a href="#3-1-3-网络层" class="headerlink" title="3.1.3 网络层"></a>3.1.3 网络层</h3><p>「异构网络互连」<br>网络互连是指将两个以上的计算机网络，通过一定的方法，用一些中继系统相互连接 起来，以构成更大的网络系统。</p>
+<p>根据所在的层次，中继系统分为以下4 种:<br>1)物理层中继 系统:转发器，集线器。<br>2)数据链路层中继系统:网桥或交换机。<br>3 )网络层中继 系统:路由器。<br>4)网络层以上的中继系统 :网关。</p>
+<p>网络的异构性是指传输介质、数据编码方式、链路控制协议及不同的数据单元格式和转发机 制，这些特点分别在物理层和数据链路层协议中定义。</p>
+<p>「传输层」</p>
+<p>「应用层」</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/c0a6ce7e/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/c0a6ce7e/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    2.AI时代的思维方向指南
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/f0d0accb/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/f0d0accb/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">数据架构概述</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

@@ -1,0 +1,766 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>算法学习概述 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="机器学习入门,深度学习教程,AI Agent开发,大模型应用,算法工程实践,计算机视觉,自然语言处理,Python机器学习,TensorFlow教程,PyTorch实战">
+
+    <meta name="description" content="从机器学习到AI Agent的完整知识体系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法学习概述">
+<meta property="og:url" content="https://waisec.cn/wiki/fece4544/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="从机器学习到AI Agent的完整知识体系">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-27T14:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.154Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="AI工程师,大模型应用,数据架构,Agent,AI知识库,风控架构,Novus,Wiki,Quinoa,quanoc">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "算法学习概述",
+    "url": "https://waisec.cn/wiki/fece4544/",
+    "datePublished": "2024-01-27T14:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.154Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "机器学习入门,深度学习教程,AI Agent开发,大模型应用,算法工程实践,计算机视觉,自然语言处理,Python机器学习,TensorFlow教程,PyTorch实战"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/算法学习概述" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1"><span class="toc-text">知识图谱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E5%A4%A7%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97"><span class="toc-text">六大核心模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88Machine-Learning%EF%BC%89"><span class="toc-text">1. 机器学习（Machine Learning）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%88Deep-Learning%EF%BC%89"><span class="toc-text">2. 深度学习（Deep Learning）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%EF%BC%88Computer-Vision%EF%BC%89"><span class="toc-text">3. 计算机视觉（Computer Vision）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%EF%BC%88NLP%EF%BC%89"><span class="toc-text">4. 自然语言处理（NLP）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%EF%BC%88LLM%EF%BC%89"><span class="toc-text">5. 大语言模型（LLM）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%EF%BC%88MLOps%EF%BC%89"><span class="toc-text">6. 算法工程（MLOps）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95%E8%B7%AF%E5%BE%84"><span class="toc-text">职业发展路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%E5%9B%BE"><span class="toc-text">学习路线图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B6%E6%AE%B5%E4%B8%80%EF%BC%9APython%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80"><span class="toc-text">阶段一：Python编程基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B6%E6%AE%B5%E4%BA%8C%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%B8%8E%E5%88%86%E6%9E%90"><span class="toc-text">阶段二：数据处理与分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B6%E6%AE%B5%E4%B8%89%EF%BC%9A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98"><span class="toc-text">阶段三：机器学习实战</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B6%E6%AE%B5%E5%9B%9B%EF%BC%9A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%BF%9B%E9%98%B6"><span class="toc-text">阶段四：深度学习进阶</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B6%E6%AE%B5%E4%BA%94%EF%BC%9AAI%E5%B7%A5%E7%A8%8B%E5%8C%96%E4%B8%8E%E5%89%8D%E6%B2%BF"><span class="toc-text">阶段五：AI工程化与前沿</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90"><span class="toc-text">推荐学习资源</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/01/" onclick="onclickRoute(event, '/archives/2024/01/')">
+            <time datetime="2024-01-27T14:55:57.000Z" itemprop="datePublished">2024-01-27</time>
+        </a>
+    </div>
+
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/fece4544/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            算法学习概述
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p>本章节系统梳理AI领域的核心知识体系，从传统ML到前沿的 AI Agent 与大模型应用，涵盖理论基础、工程实践与行业应用。<br>区别于纯理论推导，本 wiki 更侧重<strong>算法工程化</strong>与<strong>生产环境实践</strong>，记录在实际业务场景中落地 AI 技术的经验总结、踩坑记录与最佳实践。</p>
+<h2 id="知识图谱"><a href="#知识图谱" class="headerlink" title="知识图谱"></a>知识图谱</h2><p>本章的核心内容以 AI 为主线，近期重点关注 <strong>AI Agent 架构设计</strong>与<strong>大语言模型（LLM）工程化</strong>。以下是完整的知识体系结构：</p>
+<div>
+<svg viewbox="0 0 1000 700" width="75%" xmlns="http://www.w3.org/2000/svg" font-family="'Georgia', 'Times New Roman', serif">
+  <defs>
+    <radialgradient id="bg" cx="48%" cy="52%" r="75%">
+      <stop offset="0%" stop-color="#080f1a"/>
+      <stop offset="100%" stop-color="#03070f"/>
+    </radialgradient>
+    <lineargradient id="g-ai" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#818cf8"/>
+    </lineargradient>
+    <lineargradient id="g-ml" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#10b981"/>
+    </lineargradient>
+    <lineargradient id="g-dl" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#ec4899"/>
+    </lineargradient>
+    <lineargradient id="g-llm" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#ef4444"/>
+    </lineargradient>
+    <lineargradient id="g-agent" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="50%" stop-color="#facc15"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </lineargradient>
+    <lineargradient id="g-cv" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f472b6"/><stop offset="100%" stop-color="#c084fc"/>
+    </lineargradient>
+    <lineargradient id="g-nlp" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399"/><stop offset="100%" stop-color="#22d3ee"/>
+    </lineargradient>
+    <radialgradient id="f-ai" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#818cf8" stop-opacity="0.02"/>
+    </radialgradient>
+    <radialgradient id="f-ml" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0.02"/>
+    </radialgradient>
+    <radialgradient id="f-dl" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#ec4899" stop-opacity="0.03"/>
+    </radialgradient>
+    <radialgradient id="f-llm" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0.05"/>
+    </radialgradient>
+    <lineargradient id="agent-card" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a0a00"/>
+      <stop offset="100%" stop-color="#0f0f00"/>
+    </lineargradient>
+    <lineargradient id="agent-border" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="50%" stop-color="#facc15"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </lineargradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="1000" height="700" fill="url(#bg)"/>
+
+  <!-- 星点 -->
+  <g opacity="0.25" fill="#93c5fd">
+    <circle cx="60" cy="60" r="1.2"/><circle cx="940" cy="90" r="1"/>
+    <circle cx="40" cy="640" r="1.4"/><circle cx="960" cy="620" r="1.1"/>
+    <circle cx="200" cy="25" r="0.9"/><circle cx="800" cy="680" r="1.3"/>
+    <circle cx="900" cy="340" r="0.8"/><circle cx="80" cy="360" r="0.9"/>
+    <circle cx="500" cy="12" r="1.1"/><circle cx="350" cy="688" r="0.8"/>
+  </g>
+
+  <!-- 层 1: AI -->
+  <ellipse cx="500" cy="348" rx="460" ry="300" fill="none" stroke="url(#g-ai)" stroke-width="1.8" stroke-dasharray="14 7" opacity="0.6"/>
+  <text x="500" y="78" text-anchor="middle" font-size="30" font-weight="bold" fill="url(#g-ai)" letter-spacing="6">人工智能 · AI</text>
+  <text x="500" y="102" text-anchor="middle" font-size="12" fill="#93c5fd" opacity="0.6" letter-spacing="4">Artificial Intelligence</text>
+  <text x="500" y="120" text-anchor="middle" font-size="10" fill="#7dd3fc" opacity="0.45">专家系统 · 规划 · 搜索 · 知识图谱 · 强化学习 · 机器人</text>
+
+  <!-- 层 2: 机器学习 -->
+  <ellipse cx="500" cy="368" rx="330" ry="218" fill="url(#f-ml)"/>
+  <ellipse cx="500" cy="368" rx="330" ry="218" fill="none" stroke="url(#g-ml)" stroke-width="2" stroke-dasharray="9 5" opacity="0.75"/>
+  <text x="222" y="302" text-anchor="middle" font-size="16" font-weight="bold" fill="#22d3ee" letter-spacing="2" filter="">机器学习</text>
+  <text x="222" y="320" text-anchor="middle" font-size="11" fill="#67e8f9" opacity="0.7">Machine Learning</text>
+  <text x="222" y="338" text-anchor="middle" font-size="10" fill="#a5f3fc" opacity="0.55">SVM · 决策树 · 回归</text>
+
+  <!-- 层 3: 深度学习 -->
+  <ellipse cx="500" cy="385" rx="200" ry="138" fill="url(#f-dl)"/>
+  <ellipse cx="500" cy="385" rx="200" ry="138" fill="none" stroke="url(#g-dl)" stroke-width="2.2" opacity="0.85"/>
+  <text x="762" y="330" text-anchor="middle" font-size="16" font-weight="bold" fill="#c4b5fd" letter-spacing="2" filter="">深度学习</text>
+  <text x="762" y="348" text-anchor="middle" font-size="11" fill="#ddd6fe" opacity="0.7">Deep Learning</text>
+  <text x="762" y="366" text-anchor="middle" font-size="10" fill="#ede9fe" opacity="0.55">CNN · RNN · Transformer</text>
+
+  <!-- 层 4: 大模型 LLM -->
+  <ellipse cx="500" cy="358" rx="108" ry="68" fill="url(#f-llm)"/>
+  <ellipse cx="500" cy="358" rx="108" ry="68" fill="none" stroke="url(#g-llm)" stroke-width="2.8" opacity="0.95"/>
+  <text x="500" y="345" text-anchor="middle" font-size="16" font-weight="bold" fill="#fcd34d" letter-spacing="2" filter="">大语言模型</text>
+  <text x="500" y="363" text-anchor="middle" font-size="11" fill="#fbbf24" opacity="0.85">LLM</text>
+  <text x="500" y="379" text-anchor="middle" font-size="9.5" fill="#fde68a" opacity="0.7">GPT · Claude · Gemini</text>
+
+  <!-- 连接线 -->
+  <path d="M 348 430 Q 230 480 185 510" fill="none" stroke="#f472b6" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.55"/>
+  <path 426="" 500="" d="M 652 430 Q 770 480 815 510" fill="none" stroke="#34d399" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.55n  <path d=" m="" l="" 488"=""/>
+  <polygon points="500,502 494,488 506,488" fill="#facc15" opacity="0.9"/>
+
+  <!-- 图像识别卡片 -->
+  <rect x="72" y="502" width="228" height="96" rx="18" fill="#0a0a1a" stroke="url(#g-cv)" stroke-width="2.2" filter="url(#shadow-card)"/>
+  <rect x="72" y="502" width="228" height="96" rx="18" fill="url(#g-cv)" opacity="0.07"/>
+  <g transform="translate(118, 550)">
+    <ellipse cx="0" cy="0" rx="16" ry="10" fill="none" stroke="#f472b6" stroke-width="2"/>
+    <circle cx="0" cy="0" r="5.5" fill="#f472b6" opacity="0.9"/>
+    <circle cx="0" cy="0" r="2.2" fill="#0a0a1a"/>
+  </g>
+  <text x="186" y="535" text-anchor="middle" font-size="15" font-weight="bold" fill="#f9a8d4" letter-spacing="2">图像识别</text>
+  <text x="186" y="554" text-anchor="middle" font-size="11" fill="#e879f9" opacity="0.75">Computer Vision</text>
+  <text x="186" y="572" text-anchor="middle" font-size="10" fill="#c4b5fd" opacity="0.6">目标检测 · 图像分类 · 语义分割</text>
+
+  <!-- NLP 卡片 -->
+  <rect x="700" y="502" width="228" height="96" rx="18" fill="#001a12" stroke="url(#g-nlp)" stroke-width="2.2"/>
+  <rect x="700" y="502" width="228" height="96" rx="18" fill="url(#g-nlp)" opacity="0.07"/>
+  <g transform="translate(745, 550)">
+    <rect x="-16" y="-12" width="32" height="20" rx="6" fill="none" stroke="#34d399" stroke-width="2"/>
+    <polygon points="-7,8 1,18 7,8" fill="#34d399" opacity="0.85"/>
+    <line x1="-9" y1="-4" x2="9" y2="-4" stroke="#34d399" stroke-width="1.8"/>
+    <line x1="-9" y1="3" x2="5" y2="3" stroke="#34d399" stroke-width="1.8"/>
+  </g>
+  <text x="814" y="535" text-anchor="middle" font-size="15" font-weight="bold" fill="#6ee7b7" letter-spacing="2">自然语言处理</text>
+  <text x="814" y="554" text-anchor="middle" font-size="11" fill="#5eead4" opacity="0.75">NLP</text>
+  <text x="814" y="572" text-anchor="middle" font-size="10" fill="#a7f3d0" opacity="0.6">翻译 · 问答 · 摘要 · 文本生成</text>
+
+  <!-- Agent 卡片 -->
+  <ellipse cx="500" cy="560" rx="115" ry="52" fill="none" stroke="url(#agent-border)" stroke-width="1" opacity="0.3" stroke-dasharray="4 3"/>
+  <rect x="362" y="510" width="276" height="100" rx="20" fill="url(#agent-card)" stroke="url(#agent-border)" stroke-width="3"/>
+  <rect x="362" y="510" width="276" height="100" rx="20" fill="url(#g-agent)" opacity="0.06"/>
+  <g transform="translate(406, 560)">
+    <polygon points="0,-18 15.6,-9 15.6,9 0,18 -15.6,9 -15.6,-9" fill="none" stroke="#facc15" stroke-width="2" opacity="0.85"/>
+    <circle cx="0" cy="0" r="8" fill="none" stroke="#f97316" stroke-width="1.8"/>
+    <polygon points="3,-6 -2,1 2,1 -3,8 4,0 0,0 3,-6" fill="#facc15" opacity="0.9"/>
+  </g>
+  <text x="500" y="545" text-anchor="middle" font-size="18" font-weight="bold" fill="#fde68a" letter-spacing="3" filter="">AI Agent</text>
+  <text x="500" y="564" text-anchor="middle" font-size="11" fill="#fdba74" opacity="0.8">智能体 · 基于 LLM 的自主系统</text>
+  <text x="500" y="582" text-anchor="middle" font-size="10" fill="#fef3c7" opacity="0.6">规划 · 工具调用 · 记忆 · 多步推理</text>
+  <rect x="616" y="514" width="40" height="18" rx="5" fill="#ef4444"/>
+  <text x="636" y="527" text-anchor="middle" font-size="10" font-weight="bold" fill="white" letter-spacing="1">前沿</text>
+
+  <!-- 右侧层级轴 -->
+  <g transform="translate(962, 150)" opacity="0.55">
+    <line x1="0" y1="0" x2="0" y2="400" stroke="#4b5563" stroke-width="1"/>
+    <line x1="-6" y1="0" x2="0" y2="0" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="-10" y="4" text-anchor="end" font-size="9.5" fill="#38bdf8">AI</text>
+    <line x1="-6" y1="90" x2="0" y2="90" stroke="#22d3ee" stroke-width="1.5"/>
+    <text x="-10" y="94" text-anchor="end" font-size="9.5" fill="#22d3ee">ML</text>
+    <line x1="-6" y1="190" x2="0" y2="190" stroke="#a78bfa" stroke-width="1.5"/>
+    <text x="-10" y="194" text-anchor="end" font-size="9.5" fill="#a78bfa">DL</text>
+    <line x1="-6" y1="275" x2="0" y2="275" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="-10" y="279" text-anchor="end" font-size="9.5" fill="#f59e0b">LLM</text>
+    <line x1="-6" y1="400" x2="0" y2="400" stroke="#facc15" stroke-width="1.5"/>
+    <text x="-10" y="404" text-anchor="end" font-size="9.5" fill="#facc15">Agent</text>
+    <polygon points="0,400 -3,390 3,390" fill="#facc15" opacity="0.7"/>
+    <text x="-10" y="425" text-anchor="end" font-size="8.5" fill="#6b7280">抽象层级↑</text>
+    <text x="-10" y="438" text-anchor="end" font-size="8.5" fill="#6b7280">涌现能力↑</text>
+  </g>
+
+  <!-- 图例 -->
+  <g transform="translate(28, 640)">
+    <line x1="0" y1="8" x2="26" y2="8" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="8 4" opacity="0.65"/>
+    <text x="32" y="12" font-size="10.5" fill="#94a3b8">包含关系（同心层级）</text>
+    <line x1="180" y1="8" x2="206" y2="8" stroke="#f472b6" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.65"/>
+    <text x="212" y="12" font-size="10.5" fill="#94a3b8">应用领域分支</text>
+    <line x1="350" y1="8" x2="376" y2="8" stroke="#facc15" stroke-width="2" stroke-dasharray="5 3" opacity="0.8"/>
+    <text x="382" y="12" font-size="10.5" fill="#94a3b8">能力涌现 / 构建关系</text>
+    <rect x="556" y="2" width="10" height="10" rx="2" fill="#ef4444"/>
+    <text x="572" y="12" font-size="10.5" fill="#94a3b8">当前前沿方向</text>
+  </g>
+</svg>
+</div>
+
+<hr>
+<h2 id="六大核心模块"><a href="#六大核心模块" class="headerlink" title="六大核心模块"></a>六大核心模块</h2><h3 id="1-机器学习（Machine-Learning）"><a href="#1-机器学习（Machine-Learning）" class="headerlink" title="1. 机器学习（Machine Learning）"></a>1. 机器学习（Machine Learning）</h3><p>涵盖机器学习基础概念、经典算法原理与实战应用：</p>
+<ul>
+<li><strong>监督学习</strong>：线性回归、逻辑回归、决策树、随机森林、SVM、朴素贝叶斯</li>
+<li><strong>无监督学习</strong>：聚类算法（K-Means、DBSCAN）、降维（PCA、t-SNE）</li>
+<li><strong>集成学习</strong>：Bagging、Boosting、XGBoost、LightGBM</li>
+<li><strong>模型评估</strong>：交叉验证、ROC-AUC、过拟合与正则化</li>
+</ul>
+<h3 id="2-深度学习（Deep-Learning）"><a href="#2-深度学习（Deep-Learning）" class="headerlink" title="2. 深度学习（Deep Learning）"></a>2. 深度学习（Deep Learning）</h3><p>神经网络架构设计与训练技巧：</p>
+<ul>
+<li><strong>基础网络</strong>：全连接网络、CNN卷积神经网络、RNN循环神经网络</li>
+<li><strong>现代架构</strong>：ResNet、DenseNet、EfficientNet、Vision Transformer</li>
+<li><strong>训练技术</strong>：梯度下降优化器、学习率调度、批归一化、Dropout</li>
+<li><strong>框架实战</strong>：TensorFlow 2.x / PyTorch 项目实践</li>
+</ul>
+<h3 id="3-计算机视觉（Computer-Vision）"><a href="#3-计算机视觉（Computer-Vision）" class="headerlink" title="3. 计算机视觉（Computer Vision）"></a>3. 计算机视觉（Computer Vision）</h3><p>深度学习在图像领域的应用：</p>
+<ul>
+<li><strong>目标检测</strong>：YOLO系列、Faster R-CNN、SSD、CenterNet</li>
+<li><strong>图像分类</strong>：图像识别、细粒度分类、零样本学习</li>
+<li><strong>OCR文字识别</strong>：文本检测（PSENet、DBNet）、文本识别（CRNN、SVTR）</li>
+<li><strong>图像分割</strong>：语义分割、实例分割、全景分割</li>
+</ul>
+<h3 id="4-自然语言处理（NLP）"><a href="#4-自然语言处理（NLP）" class="headerlink" title="4. 自然语言处理（NLP）"></a>4. 自然语言处理（NLP）</h3><p>文本理解与生成技术：</p>
+<ul>
+<li><strong>基础技术</strong>：分词、命名实体识别、句法分析、文本分类</li>
+<li><strong>预训练模型</strong>：BERT、RoBERTa、GPT系列、T5</li>
+<li><strong>应用任务</strong>：机器翻译、文本摘要、情感分析、问答系统</li>
+</ul>
+<h3 id="5-大语言模型（LLM）"><a href="#5-大语言模型（LLM）" class="headerlink" title="5. 大语言模型（LLM）"></a>5. 大语言模型（LLM）</h3><p>从入门到精通的完整路径：</p>
+<ul>
+<li><strong>基础入门</strong>：Prompt Engineering、上下文学习、Chain-of-Thought</li>
+<li><strong>应用开发</strong>：RAG检索增强生成、向量数据库、Embedding模型</li>
+<li><strong>模型微调</strong>：LoRA、QLoRA、Prefix Tuning、P-Tuning</li>
+<li><strong>原理探究</strong>：Transformer架构、注意力机制、位置编码、解码策略</li>
+</ul>
+<h3 id="6-算法工程（MLOps）"><a href="#6-算法工程（MLOps）" class="headerlink" title="6. 算法工程（MLOps）"></a>6. 算法工程（MLOps）</h3><p>将算法从实验室部署到生产环境：</p>
+<ul>
+<li><strong>基础设施</strong>：GPU集群管理、模型服务化（Triton、TorchServe）</li>
+<li><strong>特征工程</strong>：特征存储（Feature Store）、实时特征计算</li>
+<li><strong>模型管理</strong>：版本控制（MLflow）、A/B测试、模型监控</li>
+<li><strong>性能优化</strong>：模型量化、剪枝、蒸馏、TensorRT加速</li>
+</ul>
+<hr>
+<h2 id="职业发展路径"><a href="#职业发展路径" class="headerlink" title="职业发展路径"></a>职业发展路径</h2><p>掌握本章知识体系，可胜任以下岗位：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>岗位</th>
+<th>核心能力</th>
+<th>技术栈</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>数据分析师</strong></td>
+<td>数据清洗、统计分析、可视化</td>
+<td>Python、Pandas、SQL、Matplotlib</td>
+</tr>
+<tr>
+<td><strong>机器学习工程师</strong></td>
+<td>特征工程、模型训练与优化</td>
+<td>Scikit-Learn、XGBoost、特征平台</td>
+</tr>
+<tr>
+<td><strong>深度学习工程师</strong></td>
+<td>神经网络设计、模型部署</td>
+<td>PyTorch/TensorFlow、CUDA、模型优化</td>
+</tr>
+<tr>
+<td><strong>AI工程师</strong></td>
+<td>全栈AI系统开发</td>
+<td>LLM、RAG、Agent、多模态</td>
+</tr>
+<tr>
+<td><strong>算法架构师</strong></td>
+<td>大规模算法系统设计</td>
+<td>分布式训练、模型服务、性能优化</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="学习路线图"><a href="#学习路线图" class="headerlink" title="学习路线图"></a>学习路线图</h2><h3 id="阶段一：Python编程基础"><a href="#阶段一：Python编程基础" class="headerlink" title="阶段一：Python编程基础"></a>阶段一：Python编程基础</h3><ul>
+<li>Python基本语法与数据结构</li>
+<li>面向对象编程与函数式编程</li>
+<li>常用标准库与第三方库</li>
+</ul>
+<h3 id="阶段二：数据处理与分析"><a href="#阶段二：数据处理与分析" class="headerlink" title="阶段二：数据处理与分析"></a>阶段二：数据处理与分析</h3><ul>
+<li><strong>NumPy</strong>：数值计算与矩阵运算</li>
+<li><strong>Pandas</strong>：数据清洗、处理与分析</li>
+<li><strong>Matplotlib/Seaborn</strong>：数据可视化与报表</li>
+</ul>
+<h3 id="阶段三：机器学习实战"><a href="#阶段三：机器学习实战" class="headerlink" title="阶段三：机器学习实战"></a>阶段三：机器学习实战</h3><ul>
+<li>机器学习基本概念与算法原理</li>
+<li>使用 Scikit-Learn 完成端到端项目</li>
+<li>模型调参与超参数优化</li>
+</ul>
+<h3 id="阶段四：深度学习进阶"><a href="#阶段四：深度学习进阶" class="headerlink" title="阶段四：深度学习进阶"></a>阶段四：深度学习进阶</h3><ul>
+<li>神经网络与反向传播原理</li>
+<li>TensorFlow/PyTorch 框架实战</li>
+<li>计算机视觉或NLP专项深入</li>
+</ul>
+<h3 id="阶段五：AI工程化与前沿"><a href="#阶段五：AI工程化与前沿" class="headerlink" title="阶段五：AI工程化与前沿"></a>阶段五：AI工程化与前沿</h3><ul>
+<li>大模型应用开发（RAG、Agent）</li>
+<li>模型部署与性能优化</li>
+<li>参与开源项目或实际业务落地</li>
+</ul>
+<hr>
+<h2 id="推荐学习资源"><a href="#推荐学习资源" class="headerlink" title="推荐学习资源"></a>推荐学习资源</h2><ul>
+<li><strong><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/microsoft/ai-edu">微软 AI 教育社区</a></strong> - 系统化的中文AI教程</li>
+<li><strong><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/Avik-Jain/">机器学习100天</a></strong> - 循序渐进的实战练习</li>
+<li><strong><a target="_blank" rel="external nofollow noopener noreferrer" href="https://paperswithcode.com/">Papers With Code</a></strong> - 最新论文与代码实现</li>
+<li><strong><a target="_blank" rel="external nofollow noopener noreferrer" href="https://huggingface.co/">Hugging Face</a></strong> - 预训练模型与数据集中心</li>
+</ul>
+<hr>
+<blockquote>
+<p>💡 <strong>学习建议</strong>：理论结合实践，每学完一个知识点就动手实现一个小项目。记录踩坑过程，形成自己的知识库。</p>
+</blockquote>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/ec531e62/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/ec531e62/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    1.RCNN
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/a2c9c7f7/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/a2c9c7f7/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">关于教育</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

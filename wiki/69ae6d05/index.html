@@ -1,0 +1,1019 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>1.Agent分类与主流产品框架 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="LLM,Agent">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.Agent分类与主流产品框架">
+<meta property="og:url" content="https://waisec.cn/wiki/69ae6d05/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-01-20T03:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.140Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="LLM">
+<meta property="article:tag" content="Agent">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "1.Agent分类与主流产品框架",
+    "url": "https://waisec.cn/wiki/69ae6d05/",
+    "datePublished": "2026-01-20T03:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.140Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "LLM,Agent"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/1|大模型应用/01.Agent原理/03_Agent架构/001.Agent分类与主流产品框架" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF-AI-Agent%EF%BC%9F"><span class="toc-text">一、什么是 AI Agent？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81AI-Agent-%E5%88%86%E7%B1%BB%E4%BD%93%E7%B3%BB"><span class="toc-text">二、AI Agent 分类体系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E8%A7%86%E8%A7%92%E4%B8%80%EF%BC%9A%E6%8C%89%E8%83%BD%E5%8A%9B%E6%9E%B6%E6%9E%84%E5%88%86%E7%B1%BB%EF%BC%88%E5%AD%A6%E6%9C%AF%E7%BB%8F%E5%85%B8%EF%BC%89"><span class="toc-text">2.1 视角一：按能力架构分类（学术经典）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E8%A7%86%E8%A7%92%E4%BA%8C%EF%BC%9A%E6%8C%89%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F-amp-%E8%87%AA%E4%B8%BB%E7%A8%8B%E5%BA%A6%E5%88%86%E7%B1%BB%EF%BC%88%E5%B7%A5%E4%B8%9A%E4%B8%BB%E6%B5%81%EF%BC%89"><span class="toc-text">2.2 视角二：按交互方式 &amp; 自主程度分类（工业主流）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%94%B5-%E7%B1%BB%E5%9E%8B%E4%B8%80%EF%BC%9A%E5%AF%B9%E8%AF%9D%E5%A2%9E%E5%BC%BA%E5%9E%8B%EF%BC%88Chat-Agentic-Tools%EF%BC%89"><span class="toc-text">🔵 类型一：对话增强型（Chat + Agentic Tools）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%9F%A0-%E7%B1%BB%E5%9E%8B%E4%BA%8C%EF%BC%9A%E9%80%9A%E7%94%A8%E8%87%AA%E4%B8%BB%E5%9E%8B%EF%BC%88General-Purpose-Autonomous%EF%BC%89"><span class="toc-text">🟠 类型二：通用自主型（General-Purpose Autonomous）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%9F%A2-%E7%B1%BB%E5%9E%8B%E4%B8%89%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A7%E5%88%B6%E5%9E%8B%EF%BC%88Browser-Computer-Use%EF%BC%89"><span class="toc-text">🟢 类型三：计算机控制型（Browser &#x2F; Computer Use）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%9F%A3-%E7%B1%BB%E5%9E%8B%E5%9B%9B%EF%BC%9A%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E5%8D%8F%E4%BD%9C%E5%9E%8B%EF%BC%88Multi-Agent%EF%BC%89"><span class="toc-text">🟣 类型四：多智能体协作型（Multi-Agent）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81AI-Agent-%E5%AE%8C%E6%95%B4%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-text">三、AI Agent 完整执行流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-text">3.1 执行流程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%90%84%E4%B8%BB%E6%B5%81%E6%A1%86%E6%9E%B6%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E5%AF%B9%E6%AF%94"><span class="toc-text">3.2 各主流框架实现方式对比</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%A4%9A%E8%BD%AE-LLM-%E4%BA%A4%E4%BA%92%EF%BC%9A%E4%B8%80%E4%B8%AA%E4%BB%BB%E5%8A%A1%E9%9C%80%E8%A6%81%E5%87%A0%E6%AC%A1%E8%B0%83%E7%94%A8%EF%BC%9F"><span class="toc-text">四、多轮 LLM 交互：一个任务需要几次调用？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%A4%9A%E8%BD%AE%E4%BA%A4%E4%BA%92%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%8C%91%E6%88%98"><span class="toc-text">4.1 多轮交互带来的工程挑战</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%91%E6%88%98%E4%B8%80%EF%BC%9AContext-%E7%AA%97%E5%8F%A3%E8%86%A8%E8%83%80"><span class="toc-text">挑战一：Context 窗口膨胀</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%91%E6%88%98%E4%BA%8C%EF%BC%9A%E9%94%99%E8%AF%AF%E7%B4%AF%E7%A7%AF%EF%BC%88Error-Propagation%EF%BC%89"><span class="toc-text">挑战二：错误累积（Error Propagation）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%812025-%E5%B9%B4%E4%B8%BB%E6%B5%81-Agent-%E4%BA%A7%E5%93%81%E7%89%88%E5%9B%BE"><span class="toc-text">五、2025 年主流 Agent 产品版图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-text">六、总结</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/">1|大模型应用</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/01-Agent%E5%8E%9F%E7%90%86/">01.Agent原理</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/01-Agent%E5%8E%9F%E7%90%86/03-Agent%E6%9E%B6%E6%9E%84/">03_Agent架构</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Agent/" rel="tag">Agent</a>, <a class="tag-link-link" href="/tags/LLM/" rel="tag">LLM</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/01/" onclick="onclickRoute(event, '/archives/2026/01/')">
+            <time datetime="2026-01-20T03:55:57.000Z" itemprop="datePublished">2026-01-20</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="LLM,Agent">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/69ae6d05/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            Agent分类与主流产品框架
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p>Agent全景：分类、流程、主流产品</p>
+<div>
+
+<div style="background:linear-gradient(135deg,#eff6ff,#f0f9ff);border-left:4px solid #3b82f6;border-radius:8px;padding:16px 20px;margin:16px 0; font-family:'PingFang SC','Microsoft YaHei',sans-serif">
+<b style="color:#1e40af">📋 摘要</b><br>
+<span style="color:#1e3a5f;line-height:1.8">AI Agent 是当前 AI 应用落地的核心范式之一。本文系统梳理了 Agent 的能力分类体系、完整执行流程、多轮 LLM 交互机制，以及截至 2025 年的主流产品格局。无论是工程师选型、产品经理规划路线，还是希望深入理解 Agent 底层逻辑的技术读者，本文都提供了完整的参考框架。</span>
+</div>
+
+<hr>
+<h2 id="一、什么是-AI-Agent？"><a href="#一、什么是-AI-Agent？" class="headerlink" title="一、什么是 AI Agent？"></a>一、什么是 AI Agent？</h2><p>从本质上说，AI Agent 是一种能够「感知环境 → 自主决策 → 执行行动 → 观察结果」并持续循环的智能系统。与传统的一问一答式 LLM 使用不同，Agent 具备三个核心特征：</p>
+<ul>
+<li><strong>自主性（Autonomy）</strong>：无需人类每步干预，能根据目标自行规划并采取行动。</li>
+<li><strong>工具使用（Tool Use）</strong>：可调用外部工具，如搜索引擎、代码执行器、数据库、API 等。</li>
+<li><strong>持久记忆（Memory）</strong>：维护跨轮次的上下文，积累知识，而不是每次从零开始。</li>
+</ul>
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:6px;padding:12px 16px;margin:12px 0;font-family:'PingFang SC','Microsoft YaHei',sans-serif;color:#14532d">
+💡 <b>核心公式：</b>LLM 是 Agent 的大脑，但 Agent ≠ LLM。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code style="background:#dcfce7;padding:2px 8px;border-radius:4px;font-size:14px">Agent = LLM + 记忆 + 工具 + 执行循环</code>
+</div>
+
+<hr>
+<h2 id="二、AI-Agent-分类体系"><a href="#二、AI-Agent-分类体系" class="headerlink" title="二、AI Agent 分类体系"></a>二、AI Agent 分类体系</h2><p>AI Agent 的分类可以从两个维度来理解：经典的<strong>能力架构</strong>分类，以及更贴近工程实践的<strong>自主程度与交互方式</strong>分类。</p>
+<h3 id="2-1-视角一：按能力架构分类（学术经典）"><a href="#2-1-视角一：按能力架构分类（学术经典）" class="headerlink" title="2.1 视角一：按能力架构分类（学术经典）"></a>2.1 视角一：按能力架构分类（学术经典）</h3><p>这是由 Russell &amp; Norvig 在《人工智能：现代方法》中奠定的框架，描述了 Agent 从简单到复杂的演进层次：</p>
+<div style="overflow-x:auto;margin:16px 0">
+<table style="width:100%;border-collapse:collapse;font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:14px">
+  <thead>
+    <tr style="background:#1e3a8a;color:white">
+      <th style="padding:10px 14px;text-align:left;border:1px solid #2563eb">类型</th>
+      <th style="padding:10px 14px;text-align:left;border:1px solid #2563eb">核心能力</th>
+      <th style="padding:10px 14px;text-align:left;border:1px solid #2563eb">局限性</th>
+      <th style="padding:10px 14px;text-align:left;border:1px solid #2563eb">典型代表</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f8faff">
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><b>简单反射型</b><br><span style="color:#94a3b8;font-size:12px">Simple Reflex</span></td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">条件→动作规则<br>无记忆，无规划</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">无法处理未见过的情况</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">早期规则型聊天机器人<br>邮件自动回复系统</td>
+    </tr>
+    <tr style="background:white">
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><b>模型型</b><br><span style="color:#94a3b8;font-size:12px">Model-Based</span></td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">维护内部世界状态<br>能记住上下文</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">无目标导向，被动响应</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">当前基础对话 AI<br>ChatGPT 对话模式</td>
+    </tr>
+    <tr style="background:#f8faff">
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><b>目标型</b><br><span style="color:#94a3b8;font-size:12px">Goal-Based</span></td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">任务分解<br>多步规划达成目标</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">不衡量方案优劣</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">早期 BabyAGI<br>LangChain ReAct Agent</td>
+    </tr>
+    <tr style="background:white">
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><b>效用型</b><br><span style="color:#94a3b8;font-size:12px">Utility-Based</span></td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">多方案评分<br>选择最优行动</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">需定义准确效用函数</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">金融交易 Agent<br>推荐系统 Agent</td>
+    </tr>
+    <tr style="background:#f8faff">
+      <td style="padding:10px 14px;border:1px solid #e2e8f0"><b>学习型</b><br><span style="color:#94a3b8;font-size:12px">Learning Agent</span></td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">从经验自我改进<br>持续优化决策</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">训练成本高，收敛慢</td>
+      <td style="padding:10px 14px;border:1px solid #e2e8f0">Devin（代码调试）<br>AlphaCode</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<hr>
+<h3 id="2-2-视角二：按交互方式-amp-自主程度分类（工业主流）"><a href="#2-2-视角二：按交互方式-amp-自主程度分类（工业主流）" class="headerlink" title="2.2 视角二：按交互方式 &amp; 自主程度分类（工业主流）"></a>2.2 视角二：按交互方式 &amp; 自主程度分类（工业主流）</h3><h4 id="🔵-类型一：对话增强型（Chat-Agentic-Tools）"><a href="#🔵-类型一：对话增强型（Chat-Agentic-Tools）" class="headerlink" title="🔵 类型一：对话增强型（Chat + Agentic Tools）"></a>🔵 类型一：对话增强型（Chat + Agentic Tools）</h4><p>本质是在对话框中加入工具调用能力，用户保持一问一答节奏。<strong>自主程度 L1～L3</strong>，是目前用户基数最大的 Agent 形态。</p>
+<div style="overflow-x:auto;margin:12px 0">
+<table style="width:100%;border-collapse:collapse;font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:14px">
+  <thead>
+    <tr style="background:#1e3a8a;color:white">
+      <th style="padding:10px 14px;border:1px solid #2563eb">产品</th>
+      <th style="padding:10px 14px;border:1px solid #2563eb">核心特点</th>
+      <th style="padding:10px 14px;border:1px solid #2563eb">工具能力</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f8faff"><td style="padding:9px 14px;border:1px solid #e2e8f0"><b>ChatGPT</b> (OpenAI)</td><td style="padding:9px 14px;border:1px solid #e2e8f0">最广泛用户基础，插件生态丰富</td><td style="padding:9px 14px;border:1px solid #e2e8f0">搜索、代码执行、图像生成、浏览</td></tr>
+    <tr style="background:white"><td style="padding:9px 14px;border:1px solid #e2e8f0"><b>Claude</b> (Anthropic)</td><td style="padding:9px 14px;border:1px solid #e2e8f0">超长上下文、强推理、工具调用</td><td style="padding:9px 14px;border:1px solid #e2e8f0">文件分析、搜索、代码执行</td></tr>
+    <tr style="background:#f8faff"><td style="padding:9px 14px;border:1px solid #e2e8f0"><b>Gemini</b> (Google)</td><td style="padding:9px 14px;border:1px solid #e2e8f0">与 Google 搜索深度集成，多模态</td><td style="padding:9px 14px;border:1px solid #e2e8f0">实时搜索、图像理解、文档分析</td></tr>
+    <tr style="background:white"><td style="padding:9px 14px;border:1px solid #e2e8f0"><b>Perplexity Pro</b></td><td style="padding:9px 14px;border:1px solid #e2e8f0">搜索增强型，实时引用来源</td><td style="padding:9px 14px;border:1px solid #e2e8f0">联网搜索、学术库、多源整合</td></tr>
+    <tr style="background:#f8faff"><td style="padding:9px 14px;border:1px solid #e2e8f0"><b>Microsoft Copilot</b></td><td style="padding:9px 14px;border:1px solid #e2e8f0">深度集成 Office 365 套件</td><td style="padding:9px 14px;border:1px solid #e2e8f0">Word/Excel/PPT 操作、邮件、日历</td></tr>
+  </tbody>
+</table>
+</div>
+
+<hr>
+<h4 id="🟠-类型二：通用自主型（General-Purpose-Autonomous）"><a href="#🟠-类型二：通用自主型（General-Purpose-Autonomous）" class="headerlink" title="🟠 类型二：通用自主型（General-Purpose Autonomous）"></a>🟠 类型二：通用自主型（General-Purpose Autonomous）</h4><p>接受一个高层目标后自行规划执行，人类干预较少。<strong>自主程度 L3～L5</strong>，是当前技术边界探索最活跃的方向。</p>
+<div style="overflow-x:auto;margin:12px 0">
+<table style="width:100%;border-collapse:collapse;font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:14px">
+  <thead>
+    <tr style="background:#92400e;color:white">
+      <th style="padding:10px 14px;border:1px solid #b45309">产品</th>
+      <th style="padding:10px 14px;border:1px solid #b45309">核心特点</th>
+      <th style="padding:10px 14px;border:1px solid #b45309">适用场景</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#fffbeb"><td style="padding:9px 14px;border:1px solid #fde68a"><b>Manus AI</b></td><td style="padding:9px 14px;border:1px solid #fde68a">跨应用自主执行，连接浏览器、代码编辑器</td><td style="padding:9px 14px;border:1px solid #fde68a">复杂信息汇总、自动化工作流</td></tr>
+    <tr style="background:white"><td style="padding:9px 14px;border:1px solid #fde68a"><b>OpenAI Deep Research</b></td><td style="padding:9px 14px;border:1px solid #fde68a">长程推理 + 多轮联网搜索，自动输出报告</td><td style="padding:9px 14px;border:1px solid #fde68a">学术研究、竞品分析、市场调研</td></tr>
+    <tr style="background:#fffbeb"><td style="padding:9px 14px;border:1px solid #fde68a"><b>Claude Code</b></td><td style="padding:9px 14px;border:1px solid #fde68a">终端接口，不限于写代码，可执行系统级任务</td><td style="padding:9px 14px;border:1px solid #fde68a">代码库分析、文件操作、自动化脚本</td></tr>
+    <tr style="background:white"><td style="padding:9px 14px;border:1px solid #fde68a"><b>AutoGPT</b></td><td style="padding:9px 14px;border:1px solid #fde68a">2023 年先驱，定义自主 Agent 概念范式</td><td style="padding:9px 14px;border:1px solid #fde68a">实验性任务，开源社区探索</td></tr>
+    <tr style="background:#fffbeb"><td style="padding:9px 14px;border:1px solid #fde68a"><b>MetaGPT</b></td><td style="padding:9px 14px;border:1px solid #fde68a">多角色协作，模拟软件开发团队</td><td style="padding:9px 14px;border:1px solid #fde68a">软件项目从需求到代码全流程</td></tr>
+  </tbody>
+</table>
+</div>
+
+<hr>
+<h4 id="🟢-类型三：计算机控制型（Browser-Computer-Use）"><a href="#🟢-类型三：计算机控制型（Browser-Computer-Use）" class="headerlink" title="🟢 类型三：计算机控制型（Browser / Computer Use）"></a>🟢 类型三：计算机控制型（Browser / Computer Use）</h4><p>直接操控浏览器或操作系统 UI，像数字人类一样使用电脑。<strong>自主程度 L4～L5</strong>，行动边界最广也最具争议。</p>
+<div style="overflow-x:auto;margin:12px 0">
+<table style="width:100%;border-collapse:collapse;font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:14px">
+  <thead>
+    <tr style="background:#065f46;color:white">
+      <th style="padding:10px 14px;border:1px solid #059669">产品</th>
+      <th style="padding:10px 14px;border:1px solid #059669">控制范围</th>
+      <th style="padding:10px 14px;border:1px solid #059669">特色</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f0fdf4"><td style="padding:9px 14px;border:1px solid #bbf7d0"><b>OpenAI Operator</b></td><td style="padding:9px 14px;border:1px solid #bbf7d0">专属浏览器，网页操作</td><td style="padding:9px 14px;border:1px solid #bbf7d0">订餐、购票、填表单，面向普通用户</td></tr>
+    <tr style="background:white"><td style="padding:9px 14px;border:1px solid #bbf7d0"><b>Claude Computer Use</b></td><td style="padding:9px 14px;border:1px solid #bbf7d0">完整桌面（鼠标+键盘）</td><td style="padding:9px 14px;border:1px solid #bbf7d0">跨应用协调，Anthropic API 提供</td></tr>
+    <tr style="background:#f0fdf4"><td style="padding:9px 14px;border:1px solid #bbf7d0"><b>Google Project Mariner</b></td><td style="padding:9px 14px;border:1px solid #bbf7d0">Chrome 浏览器</td><td style="padding:9px 14px;border:1px solid #bbf7d0">Gemini 驱动，Google 生态深度集成</td></tr>
+    <tr style="background:white"><td style="padding:9px 14px;border:1px solid #bbf7d0"><b>Devin (Cognition)</b></td><td style="padding:9px 14px;border:1px solid #bbf7d0">完整虚拟机（IDE+浏览器+终端）</td><td style="padding:9px 14px;border:1px solid #bbf7d0">软件工程专用，可自主完成完整项目</td></tr>
+    <tr style="background:#f0fdf4"><td style="padding:9px 14px;border:1px solid #bbf7d0"><b>Browser Use（开源）</b></td><td style="padding:9px 14px;border:1px solid #bbf7d0">多 LLM 后端支持</td><td style="padding:9px 14px;border:1px solid #bbf7d0">Python 库，开发者自托管首选</td></tr>
+  </tbody>
+</table>
+</div>
+
+<hr>
+<h4 id="🟣-类型四：多智能体协作型（Multi-Agent）"><a href="#🟣-类型四：多智能体协作型（Multi-Agent）" class="headerlink" title="🟣 类型四：多智能体协作型（Multi-Agent）"></a>🟣 类型四：多智能体协作型（Multi-Agent）</h4><p>多个专业 Agent 组成协作团队，通过相互通信分工完成大型复杂任务。</p>
+<div style="overflow-x:auto;margin:12px 0">
+<table style="width:100%;border-collapse:collapse;font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:14px">
+  <thead>
+    <tr style="background:#4c1d95;color:white">
+      <th style="padding:10px 14px;border:1px solid #7c3aed">框架 / 产品</th>
+      <th style="padding:10px 14px;border:1px solid #7c3aed">协作模式</th>
+      <th style="padding:10px 14px;border:1px solid #7c3aed">适用场景</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#faf5ff"><td style="padding:9px 14px;border:1px solid #e9d5ff"><b>AutoGen（微软）</b></td><td style="padding:9px 14px;border:1px solid #e9d5ff">Agent 互相对话、辩论、审查</td><td style="padding:9px 14px;border:1px solid #e9d5ff">需要验证和反驳的推理任务</td></tr>
+    <tr style="background:white"><td style="padding:9px 14px;border:1px solid #e9d5ff"><b>CrewAI</b></td><td style="padding:9px 14px;border:1px solid #e9d5ff">定义角色分工（研究员+作家+审校）</td><td style="padding:9px 14px;border:1px solid #e9d5ff">内容生产、市场分析、报告生成</td></tr>
+    <tr style="background:#faf5ff"><td style="padding:9px 14px;border:1px solid #e9d5ff"><b>LangGraph</b></td><td style="padding:9px 14px;border:1px solid #e9d5ff">状态机驱动的 Agent 工作流</td><td style="padding:9px 14px;border:1px solid #e9d5ff">生产级复杂工作流，需精确控制</td></tr>
+    <tr style="background:white"><td style="padding:9px 14px;border:1px solid #e9d5ff"><b>Amazon Bedrock Agents</b></td><td style="padding:9px 14px;border:1px solid #e9d5ff">企业级托管，内置安全护栏</td><td style="padding:9px 14px;border:1px solid #e9d5ff">企业内部自动化，合规要求高</td></tr>
+    <tr style="background:#faf5ff"><td style="padding:9px 14px;border:1px solid #e9d5ff"><b>OpenClaw（前Clawdbot）</b></td><td style="padding:9px 14px;border:1px solid #e9d5ff">本地自托管，消息平台驱动</td><td style="padding:9px 14px;border:1px solid #e9d5ff">个人 24h 助理，隐私优先场景</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div style="background:#fff7ed;border-left:4px solid #f97316;border-radius:6px;padding:12px 16px;margin:16px 0;font-family:'PingFang SC','Microsoft YaHei',sans-serif">
+📊 <b style="color:#9a3412">自主程度对比：</b><br>
+<div style="margin-top:8px;display:flex;align-items:center;gap:4px;flex-wrap:wrap">
+  <span style="background:#dbeafe;color:#1e40af;padding:3px 10px;border-radius:12px;font-size:13px">对话增强型 L1-3</span>
+  <span style="color:#94a3b8">→</span>
+  <span style="background:#fef9c3;color:#854d0e;padding:3px 10px;border-radius:12px;font-size:13px">通用自主型 L3-5</span>
+  <span style="color:#94a3b8">→</span>
+  <span style="background:#dcfce7;color:#166534;padding:3px 10px;border-radius:12px;font-size:13px">计算机控制型 L4-5</span>
+</div>
+<p style="margin:8px 0 0;font-size:13px;color:#92400e">自主程度越高，能力越强，但风险和不可预测性也越高。</p>
+</div>
+
+<hr>
+<h2 id="三、AI-Agent-完整执行流程"><a href="#三、AI-Agent-完整执行流程" class="headerlink" title="三、AI Agent 完整执行流程"></a>三、AI Agent 完整执行流程</h2><p>理解 Agent 的执行流程，是理解所有 Agent 产品差异的关键。几乎所有主流框架都在这套<strong>元流程</strong>上做裁剪或强化，而不是推翻重建。</p>
+<h3 id="3-1-执行流程图"><a href="#3-1-执行流程图" class="headerlink" title="3.1 执行流程图"></a>3.1 执行流程图</h3><div align="center">
+
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1000 700" width="1000" height="700" font-family="'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <lineargradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0e1a"/>
+      <stop offset="100%" style="stop-color:#111827"/>
+    </lineargradient>
+
+    <!-- Step gradients -->
+    <lineargradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ec4899"/><stop offset="100%" stop-color="#9d174d"/></lineargradient>
+    <lineargradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#92400e"/></lineargradient>
+    <lineargradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#1e3a8a"/></lineargradient>
+    <lineargradient id="g4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#4c1d95"/></lineargradient>
+    <lineargradient id="g5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#064e3b"/></lineargradient>
+    <lineargradient id="g6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#164e63"/></lineargradient>
+    <lineargradient id="g7" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f97316"/><stop offset="100%" stop-color="#7c2d12"/></lineargradient>
+    <lineargradient id="g8" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#22c55e"/><stop offset="100%" stop-color="#14532d"/></lineargradient>
+
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <fedropshadow dx="0" dy="3" stddeviation="6" flood-color="black" flood-opacity="0.4">
+    </fedropshadow></filter>
+    <filter id="glow">
+      <fegaussianblur stddeviation="3" result="blur">
+      <femerge><femergenode in="blur"><femergenode in="SourceGraphic"/></femergenode></femerge>
+    </fegaussianblur></filter>
+
+    <!-- Arrow markers -->
+    <marker id="arr" markerwidth="9" markerheight="9" refx="7" refy="3.5" orient="auto">
+      <path d="M0,0 L0,7 L9,3.5 z" fill="#94a3b8"/>
+    </marker>
+    <marker id="arr-blue" markerwidth="9" markerheight="9" refx="7" refy="3.5" orient="auto">
+      <path d="M0,0 L0,7 L9,3.5 z" fill="#60a5fa"/>
+    </marker>
+    <marker id="arr-green" markerwidth="9" markerheight="9" refx="7" refy="3.5" orient="auto">
+      <path d="M0,0 L0,7 L9,3.5 z" fill="#34d399"/>
+    </marker>
+    <marker id="arr-orange" markerwidth="9" markerheight="9" refx="7" refy="3.5" orient="auto">
+      <path d="M0,0 L0,7 L9,3.5 z" fill="#fb923c"/>
+    </marker>
+    <marker id="arr-purple" markerwidth="9" markerheight="9" refx="7" refy="3.5" orient="auto">
+      <path d="M0,0 L0,7 L9,3.5 z" fill="#c084fc"/>
+    </marker>
+    <marker id="arr-red" markerwidth="9" markerheight="9" refx="7" refy="3.5" orient="auto">
+      <path d="M0,0 L0,7 L9,3.5 z" fill="#f87171"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="700" fill="url(#bg)"/>
+
+  <!-- Subtle dots pattern -->
+  <g opacity="0.06">
+    <pattern id="dots" x="0" y="0" width="30" height="30" patternunits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="white"/>
+    </pattern>
+    <rect width="1000" height="700" fill="url(#dots)"/>
+  </g>
+
+  <!-- ====== TITLE ====== -->
+  <text x="500" y="36" text-anchor="middle" fill="white" font-size="18" font-weight="700" letter-spacing="3">AI AGENT 执行流程</text>
+  <text x="500" y="56" text-anchor="middle" fill="#64748b" font-size="11" letter-spacing="1">Execution Flow &amp; Data Pipeline</text>
+  <line x1="180" y1="66" x2="820" y2="66" stroke="#1e3a5f" stroke-width="1"/>
+
+  <!-- ====== STEP BOXES (left column, top to bottom) ====== -->
+  <!-- Y positions: 100, 200, 300, 400, 500, 600 for left column, right column offset -->
+
+  <!-- STEP 1: User Input -->
+  <g filter="url(#shadow)">
+    <rect x="30" y="90" width="180" height="76" rx="10" fill="url(#g1)"/>
+  </g>
+  <text x="42" y="111" fill="rgba(255,255,255,0.6)" font-size="9" font-weight="600">STEP 1</text>
+  <text x="120" y="128" text-anchor="middle" fill="white" font-size="13" font-weight="700">👤 用户输入</text>
+  <text x="120" y="146" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="9">自然语言 Query / Task</text>
+  <text x="120" y="160" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8">文本 · 图像 · 语音 · 文件</text>
+
+  <!-- STEP 2: Perception -->
+  <g filter="url(#shadow)">
+    <rect x="30" y="196" width="180" height="76" rx="10" fill="url(#g2)"/>
+  </g>
+  <text x="42" y="217" fill="rgba(255,255,255,0.6)" font-size="9" font-weight="600">STEP 2</text>
+  <text x="120" y="234" text-anchor="middle" fill="white" font-size="13" font-weight="700">👁️ 感知 &amp; 解析</text>
+  <text x="120" y="252" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="9">多模态输入处理</text>
+  <text x="120" y="266" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8">意图识别 · 上下文提取</text>
+
+  <!-- STEP 3: Memory Retrieval -->
+  <g filter="url(#shadow)">
+    <rect x="30" y="302" width="180" height="76" rx="10" fill="url(#g4)"/>
+  </g>
+  <text x="42" y="323" fill="rgba(255,255,255,0.6)" font-size="9" font-weight="600">STEP 3</text>
+  <text x="120" y="340" text-anchor="middle" fill="white" font-size="13" font-weight="700">🗄️ 记忆检索</text>
+  <text x="120" y="358" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="9">读取相关历史 &amp; 知识</text>
+  <text x="120" y="372" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8">向量检索 · 对话历史</text>
+
+  <!-- STEP 4: Planning -->
+  <g filter="url(#shadow)">
+    <rect x="30" y="408" width="180" height="76" rx="10" fill="url(#g3)"/>
+  </g>
+  <text x="42" y="429" fill="rgba(255,255,255,0.6)" font-size="9" font-weight="600">STEP 4</text>
+  <text x="120" y="446" text-anchor="middle" fill="white" font-size="13" font-weight="700">⚙️ 规划 &amp; 推理</text>
+  <text x="120" y="464" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="9">LLM 分解任务 · 制定计划</text>
+  <text x="120" y="478" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8">CoT · ReAct · ToT</text>
+
+  <!-- STEP 5: Action Decision -->
+  <g filter="url(#shadow)">
+    <rect x="30" y="514" width="180" height="76" rx="10" fill="url(#g5)"/>
+  </g>
+  <text x="42" y="535" fill="rgba(255,255,255,0.6)" font-size="9" font-weight="600">STEP 5</text>
+  <text x="120" y="552" text-anchor="middle" fill="white" font-size="13" font-weight="700">🎯 动作决策</text>
+  <text x="120" y="570" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="9">选择工具 / 直接回答</text>
+  <text x="120" y="584" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8">Function Calling · API</text>
+
+  <!-- ====== VERTICAL ARROWS left column ====== -->
+  <line x1="120" y1="167" x2="120" y2="194" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="120" y1="273" x2="120" y2="300" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="120" y1="379" x2="120" y2="406" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="120" y1="485" x2="120" y2="512" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Data label on arrows -->
+  <text x="128" y="184" fill="#64748b" font-size="8">原始输入</text>
+  <text x="128" y="290" fill="#64748b" font-size="8">结构化意图</text>
+  <text x="128" y="396" fill="#64748b" font-size="8">增强上下文</text>
+  <text x="128" y="502" fill="#64748b" font-size="8">执行计划</text>
+
+  <!-- ====== CENTER: LLM ENGINE ====== -->
+  <g filter="url(#shadow)">
+    <rect x="390" y="260" width="220" height="180" rx="16" fill="#0f172a" stroke="#3b82f6" stroke-width="2"/>
+  </g>
+  <!-- Inner glow border -->
+  <rect x="393" y="263" width="214" height="174" rx="14" fill="none" stroke="#60a5fa" stroke-width="0.5" opacity="0.4"/>
+
+  <text x="500" y="294" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="600" letter-spacing="2">CORE ENGINE</text>
+  <text x="500" y="318" text-anchor="middle" fill="white" font-size="20" font-weight="700">🧠 LLM</text>
+  <line x1="415" y1="330" x2="585" y2="330" stroke="#1e3a8a" stroke-width="1"/>
+  <text x="500" y="350" text-anchor="middle" fill="#93c5fd" font-size="10">Transformer · Attention</text>
+  <text x="500" y="370" text-anchor="middle" fill="#7dd3fc" font-size="9">推理 / 生成 / 决策</text>
+  <text x="500" y="390" text-anchor="middle" fill="#64748b" font-size="8">GPT-4 · Claude · Gemini · Llama</text>
+  <text x="500" y="413" text-anchor="middle" fill="#475569" font-size="8">Prompt → Completion</text>
+  <text x="500" y="430" text-anchor="middle" fill="#334155" font-size="8">Temperature · Top-p · Max tokens</text>
+
+  <!-- Connection arrows: left column → LLM -->
+  <!-- Step 2 → LLM (perception output) -->
+  <path d="M 211 234 Q 320 234 390 310" stroke="#f59e0b" stroke-width="1.8" fill="none" marker-end="url(#arr-orange)" stroke-dasharray="5,3"/>
+  <text x="280" y="254" fill="#f59e0b" font-size="8" transform="rotate(-10,280,254)">结构化输入</text>
+
+  <!-- Step 3 → LLM (memory) -->
+  <line x1="211" y1="340" x2="388" y2="340" stroke="#a78bfa" stroke-width="1.8" marker-end="url(#arr-purple)" stroke-dasharray="5,3"/>
+  <text x="265" y="333" fill="#a78bfa" font-size="8">记忆上下文</text>
+
+  <!-- Step 4 ↔ LLM (planning is done by LLM) -->
+  <path d="M 211 446 Q 320 446 390 390" stroke="#60a5fa" stroke-width="1.8" fill="none" marker-end="url(#arr-blue)" stroke-dasharray="5,3"/>
+  <text x="270" y="436" fill="#60a5fa" font-size="8" transform="rotate(10,270,436)">推理指令</text>
+
+  <!-- ====== RIGHT COLUMN ====== -->
+
+  <!-- STEP 6: Tool Execution -->
+  <g filter="url(#shadow)">
+    <rect x="790" y="196" width="180" height="76" rx="10" fill="url(#g5)"/>
+  </g>
+  <text x="802" y="217" fill="rgba(255,255,255,0.6)" font-size="9" font-weight="600">STEP 6A</text>
+  <text x="880" y="234" text-anchor="middle" fill="white" font-size="13" font-weight="700">🔧 工具执行</text>
+  <text x="880" y="252" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="9">调用外部工具 / API</text>
+  <text x="880" y="266" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8">搜索 · 计算 · 数据库</text>
+
+  <!-- STEP 6B: Direct Answer -->
+  <g filter="url(#shadow)">
+    <rect x="790" y="302" width="180" height="76" rx="10" fill="url(#g6)"/>
+  </g>
+  <text x="802" y="323" fill="rgba(255,255,255,0.6)" font-size="9" font-weight="600">STEP 6B</text>
+  <text x="880" y="340" text-anchor="middle" fill="white" font-size="13" font-weight="700">💬 直接生成</text>
+  <text x="880" y="358" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="9">无需工具时直接回答</text>
+  <text x="880" y="372" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8">文本生成 · 分析 · 创作</text>
+
+  <!-- STEP 7: Observation -->
+  <g filter="url(#shadow)">
+    <rect x="790" y="408" width="180" height="76" rx="10" fill="url(#g7)"/>
+  </g>
+  <text x="802" y="429" fill="rgba(255,255,255,0.6)" font-size="9" font-weight="600">STEP 7</text>
+  <text x="880" y="446" text-anchor="middle" fill="white" font-size="13" font-weight="700">🔍 观察 &amp; 评估</text>
+  <text x="880" y="464" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="9">分析工具返回结果</text>
+  <text x="880" y="478" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8">是否完成目标？</text>
+
+  <!-- STEP 8: Memory Update -->
+  <g filter="url(#shadow)">
+    <rect x="790" y="514" width="180" height="76" rx="10" fill="url(#g4)"/>
+  </g>
+  <text x="802" y="535" fill="rgba(255,255,255,0.6)" font-size="9" font-weight="600">STEP 8</text>
+  <text x="880" y="552" text-anchor="middle" fill="white" font-size="13" font-weight="700">💾 记忆更新</text>
+  <text x="880" y="570" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="9">存储经验 &amp; 结果</text>
+  <text x="880" y="584" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8">写入短期 / 长期记忆</text>
+
+  <!-- LLM → Tool Execution -->
+  <path d="M 612 300 Q 700 220 788 234" stroke="#34d399" stroke-width="1.8" fill="none" marker-end="url(#arr-green)"/>
+  <text x="680" y="248" fill="#34d399" font-size="8" transform="rotate(-18,680,248)">工具调用指令</text>
+
+  <!-- LLM → Direct Answer -->
+  <line x1="612" y1="340" x2="788" y2="340" stroke="#22d3ee" stroke-width="1.8" marker-end="url(#arr)"/>
+  <text x="680" y="333" fill="#22d3ee" font-size="8">生成内容</text>
+
+  <!-- Tool Execution → Observation -->
+  <line x1="880" y1="273" x2="880" y2="406" stroke="#34d399" stroke-width="1.5" marker-end="url(#arr-green)" stroke-dasharray="4,2"/>
+  <text x="888" y="344" fill="#34d399" font-size="8">工具结果</text>
+
+  <!-- Direct Answer → Observation -->
+  <line x1="860" y1="379" x2="860" y2="406" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Observation → Memory Update -->
+  <line x1="880" y1="485" x2="880" y2="512" stroke="#fb923c" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+  <text x="888" y="502" fill="#fb923c" font-size="8">观察数据</text>
+
+  <!-- ====== FEEDBACK LOOP: Observation → LLM (if not done) ====== -->
+  <!-- Loop back arrow -->
+  <path d="M 788 446 Q 700 520 612 390" stroke="#f87171" stroke-width="2" fill="none" marker-end="url(#arr-red)" stroke-dasharray="6,3"/>
+  <text x="680" y="510" fill="#f87171" font-size="9" font-weight="600">🔄 未完成 → 继续推理</text>
+
+  <!-- ====== FINAL OUTPUT ====== -->
+  <g filter="url(#shadow)">
+    <rect x="365" y="560" width="270" height="80" rx="14" fill="url(#g8)"/>
+  </g>
+  <rect x="368" y="563" width="264" height="74" rx="12" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+  <text x="500" y="590" text-anchor="middle" fill="white" font-size="15" font-weight="700">✅ 最终输出</text>
+  <text x="500" y="610" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="10">完整答案 / 任务结果 / 行动报告</text>
+  <text x="500" y="628" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="9">呈现给用户</text>
+
+  <!-- Memory Update → Final Output -->
+  <path d="M 790 552 Q 700 600 637 590" stroke="#a78bfa" stroke-width="1.8" fill="none" marker-end="url(#arr-purple)" stroke-dasharray="5,3"/>
+
+  <!-- Observation "Done" → Final Output -->
+  <path d="M 788 470 Q 750 540 637 590" stroke="#34d399" stroke-width="2" fill="none" marker-end="url(#arr-green)"/>
+  <text x="740" y="538" fill="#34d399" font-size="9" font-weight="600">任务完成 ✓</text>
+
+  <!-- Step 5 (Action Decision) → LLM -->
+  <path d="M 211 552 Q 320 552 390 410" stroke="#34d399" stroke-width="1.5" fill="none" marker-end="url(#arr-green)" stroke-dasharray="4,2"/>
+  <text x="255" y="540" fill="#34d399" font-size="8">决策结果</text>
+
+  <!-- ====== DECISION DIAMOND ====== -->
+  <polygon points="500,490 530,515 500,540 470,515" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="500" y="519" text-anchor="middle" fill="#fbbf24" font-size="9" font-weight="700">完成?</text>
+  <text x="540" y="508" fill="#34d399" font-size="8">是</text>
+  <text x="540" y="528" fill="#f87171" font-size="8">否</text>
+  <!-- Lines to/from diamond -->
+  <line x1="880" y1="444" x2="532" y2="515" stroke="#f59e0b" stroke-width="1.2" marker-end="url(#arr-orange)" stroke-dasharray="4,2" opacity="0.7"/>
+  <line x1="500" y1="541" x2="500" y2="558" stroke="#34d399" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <!-- Loop back (No) -->
+  <path d="M 470 515 Q 360 515 390 350" stroke="#f87171" stroke-width="1.5" fill="none" marker-end="url(#arr-red)" stroke-dasharray="5,3" opacity="0.8"/>
+
+  <!-- ====== LEFT COLUMN STEP 5 → Decision ====== -->
+  <path d="M 211 552 Q 350 552 469 515" stroke="#10b981" stroke-width="1.5" fill="none" marker-end="url(#arr-green)" stroke-dasharray="4,2"/>
+
+  <!-- ====== LEGEND ====== -->
+  <rect x="18" y="618" width="460" height="66" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <text x="238" y="636" text-anchor="middle" fill="#475569" font-size="9" letter-spacing="1">FLOW LEGEND</text>
+  <line x1="30" y1="648" x2="70" y2="648" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="76" y="652" fill="#94a3b8" font-size="9">主流程</text>
+  <line x1="130" y1="648" x2="170" y2="648" stroke="#f87171" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-red)"/>
+  <text x="176" y="652" fill="#f87171" font-size="9">重试循环</text>
+  <line x1="240" y1="648" x2="280" y2="648" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-purple)"/>
+  <text x="286" y="652" fill="#a78bfa" font-size="9">记忆读写</text>
+  <line x1="350" y1="648" x2="390" y2="648" stroke="#34d399" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <text x="396" y="652" fill="#34d399" font-size="9">工具调用</text>
+  <!-- row 2 -->
+  <text x="30" y="674" fill="#64748b" font-size="8">💡 核心循环：感知→检索→规划→行动→观察→（判断）→输出 / 继续推理</text>
+</svg>
+
+</div>
+
+<h3 id="3-2-各主流框架实现方式对比"><a href="#3-2-各主流框架实现方式对比" class="headerlink" title="3.2 各主流框架实现方式对比"></a>3.2 各主流框架实现方式对比</h3><div style="overflow-x:auto;margin:16px 0">
+<table style="width:100%;border-collapse:collapse;font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:14px">
+  <thead>
+    <tr style="background:#1e3a8a;color:white">
+      <th style="padding:10px 14px;border:1px solid #2563eb">框架 / 模式</th>
+      <th style="padding:10px 14px;border:1px solid #2563eb">规划方式</th>
+      <th style="padding:10px 14px;border:1px solid #2563eb">循环控制</th>
+      <th style="padding:10px 14px;border:1px solid #2563eb">特色</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f8faff"><td style="padding:9px 14px;border:1px solid #e2e8f0"><b>ReAct（LangChain）</b></td><td style="padding:9px 14px;border:1px solid #e2e8f0">每步交替 Reasoning + Acting</td><td style="padding:9px 14px;border:1px solid #e2e8f0">步骤级循环</td><td style="padding:9px 14px;border:1px solid #e2e8f0">最接近通用流程，透明度高</td></tr>
+    <tr style="background:white"><td style="padding:9px 14px;border:1px solid #e2e8f0"><b>Plan-and-Execute</b></td><td style="padding:9px 14px;border:1px solid #e2e8f0">先完整规划再逐步执行</td><td style="padding:9px 14px;border:1px solid #e2e8f0">计划与执行分离</td><td style="padding:9px 14px;border:1px solid #e2e8f0">规划稳定，适合结构清晰任务</td></tr>
+    <tr style="background:#f8faff"><td style="padding:9px 14px;border:1px solid #e2e8f0"><b>AutoGPT / BabyAGI</b></td><td style="padding:9px 14px;border:1px solid #e2e8f0">先生成完整 Task List</td><td style="padding:9px 14px;border:1px solid #e2e8f0">外层任务列表循环</td><td style="padding:9px 14px;border:1px solid #e2e8f0">高度自主，容易越跑越偏</td></tr>
+    <tr style="background:white"><td style="padding:9px 14px;border:1px solid #e2e8f0"><b>Reflection Agent</b></td><td style="padding:9px 14px;border:1px solid #e2e8f0">执行后自我评估并修正</td><td style="padding:9px 14px;border:1px solid #e2e8f0">结果驱动反思循环</td><td style="padding:9px 14px;border:1px solid #e2e8f0">质量最高，但调用次数多</td></tr>
+    <tr style="background:#f8faff"><td style="padding:9px 14px;border:1px solid #e2e8f0"><b>Multi-Agent</b></td><td style="padding:9px 14px;border:1px solid #e2e8f0">多 Agent 分工规划</td><td style="padding:9px 14px;border:1px solid #e2e8f0">Agent 间消息循环</td><td style="padding:9px 14px;border:1px solid #e2e8f0">适合复杂大任务，可并行</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div style="background:#eff6ff;border-left:4px solid #3b82f6;border-radius:6px;padding:12px 16px;margin:12px 0;font-family:'PingFang SC','Microsoft YaHei',sans-serif">
+🔑 <b style="color:#1e40af">核心循环：</b><code style="background:#dbeafe;padding:2px 8px;border-radius:4px;font-size:13px">感知 → 检索 → 规划 → 行动 → 观察 → 判断（完成？）→ 输出 / 继续</code><br>
+<span style="color:#374151;font-size:13px;margin-top:6px;display:block">这个 OODA 循环（观察-判断-决策-行动）是所有 Agent 的共同本质。</span>
+</div>
+
+<hr>
+<h2 id="四、多轮-LLM-交互：一个任务需要几次调用？"><a href="#四、多轮-LLM-交互：一个任务需要几次调用？" class="headerlink" title="四、多轮 LLM 交互：一个任务需要几次调用？"></a>四、多轮 LLM 交互：一个任务需要几次调用？</h2><p>这是很多开发者初次接触 Agent 时最大的认知盲区：<strong>一个用户输入，可能会触发大量后台 LLM 调用</strong>。每一轮「推理→工具→观察→再推理」就是一次完整的 LLM 交互。</p>
+<div style="overflow-x:auto;margin:16px 0">
+<table style="width:100%;border-collapse:collapse;font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:14px">
+  <thead>
+    <tr style="background:#1e3a8a;color:white">
+      <th style="padding:10px 14px;border:1px solid #2563eb">任务复杂度</th>
+      <th style="padding:10px 14px;border:1px solid #2563eb">典型场景</th>
+      <th style="padding:10px 14px;border:1px solid #2563eb;text-align:center">LLM 调用次数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f8faff"><td style="padding:9px 14px;border:1px solid #e2e8f0">极简</td><td style="padding:9px 14px;border:1px solid #e2e8f0">直接回答，无需工具</td><td style="padding:9px 14px;border:1px solid #e2e8f0;text-align:center"><span style="background:#dcfce7;color:#166534;padding:2px 10px;border-radius:10px;font-size:13px">1 次</span></td></tr>
+    <tr style="background:white"><td style="padding:9px 14px;border:1px solid #e2e8f0">简单</td><td style="padding:9px 14px;border:1px solid #e2e8f0">单次工具调用（如搜索一次）</td><td style="padding:9px 14px;border:1px solid #e2e8f0;text-align:center"><span style="background:#dbeafe;color:#1e40af;padding:2px 10px;border-radius:10px;font-size:13px">2～3 次</span></td></tr>
+    <tr style="background:#f8faff"><td style="padding:9px 14px;border:1px solid #e2e8f0">中等</td><td style="padding:9px 14px;border:1px solid #e2e8f0">多步骤任务（查询→计算→汇总）</td><td style="padding:9px 14px;border:1px solid #e2e8f0;text-align:center"><span style="background:#fef9c3;color:#854d0e;padding:2px 10px;border-radius:10px;font-size:13px">4～8 次</span></td></tr>
+    <tr style="background:white"><td style="padding:9px 14px;border:1px solid #e2e8f0">复杂</td><td style="padding:9px 14px;border:1px solid #e2e8f0">多工具、多阶段综合任务</td><td style="padding:9px 14px;border:1px solid #e2e8f0;text-align:center"><span style="background:#ffedd5;color:#9a3412;padding:2px 10px;border-radius:10px;font-size:13px">10～20 次</span></td></tr>
+    <tr style="background:#f8faff"><td style="padding:9px 14px;border:1px solid #e2e8f0">自主型任务</td><td style="padding:9px 14px;border:1px solid #e2e8f0">AutoGPT 类长程任务</td><td style="padding:9px 14px;border:1px solid #e2e8f0;text-align:center"><span style="background:#fee2e2;color:#991b1b;padding:2px 10px;border-radius:10px;font-size:13px">无上限 ♾️</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="4-1-多轮交互带来的工程挑战"><a href="#4-1-多轮交互带来的工程挑战" class="headerlink" title="4.1 多轮交互带来的工程挑战"></a>4.1 多轮交互带来的工程挑战</h3><h4 id="挑战一：Context-窗口膨胀"><a href="#挑战一：Context-窗口膨胀" class="headerlink" title="挑战一：Context 窗口膨胀"></a>挑战一：Context 窗口膨胀</h4><p>每轮都要将上轮推理和工具返回结果追加进 Prompt，Context 随轮次线性增长。到第 10 轮时，一个任务可能已消耗数万 Token。主流解法：</p>
+<ul>
+<li><strong>记忆压缩（Memory Summarization）</strong>：定期将历史轮次总结成摘要，替换原始对话。</li>
+<li><strong>记忆分层（Hierarchical Memory）</strong>：热记忆保留近期上下文，冷记忆归档到向量数据库按需检索。</li>
+<li><strong>滑动窗口（Sliding Window）</strong>：只保留最近 N 轮，丢弃过早的历史。</li>
+</ul>
+<h4 id="挑战二：错误累积（Error-Propagation）"><a href="#挑战二：错误累积（Error-Propagation）" class="headerlink" title="挑战二：错误累积（Error Propagation）"></a>挑战二：错误累积（Error Propagation）</h4><p>第 3 轮的推理偏差会在第 5 轮被放大，第 8 轮可能完全跑偏。主流解法：</p>
+<ul>
+<li><strong>自我反思（Self-Reflection）</strong>：每步执行后显式让 LLM 评估是否符合目标。</li>
+<li><strong>Critic Agent</strong>：引入独立评审 Agent 对主 Agent 的行动进行纠偏。</li>
+<li><strong>最大步数限制（max_iterations）</strong>：设置硬上限防止无限循环，保障系统可控性。</li>
+</ul>
+<div style="background:#fff1f2;border-left:4px solid #f87171;border-radius:6px;padding:12px 16px;margin:12px 0;font-family:'PingFang SC','Microsoft YaHei',sans-serif">
+⚠️ <b style="color:#991b1b">工程建议：</b>生产环境部署 Agent 时，务必设置 <code>max_iterations</code>（建议 10～20）、记忆压缩策略，以及 Fallback 机制，否则容易出现超时、超额计费、结果漂移等问题。
+</div>
+
+<hr>
+<h2 id="五、2025-年主流-Agent-产品版图"><a href="#五、2025-年主流-Agent-产品版图" class="headerlink" title="五、2025 年主流 Agent 产品版图"></a>五、2025 年主流 Agent 产品版图</h2><div style="overflow-x:auto;margin:16px 0">
+<table style="width:100%;border-collapse:collapse;font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:14px">
+  <thead>
+    <tr style="background:#1e3a8a;color:white">
+      <th style="padding:10px 14px;border:1px solid #2563eb">类型</th>
+      <th style="padding:10px 14px;border:1px solid #2563eb">代表产品</th>
+      <th style="padding:10px 14px;border:1px solid #2563eb;text-align:center">开源</th>
+      <th style="padding:10px 14px;border:1px solid #2563eb">部署方式</th>
+      <th style="padding:10px 14px;border:1px solid #2563eb">核心优势</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#eff6ff"><td style="padding:9px 14px;border:1px solid #e2e8f0"><span style="background:#dbeafe;color:#1e40af;padding:2px 8px;border-radius:6px;font-size:12px">🔵 对话增强型</span></td><td style="padding:9px 14px;border:1px solid #e2e8f0">ChatGPT / Claude / Gemini</td><td style="padding:9px 14px;border:1px solid #e2e8f0;text-align:center">❌</td><td style="padding:9px 14px;border:1px solid #e2e8f0">云端 SaaS</td><td style="padding:9px 14px;border:1px solid #e2e8f0">用户体验最成熟，生态最完整</td></tr>
+    <tr style="background:white"><td style="padding:9px 14px;border:1px solid #e2e8f0"><span style="background:#ffedd5;color:#9a3412;padding:2px 8px;border-radius:6px;font-size:12px">🟠 通用自主型</span></td><td style="padding:9px 14px;border:1px solid #e2e8f0">Manus AI / Deep Research</td><td style="padding:9px 14px;border:1px solid #e2e8f0;text-align:center">❌</td><td style="padding:9px 14px;border:1px solid #e2e8f0">云端 SaaS</td><td style="padding:9px 14px;border:1px solid #e2e8f0">任务自主程度高，少需人工干预</td></tr>
+    <tr style="background:#f8faff"><td style="padding:9px 14px;border:1px solid #e2e8f0"><span style="background:#ffedd5;color:#9a3412;padding:2px 8px;border-radius:6px;font-size:12px">🟠 通用自主型</span></td><td style="padding:9px 14px;border:1px solid #e2e8f0">Claude Code / AutoGPT</td><td style="padding:9px 14px;border:1px solid #e2e8f0;text-align:center">部分 ✅</td><td style="padding:9px 14px;border:1px solid #e2e8f0">本地/云端</td><td style="padding:9px 14px;border:1px solid #e2e8f0">开发者友好，可定制性强</td></tr>
+    <tr style="background:white"><td style="padding:9px 14px;border:1px solid #e2e8f0"><span style="background:#dcfce7;color:#166534;padding:2px 8px;border-radius:6px;font-size:12px">🟢 计算机控制型</span></td><td style="padding:9px 14px;border:1px solid #e2e8f0">Operator / Computer Use</td><td style="padding:9px 14px;border:1px solid #e2e8f0;text-align:center">❌</td><td style="padding:9px 14px;border:1px solid #e2e8f0">云端 API</td><td style="padding:9px 14px;border:1px solid #e2e8f0">最广行动边界，可操控任意 UI</td></tr>
+    <tr style="background:#f8faff"><td style="padding:9px 14px;border:1px solid #e2e8f0"><span style="background:#dcfce7;color:#166534;padding:2px 8px;border-radius:6px;font-size:12px">🟢 计算机控制型</span></td><td style="padding:9px 14px;border:1px solid #e2e8f0">Devin (Cognition)</td><td style="padding:9px 14px;border:1px solid #e2e8f0;text-align:center">❌</td><td style="padding:9px 14px;border:1px solid #e2e8f0">云端 SaaS</td><td style="padding:9px 14px;border:1px solid #e2e8f0">软件工程专用，完整虚拟环境</td></tr>
+    <tr style="background:white"><td style="padding:9px 14px;border:1px solid #e2e8f0"><span style="background:#f3e8ff;color:#6b21a8;padding:2px 8px;border-radius:6px;font-size:12px">🟣 多 Agent 协作</span></td><td style="padding:9px 14px;border:1px solid #e2e8f0">AutoGen / CrewAI</td><td style="padding:9px 14px;border:1px solid #e2e8f0;text-align:center">✅</td><td style="padding:9px 14px;border:1px solid #e2e8f0">本地部署</td><td style="padding:9px 14px;border:1px solid #e2e8f0">灵活组合，适合复杂工作流</td></tr>
+    <tr style="background:#f8faff"><td style="padding:9px 14px;border:1px solid #e2e8f0"><span style="background:#f0fdf4;color:#166534;padding:2px 8px;border-radius:6px;font-size:12px;border:1px solid #bbf7d0">🏠 本地自托管型</span></td><td style="padding:9px 14px;border:1px solid #e2e8f0">OpenClaw（前Clawdbot）</td><td style="padding:9px 14px;border:1px solid #e2e8f0;text-align:center">✅</td><td style="padding:9px 14px;border:1px solid #e2e8f0">本地自托管</td><td style="padding:9px 14px;border:1px solid #e2e8f0">数据隐私，24h 在线个人助理</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>值得关注的 2025 年新趋势：</strong></p>
+<ul>
+<li><strong>底层模型趋同</strong>：几乎所有主流 Agent 产品都依赖 GPT-4、Claude、Gemini 系列，产品差异越来越体现在工具链整合和架构设计上。</li>
+<li><strong>标准协议出现</strong>：Anthropic 发布 MCP（Model Context Protocol），尝试标准化 Agent 与外部工具的接口。</li>
+<li><strong>本地化 Agent 兴起</strong>：OpenClaw（前身 Clawdbot）等开源本地 Agent 走红，显示用户对数据隐私的强需求。</li>
+<li><strong>Multi-Agent 走向生产</strong>：AutoGen、LangGraph 等框架逐渐从实验走向生产部署。</li>
+</ul>
+<hr>
+<h2 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h2><p>AI Agent 经历了从「规则→记忆→目标→学习」的能力演进，又在工程实践中分化出对话增强、通用自主、计算机控制、多智能体协作四大产品类型。每种类型在自主程度、风险控制、用户体验上各有取舍。</p>
+<p>在执行层面，Agent 的本质是一个持续循环的「感知-推理-行动-观察」系统，一个复杂任务可能需要数十次 LLM 调用。理解这一点，是设计可靠 Agent 系统的前提。</p>
+<p>展望未来，随着 LLM 能力提升、工具协议标准化（如 MCP）和本地模型成熟，AI Agent 将从开发者工具快速向普通用户的日常助理演进。</p>
+<div style="text-align:center;margin:32px 0 16px">
+<div style="display:inline-block;background:linear-gradient(135deg,#eff6ff,#e0f2fe);border:1px solid #93c5fd;border-radius:10px;padding:16px 32px;font-family:'PingFang SC','Microsoft YaHei',sans-serif">
+  <span style="color:#1e40af;font-size:16px;font-weight:700;font-style:italic">LLM 是 Agent 世界的 CPU，真正的竞争在架构层。</span>
+</div>
+</div>
+
+<div align="center" style="color:#94a3b8;font-size:13px;font-family:sans-serif;margin-top:24px">
+
+© 2025 技术博客 · AI Agent 全景图
+
+</div>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</div></article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/4b22bb79/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/4b22bb79/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    2. Agent架构详解
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/ab3e4120/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/ab3e4120/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">4. Agent应用价值探索</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

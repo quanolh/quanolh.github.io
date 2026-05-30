@@ -1,0 +1,573 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>1.架构设计方法论理解 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="Architecture">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.架构设计方法论理解">
+<meta property="og:url" content="https://waisec.cn/wiki/eade858c/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-05-07T14:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.115Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="Architecture">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "1.架构设计方法论理解",
+    "url": "https://waisec.cn/wiki/eade858c/",
+    "datePublished": "2024-05-07T14:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.115Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "Architecture"
+    
+}
+</script>
+
+<article id="post-平台工具 | 工程架构和工具/[2]架构设计/01.架构设计体系与方法论/001.架构设计方法论的理解" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%AF%B9%E6%9E%B6%E6%9E%84%E7%9A%84%E8%AE%A4%E8%AF%86"><span class="toc-text">1.对架构的认识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E6%9E%B6%E6%9E%84%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">1.1 架构是什么?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E6%80%8E%E4%B9%88%E5%AD%A6%E4%B9%A0%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">1.2 怎么学习架构设计</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%8E%86%E5%8F%B2%E8%83%8C%E6%99%AF"><span class="toc-text">2.架构设计的历史背景</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E7%BB%93%E6%9E%84%E5%8C%96%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="toc-text">2.1 结构化程序设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="toc-text">2.2 面向对象程序设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E7%9A%84%E5%8E%86%E5%8F%B2%E8%83%8C%E6%99%AF"><span class="toc-text">2.3 软件架构的历史背景</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E7%9A%84%E7%9B%AE%E7%9A%84"><span class="toc-text">3. 架构设计的目的</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E7%B3%BB%E7%BB%9F%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-text">3.1 系统复杂度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E5%81%9A%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">3.2 做架构设计的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E5%A4%8D%E6%9D%82%E5%BA%A6%E6%9D%A5%E6%BA%90"><span class="toc-text">3.3 复杂度来源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1-%E9%AB%98%E6%80%A7%E8%83%BD"><span class="toc-text">3.3.1 高性能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2-%E9%AB%98%E5%8F%AF%E7%94%A8"><span class="toc-text">3.3.2 高可用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-3-%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7"><span class="toc-text">3.3.3 可扩展性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-4-%E4%BD%8E%E6%88%90%E6%9C%AC%E3%80%81%E5%AE%89%E5%85%A8%E3%80%81%E8%A7%84%E6%A8%A1"><span class="toc-text">3.3.4 低成本、安全、规模</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E4%B8%89%E5%8E%9F%E5%88%99"><span class="toc-text">4. 架构设计三原则</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E5%90%88%E9%80%82"><span class="toc-text">4.1 合适</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E7%AE%80%E5%8D%95"><span class="toc-text">4.2 简单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E6%BC%94%E5%8C%96"><span class="toc-text">4.3 演化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-%E5%85%B6%E5%AE%83%E5%8E%9F%E5%88%99"><span class="toc-text">4.4 其它原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99%E6%A1%88%E4%BE%8B"><span class="toc-text">4.5 系统架构设计原则案例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%B5%81%E7%A8%8B"><span class="toc-text">5. 架构设计流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C%E7%9A%84%E6%9E%B6%E6%9E%84%E5%88%86%E7%B1%BB"><span class="toc-text">不同的架构分类</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/2-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">[2]架构设计</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/2-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/01-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E4%BD%93%E7%B3%BB%E4%B8%8E%E6%96%B9%E6%B3%95%E8%AE%BA/">01.架构设计体系与方法论</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Architecture/" rel="tag">Architecture</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/05/" onclick="onclickRoute(event, '/archives/2024/05/')">
+            <time datetime="2024-05-07T14:55:57.000Z" itemprop="datePublished">2024-05-07</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="Architecture">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/eade858c/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            架构设计方法论理解
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <h1 id="1-对架构的认识"><a href="#1-对架构的认识" class="headerlink" title="1.对架构的认识"></a>1.对架构的认识</h1><h2 id="1-1-架构是什么"><a href="#1-1-架构是什么" class="headerlink" title="1.1 架构是什么?"></a>1.1 架构是什么?</h2><p>对于技术人员，“架构”是一个很常见的词。  整个系统的架构、架构设计评审、开源系统(mysql、hadoop)的架构、大公司的架构 (微信、淘宝架构) 等。  <strong><em>虽然“架构”这个词常见，但深究一下<span style="color: red;">“架构”到底指什么</span>，大部分人可能不一定能够准确的回答出来</em></strong>，比如：</p>
+<ul>
+<li>架构和框架什么关系？有什么区别？</li>
+<li>linux有架构、MySQL有架构、微信也有架构、当我们谈到这些架构是，到底在谈什么架构？</li>
+</ul>
+<p>要解释这些问题， 首先要搞清楚几个相关而且相似的概念：<strong><em>系统与子系统、模块与组件、框架和架构</em></strong>。</p>
+<ul>
+<li>系统：一群有关联的组成，根据某种规则运行，能完成个别元件不能单独完成的工作的群体。(整体、总体; 关键词： 关联、规则、能力) </li>
+<li>子系统：(观察视角的差异) 一个系统可能另外一个更大的系统的子系统；一个系统也可能包含多个子系统</li>
+<li><span style="color: red;">模块和组件</span>：（在实际工作中也容易混淆）模块和组件都是系统的组成部分，只是从不同的角度拆分系统。<ul>
+<li>从逻辑角度拆分出来的称作 模块； 划分模块的主要目的是职责分离</li>
+<li>从物理的角度拆分 的带的组件； 划分组件的目的是 单元复用</li>
+</ul>
+</li>
+</ul>
+<p>举例：一个简单的网站系统(比如学生信息管理系统)。 从逻辑的角度拆分，可以分为“登录注册模块” “个人信息模块”； 从物理的角度拆分，可以拆分为nginx、web服务器、mysql等组件。<br>组件更多的是体现复用，而模块体现的是系统的逻辑组成.</p>
+<p><span style="color: red;">框架与架构</span>： (比较相似的概念，有较强的的关联关系)</p>
+<ul>
+<li>框架 是组件规范：例如mvc、mvp、j2ee等； 框架提供基础功能的产品。</li>
+<li><strong><em>软件架构：指软件系统的“基础结构”， 创造这些基础结构的准则，以及这些结构的描述</em></strong></li>
+</ul>
+<p>但： 平常经常会遇到一些似是而非的说法。 比如：“我们的系统是MVC架构”， “重构成MVP架构”， “基于SSH框架开发”，“是SSH的架构”<br>这些说法都是对的，原因在于架构的定义中：“基础结构”这个概念， 并没有明确说 从什么角度来分解，采用不同的角度或者维度，可以将系统分为不同的结构。</p>
+<p>比如，学生信息管理系统中，从<strong><em>业务逻辑的角度分解</em></strong>，系统的架构是”有哪些模块，模块之间的关系“；<br>从<strong><em>物理部署的角度分解</em></strong>， 系统的架构是”用了什么组件，之间的关系(数据流向)“<br>从<strong><em>开发规范的角度分解</em></strong>，系统采用MVC框架来开发，因此架构又变成了MVC架构，”由Controller、View、Model 组成；之间什么关系(数据流向)”</p>
+<p>这些架构， 都是“学生管理系统”正确的架构，只是从不同的角度来分解而已， 这也是IBM的RUP将<strong><em>软件架构视图</em></strong>分为著名的“<strong><em>4+1视图</em></strong>”的原因。</p>
+<p>最终的架构定义： <span style="color: red;">软件架构</span> 指<span style="color: red;"><strong>软件系统的顶层结构</strong></span>。 (这个定义看似简单，但把系统、子系统、组件、模块、架构等概念都串起来了， 包含的信息丰富)</p>
+<h2 id="1-2-怎么学习架构设计"><a href="#1-2-怎么学习架构设计" class="headerlink" title="1.2 怎么学习架构设计"></a>1.2 怎么学习架构设计</h2><p>我们工作中见到过很多架构设计，也做过一些架构设计。 但是我们做的好不好呢，很多人尤其开发人员做的系统上线后才发现很多设计上的问题，没有系统的规划和解决。</p>
+<p>是因为 没有系统化的 架构设计思想和能力。 没有完整的从头到尾，从需求分析、软件系统的复杂度分析，到详细设计和时间 完整的结合业务场景做系统设计。  </p>
+<p>不管是我们遇到的 各个领域的架构 比如搜索架构、安全风控架构， 还是其中的数据架构、子系统架构。</p>
+<p><strong><em>其实最重要的是 结合实际业务场景，搞清楚架构设计的目的了；学习系统的架构设计方法和思路； 实践总结经验。</em></strong></p>
+<p><span style="font-size: 12px;"><em>tips:了解架构模式及技术的发展历程， 在什么背景下出现，解决了什么问题。 无论是在平常的工作还是系统架构设计中，最重要的是发现和识别清楚问题。<br>解决问题的方法有很多。其次是选择合适的方法(合适的架构模式和技术)</em></span></p>
+<h1 id="2-架构设计的历史背景"><a href="#2-架构设计的历史背景" class="headerlink" title="2.架构设计的历史背景"></a>2.架构设计的历史背景</h1><h2 id="2-1-结构化程序设计"><a href="#2-1-结构化程序设计" class="headerlink" title="2.1 结构化程序设计"></a>2.1 结构化程序设计</h2><p>20 世纪 60 年代 ，高级语言的出现后，随着软件的规模和复杂度的大大增加，60年代中期出现一些软件危机。 典型表现有<strong><em>软件质量低下、项目无法如期完成、项目严重超支等</em></strong>，因为软件而导致的重大事故时有发生。（1963 年美国的水手一号火箭发射失败事故， 由于一行FORTRAN代码错误导致）</p>
+<p>大型软件项目的延期、成本超支，结构化程序设计方案应运而生。<br>结构化程序设计的主要特点是抛弃 goto 语句，采取“自顶向下、逐步细化、模块化”的指导思想。结构化程序设计本质上还是一种面向过程的设计思想，但通过“自顶向下、逐步细化、模块 化”的方法，将软件的复杂度控制在一定范围内，从而从整体上降低了软件开发的复杂度。结构 化程序方法成为了 20 世纪 70 年代软件开发的潮流。</p>
+<h2 id="2-2-面向对象程序设计"><a href="#2-2-面向对象程序设计" class="headerlink" title="2.2 面向对象程序设计"></a>2.2 面向对象程序设计</h2><p>然而随着硬件的快速发展，业务需求越来越复杂，以及编程应用领域越来越广泛，第二次软件危机很快就到来了。<br>根本原因还是在于软件生产力远远跟不上硬件和业务的发展。</p>
+<p>第一次软件危机的根源在于软件的“逻辑”变得非常复杂，而第二次软件危机主要体现在软件的“扩展”变得非常复杂</p>
+<ul>
+<li>结构化程序设计虽解决或者缓解了软件逻辑的复杂性；面向对象解决业务变化带来的软件扩展。</li>
+</ul>
+<p>面向对象真正开始流行是在 20 世纪 80 年 代，主要得益于 C++ 的功劳，后来的 Java、C# 把面向对象推向了新的高峰。<br>第二次软件危机促进了面向对象的发展。</p>
+<h2 id="2-3-软件架构的历史背景"><a href="#2-3-软件架构的历史背景" class="headerlink" title="2.3 软件架构的历史背景"></a>2.3 软件架构的历史背景</h2><p>流行在 20 世纪 90 年代开始<br>随着软件系统规模的增加，计算相关的算法和数据结构不再构成主要的设计问题;当系统由许多部分组成时，整个系统的组织，也就是所说的“软件架构”，导致了一系列新的设计问题。</p>
+<ul>
+<li>系统规模庞大，内部耦合严重，开发效率低;</li>
+<li>系统耦合严重，牵一发动全身，后续修改和扩展困难;</li>
+<li>系统逻辑复杂，容易出问题，出问题后很难排查和修复。</li>
+</ul>
+<p>随着软件规模的发展，不同时期产生了 “结构化编程”、“”模块，“面向对象编程”、“对象”，“软件架构”、“组件”。<br>我们可以看 到，“模块”“对象”“组件”本质上都是对达到一定规模的软件进行拆分，差别只是在于随着 软件的复杂度不断增加，拆分的粒度越来越粗，拆分的层次越来越高。</p>
+<h1 id="3-架构设计的目的"><a href="#3-架构设计的目的" class="headerlink" title="3. 架构设计的目的"></a>3. 架构设计的目的</h1><p>很多人对架构设计的真正目的还是比较模糊。 先来看几个问题：<br>做了架构设计就能提升开发效率么?<br>设计良好的架构能促进业务发展么?<br>不是每个系统都要做架构设计吗<br>为了高性能、高可用、可扩展，所以要做架构设计？ 但不是所有的系统都需要高性能、高可用。</p>
+<p>那架构设计的真正目的是什么呢？</p>
+<p>从架构设计的历史背景看，整个软件技术发展的历史，其实就是一部与<span style="color: red;"><strong><em>“复杂度”</em></strong></span>斗争的历史，架构的出现也不例外。  简而言之，架构也是为了应对软件系统复杂度而提出的一个解决方案</p>
+<h2 id="3-1-系统复杂度"><a href="#3-1-系统复杂度" class="headerlink" title="3.1 系统复杂度"></a>3.1 系统复杂度</h2><p>架构设计的目的架构 是<span style="color: red;">为了解决软件系统复杂度带来的问题</span>。 (回顾架构产生的历史背景和原因)</p>
+<p>结论虽然简洁,但却是架构设计过程中需要时刻铭记在心的一条准则.</p>
+<h2 id="3-2-做架构设计的理解"><a href="#3-2-做架构设计的理解" class="headerlink" title="3.2 做架构设计的理解"></a>3.2 做架构设计的理解</h2><p>通过熟悉和理解需求，识别系统复杂性所在的地方，然后针对这些复杂点进行架构设计。</p>
+<p>架构设计并不是要面面俱到，不需要每个架构都具备高性能、高可用、高扩展等特点，而 是要识别出复杂点然后有针对性地解决问题。</p>
+<p>理解每个架构方案背后所需要解决的复杂点，然后才能对比自己的业务复杂点，参考复杂 点相似的方案。</p>
+<p>如果系统的复杂度不是在性能这部分，TPS 做到 10 万并没有什么用。</p>
+<p>淘宝的架构是为了解决淘宝业务的复杂度而设计的，淘宝的业务复杂度并不就是我们的业 务复杂度，绝大多数业务的用户量都不可能有淘宝那么大。</p>
+<p>Docker 不是万能的，只是为了解决资源重用和动态分配而设计的，如果我们的系统复杂度 根本不是在这方面，引入 Docker 没有什么意义。</p>
+<h2 id="3-3-复杂度来源"><a href="#3-3-复杂度来源" class="headerlink" title="3.3 复杂度来源"></a>3.3 复杂度来源</h2><h3 id="3-3-1-高性能"><a href="#3-3-1-高性能" class="headerlink" title="3.3.1 高性能"></a>3.3.1 高性能</h3><p>软件系统中高性能带来的复杂度主要体现在两方面，一方面是单台计算机内部为了高性能带来的复杂度;另一方面是多台计算机集群为了高性能带来的复杂度。</p>
+<ul>
+<li><p>单机复杂度<br>计算机内部复杂度最关键的地方就是操作系统。<br>操作系统和性能最相关的就是进程和线程。<br>为了解决手工操作带来的低效，批处理操作系统应运而生。<br>为了进一步提升性能，人们发明了“进程”，用进程来对应一个任务，每个任务都有自己独立的 内存空间，进程间互不相关，由操作系统来进行调度。<br>多进程虽然要求每个任务都有独立的内存空间，进程间互不相关，但从用户的角度来看，两个任务之间能够在运行过程中就进行通信，会让任务设计变得更加灵活高效。</p>
+</li>
+<li><p>集群的复杂度<br>虽然计算机硬件的性能快速发展，但和业务的发展速度相比，还是小巫见大巫了，尤其是进入互联网时代后，业务的发展速度远远超过了硬件的发展速度。</p>
+<p>任务分配<br>任务分解</p>
+</li>
+</ul>
+<p>简单的系统更加容易做到高性能<br>可以针对单个任务进行扩展</p>
+<h3 id="3-3-2-高可用"><a href="#3-3-2-高可用" class="headerlink" title="3.3.2 高可用"></a>3.3.2 高可用</h3><p>计算高可用<br>存储高可用</p>
+<p>高可用状态决策</p>
+<ul>
+<li>独裁式：独裁式决策指的是存在一个独立的决策主体，我们姑且称它为“决策者”，负责收集信息然后进行决策;所有冗余的个体，我们姑且称它为“上报者”，都将状态信息发送给决策者。</li>
+<li>协商式：协商式决策指的是两个独立的个体通过交流信息，然后根据规则进行决策，最常用的协商式决策就是主备决策。</li>
+<li>民主式：民主式决策指的是多个独立的个体通过投票的方式来进行状态决策。例如，ZooKeeper 集群在 选举 leader 时就是采用这种方式。</li>
+</ul>
+<h3 id="3-3-3-可扩展性"><a href="#3-3-3-可扩展性" class="headerlink" title="3.3.3 可扩展性"></a>3.3.3 可扩展性</h3><p>业务需求、运行环境方面的变化都会导致软件系统发生变化，而这种软件系统对上述变化的适应能力就是可扩展性。</p>
+<p>预测变化<br>应对变化</p>
+<h3 id="3-3-4-低成本、安全、规模"><a href="#3-3-4-低成本、安全、规模" class="headerlink" title="3.3.4 低成本、安全、规模"></a>3.3.4 低成本、安全、规模</h3><h1 id="4-架构设计三原则"><a href="#4-架构设计三原则" class="headerlink" title="4. 架构设计三原则"></a>4. 架构设计三原则</h1><p>系统架构设计原则</p>
+<p>合适原则：“合适优于业界领先”<br>简单原则：“简单优于复杂” （结构的复杂性、逻辑的复杂性）<br>演化原则：“演化优于一步到位”</p>
+<p>其他原则：高可用原则、可扩展性、可维护性、松耦合原则、性能优化原则、安全性原则、可测试性原则、成本效益原则、一致性原则.</p>
+<h2 id="4-1-合适"><a href="#4-1-合适" class="headerlink" title="4.1 合适"></a>4.1 合适</h2><p>领先的技术方案可能并不完全适配特定系统的实际需求、技术能力、预算限制、维护能力、以及业务发展阶段等因素。<br>例如：一个小型企业的内部管理系统，如果强行采用业界领先但复杂且昂贵的架构，可能会导致资源浪费、维护困难，反而不如选择一个简单、实用且适合其规模和业务特点的架构</p>
+<h2 id="4-2-简单"><a href="#4-2-简单" class="headerlink" title="4.2 简单"></a>4.2 简单</h2><p>简单的架构有以下优点：</p>
+<ol>
+<li>易于理解：开发团队成员能够更快速、更清晰的理解系统的整体结构和工作原理，降低沟通成本和理解偏差。</li>
+<li>易于维护：简单的架构减少了组件之间的交互复杂性，使得故障排查、修复和系统更新更容易运行，降低了维护成本和风险。</li>
+<li>提高开发效率：开发人员可以更高效地进行编码和测试，减少因为复杂逻辑导致的错误和延误。</li>
+<li>曾强可靠性：简单的架构通常具有更少的潜在故障点和意外情况。</li>
+<li>便于扩展：简单的基础架构在添加新功能或模块时，更容易进行规划和整合，不会因为复杂的现有结构而受到过多限制。</li>
+</ol>
+<h2 id="4-3-演化"><a href="#4-3-演化" class="headerlink" title="4.3 演化"></a>4.3 演化</h2><p>演化意味着随着时间的推移，根据业务需求的变化，技术的发展以及用户的反馈逐步改进和完善。这种方式具有以下优点：</p>
+<ol>
+<li>降低风险：避免在一开始就涉及一个过于庞大和复杂的架构，减少了由于前期规划不准确或考虑不周全导致的重大错误</li>
+<li>更好的适应变化：业务需求和技术环境通常是不断变化的。 通过演化的方式，架构能够更灵活地适应这些变化，而不是被最初的”一步到位“的设计所束缚。</li>
+<li>成本效益：逐步投入资源进行改进和扩展，相比一次投入大量资源构建一个可能不完全符合实际需求的架构，更加经济高效。</li>
+<li>增加学习和改进的机会，在演化过成汇总，团队能够不断积累经验，发现问题并及时调整，从而使架构越来越优化。</li>
+</ol>
+<h2 id="4-4-其它原则"><a href="#4-4-其它原则" class="headerlink" title="4.4 其它原则"></a>4.4 其它原则</h2><h2 id="4-5-系统架构设计原则案例"><a href="#4-5-系统架构设计原则案例" class="headerlink" title="4.5 系统架构设计原则案例"></a>4.5 系统架构设计原则案例</h2><h1 id="5-架构设计流程"><a href="#5-架构设计流程" class="headerlink" title="5. 架构设计流程"></a>5. 架构设计流程</h1><p>识别复杂度<br>设计备选方案<br>评估和选择备选方案<br>详细方案设计</p>
+<h1 id="不同的架构分类"><a href="#不同的架构分类" class="headerlink" title="不同的架构分类"></a>不同的架构分类</h1>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/f6316a6c/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/f6316a6c/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    ForkJoin
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/305c0198/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/305c0198/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">0.华为HCIE课程</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

@@ -1,0 +1,717 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>2.机器学习网络流量识别的应用 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="python">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2.机器学习网络流量识别的应用">
+<meta property="og:url" content="https://waisec.cn/wiki/d1e15ecd/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-19T16:48:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.154Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "2.机器学习网络流量识别的应用",
+    "url": "https://waisec.cn/wiki/d1e15ecd/",
+    "datePublished": "2024-03-19T16:48:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.154Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "python"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/6|算法工程/实践应用/002.机器学习方法在网络流量识别的应用" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0"><span class="toc-text">一、概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E6%A6%82%E8%BF%B0"><span class="toc-text">1.1 网络流量概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1-%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F"><span class="toc-text">1.1.1 网络流量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-%E6%9C%BA%E5%88%B7%E6%B5%81%E9%87%8F"><span class="toc-text">1.1.2 机刷流量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3-%E5%8F%8D%E7%88%AC"><span class="toc-text">1.1.3 反爬</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-4-%E5%8F%8D%E7%88%AC%E4%B8%8E%E6%9C%BA%E5%88%B7%E6%B5%81%E9%87%8F%E8%AF%86%E5%88%AB"><span class="toc-text">1.1.4 反爬与机刷流量识别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%85%B3%E7%B3%BB"><span class="toc-text">1. 关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%80%BB%E7%BB%93"><span class="toc-text">2. 总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%85%B7%E4%BD%93%E6%B5%81%E7%A8%8B"><span class="toc-text">3. 具体流程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E6%95%B0%E6%8D%AE%E5%88%86%E7%B1%BB%E6%96%B9%E6%B3%95"><span class="toc-text">1.2 网络流量数据分类方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E6%96%B9%E6%B3%95"><span class="toc-text">1.3 异常检测的定义和方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E7%9A%84%E6%84%8F%E4%B9%89"><span class="toc-text">1.4 异常检测的意义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="toc-text">1.5 相关概念</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%9F%BA%E4%BA%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">二、基于机器学习的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E8%81%9A%E7%B1%BB"><span class="toc-text">1.1 聚类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"><span class="toc-text">1.2 深度学习</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">三、数据集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-UNSW-NB15%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">3.1 UNSW-NB15数据集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1-%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">3.1.1 预处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2"><span class="toc-text">3.1.2</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%E5%92%8C%E7%AE%80%E5%8C%96%E6%96%B9%E6%B3%95"><span class="toc-text">四、特征选择和简化方法</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/6-%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/">6|算法工程</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/6-%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/%E5%AE%9E%E8%B7%B5%E5%BA%94%E7%94%A8/">实践应用</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/python/" rel="tag">python</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/03/" onclick="onclickRoute(event, '/archives/2024/03/')">
+            <time datetime="2024-03-19T16:48:57.000Z" itemprop="datePublished">2024-03-20</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="python">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/d1e15ecd/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            机器学习网络流量识别的应用
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h1><h2 id="1-1-网络流量概述"><a href="#1-1-网络流量概述" class="headerlink" title="1.1 网络流量概述"></a>1.1 网络流量概述</h2><p>网络流量是指在计算机网络中传输的数据量和类型，包括<strong><em>所有的进出流量</em></strong>，如用户请求、数据传输、协议交换等。<br>(网络流量 是所有数据在网络中的传输，涵盖了多种类型的流量。是相对更底层的应用)</p>
+<p>网络流量和网络安全的关系: 网络流量的管理和监控是确保网络安全的关键部分.<br>网络安全：旨在保护网络和其数据免受未经授权的访问、攻击、损坏或滥用。网络安全措施包括防火墙、入侵检测系统、加密、身份验证等。</p>
+<h3 id="1-1-1-网络流量"><a href="#1-1-1-网络流量" class="headerlink" title="1.1.1 网络流量"></a>1.1.1 网络流量</h3><p>网络流量 是一个广泛的概念，涵盖所有形式的网络数据传输，包括正常用户流量、管理流量等。</p>
+<ul>
+<li>网络流量 是所有数据在网络中的传输，涵盖了多种类型的流量。</li>
+</ul>
+<p>特征：</p>
+<ul>
+<li>类型：可以是正常的用户流量、管理流量、控制流量等。</li>
+<li>监控：网络流量监控涉及分析流量的源、目的、协议、频率等。</li>
+</ul>
+<p>“网络流量监控可以帮助识别机刷流量”</p>
+<h3 id="1-1-2-机刷流量"><a href="#1-1-2-机刷流量" class="headerlink" title="1.1.2 机刷流量"></a>1.1.2 机刷流量</h3><p>机刷流量 是特定类型的网络流量，由自动化工具生成，主要用于<strong><em>抓取数据</em></strong>或<strong><em>执行特定任务</em></strong>。</p>
+<ul>
+<li>机刷流量 是由自动化工具生成的网络流量，特定于数据抓取和自动化任务。</li>
+</ul>
+<p>机刷流量 是 网络流量 的一个子集，指的是特定的自动化流量。</p>
+<p>特征：</p>
+<ul>
+<li>自动化：由脚本或机器人生成，通常不涉及人工操作。</li>
+<li>模式：可能表现出一致的访问模式，如高频率请求、相同的请求模式等。</li>
+<li>目的：可以用于数据抓取、价格监控、竞争分析、广告欺诈等。</li>
+</ul>
+<p>影响：</p>
+<ul>
+<li>负载：机刷流量可能导致服务器负载增加，影响正常用户的体验。</li>
+<li>数据安全：可能导致数据泄露或被滥用。</li>
+</ul>
+<p>定义：这是识别和分类自动化流量的过程，包括检测由爬虫、机器人或脚本生成的流量。<br>目标：识别哪些流量是由自动化工具生成的，并与正常的用户流量区分开来。<br>方法：使用各种技术和算法（如行为分析、请求模式识别、IP 地址监控等）来检测机刷流量。</p>
+<h3 id="1-1-3-反爬"><a href="#1-1-3-反爬" class="headerlink" title="1.1.3 反爬"></a>1.1.3 反爬</h3><p>是一种保护机制，旨在识别和阻止机刷流量，防止自动化工具对网站内容进行抓取。</p>
+<p>反爬 针对的是机刷流量，它通过各种技术手段来识别和阻止这些自动化请求，从而保护网站的内容和资源。</p>
+<ul>
+<li>反爬 是防止机刷流量的措施，旨在保护网站和应用的数据不被自动化工具非法访问或抓取。</li>
+</ul>
+<p>特征：</p>
+<ul>
+<li>技术措施：包括验证码、IP限制、行为分析、动态内容加载等。</li>
+<li>目标：保护网站数据不被未经授权的爬虫或自动化工具抓取。</li>
+</ul>
+<p>影响</p>
+<ul>
+<li>防护：通过识别和阻止爬虫流量，保护网站的数据安全和性能。</li>
+</ul>
+<p>三者的关系：</p>
+<p>网络流量 监控可以帮助识别机刷流量，反爬技术则通过分析和过滤这些流量来减少其影响。</p>
+<h3 id="1-1-4-反爬与机刷流量识别"><a href="#1-1-4-反爬与机刷流量识别" class="headerlink" title="1.1.4 反爬与机刷流量识别"></a>1.1.4 反爬与机刷流量识别</h3><p>机刷流量识别（Bot Traffic Identification）、反爬（Anti-Scraping）</p>
+<p><strong><em>可以将机刷流量识别视为反爬的一个重要组成部分或上游步骤</em></strong></p>
+<h4 id="1-关系"><a href="#1-关系" class="headerlink" title="1. 关系"></a>1. 关系</h4><p>机刷流量识别 是 反爬 的前提和基础步骤。通过识别机刷流量，系统能够更准确地实施反爬策略。<br>识别：首先，需要通过各种检测技术识别出哪些流量是由自动化工具产生的。这包括分析流量模式、行为特征等。<br>响应：一旦识别出机刷流量，就可以应用反爬策略来阻止这些自动化工具。反爬措施可能包括发放验证码、限制访问频率、阻止特定IP等。</p>
+<h4 id="2-总结"><a href="#2-总结" class="headerlink" title="2. 总结"></a>2. 总结</h4><ul>
+<li>机刷流量识别 是识别自动化流量的过程，它为 反爬 提供了必要的信息和基础。</li>
+<li>反爬 策略利用这些识别信息来防止自动化工具抓取数据，保护网站免受机刷流量的影响。</li>
+</ul>
+<h4 id="3-具体流程"><a href="#3-具体流程" class="headerlink" title="3. 具体流程"></a>3. 具体流程</h4><p>数据收集：收集所有进入网站的流量数据，包括用户请求和行为。<br>流量分析：分析这些流量数据，以识别异常模式和行为特征。<br>机刷流量识别：使用机器学习算法、规则引擎等工具识别出哪些流量是由自动化工具生成的。<br>实施反爬措施：对识别出的机刷流量实施反爬技术，例如发放验证码、限制请求频率、阻止访问等。</p>
+<h2 id="1-2-网络流量数据分类方法"><a href="#1-2-网络流量数据分类方法" class="headerlink" title="1.2 网络流量数据分类方法"></a>1.2 网络流量数据分类方法</h2><p>网络流量的数据分类的主要方法有 （1）误用检测 （2）异常检测（3）状态完整协议分析</p>
+<p>误用检测也称为签名检测，根据预先定义的签名和过滤器，以有效的确定已知的入侵，但对于匿名入侵却无法检测，过度依赖于人为更新语料库。异常检测不是未知入侵的可靠检测方法，误报率高。市场上的大多数商业工具都是误用检测和异常检测的结合体。常用的强有力方法是状态完整协议分析，其使用软件供应商专有设计的功能来确定特定约定和应用程序的差异。</p>
+<h2 id="1-3-异常检测的定义和方法"><a href="#1-3-异常检测的定义和方法" class="headerlink" title="1.3 异常检测的定义和方法"></a>1.3 异常检测的定义和方法</h2><p>机器学习方法是目前用于IDS的突出方法。基于机器学习的网络流量数据分类大概可分为三种：聚类、传统机器学习分类方法和深度学习。<br>（1）聚类：无监督学习，如K-Means，FCM等；<br>（2）传统机器学习分类方法：半监督学习，如SVM，RF，GBT等；<br>（3）深度学习：监督学习，如DNN，CNN，RNN等；</p>
+<h2 id="1-4-异常检测的意义"><a href="#1-4-异常检测的意义" class="headerlink" title="1.4 异常检测的意义"></a>1.4 异常检测的意义</h2><p>异常数据检测非常重要。因为数据中的异常转化为各种应用领域中重要（且通常至关重要）可操作的信息。例如，计算机网络中的异常流量模式可能意味着被黑客攻击的计算机正在向未经授权的目的地发送敏感数据。异常 MRI 图像可能表示存在恶性肿瘤。信用卡交易数据中的异常可能表明信用卡或身份盗窃或航天器传感器的异常读数可能表示航天器某些部件存在故障。</p>
+<h2 id="1-5-相关概念"><a href="#1-5-相关概念" class="headerlink" title="1.5 相关概念"></a>1.5 相关概念</h2><ul>
+<li><p>IDS<br>IDS（Intrusion Detection System，入侵检测系统）是一种用于监视和分析计算机网络或系统中的活动，以识别和响应潜在的安全威胁或攻击的技术。<br>IDS 可以帮助检测和记录异常或恶意行为，从而保护系统免受未经授权的访问或损害。</p>
+</li>
+<li></li>
+</ul>
+<h1 id="二、基于机器学习的方法"><a href="#二、基于机器学习的方法" class="headerlink" title="二、基于机器学习的方法"></a>二、基于机器学习的方法</h1><p>what： 网络流量数据分类(基于机器学习)</p>
+<h2 id="1-1-聚类"><a href="#1-1-聚类" class="headerlink" title="1.1 聚类"></a>1.1 聚类</h2><h2 id="1-2-深度学习"><a href="#1-2-深度学习" class="headerlink" title="1.2 深度学习"></a>1.2 深度学习</h2><h1 id="三、数据集"><a href="#三、数据集" class="headerlink" title="三、数据集"></a>三、数据集</h1><p>首先，对数据集进行预处理，即将字符串属性转换为数字属性。</p>
+<p>主要有KDDCup-99数据集、NSL-KDD数据集，以及最近推出的数据集，即UNSW-NB15。</p>
+<h2 id="3-1-UNSW-NB15数据集"><a href="#3-1-UNSW-NB15数据集" class="headerlink" title="3.1 UNSW-NB15数据集"></a>3.1 UNSW-NB15数据集</h2><p>UNSW-NB15数据集被认为是评价现有和新型IDS方法的可靠数据集。该数据集有<span style="color: red;">254w条记录</span>，<span style="color: red;">49个特征</span>，其中有<span style="color: red;">9种常见攻击</span>。<span style="color: red;">正常信息</span>占数据集大小<span style="color: red;">88%</span>，<span style="color: red;">攻击信息12%</span>。</p>
+<p>数据集以两种形式公开提供（1） 完整数据集；（2） 完整数据集的一小部分。一小组数据集有 175，341 条train记录和 82，332 条test记录。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Type</th>
+<th>Count</th>
+<th>Train (drop_duplicates)</th>
+<th>Test (drop_duplicates)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Normal</td>
+<td>93000</td>
+<td>56000 (51890)</td>
+<td>37000 (34206)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Generic</td>
+<td>58871</td>
+<td>40000 (4181)</td>
+<td>18871 (3657)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Exploits</td>
+<td>44525</td>
+<td>33393 (19844)</td>
+<td>11132 (7609)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Fuzzers</td>
+<td>24246</td>
+<td>18184 (16150)</td>
+<td>6062 (4838)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>DoS</td>
+<td>16353</td>
+<td>12264 (3806)</td>
+<td>4089 (1718)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Reconnaissance</td>
+<td>13987</td>
+<td>10491 (7522)</td>
+<td>3496 (2703)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Analysis</td>
+<td>2677</td>
+<td>2000 (1594)</td>
+<td>677 (446)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Backdoor</td>
+<td>2329</td>
+<td>1746 (1535)</td>
+<td>583 (346)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Shellcode</td>
+<td>1511</td>
+<td>1133 (1091)</td>
+<td>378 (378)</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Worms</td>
+<td>174</td>
+<td>130 (127)</td>
+<td>44 (44)</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td></td>
+<td>257673</td>
+<td>175341</td>
+<td>82332</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>说明：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>攻击类别</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>正常</td>
+<td>没有恶意活动的连接记录</td>
+</tr>
+<tr>
+<td>模糊器</td>
+<td>入侵者通过连接随机向网络提供数据来降低网络资源</td>
+</tr>
+<tr>
+<td>分析</td>
+<td>端口扫描、html文件渗透和垃圾邮件攻击属于分析攻击类别</td>
+</tr>
+<tr>
+<td>后门</td>
+<td>入侵者通过逃避基线安全性来访问特定的计算机</td>
+</tr>
+<tr>
+<td>婴儿床</td>
+<td>Dos是一种攻击，旨在降低网络资源，因此甚至合法用户也无法访问网络资源</td>
+</tr>
+<tr>
+<td>通用</td>
+<td>通用是对块密码的攻击</td>
+</tr>
+<tr>
+<td>侦查</td>
+<td>攻击者与目标系统密切合作，以捕获与漏洞相关的信息</td>
+</tr>
+<tr>
+<td>壳码</td>
+<td>用于开发软件漏洞的一小块程序</td>
+</tr>
+<tr>
+<td>蠕虫</td>
+<td>通过复制自己，蠕虫通过计算机网络分布</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.kaggle.com/datasets/mrwellsdavid/unsw-nb15/code">kaggle-UNSW_NB15数据集</a></p>
+<ul>
+<li>特征介绍 （49个）<br>id,dur,proto,service,state,spkts,dpkts,sbytes,dbytes,rate,<br>sttl,dttl,sload,dload,sloss,dloss,sinpkt,dinpkt,sjit,djit,<br>swin,stcpb,dtcpb,dwin,tcprtt,synack,ackdat,smean,dmean,trans_depth,<br>response_body_len,ct_srv_src,ct_state_ttl,ct_dst_ltm,ct_src_dport_ltm,ct_dst_sport_ltm,ct_dst_src_ltm,is_ftp_login,ct_ftp_cmd,ct_flw_http_mthd,<br>ct_src_ltm,ct_srv_dst,is_sm_ips_ports,attack_cat,label</li>
+</ul>
+<p>1.srcip: 源 IP 地址。<br>2.sport: 源端口号。<br>3.dstip: 目标 IP 地址。<br>4.dsport: 目标端口号。<br>5.protocol: 协议类型（如 TCP、UDP、ICMP）。<br>6.state: 连接状态（如 SYN、ESTABLISHED）。<br>7.duration: 连接持续时间。<br>8.totpkt: 总数据包数。<br>9.totbyte: 总字节数。<br>10.srcbyte: 从源 IP 地址发送的数据字节数。<br>11.dstbyte: 到目标 IP 地址的数据字节数。<br>12.sintpkt: 源到目标的数据包间隔。<br>13.dintpkt: 目标到源的数据包间隔。<br>14.smean: 源数据包的平均字节数。<br>15.dmean: 目标数据包的平均字节数。<br>16.smin: 源数据包的最小字节数。<br>17.dmin: 目标数据包的最小字节数。<br>18.smax: 源数据包的最大字节数。<br>19.dmax: 目标数据包的最大字节数。<br>20.srcip_last: 源 IP 地址最后一次出现的时间。<br>21.dstip_last: 目标 IP 地址最后一次出现的时间。<br>22.sport_last: 源端口号最后一次出现的时间。<br>23.dsport_last: 目标端口号最后一次出现的时间。<br>24.protocol_last: 协议类型最后一次出现的时间。<br>25.state_last: 连接状态最后一次出现的时间。<br>26.srcbyte_last: 从源 IP 地址发送的字节数最后一次出现的时间。<br>27.dstbyte_last: 到目标 IP 地址发送的字节数最后一次出现的时间。<br>28.sintpkt_last: 源到目标的数据包间隔最后一次出现的时间。<br>29.dintpkt_last: 目标到源的数据包间隔最后一次出现的时间。<br>30.smean_last: 源数据包的平均字节数最后一次出现的时间。<br>31.dmean_last: 目标数据包的平均字节数最后一次出现的时间。<br>32.smin_last: 源数据包的最小字节数最后一次出现的时间。<br>33.dmin_last: 目标数据包的最小字节数最后一次出现的时间。<br>34.smax_last: 源数据包的最大字节数最后一次出现的时间。<br>35.dmax_last: 目标数据包的最大字节数最后一次出现的时间。<br>36.srcip_count: 源 IP 地址的出现次数。<br>37.dstip_count: 目标 IP 地址的出现次数。<br>38.sport_count: 源端口号的出现次数。<br>39.dsport_count: 目标端口号的出现次数。<br>40.protocol_count: 协议类型的出现次数。<br>41.state_count: 连接状态的出现次数。<br>42.srcbyte_count: 从源 IP 地址发送的字节数的出现次数。<br>43.dstbyte_count: 到目标 IP 地址发送的字节数的出现次数。<br>44.sintpkt_count: 源到目标的数据包间隔的出现次数。<br>45.dintpkt_count: 目标到源的数据包间隔的出现次数。<br>46.smean_count: 源数据包的平均字节数的出现次数。<br>47.dmean_count: 目标数据包的平均字节数的出现次数。<br>48.smin_count: 源数据包的最小字节数的出现次数。<br>49.dmin_count: 目标数据包的最小字节数的出现次数。</p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.kaggle.com/code/novatensor/unsw-nb15-cybersecurity-threat-detection-ann/edit">kaggle-notebook</a></p>
+<ul>
+<li>包含了 数据样例、特征说明、模型构建全流程(相关包import、数据分析和基本的预处理、探索性数据分析、数据预处理、模型构建)、</li>
+</ul>
+<ol>
+<li>数据维度信息：dataset shape:  (2540043, 49)</li>
+<li>数据类型统计：40个数字类型、9个分类列</li>
+<li>数据重复检查duplicated： 4w多重复；  删除重复数据。</li>
+<li>空值扎占比统计 和处理(<strong><em>给默认值</em></strong>)。</li>
+<li>描述性分析）指的是对数据进行总结和描述的过程</li>
+<li>对分类属性进行描述性分析）指的是对数据集中分类变量（如类别、标签或分组）的统计描述和总结</li>
+<li>特征处理：二值、数字化等</li>
+<li>数据检查。</li>
+<li>数据 标准化、</li>
+</ol>
+<h3 id="3-1-1-预处理"><a href="#3-1-1-预处理" class="headerlink" title="3.1.1 预处理"></a>3.1.1 预处理</h3><ul>
+<li>Featutre Engineering<br>c = a-b<br>c = a/(b+1)</li>
+</ul>
+<p>数值的加减乘除运算。</p>
+<ul>
+<li><p>Target feature Encoding<br>onehot 编码</p>
+</li>
+<li><p>Feature Scaling(特征缩放)<br>标准化</p>
+</li>
+</ul>
+<h3 id="3-1-2"><a href="#3-1-2" class="headerlink" title="3.1.2"></a>3.1.2</h3><h1 id="四、特征选择和简化方法"><a href="#四、特征选择和简化方法" class="headerlink" title="四、特征选择和简化方法"></a>四、特征选择和简化方法</h1>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/d8a51626/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/d8a51626/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    人与系统 | 基本认识
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/c38f8e50/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/c38f8e50/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">1.特征工程方案</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

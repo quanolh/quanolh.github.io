@@ -1,0 +1,607 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>2.ERP系统架构设计 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="AI工程师,大模型应用,数据架构,Agent,AI知识库,风控架构,Novus,Wiki,Quinoa,quanoc">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2.ERP系统架构设计">
+<meta property="og:url" content="https://waisec.cn/wiki/f5cf0651/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/quano/www/raw/master/img/intell_factory_arch.png">
+<meta property="og:image" content="https://gitee.com/quano/www/raw/master/img/new_erp.png">
+<meta property="og:image" content="https://gitee.com/quano/www/raw/master/img/erp_arch.png">
+<meta property="article:published_time" content="2024-03-24T07:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.116Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="AI工程师,大模型应用,数据架构,Agent,AI知识库,风控架构,Novus,Wiki,Quinoa,quanoc">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/quano/www/raw/master/img/intell_factory_arch.png">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "2.ERP系统架构设计",
+    "url": "https://waisec.cn/wiki/f5cf0651/",
+    "datePublished": "2024-03-24T07:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.116Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png"
+}
+</script>
+
+<article id="post-平台工具 | 工程架构和工具/[2]架构设计/04.领域架构总结/03.ERP/002.ERP系统架构设计" class="article article-type-post">
+    
+        <meta name="referrer" content="no-referrer">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-ERP%E7%B3%BB%E7%BB%9F%E7%90%86%E8%A7%A3"><span class="toc-text">1. ERP系统理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-ERP%E7%B3%BB%E7%BB%9F%E4%B8%8E%E6%99%BA%E8%83%BD%E5%B7%A5%E5%8E%82"><span class="toc-text">1.1 ERP系统与智能工厂</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-ERP%E4%BD%BF%E7%94%A8%E7%8E%B0%E7%8A%B6%E8%B0%83%E7%A0%94"><span class="toc-text">1.2 ERP使用现状调研</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-ERP%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">1.3 ERP存在的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-ERP%E5%8F%91%E5%B1%95%E8%B6%8B%E5%8A%BF"><span class="toc-text">1.4 ERP发展趋势</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%96%B0%E4%B8%80%E4%BB%A3ERP%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">2. 新一代ERP应用架构设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="toc-text">2.1 整体架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-text">2.2 复杂度分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-ERP%E7%9A%84%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97"><span class="toc-text">2.3 ERP的核心模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1"><span class="toc-text">2.4 详细设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-1-ERP%E6%A8%A1%E5%9D%97%E8%AE%BE%E8%AE%A1"><span class="toc-text">2.4.1 ERP模块设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-2-%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B"><span class="toc-text">2.4.2 技术选型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-3-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8"><span class="toc-text">2.4.3 数据驱动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-4-%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%92%8C%E6%9C%8D%E5%8A%A1"><span class="toc-text">2.4.4 公共组件和服务</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E5%AE%89%E5%85%A8%E5%92%8C%E6%88%90%E6%9C%AC"><span class="toc-text">2.5 安全和成本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-ERP%E4%B8%8E%E6%99%BA%E8%83%BD%E5%B7%A5%E5%8E%82"><span class="toc-text">2.6 ERP与智能工厂</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-ERP%E7%9A%84%E6%89%A9%E5%B1%95"><span class="toc-text">3.ERP的扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%BA%95%E5%B1%82%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB"><span class="toc-text">3.1 底层资源共享</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E4%BC%81%E4%B8%9A%E5%B9%B3%E5%8F%B0%E5%8C%96"><span class="toc-text">3.2 企业平台化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E4%BA%A7%E4%B8%9A%E4%BA%92%E8%81%94%E7%BD%91%E5%B9%B3%E5%8F%B0"><span class="toc-text">3.3 产业互联网平台</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%B0%83%E7%A0%94"><span class="toc-text">4.调研</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%9B%BD%E5%86%85-%E7%94%A8%E5%8F%8B"><span class="toc-text">4.1 国内-用友</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%8D%8E%E4%B8%BAERP"><span class="toc-text">4.2 华为ERP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-1-%E5%8D%8E%E4%B8%BAERP%E5%8F%91%E5%B1%95%E8%83%8C%E6%99%AF%EF%BC%9A"><span class="toc-text">4.2.1 华为ERP发展背景：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-2-%E5%8D%8E%E4%B8%BA%E4%B8%8B%E4%B8%80%E4%BB%A3ERP%E6%9E%84%E6%83%B3"><span class="toc-text">4.2.2 华为下一代ERP构想</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E6%8A%80%E6%9C%AF%E8%B0%83%E7%A0%94"><span class="toc-text">4.3 技术调研</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-ERP%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B%E5%92%8C%E5%88%86%E7%B1%BB"><span class="toc-text">4.4 ERP的发展历程和分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-1-%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B"><span class="toc-text">4.4.1 发展历程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-2-%E4%BB%8E%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%88%86%E7%B1%BB"><span class="toc-text">4.4.2 从技术架构分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-3-%E4%BB%8E%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F%E5%88%86%E7%B1%BB"><span class="toc-text">4.4.3 从部署方式分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-4-%E4%BB%8E%E8%A1%8C%E4%B8%9A%E8%BF%9B%E8%A1%8C%E5%88%86%E7%B1%BB"><span class="toc-text">4.4.4 从行业进行分类</span></a></li></ol></li></ol></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/2-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">[2]架构设计</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/2-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/04-%E9%A2%86%E5%9F%9F%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/">04.领域架构总结</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/2-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/04-%E9%A2%86%E5%9F%9F%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93/03-ERP/">03.ERP</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/03/" onclick="onclickRoute(event, '/archives/2024/03/')">
+            <time datetime="2024-03-24T07:55:57.000Z" itemprop="datePublished">2024-03-24</time>
+        </a>
+    </div>
+
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/f5cf0651/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            ERP系统架构设计
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <h2 id="1-ERP系统理解"><a href="#1-ERP系统理解" class="headerlink" title="1. ERP系统理解"></a>1. ERP系统理解</h2><h3 id="1-1-ERP系统与智能工厂"><a href="#1-1-ERP系统与智能工厂" class="headerlink" title="1.1 ERP系统与智能工厂"></a>1.1 ERP系统与智能工厂</h3><p>首先所属行业是铸造业，所以先从铸造业智能工厂系统整体开始， 先分析ERP在智能工厂中的应用。<br>下图简述了 智能工厂的分层架构概览以及ERP系统在智能工厂中的位置。那ERP系统的作用是什么呢？<br><span style="font-size: 12px;"><em>tips: 只是一个大致的简述，参考了车企智能工厂的概述. 相较于共享的铸造智能工厂系统架构，此图比较粗略、分层和细节有所差异。不过在这里不是重点，我们重点关注上层的ERP在其中的应用</em>. </span></p>
+<div>
+    <img src="https://gitee.com/quano/www/raw/master/img/intell_factory_arch.png" style="display: inline-block;margin-left: 18px; width: 50%">
+    <span style="display: block; margin-left: 18%;width: 50%">智能制造系统分层框架概览</span>
+</div>
+
+
+<p>ERP在其中作为一个集成的管理系统，通过整合企业内部的各种资源，包括财务、人力资源、生产、供应链、库存、销售等，提供一个统一的平台来监控和优化企业的运营。旨在帮助企业更有效地管理和自动化其业务流程。</p>
+<p>随着技术以及企业的发展，CRM、SRM、HRM等模块从ERP系统中独立出来成为单独的系统，更专注于企业运营的特定领域，提供更深入的管理和分析工具。尽管独立运行，但底层通常与ERP系统进行数据集成，以便在整个企业范围内共享和流通信息。</p>
+<h3 id="1-2-ERP使用现状调研"><a href="#1-2-ERP使用现状调研" class="headerlink" title="1.2 ERP使用现状调研"></a>1.2 ERP使用现状调研</h3><p>todo<br>流程驱动？<br>当前大部分企业的使用现状？<br>发展历程？<br><span style="font-size: 12px;"><em>tips：TODO依据现状和发展时间线、准确总结下存在的问题。不过大致的问题差不多是以下这些</em>. </span></p>
+<h3 id="1-3-ERP存在的问题"><a href="#1-3-ERP存在的问题" class="headerlink" title="1.3 ERP存在的问题"></a>1.3 ERP存在的问题</h3><p>ERP系统的作用在铸造业之外的其他行业也是同样的，是以企业的人、财、物资源集约化管理为目标的系统。通过<strong><em>业务流程</em></strong>实现<strong><em>资源调度集约</em></strong>，属于计划经济的思路，强调<strong>标准化和资源的复用节约</strong>。</p>
+<p>然而当前市场环境下，企业面临的客户越来越多样化，个性化的需求，越来越需要<strong>以客户为中心</strong>动态的组织资源为客户提供服务。另外不同行业对于ERP的需求也有很多差异，有较多定制化的需求，国内的软件公司(用友、金蝶等)也往行业化、专业化发展，在行业提供专业的解决方案和产品服务，比如电商ERP、制造ERP、零售ERP、汽车行业ERP等等。</p>
+<p>并且，传统的ERP存在的一些其它问题：高成本(实施和维护成本高-本地私有化等方式)、灵活性差(难以适应快速变化的业务需求，定制和升级过程复杂且耗时)、用户体验不佳、技术过时(单体架构、C/S模式)、数据孤岛、响应速度慢(企业数据信息响应)</p>
+<p>针对这些问题，当前ERP的发展趋势是什么呢，最新一代的ERP应该是什么样子？</p>
+<h3 id="1-4-ERP发展趋势"><a href="#1-4-ERP发展趋势" class="headerlink" title="1.4 ERP发展趋势"></a>1.4 ERP发展趋势</h3><p>可以定义为<strong><em>云ERP</em></strong>。基于云的ERP，①借助云原生技术，降低了硬件投资和维护成本；②模块化和组件化，更细粒度的拆分，使得企业可以根据需要选择和定制功能模块，提高了灵活性和可扩展性；③移动应用：支持移动设备，管理人员和员工可以随时随地访问企业数据和流程；④有较好的用户体验：直观的界面和简化的操作流程；⑤数据驱动：集成了数据分析工具，提供实时的业务洞察，帮助企业做出更快速和更准确的决策；⑥支持敏捷开发和部署：能够快速响应市场和业务需求的变化，缩短从开发到部署的周期。</p>
+<p>要满足以上6大优点，并且适应市场环境变化，总体上的发展趋势有三个方面：</p>
+<ul>
+<li><p>”去ERP化“： 以资源计划为中心转变为以客户为中心的敏态形式(技术层面：上云、微服务拆分)<br>为能够更加灵活的支撑前台的不断变化，满足企业的客户多样化、个性化的需求，转型为<strong><em>以客户为中心</em></strong>去动态的组织资源为客户提供服务。<br>通过云原生、微服务技术实现应用细粒度的拆分。当然，并不意味着一定要抛弃ERP软件。而是管理理念的转型伴随的系统架构的转型。</p>
+</li>
+<li><p>ERP回归本质：集中在完成财务相关以及资源计划方面的任务<br>目前ERP囊括太多的业务领域了，导致其过于臃肿、繁琐，未来让ERP回归到他的本质是趋势；通过更好的和CRM 、SRM、OA、EHR、PLM、MES等系统的集成去实现对数据的采集、存储和计算使用。<br>中心化、大而全的方式不适合市场及用户多变的环境，分布式、小而美才能给用户提供不一样的产品、服务和体验。</p>
+</li>
+<li><p>重点往行业化、专业化发展(目前正在发展的)<br>各行各业对系统的要求还是差异挺大的。<br>近几年大量的软件公司（也包括金蝶、用友）都开始事业部化了，在行业里去提供专业的解决方案和产品服务。<br>电商ERP、制造ERP</p>
+</li>
+</ul>
+<p><strong><em>云ERP</em></strong> 像华为的MeatERP、用友、金蝶的最新ERP系统产品。</p>
+<h2 id="2-新一代ERP应用架构设计"><a href="#2-新一代ERP应用架构设计" class="headerlink" title="2. 新一代ERP应用架构设计"></a>2. 新一代ERP应用架构设计</h2><p>基于以上背景和发展趋势，新一代ERP怎么做呢？ 从灵活性、技术架构升级、模块化组件化、数据驱动、支持敏捷创新方面考虑.新一代ERP架构核心思路如下：</p>
+<ul>
+<li><strong><em>1.完善技术底座</em></strong>：基于现有的erp应用，抽象和下沉共性的技术能力，采用微服务、云原生等技术构建技术底座(技术平台)， 包括完善底层开发框架和公共组件。</li>
+<li><strong><em>2.精简ERP</em></strong>：保留老的erp系统最核心的模块。将相对比较独立的的企业后台，比如财务、人力资源这些保留在后台ERP系统。 其他的业务模块从单体架构变成分布式的微服务架构。</li>
+<li><strong><em>3.企业平台化-敏捷应用</em></strong>：将ERP非核心模块、敏捷需求上移。采用微服务架构，改变传统单体架构模式去开发。让新应用的开发的颗粒度更小，方便开发、复用、组合。去定制开发的一些新的一些应用，同时支持未来的企业平台应用体系(企业级能力复用平台)。以实现从资源计划为中心转变为<strong><em>以客户为中心</em></strong>企业管理原则的转变， 应对企业面临的客户多样化、个性化的需求。（现在的市场需求，越来越强调以客户为中心去动态的组织资源为客户提供服务）。可灵活支持除ERP以外的企业应用…</li>
+<li><strong><em>4.用云化</em></strong>(方便管理、编排、治理)：包括 1.公有能力的服务化 2.ERP套件服务化改造 3.应用和数据分离(”去ERP化“)</li>
+<li><strong><em>5.数据驱动</em></strong>：将原有erp系统的数据沉淀到数据平台. 通过数据分析供上游业务和企业管理应用. </li>
+</ul>
+<h3 id="2-1-整体架构"><a href="#2-1-整体架构" class="headerlink" title="2.1 整体架构"></a>2.1 整体架构</h3><div>
+    <img src="https://gitee.com/quano/www/raw/master/img/new_erp.png" style="display: inline-block;margin-left: 20px; width: 62%">
+    <span style="display: block; margin-left: 28%;width: 62%">新一代ERP应用架构</span>
+</div>
+
+<h3 id="2-2-复杂度分析"><a href="#2-2-复杂度分析" class="headerlink" title="2.2 复杂度分析"></a>2.2 复杂度分析</h3><p>从架构角度看，我认为对高可用、性能、扩展性的要求，通过模块化设计、多层架构(合理的分层便于扩展和维护)、数据管理等方面可以解决，并不复杂。<br>而系统的安全性和成本是其中较复杂的点。企业对敏感数据的保护是至关重要的；也要满足合规的要求，避免法律风险和罚款。对于信息安全有一定的要求。另外对于成本，不同阶段的企业对ERP的投资、运营有不同的成本预算。<br>怎么在保障系统安全的同时，合理规划和控制成本，是架构设计和选型中重要考虑的点。</p>
+<p>从技术角度，ERP系统有集成的复杂度，需要与其他的业务系统集成，比如CRM、SCM等。不同系统可能使用不同的数据格式、接口标准等。还有定制开发，快速迭代-应对安全要求和敏捷业务。总体上就是需要实现业务流程协同、数据协同、技术协同、与其它系统协同。</p>
+<p>针对以上系统复杂度较高的点，通过合理的技术选型解决这些问题。</p>
+<p><span style="font-size: 12px;"><em>todo通用的模块复杂度、系统整体的复杂点。针对垂类的复杂度差异分析等。</em></span></p>
+<h3 id="2-3-ERP的核心模块"><a href="#2-3-ERP的核心模块" class="headerlink" title="2.3 ERP的核心模块"></a>2.3 ERP的核心模块</h3><p>重点关注协同的复杂(流程、数据、系统之间).</p>
+<p>ERP业务流程（画个图？）：将销售、生产、采购、财务等整个流程串起来。</p>
+<ul>
+<li>各个系统怎么协同、连接；  与 协同门户 的关系</li>
+</ul>
+<div>
+    <img src="https://gitee.com/quano/www/raw/master/img/erp_arch.png" style="display: inline-block;margin-left: 20px; width: 62%">
+    <span style="display: block; margin-left: 28%;width: 62%">ERP技术架构</span>
+</div>
+
+
+<h3 id="2-4-详细设计"><a href="#2-4-详细设计" class="headerlink" title="2.4 详细设计"></a>2.4 详细设计</h3><p>解决系统扩展性、敏捷性，并且为支持上层业务的数字化发展。</p>
+<p>todo：系统的用例图、类图、序列图。表述子系统和模块的组成、流程等细节。</p>
+<h4 id="2-4-1-ERP模块设计"><a href="#2-4-1-ERP模块设计" class="headerlink" title="2.4.1 ERP模块设计"></a>2.4.1 ERP模块设计</h4><p>ERP核心模块及各子系统的 具体实现细节，包括组成、流程、用例等。核心模块、边缘模块。</p>
+<h4 id="2-4-2-技术选型"><a href="#2-4-2-技术选型" class="headerlink" title="2.4.2 技术选型"></a>2.4.2 技术选型</h4><p>云原生、微服务、低代码平台的考量</p>
+<h4 id="2-4-3-数据驱动"><a href="#2-4-3-数据驱动" class="headerlink" title="2.4.3 数据驱动"></a>2.4.3 数据驱动</h4><p>基于数据平台的企业指标看板流程. 附带说明算法的作用.</p>
+<h4 id="2-4-4-公共组件和服务"><a href="#2-4-4-公共组件和服务" class="headerlink" title="2.4.4 公共组件和服务"></a>2.4.4 公共组件和服务</h4><p>公共组件的设计和选项.(扩展性、成本因素考量)</p>
+<h3 id="2-5-安全和成本"><a href="#2-5-安全和成本" class="headerlink" title="2.5 安全和成本"></a>2.5 安全和成本</h3><p>todo<br>信息安全的考量：企业对敏感数据保护的要求、合规风险的要求。<br>成本的考量：合理的规划和成本控制。</p>
+<h3 id="2-6-ERP与智能工厂"><a href="#2-6-ERP与智能工厂" class="headerlink" title="2.6 ERP与智能工厂"></a>2.6 ERP与智能工厂</h3><p>回顾到最开始的，ERP在智能工厂的定位，仅作为一个集成的管理系统，以流程为中心对资源集约化管理。</p>
+<p>新一代ERP围绕ERP建设公共的技术底座、引入数据平台、算法能力。 扩展至其它上层应用，支撑上层应用敏捷创新(相较于传统的ERP迭代周期长、臃肿、响应速度慢等特点)；支撑企业平台、铸造业产业互联等。</p>
+<h2 id="3-ERP的扩展"><a href="#3-ERP的扩展" class="headerlink" title="3.ERP的扩展"></a>3.ERP的扩展</h2><p>在数字化转型，发展数字经济，强调数字化、网络化、智能化对制造业、服务业、等产业数字化的背景下。<br>精简的ERP(企业资源管理/计划)以及其它企业平台应用，结合建设的公共、可复用的技术底座(基础设施)。可支撑企业平台的其它数字应用，包括公司事物、行政、监控、知识库等；并且支持实现企业的整体信息化转型、支持上层产业创新能力。<br>比如铸造云智能制造的互联网平台、垂类行业的各个解决方案。</p>
+<p>核心发展理念：</p>
+<ul>
+<li>底层资源共享。包括(技术底座、公共服务平台、数据、算法、应用)。</li>
+<li>数据统管(数据平台建设)。支撑数据驱动企业决策；提升开发和协同能力，促进产业创新。</li>
+<li>以流程为中心转变为以用户/客户为中心的需求支撑(基于新技术架构)。</li>
+<li>企业平台化-ERP以外的其他企业应用敏捷迭代，满足客户需求、产业创新。</li>
+<li>产品互联网平台,作用于整个产业的运营效率和竞争力</li>
+</ul>
+<h3 id="3-1-底层资源共享"><a href="#3-1-底层资源共享" class="headerlink" title="3.1 底层资源共享"></a>3.1 底层资源共享</h3><p>底层技术架构应用到上层互联网平台、垂直行业的解决方案.</p>
+<h3 id="3-2-企业平台化"><a href="#3-2-企业平台化" class="headerlink" title="3.2 企业平台化"></a>3.2 企业平台化</h3><p>企业平台化(构建开放、共享的平台，整合内外部资源)<br>ERP以外的其他企业应用敏捷迭代，满足客户需求、产业创新。<br>包括数字供应链(企业平台实现供应链各环节的协同工作；收集、共享供应链数据；快速响应供应链中的变化)</p>
+<h3 id="3-3-产业互联网平台"><a href="#3-3-产业互联网平台" class="headerlink" title="3.3 产业互联网平台"></a>3.3 产业互联网平台</h3><p>ERP与整个产业链上的其他系统进行连接和数据交换，实现产业链的数字化和智能化，提高整个产业的运营效率和竞争力。<br>并且提高创新能力：利用ERP系统中的数据和分析工具，支持新产品、新技术和新业务模式的探索和实验，加速创新成果的商业化。</p>
+<h2 id="4-调研"><a href="#4-调研" class="headerlink" title="4.调研"></a>4.调研</h2><h3 id="4-1-国内-用友"><a href="#4-1-国内-用友" class="headerlink" title="4.1 国内-用友"></a>4.1 国内-用友</h3><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.yonyou.com/YonBIP/index.html">用友BIP-商业创新平台</a>： 数智商业创新的使用平台</p>
+<ul>
+<li>背景：为满足 <strong>数智时代商业创新</strong>的需求，企业需要一个社会级的<strong>商业创新平台</strong>。</li>
+<li>基本产品形态：数智平台 + 十大领域的场景服务 + 大规模生态</li>
+<li>基础平台： 技术中台、低代码开发平台、技术中台、连接集成平台、数据中台、业务中台…</li>
+<li>领域场景化服务： 财务云、项目用、研发云、资产云<ul>
+<li>企业数智化财务云服务平台，助力<strong><em>企业财务数智化转型</em></strong></li>
+</ul>
+</li>
+<li>特性： 云原生、敏捷工程化；技术底座iuap作为全PaaS能力一体化平台</li>
+<li>架构：四大技术架构（云原生、元数据驱动-低代码、支持上层领域服务灵活扩展、中台化）、六大应用架构</li>
+</ul>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://iuap.yonyou.com/iuap/">用友iuap平台</a><br>企业级的业务和应用开发平台 - 升级企业数智化底座(技术底座，Paas层)</p>
+<ul>
+<li>包含：技术平台，业务、数据、智能中台， 低代码开发平台、连接集成平台.</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">用友YonBIP发展： 云转型的思路是，先有各个SaaS应用(财务云、人力云、营销云等等)， 然后才有底层Paas平台， 并不是真正从零开始研发，而是将NCC等加起来包装成大概念BIP。</span><br><span class="line">相比较 金蝶，先有苍穹PaaS平台，然后不断完善上层的Saas应用。</span><br><span class="line">优点在于： </span><br><span class="line">- 针对财务、HR、供应链等企业业务管理领域应用和服务进行了合理的微服务拆分与关联组合，形成了相较传统技术跨越式的能力提升，不断刷新业内性能极限。</span><br><span class="line">- 设计之初就结合最新的技术发展趋势和设计理念，对整体的技术基础架构以及应用架构进行了规划，是一套拥有先进思想和技术前瞻的正向平台化设计</span><br><span class="line"></span><br><span class="line">来源于：https://www.zhihu.com/question/525625964 讲述了 金蝶云苍穹和用友YonBIP的比较。</span><br><span class="line"></span><br><span class="line">YonBIP是基于iuap5.0做的, 算是国内乃至整个业界最好的。 NCC是基于NC+iuap的改造版本，但任然适用于大企业。</span><br></pre></td></tr></table></figure>
+<h3 id="4-2-华为ERP"><a href="#4-2-华为ERP" class="headerlink" title="4.2 华为ERP"></a>4.2 华为ERP</h3><p>MetaERP</p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://mp.weixin.qq.com/s?__biz=MzIwNDI0ODY1OA==&amp;mid=2655968014&amp;idx=1&amp;sn=688308c8e6073b68d506c4ef6d91faec&amp;scene=21#wechat_redirect">华为ERP详细情况到底是什么样的</a></p>
+<h4 id="4-2-1-华为ERP发展背景："><a href="#4-2-1-华为ERP发展背景：" class="headerlink" title="4.2.1 华为ERP发展背景："></a>4.2.1 华为ERP发展背景：</h4><ul>
+<li>18,19年开始，美国打压华为，包括ERP也在禁止范围内。所以华为需要构建自己的ERP做替代。</li>
+<li>数字化推进如火如荼，业务不确定性更加突出。 业务上对ERP的现状越来越不满意了（响应太慢，不能满足未来真正实现数字化的诉求）。</li>
+<li>ERP是一套非常庞大的单体应用，数据量超级大，涉及模块多。迭代升级效率低(一次升级待半个月)。 远远不能满足业务需求。 急需架构升级。</li>
+</ul>
+<h4 id="4-2-2-华为下一代ERP构想"><a href="#4-2-2-华为下一代ERP构想" class="headerlink" title="4.2.2 华为下一代ERP构想"></a>4.2.2 华为下一代ERP构想</h4><p>第一，基于数据构建未来的智能化引擎，即智能大脑（跟传统的ERP一个非常大的区别）<br>第二，在数据基础上，上一层是构建全孵化的产品。 把以前单体系统会拆分成十几个微系统，以微服务的方式提供给上一层不同业务不同流程来组装去使用。<br>第三，面向各个部门按照自己的业务去挑选服务，去拼接组装，组成业务场景需要的一些业务流程和业务能力。<br>第四，组装完成之后，面向用户层，实现一站式服务。 从底层优化和升级后，形成整个一套面向未来的下一代ERP架构。</p>
+<p>参考：<a target="_blank" rel="external nofollow noopener noreferrer" href="https://mp.weixin.qq.com/s/hPkQJsJaLdEwFtYn-dI31Q">傅一平：一文讲透ERP的下一代架构！</a></p>
+<ul>
+<li>包含了 华为数字化转型之道 书中 华为数字化转型的框架，ERP就是其中的一个业务子集。</li>
+</ul>
+<p>参考：中台崛起的本质是”去ERP化“： </p>
+<ul>
+<li>有很多不错的理念.</li>
+<li>套件ERP的弊端。 企业组织结构变更。</li>
+</ul>
+<p>特性：客户联接、能力数字化、云化IT平台、数字化运营。</p>
+<ul>
+<li>陈果的下一代ERP架构：以SAP ERP来说明下一代ERP。 有不同的观点(强调ERP目前没有过时，未来也不会过时)</li>
+</ul>
+<h3 id="4-3-技术调研"><a href="#4-3-技术调研" class="headerlink" title="4.3 技术调研"></a>4.3 技术调研</h3><p>其它架构的可借鉴点(架构背后的复杂点、领先的互联网技术-云计算等)</p>
+<p>Paas：各大互联网公司的基础研发平台中的各个平台产品(数据库、存储、微服务相关等)、各行业的软件平台(用友BIP、金蝶云·苍穹等)<br>Saas：企业办公、ERP、CRM、等产品</p>
+<h3 id="4-4-ERP的发展历程和分类"><a href="#4-4-ERP的发展历程和分类" class="headerlink" title="4.4 ERP的发展历程和分类"></a>4.4 ERP的发展历程和分类</h3><h4 id="4-4-1-发展历程"><a href="#4-4-1-发展历程" class="headerlink" title="4.4.1 发展历程"></a>4.4.1 发展历程</h4><p>2010年左右，云技术兴起。为企业更好的体验，更低的成本。</p>
+<p>2021年中国云ERP市场规模为153.22亿元，其中主要以私有云为主，私有云ERP规模达137.9亿元，占比达90%。预计到2026年，中国云ERP市场规模将达到467.6亿元，2021-2026CAGR为25%。</p>
+<h4 id="4-4-2-从技术架构分类"><a href="#4-4-2-从技术架构分类" class="headerlink" title="4.4.2 从技术架构分类"></a>4.4.2 从技术架构分类</h4><p>C/S（客户端软件）和B/S（浏览器软件）架构</p>
+<ul>
+<li>像用友、金蝶前期的很多产品都是C/S架构，现在也逐步都过渡到B/S架构了，能够让用户更方便快捷进行使用</li>
+</ul>
+<h4 id="4-4-3-从部署方式分类"><a href="#4-4-3-从部署方式分类" class="headerlink" title="4.4.3 从部署方式分类"></a>4.4.3 从部署方式分类</h4><p>横向：私有化-买断产品、云服务-订阅产品.<br>纵向：本地、云端(私有云、公有云、混合云)</p>
+<p>本地私有化：软件部署在本地服务器，一般是内网，安全性高，但运维成本大。<br>云端私有化：企业购买软件 部署在云服务器上，可<strong><em>通过专线直连内容</em></strong>，安全性较好，服务器软件运行环境的运维成本低，但软件本身运维成本较大、<br>本地 云服务：<br>云端：用户开箱即用，订阅式收费模式，也有按流量收费，环境安全性有厂商保障， 数据统一存储在厂商的服务器上，运维成本低(安全性、隐私性问题)</p>
+<ul>
+<li>大型互联网自研: 都部署在自己的云端。 安全性、隐私性高，定制化程度高、灵活性好。有技术底座，运维成本较低. </li>
+<li>中型互联网(boss): 私有化 云端（考虑数据安全和隐私性）</li>
+<li>大型企业：???</li>
+</ul>
+<h4 id="4-4-4-从行业进行分类"><a href="#4-4-4-从行业进行分类" class="headerlink" title="4.4.4 从行业进行分类"></a>4.4.4 从行业进行分类</h4><ul>
+<li>通用型ERP(用友、金蝶)：使用起来较复杂</li>
+<li>专业性ERP</li>
+</ul>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/c5497f93/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/c5497f93/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    2.GD项目经验
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/ad6f6148/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/ad6f6148/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">结构化面试总结</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

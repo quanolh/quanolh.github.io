@@ -1,0 +1,1312 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>0_4.AgentTeam 研发团队技术方案 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="Agent,AICoding,软件工程">
+
+    <meta name="description" content="多Agent研发体系构建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="0_4.AgentTeam 研发团队技术方案">
+<meta property="og:url" content="https://waisec.cn/wiki/a7b1fb54/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="多Agent研发体系构建">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://waisec.cn/wiki/a7b1fb54/images/module-diagram.svg">
+<meta property="og:image" content="https://waisec.cn/wiki/a7b1fb54/images/data-flow.svg">
+<meta property="og:image" content="https://waisec.cn/wiki/a7b1fb54/images/observability-architecture.svg">
+<meta property="article:published_time" content="2026-03-14T03:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.144Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="AICoding">
+<meta property="article:tag" content="软件工程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://waisec.cn/wiki/a7b1fb54/images/module-diagram.svg">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "0_4.AgentTeam 研发团队技术方案",
+    "url": "https://waisec.cn/wiki/a7b1fb54/",
+    "datePublished": "2026-03-14T03:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.144Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "Agent,AICoding,软件工程"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/1|大模型应用/02.Agent应用/01.软件工程/3AI研发体系智能化/00_4.研发团队技术方案" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AgentTeam-%E7%A0%94%E5%8F%91%E5%9B%A2%E9%98%9F%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88"><span class="toc-text">AgentTeam 研发团队技术方案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95"><span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%83%8C%E6%99%AF%E4%B8%8E%E5%AE%9A%E4%BD%8D"><span class="toc-text">1. 背景与定位</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E9%A1%B9%E7%9B%AE%E8%83%8C%E6%99%AF"><span class="toc-text">1.1 项目背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E4%BA%A7%E5%93%81%E5%AE%9A%E4%BD%8D"><span class="toc-text">1.2 产品定位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E6%A0%B8%E5%BF%83%E8%AF%89%E6%B1%82"><span class="toc-text">1.3 核心诉求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="toc-text">2. 系统架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="toc-text">2.1 整体架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E7%A0%94%E5%8F%91%E6%B5%81%E7%A8%8B%E9%98%B6%E6%AE%B5"><span class="toc-text">2.2 研发流程阶段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%E8%AE%BE%E8%AE%A1"><span class="toc-text">3. 核心模块设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%A8%A1%E5%9D%97%E5%85%B3%E7%B3%BB%E5%9B%BE"><span class="toc-text">3.1 模块关系图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Agent%E5%9F%BA%E7%B1%BB%E8%AE%BE%E8%AE%A1"><span class="toc-text">3.2 Agent基类设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E%E8%AE%BE%E8%AE%A1"><span class="toc-text">3.3 工作流引擎设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7%E6%A8%A1%E5%9D%97"><span class="toc-text">3.4 可观测性模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E5%B9%B2%E9%A2%84%E6%9C%BA%E5%88%B6%E8%AE%BE%E8%AE%A1"><span class="toc-text">3.5 干预机制设计</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Agent%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1"><span class="toc-text">4. Agent详细设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-RequirementsAgent%EF%BC%88%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90Agent%EF%BC%89"><span class="toc-text">4.1 RequirementsAgent（需求分析Agent）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-ReviewAgent%EF%BC%88%E9%9C%80%E6%B1%82%E8%AF%84%E5%AE%A1Agent%EF%BC%89"><span class="toc-text">4.2 ReviewAgent（需求评审Agent）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-DesignAgent%EF%BC%88%E6%96%B9%E6%A1%88%E8%AE%BE%E8%AE%A1Agent%EF%BC%89"><span class="toc-text">4.3 DesignAgent（方案设计Agent）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-CodingAgent%EF%BC%88%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99Agent%EF%BC%89"><span class="toc-text">4.4 CodingAgent（代码编写Agent）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-CodeReviewAgent%EF%BC%88%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5Agent%EF%BC%89"><span class="toc-text">4.5 CodeReviewAgent（代码审查Agent）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-UnitTestAgent%EF%BC%88%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95Agent%EF%BC%89"><span class="toc-text">4.6 UnitTestAgent（单元测试Agent）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-IntegrationTestAgent%EF%BC%88%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95Agent%EF%BC%89"><span class="toc-text">4.7 IntegrationTestAgent（集成测试Agent）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%95%B0%E6%8D%AE%E6%B5%81%E8%AE%BE%E8%AE%A1"><span class="toc-text">5. 数据流设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="toc-text">5.1 实时数据流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E7%8A%B6%E6%80%81%E6%B5%81%E8%BD%AC"><span class="toc-text">5.2 状态流转</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7%E8%AE%BE%E8%AE%A1"><span class="toc-text">6. 可观测性设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7%E6%9E%B6%E6%9E%84"><span class="toc-text">6.1 可观测性架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E6%8C%87%E6%A0%87%E4%BD%93%E7%B3%BB"><span class="toc-text">6.2 指标体系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E6%97%A5%E5%BF%97%E8%A7%84%E8%8C%83"><span class="toc-text">6.3 日志规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-%E8%BF%BD%E8%B8%AA%E9%93%BE%E8%AE%BE%E8%AE%A1"><span class="toc-text">6.4 追踪链设计</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E5%B9%B2%E9%A2%84%E6%9C%BA%E5%88%B6%E8%AE%BE%E8%AE%A1"><span class="toc-text">7. 干预机制设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-%E5%B9%B2%E9%A2%84%E7%82%B9%E9%85%8D%E7%BD%AE"><span class="toc-text">7.1 干预点配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-%E5%B9%B2%E9%A2%84%E6%93%8D%E4%BD%9C%E7%B1%BB%E5%9E%8B"><span class="toc-text">7.2 干预操作类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-%E5%AE%A1%E6%89%B9%E6%B5%81%E7%A8%8B"><span class="toc-text">7.3 审批流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B"><span class="toc-text">8. 技术选型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-%E6%A0%B8%E5%BF%83%E6%A1%86%E6%9E%B6"><span class="toc-text">8.1 核心框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-LLM%E6%9C%8D%E5%8A%A1"><span class="toc-text">8.2 LLM服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7"><span class="toc-text">8.3 可观测性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E5%AE%9E%E6%96%BD%E8%B7%AF%E5%BE%84"><span class="toc-text">9. 实施路径</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Phase-1%EF%BC%9A%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E6%90%AD%E5%BB%BA%EF%BC%88%E7%AC%AC1-2%E5%91%A8%EF%BC%89"><span class="toc-text">Phase 1：基础设施搭建（第1-2周）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Phase-2%EF%BC%9A%E6%A0%B8%E5%BF%83Agent%E5%BC%80%E5%8F%91%EF%BC%88%E7%AC%AC3-6%E5%91%A8%EF%BC%89"><span class="toc-text">Phase 2：核心Agent开发（第3-6周）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Phase-3%EF%BC%9A%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7%E5%A2%9E%E5%BC%BA%EF%BC%88%E7%AC%AC7-8%E5%91%A8%EF%BC%89"><span class="toc-text">Phase 3：可观测性增强（第7-8周）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Phase-4%EF%BC%9A%E5%B9%B2%E9%A2%84%E6%9C%BA%E5%88%B6%E5%AE%8C%E5%96%84%EF%BC%88%E7%AC%AC9-10%E5%91%A8%EF%BC%89"><span class="toc-text">Phase 4：干预机制完善（第9-10周）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-API%E5%8F%82%E8%80%83"><span class="toc-text">10. API参考</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-%E5%B7%A5%E4%BD%9C%E6%B5%81API"><span class="toc-text">10.1 工作流API</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="toc-text">创建工作流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%8A%B6%E6%80%81"><span class="toc-text">获取工作流状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%B2%E9%A2%84%E6%93%8D%E4%BD%9C"><span class="toc-text">干预操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-AgentAPI"><span class="toc-text">10.2 AgentAPI</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96Agent%E7%8A%B6%E6%80%81"><span class="toc-text">获取Agent状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Agent%E6%89%A7%E8%A1%8C%E6%97%A5%E5%BF%97"><span class="toc-text">Agent执行日志</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-3-%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7API"><span class="toc-text">10.3 可观测性API</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%87%E6%A0%87%E6%9F%A5%E8%AF%A2"><span class="toc-text">指标查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%BD%E8%B8%AA%E6%9F%A5%E8%AF%A2"><span class="toc-text">追踪查询</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%BD%95"><span class="toc-text">附录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#A-%E6%9C%AF%E8%AF%AD%E8%A1%A8"><span class="toc-text">A. 术语表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">B. 参考资料</span></a></li></ol></li></ol></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/">1|大模型应用</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/02-Agent%E5%BA%94%E7%94%A8/">02.Agent应用</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/02-Agent%E5%BA%94%E7%94%A8/01-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">01.软件工程</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/02-Agent%E5%BA%94%E7%94%A8/01-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/3AI%E7%A0%94%E5%8F%91%E4%BD%93%E7%B3%BB%E6%99%BA%E8%83%BD%E5%8C%96/">3AI研发体系智能化</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/AICoding/" rel="tag">AICoding</a>, <a class="tag-link-link" href="/tags/Agent/" rel="tag">Agent</a>, <a class="tag-link-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" rel="tag">软件工程</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/03/" onclick="onclickRoute(event, '/archives/2026/03/')">
+            <time datetime="2026-03-14T03:55:57.000Z" itemprop="datePublished">2026-03-14</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="Agent,AICoding,软件工程">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/a7b1fb54/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            0_4.AgentTeam 研发团队技术方案
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <h1 id="AgentTeam-研发团队技术方案"><a href="#AgentTeam-研发团队技术方案" class="headerlink" title="AgentTeam 研发团队技术方案"></a>AgentTeam 研发团队技术方案</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li><a href="#1-背景与定位">1. 背景与定位</a></li>
+<li><a href="#2-系统架构">2. 系统架构</a></li>
+<li><a href="#3-核心模块设计">3. 核心模块设计</a></li>
+<li><a href="#4-agent详细设计">4. Agent详细设计</a></li>
+<li><a href="#5-数据流设计">5. 数据流设计</a></li>
+<li><a href="#6-可观测性设计">6. 可观测性设计</a></li>
+<li><a href="#7-干预机制设计">7. 干预机制设计</a></li>
+<li><a href="#8-技术选型">8. 技术选型</a></li>
+<li><a href="#9-实施路径">9. 实施路径</a></li>
+<li><a href="#10-api参考">10. API参考</a></li>
+</ul>
+<hr>
+<h2 id="1-背景与定位"><a href="#1-背景与定位" class="headerlink" title="1. 背景与定位"></a>1. 背景与定位</h2><h3 id="1-1-项目背景"><a href="#1-1-项目背景" class="headerlink" title="1.1 项目背景"></a>1.1 项目背景</h3><p>设计一个基于多Agent协作的自动化研发团队系统，实现软件研发全生命周期的智能化管理。</p>
+<h3 id="1-2-产品定位"><a href="#1-2-产品定位" class="headerlink" title="1.2 产品定位"></a>1.2 产品定位</h3><p>对标主流AgentOps平台（如LangChain、AutoGen、CrewAI等），打造<strong>可观测、可干预、实时流动、可视化</strong>的智能研发协作平台。</p>
+<h3 id="1-3-核心诉求"><a href="#1-3-核心诉求" class="headerlink" title="1.3 核心诉求"></a>1.3 核心诉求</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>诉求</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>可观测</strong></td>
+<td>全流程状态追踪，每个Agent的行为、决策、输出可追溯</td>
+</tr>
+<tr>
+<td><strong>可干预</strong></td>
+<td>关键节点支持人工介入，支持审批、修正、终止等操作</td>
+</tr>
+<tr>
+<td><strong>实时流动</strong></td>
+<td>数据在Agent间实时流转，支持流式处理和事件驱动</td>
+</tr>
+<tr>
+<td><strong>可视化</strong></td>
+<td>架构图、流程图、状态面板直观展示</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="2-系统架构"><a href="#2-系统架构" class="headerlink" title="2. 系统架构"></a>2. 系统架构</h2><h3 id="2-1-整体架构"><a href="#2-1-整体架构" class="headerlink" title="2.1 整体架构"></a>2.1 整体架构</h3><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1200 800" width="80%">
+  <defs>
+    <!-- 渐变定义 -->
+    <lineargradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1"/>
+    </lineargradient>
+    <lineargradient id="agentGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1"/>
+    </lineargradient>
+    <lineargradient id="infraGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1"/>
+    </lineargradient>
+    <lineargradient id="orchestrationGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#43e97b;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#38f9d7;stop-opacity:1"/>
+    </lineargradient>
+    <lineargradient id="uiGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#fa709a;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#fee140;stop-opacity:1"/>
+    </lineargradient>
+    <!-- 阴影 -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <fedropshadow dx="2" dy="2" stddeviation="3" flood-opacity="0.3">
+    </fedropshadow></filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="1200" height="800" fill="#f8fafc"/>
+  <!-- 标题 -->
+  <text x="600" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#1e293b">AgentTeam 系统架构图</text>
+
+  <!-- 用户交互层 -->
+  <g transform="translate(50, 70)">
+    <rect x="0" y="0" width="1100" height="100" rx="10" fill="url(#uiGrad)" filter="url(#shadow)" opacity="0.9"/>
+    <text x="550" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#fff">用户交互层 (UI Layer)</text>
+
+    <!-- Web Console -->
+    <rect x="100" y="45" width="180" height="40" rx="8" fill="#fff" opacity="0.9"/>
+    <text x="190" y="72" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#333">Web Console</text>
+
+    <!-- CLI Tool -->
+    <rect x="460" y="45" width="180" height="40" rx="8" fill="#fff" opacity="0.9"/>
+    <text x="550" y="72" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#333">CLI Tool</text>
+
+    <!-- API Gateway -->
+    <rect x="820" y="45" width="180" height="40" rx="8" fill="#fff" opacity="0.9"/>
+    <text x="910" y="72" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#333">API Gateway</text>
+  </g>
+
+  <!-- 连接箭头1 -->
+  <path d="M600 175 L600 200" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <polygon points="600,210 595,200 605,200" fill="#64748b"/>
+
+  <!-- 编排调度层 -->
+  <g transform="translate(50, 220)">
+    <rect x="0" y="0" width="1100" height="120" rx="10" fill="url(#orchestrationGrad)" filter="url(#shadow)" opacity="0.9"/>
+    <text x="550" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#fff">编排调度层 (Orchestration Layer)</text>
+
+    <!-- Workflow Engine 容器 -->
+    <rect x="50" y="45" width="1000" height="60" rx="8" fill="#fff" opacity="0.3"/>
+    <text x="100" y="80" font-family="Arial, sans-serif" font-size="12" fill="#fff" font-weight="bold">Workflow Engine</text>
+
+    <!-- 调度器 -->
+    <rect x="170" y="50" width="120" height="45" rx="6" fill="#fff" opacity="0.9"/>
+    <text x="230" y="78" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#333">调度器</text>
+
+    <!-- 状态机 -->
+    <rect x="310" y="50" width="120" height="45" rx="6" fill="#fff" opacity="0.9"/>
+    <text x="370" y="78" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#333">状态机</text>
+
+    <!-- 事件总线 -->
+    <rect x="450" y="50" width="120" height="45" rx="6" fill="#fff" opacity="0.9"/>
+    <text x="510" y="78" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#333">事件总线</text>
+
+    <!-- 审批网关 -->
+    <rect x="590" y="50" width="120" height="45" rx="6" fill="#fff" opacity="0.9"/>
+    <text x="650" y="78" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#333">审批网关</text>
+
+    <!-- 检查点管理 -->
+    <rect x="730" y="50" width="120" height="45" rx="6" fill="#fff" opacity="0.9"/>
+    <text x="790" y="78" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#333">检查点管理</text>
+
+    <!-- 上下文管理 -->
+    <rect x="870" y="50" width="120" height="45" rx="6" fill="#fff" opacity="0.9"/>
+    <text x="930" y="78" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#333">上下文管理</text>
+  </g>
+
+  <!-- 连接箭头2 -->
+  <path d="M600 345 L600 370" stroke="#64748b" stroke-width="2"/>
+  <polygon points="600,380 595,370 605,370" fill="#64748b"/>
+
+  <!-- Agent层 -->
+  <g transform="translate(50, 390)">
+    <rect x="0" y="0" width="1100" height="160" rx="10" fill="url(#agentGrad)" filter="url(#shadow)" opacity="0.9"/>
+    <text x="550" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#fff">Agent层 (Agent Layer)</text>
+
+    <!-- 第一行Agent -->
+    <!-- Requirements Agent -->
+    <rect x="30" y="50" width="130" height="90" rx="8" fill="#fff" opacity="0.95" filter="url(#shadow)"/>
+    <circle cx="95" cy="75" r="15" fill="#667eea"/>
+    <text x="95" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">1</text>
+    <text x="95" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333" font-weight="bold">Requirements</text>
+    <text x="95" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">需求分析</text>
+
+    <!-- Review Agent -->
+    <rect x="180" y="50" width="130" height="90" rx="8" fill="#fff" opacity="0.95" filter="url(#shadow)"/>
+    <circle cx="245" cy="75" r="15" fill="#667eea"/>
+    <text x="245" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">2</text>
+    <text x="245" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333" font-weight="bold">Review</text>
+    <text x="245" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">需求评审</text>
+
+    <!-- Design Agent -->
+    <rect x="330" y="50" width="130" height="90" rx="8" fill="#fff" opacity="0.95" filter="url(#shadow)"/>
+    <circle cx="395" cy="75" r="15" fill="#667eea"/>
+    <text x="395" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">3</text>
+    <text x="395" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333" font-weight="bold">Design</text>
+    <text x="395" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">方案设计</text>
+
+    <!-- Coding Agent -->
+    <rect x="480" y="50" width="130" height="90" rx="8" fill="#fff" opacity="0.95" filter="url(#shadow)"/>
+    <circle cx="545" cy="75" r="15" fill="#667eea"/>
+    <text x="545" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">4</text>
+    <text x="545" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333" font-weight="bold">Coding</text>
+    <text x="545" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">代码编写</text>
+
+    <!-- Code Review Agent -->
+    <rect x="630" y="50" width="130" height="90" rx="8" fill="#fff" opacity="0.95" filter="url(#shadow)"/>
+    <circle cx="695" cy="75" r="15" fill="#667eea"/>
+    <text x="695" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">5</text>
+    <text x="695" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333" font-weight="bold">CodeReview</text>
+    <text x="695" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">代码审查</text>
+
+    <!-- Unit Test Agent -->
+    <rect x="780" y="50" width="130" height="90" rx="8" fill="#fff" opacity="0.95" filter="url(#shadow)"/>
+    <circle cx="845" cy="75" r="15" fill="#667eea"/>
+    <text x="845" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">6</text>
+    <text x="845" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333" font-weight="bold">UnitTest</text>
+    <text x="845" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">单元测试</text>
+
+    <!-- Integration Test Agent -->
+    <rect x="930" y="50" width="130" height="90" rx="8" fill="#fff" opacity="0.95" filter="url(#shadow)"/>
+    <circle cx="995" cy="75" r="15" fill="#667eea"/>
+    <text x="995" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">7</text>
+    <text x="995" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333" font-weight="bold">Integration</text>
+    <text x="995" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">集成测试</text>
+
+    <!-- Agent间连接箭头 -->
+    <path d="M160 95 L180 95" stroke="#667eea" stroke-width="2" stroke-dasharray="5,3"/>
+    <path d="M310 95 L330 95" stroke="#667eea" stroke-width="2" stroke-dasharray="5,3"/>
+    <path d="M460 95 L480 95" stroke="#667eea" stroke-width="2" stroke-dasharray="5,3"/>
+    <path d="M610 95 L630 95" stroke="#667eea" stroke-width="2" stroke-dasharray="5,3"/>
+    <path d="M760 95 L780 95" stroke="#667eea" stroke-width="2" stroke-dasharray="5,3"/>
+    <path d="M910 95 L930 95" stroke="#667eea" stroke-width="2" stroke-dasharray="5,3"/>
+  </g>
+
+  <!-- 连接箭头3 -->
+  <path d="M600 555 L600 580" stroke="#64748b" stroke-width="2"/>
+  <polygon points="600,590 595,580 605,580" fill="#64748b"/>
+
+  <!-- 基础设施层 -->
+  <g transform="translate(50, 600)">
+    <rect x="0" y="0" width="1100" height="140" rx="10" fill="url(#infraGrad)" filter="url(#shadow)" opacity="0.9"/>
+    <text x="550" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#fff">基础设施层 (Infrastructure Layer)</text>
+
+    <!-- Message Queue -->
+    <rect x="50" y="50" width="180" height="70" rx="8" fill="#fff" opacity="0.9"/>
+    <text x="140" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#333" font-weight="bold">Message Queue</text>
+    <text x="140" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">Kafka / RabbitMQ</text>
+
+    <!-- State Store -->
+    <rect x="260" y="50" width="180" height="70" rx="8" fill="#fff" opacity="0.9"/>
+    <text x="350" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#333" font-weight="bold">State Store</text>
+    <text x="350" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">Redis / PostgreSQL</text>
+
+    <!-- Tool Registry -->
+    <rect x="470" y="50" width="180" height="70" rx="8" fill="#fff" opacity="0.9"/>
+    <text x="560" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#333" font-weight="bold">Tool Registry</text>
+    <text x="560" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">工具注册中心</text>
+
+    <!-- LLM Gateway -->
+    <rect x="680" y="50" width="180" height="70" rx="8" fill="#fff" opacity="0.9"/>
+    <text x="770" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#333" font-weight="bold">LLM Gateway</text>
+    <text x="770" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">Claude / GPT-4</text>
+
+    <!-- Storage & Cache -->
+    <rect x="890" y="50" width="180" height="70" rx="8" fill="#fff" opacity="0.9"/>
+    <text x="980" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#333" font-weight="bold">Storage &amp; Cache</text>
+    <text x="980" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">MinIO / Redis</text>
+  </g>
+
+  <!-- 图例 -->
+  <g transform="translate(50, 760)">
+    <text x="0" y="15" font-family="Arial, sans-serif" font-size="12" fill="#666">图例:</text>
+    <rect x="60" y="5" width="15" height="15" fill="url(#uiGrad)" rx="2"/>
+    <text x="80" y="17" font-family="Arial, sans-serif" font-size="11" fill="#666">用户交互层</text>
+    <rect x="170" y="5" width="15" height="15" fill="url(#orchestrationGrad)" rx="2"/>
+    <text x="190" y="17" font-family="Arial, sans-serif" font-size="11" fill="#666">编排调度层</text>
+    <rect x="280" y="5" width="15" height="15" fill="url(#agentGrad)" rx="2"/>
+    <text x="300" y="17" font-family="Arial, sans-serif" font-size="11" fill="#666">Agent层</text>
+    <rect x="370" y="5" width="15" height="15" fill="url(#infraGrad)" rx="2"/>
+    <text x="390" y="17" font-family="Arial, sans-serif" font-size="11" fill="#666">基础设施层</text>
+    <line x1="480" y1="12" x2="510" y2="12" stroke="#667eea" stroke-width="2" stroke-dasharray="5,3"/>
+    <text x="520" y="17" font-family="Arial, sans-serif" font-size="11" fill="#666">Agent协作流</text>
+  </g>
+</svg>
+
+
+<p>系统采用四层架构设计：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>名称</th>
+<th>核心组件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L1</td>
+<td>用户交互层</td>
+<td>Web Console, CLI Tool, API Gateway</td>
+</tr>
+<tr>
+<td>L2</td>
+<td>编排调度层</td>
+<td>工作流引擎、调度器、状态机、事件总线、审批网关</td>
+</tr>
+<tr>
+<td>L3</td>
+<td>Agent层</td>
+<td>7个核心Agent（需求→评审→设计→编码→Review→单元测试→集成测试）</td>
+</tr>
+<tr>
+<td>L4</td>
+<td>基础设施层</td>
+<td>消息队列、状态存储、工具注册、LLM网关、存储缓存</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="2-2-研发流程阶段"><a href="#2-2-研发流程阶段" class="headerlink" title="2.2 研发流程阶段"></a>2.2 研发流程阶段</h3><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1200 500" width="80%">
+  <defs>
+    <lineargradient id="agentBoxGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1"/>
+    </lineargradient>
+    <lineargradient id="arrowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1"/>
+    </lineargradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <fedropshadow dx="2" dy="2" stddeviation="3" flood-opacity="0.3">
+    </fedropshadow></filter>
+    <marker id="arrowhead" markerwidth="10" markerheight="7" refx="9" refy="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#667eea"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="1200" height="500" fill="#f8fafc"/>
+  <!-- 标题 -->
+  <text x="600" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1e293b">研发流程流水线</text>
+
+  <!-- 主流程线 -->
+  <path d="M50 250 L1150 250" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- 阶段1: 需求分析 -->
+  <g transform="translate(50, 150)">
+    <rect x="0" y="0" width="140" height="200" rx="12" fill="url(#agentBoxGrad)" filter="url(#shadow)"/>
+    <text x="70" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">需求分析</text>
+    <!-- Agent图标 -->
+    <circle cx="70" cy="70" r="25" fill="#fff" opacity="0.9"/>
+    <text x="70" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="20">📋</text>
+    <text x="70" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">RequirementsAgent</text>
+    <!-- 输入输出 -->
+    <rect x="10" y="125" width="120" height="30" rx="4" fill="#fff" opacity="0.2"/>
+    <text x="70" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">用户需求</text>
+    <rect x="10" y="160" width="120" height="30" rx="4" fill="#fff" opacity="0.3"/>
+    <text x="70" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">PRD文档</text>
+  </g>
+
+  <!-- 箭头1 -->
+  <path d="M195 250 L210 250" stroke="url(#arrowGrad)" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- 阶段2: 需求评审 -->
+  <g transform="translate(210, 150)">
+    <rect x="0" y="0" width="140" height="200" rx="12" fill="url(#agentBoxGrad)" filter="url(#shadow)"/>
+    <text x="70" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">需求评审</text>
+    <circle cx="70" cy="70" r="25" fill="#fff" opacity="0.9"/>
+    <text x="70" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="20">✅</text>
+    <text x="70" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">ReviewAgent</text>
+    <rect x="10" y="125" width="120" height="30" rx="4" fill="#fff" opacity="0.2"/>
+    <text x="70" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">PRD文档</text>
+    <rect x="10" y="160" width="120" height="30" rx="4" fill="#fff" opacity="0.3"/>
+    <text x="70" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">评审报告</text>
+  </g>
+
+  <!-- 箭头2 -->
+  <path d="M355 250 L370 250" stroke="url(#arrowGrad)" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- 阶段3: 方案设计 -->
+  <g transform="translate(370, 150)">
+    <rect x="0" y="0" width="140" height="200" rx="12" fill="url(#agentBoxGrad)" filter="url(#shadow)"/>
+    <text x="70" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">方案设计</text>
+    <circle cx="70" cy="70" r="25" fill="#fff" opacity="0.9"/>
+    <text x="70" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="20">🏗️</text>
+
+    <text x="70" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">DesignAgent</text>
+
+    <rect x="10" y="125" width="120" height="30" rx="4" fill="#fff" opacity="0.2"/>
+    <text x="70" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">评审后PRD</text>
+
+    <rect x="10" y="160" width="120" height="30" rx="4" fill="#fff" opacity="0.3"/>
+    <text x="70" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">技术方案</text>
+  </g>
+
+  <!-- 箭头3 -->
+  <path d="M515 250 L530 250" stroke="url(#arrowGrad)" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- 阶段4: 代码编写 -->
+  <g transform="translate(530, 150)">
+    <rect x="0" y="0" width="140" height="200" rx="12" fill="url(#agentBoxGrad)" filter="url(#shadow)"/>
+    <text x="70" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">代码编写</text>
+
+    <circle cx="70" cy="70" r="25" fill="#fff" opacity="0.9"/>
+    <text x="70" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="20">💻</text>
+
+    <text x="70" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">CodingAgent</text>
+
+    <rect x="10" y="125" width="120" height="30" rx="4" fill="#fff" opacity="0.2"/>
+    <text x="70" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">技术方案</text>
+
+    <rect x="10" y="160" width="120" height="30" rx="4" fill="#fff" opacity="0.3"/>
+    <text x="70" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">源代码</text>
+  </g>
+
+  <!-- 箭头4 -->
+  <path d="M675 250 L690 250" stroke="url(#arrowGrad)" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- 阶段5: 代码Review -->
+  <g transform="translate(690, 150)">
+    <rect x="0" y="0" width="140" height="200" rx="12" fill="url(#agentBoxGrad)" filter="url(#shadow)"/>
+    <text x="70" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">代码Review</text>
+
+    <circle cx="70" cy="70" r="25" fill="#fff" opacity="0.9"/>
+    <text x="70" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="20">🔍</text>
+
+    <text x="70" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">CodeReviewAgent</text>
+
+    <rect x="10" y="125" width="120" height="30" rx="4" fill="#fff" opacity="0.2"/>
+    <text x="70" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">源代码</text>
+
+    <rect x="10" y="160" width="120" height="30" rx="4" fill="#fff" opacity="0.3"/>
+    <text x="70" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">Review报告</text>
+  </g>
+
+  <!-- 箭头5 -->
+  <path d="M835 250 L850 250" stroke="url(#arrowGrad)" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- 阶段6: 单元测试 -->
+  <g transform="translate(850, 150)">
+    <rect x="0" y="0" width="140" height="200" rx="12" fill="url(#agentBoxGrad)" filter="url(#shadow)"/>
+    <text x="70" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">单元测试</text>
+
+    <circle cx="70" cy="70" r="25" fill="#fff" opacity="0.9"/>
+    <text x="70" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="20">🧪</text>
+
+    <text x="70" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">UnitTestAgent</text>
+
+    <rect x="10" y="125" width="120" height="30" rx="4" fill="#fff" opacity="0.2"/>
+    <text x="70" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">源代码</text>
+
+    <rect x="10" y="160" width="120" height="30" rx="4" fill="#fff" opacity="0.3"/>
+    <text x="70" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">测试报告</text>
+  </g>
+
+  <!-- 箭头6 -->
+  <path d="M995 250 L1010 250" stroke="url(#arrowGrad)" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- 阶段7: 集成测试 -->
+  <g transform="translate(1010, 150)">
+    <rect x="0" y="0" width="140" height="200" rx="12" fill="url(#agentBoxGrad)" filter="url(#shadow)"/>
+    <text x="70" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">集成测试</text>
+
+    <circle cx="70" cy="70" r="25" fill="#fff" opacity="0.9"/>
+    <text x="70" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="20">🚀</text>
+
+    <text x="70" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">IntegrationAgent</text>
+
+    <rect x="10" y="125" width="120" height="30" rx="4" fill="#fff" opacity="0.2"/>
+    <text x="70" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">完整代码包</text>
+
+    <rect x="10" y="160" width="120" height="30" rx="4" fill="#fff" opacity="0.3"/>
+    <text x="70" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">发布建议</text>
+  </g>
+
+  <!-- 干预点标记 -->
+  <g>
+    <!-- 需求评审干预点 -->
+    <circle cx="280" cy="380" r="15" fill="#f59e0b" filter="url(#shadow)"/>
+    <text x="280" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">!</text>
+    <text x="280" y="410" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">审批点</text>
+
+    <!-- 方案设计干预点 -->
+    <circle cx="440" cy="380" r="15" fill="#f59e0b" filter="url(#shadow)"/>
+    <text x="440" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">!</text>
+    <text x="440" y="410" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">审批点</text>
+
+    <!-- 代码Review干预点 -->
+    <circle cx="760" cy="380" r="15" fill="#f59e0b" filter="url(#shadow)"/>
+    <text x="760" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">!</text>
+    <text x="760" y="410" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">条件干预</text>
+
+    <!-- 集成测试干预点 -->
+    <circle cx="1080" cy="380" r="15" fill="#f59e0b" filter="url(#shadow)"/>
+    <text x="1080" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">!</text>
+    <text x="1080" y="410" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">条件干预</text>
+  </g>
+
+  <!-- 图例 -->
+  <g transform="translate(50, 460)">
+    <text x="0" y="15" font-family="Arial, sans-serif" font-size="12" fill="#666">图例:</text>
+    <circle cx="70" cy="10" r="8" fill="#f59e0b"/>
+    <text x="85" y="15" font-family="Arial, sans-serif" font-size="11" fill="#666">干预/审批点</text>
+    <rect x="180" y="3" width="30" height="15" rx="2" fill="url(#agentBoxGrad)"/>
+    <text x="220" y="15" font-family="Arial, sans-serif" font-size="11" fill="#666">Agent处理阶段</text>
+  </g>
+</svg>
+
+
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>核心Agent</th>
+<th>输入</th>
+<th>输出</th>
+<th>关键职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>需求分析</td>
+<td>RequirementsAgent</td>
+<td>用户需求描述</td>
+<td>需求文档(PRD)</td>
+<td>需求理解、拆解、澄清</td>
+</tr>
+<tr>
+<td>需求评审</td>
+<td>ReviewAgent</td>
+<td>PRD文档</td>
+<td>评审报告、修订PRD</td>
+<td>完整性检查、可行性分析</td>
+</tr>
+<tr>
+<td>方案设计</td>
+<td>DesignAgent</td>
+<td>评审后PRD</td>
+<td>技术方案、接口定义</td>
+<td>架构设计、技术选型</td>
+</tr>
+<tr>
+<td>代码编写</td>
+<td>CodingAgent</td>
+<td>技术方案</td>
+<td>源代码、文档</td>
+<td>代码实现、注释编写</td>
+</tr>
+<tr>
+<td>代码Review</td>
+<td>CodeReviewAgent</td>
+<td>源代码</td>
+<td>Review报告、修订建议</td>
+<td>代码质量、规范检查</td>
+</tr>
+<tr>
+<td>单元测试</td>
+<td>UnitTestAgent</td>
+<td>源代码</td>
+<td>测试代码、覆盖率报告</td>
+<td>测试用例生成、执行</td>
+</tr>
+<tr>
+<td>集成测试</td>
+<td>IntegrationTestAgent</td>
+<td>完整代码包</td>
+<td>集成测试报告</td>
+<td>E2E测试、性能测试</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="3-核心模块设计"><a href="#3-核心模块设计" class="headerlink" title="3. 核心模块设计"></a>3. 核心模块设计</h2><h3 id="3-1-模块关系图"><a href="#3-1-模块关系图" class="headerlink" title="3.1 模块关系图"></a>3.1 模块关系图</h3><p><img src="images/module-diagram.svg" alt="模块关系"></p>
+<h3 id="3-2-Agent基类设计"><a href="#3-2-Agent基类设计" class="headerlink" title="3.2 Agent基类设计"></a>3.2 Agent基类设计</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">BaseAgent</span> &#123;</span><br><span class="line">  <span class="attr">id</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">role</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">capabilities</span>: <span class="built_in">string</span>[];</span><br><span class="line">  <span class="attr">status</span>: <span class="string">&#x27;idle&#x27;</span> | <span class="string">&#x27;running&#x27;</span> | <span class="string">&#x27;waiting&#x27;</span> | <span class="string">&#x27;completed&#x27;</span> | <span class="string">&#x27;failed&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 核心方法</span></span><br><span class="line">  <span class="title function_">execute</span>(<span class="attr">context</span>: <span class="title class_">AgentContext</span>): <span class="title class_">Promise</span>&lt;<span class="title class_">AgentOutput</span>&gt;;</span><br><span class="line">  <span class="title function_">onEvent</span>(<span class="attr">event</span>: <span class="title class_">AgentEvent</span>): <span class="built_in">void</span>;</span><br><span class="line">  <span class="title function_">reportProgress</span>(<span class="attr">progress</span>: <span class="title class_">Progress</span>): <span class="built_in">void</span>;</span><br><span class="line">  <span class="title function_">requestIntervention</span>(<span class="attr">reason</span>: <span class="built_in">string</span>): <span class="title class_">Promise</span>&lt;<span class="title class_">InterventionResult</span>&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">AgentContext</span> &#123;</span><br><span class="line">  <span class="attr">taskId</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">phase</span>: <span class="title class_">Phase</span>;</span><br><span class="line">  <span class="attr">inputs</span>: <span class="title class_">Record</span>&lt;<span class="built_in">string</span>, <span class="built_in">any</span>&gt;;</span><br><span class="line">  <span class="attr">history</span>: <span class="title class_">AgentAction</span>[];</span><br><span class="line">  <span class="attr">config</span>: <span class="title class_">AgentConfig</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">AgentOutput</span> &#123;</span><br><span class="line">  <span class="attr">success</span>: <span class="built_in">boolean</span>;</span><br><span class="line">  <span class="attr">artifacts</span>: <span class="title class_">Artifact</span>[];</span><br><span class="line">  <span class="attr">metrics</span>: <span class="title class_">PerformanceMetrics</span>;</span><br><span class="line">  <span class="attr">nextActions</span>: <span class="title class_">Action</span>[];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-3-工作流引擎设计"><a href="#3-3-工作流引擎设计" class="headerlink" title="3.3 工作流引擎设计"></a>3.3 工作流引擎设计</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">WorkflowEngine</span> &#123;</span><br><span class="line">  <span class="comment">// 流程控制</span></span><br><span class="line">  <span class="title function_">startWorkflow</span>(<span class="attr">definition</span>: <span class="title class_">WorkflowDefinition</span>): <span class="title class_">Promise</span>&lt;<span class="title class_">WorkflowInstance</span>&gt;;</span><br><span class="line">  <span class="title function_">pauseWorkflow</span>(<span class="attr">instanceId</span>: <span class="built_in">string</span>): <span class="built_in">void</span>;</span><br><span class="line">  <span class="title function_">resumeWorkflow</span>(<span class="attr">instanceId</span>: <span class="built_in">string</span>): <span class="built_in">void</span>;</span><br><span class="line">  <span class="title function_">terminateWorkflow</span>(<span class="attr">instanceId</span>: <span class="built_in">string</span>): <span class="built_in">void</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 状态管理</span></span><br><span class="line">  <span class="title function_">getState</span>(<span class="attr">instanceId</span>: <span class="built_in">string</span>): <span class="title class_">WorkflowState</span>;</span><br><span class="line">  <span class="title function_">transitState</span>(<span class="attr">instanceId</span>: <span class="built_in">string</span>, <span class="attr">event</span>: <span class="title class_">StateEvent</span>): <span class="built_in">void</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Agent调度</span></span><br><span class="line">  <span class="title function_">dispatchAgent</span>(<span class="attr">agentType</span>: <span class="title class_">AgentType</span>, <span class="attr">context</span>: <span class="title class_">AgentContext</span>): <span class="built_in">void</span>;</span><br><span class="line">  <span class="title function_">waitForAgent</span>(<span class="attr">agentId</span>: <span class="built_in">string</span>): <span class="title class_">Promise</span>&lt;<span class="title class_">AgentOutput</span>&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-4-可观测性模块"><a href="#3-4-可观测性模块" class="headerlink" title="3.4 可观测性模块"></a>3.4 可观测性模块</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">ObservabilityModule</span> &#123;</span><br><span class="line">  <span class="comment">// 日志采集</span></span><br><span class="line">  <span class="title function_">log</span>(<span class="attr">level</span>: <span class="title class_">LogLevel</span>, <span class="attr">message</span>: <span class="built_in">string</span>, <span class="attr">context</span>?: <span class="built_in">object</span>): <span class="built_in">void</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 指标收集</span></span><br><span class="line">  <span class="title function_">recordMetric</span>(<span class="attr">name</span>: <span class="built_in">string</span>, <span class="attr">value</span>: <span class="built_in">number</span>, <span class="attr">tags</span>?: <span class="title class_">Tags</span>): <span class="built_in">void</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 追踪链</span></span><br><span class="line">  <span class="title function_">startTrace</span>(<span class="attr">name</span>: <span class="built_in">string</span>): <span class="title class_">TraceSpan</span>;</span><br><span class="line">  <span class="title function_">endTrace</span>(<span class="attr">span</span>: <span class="title class_">TraceSpan</span>): <span class="built_in">void</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 事件流</span></span><br><span class="line">  <span class="title function_">emitEvent</span>(<span class="attr">event</span>: <span class="title class_">AgentEvent</span>): <span class="built_in">void</span>;</span><br><span class="line">  <span class="title function_">subscribeEvent</span>(<span class="attr">eventType</span>: <span class="built_in">string</span>, <span class="attr">handler</span>: <span class="title class_">EventHandler</span>): <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-5-干预机制设计"><a href="#3-5-干预机制设计" class="headerlink" title="3.5 干预机制设计"></a>3.5 干预机制设计</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">InterventionGateway</span> &#123;</span><br><span class="line">  <span class="comment">// 检查点</span></span><br><span class="line">  <span class="title function_">createCheckpoint</span>(<span class="attr">phase</span>: <span class="title class_">Phase</span>, <span class="attr">context</span>: <span class="title class_">AgentContext</span>): <span class="title class_">Checkpoint</span>;</span><br><span class="line">  <span class="title function_">requestApproval</span>(<span class="attr">checkpoint</span>: <span class="title class_">Checkpoint</span>): <span class="title class_">Promise</span>&lt;<span class="title class_">ApprovalResult</span>&gt;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 干预操作</span></span><br><span class="line">  <span class="title function_">pause</span>(<span class="attr">phase</span>: <span class="title class_">Phase</span>): <span class="built_in">void</span>;</span><br><span class="line">  <span class="title function_">modify</span>(<span class="attr">phase</span>: <span class="title class_">Phase</span>, <span class="attr">changes</span>: <span class="title class_">Changes</span>): <span class="built_in">void</span>;</span><br><span class="line">  <span class="title function_">rollback</span>(<span class="attr">checkpointId</span>: <span class="built_in">string</span>): <span class="built_in">void</span>;</span><br><span class="line">  <span class="title function_">forceProceed</span>(<span class="attr">phase</span>: <span class="title class_">Phase</span>): <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 审批策略</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">ApprovalPolicy</span> &#123;</span><br><span class="line">  <span class="attr">phase</span>: <span class="title class_">Phase</span>;</span><br><span class="line">  <span class="attr">trigger</span>: <span class="string">&#x27;always&#x27;</span> | <span class="string">&#x27;on-failure&#x27;</span> | <span class="string">&#x27;on-threshold&#x27;</span> | <span class="string">&#x27;manual&#x27;</span>;</span><br><span class="line">  <span class="attr">approvers</span>: <span class="built_in">string</span>[];</span><br><span class="line">  <span class="attr">timeout</span>: <span class="built_in">number</span>;</span><br><span class="line">  <span class="attr">autoApproveRules</span>?: <span class="title class_">AutoApproveRule</span>[];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="4-Agent详细设计"><a href="#4-Agent详细设计" class="headerlink" title="4. Agent详细设计"></a>4. Agent详细设计</h2><h3 id="4-1-RequirementsAgent（需求分析Agent）"><a href="#4-1-RequirementsAgent（需求分析Agent）" class="headerlink" title="4.1 RequirementsAgent（需求分析Agent）"></a>4.1 RequirementsAgent（需求分析Agent）</h3><p><strong>职责</strong>：理解用户需求，产出结构化PRD</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────────────────────────────────────────┐</span><br><span class="line">│                    RequirementsAgent                         │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  输入:                                                       │</span><br><span class="line">│    • 用户需求描述（自然语言）                                  │</span><br><span class="line">│    • 业务背景信息                                             │</span><br><span class="line">│    • 历史需求记录                                             │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  处理流程:                                                   │</span><br><span class="line">│    1. 需求理解：使用LLM解析需求意图                           │</span><br><span class="line">│    2. 需求拆解：将大需求拆分为子需求                           │</span><br><span class="line">│    3. 需求澄清：生成澄清问题列表                               │</span><br><span class="line">│    4. 文档生成：输出结构化PRD                                 │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  输出:                                                       │</span><br><span class="line">│    • PRD文档（Markdown格式）                                  │</span><br><span class="line">│    • 需求列表（结构化JSON）                                   │</span><br><span class="line">│    • 澄清问题列表                                             │</span><br><span class="line">│    • 预估工作量                                               │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  工具依赖:                                                   │</span><br><span class="line">│    • LLM: Claude/GPT-4                                       │</span><br><span class="line">│    • 知识库检索: 向量数据库                                   │</span><br><span class="line">│    • 模板引擎: PRD模板渲染                                   │</span><br><span class="line">└─────────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<h3 id="4-2-ReviewAgent（需求评审Agent）"><a href="#4-2-ReviewAgent（需求评审Agent）" class="headerlink" title="4.2 ReviewAgent（需求评审Agent）"></a>4.2 ReviewAgent（需求评审Agent）</h3><p><strong>职责</strong>：评审需求完整性和可行性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────────────────────────────────────────┐</span><br><span class="line">│                       ReviewAgent                            │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  输入:                                                       │</span><br><span class="line">│    • PRD文档                                                 │</span><br><span class="line">│    • 技术约束条件                                             │</span><br><span class="line">│    • 团队能力评估                                             │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  评审维度:                                                   │</span><br><span class="line">│    1. 完整性：需求是否完整无遗漏                              │</span><br><span class="line">│    2. 一致性：需求间是否存在矛盾                              │</span><br><span class="line">│    3. 可行性：技术实现可行性评估                              │</span><br><span class="line">│    4. 优先级：需求优先级排序                                 │</span><br><span class="line">│    5. 风险点：识别潜在风险                                   │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  输出:                                                       │</span><br><span class="line">│    • 评审报告                                                 │</span><br><span class="line">│    • 修订建议                                                 │</span><br><span class="line">│    • 风险清单                                                 │</span><br><span class="line">│    • 通过/不通过决策                                         │</span><br><span class="line">└─────────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<h3 id="4-3-DesignAgent（方案设计Agent）"><a href="#4-3-DesignAgent（方案设计Agent）" class="headerlink" title="4.3 DesignAgent（方案设计Agent）"></a>4.3 DesignAgent（方案设计Agent）</h3><p><strong>职责</strong>：技术方案设计，产出详细设计文档</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────────────────────────────────────────┐</span><br><span class="line">│                       DesignAgent                            │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  输入:                                                       │</span><br><span class="line">│    • 评审后PRD                                               │</span><br><span class="line">│    • 技术栈约束                                              │</span><br><span class="line">│    • 架构规范                                                │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  设计内容:                                                   │</span><br><span class="line">│    1. 系统架构设计                                           │</span><br><span class="line">│    2. 模块划分与接口定义                                     │</span><br><span class="line">│    3. 数据模型设计                                           │</span><br><span class="line">│    4. API接口设计                                            │</span><br><span class="line">│    5. 技术选型说明                                           │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  输出:                                                       │</span><br><span class="line">│    • 技术方案文档                                            │</span><br><span class="line">│    • 接口定义文档（OpenAPI）                                 │</span><br><span class="line">│    • 数据模型定义                                            │</span><br><span class="line">│    • 架构图（SVG/PlantUML）                                  │</span><br><span class="line">└─────────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<h3 id="4-4-CodingAgent（代码编写Agent）"><a href="#4-4-CodingAgent（代码编写Agent）" class="headerlink" title="4.4 CodingAgent（代码编写Agent）"></a>4.4 CodingAgent（代码编写Agent）</h3><p><strong>职责</strong>：根据设计文档编写代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────────────────────────────────────────┐</span><br><span class="line">│                       CodingAgent                            │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  输入:                                                       │</span><br><span class="line">│    • 技术方案文档                                            │</span><br><span class="line">│    • 接口定义                                                │</span><br><span class="line">│    • 代码规范                                                │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  编码策略:                                                   │</span><br><span class="line">│    1. 模块化编码：按模块逐步实现                              │</span><br><span class="line">│    2. TDD驱动：先写测试后写实现                              │</span><br><span class="line">│    3. 代码复用：检索相似代码复用                             │</span><br><span class="line">│    4. 实时反馈：边写边检查语法                               │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  输出:                                                       │</span><br><span class="line">│    • 源代码文件                                              │</span><br><span class="line">│    • 内联注释                                                │</span><br><span class="line">│    • README文档                                              │</span><br><span class="line">└─────────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<h3 id="4-5-CodeReviewAgent（代码审查Agent）"><a href="#4-5-CodeReviewAgent（代码审查Agent）" class="headerlink" title="4.5 CodeReviewAgent（代码审查Agent）"></a>4.5 CodeReviewAgent（代码审查Agent）</h3><p><strong>职责</strong>：代码质量和规范检查</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────────────────────────────────────────┐</span><br><span class="line">│                    CodeReviewAgent                           │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  检查维度:                                                   │</span><br><span class="line">│    1. 代码规范：命名、格式、注释                              │</span><br><span class="line">│    2. 逻辑正确性：边界条件、异常处理                          │</span><br><span class="line">│    3. 安全性：SQL注入、XSS等漏洞                             │</span><br><span class="line">│    4. 性能：时间复杂度、内存使用                             │</span><br><span class="line">│    5. 可维护性：耦合度、复杂度                               │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  输出:                                                       │</span><br><span class="line">│    • Review报告                                              │</span><br><span class="line">│    • 问题列表（按严重程度分级）                               │</span><br><span class="line">│    • 修订建议                                                │</span><br><span class="line">│    • 代码质量评分                                            │</span><br><span class="line">└─────────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<h3 id="4-6-UnitTestAgent（单元测试Agent）"><a href="#4-6-UnitTestAgent（单元测试Agent）" class="headerlink" title="4.6 UnitTestAgent（单元测试Agent）"></a>4.6 UnitTestAgent（单元测试Agent）</h3><p><strong>职责</strong>：生成和执行单元测试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────────────────────────────────────────┐</span><br><span class="line">│                      UnitTestAgent                           │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  测试策略:                                                   │</span><br><span class="line">│    1. 用例生成：分析代码生成测试用例                          │</span><br><span class="line">│    2. 边界测试：覆盖边界条件                                 │</span><br><span class="line">│    3. 异常测试：覆盖异常路径                                 │</span><br><span class="line">│    4. Mock策略：依赖隔离                                    │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  输出:                                                       │</span><br><span class="line">│    • 测试代码                                                │</span><br><span class="line">│    • 测试报告                                                │</span><br><span class="line">│    • 覆盖率报告                                              │</span><br><span class="line">│    • 未覆盖路径分析                                          │</span><br><span class="line">└─────────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<h3 id="4-7-IntegrationTestAgent（集成测试Agent）"><a href="#4-7-IntegrationTestAgent（集成测试Agent）" class="headerlink" title="4.7 IntegrationTestAgent（集成测试Agent）"></a>4.7 IntegrationTestAgent（集成测试Agent）</h3><p><strong>职责</strong>：端到端测试和集成验证</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────────────────────────────────────────┐</span><br><span class="line">│                  IntegrationTestAgent                        │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  测试类型:                                                   │</span><br><span class="line">│    1. API集成测试                                           │</span><br><span class="line">│    2. E2E场景测试                                           │</span><br><span class="line">│    3. 性能测试                                              │</span><br><span class="line">│    4. 兼容性测试                                            │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  输出:                                                       │</span><br><span class="line">│    • 集成测试报告                                            │</span><br><span class="line">│    • 性能基准报告                                            │</span><br><span class="line">│    • 问题列表                                                │</span><br><span class="line">│    • 发布建议                                                │</span><br><span class="line">└─────────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="5-数据流设计"><a href="#5-数据流设计" class="headerlink" title="5. 数据流设计"></a>5. 数据流设计</h2><h3 id="5-1-实时数据流"><a href="#5-1-实时数据流" class="headerlink" title="5.1 实时数据流"></a>5.1 实时数据流</h3><p><img src="images/data-flow.svg" alt="数据流"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">用户需求 ──► 消息队列 ──► RequirementsAgent</span><br><span class="line">                                    │</span><br><span class="line">                                    ▼</span><br><span class="line">                              状态存储</span><br><span class="line">                                    │</span><br><span class="line">                                    ▼</span><br><span class="line">                          事件总线 ──► ReviewAgent</span><br><span class="line">                                          │</span><br><span class="line">                                          ▼</span><br><span class="line">                                    状态存储</span><br><span class="line">                                          │</span><br><span class="line">                                          ▼</span><br><span class="line">                                    事件总线 ──► DesignAgent</span><br><span class="line">                                                    │</span><br><span class="line">                                                    ▼</span><br><span class="line">                                              ... 依此类推</span><br></pre></td></tr></table></figure>
+<h3 id="5-2-状态流转"><a href="#5-2-状态流转" class="headerlink" title="5.2 状态流转"></a>5.2 状态流转</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[Created] ──► [Analyzing] ──► [Reviewing] ──► [Designing]</span><br><span class="line">                                                      │</span><br><span class="line">                                                      ▼</span><br><span class="line">[Completed] ◄── [Testing] ◄── [Coding] ◄── [Approved]</span><br><span class="line">     │</span><br><span class="line">     ▼</span><br><span class="line">[Deployed]</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="6-可观测性设计"><a href="#6-可观测性设计" class="headerlink" title="6. 可观测性设计"></a>6. 可观测性设计</h2><h3 id="6-1-可观测性架构"><a href="#6-1-可观测性架构" class="headerlink" title="6.1 可观测性架构"></a>6.1 可观测性架构</h3><p><img src="images/observability-architecture.svg" alt="可观测性架构"></p>
+<h3 id="6-2-指标体系"><a href="#6-2-指标体系" class="headerlink" title="6.2 指标体系"></a>6.2 指标体系</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指标类型</th>
+<th>指标名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>性能指标</td>
+<td>agent_execution_time</td>
+<td>Agent执行耗时</td>
+</tr>
+<tr>
+<td></td>
+<td>workflow_duration</td>
+<td>工作流总耗时</td>
+</tr>
+<tr>
+<td></td>
+<td>message_queue_length</td>
+<td>消息队列积压</td>
+</tr>
+<tr>
+<td>质量指标</td>
+<td>code_quality_score</td>
+<td>代码质量评分</td>
+</tr>
+<tr>
+<td></td>
+<td>test_coverage_rate</td>
+<td>测试覆盖率</td>
+</tr>
+<tr>
+<td></td>
+<td>review_pass_rate</td>
+<td>评审通过率</td>
+</tr>
+<tr>
+<td>状态指标</td>
+<td>agent_status</td>
+<td>Agent状态</td>
+</tr>
+<tr>
+<td></td>
+<td>workflow_progress</td>
+<td>工作流进度</td>
+</tr>
+<tr>
+<td></td>
+<td>intervention_count</td>
+<td>干预次数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="6-3-日志规范"><a href="#6-3-日志规范" class="headerlink" title="6.3 日志规范"></a>6.3 日志规范</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;timestamp&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2026-03-18T10:00:00Z&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;level&quot;</span><span class="punctuation">:</span> <span class="string">&quot;INFO&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;agent_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;req-agent-001&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;workflow_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;wf-20260318-001&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;phase&quot;</span><span class="punctuation">:</span> <span class="string">&quot;requirements_analysis&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;action&quot;</span><span class="punctuation">:</span> <span class="string">&quot;generate_prd&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;PRD generated successfully&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;context&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;task_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;task-001&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;input_tokens&quot;</span><span class="punctuation">:</span> <span class="number">1500</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;output_tokens&quot;</span><span class="punctuation">:</span> <span class="number">2000</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;trace_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;trace-xxx&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-4-追踪链设计"><a href="#6-4-追踪链设计" class="headerlink" title="6.4 追踪链设计"></a>6.4 追踪链设计</h3><p>每个请求生成唯一的 <code>trace_id</code>，贯穿整个工作流：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Trace: trace-xxx</span><br><span class="line">├── Span: requirements_analysis (Duration: 5.2s)</span><br><span class="line">│   ├── Span: llm_call (Duration: 4.8s)</span><br><span class="line">│   └── Span: document_generation (Duration: 0.4s)</span><br><span class="line">├── Span: review (Duration: 2.1s)</span><br><span class="line">├── Span: design (Duration: 8.5s)</span><br><span class="line">├── Span: coding (Duration: 45.3s)</span><br><span class="line">├── Span: code_review (Duration: 3.2s)</span><br><span class="line">├── Span: unit_test (Duration: 12.8s)</span><br><span class="line">└── Span: integration_test (Duration: 25.6s)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="7-干预机制设计"><a href="#7-干预机制设计" class="headerlink" title="7. 干预机制设计"></a>7. 干预机制设计</h2><h3 id="7-1-干预点配置"><a href="#7-1-干预点配置" class="headerlink" title="7.1 干预点配置"></a>7.1 干预点配置</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>干预类型</th>
+<th>触发条件</th>
+<th>审批人</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>需求评审</td>
+<td>必须审批</td>
+<td>Always</td>
+<td>产品经理</td>
+</tr>
+<tr>
+<td>方案设计</td>
+<td>必须审批</td>
+<td>Always</td>
+<td>技术负责人</td>
+</tr>
+<tr>
+<td>代码Review</td>
+<td>问题阈值</td>
+<td>发现高优问题</td>
+<td>开发负责人</td>
+</tr>
+<tr>
+<td>集成测试</td>
+<td>失败审批</td>
+<td>测试失败</td>
+<td>QA负责人</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="7-2-干预操作类型"><a href="#7-2-干预操作类型" class="headerlink" title="7.2 干预操作类型"></a>7.2 干预操作类型</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">InterventionType</span> &#123;</span><br><span class="line">  <span class="variable constant_">APPROVE</span> = <span class="string">&#x27;approve&#x27;</span>,       <span class="comment">// 批准继续</span></span><br><span class="line">  <span class="variable constant_">REJECT</span> = <span class="string">&#x27;reject&#x27;</span>,         <span class="comment">// 拒绝并终止</span></span><br><span class="line">  <span class="variable constant_">MODIFY</span> = <span class="string">&#x27;modify&#x27;</span>,         <span class="comment">// 修改后继续</span></span><br><span class="line">  <span class="variable constant_">ROLLBACK</span> = <span class="string">&#x27;rollback&#x27;</span>,     <span class="comment">// 回退到上一步</span></span><br><span class="line">  <span class="variable constant_">REASSIGN</span> = <span class="string">&#x27;reassign&#x27;</span>      <span class="comment">// 重新分配Agent</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="7-3-审批流程"><a href="#7-3-审批流程" class="headerlink" title="7.3 审批流程"></a>7.3 审批流程</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">┌──────────────┐     ┌──────────────┐     ┌──────────────┐</span><br><span class="line">│   Agent完成  │────►│  创建检查点   │────►│  发送审批请求 │</span><br><span class="line">└──────────────┘     └──────────────┘     └──────────────┘</span><br><span class="line">                                                │</span><br><span class="line">                    ┌───────────────────────────┤</span><br><span class="line">                    │                           │</span><br><span class="line">                    ▼                           ▼</span><br><span class="line">           ┌──────────────┐            ┌──────────────┐</span><br><span class="line">           │   等待审批    │            │   超时处理   │</span><br><span class="line">           └──────────────┘            └──────────────┘</span><br><span class="line">                    │</span><br><span class="line">         ┌──────────┼──────────┐</span><br><span class="line">         │          │          │</span><br><span class="line">         ▼          ▼          ▼</span><br><span class="line">    ┌─────────┐ ┌─────────┐ ┌─────────┐</span><br><span class="line">    │  批准   │ │  拒绝   │ │  修改   │</span><br><span class="line">    └─────────┘ └─────────┘ └─────────┘</span><br><span class="line">         │          │          │</span><br><span class="line">         ▼          ▼          ▼</span><br><span class="line">    继续执行    终止流程    重新执行</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="8-技术选型"><a href="#8-技术选型" class="headerlink" title="8. 技术选型"></a>8. 技术选型</h2><h3 id="8-1-核心框架"><a href="#8-1-核心框架" class="headerlink" title="8.1 核心框架"></a>8.1 核心框架</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>推荐方案</th>
+<th>备选方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agent框架</td>
+<td>LangGraph</td>
+<td>AutoGen, CrewAI</td>
+</tr>
+<tr>
+<td>工作流引擎</td>
+<td>Temporal</td>
+<td>Cadence</td>
+</tr>
+<tr>
+<td>消息队列</td>
+<td>Kafka</td>
+<td>RabbitMQ</td>
+</tr>
+<tr>
+<td>状态存储</td>
+<td>Redis + PostgreSQL</td>
+<td>MongoDB</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="8-2-LLM服务"><a href="#8-2-LLM服务" class="headerlink" title="8.2 LLM服务"></a>8.2 LLM服务</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>推荐模型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主模型</td>
+<td>Claude 3.5 / GPT-4</td>
+<td>复杂推理任务</td>
+</tr>
+<tr>
+<td>辅助模型</td>
+<td>Claude Haiku / GPT-3.5</td>
+<td>简单任务</td>
+</tr>
+<tr>
+<td>Embedding</td>
+<td>text-embedding-3-small</td>
+<td>向量检索</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="8-3-可观测性"><a href="#8-3-可观测性" class="headerlink" title="8.3 可观测性"></a>8.3 可观测性</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>推荐方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>日志</td>
+<td>ELK Stack / Loki</td>
+</tr>
+<tr>
+<td>指标</td>
+<td>Prometheus + Grafana</td>
+</tr>
+<tr>
+<td>追踪</td>
+<td>Jaeger / Zipkin</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="9-实施路径"><a href="#9-实施路径" class="headerlink" title="9. 实施路径"></a>9. 实施路径</h2><h3 id="Phase-1：基础设施搭建（第1-2周）"><a href="#Phase-1：基础设施搭建（第1-2周）" class="headerlink" title="Phase 1：基础设施搭建（第1-2周）"></a>Phase 1：基础设施搭建（第1-2周）</h3><ol>
+<li>搭建消息队列和状态存储</li>
+<li>实现基础Agent类和工作流引擎</li>
+<li>集成LLM Gateway</li>
+</ol>
+<h3 id="Phase-2：核心Agent开发（第3-6周）"><a href="#Phase-2：核心Agent开发（第3-6周）" class="headerlink" title="Phase 2：核心Agent开发（第3-6周）"></a>Phase 2：核心Agent开发（第3-6周）</h3><ol>
+<li>依次实现7个核心Agent</li>
+<li>建立Agent间协作机制</li>
+<li>实现基础可观测性</li>
+</ol>
+<h3 id="Phase-3：可观测性增强（第7-8周）"><a href="#Phase-3：可观测性增强（第7-8周）" class="headerlink" title="Phase 3：可观测性增强（第7-8周）"></a>Phase 3：可观测性增强（第7-8周）</h3><ol>
+<li>完善指标采集</li>
+<li>实现追踪链路</li>
+<li>搭建可视化面板</li>
+</ol>
+<h3 id="Phase-4：干预机制完善（第9-10周）"><a href="#Phase-4：干预机制完善（第9-10周）" class="headerlink" title="Phase 4：干预机制完善（第9-10周）"></a>Phase 4：干预机制完善（第9-10周）</h3><ol>
+<li>实现审批网关</li>
+<li>支持多种干预操作</li>
+<li>完善人工介入流程</li>
+</ol>
+<hr>
+<h2 id="10-API参考"><a href="#10-API参考" class="headerlink" title="10. API参考"></a>10. API参考</h2><h3 id="10-1-工作流API"><a href="#10-1-工作流API" class="headerlink" title="10.1 工作流API"></a>10.1 工作流API</h3><h4 id="创建工作流"><a href="#创建工作流" class="headerlink" title="创建工作流"></a>创建工作流</h4><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">POST /api/v1/workflows</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/json</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;用户认证功能开发&quot;,</span><br><span class="line">  &quot;description&quot;: &quot;实现用户登录、注册、密码找回功能&quot;,</span><br><span class="line">  &quot;config&quot;: &#123;</span><br><span class="line">    &quot;approval_policy&quot;: &quot;strict&quot;,</span><br><span class="line">    &quot;notification&quot;: &#123;</span><br><span class="line">      &quot;channels&quot;: [&quot;email&quot;, &quot;slack&quot;]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="获取工作流状态"><a href="#获取工作流状态" class="headerlink" title="获取工作流状态"></a>获取工作流状态</h4><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /api/v1/workflows/&#123;workflow_id&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="干预操作"><a href="#干预操作" class="headerlink" title="干预操作"></a>干预操作</h4><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">POST /api/v1/workflows/&#123;workflow_id&#125;/intervene</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/json</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;type&quot;: &quot;approve&quot;,</span><br><span class="line">  &quot;phase&quot;: &quot;design&quot;,</span><br><span class="line">  &quot;comment&quot;: &quot;方案已确认，可以开始编码&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="10-2-AgentAPI"><a href="#10-2-AgentAPI" class="headerlink" title="10.2 AgentAPI"></a>10.2 AgentAPI</h3><h4 id="获取Agent状态"><a href="#获取Agent状态" class="headerlink" title="获取Agent状态"></a>获取Agent状态</h4><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /api/v1/agents/&#123;agent_id&#125;/status</span><br></pre></td></tr></table></figure>
+<h4 id="Agent执行日志"><a href="#Agent执行日志" class="headerlink" title="Agent执行日志"></a>Agent执行日志</h4><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /api/v1/agents/&#123;agent_id&#125;/logs?phase=coding&amp;limit=100</span><br></pre></td></tr></table></figure>
+<h3 id="10-3-可观测性API"><a href="#10-3-可观测性API" class="headerlink" title="10.3 可观测性API"></a>10.3 可观测性API</h3><h4 id="指标查询"><a href="#指标查询" class="headerlink" title="指标查询"></a>指标查询</h4><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /api/v1/metrics?name=agent_execution_time&amp;agent_id=xxx&amp;start=2026-03-01&amp;end=2026-03-18</span><br></pre></td></tr></table></figure>
+<h4 id="追踪查询"><a href="#追踪查询" class="headerlink" title="追踪查询"></a>追踪查询</h4><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /api/v1/traces/&#123;trace_id&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><h3 id="A-术语表"><a href="#A-术语表" class="headerlink" title="A. 术语表"></a>A. 术语表</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agent</td>
+<td>具有特定职责的智能体</td>
+</tr>
+<tr>
+<td>Workflow</td>
+<td>工作流，定义Agent的执行顺序和依赖关系</td>
+</tr>
+<tr>
+<td>Phase</td>
+<td>研发流程阶段</td>
+</tr>
+<tr>
+<td>Checkpoint</td>
+<td>检查点，用于干预和回滚</td>
+</tr>
+<tr>
+<td>Intervention</td>
+<td>干预，人工介入操作</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="B-参考资料"><a href="#B-参考资料" class="headerlink" title="B. 参考资料"></a>B. 参考资料</h3><ul>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://langchain-ai.github.io/langgraph/">LangGraph Documentation</a></li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://microsoft.github.io/autogen/">AutoGen Microsoft</a></li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.temporal.io/">Temporal Workflow</a></li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://opentelemetry.io/">OpenTelemetry</a></li>
+</ul>
+<hr>
+<p><em>文档版本: v1.0.0</em><br><em>更新日期: 2026-03-18</em></p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/41472e29/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/41472e29/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    3.编码实现阶段
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/d60dda05/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/d60dda05/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">0_2.AI提效落地整体设计</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

@@ -1,0 +1,748 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>算法工程概述 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="模型">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法工程概述">
+<meta property="og:url" content="https://waisec.cn/wiki/1d86021e/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/quano/www/raw/master/img/arch/AlgoEngineering.svg">
+<meta property="article:published_time" content="2025-02-20T16:48:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.154Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="模型">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/quano/www/raw/master/img/arch/AlgoEngineering.svg">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "算法工程概述",
+    "url": "https://waisec.cn/wiki/1d86021e/",
+    "datePublished": "2025-02-20T16:48:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.154Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "模型"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/6|算法工程/算法工程概述" class="article article-type-post">
+    
+        <meta name="referrer" content="no-referrer">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E6%A6%82%E8%A7%88"><span class="toc-text">一、算法工程概览</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E4%BB%80%E4%B9%88%E6%98%AF%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%EF%BC%9F"><span class="toc-text">1.1 什么是算法工程？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E9%80%BB%E8%BE%91%E8%A7%A3%E8%AF%BB"><span class="toc-text">1.2 逻辑解读</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-%E5%B7%A5%E7%A8%8B"><span class="toc-text">1.2.1 工程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-%E7%AE%97%E6%B3%95"><span class="toc-text">1.2.2 算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E7%9A%84%E6%8A%80%E6%9C%AF%E8%B7%AF%E5%BE%84"><span class="toc-text">二、算法工程的技术路径</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E4%B8%8EMLOps"><span class="toc-text">2.1 算法工程与MLOps</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%B8%8D%E5%90%8C%E8%A7%92%E8%89%B2%E5%9C%A8%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E4%B8%AD%E7%9A%84%E5%85%B3%E6%B3%A8%E7%82%B9"><span class="toc-text">三、不同角色在算法工程中的关注点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E9%9D%A2%E4%B8%B4%E7%9A%84%E6%8C%91%E6%88%98%E4%B8%8E%E8%B6%8B%E5%8A%BF"><span class="toc-text">四、算法工程面临的挑战与趋势</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E6%8C%81%E7%BB%AD%E6%8C%91%E6%88%98"><span class="toc-text">4.1 持续挑战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E6%9C%AA%E6%9D%A5%E8%B6%8B%E5%8A%BF"><span class="toc-text">4.2 未来趋势</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-text">其他</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/6-%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B/">6|算法工程</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E6%A8%A1%E5%9E%8B/" rel="tag">模型</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2025/02/" onclick="onclickRoute(event, '/archives/2025/02/')">
+            <time datetime="2025-02-20T16:48:57.000Z" itemprop="datePublished">2025-02-21</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="模型">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/1d86021e/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            算法工程概述
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p>在如今人工智能高速发展的时代，<strong>算法工程</strong>已成为推动技术进步与产业智能化的关键力量。无论是在智能推荐、图像识别、自然语言处理，还是在自动驾驶、金融风控等前沿领域，算法的设计与实现都在发挥着核心作用。<strong>如何高效地解决算法工程中的实际问题，以支撑技术创新和业务发展，已成为每一位工程师必须面对的重要课题</strong>。</p>
+<p>算法工程是一整套围绕算法设计、实现、优化和部署的工程体系。它强调将<strong>算法理论</strong>与<strong>工程实践</strong>深度融合：一方面，需要深入理解算法的本质、复杂度和适用条件；另一方面，也要关注其在真实系统中的可扩展性、稳定性、资源效率以及与上下游模块的协作能力。</p>
+<p>本章节将系统的介绍算法工程领域的<strong>工作逻辑与技术路径</strong>：包括从问题建模、算法选择、代码实现、性能调优，到上线部署与持续迭代的全过程，帮助你建立起完整的算法工程思维框架和实战能力，从而<strong>系统的实现在业务场景落地</strong>。</p>
+<span id="more"></span>
+<h1 id="一、算法工程概览"><a href="#一、算法工程概览" class="headerlink" title="一、算法工程概览"></a>一、算法工程概览</h1><h2 id="1-1-什么是算法工程？"><a href="#1-1-什么是算法工程？" class="headerlink" title="1.1 什么是算法工程？"></a>1.1 什么是算法工程？</h2><p>可以定义为是一门集算法设计、性能优化、系统部署与工程实践于一体的跨学科领域。核心任务包括：问题建模与抽象、算法选型与调优、工程实现与系统集成、计算性能与资源优化、线上部署与效果监控。</p>
+<p>在实际工程中，算法工程贯穿从模型构建到产品交付的全生命周期，是连接算法科学与AI系统架构的关键桥梁。</p>
+<p>工作逻辑如下：从工程架构角度，主要包括顶层的工程实现和平台化，包括系统集成、计算性能和资源优化、在线服务、线上部署和监控等。<br>从算法角度，主要负责问题建模与抽象、算法选型与调优。</p>
+<div>
+    <img src="https://gitee.com/quano/www/raw/master/img/arch/AlgoEngineering.svg" style="display: inline-block;margin-left: 18px;">
+    <span style="display: block; margin-left: 18%;"></span>
+</div>
+
+<p>以目标角度来说，算法工程师主要是推动产品和服务的智能化，为效果负责。<br>而工程架构主要负责平台化的建设，包括基础能力、透明度、易用性、效率等方面。将底层的应用和实践抽象、将业务共性的 机器学习工程能力 抽象出来，提高效率。</p>
+<h2 id="1-2-逻辑解读"><a href="#1-2-逻辑解读" class="headerlink" title="1.2 逻辑解读"></a>1.2 逻辑解读</h2><p>虽然算法工程强调将算法理论与工程实践深度融合，但在实践过程中是不同的人或团队独立负责，以及相互协作以实现融合应用。因此，以上从不同关注点分可为算法和工程。</p>
+<p>当然对于更下层的实际工作，比如推理优化、推理框架设计等可能无序较明确的边界，算法和工程兼具。</p>
+<h3 id="1-2-1-工程"><a href="#1-2-1-工程" class="headerlink" title="1.2.1 工程"></a>1.2.1 工程</h3><p>其中工程方面从平台化角度分为四大步骤：数据工程、模型开发、模型评估/优化、模型应用。再下一层从产品层，模型应用可分为：<br>模型应用：模型中心(部署)、应用中心(在线服务)。</p>
+<h3 id="1-2-2-算法"><a href="#1-2-2-算法" class="headerlink" title="1.2.2 算法"></a>1.2.2 算法</h3><ol>
+<li>问题定义与数据理解<br>明确业务目标与技术瓶颈</li>
+</ol>
+<p>分析数据质量与分布特性</p>
+<p>判断是否适合算法介入，属于优化问题还是建模问题</p>
+<ol>
+<li>建模与算法设计<br>确定使用传统算法、机器学习、深度学习还是大模型技术</li>
+</ol>
+<p>进行特征工程或Prompt设计</p>
+<p>构建原型模型，分析理论复杂度与性能预期</p>
+<ol>
+<li>算法实现与验证<br>使用Python、C++、CUDA等进行算法编码</li>
+</ol>
+<p>构建训练/测试管线</p>
+<p>验证模型效果、鲁棒性与泛化能力</p>
+<ol>
+<li>系统集成与优化<br>模型服务化（REST API / gRPC）</li>
+</ol>
+<p>推理加速（ONNX、TensorRT、TVM、LoRA等）</p>
+<p>缓存策略、Batching、低延迟调度</p>
+<ol>
+<li>上线部署与监控<br>接入CI/CD流水线</li>
+</ol>
+<p>A/B测试与灰度发布</p>
+<p>构建在线监控指标（精度漂移、延迟、资源使用等）</p>
+<ol>
+<li>反馈迭代与闭环优化<br>数据回流、主动学习</li>
+</ol>
+<p>Online/Offline同步优化</p>
+<p>模型版本管理与持续集成</p>
+<h1 id="二、算法工程的技术路径"><a href="#二、算法工程的技术路径" class="headerlink" title="二、算法工程的技术路径"></a>二、算法工程的技术路径</h1><p>以下是支撑算法工程高效落地的技术栈与能力框架：</p>
+<ol>
+<li>算法基础与模型能力<br>常用算法（图、搜索、动态规划等）</li>
+</ol>
+<p>机器学习与深度学习框架（scikit-learn, PyTorch, TensorFlow）</p>
+<p>模型压缩与蒸馏</p>
+<ol>
+<li>工程实现能力<br>高性能编程语言（C++、Rust）</li>
+</ol>
+<p>并行计算与GPU编程（CUDA、OpenMP）</p>
+<p>大规模分布式训练（Horovod、DeepSpeed）</p>
+<ol>
+<li>系统架构与部署<br>模型服务框架（Triton Inference Server、Ray Serve）</li>
+</ol>
+<p>推理加速与异构调度（NVIDIA TensorRT、OpenVINO）</p>
+<p>自动化部署与监控（Kubernetes、Prometheus、Grafana）</p>
+<ol>
+<li>数据与计算基础设施<br>特征存储与实时计算（FeatureStore、Kafka、Flink）</li>
+</ol>
+<p>数据标注与质量控制平台</p>
+<p>云原生与资源调度平台（K8s + Argo + Helm）</p>
+<h2 id="2-1-算法工程与MLOps"><a href="#2-1-算法工程与MLOps" class="headerlink" title="2.1 算法工程与MLOps"></a>2.1 算法工程与MLOps</h2><p>算法工程是让模型“跑起来”，MLOps是让模型“跑得稳、跑得久”。<br><strong><em>「定位与目标不同」</em></strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>算法工程（Algorithm Engineering）</th>
+<th>MLOps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>核心关注</td>
+<td><strong>算法的设计、实现与工程化落地</strong></td>
+<td><strong>模型的训练、部署、监控与持续运维</strong></td>
+</tr>
+<tr>
+<td>目标</td>
+<td>将算法从理论变为高效、可运行的系统模块</td>
+<td>构建<strong>可持续、可复制、可治理</strong>的AI流水线</td>
+</tr>
+<tr>
+<td>作用阶段</td>
+<td>偏重<strong>前中期</strong>：建模、实现、上线</td>
+<td>偏重<strong>中后期</strong>：部署、版本管理、反馈闭环</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong><em>「定义与核心目标对比」</em></strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th><strong>算法工程</strong></th>
+<th><strong>MLOps</strong></th>
+<th><strong>AutoML</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>核心目标</td>
+<td>将算法从理论实现为高效的系统组件</td>
+<td>实现机器学习全生命周期的自动化部署与运维</td>
+<td>自动化选择最优模型和参数，降低建模门槛</td>
+</tr>
+<tr>
+<td>主要任务</td>
+<td>算法设计、优化、实现、推理服务化</td>
+<td>模型训练、上线、监控、治理、持续迭代</td>
+<td>自动特征选择、模型搜索、超参优化</td>
+</tr>
+<tr>
+<td>服务对象</td>
+<td>工程系统、AI架构、产品团队</td>
+<td>模型生命周期、平台团队、运维工程师</td>
+<td>非专业算法人员、初级数据科学家、AI中台</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>算法工程解决的是：怎么把算法“做出来”并“跑起来”，涉及建模、代码优化、推理加速、系统对接</p>
+<p>MLOps解决的是：怎么把算法“持续跑好”，包括部署、A/B测试、监控告警、模型漂移检测、自动回滚、再训练</p>
+<p>算法工程 = “研发” ； MLOps = “运维 + DevOps +治理”</p>
+<p><strong><em>「工作流程」</em></strong></p>
+<pre><code>             需求 → 数据准备 → 特征工程
+                          ↓
+              算法设计与建模（算法工程、AutoML）
+                          ↓
+                模型验证与评估/优化（AutoML）
+                          ↓
+        模型部署/服务化（进入MLOps流程）
+                          ↓
+        模型上线、监控、迭代（MLOps主场）
+</code></pre><p>算法工程：手工或半自动完成算法建模与工程化实现；<br>AutoML：替代部分人工建模流程，使建模流程标准化和自动化；<br>MLOps：对模型生命周期进行持续管理，实现训练、部署、更新自动化(持续运维与迭代)。</p>
+<p><strong><em>「角色侧重点」</em></strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>能力/知识领域</th>
+<th>算法工程师</th>
+<th>MLOps工程师</th>
+<th>AutoML平台/研发</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>算法基础与建模</td>
+<td>✅ 强</td>
+<td>⚪️ 了解</td>
+<td>⚪️ 有一定背景（平台开发者需强）</td>
+</tr>
+<tr>
+<td>算法实现与优化</td>
+<td>✅ 强</td>
+<td>⚪️ 中等</td>
+<td>⚪️ 较少（平台需考虑算法效率）</td>
+</tr>
+<tr>
+<td>模型训练与调优</td>
+<td>✅ 强</td>
+<td>⚪️ 了解</td>
+<td>✅ 强（尤其是AutoML研发）</td>
+</tr>
+<tr>
+<td>模型部署与推理</td>
+<td>✅ 强</td>
+<td>✅ 强</td>
+<td>✅ 强</td>
+</tr>
+<tr>
+<td>构建训练/部署流水线</td>
+<td>⚪️ 一般</td>
+<td>✅ 强</td>
+<td>✅ 强（AutoML = pipeline自动构建）</td>
+</tr>
+<tr>
+<td>DevOps、CI/CD</td>
+<td>⚪️ 基础</td>
+<td>✅ 强</td>
+<td>⚪️ 一般</td>
+</tr>
+<tr>
+<td>模型监控与治理</td>
+<td>⚪️</td>
+<td>✅</td>
+<td>⚪️ 一般</td>
+</tr>
+<tr>
+<td>超参数/模型搜索算法</td>
+<td>⚪️ 一般</td>
+<td>⚪️ 一般</td>
+<td>✅ 强（如贝叶斯优化、强化学习）</td>
+</tr>
+<tr>
+<td>用户体验和平台化</td>
+<td>⚪️ 少</td>
+<td>⚪️ 一般</td>
+<td>✅ 强（AutoML主要面向业务方）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="三、不同角色在算法工程中的关注点"><a href="#三、不同角色在算法工程中的关注点" class="headerlink" title="三、不同角色在算法工程中的关注点"></a>三、不同角色在算法工程中的关注点</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>关注重点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AI 架构师</strong></td>
+<td>跨层架构设计、算法与系统协同、资源调度与弹性设计、模型生命周期管理</td>
+</tr>
+<tr>
+<td><strong>算法工程师</strong></td>
+<td>问题建模、模型调优、性能优化、代码实现、模型上线与灰度</td>
+</tr>
+<tr>
+<td><strong>AI Infra 架构师</strong></td>
+<td>训练平台、推理平台、异构算力调度、模型管理系统、模型仓库</td>
+</tr>
+<tr>
+<td><strong>AI 中台架构师</strong></td>
+<td>多模型复用、多业务共享底座、特征中台建设、模型服务抽象层</td>
+</tr>
+<tr>
+<td><strong>AI 中台研发工程师</strong></td>
+<td>中台模块开发、服务治理、接口标准化、跨业务数据打通</td>
+</tr>
+<tr>
+<td><strong>LLM 架构师</strong></td>
+<td>大模型训练与部署、Prompt架构、RAG方案、模型压缩与推理优化</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="四、算法工程面临的挑战与趋势"><a href="#四、算法工程面临的挑战与趋势" class="headerlink" title="四、算法工程面临的挑战与趋势"></a>四、算法工程面临的挑战与趋势</h1><h2 id="4-1-持续挑战"><a href="#4-1-持续挑战" class="headerlink" title="4.1 持续挑战"></a>4.1 持续挑战</h2><p>算法与业务需求的对齐困难</p>
+<p>训练成本高、模型上线慢</p>
+<p>模型效果漂移与无法追责</p>
+<p>资源调度与性能调优复杂</p>
+<h2 id="4-2-未来趋势"><a href="#4-2-未来趋势" class="headerlink" title="4.2 未来趋势"></a>4.2 未来趋势</h2><p>从端到端到模块化：降低大模型依赖，提高系统可控性</p>
+<p>从模型驱动到数据驱动：数据质量成为关键瓶颈</p>
+<p>从工程开发到平台自动化：AutoML、AutoData、AutoDeploy</p>
+<p>从单体模型到多智能体协同：Agent与系统的结合</p>
+<p>算法工程正处在技术融合与系统变革的交汇点，它不再只是“让模型跑起来”，而是要“让模型跑得稳、跑得快、跑得准、跑得久”。对于每一位从事AI研发、平台构建或系统架构的工程师来说，理解并掌握算法工程的全景视野，将是走向下一阶段技术进化的必由之路。</p>
+<p>未来已来，系统智能时代的大门，正通过算法工程缓缓打开。</p>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>算法工程职责</p>
+<p>算法设计、算法实现、数据预处理；模型训练和评估、模型优化、模型压缩与加速</p>
+<p>软件工程、系统集成、性能监控与调优、开发部署</p>
+<p><strong><em>「通过识别MNIST了解算法工程」</em></strong><br>通过Tensorflow深度学习项目来 了解算法工程 和Tensorflow.</p>
+<p><a href="/wk/算法/002.深度学习/004.系列课程/001.TensorFlow识别MNIST/">TensorFlow识别MNIST</a></p>
+<p><strong><em>「工程方面可以做的事」</em></strong><br>特征工程、特征平台</p>
+<p>机器学习平台 mlp</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/abb5e410/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/abb5e410/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    1.Agent - Skills介绍
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/28c299e/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/28c299e/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">信息安全体系</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

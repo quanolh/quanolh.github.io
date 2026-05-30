@@ -1,0 +1,550 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>2.软件系统建模工具_UML | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="UML,系统建模">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2.软件系统建模工具_UML">
+<meta property="og:url" content="https://waisec.cn/wiki/a502a19c/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/quano/www/raw/master/img/architecture/uml_class_diagram.png">
+<meta property="article:published_time" content="2024-08-17T14:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.115Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="UML">
+<meta property="article:tag" content="系统建模">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/quano/www/raw/master/img/architecture/uml_class_diagram.png">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "2.软件系统建模工具_UML",
+    "url": "https://waisec.cn/wiki/a502a19c/",
+    "datePublished": "2024-08-17T14:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.115Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "UML,系统建模"
+    
+}
+</script>
+
+<article id="post-平台工具 | 工程架构和工具/[2]架构设计/01.架构设计体系与方法论/002.软件系统建模工具_UML" class="article article-type-post">
+    
+        <meta name="referrer" content="no-referrer">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-UML%E4%BB%8B%E7%BB%8D"><span class="toc-text">1. UML介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-UML%E6%A6%82%E5%BF%B5-What"><span class="toc-text">1.1 UML概念(What)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E5%8F%AF%E4%BB%A5%E5%81%9A%E4%BB%80%E4%B9%88-Where-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">1.2 可以做什么?(Where-应用场景)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8UML-Why-%E9%87%8D%E7%82%B9"><span class="toc-text">1.3 为什么用UML?(Why-重点)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-UML%E5%9B%BE%E8%A1%A8%E7%B1%BB%E5%9E%8B"><span class="toc-text">1.4 UML图表类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-1-%E7%BB%93%E6%9E%84%E6%80%A7%E5%9B%BE%E8%A1%A8"><span class="toc-text">1.4.1 结构性图表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-2-%E8%A1%8C%E4%B8%BA%E6%80%A7%E5%9B%BE%E8%A1%A8"><span class="toc-text">1.4.2 行为性图表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-UML%E5%9B%BE%E8%A1%A8"><span class="toc-text">2. UML图表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E7%BB%93%E6%9E%84%E6%80%A7%E5%9B%BE%E8%A1%A8"><span class="toc-text">2.1 结构性图表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-%E7%B1%BB%E5%9B%BE"><span class="toc-text">2.1.1 类图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%85%B3%E7%B3%BB"><span class="toc-text">1. 关系</span></a></li></ol></li></ol></li></ol></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/2-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">[2]架构设计</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/2-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/01-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E4%BD%93%E7%B3%BB%E4%B8%8E%E6%96%B9%E6%B3%95%E8%AE%BA/">01.架构设计体系与方法论</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/UML/" rel="tag">UML</a>, <a class="tag-link-link" href="/tags/%E7%B3%BB%E7%BB%9F%E5%BB%BA%E6%A8%A1/" rel="tag">系统建模</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2024/08/" onclick="onclickRoute(event, '/archives/2024/08/')">
+            <time datetime="2024-08-17T14:55:57.000Z" itemprop="datePublished">2024-08-17</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="UML,系统建模">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/a502a19c/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            软件系统建模工具_UML
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <h1 id="1-UML介绍"><a href="#1-UML介绍" class="headerlink" title="1. UML介绍"></a>1. UML介绍</h1><p>关键词：系统建模、系统分析与设计、统一建模语言、软件建模与系统设计</p>
+<h2 id="1-1-UML概念-What"><a href="#1-1-UML概念-What" class="headerlink" title="1.1 UML概念(What)"></a>1.1 UML概念(What)</h2><p>UML 的全称是 Unified Modeling Language，即统一建模语言。 </p>
+<span id="more"></span>
+<h2 id="1-2-可以做什么-Where-应用场景"><a href="#1-2-可以做什么-Where-应用场景" class="headerlink" title="1.2 可以做什么?(Where-应用场景)"></a>1.2 可以做什么?(Where-应用场景)</h2><ul>
+<li>软件开发项目：项目启动阶段，用例图可用于明确系统的功能需求和用户期望； 类图有助于设计系统的类结构和它们之间的关系，为编程实现提供清晰的蓝图。</li>
+<li>企业信息系统规划：组件图和部署图能描绘系统的组件构成和物理部署情况，辅助企业IT基础设施的规划和优化。</li>
+<li>数据库设计：通过类图和实体关系图(ERD)的结果，可以有效的设计数据库的表结构和关系。</li>
+<li>业务流程建模：活动图可清晰地展示复杂的业务流程，帮助发现流程中的瓶颈和优化点。</li>
+<li>系统集成：序列图和协作图有助于理解不同系统之间的交互方式和消息传递，从而实现高效的系统集成。</li>
+<li>技术选项和架构决策：基于UML图对系统的描述，可以更有针对性地选择合适的技术框架和架构模式。</li>
+</ul>
+<h2 id="1-3-为什么用UML-Why-重点"><a href="#1-3-为什么用UML-Why-重点" class="headerlink" title="1.3 为什么用UML?(Why-重点)"></a>1.3 为什么用UML?(Why-重点)</h2><p>首先 随着软件系统的复杂度越来越高，并且软件开发迭代过程中往往有许多角色参与和使用，怎样从不同角色视角更好理解这个软件系统?<br>其次，对软件系统以及各个模块组件清晰的理解有助于大家建立相同的认识便于软件生命周期过程中沟通和协作和减少理解偏差，<strong><em>有助于软件设计人员更准确设计更好的系统</em></strong>。</p>
+<p>而UML工具包含不同的图表(模型)，提供不同的角度来让各个角色更清晰的认识系统。各角色人员包括系统分析师、设计师、程序员、测试人员、客户、技术文件撰稿人员。</p>
+<p>那UML都有哪些图表呢，以及重要常用的有哪些呢？接下来详细介绍</p>
+<h2 id="1-4-UML图表类型"><a href="#1-4-UML图表类型" class="headerlink" title="1.4 UML图表类型"></a>1.4 UML图表类型</h2><p>大致分为结构性图表和行为性图表</p>
+<h2 id="1-4-1-结构性图表"><a href="#1-4-1-结构性图表" class="headerlink" title="1.4.1 结构性图表"></a>1.4.1 结构性图表</h2><p>七中结构性图表包括：</p>
+<ul>
+<li>类图 (Class Diagram)</li>
+<li>组件图 (Component Diagram)</li>
+<li>部署图 (Deployment Diagram)</li>
+<li>对象图 (Object Diagram)</li>
+<li>包图 (Package Diagram)</li>
+<li>复合结构图 (Composite Structure Diagram)</li>
+<li>轮廓图 (Profile Diagram)</li>
+</ul>
+<h2 id="1-4-2-行为性图表"><a href="#1-4-2-行为性图表" class="headerlink" title="1.4.2 行为性图表"></a>1.4.2 行为性图表</h2><p>行为性图表显示了系统中对象的动态行为 ，可用以表达系统随时间的变化。行为性图表有七种类型：</p>
+<ul>
+<li>用例图 (Use Case Diagram)</li>
+<li>活动图 (Activity Diagram)</li>
+<li>状态机图 (State Machine Diagram)</li>
+<li>序列图 (Sequence Diagram)</li>
+<li>通訊圖 (Communication Diagram)</li>
+<li>交互概述图 (Interaction Overview Diagram)</li>
+<li>时序图 (Timing Diagram)</li>
+</ul>
+<h1 id="2-UML图表"><a href="#2-UML图表" class="headerlink" title="2. UML图表"></a>2. UML图表</h1><p>其中最常用和最重要的2个是类图和时序图。</p>
+<h2 id="2-1-结构性图表"><a href="#2-1-结构性图表" class="headerlink" title="2.1 结构性图表"></a>2.1 结构性图表</h2><h3 id="2-1-1-类图"><a href="#2-1-1-类图" class="headerlink" title="2.1.1 类图"></a>2.1.1 <span style="color: red;">类图</span></h3><p>(Class Diagram)<br>类图是一切<strong><em>面向对象方法</em></strong>的<em>核心建模工具</em>。描述了系统中<strong><em>对象的类型</em></strong>以及它们之间<strong><em>存在的各种静态关系</em></strong>。</p>
+<h4 id="1-关系"><a href="#1-关系" class="headerlink" title="1. 关系"></a>1. 关系</h4><p>类图有三种主要的关系</p>
+<ul>
+<li>关联：代表类型之间的关系（一个人为公司工作，一间公司有多个办事处）</li>
+<li>继承：传为实例关系图(ERD)应用于面向对象设计而设的一种关系。 它在面向对象设计中的继承概念相互呼应。</li>
+<li>聚合：面向对象设计中的一种对象组合的形式。</li>
+</ul>
+<p>各种关系的强弱顺序：泛华=实现&gt;组合&gt;聚合&gt;关联&gt;依赖</p>
+<ul>
+<li>关联(Association)：表示类之间的联系，可以是单向的或双向的，具有名称、角色和多重性等属性。例如：学生和课程之间存在关联，一个学生可以选择多门课程，一门课程可以有多个学生选修。</li>
+<li>聚合(Aggregation)：表示整体与部分的关系，部分可以独立于整体存在。比如，汽车和轮胎，轮胎可以从汽车上拆下来而任然存在。</li>
+<li>组合(Composition)：表示整体与部分的关系，但部分不能独立于整体存在。例如，房子和房间，房间不能脱离房子而单独存在。</li>
+<li>集成/泛华(Generalization)：表示子类与父类的关系，子类继承父类的属性与方法。比如，哺乳动物是动物的子类。</li>
+<li>实现(Realization)：类与接口之间的关系，表示类实现了接口中定义的操作。例如，一个具体的排序类实现了排序接口定义的排序方法。</li>
+</ul>
+<p>参考：<a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.csdn.net/qq_43530773/article/details/118250152">CSDN:九种常见的UML图总结</a></p>
+<div>
+    <img src="https://gitee.com/quano/www/raw/master/img/architecture/uml_class_diagram.png" style="display: inline-block;margin-left: 18px; width: 75%">
+    <span style="display: block; margin-left: 18%;width: 70%"></span>
+</div>
+
+<p>在 UML 类图的描述中，一般在较为宽泛地提及类之间的联系时，可以使用“relation”这个统称（draw.io中不同的线段表示）。<br>而使用具体的关系类型，如关联、聚合、组合、继承、实现等，通常基于以下情况：<br>当需要清晰准确地描述类之间联系的特定性质和约束时，应使用具体的关系类型：</p>
+<ul>
+<li>如果强调类之间是一种普通的连接和交互，没有明确的整体部分关系或层次关系，就使用关联。</li>
+<li>当要表明整体和部分之间部分可以独立存在于整体的关系，使用聚合。</li>
+<li>若要突出整体和部分之间部分不能独立于整体存在的强拥有关系，就用组合。</li>
+<li>对于表示类之间的层次分类，子类继承父类的特性，采用继承（泛化）关系。</li>
+<li>当类需要实现某个接口定义的方法和行为时，使用实现关系。</li>
+</ul>
+<p>例如，如果只是简单地说“这些类之间存在某种关系”，可以用“relation”。但如果要详细说明“学生类继承自人员类”“汽车类和发动机类是组合关系”，就会使用具体的关系类型。 </p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/1b32398c/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/1b32398c/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    C++数据类型
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/85c546fc/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/85c546fc/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">学习思维</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

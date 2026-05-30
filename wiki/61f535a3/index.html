@@ -1,0 +1,863 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>1.Flink状态管理和计算 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="flink">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.Flink状态管理和计算">
+<meta property="og:url" content="https://waisec.cn/wiki/61f535a3/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-12-06T03:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.135Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="flink">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "1.Flink状态管理和计算",
+    "url": "https://waisec.cn/wiki/61f535a3/",
+    "datePublished": "2025-12-06T03:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.135Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "flink"
+    
+}
+</script>
+
+<article id="post-数据 | 核心生产要素/[1]数据工程/03.处理与计算/[2]技术栈_Flink/001.Flink状态计算" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E7%90%86%E8%A7%A3"><span class="toc-text">一、核心概念理解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E7%8A%B6%E6%80%81%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">1.1 状态的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E7%8A%B6%E6%80%81%E7%9A%84%E7%9B%AE%E6%A0%87"><span class="toc-text">1.2 状态的目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-text">1.3 核心概念</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%8A%B6%E6%80%81%E5%88%86%E7%B1%BB-amp-%E8%AE%A1%E7%AE%97"><span class="toc-text">二、状态分类&amp;计算</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E7%8A%B6%E6%80%81%E5%88%86%E7%B1%BB"><span class="toc-text">2.1 状态分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E7%8A%B6%E6%80%81%E8%AE%A1%E7%AE%97"><span class="toc-text">2.2 状态计算</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AD%98%E5%82%A8%E6%9C%BA%E5%88%B6"><span class="toc-text">三、存储机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E7%8A%B6%E6%80%81%E5%90%8E%E7%AB%AF"><span class="toc-text">3.1 状态后端</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%95%85%E9%9A%9C%E6%81%A2%E5%A4%8D"><span class="toc-text">四、故障恢复</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-Checkpoint-amp-Savepoint"><span class="toc-text">4.1 Checkpoint &amp; Savepoint</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E6%95%B4%E4%BD%93%E5%AE%B9%E9%94%99%E6%9C%BA%E5%88%B6"><span class="toc-text">4.2 整体容错机制</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7"><span class="toc-text">五、核心特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E7%8A%B6%E6%80%81%E4%B8%80%E8%87%B4%E6%80%A7%E8%AF%AD%E4%B9%89"><span class="toc-text">5.1 状态一致性语义</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E7%94%9F%E4%BA%A7%E5%AE%9E%E8%B7%B5"><span class="toc-text">六、生产实践</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/">数据 | 核心生产要素</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/">[1]数据工程</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/">03.处理与计算</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/2-%E6%8A%80%E6%9C%AF%E6%A0%88-Flink/">[2]技术栈_Flink</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/flink/" rel="tag">flink</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2025/12/" onclick="onclickRoute(event, '/archives/2025/12/')">
+            <time datetime="2025-12-06T03:55:57.000Z" itemprop="datePublished">2025-12-06</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="flink">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/61f535a3/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            Flink状态管理和计算
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p>完善的状态管理能力，是Flink 作为流式计算框架的核心优势之一。<br>状态（State）是流式作业中 “跨事件存储的计算中间结果”（如累计计数、窗口聚合值、用户会话信息），状态管理则是对这些数据的存储、恢复、扩容、清理等全生命周期管控。<br>是保障流式计算 “Exactly-Once” 语义、故障恢复、状态一致性的核心基础。</p>
+<span id="more"></span>
+<h1 id="一、核心概念理解"><a href="#一、核心概念理解" class="headerlink" title="一、核心概念理解"></a>一、核心概念理解</h1><h2 id="1-1-状态的定义"><a href="#1-1-状态的定义" class="headerlink" title="1.1 状态的定义"></a>1.1 状态的定义</h2><p>状态是算子（Operator）在处理事件过程中需要保存的 “中间数据”。</p>
+<blockquote>
+<p>无状态计算：每个事件的处理独立（如简单过滤、字段映射），无需保存中间结果；<br>有状态计算：事件处理依赖历史数据（如累计订单金额、窗口内的用户行为、去重的 UUID 列表），必须通过状态存储历史数据。</p>
+</blockquote>
+<h2 id="1-2-状态的目标"><a href="#1-2-状态的目标" class="headerlink" title="1.2 状态的目标"></a>1.2 状态的目标</h2><p><strong>一致性</strong>：故障恢复后状态与故障前完全一致，保证计算结果正确；<br><strong>持久性</strong>：状态持久化到可靠存储，避免内存丢失；<br><strong>可扩展性</strong>：支持状态随作业并行度调整（扩缩容）自动重分布；<br><strong>可维护性</strong>：支持状态的查询、修改、清理（如过期状态删除）；<br><strong>性能</strong>：状态读写高效，不成为流式计算的瓶颈。</p>
+<h2 id="1-3-核心概念"><a href="#1-3-核心概念" class="headerlink" title="1.3 核心概念"></a>1.3 核心概念</h2><ul>
+<li>状态后端（State Backend）</li>
+<li></li>
+</ul>
+<h1 id="二、状态分类-amp-计算"><a href="#二、状态分类-amp-计算" class="headerlink" title="二、状态分类&amp;计算"></a>二、状态分类&amp;计算</h1><h2 id="2-1-状态分类"><a href="#2-1-状态分类" class="headerlink" title="2.1 状态分类"></a>2.1 状态分类</h2><p>按作用范围分类：算子状态（Operator State）、键控状态（Keyed State）    </p>
+
+      <div class="tip-container tip-question" style="
+        background-color: #fef7fb;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #e53e3e;
+        ">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>(1).基础概念：Keyed State 和 Operator State 有什么区别？分别举一个应用场景？</p>
+<ul>
+<li>Keyed State 与 Key 绑定的状态； Operator State 与算子实例绑定，和 Key 无关。<br>例如 Kafka Source 算子中存储 Topic 分区与 offset 映射关系的状态</li>
+<li>前者支持 ValueState、MapState 等多种类型，后者常见 ListState、BroadcastState，<br>且算子并行度调整时两者的重分配策略不同（Keyed State 按 Key 重新分配，Operator State 有均匀分配等策略）。
+            </li></ul></div>
+        </div>
+      </div>
+    
+
+
+<p><strong style="color: #6f42c1;">「算子状态的细分类型」</strong></p>
+<ul>
+<li>ListState：状态以列表形式存储，扩缩容时列表可拆分 / 合并；</li>
+<li>UnionState：状态以列表形式存储，扩缩容时每个算子实例获取全量状态（广播）；</li>
+<li>BroadcastState：广播状态，所有算子实例共享同一状态（如动态配置）。</li>
+</ul>
+<p><strong style="color: #6f42c1;">「键控状态的细分类型（按数据结构）」</strong></p>
+<p>状态类型    数据结构    适用场景<br>ValueState    单个值（Key-Value）    存储单个累计值（如用户余额）<br>ListState    列表（Key-List）    存储多个值（如用户的所有订单 ID）<br>MapState    键值对集合（Key-Map）    存储结构化数据（如用户的多维度统计）<br>ReducingState    聚合值（通过 ReduceFunction 聚合）    增量聚合（如累计求和）<br>AggregatingState    聚合值（通过 AggregateFunction 聚合）    自定义聚合（如平均值、最大值）</p>
+<p><strong style="color: #6f42c1;">「按存储位置分类」</strong></p>
+<p>堆内状态（Heap State）、堆外状态（Off-Heap State）、RocksDB 状态    </p>
+<h2 id="2-2-状态计算"><a href="#2-2-状态计算" class="headerlink" title="2.2 状态计算"></a>2.2 状态计算</h2>
+      <div class="tip-container tip-question" style="
+        background-color: #fef7fb;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #e53e3e;
+        ">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>Flink 中水印（Watermark）的作用是什么？如何设置合理的水印策略？<br>水印是事件时间进度的标记，用于解决乱序数据导致的窗口计算问题。<br>它携带一个时间戳，代表该时间戳之前的数据已全部到达，触发窗口计算。<br>设置策略需结合业务场景：乱序严重（如 IoT 设备数据）可设max(eventTime) - 10s，预留 10 秒接收迟到数据；<br>实时性要求高（如高频交易）可设延迟为 0，同时用侧输出流处理漏算的迟到数据。<br>
+            </p></div>
+        </div>
+      </div>
+    <p></p>
+
+      <div class="tip-container tip-question" style="
+        background-color: #fef7fb;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #e53e3e;
+        ">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>Flink 如何保证计算的 Exactly-Once 语义？<br>核心依赖 Checkpoint 机制和两阶段提交协议。<br>Checkpoint 记录各算子的状态快照，故障时恢复到一致状态；<br>对于 Kafka、HBase 等支持事务的外部存储，通过两阶段提交，先预提交事务，待 Checkpoint 完成后再提交最终事务；<br>若外部系统不支持事务，可采用幂等写入或预写日志（WAL）方式，将结果先存为状态，Checkpoint 完成后再写入目标系统。<br>
+            </p></div>
+        </div>
+      </div>
+    <p></p>
+
+      <div class="tip-container tip-question" style="
+        background-color: #fef7fb;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #e53e3e;
+        ">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>Flink 支持哪些类型的窗口？各自的适用场景是什么？<br>按时间语义分为事件时间窗口、处理时间窗口、摄入时间窗口。<br>事件时间窗口基于数据自带时间戳，适合订单超时监控等需严格时序的场景；处理时间窗口基于系统处理时间，适合实时流量统计等对延迟敏感的场景。按触发逻辑分为滚动窗口（无重叠，如每小时统计销量）、滑动窗口（有重叠，如每 30 分钟统计 1 小时销量）、会话窗口（基于无操作间隔，如用户 30 分钟无操作则会话结束）、全局窗口（所有数据归为一个窗口，需自定义触发逻辑）。<br>
+            </p></div>
+        </div>
+      </div>
+    <p></p>
+<h1 id="三、存储机制"><a href="#三、存储机制" class="headerlink" title="三、存储机制"></a>三、存储机制</h1><h2 id="3-1-状态后端"><a href="#3-1-状态后端" class="headerlink" title="3.1 状态后端"></a>3.1 状态后端</h2><p>“状态后端（State Backend）”—— 定义了状态的存储位置、序列化方式、快照机制，是状态管理的底层支撑</p>
+
+      <div class="tip-container tip-question" style="
+        background-color: #fef7fb;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #e53e3e;
+        ">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>(2).基础概念：Flink 的状态后端有哪几种？各自的适用场景是什么？<br>内存状态后端(MemoryStateBackend)、文件系统状态后端(FsStateBackend)、RocksDB 状态后端</p>
+<ol>
+<li>前两者受TM的内存限制，适用于小规模状态作业、调试环境</li>
+<li>后者TM的本地磁盘，使用与大规模状态作业
+            </li></ol></div>
+        </div>
+      </div>
+    
+
+
+<table class="_table">
+    <thead>
+        <tr>
+            <th>状态后端类型</th>
+            <th>核心原理</th>
+            <th>适用场景</th>
+            <th>优缺点</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>MemoryStateBackend<br>(内存状态后端)</td>
+            <td>1. 状态数据存储在 TM 的 JVM 堆内存中；<br>
+                2. 检查点（Checkpoint）快照会序列化后发送到 JobManager 的堆内存中；<br>
+                3. 仅支持小状态量存储，默认状态大小限制为 5MB（可调整）。
+            </td>
+            <td>1. <strong>开发/测试环境</strong>（快速调试/验证）；<br>
+                2. 无状态/极小状态的作业（如简单的数据过滤、转发）；<br>
+                3. 短期运行,无需持久化状态的临时作业
+            </td>
+            <td>优点：读写速度极快、部署简单
+                <br>缺点：(1)状态大小受 JVM 堆内存限制，易 OOM；<br>
+                (2).检查点存储在 JM 内存，JM 故障会丢失状态；
+                (3).不支持大状态、高可用场景。
+            </td>
+        </tr>
+        <tr>
+            <td>FsStateBackend<br>(文件系统状态后端)</td>
+            <td>1. 状态数据仍存储在<strong>TM的JVM堆内存</strong>；<br>
+                2. 检查点快照序列化后写入外部文件系统（HDFS、S3、本地文件系统等）；<br>
+                3. 元数据存储在 JobManager 内存（高可用模式下元数据也可写入文件系统）。
+            </td>
+            <td>1. <strong>生产环境中小规模状态作业</strong>；<br>
+                2. 对状态读写性能有一定要求，且需要状态持久化的场景；<br>
+                3. 基于 HDFS/S3 等分布式文件系统的集群环境；<br>
+                4. 故障恢复要求中等的作业（如常规数据清洗、ETL）。
+            </td>
+            <td>优点：<br>
+                - 检查点持久化到外部文件系统，可靠性高；<br>
+                - 状态读写速度接近 MemoryStateBackend；<br>
+                - 支持较大状态（仅受 TM 内存限制）；<br>
+                缺点：<br>
+                - 状态仍占用 TM 堆内存，超大状态易 OOM；<br>
+                - 不适合超大规模状态（如 TB 级）作业。
+            </td>
+        </tr>
+        <tr>
+            <td>RocksDBStateBackend<br>(RocksDB 状态后端)</td>
+            <td>1. 基于嵌入式 Key-Value 数据库 RocksDB，状态数据存储在TM本地磁盘<br>
+                2. 检查点快照写入外部文件系统（HDFS/S3 等）；<br>
+                3. 支持状态增量快照，可大幅减少检查点数据量。
+            </td>
+            <td>1. <strong>生产环境中大规模状态作业</strong>（如 TB 级状态）；<br>
+                2. 状态量超过 TaskManager 堆内存上限的场景（如窗口聚合、大维表关联）；<br>
+                3. 高可用/高可靠性要求的核心业务；<br>
+                4. 需要增量检查点优化性能的场景。
+            </td>
+            <td>优点：<br>
+                - 状态存储在磁盘，突破 JVM 堆内存限制，支持超大状态；<br>
+                - 增量检查点减少网络/存储开销，适合长运行作业；<br>
+                - 状态持久化可靠，支持高可用部署；<br>
+                缺点：<br>
+                - 读写性能低于内存型后端（磁盘 IO 开销）；<br>
+                - 依赖 RocksDB，部署/调优复杂度略高；<br>
+                - 序列化/反序列化开销高于内存后端。
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+      <div class="tip-container tip-question" style="
+        background-color: #fef7fb;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #e53e3e;
+        ">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>(3).状态管理核心机制：将状态后端从 FsStateBackend 改为 RocksDBStateBackend 后，状态存储会有哪些变化?<br>该改动仅影响 Keyed State 的存储方式，Operator State 不受影响。</p>
+<ol>
+<li>FsStateBackend 中 Keyed State 由 HeapKeyedStateBackend 管理，数据存 TM 堆内存；</li>
+<li>改为 RocksDBStateBackend 后，Keyed State 由 RocksdbKeyedStateBackend 管理，数据存本地磁盘。</li>
+<li>而 Operator State 无论哪种后端，均由 DefaultOperatorStateBackend 管理，数据存 TM 内存。
+            </li></ol></div>
+        </div>
+      </div>
+    
+
+
+
+      <div class="tip-container tip-question" style="
+        background-color: #fef7fb;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #e53e3e;
+        ">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>(4).状态管理核心机制：如何避免 Flink 状态无限增长？</p>
+<ol>
+<li>为状态设置 TTL（生存时间），对窗口状态、Keyed State 等配置过期自动清理规则；</li>
+<li>合理设计窗口，比如避免使用无界窗口，对会话窗口设置合理的不活跃间隔</li>
+<li>定期清理无效状态，例如通过 Savepoint 重启任务时，过滤冗余的历史状态数据。
+            </li></ol></div>
+        </div>
+      </div>
+    
+
+
+<p>状态后端配置(生产实例)</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Flink 配置文件 flink-conf.yaml</span></span><br><span class="line"><span class="comment"># 配置 RocksDB 状态后端</span></span><br><span class="line"><span class="attr">state.backend:</span> <span class="string">rocksdb</span></span><br><span class="line"><span class="comment"># 快照存储路径（HDFS/S3，必配持久化路径）</span></span><br><span class="line"><span class="attr">state.checkpoints.dir:</span> <span class="string">hdfs:///flink/checkpoints</span></span><br><span class="line"><span class="comment"># 增量快照（RocksDB 专属，减少快照体积）</span></span><br><span class="line"><span class="attr">state.backend.incremental:</span> <span class="literal">true</span></span><br><span class="line"><span class="comment"># 状态默认过期时间（可选）</span></span><br><span class="line"><span class="attr">state.ttl.time:</span> <span class="number">7</span> <span class="string">d</span></span><br><span class="line"><span class="attr">state.ttl.cleanup.incremental:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h1 id="四、故障恢复"><a href="#四、故障恢复" class="headerlink" title="四、故障恢复"></a>四、故障恢复</h1><h2 id="4-1-Checkpoint-amp-Savepoint"><a href="#4-1-Checkpoint-amp-Savepoint" class="headerlink" title="4.1 Checkpoint &amp; Savepoint"></a>4.1 Checkpoint &amp; Savepoint</h2><p>Flink 通过 “快照” 机制实现状态的持久化和故障恢复，核心分为 Checkpoint（自动快照）和 Savepoint（手动快照）。</p>
+
+      <div class="tip-container tip-question" style="
+        background-color: #fef7fb;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #e53e3e;
+        ">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>(5).基础概念：Flink 的 Checkpoint 和 Savepoint 有什么区别？<br>Checkpoint 是 Flink 自动触发的分布式快照，用于故障恢复，周期短、轻量，默认任务停止后会清理；<br>Savepoint 是用户手动触发的快照，基于 Checkpoint 机制实现，快照格式标准化，用于任务版本升级、停机维护等场景，不会自动删除，需手动管理。<br>
+            </p></div>
+        </div>
+      </div>
+    <p></p>
+<p><strong style="color: #6f42c1;">「Checkpoint」</strong></p>
+
+      <div class="tip-container tip-question" style="
+        background-color: #fef7fb;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #e53e3e;
+        ">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>(6).状态管理核心机制：Checkpoint 机制是如何保证状态一致性的？<br>底层基于 Chandy-Lamport 分布式快照算法。</p>
+<ol>
+<li>JM 定期向所有 TM 发送 Checkpoint 触发指令，各算子将当前状态制作快照并持久化，完成后向 TM 汇报；</li>
+<li>待所有算子均完成快照，Checkpoint 才算成功。</li>
+<li>故障时，Flink 可恢复到最近成功的 Checkpoint 状态，结合两阶段提交协议，能保证 Exactly-Once 语义。
+            </li></ol></div>
+        </div>
+      </div>
+    
+
+
+<h2 id="4-2-整体容错机制"><a href="#4-2-整体容错机制" class="headerlink" title="4.2 整体容错机制"></a>4.2 整体容错机制</h2><p>POD、SessionJob 等不同层次的 容错机制。</p>
+<p>todo：完善容错机制流程</p>
+<h1 id="五、核心特性"><a href="#五、核心特性" class="headerlink" title="五、核心特性"></a>五、核心特性</h1><h2 id="5-1-状态一致性语义"><a href="#5-1-状态一致性语义" class="headerlink" title="5.1 状态一致性语义"></a>5.1 状态一致性语义</h2><p>Flink 提供三种一致性语义，通过 Checkpoint 实现：</p>
+<table class="_table">
+    <thead>
+        <tr>
+            <th>语义</th>
+            <th>核心保证</th>
+            <th>适用场景</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="semantic">At-Most-Once</td>
+            <td>最多处理一次，故障后丢失部分数据</td>
+            <td>非核心场景（如日志采集）</td>
+        </tr>
+        <tr>
+            <td class="semantic">At-Least-Once</td>
+            <td>至少处理一次，故障后可能重复处理</td>
+            <td>允许少量重复的场景（如点击统计）</td>
+        </tr>
+        <tr>
+            <td class="semantic">Exactly-Once</td>
+            <td>精确处理一次，故障后无重复无丢失</td>
+            <td>核心场景（如资金计算、订单统计）</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<h1 id="六、生产实践"><a href="#六、生产实践" class="headerlink" title="六、生产实践"></a>六、生产实践</h1>
+      <div class="tip-container tip-question" style="
+        background-color: #fef7fb;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #e53e3e;
+        ">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>Flink 作业状态过大导致性能下降，有哪些优化手段？</p>
+<ol>
+<li>选择 RocksDB 状态后端并开启增量 Checkpoint，减少快照存储和传输开销；</li>
+<li>优化状态结构，优先用 ValueState 等轻量类型，避免嵌套复杂的 MapState，同时设置状态 TTL 清理过期数据；</li>
+<li>调整并行度，避免单算子实例承载过多状态，均衡各节点状态负载。
+            </li></ol></div>
+        </div>
+      </div>
+    
+
+
+
+      <div class="tip-container tip-question" style="
+        background-color: #fef7fb;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #e53e3e;
+        ">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>Flink 计算过程中出现数据倾斜，如何结合状态管理进行优化？<br>若因某类 Key 对应的状态过大导致倾斜，可采用 Key 加盐法，在 Key 前加随机前缀拆分数据，分散状态存储；<br>对于大表和小表 Join，将小表广播为 BroadcastState，避免 Shuffle 时的 Key 集中；<br>还可通过自定义分区函数，将热点 Key 均匀分配到不同算子实例，减少单个实例的状态压力。<br>
+            </p></div>
+        </div>
+      </div>
+    <p></p>
+
+      <div class="tip-container tip-question" style="
+        background-color: #fef7fb;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #e53e3e;
+        ">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>Flink 任务运行中出现背压，可能与状态管理有关的原因有哪些？如何解决？<br>原因可能是 Checkpoint 周期过短，频繁的快照写入占用 IO 资源，导致状态更新阻塞；<br>也可能是 RocksDB 状态后端的磁盘 IO 性能不足，影响状态读写速度。<br>解决方式包括</p>
+<ol>
+<li>调大 Checkpoint 间隔、延长 Checkpoint 超时时间；</li>
+<li>优化 RocksDB 配置，如增大缓存、调整压缩策略；</li>
+<li>若状态过小，可切换为 FsStateBackend 减少磁盘操作开销。
+            </li></ol></div>
+        </div>
+      </div>
+    
+
+
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/6cb8788d/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/6cb8788d/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    2.数据治理平台_调研比较
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/4eac1bdd/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/4eac1bdd/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">2.数据调度平台</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

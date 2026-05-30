@@ -1,0 +1,814 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>大模型学习概述 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="LLM,Agent">
+
+    <meta name="description" content="系统的介绍大模型技术和应用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大模型学习概述">
+<meta property="og:url" content="https://waisec.cn/wiki/2ce0622/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="系统的介绍大模型技术和应用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/quano/www/raw/master/img//system/AIAgent_arch.jpg">
+<meta property="article:published_time" content="2025-10-02T03:55:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.147Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="LLM">
+<meta property="article:tag" content="Agent">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/quano/www/raw/master/img//system/AIAgent_arch.jpg">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "大模型学习概述",
+    "url": "https://waisec.cn/wiki/2ce0622/",
+    "datePublished": "2025-10-02T03:55:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.147Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "LLM,Agent"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/1|大模型应用/大模型学习概述" class="article article-type-post">
+    
+        <meta name="referrer" content="no-referrer">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">一、大模型是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E5%AE%9A%E4%B9%89"><span class="toc-text">1.1 定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E5%90%8D%E7%A7%B0%E8%A7%A3%E9%87%8A"><span class="toc-text">1.2 名称解释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E6%8A%80%E6%9C%AF%E6%BC%94%E8%BF%9B"><span class="toc-text">1.3 技术演进</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="toc-text">二、大模型的本质</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-text">三、大模型的应用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BD%93%E7%B3%BB%E6%9E%84%E5%BB%BA"><span class="toc-text">四、大模型体系构建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%A2%84%E8%AE%AD%E7%BB%83"><span class="toc-text">4.1 大模型预训练</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%90%8E%E8%AE%AD%E7%BB%83"><span class="toc-text">4.2 大模型后训练</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B"><span class="toc-text">4.2.1 数据工程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83"><span class="toc-text">4.2.2 模型微调</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-3-%E6%A8%A1%E5%9E%8B%E8%92%B8%E9%A6%8F"><span class="toc-text">4.2.3 模型蒸馏</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%B0%83%E4%BC%98"><span class="toc-text">4.3 大模型调优</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-AI-Agent%E6%9E%84%E5%BB%BA"><span class="toc-text">4.4 AI Agent构建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-1-%E4%BB%80%E4%B9%88%E6%98%AFAgent"><span class="toc-text">4.4.1 什么是Agent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-2-Agent%E7%9A%84%E6%BC%94%E8%BF%9B"><span class="toc-text">4.4.2 Agent的演进</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-3-Agent%E6%A1%88%E4%BE%8B"><span class="toc-text">4.4.3 Agent案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-3-Agent%E6%9E%B6%E6%9E%84"><span class="toc-text">4.4.3 Agent架构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%B9%B3%E5%8F%B0"><span class="toc-text">4.5 大模型应用平台</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-1-%E5%B9%B3%E5%8F%B0%E5%8C%96"><span class="toc-text">4.5.1 平台化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-2-%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8"><span class="toc-text">4.5.2 模型应用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%8A%A8%E6%80%81"><span class="toc-text">五、大模型的动态</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-Dify"><span class="toc-text">5.1 Dify</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E6%9C%80%E6%96%B0%E7%8E%B0%E7%8A%B6%EF%BC%9F"><span class="toc-text">5.2 最新现状？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99"><span class="toc-text">六、相关资料</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/">1|大模型应用</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Agent/" rel="tag">Agent</a>, <a class="tag-link-link" href="/tags/LLM/" rel="tag">LLM</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2025/10/" onclick="onclickRoute(event, '/archives/2025/10/')">
+            <time datetime="2025-10-02T03:55:57.000Z" itemprop="datePublished">2025-10-02</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="LLM,Agent">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/2ce0622/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            大模型学习概述
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p>大模型是当前人工智能最前沿的技术之一。代表着人工智能从传统的小规模模型向大规模、超大规模参数模型的跨越。就像互联网时代来临一样，大模型也在引领新的技术革命，改变人们的生活和工作方式。它具有强大的知识表示和学习能力，能够通过在大规模数据集上的训练，学习到丰富的知识和复杂的模式。例如，医疗领域可以对大量的病历、医学文献等数据进行学习，当面对新的病例时，能够协助医生从复杂的症状和检查结果中提取关键信息，辅助诊断疾病。这就好比有一个<strong>知识渊博的助手</strong>，能够帮助我们梳理复杂问题中的头绪，提供更多的思路和解决方案，从而<strong>解决复杂问题</strong>。适应智能化社会的发展需求。</p>
+<span id="more"></span>
+<hr>
+<p>黄仁勋的AI“五层蛋糕”提到，未来人类社会向AI转型，这五层将有巨大的建设需求；<br>AI虽会替代大量现有岗位，但也会诞生大量全新岗位，所以我们也不用过于焦虑，拥抱AI就可以。行业来说算力和电网领域较为看好<br>本文主要围绕LLM和Agent应用层展开一些介绍。</p>
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 900 660" width="50%">
+  <rect width="100%" height="100%" fill="#0f172a" rx="20"/>
+  <text x="450" y="60" fill="#f8fafc" font-size="28" font-family="sans-serif" font-weight="bold" text-anchor="middle">黄仁勋的AI“五层蛋糕” (The 5-Layer AI Cake)</text>
+  <text x="450" y="90" fill="#94a3b8" font-size="14" font-family="sans-serif" text-anchor="middle">自下而上：从物理底座到最终价值应用</text>
+
+  <g font-family="sans-serif">
+    <rect x="250" y="140" width="400" height="80" rx="15" fill="url(#grad5)" filter="url(#shadow)"/>
+    <text x="450" y="175" fill="#ffffff" font-size="22" font-weight="bold" text-anchor="middle">5. 应用 (Applications)</text>
+    <text x="450" y="200" fill="#e2e8f0" font-size="14" text-anchor="middle">面向终端用户，创造实际价值，驱动整个生态发展</text>
+    <rect x="220" y="235" width="460" height="80" rx="15" fill="url(#grad4)" filter="url(#shadow)"/>
+    <text x="450" y="270" fill="#ffffff" font-size="22" font-weight="bold" text-anchor="middle">4. 模型 (Models)</text>
+    <text x="450" y="295" fill="#e2e8f0" font-size="14" text-anchor="middle">智能的核心大脑（如GPT等），提供实时推理和生成能力</text>
+    <rect x="190" y="330" width="520" height="80" rx="15" fill="url(#grad3)" filter="url(#shadow)"/>
+    <text x="450" y="365" fill="#ffffff" font-size="22" font-weight="bold" text-anchor="middle">3. 基础设施 (Infrastructure)</text>
+    <text x="450" y="390" fill="#e2e8f0" font-size="14" text-anchor="middle">AI工厂：包含数据中心、网络、冷却与系统架构</text>
+    <rect x="160" y="425" width="580" height="80" rx="15" fill="url(#grad2)" filter="url(#shadow)"/>
+    <text x="450" y="460" fill="#ffffff" font-size="22" font-weight="bold" text-anchor="middle">2. 芯片 (Chips)</text>
+    <text x="450" y="485" fill="#e2e8f0" font-size="14" text-anchor="middle">算力载体（如GPU），负责将能量大规模高效地转化为计算力</text>
+    <rect x="130" y="520" width="640" height="80" rx="15" fill="url(#grad1)" filter="url(#shadow)"/>
+    <text x="450" y="555" fill="#ffffff" font-size="22" font-weight="bold" text-anchor="middle">1. 能源 (Energy)</text>
+    <text x="450" y="580" fill="#e2e8f0" font-size="14" text-anchor="middle">第一性原理与硬性约束：没有任何抽象层的物理底座</text>
+  </g>
+
+  <g stroke="#94a3b8" stroke-width="2" fill="none" opacity="0.6">
+    <path d="M 80 560 L 80 180"/>
+    <polygon points="80,170 75,185 85,185" fill="#94a3b8" stroke="none"/>
+    <text x="60" y="370" fill="#94a3b8" font-size="14" font-family="sans-serif" text-anchor="middle" transform="rotate(-90 60 370)" stroke="none">自下而上的技术与算力支撑</text>
+    <path d="M 820 180 L 820 560"/>
+    <polygon points="820,570 815,555 825,555" fill="#94a3b8" stroke="none"/>
+    <text x="840" y="370" fill="#94a3b8" font-size="14" font-family="sans-serif" text-anchor="middle" transform="rotate(90 840 370)" stroke="none">自上而下的商业需求拉动</text>
+  </g>
+
+  <defs>
+    <lineargradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b91c1c"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </lineargradient>
+    <lineargradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c2410c"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </lineargradient>
+    <lineargradient id="grad3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#047857"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </lineargradient>
+    <lineargradient id="grad4" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </lineargradient>
+    <lineargradient id="grad5" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6d28d9"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </lineargradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="100%">
+      <fedropshadow dx="0" dy="4" stddeviation="4" flood-color="#000000" flood-opacity="0.5">
+    </fedropshadow></filter>
+  </defs>
+</svg>
+
+<hr>
+
+      <div class="tip-container tip-question" style="
+        background-color: #fef7fb;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #e53e3e;
+        ">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>那当前AI发展最核心最火热的层在是哪些呢？LLM（模型层）、Agent（应用层）<br>模型能力（LLM）正在商品化，竞争焦点正在上移到 Agent（应用/执行层）。当前关注的最核心的两层👇</p>
+<pre>
+Agent（决策+执行）              &nbsp;&nbsp;LLM（智能能力）
+  ├─ Planning（任务规划）        &nbsp;&nbsp;├─ Reasoning（推理）
+  ├─ Tool Use（工具调用）        &nbsp;&nbsp;├─ Multimodal（多模态）
+  ├─ Memory（记忆）                 &nbsp;&nbsp;├─ Long Context（长上下文）
+  └─ Workflow（多Agent协作） &nbsp;└─ Alignment（对齐）
+</pre>
+
+
+<p><strong style="color: #6f42c1;">Agent是当前的主战场。Agent = 能“理解目标 → 拆解任务 → 调用工具 → 执行结果”的系统</strong><br>其中，Harness作为控制平面， <strong style="color: #6f42c1;">驱动和约束</strong>Agent稳定运行<br>Harnessing ≈ Workflow orchestration / Agent runtime / control plane</p>
+<p>Agent的核心能力：<br>1️⃣ Planning（规划能力）：把复杂任务拆解成步骤， 类似（ReAct、Tree of Thoughts）。👉 本质：从“回答问题” → “解决问题”<br>2️⃣ Tool Use（工具调用）：调 API / 数据库 / 系统；执行真实操作（不是只聊天）。👉 关键能力：Function Calling、Tool Routing<br>3️⃣ Memory（记忆系统）：短期记忆（上下文）、长期记忆（向量数据库）。👉 技术：RAG（Retrieval-Augmented Generation）<br>4️⃣ Workflow / Multi-Agent：多Agent协作：Planner / Executor / Reviewer。👉 类似：“AI团队”</p>
+            </div>
+        </div>
+      </div>
+    
+<pre class="pre-code">
+未来AI竞争的核心，不再是谁的模型更强，而是谁的Agent能真正完成工作。
+LLM 提供“智能上限”，Agent 决定“价值实现”；当前AI竞争正从模型能力竞争，转向以Agent为核心的应用与执行能力竞争。
+</pre>
+
+
+      <div class="tip-container tip-info" style="
+        background-color: #e8f4f8;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #4299e1;
+        ">
+          <i class="fa fa-info-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>🔥 Agent层核心趋势（总结）：Chat → Copilot → Agent → Autonomous System<br>👉 从“辅助”走向“替代执行”<br>当前的Agent趋势是由Harness（执行控制系统工程）约束和驱动Agent稳定、高质量完成任务</p>
+<hr>
+<p>以上内容更新于2026年4月。具体的 Agent构建和应用、Harness相关的介绍在Agent应用章节展开<br>
+            </p></div>
+        </div>
+      </div>
+    <p></p>
+<h1 id="一、大模型是什么"><a href="#一、大模型是什么" class="headerlink" title="一、大模型是什么"></a>一、大模型是什么</h1><h2 id="1-1-定义"><a href="#1-1-定义" class="headerlink" title="1.1 定义"></a>1.1 定义</h2><p>大模型通常是指具有海量参数的深度学习模型（具有参数量大、训练数据量大、算力要求高、应用广泛等特点），能够学习到丰富的语言、图像、音频等各种数据中的模式和规律。通过在大规模数据集上预训练，可以自动提取数据的特征，并具备强大的泛化能力，能够处理各种复杂的任务，例如NLP中的文本生成，问答系统、机器翻译、以及视觉中图形识别和生成。<br><span style="font-size: 12px;">&nbsp;&gt;&nbsp;&nbsp;深度学习模型本质上就是一种复杂的神经网络，包括多个隐藏层，如MLP、CNN、RNN、LSTM等。</span><br>所以，大模型也不专指LLM，也包括视觉图像类的模型(自动驾驶领域)、多模态大模型、以及各领域(医疗、金融、科学等)专用的大模型。</p>
+<h2 id="1-2-名称解释"><a href="#1-2-名称解释" class="headerlink" title="1.2 名称解释"></a>1.2 名称解释</h2><p>LLM：<span style="font-size: 12px;">Large Language Model，大语言模型。目前大多基于Transformer架构，具有强大的语言理解、生成和处理能力。</span><br>RAG：<span style="font-size: 12px;">Retrieval-Augmented Generation，检索增强生成。是一种结合了信息检索和语言生成技术的方法，为提高准确性、时效性和相关性。大模型“补课”的神器。</span><br>AI Agent：<span style="font-size: 12px;">AI智能体。它是以大模型为大脑驱动的系统，具有自主理解、感知、规划、记忆和使用工具的能力，能够自动执行完成复杂任务。会思考的行动派。</span><br>AGI：<span style="font-size: 12px;">通用人工智能。是旨在让人工智能系统具备与人类相似的通用智能能力的<strong><em>技术理念和研究目标</em></strong>。具备像人类一样灵活智能的人工智能形式。</span><br>MCP：<span style="font-size: 12px;">Model Context Protocol，模型上下文协议。是一种设计框架和开放标准，用于AI系统中高效传递和共享上下文信息。旨在为AI和Agent提供通用的连接框架，使其能够安全地访问外部数据源和工具，从而扩展其能力边界。</span><br>FunctionCall：<span style="font-size: 12px;">函数调用，用于扩展模型的能力，实现模块化和可维护性，与外部系统交互。</span><br>知识库：<span style="font-size: 12px;">一种用于存储和管理知识的系统，可以为专业领域提供知识基础，来优化模型的专业能力。</span><br>Prompt：<br>Workflow：<span style="font-size: 12px;">工作流是指一系列为完成特定任务的顺序(步骤或操作)集合。定义了任务的整个过程。主要用于任务规划与组织、实现自动化和智能化。</span><br>Memory：<br>GUI：<span style="font-size: 12px;">图形用户界面（Graphical User Interface），一种人与计算机交互的界面形式，通过图形元素和直观的操作方式，让用户便捷的使用计算机系统和应用程序。</span></p>
+<blockquote>
+<p>对于FunctionCall、MCP、Agent的关系，可以理解为 一个模型上下文 + 多个可选 FunctionCall = 1个Agent。</p>
+</blockquote>
+<h2 id="1-3-技术演进"><a href="#1-3-技术演进" class="headerlink" title="1.3 技术演进"></a>1.3 技术演进</h2><h1 id="二、大模型的本质"><a href="#二、大模型的本质" class="headerlink" title="二、大模型的本质"></a>二、大模型的本质</h1><p>本质和局限性分析</p>
+<h1 id="三、大模型的应用"><a href="#三、大模型的应用" class="headerlink" title="三、大模型的应用"></a>三、大模型的应用</h1><p>Dify平台中 提到的， 当前主流的应用 都有哪些类型？ 做一个调研、</p>
+<h1 id="四、大模型体系构建"><a href="#四、大模型体系构建" class="headerlink" title="四、大模型体系构建"></a>四、大模型体系构建</h1><p>分几个层次</p>
+<h2 id="4-1-大模型预训练"><a href="#4-1-大模型预训练" class="headerlink" title="4.1 大模型预训练"></a>4.1 大模型预训练</h2><h2 id="4-2-大模型后训练"><a href="#4-2-大模型后训练" class="headerlink" title="4.2 大模型后训练"></a>4.2 大模型后训练</h2><h3 id="4-2-1-数据工程"><a href="#4-2-1-数据工程" class="headerlink" title="4.2.1 数据工程"></a>4.2.1 数据工程</h3><p>数据清洗与处理的重要性：直接影响着模型的性能和泛化能力。<br>主要包括以下内容：数据清洗、数据预处理、数据增强、数据平衡处理、噪声处理。<br>具体的方法论见：机器学习数据工程概述</p>
+<h3 id="4-2-2-模型微调"><a href="#4-2-2-模型微调" class="headerlink" title="4.2.2 模型微调"></a>4.2.2 模型微调</h3><h3 id="4-2-3-模型蒸馏"><a href="#4-2-3-模型蒸馏" class="headerlink" title="4.2.3 模型蒸馏"></a>4.2.3 模型蒸馏</h3><h2 id="4-3-大模型调优"><a href="#4-3-大模型调优" class="headerlink" title="4.3 大模型调优"></a>4.3 大模型调优</h2><h2 id="4-4-AI-Agent构建"><a href="#4-4-AI-Agent构建" class="headerlink" title="4.4 AI Agent构建"></a>4.4 AI Agent构建</h2><p>为什么需要Agent呢？</p>
+<!-- 产品视角： 问答机器人 +  全自动工作流(感知、思考、行动)  + 静态知识库 -->
+<!-- 架构视角：基于大模型，增加记忆、工具等能力和组件。 -->
+<h3 id="4-4-1-什么是Agent"><a href="#4-4-1-什么是Agent" class="headerlink" title="4.4.1 什么是Agent"></a>4.4.1 什么是Agent</h3><p>Agent听上去较为抽象，简单理解就是 一个基于大模型的<strong>专业</strong>系统，能够理解用户专业问题和需求，借助工具集自动完成复杂任务。<br>或者(生成式人工智能智能体)可定义为一种应用程序，其通过观察环境并采取行动(利用自身可调用的工具)，试图实现特定目标。<br><span style="font-size: 12px;">智能体具有</span><span style="color: red; font-size: 12px;"><strong>自主性</strong></span><span style="font-size: 12px;">，可在无需人类干预的情况下独立运行，尤其是被赋予明确目标时。此外，还能<strong>主动规划</strong>，通过推理确定下一步行动以完成最终任务。</span></p>
+<p>尽管AI领域的”智能体“概念具有广泛而强大的内涵，但目前更多的聚焦于当前<strong><em>生成式AI大模型</em></strong>能够构建的<strong><span style="color: red;">特定类型智能体</span></strong>。</p>
+<p>要理解智能体的内部运作机制，需要了解驱动其行动、行为和决策的核心组件。这些组件的组合可视为一种<strong>认知架构</strong>，通过不同组件的灵活搭配，可实现多种架构形式。聚焦核心功能，智能体的<strong>认知架构</strong>包含以下三个基本组件（模型、工具、编排层）：</p>
+<div>
+    <img src="https://gitee.com/quano/www/raw/master/img//system/AIAgent_arch.jpg" style="display: inline-block;margin-left: 18px; width: 65%">
+    <span style="display: block; margin-left: 18%;width: 60%"></span>
+</div>
+
+<p><strong><em>「工具（Tools）」</em></strong>：尽管基础模型在文本和图像生成方面表现卓越，但其本质仍受限于<span style="color: red;">无法与外部世界交互</span>。工具可以通过一下方式弥合：<br>（1）扩展行动边界「与外部数据和服务交互」<br>（2）多样化形式与复杂度「tools可涵盖简单/复杂的实现形式，例如WebAPI方法」<br>（3）支持高级系统「Tools使智能体能够访问实时信息，从而支持RAG等技术」</p>
+<p><strong><em>「编排层（Orchestration Layer）」</em></strong>：编排层定义了智能体运行的循环流程，其核心机制为：接受信息 -&gt; 内部推理 -&gt; 行动决策， 并持续迭代直至达成目标或触发终止条件。其复杂程度因Agent类型及任务性质差异显著：（1）简单场景：例如 库存 &gt; 3，则触发补货API。（2）复杂场景：链式逻辑、集成机器学习、概率推理技术等。</p>
+<p><em>以上部分来自： Google AI Agent白皮书：什么是Agent。</em></p>
+<p>【李宏毅：一堂课搞懂 AI Agent 的原理｜2025.03.09】</p>
+<iframe width="560" height="315" src="//player.bilibili.com/player.html?isOutside=true&aid=114132028228538&bvid=BV1BWRhYFE8y&cid=28778368306&p=1&autoplay=false" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+
+<h3 id="4-4-2-Agent的演进"><a href="#4-4-2-Agent的演进" class="headerlink" title="4.4.2 Agent的演进"></a>4.4.2 Agent的演进</h3><p>“<em><span style="font-size: 12px;">与Agent相关的研究源于分布式人工智能(DAI)。 20世纪80年代，Agent研究逐渐从DAI领域独立出来。通过不断拓展其研究领域，与多个领域互相借鉴和融合，目前其研究内容已涵盖Agent理论、模型与体系结构、面向Agent的软件工程，基于Agent的建模与模拟，Agent通信与协作、面向Agent的学习与规划、自组织和自适应系统以及群智能优化等多个方面，并广泛应用于软件工程、机器人、医疗保健等领域，远超出最初设想的DAI应用范围。Agent理论和技术被许多研究者寄予厚望</span></em>” &nbsp;-&nbsp;  <span style="font-size: 12px;">来自吉林大学计算机学院专刊《Agent理论与技术专刊》2012.</span></p>
+<p>“<em><span style="font-size: 12px;">早在1995年，斯坦福大学计算机系教授Barbara在IJCAI特约报告中就明确指出：智能Agent即是人工智能的最初目标，也是人工智能的最终目标”</span></em></p>
+<p>过去几十年对智能Agent（智能体）的研究涉及多种不同的形态和架构，涵盖了符号主义、基于逻辑的系统、强化学习、多智能体系统（MAS）、基于深度学习的智能体，以及最近较🔥的基于大模型驱动的认知智能体。其Agent主要的形态和代表如下：</p>
+<table class="_table" style="font-size: 12px">
+<thead>
+  <tr>
+     <th style="width: 6%;">形态</th>
+     <th style="width: 12%;">子类</th>
+     <th style="width: 30%;">介绍</th>
+     <th>代表系统/模型/算法</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="2">基于规则（Symbolic & Rule-based Agents）</td>
+    <td>基于规则（Rule-based Systems）</td>
+    <td>依赖逻辑推理和预定义规则，无法自适应环境变化<br>但可解释性、可控性较好</td>
+    <td>专家系统（Expert Systems）：如MYCIN<br>生产系统（Production Systems）：如SOAR架构</td>
+  </tr>
+  <tr>
+    <td>逻辑推理型Agent（Logic-based）</td>
+    <td>基于一阶逻辑（FOL, First Order Logic）进行推理，适用于自动定理证明、规划等任务。</td>
+    <td>STRIPS用于自动规划。<br>PROLOG语言开发的逻辑推理Agent。</td>
+  </tr>
+  <tr>
+    <td rowspan="3">认知型Agent（Cognitive Agents）</td>
+    <td colspan="3">强调模拟人类的知识、信念、意图和决策过程，常用于自主决策和多智能体交互</td>
+  </tr>
+  <tr>
+    <td>BDI（Belief-Desire-Intention）模型</td>
+    <td>智能体基于<span style="font-size: 12px;">信念（Belief）、愿望（Desire）、意图（Intention）</span>来进行推理和决策</td>
+    <td>Rao & Georgeff（1995）提出BDI架构<br>AgentSpeak（1999）：基于BDI的Agent编程语言。</td>
+  </tr>
+  <tr>
+      <td colspan="3">适应场景：需要长期规划、复杂交互的环境，如自动驾驶、机器人规划、金融决策系统。</td>
+  </tr>
+  <tr>
+    <td rowspan="4">强化学习与自主智能Agent</td>
+     <td colspan="3">强化学习（RL）让智能体通过与环境交互，基于奖惩信号学习最优策略，适用于动态环境。</td>
+  </tr>
+  <tr>
+    <td>马尔可夫决策过程（MDP）Agent</td>
+    <td>基于State、Action、Reward进行决策。<br>通过值迭代（Value Iteration）和策略迭代（Policy Iteration）优化行为。</td>
+    <td>Q-learning（1992）<br>Deep Q-Network（DQN, 2015）<br>Proximal Policy Optimization（PPO, 2017）</td>
+  </tr>
+  <tr>
+    <td>世界模型（World Model）智能体</td>
+    <td>让Agent构建环境的内部表示（Latent Representation），基于此进行预测和决策。</td>
+    <td>Ha & Schmidhuber（2018）提出World Models，利用VAE + RNN + 控制器模拟环境。<br>MuZero（2019, DeepMind）：通过强化学习学习世界模型，不依赖环境规则。</td>
+  </tr>
+  <tr>
+      <td colspan="3">适应场景：游戏智能体（AlphaGo、MuZero）；自主机器人控制（如Waymo自动驾驶）</td>
+  </tr>
+  <tr>
+    <td rowspan="3">多智能体系统（Multi-Agent Systems, MAS）</td>
+     <td colspan="3">当多个智能体需要协作或竞争时，需要特殊的架构来管理交互。分为协作型多智能体系统、竞争型多智能体系统</td>
+  </tr>
+  <tr>
+    <td colspan="3">协作型多智能体系统；例如：无人机集群（Swarm Intelligence）；多机器人协作（如仓储机器人）</td>
+  </tr>
+  <tr>
+    <td colspan="3">竞争型多智能体系统；例如：AlphaStar（DeepMind, 2019）：StarCraft 2游戏中的强化学习Agent；OpenAI Five（2019）：Dota 2多智能体合作/竞争系统</td>
+  </tr>
+  <tr>
+    <td rowspan="3">认知智能与大模型驱动的Agent</td>
+     <td colspan="3">（LLM-based Agents）大模型驱动的智能Agent具备更强的语言理解和任务执行能力</td>
+  </tr>
+  <tr>
+    <td>LLM+强化学习驱动的自主Agent</td>
+    <td>结合大模型（如GPT-4）和强化学习，让智能体具备规划、记忆、长时推理能力</td>
+    <td>AutoGPT、BabyAGI（2023）：探索具备自主规划和行动能力的LLM智能体。<br>Voyager（2023）：能在Minecraft环境中进行自主学习和规划</td>
+  </tr>
+  <tr>
+    <td>具身智能Agent（Embodied AI）</td>
+    <td>让智能体具备物理交互能力，不仅停留在纯软件层面</td>
+    <td>Tesla Optimus（2022）：具备认知和行动能力的机器人<br>DeepMind SIMA（2024）：模拟环境中的具身智能</td>
+  </tr>
+  <tr>
+    <td colspan="4">未来的智能Agent将融合认知智能、强化学习、世界模型，具备更强的自主适应能力。如：长期记忆(如RAG)与个性化智能、多模态Agent、AGI Agent(如DeepMind提出的Gato（2022）)</td>
+  </tr>
+</tbody>
+</table>
+
+<p>基于大模型驱动的认知智能体的产生也是在大模型出现后，经历了系统提示词阶段、初级工具集成阶段、多智能体架构阶段 到如今爆火的Manus、TARS等产品。<br>那这样的认知智能体的架构是什么样子呢，如何构建如今基于大模型的认知智能体呢？以及后续主流的Agent的基础架构是什么样呢？</p>
+<p>Manus智能体的发布；字节也发布了它们的开源项目Agent TARS，内置了浏览器的操作工具，同时接入了MCP；</p>
+<p>Agent这个词很早就出现了，只是开始人们并不是很认可Agent技术路线，直到LLM的出现，Agent技术才可能成为真正服务与普通人的技术。</p>
+<ul>
+<li><p>系统提示词阶段：来自于chatGPT，设计了一种让同一个chat在单一系统提示词下工作的产品形态。简单理解，这个阶段的智能体，只是在chatbot的基础上增加了用户预设，避免chatbot随意发挥，没有边界。 这种<strong>形态</strong>其实应用非常广泛，特别是在一些让AI做角色扮演的场景。</p>
+</li>
+<li><p>初级工具集成阶段：在2023年，就出现了集成LLM和工具的自主决策Agent项目，例如AutoGPT，它可以分析用户意图，并调用python来实现一些功能。这一阶段，实现了初级工具集成。 在字节coze平台上， Agent把官方和用户共同提供的插件作为工具， Agent可以自主决定使用哪一个工具作为本次对话的执行。</p>
+</li>
+<li><p>多智能体架构阶段：(背景)开发者们发现，特定提示词配合特定工具集，使得智能体在某些方面表现非常好，但多加或少加工具，都会让智能体性能大打折扣。 于是由多个智能体打包成一个复合智能体来向用户提供通用性的智能体产品。 这一阶段典型的产品是 AI程序员 Devin。 它可以完成复杂的研发任务，而它的工作原理，就是在<strong><span style="color: red;">内部实现了角色分工</span></strong>，把我们研发任务中的程序员、项目经理等角色，分属给不同内部智能体，让他们在一个社群里协同完成编程目标。<br>然而，多智能体架构的缺陷在于，这些智能体可能会在社群里形成不统一意见，发生”争吵“没完没了，最后给出质量很差的结果。</p>
+</li>
+</ul>
+<p>新的阶段（第四阶段）：想象一下，通过与siri的语音交互，可以查资料，问法律、医疗等各领域的知识，可以预订行程，可以帮你工作，做很多事情。 或者是手机之外的其它终端形式，机器人! 这还需要面临 视觉识别方案的、模型轻量化、多模态交互融合、用户隐私和安全方面的挑战还有大规模工具的集成(MCP解决)。<br>24年初，苹果被爆正在开发AI原生的操作系统，</p>
+<p>25年Manus的火爆，验证了单一智能体大规模集成工具的可行性。实际上，LLM厂商们，都设计了自己的Function call，直到Claude母公司Anthropic提出MCP协议，整个市场进入工具集成的标准化阶段。</p>
+<p>人们对智能体的幻想，是让它像一个人一样与我们交流，帮我们调用电脑上的一切，完成我们的工作、创意、编码、查询、下订单等等的脏活累活。（贾维斯）。「当下现状」MCP协议的出现，打破了这种智能体无法调用本地软件的窘境。</p>
+<p>简单讲，本地软件的服务商向Agency提供一个MCP服务器， Agent开发者们就可以无痛 甚至无感的让自己的智能体调用软件的功能。 比如美团、大众点评、携程、飞猪等旅游、美食下单的应用， 最适合这种场景。以解决用户日常消费出行的智能化。</p>
+<p>MCP是<span style="color: red;">C/S架构</span>，C是软件方，S是提供给智能体调用的服务器。<br>MCP成为新的行业标准，开发者们就可以专心致志的在<span style="color: red;">Agent</span>和<span style="color: red;">软件(终端)</span>两端沉下心来做研发。而智能体也将迎来大规模工具集成的大爆发。</p>
+<blockquote>
+<p>蓝图的构建，我们可以做什么 从中获利</p>
+</blockquote>
+<p>Agent的形态</p>
+<h3 id="4-4-3-Agent案例"><a href="#4-4-3-Agent案例" class="headerlink" title="4.4.3 Agent案例"></a>4.4.3 Agent案例</h3><table class="_table">
+<thead>
+  <tr>
+     <th style="width: 6%;">名称</th>
+     <th style="width: 12%;">资源</th>
+     <th style="width: 30%;">介绍</th>
+     <th>核心功能</th>
+     <th>技术亮点</th>
+     <th>应用场景</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="1">Agent TARS</td>
+    <td><a target="_blank" rel="external nofollow noopener noreferrer" href="https://agenttars.org/zh">agenttars.org</a><br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://agent-tars.com/">agent-tars.com</a></td>
+    <td>字节25.3月开源的多模态AI Agent框架。专注于通过视觉理解与工具集成实现智能化任务自动化。</td>
+    <td>高级浏览器操作<br>多工具无缝集成<br>智能工作流编排<br>实时交互和与可视化界面</td>
+    <td>多模态感知能力<br>跨平台兼容性<br>记忆与上下文管理<br>自我优化机制</td>
+    <td><span style="font-size: 12px;">市场调研<br>软件开发<br>学术研究<br>自动化客服<br>生活助手</span></td>
+  </tr>
+  <tr>
+    <td>Manus</td>
+    <td>Monica.im<br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://manus.im/">manus.im</a><br><span style="font-size: 12px;">未完全开源</span></td>
+    <td>Manus 是一款通用型 AI 助手，能将想法转化为行动：不止于思考，更注重成果。Manus 擅长处理工作与生活中的各类任务，在你安心休息的同时，一切都能妥善完成。</td>
+    <td>自主操作能力(模拟人类使用电脑)<br>任务规划与执行<br>多源信息整合<br>记忆与学习能力<br>过程透明与可干预<br>可视化结果呈现</td>
+    <td>通用型 Agent 定位<br>GAIA 基准测试 SOTA 成绩<br>云端异步运行<br>“少结构，多智能” 设计理念<br>跨领域执行能力</td>
+    <td><span style="font-size: 12px;">旅行规划<br>金融分析<br>教育支持<br>B2B 采购<br>内容创作</span></td>
+  </tr>
+  <tr>
+    <td>OpenManus</td>
+    <td><a target="_blank" rel="external nofollow noopener noreferrer" href="https://openmanus.github.io/">openmanus</a><br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/mannaandpoem/OpenManus">github</a><br></td>
+    <td>基于 Manus 所发展出的开源项目。致力于模仿并改进 Manus 这一封闭式商业 AI Agent 的核心功能。</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>OWL</td>
+    <td><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/camel-ai/owl
+">github</a><br></td>
+    <td>基于CAMEL-AL框架开发的多智能体协作系统(一个前沿的多智能体协作框架)。通过角色和任务分解，让多个智能体协同完成复杂任务。通过利用动态智能体交互，OWL 实现了跨多领域更自然、高效且稳健的任务自动化。</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+  </tr>
+</tbody>
+</table>
+
+<p>Agent TARS 已吸引超1000名开发者参与开源社区建设，未来计划扩展移动端支持，并构建插件生态系统。<br>OpenManus 是基于 Manus 所发展出的开源项目。由 MetaGPT 团队精心打造的开源项目，于2025年3月发布。致力于模仿并改进 Manus 这一封闭式商业 AI Agent 的核心功能，为用户提供无需邀请码、可本地化部署的智能体解决方案。 换句话说，OpenManus 就像一位全能的数字助手，能够在你的本地设备上运行，随时听候差遣，完成各种复杂任务。 </p>
+<p><strong><em>「AI 时代项目复刻的速度有多快？」</em></strong><br>MetaGPT团队3小时复刻Manus历程，AI智能体风暴加速来袭。<00后挑大梁></00后挑大梁></p>
+<h3 id="4-4-3-Agent架构"><a href="#4-4-3-Agent架构" class="headerlink" title="4.4.3 Agent架构"></a>4.4.3 Agent架构</h3><p>Agent的基础架构</p>
+<h2 id="4-5-大模型应用平台"><a href="#4-5-大模型应用平台" class="headerlink" title="4.5 大模型应用平台"></a>4.5 大模型应用平台</h2><blockquote>
+<p>生成式AI应用 的创新引擎（大模型应用平台， 用于构建大模型应用）</p>
+</blockquote>
+<h3 id="4-5-1-平台化"><a href="#4-5-1-平台化" class="headerlink" title="4.5.1 平台化"></a>4.5.1 平台化</h3><p>模型评测</p>
+<ul>
+<li>工程<br>模型稳定性和性能<br>模型部署/问题跟踪</li>
+</ul>
+<p>目标：支持各类AI应用的快速发展和部署，提升团队的工作效率。</p>
+<h3 id="4-5-2-模型应用"><a href="#4-5-2-模型应用" class="headerlink" title="4.5.2 模型应用"></a>4.5.2 模型应用</h3><p>大模型应用都有哪些？ 先梳理总结20个。</p>
+<p>模型赋能业务的效率</p>
+<p>数据构建等…</p>
+<!-- 如何提升大模型的 “智能水平” -->
+<p>分多个方向介绍 优化方法，工程实践 以应用在各个场景。</p>
+<h1 id="五、大模型的动态"><a href="#五、大模型的动态" class="headerlink" title="五、大模型的动态"></a>五、大模型的动态</h1><p>名词解释：</p>
+<p>LangChain：<br>Dify：</p>
+<h2 id="5-1-Dify"><a href="#5-1-Dify" class="headerlink" title="5.1 Dify"></a>5.1 Dify</h2><p>生成式AI应用 的创新引擎（大模型应用平台， 用于构建大模型应用）</p>
+<ul>
+<li>提供了先进的 开源技术栈 用于构建生成式AI应用程序。</li>
+</ul>
+<p>通过dify编排工作室。<br>提供了 6大 组件能力：RAG管道、提示IDE、工作流、LLM agent、Baas解决方案。</p>
+<p>提供的功能：聊天机器人、AI助手；文档生成、</p>
+<p>分几大模块：</p>
+<p>常规使用AI的方式：人类给予明确指令。<br>AI Agent 人类只给指令。</p>
+<p>今天agent再次爆火，并不是 真的有了什么跟Ai Agent相关的 新的技术，而是在LLM变强之后，<br>人们开始想，我们能不能直接用LLM 来实现  人类拥有一个 Agent的渴望。</p>
+<h3 id="5-2-最新现状？"><a href="#5-2-最新现状？" class="headerlink" title="5.2 最新现状？"></a>5.2 最新现状？</h3><ol>
+<li>Meta计划利用用户在AI聊天中的交互数据投放精准广告。 该策略将分析聊天内容中的用户偏好与行为特征， 通过</li>
+</ol>
+<h1 id="六、相关资料"><a href="#六、相关资料" class="headerlink" title="六、相关资料"></a>六、相关资料</h1><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.google.com/presentation/d/1kTxukwlmx2Sc9H7aGPTiNiPdk4zN_NoH/edit?pli=1#slide=id.p39">ppt:AI Agent课程-李宏毅</a></p>
+<p>相关网站</p>
+<ol>
+<li>techcrunch： teechcrunch.com</li>
+</ol>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/8dea1711/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/8dea1711/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    1.Deepseek本地部署
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/3c2b64/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/3c2b64/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">1.数据治理</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

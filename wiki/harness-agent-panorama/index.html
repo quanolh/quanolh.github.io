@@ -1,0 +1,900 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>8.Harness与Agent核心概念全景图 | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="Agent,Harness,AI架构">
+
+    <meta name="description" content="AI Agent System Architecture - 从 LLM 到多智能体协作的完整技术栈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="8.Harness与Agent核心概念全景图">
+<meta property="og:url" content="https://waisec.cn/wiki/harness-agent-panorama/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="AI Agent System Architecture - 从 LLM 到多智能体协作的完整技术栈">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-04-24T17:15:00.000Z">
+<meta property="article:modified_time" content="2026-05-30T05:39:30.967Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="Harness">
+<meta property="article:tag" content="AI架构">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "8.Harness与Agent核心概念全景图",
+    "url": "https://waisec.cn/wiki/harness-agent-panorama/",
+    "datePublished": "2026-04-24T17:15:00.000Z",
+    "dateModified": "2026-05-30T05:39:30.967Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "Agent,Harness,AI架构"
+    
+}
+</script>
+
+<article id="post-算法 | AI与机器学习/1|大模型应用/01.Agent原理/03_Agent架构/008.Harness与Agent核心概念全景图" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%F0%9F%A4%96-Agent%EF%BC%88%E6%99%BA%E8%83%BD%E4%BD%93%EF%BC%89%EF%BC%9A%E8%87%AA%E4%B8%BB%E5%B7%A5%E4%BD%9C%E8%80%85"><span class="toc-text">一、🤖 Agent（智能体）：自主工作者</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%F0%9F%94%91-%E6%A0%B8%E5%BF%83%E5%AE%9A%E4%B9%89"><span class="toc-text">1.1 🔑 核心定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%F0%9F%93%A6-%E5%9B%9B%E5%A4%A7%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97"><span class="toc-text">1.2 📦 四大核心模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-Agent-%E5%AE%8C%E6%95%B4%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99%E5%8A%A9%E6%89%8B"><span class="toc-text">1.3 Agent 完整工作流示例：代码编写助手</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-Context-Building%EF%BC%88%E4%B8%8A%E4%B8%8B%E6%96%87%E6%9E%84%E5%BB%BA%EF%BC%89"><span class="toc-text">1.4 Context Building（上下文构建）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Context-Building-%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7"><span class="toc-text">Context Building 的重要性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%F0%9F%A7%B0-Harness%EF%BC%88%E6%94%AF%E6%92%91%E5%B1%82%EF%BC%89%EF%BC%9A%E8%BF%90%E8%A1%8C%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-text">二、🧰 Harness（支撑层）：运行时操作系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%F0%9F%94%91-%E6%A0%B8%E5%BF%83%E5%AE%9A%E4%B9%89"><span class="toc-text">2.1 🔑 核心定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E4%BA%94%E5%A4%A7%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97"><span class="toc-text">2.2 五大核心模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%F0%9F%8C%B0-Harness-%E5%AE%8C%E6%95%B4%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A4%BA%E4%BE%8B%EF%BC%9A%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4%E5%B1%82"><span class="toc-text">2.3 🌰 Harness 完整工作流示例：安全防护层</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%B8%A4%E8%80%85%E5%85%B3%E7%B3%BB%EF%BC%9A%E5%8D%8F%E5%90%8C%E5%B7%A5%E4%BD%9C"><span class="toc-text">三、两者关系：协同工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%F0%9F%8C%B0-%E5%8D%8F%E5%90%8C%E7%A4%BA%E4%BE%8B%EF%BC%9A%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2%E6%B5%81%E7%A8%8B"><span class="toc-text">3.1 🌰 协同示例：自动化部署流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%F0%9F%92%A1-%E5%85%B3%E9%94%AE%E8%AE%A4%E7%9F%A5%E6%80%BB%E7%BB%93"><span class="toc-text">四、💡 关键认知总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Agent-%E7%9A%84%E6%A0%B8%E5%BF%83%E4%BB%B7%E5%80%BC"><span class="toc-text">Agent 的核心价值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Harness-%E7%9A%84%E6%A0%B8%E5%BF%83%E4%BB%B7%E5%80%BC"><span class="toc-text">Harness 的核心价值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-Harness-%E7%8E%B0%E5%9C%A8%E6%9B%B4%E9%87%8D%E8%A6%81%EF%BC%9F"><span class="toc-text">为什么 Harness 现在更重要？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%F0%9F%8E%AF-%E4%B8%80%E5%8F%A5%E8%AF%9D%E5%8C%BA%E5%88%86"><span class="toc-text">五、🎯 一句话区分</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/">1|大模型应用</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/01-Agent%E5%8E%9F%E7%90%86/">01.Agent原理</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/01-Agent%E5%8E%9F%E7%90%86/03-Agent%E6%9E%B6%E6%9E%84/">03_Agent架构</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/AI%E6%9E%B6%E6%9E%84/" rel="tag">AI架构</a>, <a class="tag-link-link" href="/tags/Agent/" rel="tag">Agent</a>, <a class="tag-link-link" href="/tags/Harness/" rel="tag">Harness</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2026/04/" onclick="onclickRoute(event, '/archives/2026/04/')">
+            <time datetime="2026-04-24T17:15:00.000Z" itemprop="datePublished">2026-04-25</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="Agent,Harness,AI架构">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/harness-agent-panorama/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            Harness与Agent核心概念全景图
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p>💡 关键认知总结</p>
+<p>Agent 的核心价值：<strong>自主性</strong>（不需要人类一步步指导，能自己规划执行）、<strong>适应性</strong>（能根据反馈调整策略，自我修正）、<br><strong>工具使用</strong>（能调用外部工具完成实际任务）</p>
+<p>Harness 的核心价值：<strong>安全性</strong>：防止 Agent 造成破坏（删文件、泄露数据、无限循环）；<br><strong>可靠性</strong>：确保任务能稳定完成，支持失败恢复；<strong>可观测性</strong>：让黑盒操作变得透明，便于调试和优化</p>
+<p>为什么 Harness 现在更重要？</p>
+<ol>
+<li><strong>企业落地第一道坎</strong>：没有 Harness，Agent 就是”不可控的野兽”</li>
+<li><strong>合规要求</strong>：金融、医疗等行业必须审计每一步操作</li>
+<li><strong>规模化前提</strong>：只有Harness 成熟，才能放心部署多个 Agent</li>
+</ol>
+<span id="more"></span>
+<p>以下是一个通用的 AI Agent 应用的完整技术栈。可以赋能给“右侧”的实际业务场景，例如研发场景、具体业务场景等。<br>都是围绕这四层做工，以提高AI Agent的自主能力。</p>
+<svg viewbox="0 0 1200 950" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" width="80%">
+  <defs>
+    <!-- 渐变背景 -->
+    <lineargradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f4f8;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#d9e2ec;stop-opacity:1"/>
+    </lineargradient>
+    <!-- 阴影效果 -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <fedropshadow dx="0" dy="4" stddeviation="6" flood-opacity="0.15">
+    </fedropshadow></filter>
+    <!-- 箭头标记 -->
+    <marker id="arrowhead" markerwidth="10" markerheight="10" refx="9" refy="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#4a5568"/>
+    </marker>
+    <!-- 卡片渐变 -->
+    <lineargradient id="cardBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ebf8ff;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#bee3f8;stop-opacity:1"/>
+    </lineargradient>
+    <lineargradient id="cardGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0fff4;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#c6f6d5;stop-opacity:1"/>
+    </lineargradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="1200" height="950" fill="url(#bgGradient)"/>
+
+  <!-- 标题 -->
+  <text x="600" y="40" text-anchor="middle" font-size="28" font-weight="700" fill="#1a202c">
+    AI Agent System Architecture
+  </text>
+  <text x="600" y="65" text-anchor="middle" font-size="14" fill="#4a5568">
+    从 LLM 到多智能体协作的完整技术栈
+  </text>
+
+  <!-- ==================== 左侧标注（改用绝对坐标 + 引导线） ==================== -->
+  <!-- 标注 1: 任务请求 → Orchestrator/Harness 交界 -->
+  <line x1="85" y1="165" x2="100" y2="165" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="80" y="170" text-anchor="end" font-size="11" fill="#4a5568" font-weight="500">任务请求 ↓</text>
+
+  <!-- 标注 2: 安全执行 → Harness 中心 (185+240/2=305) -->
+  <line x1="85" y1="305" x2="100" y2="305" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="80" y="310" text-anchor="end" font-size="11" fill="#4a5568" font-weight="500">安全执行 ↓</text>
+
+  <!-- 标注 3: 智能决策 → Agent 中心 (450+260/2=580) -->
+  <line x1="85" y1="580" x2="100" y2="580" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="80" y="585" text-anchor="end" font-size="11" fill="#4a5568" font-weight="500">智能决策 ↓</text>
+
+  <!-- 标注 4: 基础推理 → LLM 中心 (740+80/2=780) -->
+  <line x1="85" y1="780" x2="100" y2="780" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="80" y="785" text-anchor="end" font-size="11" fill="#4a5568" font-weight="500">基础推理</text>
+
+  <!-- ==================== 第一层：Orchestrator ==================== -->
+  <g transform="translate(100,90)">
+    <rect width="1000" height="70" rx="8" fill="#e2e8f0" stroke="#718096" stroke-width="2" filter="url(#shadow)"/>
+    <text x="500" y="30" text-anchor="middle" font-size="18" font-weight="600" fill="#2d3748">
+      🎼 Orchestrator：多智能体协调器
+    </text>
+    <text x="500" y="52" text-anchor="middle" font-size="13" fill="#4a5568">
+      任务分解 · 智能体路由 · 冲突仲裁 · 流程编排 · 结果聚合
+    </text>
+  </g>
+
+  <!-- 向下箭头 -->
+  <line x1="600" y1="160" x2="600" y2="180" stroke="#4a5568" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- ==================== 第二层：Harness ==================== -->
+  <g transform="translate(100,185)">
+    <rect width="1000" height="240" rx="8" fill="url(#cardBlue)" stroke="#3182ce" stroke-width="3" filter="url(#shadow)"/>
+    <!-- Harness 标题 -->
+    <text x="500" y="30" text-anchor="middle" font-size="20" font-weight="700" fill="#1a365d">
+      🧰 HARNESS：运行时操作系统 / 控制平面
+    </text>
+    <text x="500" y="50" text-anchor="middle" font-size="13" fill="#2c5282">
+      让 Agent 安全、可靠、可观测地执行任务
+    </text>
+    <!-- Harness 模块 1: Tool Abstraction -->
+    <g transform="translate(10,70)">
+      <rect width="190" height="150" rx="6" fill="white" stroke="#3182ce" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="95" y="28" text-anchor="middle" font-size="14" font-weight="600" fill="#1a365d">🔌 Tool Abstraction</text>
+      <line x1="10" y1="38" x2="180" y2="38" stroke="#e2e8f0" stroke-width="1"/>
+      <text x="95" y="58" text-anchor="middle" font-size="11" fill="#4a5568">统一接口层</text>
+      <text x="95" y="75" text-anchor="middle" font-size="10" fill="#718096">• 标准化 API 调用</text>
+      <text x="95" y="92" text-anchor="middle" font-size="10" fill="#718096">• 参数验证 & 转换</text>
+      <text x="95" y="109" text-anchor="middle" font-size="10" fill="#718096">• 错误处理 & 重试</text>
+      <text x="95" y="126" text-anchor="middle" font-size="10" fill="#718096">• 工具注册发现</text>
+      <text x="95" y="143" text-anchor="middle" font-size="9" fill="#a0aec0" font-style="italic">例：GitHub/Slack/DB 统一封装</text>
+    </g>
+    <!-- Harness 模块 2: Guardrails -->
+    <g transform="translate(210,70)">
+      <rect width="190" height="150" rx="6" fill="white" stroke="#3182ce" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="95" y="28" text-anchor="middle" font-size="14" font-weight="600" fill="#1a365d">🛡️ Guardrails</text>
+      <line x1="10" y1="38" x2="180" y2="38" stroke="#e2e8f0" stroke-width="1"/>
+      <text x="95" y="58" text-anchor="middle" font-size="11" fill="#4a5568">安全护栏</text>
+      <text x="95" y="75" text-anchor="middle" font-size="10" fill="#718096">• 输入/输出过滤</text>
+      <text x="95" y="92" text-anchor="middle" font-size="10" fill="#718096">• 策略强制执行</text>
+      <text x="95" y="109" text-anchor="middle" font-size="10" fill="#718096">• 权限检查</text>
+      <text x="95" y="126" text-anchor="middle" font-size="10" fill="#718096">• 防注入/防越权</text>
+      <text x="95" y="143" text-anchor="middle" font-size="9" fill="#a0aec0" font-style="italic">例：拦截 rm -rf /* 命令</text>
+    </g>
+    <!-- Harness 模块 3: State Management -->
+    <g transform="translate(410,70)">
+      <rect width="190" height="150" rx="6" fill="white" stroke="#3182ce" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="95" y="28" text-anchor="middle" font-size="14" font-weight="600" fill="#1a365d">📦 State Management</text>
+      <line x1="10" y1="38" x2="180" y2="38" stroke="#e2e8f0" stroke-width="1"/>
+      <text x="95" y="58" text-anchor="middle" font-size="11" fill="#4a5568">状态管理</text>
+      <text x="95" y="75" text-anchor="middle" font-size="10" fill="#718096">• 持久化存储</text>
+      <text x="95" y="92" text-anchor="middle" font-size="10" fill="#718096">• 检查点 & 恢复</text>
+      <text x="95" y="109" text-anchor="middle" font-size="10" fill="#718096">• 版本控制</text>
+      <text x="95" y="126" text-anchor="middle" font-size="10" fill="#718096">• 会话管理</text>
+      <text x="95" y="143" text-anchor="middle" font-size="9" fill="#a0aec0" font-style="italic">例：任务中断后断点续传</text>
+    </g>
+    <!-- Harness 模块 4: Sandbox -->
+    <g transform="translate(610,70)">
+      <rect width="190" height="150" rx="6" fill="white" stroke="#3182ce" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="95" y="28" text-anchor="middle" font-size="14" font-weight="600" fill="#1a365d">🔒 Sandbox</text>
+      <line x1="10" y1="38" x2="180" y2="38" stroke="#e2e8f0" stroke-width="1"/>
+      <text x="95" y="58" text-anchor="middle" font-size="11" fill="#4a5568">执行隔离</text>
+      <text x="95" y="75" text-anchor="middle" font-size="10" fill="#718096">• 容器化执行</text>
+      <text x="95" y="92" text-anchor="middle" font-size="10" fill="#718096">• 资源限制</text>
+      <text x="95" y="109" text-anchor="middle" font-size="10" fill="#718096">• 网络隔离</text>
+      <text x="95" y="126" text-anchor="middle" font-size="10" fill="#718096">• 文件系统隔离</text>
+      <text x="95" y="143" text-anchor="middle" font-size="9" fill="#a0aec0" font-style="italic">例：Docker/WASM 沙箱</text>
+    </g>
+    <!-- Harness 模块 5: Observability -->
+    <g transform="translate(810,70)">
+      <rect width="190" height="150" rx="6" fill="white" stroke="#3182ce" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="95" y="28" text-anchor="middle" font-size="14" font-weight="600" fill="#1a365d">🔍 Observability</text>
+      <line x1="10" y1="38" x2="180" y2="38" stroke="#e2e8f0" stroke-width="1"/>
+      <text x="95" y="58" text-anchor="middle" font-size="11" fill="#4a5568">可观测性</text>
+      <text x="95" y="75" text-anchor="middle" font-size="10" fill="#718096">• 全链路追踪</text>
+      <text x="95" y="92" text-anchor="middle" font-size="10" fill="#718096">• 结构化日志</text>
+      <text x="95" y="109" text-anchor="middle" font-size="10" fill="#718096">• 性能指标</text>
+      <text x="95" y="126" text-anchor="middle" font-size="10" fill="#718096">• 评估 & 调试</text>
+      <text x="95" y="143" text-anchor="middle" font-size="9" fill="#a0aec0" font-style="italic">例：Trace ID 关联所有操作</text>
+    </g>
+  </g>
+
+  <!-- 向下箭头 -->
+  <line x1="600" y1="425" x2="600" y2="445" stroke="#4a5568" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- ==================== 第三层：Agent ==================== -->
+  <g transform="translate(100,450)">
+    <rect width="1000" height="260" rx="8" fill="url(#cardGreen)" stroke="#38a169" stroke-width="3" filter="url(#shadow)"/>
+    <!-- Agent 标题 -->
+    <text x="500" y="30" text-anchor="middle" font-size="20" font-weight="700" fill="#1a365d">
+      🤖 AGENT：智能执行单元
+    </text>
+    <text x="500" y="50" text-anchor="middle" font-size="13" fill="#2c5282">
+      自主规划 + 工具调用 + 记忆 + 反思 + 上下文构建
+    </text>
+    <!-- Agent 模块 1: Planning -->
+    <g transform="translate(10,70)">
+      <rect width="190" height="170" rx="6" fill="white" stroke="#38a169" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="95" y="28" text-anchor="middle" font-size="14" font-weight="600" fill="#1a365d">🎯 Planning</text>
+      <line x1="10" y1="38" x2="180" y2="38" stroke="#e2e8f0" stroke-width="1"/>
+      <text x="95" y="58" text-anchor="middle" font-size="11" fill="#4a5568">任务规划</text>
+      <text x="95" y="78" text-anchor="middle" font-size="10" fill="#718096">• 任务分解</text>
+      <text x="95" y="96" text-anchor="middle" font-size="10" fill="#718096">• 推理 & 策略</text>
+      <text x="95" y="114" text-anchor="middle" font-size="10" fill="#718096">• 目标设定</text>
+      <text x="95" y="132" text-anchor="middle" font-size="10" fill="#718096">• 优先级排序</text>
+      <text x="95" y="150" text-anchor="middle" font-size="9" fill="#a0aec0" font-style="italic">例：开发 App → 拆解为 5 步</text>
+    </g>
+    <!-- Agent 模块 2: Memory -->
+    <g transform="translate(210,70)">
+      <rect width="190" height="170" rx="6" fill="white" stroke="#38a169" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="95" y="28" text-anchor="middle" font-size="14" font-weight="600" fill="#1a365d">🧠 Memory</text>
+      <line x1="10" y1="38" x2="180" y2="38" stroke="#e2e8f0" stroke-width="1"/>
+      <text x="95" y="58" text-anchor="middle" font-size="11" fill="#4a5568">记忆系统</text>
+      <text x="95" y="78" text-anchor="middle" font-size="10" fill="#718096">• 短期上下文</text>
+      <text x="95" y="96" text-anchor="middle" font-size="10" fill="#718096">• 长期记忆检索</text>
+      <text x="95" y="114" text-anchor="middle" font-size="10" fill="#718096">• RAG 知识库</text>
+      <text x="95" y="132" text-anchor="middle" font-size="10" fill="#718096">• 经验积累</text>
+      <text x="95" y="150" text-anchor="middle" font-size="9" fill="#a0aec0" font-style="italic">例：记住项目结构/用户偏好</text>
+    </g>
+    <!-- Agent 模块 3: Context Building -->
+    <g transform="translate(410,70)">
+      <rect width="190" height="170" rx="6" fill="#fef5e7" stroke="#dd6b20" stroke-width="2" filter="url(#shadow)"/>
+      <text x="95" y="28" text-anchor="middle" font-size="14" font-weight="600" fill="#c05621">🔧 Context Building</text>
+      <line x1="10" y1="38" x2="180" y2="38" stroke="#fbd38d" stroke-width="1"/>
+      <text x="95" y="58" text-anchor="middle" font-size="11" fill="#4a5568">上下文构建</text>
+      <text x="95" y="78" text-anchor="middle" font-size="10" fill="#718096">• 上下文窗口管理</text>
+      <text x="95" y="96" text-anchor="middle" font-size="10" fill="#718096">• 信息聚合 & 筛选</text>
+      <text x="95" y="114" text-anchor="middle" font-size="10" fill="#718096">• 相关检索增强</text>
+      <text x="95" y="132" text-anchor="middle" font-size="10" fill="#718096">• Prompt 构建优化</text>
+      <text x="95" y="150" text-anchor="middle" font-size="9" fill="#a0aec0" font-style="italic">例：压缩历史+注入关键信息</text>
+    </g>
+    <!-- Agent 模块 4: Tool Use -->
+    <g transform="translate(610,70)">
+      <rect width="190" height="170" rx="6" fill="white" stroke="#38a169" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="95" y="28" text-anchor="middle" font-size="14" font-weight="600" fill="#1a365d">🛠️ Tool Use</text>
+      <line x1="10" y1="38" x2="180" y2="38" stroke="#e2e8f0" stroke-width="1"/>
+      <text x="95" y="58" text-anchor="middle" font-size="11" fill="#4a5568">工具使用</text>
+      <text x="95" y="78" text-anchor="middle" font-size="10" fill="#718096">• 函数调用</text>
+      <text x="95" y="96" text-anchor="middle" font-size="10" fill="#718096">• API 集成</text>
+      <text x="95" y="114" text-anchor="middle" font-size="10" fill="#718096">• 执行动作</text>
+      <text x="95" y="132" text-anchor="middle" font-size="10" fill="#718096">• 结果解析</text>
+      <text x="95" y="150" text-anchor="middle" font-size="9" fill="#a0aec0" font-style="italic">例：调用 write_file/run_test</text>
+    </g>
+    <!-- Agent 模块 5: Reflection -->
+    <g transform="translate(810,70)">
+      <rect width="190" height="170" rx="6" fill="white" stroke="#38a169" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="95" y="28" text-anchor="middle" font-size="14" font-weight="600" fill="#1a365d">🔄 Reflection</text>
+      <line x1="10" y1="38" x2="180" y2="38" stroke="#e2e8f0" stroke-width="1"/>
+      <text x="95" y="58" text-anchor="middle" font-size="11" fill="#4a5568">自我反思</text>
+      <text x="95" y="78" text-anchor="middle" font-size="10" fill="#718096">• 自我纠错</text>
+      <text x="95" y="96" text-anchor="middle" font-size="10" fill="#718096">• 结果评估</text>
+      <text x="95" y="114" text-anchor="middle" font-size="10" fill="#718096">• 反馈循环</text>
+      <text x="95" y="132" text-anchor="middle" font-size="10" fill="#718096">• 质量检查</text>
+      <text x="95" y="150" text-anchor="middle" font-size="9" fill="#a0aec0" font-style="italic">例：测试失败 → 分析 → 修复</text>
+    </g>
+  </g>
+
+  <!-- 向下箭头 -->
+  <line x1="600" y1="710" x2="600" y2="730" stroke="#4a5568" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- ==================== 第四层：LLM ==================== -->
+  <g transform="translate(100,740)">
+    <rect width="1000" height="80" rx="8" fill="#e2e8f0" stroke="#718096" stroke-width="2" filter="url(#shadow)"/>
+    <text x="500" y="35" text-anchor="middle" font-size="18" font-weight="600" fill="#2d3748">
+      🧠 LLM：大语言模型（基础推理引擎）
+    </text>
+    <text x="500" y="57" text-anchor="middle" font-size="13" fill="#4a5568">
+      GPT-4 / Claude 3.5 / Llama 3 / 其他基础模型 · 提供核心推理与生成能力
+    </text>
+  </g>
+
+  <!-- ==================== 底部示例区域 ==================== -->
+  <g transform="translate(100,850)">
+    <!-- 左侧示例：Agent 工作流 -->
+    <rect width="485" height="65" rx="6" fill="white" stroke="#38a169" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="242" y="22" text-anchor="middle" font-size="13" font-weight="600" fill="#1a365d">📝 Agent 示例：代码编写助手工作流</text>
+    <text x="242" y="42" text-anchor="middle" font-size="11" fill="#4a5568">
+      Planning → Memory → Context → Tool → Reflection
+    </text>
+    <!-- 右侧示例：Harness 保护 -->
+    <rect x="495" width="495" height="65" rx="6" fill="white" stroke="#3182ce" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="742" y="22" text-anchor="middle" font-size="13" font-weight="600" fill="#1a365d">🛡️ Harness 示例：安全防护层</text>
+    <text x="742" y="42" text-anchor="middle" font-size="11" fill="#4a5568">
+      Guardrails → Sandbox → State → Observability
+    </text>
+  </g>
+
+  <!-- 右侧图例：颜色说明 -->
+  <g transform="translate(1020,185)" font-size="10" fill="#4a5568">
+    <rect width="160" height="110" rx="6" fill="white" stroke="#94a3b8" stroke-width="1"/>
+    <text x="10" y="20" font-weight="600" font-size="11">🎨 图例</text>
+    <line x1="10" y1="25" x2="150" y2="25" stroke="#e2e8f0"/>
+    <g transform="translate(10,35)">
+      <rect width="12" height="12" rx="2" fill="#e2e8f0" stroke="#718096"/>
+      <text x="25" y="10">Orchestrator / LLM</text>
+    </g>
+    <g transform="translate(10,55)">
+      <rect width="12" height="12" rx="2" fill="#dbeafe" stroke="#3182ce"/>
+      <text x="25" y="10">Harness（控制平面）</text>
+    </g>
+    <g transform="translate(10,75)">
+      <rect width="12" height="12" rx="2" fill="#dcfce7" stroke="#38a169"/>
+      <text x="25" y="10">Agent（智能执行）</text>
+    </g>
+    <g transform="translate(10,95)">
+      <rect width="12" height="12" rx="2" fill="#fef5e7" stroke="#dd6b20"/>
+      <text x="25" y="10">Context Building（重点）</text>
+    </g>
+  </g>
+</svg>
+
+
+
+<h2 id="一、🤖-Agent（智能体）：自主工作者"><a href="#一、🤖-Agent（智能体）：自主工作者" class="headerlink" title="一、🤖 Agent（智能体）：自主工作者"></a>一、🤖 Agent（智能体）：自主工作者</h2><h3 id="1-1-🔑-核心定义"><a href="#1-1-🔑-核心定义" class="headerlink" title="1.1 🔑 核心定义"></a>1.1 🔑 核心定义</h3><blockquote>
+<p><strong>Agent = LLM + 规划能力 + 记忆 + 工具调用 + 自我反思</strong><br>它是一个<strong>有目标、能自主决策、会采取行动</strong>的智能实体。</p>
+</blockquote>
+<h3 id="1-2-📦-四大核心模块"><a href="#1-2-📦-四大核心模块" class="headerlink" title="1.2 📦 四大核心模块"></a>1.2 📦 四大核心模块</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>职责</th>
+<th>具体例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>🧭 Planning（规划）</strong></td>
+<td>任务拆解、策略制定、推理路径</td>
+<td>“要开发一个待办 App” → 拆解为：创建 HTML → 写 CSS → 写 JS → 测试 → 部署</td>
+</tr>
+<tr>
+<td><strong> Memory（记忆）</strong></td>
+<td>短期上下文、长期记忆、RAG 检索</td>
+<td>记住项目结构、用户偏好、历史错误经验、文档知识库</td>
+</tr>
+<tr>
+<td><strong>🛠️ Tool Use（工具调用）</strong></td>
+<td>函数调用、API 集成、执行动作</td>
+<td>调用 <code>write_file()</code>、<code>run_command()</code>、<code>search_web()</code>、<code>call_api()</code></td>
+</tr>
+<tr>
+<td><strong>🔄 Reflection（反思）</strong></td>
+<td>自我纠错、结果评估、反馈循环</td>
+<td>“测试失败了 → 查看错误日志 → 分析原因 → 修改代码 → 重新测试”</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="1-3-Agent-完整工作流示例：代码编写助手"><a href="#1-3-Agent-完整工作流示例：代码编写助手" class="headerlink" title="1.3 Agent 完整工作流示例：代码编写助手"></a>1.3 Agent 完整工作流示例：代码编写助手</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">用户输入：&quot;帮我创建一个 React 待办事项应用&quot;</span><br><span class="line"></span><br><span class="line">1️ Planning（规划）</span><br><span class="line">   → 拆解任务：创建项目结构 → 编写组件 → 添加样式 → 实现功能 → 测试</span><br><span class="line"></span><br><span class="line">2️⃣ Memory（记忆）</span><br><span class="line">   → 检索：React 最佳实践、项目模板、之前的类似任务经验</span><br><span class="line"></span><br><span class="line">3️⃣ Tool Use（工具调用）</span><br><span class="line">   → 调用 `create_project()` 创建文件夹</span><br><span class="line">   → 调用 `write_file()` 写入 App.jsx、index.css</span><br><span class="line">   → 调用 `run_command()` 执行 npm install</span><br><span class="line"></span><br><span class="line">4️⃣ Reflection（反思）</span><br><span class="line">   → 检查：编译是否成功？功能是否完整？</span><br><span class="line">   → 发现错误：缺少 useState 导入 → 自动修复 → 重新编译</span><br><span class="line">   → 最终输出：可运行的完整项目</span><br></pre></td></tr></table></figure>
+<h3 id="1-4-Context-Building（上下文构建）"><a href="#1-4-Context-Building（上下文构建）" class="headerlink" title="1.4 Context Building（上下文构建）"></a><strong>1.4 Context Building（上下文构建）</strong></h3><ul>
+<li><strong>上下文窗口管理</strong>：控制 token 使用，避免超限</li>
+<li><strong>信息聚合 &amp; 筛选</strong>：从海量信息中提取关键内容</li>
+<li><strong>相关检索增强</strong>：RAG 技术，动态注入相关知识</li>
+<li><strong>Prompt 构建优化</strong>：智能组装 system/user/assistant 消息</li>
+</ul>
+<h4 id="Context-Building-的重要性"><a href="#Context-Building-的重要性" class="headerlink" title="Context Building 的重要性"></a>Context Building 的重要性</h4><p>这个模块之所以关键，是因为：</p>
+<ol>
+<li><strong>解决 LLM 上下文窗口限制</strong>：不能把所有历史都塞进去，需要智能压缩和筛选</li>
+<li><strong>提升推理质量</strong>：注入相关知识（如项目文档、API 规范）能显著提升输出质量</li>
+<li><strong>降低 Token 成本</strong>：只传递必要信息，避免浪费</li>
+<li><strong>保持连贯性</strong>：在多轮对话中维持任务上下文的一致性</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">用户：&quot;继续优化刚才的代码&quot;</span><br><span class="line"></span><br><span class="line">Context Building 需要：</span><br><span class="line">1. 从 Memory 检索：刚才的代码版本、用户偏好</span><br><span class="line">2. 从知识库检索：相关最佳实践、性能优化技巧</span><br><span class="line">3. 压缩历史对话：保留关键决策点，丢弃冗余信息</span><br><span class="line">4. 构建 Prompt：system(角色) + context(项目信息) + user(当前请求)</span><br><span class="line">5. 注入到 LLM，生成优化建议</span><br></pre></td></tr></table></figure>
+<h2 id="二、🧰-Harness（支撑层）：运行时操作系统"><a href="#二、🧰-Harness（支撑层）：运行时操作系统" class="headerlink" title="二、🧰 Harness（支撑层）：运行时操作系统"></a>二、🧰 Harness（支撑层）：运行时操作系统</h2><h3 id="2-1-🔑-核心定义"><a href="#2-1-🔑-核心定义" class="headerlink" title="2.1 🔑 核心定义"></a>2.1 🔑 核心定义</h3><blockquote>
+<p><strong>Harness 是 Agent 的「控制平面」和「安全基础设施」</strong><br>它不产生智能，而是<strong>让 Agent 安全、可靠、可观测地执行任务</strong>。</p>
+</blockquote>
+<h3 id="2-2-五大核心模块"><a href="#2-2-五大核心模块" class="headerlink" title="2.2 五大核心模块"></a>2.2 五大核心模块</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>职责</th>
+<th>具体例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>🔌 Tool Abstraction（工具抽象）</strong></td>
+<td>统一接口、参数校验、错误处理</td>
+<td>把不同的 API（GitHub、Slack、数据库）封装成统一的 <code>call_tool(name, params)</code> 格式</td>
+</tr>
+<tr>
+<td><strong>🛡️ Guardrails（安全护栏）</strong></td>
+<td>输入/输出过滤、策略执行、安全检查</td>
+<td>阻止 <code>rm -rf /*</code>、过滤敏感信息、限制 API 调用频率、防止幻觉输出</td>
+</tr>
+<tr>
+<td><strong> State Management（状态管理）</strong></td>
+<td>持久化、检查点、恢复、版本控制</td>
+<td>保存任务进度、支持断点续传、记录操作历史、回滚到之前状态</td>
+</tr>
+<tr>
+<td><strong>📦 Sandbox（沙箱隔离）</strong></td>
+<td>执行隔离、资源限制、容器化</td>
+<td>在 Docker 容器中运行代码、限制 CPU/内存、防止访问宿主机文件系统</td>
+</tr>
+<tr>
+<td><strong>🔍 Observability（可观测性）</strong></td>
+<td>追踪、日志、指标、评估、调试</td>
+<td>记录每一步操作、生成 Trace ID、监控性能、评估 Agent 表现、调试错误</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="2-3-🌰-Harness-完整工作流示例：安全防护层"><a href="#2-3-🌰-Harness-完整工作流示例：安全防护层" class="headerlink" title="2.3 🌰 Harness 完整工作流示例：安全防护层"></a>2.3 🌰 Harness 完整工作流示例：安全防护层</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Agent 请求：&quot;执行代码生成并运行测试&quot;</span><br><span class="line"></span><br><span class="line">1️⃣ Guardrails（护栏检查）</span><br><span class="line">   → 输入验证：代码是否包含危险命令？（如 rm -rf、sudo）</span><br><span class="line">   → 策略检查：是否有权限执行此操作？是否符合安全策略？</span><br><span class="line">   → 发现危险：代码中包含 `process.exit()` → 拦截并警告</span><br><span class="line"></span><br><span class="line">2️⃣ Sandbox（沙箱执行）</span><br><span class="line">   → 隔离环境：在 Docker 容器中运行代码</span><br><span class="line">   → 资源限制：限制 CPU 使用率 50%、内存 512MB、执行时间 30 秒</span><br><span class="line">   → 网络隔离：禁止访问外部网络，只能调用白名单 API</span><br><span class="line"></span><br><span class="line">3️⃣ State Management（状态保存）</span><br><span class="line">   → 检查点：每完成一个步骤保存进度</span><br><span class="line">   → 持久化：记录文件变更、环境变量、执行结果</span><br><span class="line">   → 恢复能力：如果崩溃，可从最后一个检查点恢复</span><br><span class="line"></span><br><span class="line">4️⃣ Observability（可观测性）</span><br><span class="line">   → 追踪：生成唯一 Trace ID，关联所有操作</span><br><span class="line">   → 日志：记录输入、输出、错误、性能指标</span><br><span class="line">   → 评估：计算成功率、响应时间、资源消耗</span><br><span class="line">   → 调试：提供可视化面板，可回放整个执行过程</span><br><span class="line"></span><br><span class="line">最终输出：安全可控的执行结果 + 完整审计报告</span><br></pre></td></tr></table></figure>
+<h2 id="三、两者关系：协同工作"><a href="#三、两者关系：协同工作" class="headerlink" title="三、两者关系：协同工作"></a>三、两者关系：协同工作</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">用户任务 → Agent（智能决策） → Harness（安全执行） → 结果返回</span><br><span class="line"></span><br><span class="line">Agent 负责：&quot;做什么、怎么做&quot;</span><br><span class="line">Harness 负责：&quot;安全地做、可控地做、可追溯地做&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="3-1-🌰-协同示例：自动化部署流程"><a href="#3-1-🌰-协同示例：自动化部署流程" class="headerlink" title="3.1 🌰 协同示例：自动化部署流程"></a>3.1 🌰 协同示例：自动化部署流程</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>Agent 职责</th>
+<th>Harness 职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>准备</strong></td>
+<td>规划部署步骤、选择目标环境</td>
+<td>验证权限、检查环境配置</td>
+</tr>
+<tr>
+<td><strong>执行</strong></td>
+<td>调用部署工具、上传代码</td>
+<td>沙箱隔离、资源限制、进度保存</td>
+</tr>
+<tr>
+<td><strong>监控</strong></td>
+<td>检查部署状态、验证功能</td>
+<td>记录日志、监控指标、异常告警</td>
+</tr>
+<tr>
+<td><strong>回滚</strong></td>
+<td>决定是否需要回滚、执行回滚</td>
+<td>恢复检查点、清理资源、审计追踪</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="四、💡-关键认知总结"><a href="#四、💡-关键认知总结" class="headerlink" title="四、💡 关键认知总结"></a>四、💡 关键认知总结</h2><h3 id="Agent-的核心价值"><a href="#Agent-的核心价值" class="headerlink" title="Agent 的核心价值"></a>Agent 的核心价值</h3><ul>
+<li><strong>自主性</strong>：不需要人类一步步指导，能自己规划执行</li>
+<li><strong>适应性</strong>：能根据反馈调整策略，自我修正</li>
+<li><strong>工具使用</strong>：能调用外部工具完成实际任务</li>
+</ul>
+<h3 id="Harness-的核心价值"><a href="#Harness-的核心价值" class="headerlink" title="Harness 的核心价值"></a>Harness 的核心价值</h3><ul>
+<li><strong>安全性</strong>：防止 Agent 造成破坏（删文件、泄露数据、无限循环）</li>
+<li><strong>可靠性</strong>：确保任务能稳定完成，支持失败恢复</li>
+<li><strong>可观测性</strong>：让黑盒操作变得透明，便于调试和优化</li>
+</ul>
+<h3 id="为什么-Harness-现在更重要？"><a href="#为什么-Harness-现在更重要？" class="headerlink" title="为什么 Harness 现在更重要？"></a>为什么 Harness 现在更重要？</h3><ol>
+<li><strong>企业落地第一道坎</strong>：没有 Harness，Agent 就是”不可控的野兽”</li>
+<li><strong>合规要求</strong>：金融、医疗等行业必须审计每一步操作</li>
+<li><strong>规模化前提</strong>：只有Harness 成熟，才能放心部署多个 Agent</li>
+</ol>
+<h2 id="五、🎯-一句话区分"><a href="#五、🎯-一句话区分" class="headerlink" title="五、🎯 一句话区分"></a>五、🎯 一句话区分</h2><blockquote>
+<p><strong>Agent 是「大脑 + 手脚」</strong>（能思考能行动）<br><strong>Harness 是「安全带 + 黑匣子 + 隔离舱」</strong>（确保行动安全可控可追溯）</p>
+</blockquote>
+<p>两者结合，才能构建出<strong>真正可用、可信赖、可规模化</strong>的 AI Agent 系统。</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+    
+        <a href="/wiki/speech-tech-summary/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/speech-tech-summary/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">7.语音技术方案总结</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

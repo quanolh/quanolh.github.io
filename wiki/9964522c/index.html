@@ -1,0 +1,643 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>0.SQLBoy | Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="SQL">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="0.SQLBoy">
+<meta property="og:url" content="https://waisec.cn/wiki/9964522c/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-12-09T15:23:57.000Z">
+<meta property="article:modified_time" content="2026-04-23T14:13:12.136Z">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="SQL">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+<!-- Schema.org 结构化数据 - BlogPosting -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "0.SQLBoy",
+    "url": "https://waisec.cn/wiki/9964522c/",
+    "datePublished": "2025-12-09T15:23:57.000Z",
+    "dateModified": "2026-04-23T14:13:12.136Z",
+    "author": {
+        "@type": "Person",
+        "name": "Novus"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Novus·Wiki | 个人知识库",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://waisec.cn/logo.png"
+        }
+    },
+    "image": "https://waisec.cn/logo.png",
+    "keywords": "SQL"
+    
+}
+</script>
+
+<article id="post-数据 | 核心生产要素/[2]数据分析/001.SQLBoy" class="article article-type-post">
+    
+        <meta name="referrer" content="no-referrer">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+        <div id="toc-wrapper" class="toc-wrapper">
+            <button id="toc-toggle-btn" class="toc-toggle-btn" title="收起/展开目录">
+                <span id="toc-toggle-icon" class="fa fa-angle-left"></span>
+            </button>
+            <div id="toc" class="toc-article">
+                <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
+                <div id="toc-content" class="toc-content">
+                    
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81SQL%E5%88%86%E7%B1%BB"><span class="toc-text">一、SQL分类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-0-%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2%E7%B1%BB%EF%BC%88%E5%9F%BA%E7%A1%80%E6%9F%A5%E8%AF%A2%EF%BC%89"><span class="toc-text">1.0 数据查询类（基础查询）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E6%95%B0%E6%8D%AE%E8%81%9A%E5%90%88%E7%B1%BB%EF%BC%88%E6%8C%87%E6%A0%87%E8%AE%A1%E7%AE%97%EF%BC%89"><span class="toc-text">1.1 数据聚合类（指标计算）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97%E7%B1%BB%EF%BC%88ETL%E5%A4%84%E7%90%86%EF%BC%89"><span class="toc-text">1.2 数据清洗类（ETL处理）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E6%95%B0%E6%8D%AE%E5%85%B3%E8%81%94%E7%B1%BB%EF%BC%88%E5%A4%9A%E8%A1%A8JOIN%EF%BC%89"><span class="toc-text">1.3 数据关联类（多表JOIN）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E7%AA%97%E5%8F%A3%E5%88%86%E6%9E%90%E7%B1%BB%EF%BC%88%E9%AB%98%E7%BA%A7%E5%88%86%E6%9E%90%EF%BC%89"><span class="toc-text">1.4 窗口分析类（高级分析）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-%E6%95%B0%E6%8D%AE%E5%BB%BA%E6%A8%A1%E7%B1%BB%EF%BC%88%E6%9E%84%E5%BB%BA%E6%B1%87%E6%80%BB%E8%A1%A8%EF%BC%89"><span class="toc-text">1.5 数据建模类（构建汇总表）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6-%E8%B0%83%E5%BA%A6%E6%89%A7%E8%A1%8C%E7%B1%BB%EF%BC%88%E5%8F%82%E6%95%B0%E5%8C%96SQL%EF%BC%89"><span class="toc-text">1.6 调度执行类（参数化SQL）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81SQL%E5%88%86%E7%B1%BBv2"><span class="toc-text">二、SQL分类v2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E6%8C%89%E5%88%86%E6%9E%90%E7%B1%BB%E5%9E%8B%E5%88%92%E5%88%86"><span class="toc-text">2.1 按分析类型划分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-%E6%8F%8F%E8%BF%B0%E6%80%A7%E5%88%86%E6%9E%90%EF%BC%88What-Happened%EF%BC%9F%EF%BC%89"><span class="toc-text">2.1.1 描述性分析（What Happened？）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-%E8%AF%8A%E6%96%AD%E6%80%A7%E5%88%86%E6%9E%90%EF%BC%88Why-Did-It-Happen%EF%BC%9F%EF%BC%89"><span class="toc-text">2.1.2 诊断性分析（Why Did It Happen？）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-3-%E9%A2%84%E6%B5%8B%E6%80%A7%E5%88%86%E6%9E%90%EF%BC%88What-Will-Happen%EF%BC%9F%EF%BC%89"><span class="toc-text">2.1.3 预测性分析（What Will Happen？）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-4-%E8%A7%84%E8%8C%83%E6%80%A7%E5%88%86%E6%9E%90%EF%BC%88How-to-Act%EF%BC%9F%EF%BC%89"><span class="toc-text">2.1.4 规范性分析（How to Act？）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%8C%89%E7%9C%8B%E6%9D%BF%E7%B1%BB%E5%9E%8B%E5%88%92%E5%88%86"><span class="toc-text">2.2 按看板类型划分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-%E7%9B%91%E6%8E%A7%E5%9E%8B%E7%9C%8B%E6%9D%BF%EF%BC%88%E5%AE%9E%E6%97%B6%E7%9B%91%E6%8E%A7%E6%A0%B8%E5%BF%83%E6%8C%87%E6%A0%87%EF%BC%89"><span class="toc-text">2.2.1 监控型看板（实时监控核心指标）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-%E6%8E%A2%E7%B4%A2%E5%9E%8B%E7%9C%8B%E6%9D%BF%EF%BC%88%E5%A4%9A%E7%BB%B4%E4%B8%8B%E9%92%BB%E5%88%86%E6%9E%90%EF%BC%89"><span class="toc-text">2.2.2 探索型看板（多维下钻分析）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3-%E8%AF%8A%E6%96%AD%E5%9E%8B%E7%9C%8B%E6%9D%BF%EF%BC%88%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D%E4%B8%8E%E5%BD%92%E5%9B%A0%EF%BC%89"><span class="toc-text">2.2.3 诊断型看板（问题定位与归因）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-4-%E6%88%98%E7%95%A5%E5%9E%8B%E7%9C%8B%E6%9D%BF%EF%BC%88%E9%95%BF%E6%9C%9F%E8%B6%8B%E5%8A%BF%E4%B8%8E%E8%A7%84%E5%88%92%EF%BC%89"><span class="toc-text">2.2.4 战略型看板（长期趋势与规划）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BC%98%E5%8C%96%E7%BB%8F%E9%AA%8C"><span class="toc-text">三、优化经验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-JOIN%E4%BC%98%E5%8C%96"><span class="toc-text">2.1 JOIN优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C%E5%A4%84%E7%90%86"><span class="toc-text">2.2 数据倾斜处理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-text">三、总结</span></a></li></ol>
+                    
+                </div>
+            </div>
+        </div>
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/">数据 | 核心生产要素</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/2-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">[2]数据分析</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/SQL/" rel="tag">SQL</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2025/12/" onclick="onclickRoute(event, '/archives/2025/12/')">
+            <time datetime="2025-12-09T15:23:57.000Z" itemprop="datePublished">2025-12-09</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="SQL">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/9964522c/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 class="article-title" itemprop="name headline">
+            SQLBoy
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+        
+            <p>基于数据分析与离线看板场景，SQL的用途主要分以下几类：</p>
+<p>SQL查询逻辑（逻辑查询处理的步骤序号）<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">8</span>) <span class="keyword">SELECT</span> (<span class="number">9</span>) <span class="keyword">DISTINCT</span><span class="operator">&lt;</span>select_list<span class="operator">&gt;</span></span><br><span class="line">(<span class="number">1</span>) <span class="keyword">FROM</span> <span class="operator">&lt;</span>left_table<span class="operator">&gt;</span></span><br><span class="line">(<span class="number">3</span>) <span class="operator">&lt;</span>join_type<span class="operator">&gt;</span> <span class="keyword">JOIN</span> <span class="operator">&lt;</span>right_table<span class="operator">&gt;</span></span><br><span class="line">(<span class="number">2</span>)    <span class="keyword">ON</span> <span class="operator">&lt;</span>join_condition<span class="operator">&gt;</span></span><br><span class="line">(<span class="number">4</span>) <span class="keyword">WHERE</span> <span class="operator">&lt;</span>where_condition<span class="operator">&gt;</span></span><br><span class="line">(<span class="number">5</span>) <span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="operator">&lt;</span>group_by_list<span class="operator">&gt;</span></span><br><span class="line">(<span class="number">6</span>) <span class="keyword">WITH</span> &#123;<span class="keyword">CUBE</span><span class="operator">|</span><span class="keyword">ROLLUP</span>&#125;</span><br><span class="line">(<span class="number">7</span>) <span class="keyword">HAVING</span> <span class="operator">&lt;</span>having_condition<span class="operator">&gt;</span></span><br><span class="line">(<span class="number">10</span>) <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="operator">&lt;</span>order_by_list<span class="operator">&gt;</span></span><br><span class="line">(<span class="number">11</span>) LIMIT <span class="operator">&lt;</span>limit_number<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure></p>
+<table class="_table" border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
+  <thead>
+    <tr style="background-color: #f2f2f2; font-weight: bold;">
+      <th>类型</th>
+      <th>说明</th>
+      <th>典型SQL操作</th>
+      <th>应用场景</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>数据查询类</td>
+      <td>从表中提取数据，用于临时分析或看板展示</td>
+      <td>SELECT, WHERE, ORDER BY, LIMIT</td>
+      <td>临时查询、探索性分析</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td>数据聚合类</td>
+      <td>对数据进行汇总统计，生成指标</td>
+      <td>GROUP BY, SUM, COUNT, AVG</td>
+      <td>日报、月报、KPI看板</td>
+    </tr>
+    <tr>
+      <td>数据清洗类</td>
+      <td>清洗、转换原始数据，提升数据质量</td>
+      <td>CASE WHEN, COALESCE, TRIM, CAST</td>
+      <td>ETL流程、数据预处理</td>
+    </tr>
+    <tr style="background-color: #f9f9f9;">
+      <td>数据关联类</td>
+      <td>多表连接，构建宽表或关联分析</td>
+      <td>JOIN (INNER/LEFT/RIGHT), UNION</td>
+      <td>用户行为分析、维度打宽</td>
+    </tr>
+    <tr>
+      <td>窗口分析类</td>
+      <td>基于时间或分组进行高级分析</td>
+      <td>ROW_NUMBER(), RANK(), LEAD/LAG</td>
+      <td>用户留存、排名、趋势分析</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h1 id="一、SQL分类"><a href="#一、SQL分类" class="headerlink" title="一、SQL分类"></a>一、SQL分类</h1><h2 id="1-0-数据查询类（基础查询）"><a href="#1-0-数据查询类（基础查询）" class="headerlink" title="1.0 数据查询类（基础查询）"></a>1.0 数据查询类（基础查询）</h2><p>用途：快速获取原始数据，用于临时分析或简单过滤。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询某日活跃用户</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    user_id, </span><br><span class="line">    device_type, </span><br><span class="line">    login_time </span><br><span class="line"><span class="keyword">FROM</span> user_logs </span><br><span class="line"><span class="keyword">WHERE</span> dt <span class="operator">=</span> <span class="string">&#x27;2025-12-20&#x27;</span> </span><br><span class="line">    <span class="keyword">AND</span> login_time <span class="operator">&gt;=</span> <span class="string">&#x27;08:00:00&#x27;</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> login_time <span class="keyword">DESC</span> </span><br><span class="line">LIMIT <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+<p>优化建议：</p>
+<p>对 dt 和 login_time 建立分区/索引<br>避免无 LIMIT 的全表扫描</p>
+<h2 id="1-1-数据聚合类（指标计算）"><a href="#1-1-数据聚合类（指标计算）" class="headerlink" title="1.1 数据聚合类（指标计算）"></a>1.1 数据聚合类（指标计算）</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 计算每日DAU和GMV</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    dt,</span><br><span class="line">    <span class="built_in">COUNT</span>(<span class="keyword">DISTINCT</span> user_id) <span class="keyword">AS</span> dau,</span><br><span class="line">    <span class="built_in">SUM</span>(order_amount) <span class="keyword">AS</span> gmv,</span><br><span class="line">    <span class="built_in">AVG</span>(order_amount) <span class="keyword">AS</span> avg_order_value</span><br><span class="line"><span class="keyword">FROM</span> dwd_orders</span><br><span class="line"><span class="keyword">WHERE</span> dt <span class="keyword">BETWEEN</span> <span class="string">&#x27;2025-12-01&#x27;</span> <span class="keyword">AND</span> <span class="string">&#x27;2025-12-20&#x27;</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> dt</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> dt;</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-数据清洗类（ETL处理）"><a href="#1-2-数据清洗类（ETL处理）" class="headerlink" title="1.2 数据清洗类（ETL处理）"></a>1.2 数据清洗类（ETL处理）</h2><p>用途：清洗脏数据、标准化字段、补全缺失值。<br>(一般在ETL阶段完成清洗，避免在查询时处理)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 清洗用户表（去空、格式标准化）</span></span><br><span class="line"><span class="keyword">INSERT</span> OVERWRITE <span class="keyword">TABLE</span> clean_users</span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    user_id,</span><br><span class="line">    <span class="built_in">COALESCE</span>(age, <span class="number">0</span>) <span class="keyword">AS</span> age,  <span class="comment">-- 空值补0</span></span><br><span class="line">    <span class="built_in">UPPER</span>(<span class="built_in">TRIM</span>(region)) <span class="keyword">AS</span> region,  <span class="comment">-- 去空格并大写</span></span><br><span class="line">    <span class="keyword">CASE</span> </span><br><span class="line">        <span class="keyword">WHEN</span> device <span class="keyword">IN</span> (<span class="string">&#x27;ios&#x27;</span>, <span class="string">&#x27;android&#x27;</span>) <span class="keyword">THEN</span> device </span><br><span class="line">        <span class="keyword">ELSE</span> <span class="string">&#x27;other&#x27;</span> </span><br><span class="line">    <span class="keyword">END</span> <span class="keyword">AS</span> device_type</span><br><span class="line"><span class="keyword">FROM</span> raw_users;</span><br></pre></td></tr></table></figure>
+<h2 id="1-3-数据关联类（多表JOIN）"><a href="#1-3-数据关联类（多表JOIN）" class="headerlink" title="1.3 数据关联类（多表JOIN）"></a>1.3 数据关联类（多表JOIN）</h2><p>构建宽表，关联用户、订单、商品等维度。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 用户订单宽表（关联用户属性）</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    o.order_id,</span><br><span class="line">    o.user_id,</span><br><span class="line">    u.age_group,</span><br><span class="line">    u.membership_level,</span><br><span class="line">    o.order_amount,</span><br><span class="line">    p.category <span class="keyword">AS</span> product_category</span><br><span class="line"><span class="keyword">FROM</span> fact_orders o</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> dim_users u <span class="keyword">ON</span> o.user_id <span class="operator">=</span> u.user_id</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> dim_products p <span class="keyword">ON</span> o.product_id <span class="operator">=</span> p.product_idWHERE o.dt <span class="operator">=</span> <span class="string">&#x27;2025-12-20&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>优化建议：</p>
+<p>小表（如 dim_users）广播JOIN（Spark中加 /<em>+ BROADCAST(u) </em>/）<br>优先过滤 dt 分区</p>
+<h2 id="1-4-窗口分析类（高级分析）"><a href="#1-4-窗口分析类（高级分析）" class="headerlink" title="1.4 窗口分析类（高级分析）"></a>1.4 窗口分析类（高级分析）</h2><p>用途：计算排名、留存、同比环比等复杂逻辑。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 用户消费金额排名（按地区分区）</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    user_id,</span><br><span class="line">    region,</span><br><span class="line">    total_spent,</span><br><span class="line">    <span class="built_in">RANK</span>() <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> region <span class="keyword">ORDER</span> <span class="keyword">BY</span> total_spent <span class="keyword">DESC</span>) <span class="keyword">AS</span> rank</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> </span><br><span class="line">        user_id,</span><br><span class="line">        region,</span><br><span class="line">        <span class="built_in">SUM</span>(order_amount) <span class="keyword">AS</span> total_spent</span><br><span class="line">    <span class="keyword">FROM</span> dwd_orders</span><br><span class="line">    <span class="keyword">WHERE</span> dt <span class="operator">&gt;=</span> <span class="string">&#x27;2025-12-01&#x27;</span></span><br><span class="line">    <span class="keyword">GROUP</span> <span class="keyword">BY</span> user_id, region</span><br><span class="line">) t;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 计算7日留存</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    a.user_id,</span><br><span class="line">    a.dt <span class="keyword">AS</span> install_date,</span><br><span class="line">    b.dt <span class="keyword">AS</span> active_date,</span><br><span class="line">    DATEDIFF(b.dt, a.dt) <span class="keyword">AS</span> retention_day</span><br><span class="line"><span class="keyword">FROM</span> user_installs a</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> user_logs b <span class="keyword">ON</span> a.user_id <span class="operator">=</span> b.user_id </span><br><span class="line">    <span class="keyword">AND</span> b.dt <span class="keyword">BETWEEN</span> a.dt <span class="keyword">AND</span> DATE_ADD(a.dt, <span class="number">7</span>)</span><br><span class="line"><span class="keyword">WHERE</span> a.dt <span class="operator">=</span> <span class="string">&#x27;2025-12-15&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>优化建议：</p>
+<p>窗口函数配合 WHERE 限制数据范围<br>留存分析使用 DATEDIFF 替代笛卡尔积</p>
+<h2 id="1-5-数据建模类（构建汇总表）"><a href="#1-5-数据建模类（构建汇总表）" class="headerlink" title="1.5 数据建模类（构建汇总表）"></a>1.5 数据建模类（构建汇总表）</h2><p>用途：创建物化表，加速后续查询。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建用户行为宽表</span></span><br><span class="line"><span class="keyword">CREATE TABLE</span> dwd_user_behavior_wide <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    f.user_id,</span><br><span class="line">    d1.age_group,</span><br><span class="line">    d2.device_type,</span><br><span class="line">    f.event_type,</span><br><span class="line">    f.event_timeFROM fact_events f</span><br><span class="line"><span class="keyword">JOIN</span> dim_user d1 <span class="keyword">ON</span> f.user_id <span class="operator">=</span> d1.user_id</span><br><span class="line"><span class="keyword">JOIN</span> dim_device d2 <span class="keyword">ON</span> f.device_id <span class="operator">=</span> d2.device_id;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 生成月度汇总表</span></span><br><span class="line"><span class="keyword">INSERT</span> OVERWRITE <span class="keyword">TABLE</span> mau_summary</span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    DATE_FORMAT(dt, <span class="string">&#x27;yyyy-MM&#x27;</span>) <span class="keyword">AS</span> <span class="keyword">month</span>,</span><br><span class="line">    <span class="built_in">COUNT</span>(<span class="keyword">DISTINCT</span> user_id) <span class="keyword">AS</span> mau,</span><br><span class="line">    <span class="built_in">SUM</span>(revenue) <span class="keyword">AS</span> monthly_revenue</span><br><span class="line"><span class="keyword">FROM</span> dwd_orders</span><br><span class="line"><span class="keyword">WHERE</span> dt <span class="operator">&gt;=</span> <span class="string">&#x27;2025-01-01&#x27;</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> DATE_FORMAT(dt, <span class="string">&#x27;yyyy-MM&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>优化建议：</p>
+<p>定期调度更新汇总表<br>使用分区表按时间归档</p>
+<h2 id="1-6-调度执行类（参数化SQL）"><a href="#1-6-调度执行类（参数化SQL）" class="headerlink" title="1.6 调度执行类（参数化SQL）"></a>1.6 调度执行类（参数化SQL）</h2><p>用途：配合Airflow等工具实现自动化。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 参数化日报（$&#123;bizdate&#125; 由调度系统传入）</span></span><br><span class="line"><span class="keyword">INSERT INTO</span> daily_report</span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    <span class="string">&#x27;$&#123;bizdate&#125;&#x27;</span> <span class="keyword">AS</span> dt,</span><br><span class="line">    <span class="built_in">COUNT</span>(<span class="keyword">DISTINCT</span> user_id) <span class="keyword">AS</span> dau,</span><br><span class="line">    <span class="built_in">SUM</span>(order_amount) <span class="keyword">AS</span> gmv</span><br><span class="line"><span class="keyword">FROM</span> dwd_orders</span><br><span class="line"><span class="keyword">WHERE</span> dt <span class="operator">=</span> <span class="string">&#x27;$&#123;bizdate&#125;&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>优化建议：</p>
+<p>使用变量替换硬编码日期<br>记录任务日志，便于排查失败原因</p>
+<h1 id="二、SQL分类v2"><a href="#二、SQL分类v2" class="headerlink" title="二、SQL分类v2"></a>二、SQL分类v2</h1><h2 id="2-1-按分析类型划分"><a href="#2-1-按分析类型划分" class="headerlink" title="2.1 按分析类型划分"></a>2.1 按分析类型划分</h2><h3 id="2-1-1-描述性分析（What-Happened？）"><a href="#2-1-1-描述性分析（What-Happened？）" class="headerlink" title="2.1.1 描述性分析（What Happened？）"></a>2.1.1 描述性分析（What Happened？）</h3><p>目标：回答“发生了什么”，通过聚合统计描述现状。<br>典型看板：日报、周报、核心指标监控面板<br>SQL特点：简单聚合、时间维度分组、低复杂度</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 每日DAU和GMV（日报）</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    dt,</span><br><span class="line">    <span class="built_in">COUNT</span>(<span class="keyword">DISTINCT</span> user_id) <span class="keyword">AS</span> dau,</span><br><span class="line">    <span class="built_in">SUM</span>(order_amount) <span class="keyword">AS</span> gmv,</span><br><span class="line">    ROUND(<span class="built_in">AVG</span>(order_amount), <span class="number">2</span>) <span class="keyword">AS</span> avg_order_value</span><br><span class="line"><span class="keyword">FROM</span> dwd_orders</span><br><span class="line"><span class="keyword">WHERE</span> dt <span class="keyword">BETWEEN</span> <span class="string">&#x27;2025-12-01&#x27;</span> <span class="keyword">AND</span> <span class="string">&#x27;2025-12-20&#x27;</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> dt</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> dt;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 用户地域分布（静态快照）</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    region,</span><br><span class="line">    <span class="built_in">COUNT</span>(user_id) <span class="keyword">AS</span> user_count</span><br><span class="line"><span class="keyword">FROM</span> dim_users</span><br><span class="line"><span class="keyword">WHERE</span> dt <span class="operator">=</span> <span class="string">&#x27;2025-12-20&#x27;</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> region;</span><br></pre></td></tr></table></figure>
+<h3 id="2-1-2-诊断性分析（Why-Did-It-Happen？）"><a href="#2-1-2-诊断性分析（Why-Did-It-Happen？）" class="headerlink" title="2.1.2 诊断性分析（Why Did It Happen？）"></a>2.1.2 诊断性分析（Why Did It Happen？）</h3><p>目标：定位问题原因，通过下钻、对比、关联分析。<br>典型看板：问题归因看板、漏斗分析、多维下钻报表<br>SQL特点：多表JOIN、条件过滤、子查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 订单下降归因（按渠道+设备下钻）</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    channel,</span><br><span class="line">    device_type,</span><br><span class="line">    <span class="built_in">COUNT</span>(order_id) <span class="keyword">AS</span> order_count,</span><br><span class="line">    <span class="built_in">SUM</span>(order_amount) <span class="keyword">AS</span> gmv</span><br><span class="line"><span class="keyword">FROM</span> dwd_orders</span><br><span class="line"><span class="keyword">WHERE</span> dt <span class="operator">&gt;=</span> <span class="string">&#x27;2025-12-15&#x27;</span></span><br><span class="line">    <span class="keyword">AND</span> dt <span class="operator">&lt;=</span> <span class="string">&#x27;2025-12-20&#x27;</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> channel, device_type</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> gmv <span class="keyword">DESC</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 漏斗转化分析（多步骤JOIN）</span></span><br><span class="line"><span class="keyword">WITH</span> step1 <span class="keyword">AS</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="keyword">DISTINCT</span> user_id) <span class="keyword">AS</span> visit_users </span><br><span class="line">    <span class="keyword">FROM</span> user_events </span><br><span class="line">    <span class="keyword">WHERE</span> event_type <span class="operator">=</span> <span class="string">&#x27;page_view&#x27;</span> <span class="keyword">AND</span> dt <span class="operator">=</span> <span class="string">&#x27;2025-12-20&#x27;</span></span><br><span class="line">),</span><br><span class="line">step2 <span class="keyword">AS</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="keyword">DISTINCT</span> user_id) <span class="keyword">AS</span> cart_users </span><br><span class="line">    <span class="keyword">FROM</span> user_events </span><br><span class="line">    <span class="keyword">WHERE</span> event_type <span class="operator">=</span> <span class="string">&#x27;add_to_cart&#x27;</span> <span class="keyword">AND</span> dt <span class="operator">=</span> <span class="string">&#x27;2025-12-20&#x27;</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    visit_users,</span><br><span class="line">    cart_users,</span><br><span class="line">    ROUND(cart_users <span class="operator">*</span> <span class="number">100.0</span> <span class="operator">/</span> visit_users, <span class="number">2</span>) <span class="keyword">AS</span> conversion_rate</span><br><span class="line"><span class="keyword">FROM</span> step1, step2;</span><br></pre></td></tr></table></figure>
+<h3 id="2-1-3-预测性分析（What-Will-Happen？）"><a href="#2-1-3-预测性分析（What-Will-Happen？）" class="headerlink" title="2.1.3 预测性分析（What Will Happen？）"></a>2.1.3 预测性分析（What Will Happen？）</h3><p>目标：基于历史数据预测未来趋势（需结合机器学习）。<br>典型看板：销量预测、用户流失预警<br>SQL特点：窗口函数、时间序列计算</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 移动平均预测（7日平滑）</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    dt,</span><br><span class="line">    gmv,</span><br><span class="line">    <span class="built_in">AVG</span>(gmv) <span class="keyword">OVER</span> (<span class="keyword">ORDER</span> <span class="keyword">BY</span> dt <span class="keyword">ROWS</span> <span class="keyword">BETWEEN</span> <span class="number">6</span> PRECEDING <span class="keyword">AND</span> <span class="keyword">CURRENT</span> <span class="type">ROW</span>) <span class="keyword">AS</span> ma_7d</span><br><span class="line"><span class="keyword">FROM</span> daily_gmv_summary</span><br><span class="line"><span class="keyword">WHERE</span> dt <span class="operator">&gt;=</span> <span class="string">&#x27;2025-11-20&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 用户流失预警（历史活跃度对比）</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    user_id,</span><br><span class="line">    last_active_date,</span><br><span class="line">    DATEDIFF(<span class="string">&#x27;2025-12-20&#x27;</span>, last_active_date) <span class="keyword">AS</span> inactive_days,</span><br><span class="line">    <span class="keyword">CASE</span> </span><br><span class="line">        <span class="keyword">WHEN</span> DATEDIFF(<span class="string">&#x27;2025-12-20&#x27;</span>, last_active_date) <span class="operator">&gt;</span> <span class="number">7</span> <span class="keyword">THEN</span> <span class="string">&#x27;high_risk&#x27;</span></span><br><span class="line">        <span class="keyword">ELSE</span> <span class="string">&#x27;normal&#x27;</span></span><br><span class="line">    <span class="keyword">END</span> <span class="keyword">AS</span> churn_risk</span><br><span class="line"><span class="keyword">FROM</span> user_last_active;</span><br></pre></td></tr></table></figure>
+<p>优化建议：</p>
+<p>使用物化视图加速时间序列计算<br>避免全表窗口函数，限制数据范围</p>
+<h3 id="2-1-4-规范性分析（How-to-Act？）"><a href="#2-1-4-规范性分析（How-to-Act？）" class="headerlink" title="2.1.4 规范性分析（How to Act？）"></a>2.1.4 规范性分析（How to Act？）</h3><p>目标：提供行动建议，如A/B测试结果、策略效果评估。<br>典型看板：实验分析看板、策略ROI看板<br>SQL特点：条件分支、对比组分析</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- A/B测试转化率对比</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    test_group,</span><br><span class="line">    <span class="built_in">COUNT</span>(<span class="keyword">DISTINCT</span> user_id) <span class="keyword">AS</span> users,</span><br><span class="line">    <span class="built_in">SUM</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> converted <span class="operator">=</span> <span class="number">1</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span>) <span class="keyword">AS</span> conversions,</span><br><span class="line">    ROUND(<span class="number">100.0</span> <span class="operator">*</span> <span class="built_in">SUM</span>(converted) <span class="operator">/</span> <span class="built_in">COUNT</span>(<span class="keyword">DISTINCT</span> user_id), <span class="number">2</span>) <span class="keyword">AS</span> conversion_rate</span><br><span class="line"><span class="keyword">FROM</span> ab_test_results</span><br><span class="line"><span class="keyword">WHERE</span> dt <span class="operator">=</span> <span class="string">&#x27;2025-12-20&#x27;</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> test_group;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 优惠券ROI分析</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    coupon_type,</span><br><span class="line">    <span class="built_in">SUM</span>(revenue) <span class="keyword">AS</span> revenue,</span><br><span class="line">    <span class="built_in">SUM</span>(coupon_cost) <span class="keyword">AS</span> cost,</span><br><span class="line">    ROUND((<span class="built_in">SUM</span>(revenue) <span class="operator">-</span> <span class="built_in">SUM</span>(coupon_cost)) <span class="operator">/</span> <span class="built_in">SUM</span>(coupon_cost), <span class="number">2</span>) <span class="keyword">AS</span> roi</span><br><span class="line"><span class="keyword">FROM</span> marketing_campaigns</span><br><span class="line"><span class="keyword">WHERE</span> dt <span class="operator">&gt;=</span> <span class="string">&#x27;2025-12-01&#x27;</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> coupon_type;</span><br></pre></td></tr></table></figure>
+<h2 id="2-2-按看板类型划分"><a href="#2-2-按看板类型划分" class="headerlink" title="2.2 按看板类型划分"></a>2.2 按看板类型划分</h2><h3 id="2-2-1-监控型看板（实时监控核心指标）"><a href="#2-2-1-监控型看板（实时监控核心指标）" class="headerlink" title="2.2.1 监控型看板（实时监控核心指标）"></a>2.2.1 监控型看板（实时监控核心指标）</h3><p>特点：高频刷新、简单图表（折线图、柱状图）<br>SQL优化重点：预聚合、低延迟</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 实时GMV监控（5分钟级）</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    DATE_FORMAT(event_time, <span class="string">&#x27;yyyy-MM-dd HH24:mi&#x27;</span>) <span class="keyword">AS</span> time_window,</span><br><span class="line">    <span class="built_in">SUM</span>(order_amount) <span class="keyword">AS</span> gmv</span><br><span class="line"><span class="keyword">FROM</span> dwd_orders</span><br><span class="line"><span class="keyword">WHERE</span> dt <span class="operator">=</span> <span class="string">&#x27;2025-12-20&#x27;</span></span><br><span class="line">    <span class="keyword">AND</span> event_time <span class="operator">&gt;=</span> DATE_SUB(NOW(), <span class="type">INTERVAL</span> <span class="number">1</span> <span class="keyword">HOUR</span>)</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> time_window</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> time_window;</span><br></pre></td></tr></table></figure>
+<p>优化建议：</p>
+<p>使用增量更新（如 WHERE event_time &gt; LAST_UPDATE_TIME）<br>物化视图预计算分钟级聚合</p>
+<h3 id="2-2-2-探索型看板（多维下钻分析）"><a href="#2-2-2-探索型看板（多维下钻分析）" class="headerlink" title="2.2.2 探索型看板（多维下钻分析）"></a>2.2.2 探索型看板（多维下钻分析）</h3><p>特点：交互式分析、支持筛选/下钻/对比<br>SQL优化重点：宽表建模、索引优化</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 用户行为宽表（支持多维筛选）</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    user_id,</span><br><span class="line">    age_group,</span><br><span class="line">    device_type,</span><br><span class="line">    region,</span><br><span class="line">    <span class="built_in">COUNT</span>(event_id) <span class="keyword">AS</span> event_count,</span><br><span class="line">    <span class="built_in">SUM</span>(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> event_type <span class="operator">=</span> <span class="string">&#x27;purchase&#x27;</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span>) <span class="keyword">AS</span> purchase_count</span><br><span class="line"><span class="keyword">FROM</span> dwd_user_behavior_wide</span><br><span class="line"><span class="keyword">WHERE</span> dt <span class="operator">=</span> <span class="string">&#x27;2025-12-20&#x27;</span></span><br><span class="line">    <span class="keyword">AND</span> region <span class="keyword">IN</span> (<span class="string">&#x27;North&#x27;</span>, <span class="string">&#x27;South&#x27;</span>)  <span class="comment">-- 支持前端筛选</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> user_id, age_group, device_type, region;</span><br></pre></td></tr></table></figure>
+<p>优化建议：</p>
+<p>构建星型模型（事实表+维度表）<br>对筛选字段（如 region）建立索引</p>
+<h3 id="2-2-3-诊断型看板（问题定位与归因）"><a href="#2-2-3-诊断型看板（问题定位与归因）" class="headerlink" title="2.2.3 诊断型看板（问题定位与归因）"></a>2.2.3 诊断型看板（问题定位与归因）</h3><p>特点：多维度对比、下钻路径清晰<br>SQL优化重点：分层查询、避免重复计算<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 订单异常归因（分层下钻）</span></span><br><span class="line"><span class="keyword">WITH</span> daily_orders <span class="keyword">AS</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> </span><br><span class="line">        dt,</span><br><span class="line">        <span class="built_in">COUNT</span>(order_id) <span class="keyword">AS</span> order_count</span><br><span class="line">    <span class="keyword">FROM</span> dwd_orders</span><br><span class="line">    <span class="keyword">WHERE</span> dt <span class="keyword">BETWEEN</span> <span class="string">&#x27;2025-12-15&#x27;</span> <span class="keyword">AND</span> <span class="string">&#x27;2025-12-20&#x27;</span></span><br><span class="line">    <span class="keyword">GROUP</span> <span class="keyword">BY</span> dt</span><br><span class="line">),</span><br><span class="line">region_breakdown <span class="keyword">AS</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> </span><br><span class="line">        region,</span><br><span class="line">        <span class="built_in">COUNT</span>(order_id) <span class="keyword">AS</span> order_count</span><br><span class="line">    <span class="keyword">FROM</span> dwd_orders</span><br><span class="line">    <span class="keyword">WHERE</span> dt <span class="operator">=</span> <span class="string">&#x27;2025-12-20&#x27;</span></span><br><span class="line">    <span class="keyword">GROUP</span> <span class="keyword">BY</span> region</span><br><span class="line">)</span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    <span class="string">&#x27;Overall&#x27;</span> <span class="keyword">AS</span> level,</span><br><span class="line">    dt <span class="keyword">AS</span> dimension,</span><br><span class="line">    order_count</span><br><span class="line"><span class="keyword">FROM</span> daily_orders</span><br><span class="line"><span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    <span class="string">&#x27;By Region&#x27;</span> <span class="keyword">AS</span> level,</span><br><span class="line">    region <span class="keyword">AS</span> dimension,</span><br><span class="line">    order_count</span><br><span class="line"><span class="keyword">FROM</span> region_breakdown;</span><br></pre></td></tr></table></figure><br>优化建议：</p>
+<p>使用 UNION ALL 合并多层级结果<br>限制下钻深度（避免无限递归）</p>
+<h3 id="2-2-4-战略型看板（长期趋势与规划）"><a href="#2-2-4-战略型看板（长期趋势与规划）" class="headerlink" title="2.2.4 战略型看板（长期趋势与规划）"></a>2.2.4 战略型看板（长期趋势与规划）</h3><p>特点：宏观指标、长期趋势、对比分析<br>SQL优化重点：时间序列优化、同比环比</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 年度GMV趋势（同比）</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    <span class="keyword">year</span>,</span><br><span class="line">    <span class="built_in">SUM</span>(gmv) <span class="keyword">AS</span> annual_gmv,</span><br><span class="line">    <span class="built_in">LAG</span>(<span class="built_in">SUM</span>(gmv), <span class="number">1</span>) <span class="keyword">OVER</span> (<span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">year</span>) <span class="keyword">AS</span> prev_year_gmv,</span><br><span class="line">    ROUND(</span><br><span class="line">        (<span class="built_in">SUM</span>(gmv) <span class="operator">-</span> <span class="built_in">LAG</span>(<span class="built_in">SUM</span>(gmv), <span class="number">1</span>) <span class="keyword">OVER</span> (<span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">year</span>)) <span class="operator">*</span> <span class="number">100.0</span> <span class="operator">/</span> </span><br><span class="line">        <span class="built_in">LAG</span>(<span class="built_in">SUM</span>(gmv), <span class="number">1</span>) <span class="keyword">OVER</span> (<span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">year</span>), <span class="number">2</span></span><br><span class="line">    ) <span class="keyword">AS</span> yoy_growth</span><br><span class="line"><span class="keyword">FROM</span> monthly_gmv_summary</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="keyword">year</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">year</span>;</span><br></pre></td></tr></table></figure>
+<p>优化建议：</p>
+<p>使用 LAG/LEAD 计算同比环比<br>预计算年度汇总表</p>
+<h1 id="三、优化经验"><a href="#三、优化经验" class="headerlink" title="三、优化经验"></a>三、优化经验</h1><h2 id="2-1-JOIN优化"><a href="#2-1-JOIN优化" class="headerlink" title="2.1 JOIN优化"></a>2.1 JOIN优化</h2><p>优化前：大表JOIN小表，无过滤<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.<span class="operator">*</span>, b.name </span><br><span class="line"><span class="keyword">FROM</span> big_table a </span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> small_table b <span class="keyword">ON</span> a.id <span class="operator">=</span> b.id;  <span class="comment">-- 可能触发笛卡尔积</span></span><br></pre></td></tr></table></figure></p>
+<p>优化后：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.<span class="operator">*</span>, b.name </span><br><span class="line"><span class="keyword">FROM</span> (<span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> big_table <span class="keyword">WHERE</span> dt <span class="operator">=</span> <span class="string">&#x27;2025-12-20&#x27;</span>) a  <span class="comment">-- 先过滤</span></span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> small_table b <span class="keyword">ON</span> a.id <span class="operator">=</span> b.id;  <span class="comment">-- 小表广播JOIN</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="2-2-数据倾斜处理"><a href="#2-2-数据倾斜处理" class="headerlink" title="2.2 数据倾斜处理"></a>2.2 数据倾斜处理</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 某用户ID数据量极大，导致Task卡死</span></span><br><span class="line"><span class="keyword">SELECT</span> user_id, <span class="built_in">SUM</span>(amount) </span><br><span class="line"><span class="keyword">FROM</span> orders </span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> user_id;</span><br></pre></td></tr></table></figure>
+<p>解决方案（加盐）：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    CONCAT(user_id, <span class="string">&#x27;_&#x27;</span>, <span class="built_in">FLOOR</span>(RAND() <span class="operator">*</span> <span class="number">10</span>)) <span class="keyword">AS</span> salted_key,</span><br><span class="line">    <span class="built_in">SUM</span>(amount)</span><br><span class="line"><span class="keyword">FROM</span> orders</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> salted_key;</span><br></pre></td></tr></table></figure></p>
+<h1 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h1>
+      <div class="tip-container tip-note" style="
+        background-color: #e8f4f8;
+        color: #2d3748;
+        position: relative;
+      ">
+        <div class="tip-icon" style="
+          color: #4299e1;
+        ">
+          <i class="fa fa-info-circle"></i>
+        </div>
+        <div class="tip-wrapper">
+            <div class="tip-content">
+                <p>最佳实践：<br>优先预计算：高频指标用汇总表存储。<br>分区为王：时间分区是性能基石。<br>避免黑洞操作：如 SELECT *、无过滤JOIN。<br>监控慢查询：使用 EXPLAIN 分析执行计划。</p>
+            </div>
+        </div>
+      </div>
+    
+<table class="styled-table">
+    <thead>
+      <tr>
+        <th>分类</th>
+        <th>关键点</th>
+        <th>示例工具</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="category">查询类</td>
+        <td>分区过滤、字段精简</td>
+        <td>Hive/Spark SQL</td>
+      </tr>
+      <tr>
+        <td class="category">聚合类</td>
+        <td>预计算、避免重复扫描</td>
+        <td>ClickHouse物化视图</td>
+      </tr>
+      <tr>
+        <td class="category">清洗类</td>
+        <td>提前处理，避免运行时计算</td>
+        <td>dbt</td>
+      </tr>
+      <tr>
+        <td class="category">关联类</td>
+        <td>小表广播、分区JOIN</td>
+        <td>Spark Broadcast Join</td>
+      </tr>
+      <tr>
+        <td class="category">窗口类</td>
+        <td>限制数据范围</td>
+        <td>Presto/Trino</td>
+      </tr>
+      <tr>
+        <td class="category">建模类</td>
+        <td>定期调度更新</td>
+        <td>Airflow + SQL</td>
+      </tr>
+      <tr>
+        <td class="category">调度类</td>
+        <td>参数化、日志追踪</td>
+        <td>DolphinScheduler</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/70efc0d/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/70efc0d/')">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    1.SQL基本功
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/37b76cd9/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/37b76cd9/')">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">3.高频SQL题</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+<!-- TOC 收起/展开功能 -->
+<script data-pjax>
+(function() {
+    // 初始化 TOC 切换功能的函数
+    function initTocToggle() {
+        var tocWrapper = document.getElementById('toc-wrapper');
+        var tocToggleBtn = document.getElementById('toc-toggle-btn');
+        var tocTitle = document.getElementById('toc-title');
+        var tocContent = document.getElementById('toc-content');
+        var tocTitleIcon = document.getElementById('toc-title-icon');
+        
+        if (!tocWrapper || !tocToggleBtn) return;
+        
+        // 检查本地存储中的状态
+        var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+        
+        // 初始化状态 - 只操作 wrapper 的 class
+        if (isCollapsed) {
+            tocWrapper.classList.add('collapsed');
+            tocWrapper.classList.remove('expanded');
+        } else {
+            tocWrapper.classList.add('expanded');
+            tocWrapper.classList.remove('collapsed');
+        }
+        
+        // 点击切换按钮
+        tocToggleBtn.addEventListener('click', function() {
+            var isNowCollapsed = tocWrapper.classList.contains('expanded');
+            
+            if (isNowCollapsed) {
+                // 收起
+                tocWrapper.classList.add('collapsed');
+                tocWrapper.classList.remove('expanded');
+                localStorage.setItem('toc-collapsed', 'true');
+            } else {
+                // 展开
+                tocWrapper.classList.add('expanded');
+                tocWrapper.classList.remove('collapsed');
+                localStorage.setItem('toc-collapsed', 'false');
+            }
+        });
+        
+        // 点击 toc-title 收起/展开目录内容
+        if (tocTitle && tocContent) {
+            tocTitle.addEventListener('click', function() {
+                var isContentCollapsed = tocContent.classList.contains('collapsed');
+                
+                if (isContentCollapsed) {
+                    // 展开
+                    tocContent.classList.remove('collapsed');
+                    tocContent.classList.add('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-up');
+                        tocTitleIcon.classList.add('fa-angle-down');
+                    }
+                } else {
+                    // 收起
+                    tocContent.classList.add('collapsed');
+                    tocContent.classList.remove('expanded');
+                    if (tocTitleIcon) {
+                        tocTitleIcon.classList.remove('fa-angle-down');
+                        tocTitleIcon.classList.add('fa-angle-up');
+                    }
+                }
+            });
+            
+            // 初始化状态
+            tocContent.classList.add('expanded');
+        }
+    }
+    
+    // 立即执行初始化
+    initTocToggle();
+    
+    // 同时提供一个全局函数，供整页模式手动调用
+    window.initTocToggle = initTocToggle;
+})();
+</script>
+
+
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>
