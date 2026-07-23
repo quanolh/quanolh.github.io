@@ -68,146 +68,6 @@
 <body>
     <section id="post-main">
         
-<article id="post-平台工具 | 工程架构和工具/MicroService/微服务架构/链路追踪/001.trace介绍" class="article article-type-post">
-    
-    <!-- 支持csv数据的表格化显示 -->
-    
-    
-    <div class="article-inner post-body">
-        
-        
-            <header class="article-header page-indent">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/">MicroService</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/">微服务架构</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AA/">链路追踪</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/MicroService/" rel="tag">MicroService</a>
-    </div>
-
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        
-        <a href="/archives/2021/06/" onclick="onclickRoute(event, '/archives/2021/06/')">
-            <time datetime="2021-06-21T14:56:24.000Z" itemprop="datePublished">2021-06-21</time>
-        </a>
-    </div>
-
-
-
-                        <meta name="keywords" content="MicroService">
-                        
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_page_pv">...</span>    
-                        
-                        
-                        <div class="article-meta-button view-mode-toggle" style="float: right;">
-                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
-                            <a href="/wiki/cf88b61c/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
-                        </div>
-                        <script>
-                        (function() {
-                            // 检查是否在整站模式（有container或fullpage=1参数）
-                            var container = document.getElementById('container');
-                            var urlParams = new URLSearchParams(window.location.search);
-                            var isFullPage = urlParams.get('fullpage') === '1';
-                            
-                            if (container || isFullPage || window.location.hash) {
-                                // 整站模式，显示单页按钮
-                                document.querySelector('.to-fullpage').style.display = 'none';
-                                document.querySelector('.to-singlepage').style.display = 'inline';
-                            }
-                        })();
-                        </script>
-                    </div>
-                
-                
-    <!-- 如果title是数字开头，则去掉数字 -->
-    
-    
-        
-    
-
-    
-        <h1 itemprop="name headline">
-            <a class="article-title" href="/wiki/cf88b61c/" onclick="onclickRoute(event, '/wiki/cf88b61c/')">分布式链路追踪认识及选型</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry page-indent" itemprop="articleBody text">
-        
-        
-            
-                
-                <p><blockquote>
-<p>微服务化后所出现的一些矛盾/冲突点</p>
-</blockquote>
-</p><p>背景: 级联故障和雪崩 的 P0 级别事件后，你小手一摊便葛优躺了。开始进行自我复盘，想起这次排查经历，由于现在什么基础设施都还没有，因此在接收到客户反馈后，你是通过错误日志进行问题检查的。</p>
-<p>Google Dapper 论文所介绍的 Dapper. 源于 Google 为了解决可能由不同团队，不同语言，不同模块，部署在不同服务器，不同数据中心的所带来的软件复杂性(很难去分析，无法做定位)，构建了一个的分布式跟踪系统. 自此就开启了业界在分布式链路的启发/启蒙之路，很多现在出名的分布式链路追踪系统都是基于 Google Dapper 论文发展而来，基本原理和架构都大同小异。</p><p></p>
-            
-        
-        
-            </div> 
-            <div class="article-more-link">
-                <a href="/wiki/cf88b61c/#more" onclick="onclickRoute(event, '/wiki/cf88b61c/#more')">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-
-<!-- 添加表格样式 -->
-<style type="text/css">
-.table-container table {
-    border: 2px solid #dfe1e2;
-    /* min-width: 70%; */
-}
-._table {
-    border: 2px solid #dfe1e2;
-}
-._table th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-._table td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-.table-container th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-.table-container td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-</style>
-
-
-    
-        
 <article id="post-平台工具 | 工程架构和工具/MicroService/微服务架构/基础/002.微服务架构及其重要的10个设计模式" class="article article-type-post">
     
     <!-- 支持csv数据的表格化显示 -->
@@ -321,6 +181,436 @@
             </p></blockquote></div> 
             <div class="article-more-link">
                 <a href="/wiki/b0cf8091/#more" onclick="onclickRoute(event, '/wiki/b0cf8091/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-平台工具 | 工程架构和工具/MicroService/微服务架构/基础/001.线程池" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/">MicroService</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/">微服务架构</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%9F%BA%E7%A1%80/">基础</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/MicroService/" rel="tag">MicroService</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2021/06/" onclick="onclickRoute(event, '/archives/2021/06/')">
+            <time datetime="2021-06-21T14:56:24.000Z" itemprop="datePublished">2021-06-21</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="MicroService">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/de7c53fe/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/de7c53fe/" onclick="onclickRoute(event, '/wiki/de7c53fe/')">线程池</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+            
+        
+        
+            <h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://tech.meituan.com/2016/11/18/disruptor.html">高性能队列——Disruptor</a></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.conversantmedia<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>disruptor<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.14<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/com.lmax/disruptor --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.lmax<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>disruptor<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-平台工具 | 工程架构和工具/MicroService/微服务架构/工作流引擎/001.readme" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/">MicroService</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/">微服务架构</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E/">工作流引擎</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/MicroService/" rel="tag">MicroService</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2021/06/" onclick="onclickRoute(event, '/archives/2021/06/')">
+            <time datetime="2021-06-21T14:56:24.000Z" itemprop="datePublished">2021-06-21</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="MicroService">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/b2ddd39d/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/b2ddd39d/" onclick="onclickRoute(event, '/wiki/b2ddd39d/')">工作流引擎</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+            
+        
+        
+            <p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.zhihu.com/question/20857512">什么情况下，需要使用工作流引擎？</a></p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://zhuanlan.zhihu.com/p/147622328">几大工作流引擎对比</a></p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://xie.infoq.cn/article/201c0ac6772e07f81c31cbe07">流程引擎介绍</a></p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-平台工具 | 工程架构和工具/MicroService/微服务架构/链路追踪/001.trace介绍" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/">MicroService</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/">微服务架构</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AA/">链路追踪</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/MicroService/" rel="tag">MicroService</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2021/06/" onclick="onclickRoute(event, '/archives/2021/06/')">
+            <time datetime="2021-06-21T14:56:24.000Z" itemprop="datePublished">2021-06-21</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="MicroService">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/cf88b61c/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/cf88b61c/" onclick="onclickRoute(event, '/wiki/cf88b61c/')">分布式链路追踪认识及选型</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                <p><blockquote>
+<p>微服务化后所出现的一些矛盾/冲突点</p>
+</blockquote>
+</p><p>背景: 级联故障和雪崩 的 P0 级别事件后，你小手一摊便葛优躺了。开始进行自我复盘，想起这次排查经历，由于现在什么基础设施都还没有，因此在接收到客户反馈后，你是通过错误日志进行问题检查的。</p>
+<p>Google Dapper 论文所介绍的 Dapper. 源于 Google 为了解决可能由不同团队，不同语言，不同模块，部署在不同服务器，不同数据中心的所带来的软件复杂性(很难去分析，无法做定位)，构建了一个的分布式跟踪系统. 自此就开启了业界在分布式链路的启发/启蒙之路，很多现在出名的分布式链路追踪系统都是基于 Google Dapper 论文发展而来，基本原理和架构都大同小异。</p><p></p>
+            
+        
+        
+            </div> 
+            <div class="article-more-link">
+                <a href="/wiki/cf88b61c/#more" onclick="onclickRoute(event, '/wiki/cf88b61c/#more')">Read More</a>
             </div>
         
         <footer class="article-footer">
@@ -1253,304 +1543,8 @@
 
 
     
-        
-<article id="post-数据 | 核心生产要素/[1]数据工程/02.存储与架构/[3]数据存储/数据存储概述" class="article article-type-post">
-    
-    <!-- 支持csv数据的表格化显示 -->
-    
-    
-    <div class="article-inner post-body">
-        
-        
-            <header class="article-header page-indent">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/">数据 | 核心生产要素</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/">[1]数据工程</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/02-%E5%AD%98%E5%82%A8%E4%B8%8E%E6%9E%B6%E6%9E%84/">02.存储与架构</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/02-%E5%AD%98%E5%82%A8%E4%B8%8E%E6%9E%B6%E6%9E%84/3-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/">[3]数据存储</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/data/" rel="tag">data</a>
-    </div>
-
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        
-        <a href="/archives/2021/01/" onclick="onclickRoute(event, '/archives/2021/01/')">
-            <time datetime="2021-01-08T03:55:57.000Z" itemprop="datePublished">2021-01-08</time>
-        </a>
-    </div>
-
-
-
-                        <meta name="keywords" content="data">
-                        
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_page_pv">...</span>    
-                        
-                        
-                        <div class="article-meta-button view-mode-toggle" style="float: right;">
-                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
-                            <a href="/wiki/7dd62b0c/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
-                        </div>
-                        <script>
-                        (function() {
-                            // 检查是否在整站模式（有container或fullpage=1参数）
-                            var container = document.getElementById('container');
-                            var urlParams = new URLSearchParams(window.location.search);
-                            var isFullPage = urlParams.get('fullpage') === '1';
-                            
-                            if (container || isFullPage || window.location.hash) {
-                                // 整站模式，显示单页按钮
-                                document.querySelector('.to-fullpage').style.display = 'none';
-                                document.querySelector('.to-singlepage').style.display = 'inline';
-                            }
-                        })();
-                        </script>
-                    </div>
-                
-                
-    <!-- 如果title是数字开头，则去掉数字 -->
-    
-    
-        
-    
-
-    
-        <h1 itemprop="name headline">
-            <a class="article-title" href="/wiki/7dd62b0c/" onclick="onclickRoute(event, '/wiki/7dd62b0c/')">数据存储概述</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry page-indent" itemprop="articleBody text">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <p></p><h1 id="💽-一、数据存储知识体系整体结构"><a href="#💽-一、数据存储知识体系整体结构" class="headerlink" title="💽 一、数据存储知识体系整体结构"></a>💽 一、数据存储知识体系整体结构</h1><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">数据存储知识体系</span><br><span class="line">├── 存储分类维度</span><br><span class="line">│   ├── 按数据类型：结构化 <span class="operator">/</span> 半结构化 <span class="operator">/</span> 非结构化</span><br><span class="line">│   ├── 按访问模型：块存储 <span class="operator">/</span> 文件存储 <span class="operator">/</span> 对象存储</span><br><span class="line">│   ├── 按部署方式：本地存储 <span class="operator">/</span> 分布式存储 <span class="operator">/</span> 云存储</span><br><span class="line">│   ├── 按使用场景：缓存 <span class="operator">/</span> <span class="variable">OLTP</span> <span class="operator">/</span> <span class="variable">OLAP</span> <span class="operator">/</span> 日志 <span class="operator">/</span> 元数据等</span><br><span class="line">│</span><br><span class="line">├── 存储系统类型</span><br><span class="line">│   ├── 关系型数据库（<span class="variable">RDBMS</span>）</span><br><span class="line">│   ├── <span class="variable">NoSQL</span>（<span class="variable">KV</span>、文档、列、图）</span><br><span class="line">│   ├── 时序数据库</span><br><span class="line">│   ├── 搜索引擎（如 <span class="variable">ElasticSearch</span>）</span><br><span class="line">│   ├── 分布式文件系统（如 <span class="variable">HDFS</span>）</span><br><span class="line">│   ├── 对象存储（如 <span class="variable">S3</span><span class="operator">,</span> <span class="variable">MinIO</span>）</span><br><span class="line">│   ├── 缓存系统（如 <span class="variable">Redis</span>、<span class="variable">Memcached</span>）</span><br><span class="line">│</span><br><span class="line">├── 存储底层原理</span><br><span class="line">│   ├── 数据结构：<span class="variable">B</span><span class="operator">+</span>树 <span class="operator">/</span> <span class="variable">LSM</span><span class="operator">-</span><span class="built_in">Tree</span> <span class="operator">/</span> 哈希表</span><br><span class="line">│   ├── 存储引擎：<span class="variable">InnoDB</span> <span class="operator">/</span> <span class="variable">RocksDB</span> <span class="operator">/</span> <span class="variable">LevelDB</span></span><br><span class="line">│   ├── 日志与 <span class="variable">WAL</span>（预写式日志）</span><br><span class="line">│   ├── 索引机制：主索引 <span class="operator">/</span> 二级索引 <span class="operator">/</span> 倒排索引</span><br><span class="line">│   ├── 压缩与编码：列存压缩 <span class="operator">/</span> 字典编码 <span class="operator">/</span> 布隆过滤器</span><br><span class="line">│</span><br><span class="line">├── 分布式存储原理</span><br><span class="line">│   ├── 分区与分片（<span class="variable">Sharding</span>）</span><br><span class="line">│   ├── 数据副本与容错</span><br><span class="line">│   ├── 一致性协议：<span class="variable">Paxos</span> <span class="operator">/</span> <span class="variable">Raft</span></span><br><span class="line">│   ├── <span class="variable">CAP</span> 理论 <span class="operator">/</span> <span class="variable">BASE</span> 理论</span><br><span class="line">│   ├── 一致性模型：强一致 <span class="operator">/</span> 最终一致 <span class="operator">/</span> 线性一致性</span><br><span class="line">│</span><br><span class="line">├── 存储架构设计</span><br><span class="line">│   ├── 热数据与冷数据分层</span><br><span class="line">│   ├── 存储<span class="operator">+</span>缓存层设计（缓存预热、淘汰、穿透）</span><br><span class="line">│   ├── 多活 <span class="operator">/</span> 灾备 <span class="operator">/</span> 容灾 <span class="operator">/</span> 容错机制</span><br><span class="line">│   ├── 数据备份与恢复（备份策略、增量快照）</span><br><span class="line">│   ├── 存储与计算分离架构（如 <span class="variable">Lakehouse</span>）</span><br><span class="line">│</span><br><span class="line">├── 数据库选型与应用</span><br><span class="line">│   ├── <span class="variable">OLTP</span> <span class="variable">vs</span> <span class="variable">OLAP</span> 对比</span><br><span class="line">│   ├── 不同场景数据库选型（交易 <span class="operator">/</span> 实时 <span class="operator">/</span> 搜索 <span class="operator">/</span> 监控）</span><br><span class="line">│   ├── 数据分层与冷热数据管理</span><br><span class="line">│   ├── 多种存储融合应用（<span class="variable">HTAP</span>、<span class="variable">Lambda</span> 架构）</span><br><span class="line">│</span><br><span class="line">├── 性能调优与监控</span><br><span class="line">│   ├── 索引优化 <span class="operator">/</span> 查询优化</span><br><span class="line">│   ├── 并发控制（锁 <span class="operator">/</span> <span class="variable">MVCC</span>）</span><br><span class="line">│   ├── <span class="built_in">I</span><span class="operator">/</span><span class="built_in">O</span> 优化（顺序写 <span class="operator">/</span> 页缓存）</span><br><span class="line">│   ├── 存储指标监控（<span class="variable">QPS</span>、延迟、写放大、磁盘使用率）</span><br><span class="line">│</span><br><span class="line">└── 数据安全与合规</span><br><span class="line">    ├── 数据加密 <span class="operator">/</span> 访问控制</span><br><span class="line">    ├── 数据脱敏 <span class="operator">/</span> 审计日志</span><br><span class="line">    ├── 合规要求（<span class="variable">GDPR</span> <span class="operator">/</span> 数据本地化）</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="🧩-二、常见存储类型对比表"><a href="#🧩-二、常见存储类型对比表" class="headerlink" title="🧩 二、常见存储类型对比表"></a>🧩 二、常见存储类型对比表</h1><div class="table-container">
-<table>
-<thead>
-<tr>
-<p>
-                
-            
-        
-        
-            </p></tr></thead></table></div> 
-            <div class="article-more-link">
-                <a href="/wiki/7dd62b0c/#more" onclick="onclickRoute(event, '/wiki/7dd62b0c/#more')">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</div></article>
-
-
-
-
-
-
-
-<!-- 添加表格样式 -->
-<style type="text/css">
-.table-container table {
-    border: 2px solid #dfe1e2;
-    /* min-width: 70%; */
-}
-._table {
-    border: 2px solid #dfe1e2;
-}
-._table th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-._table td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-.table-container th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-.table-container td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-</style>
-
-
-    
-        
-<article id="post-数据 | 核心生产要素/[1]数据工程/05.平台与服务/[3]调度系统/001.调度和依赖" class="article article-type-post">
-    
-    <!-- 支持csv数据的表格化显示 -->
-    
-    
-    <div class="article-inner post-body">
-        
-        
-            <header class="article-header page-indent">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/">数据 | 核心生产要素</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/">[1]数据工程</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/05-%E5%B9%B3%E5%8F%B0%E4%B8%8E%E6%9C%8D%E5%8A%A1/">05.平台与服务</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/05-%E5%B9%B3%E5%8F%B0%E4%B8%8E%E6%9C%8D%E5%8A%A1/3-%E8%B0%83%E5%BA%A6%E7%B3%BB%E7%BB%9F/">[3]调度系统</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/private/" rel="tag">private</a>
-    </div>
-
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        
-        <a href="/archives/2021/01/" onclick="onclickRoute(event, '/archives/2021/01/')">
-            <time datetime="2021-01-08T03:55:57.000Z" itemprop="datePublished">2021-01-08</time>
-        </a>
-    </div>
-
-
-
-                        <meta name="keywords" content="private">
-                        
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_page_pv">...</span>    
-                        
-                        
-                        <div class="article-meta-button view-mode-toggle" style="float: right;">
-                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
-                            <a href="/wiki/e054a877/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
-                        </div>
-                        <script>
-                        (function() {
-                            // 检查是否在整站模式（有container或fullpage=1参数）
-                            var container = document.getElementById('container');
-                            var urlParams = new URLSearchParams(window.location.search);
-                            var isFullPage = urlParams.get('fullpage') === '1';
-                            
-                            if (container || isFullPage || window.location.hash) {
-                                // 整站模式，显示单页按钮
-                                document.querySelector('.to-fullpage').style.display = 'none';
-                                document.querySelector('.to-singlepage').style.display = 'inline';
-                            }
-                        })();
-                        </script>
-                    </div>
-                
-                
-    <!-- 如果title是数字开头，则去掉数字 -->
-    
-    
-        
-    
-
-    
-        <h1 itemprop="name headline">
-            <a class="article-title" href="/wiki/e054a877/" onclick="onclickRoute(event, '/wiki/e054a877/')">调度和依赖</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry page-indent" itemprop="articleBody text">
-        
-        
-            
-                
-                <p>这是一篇加密文章，需要密码才能继续阅读。</p>
-            
-        
-        
-            </div> 
-            <div class="article-more-link">
-                <a href="/wiki/e054a877/#more" onclick="onclickRoute(event, '/wiki/e054a877/#more')">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-
-<!-- 添加表格样式 -->
-<style type="text/css">
-.table-container table {
-    border: 2px solid #dfe1e2;
-    /* min-width: 70%; */
-}
-._table {
-    border: 2px solid #dfe1e2;
-}
-._table th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-._table td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-.table-container th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-.table-container td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-</style>
-
-
-    
         <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/list/page/36/">« Prev</a><a class="page-number" href="/list/">1</a><span class="space">&hellip;</span><a class="page-number" href="/list/page/35/">35</a><a class="page-number" href="/list/page/36/">36</a><span class="page-number current">37</span><a class="page-number" href="/list/page/38/">38</a><a class="page-number" href="/list/page/39/">39</a><span class="space">&hellip;</span><a class="page-number" href="/list/page/59/">59</a><a class="extend next" rel="next" href="/list/page/38/">Next »</a>
+        <a class="extend prev" rel="prev" href="/list/page/36/">« Prev</a><a class="page-number" href="/list/">1</a><span class="space">&hellip;</span><a class="page-number" href="/list/page/35/">35</a><a class="page-number" href="/list/page/36/">36</a><span class="page-number current">37</span><a class="page-number" href="/list/page/38/">38</a><a class="page-number" href="/list/page/39/">39</a><span class="space">&hellip;</span><a class="page-number" href="/list/page/60/">60</a><a class="extend next" rel="next" href="/list/page/38/">Next »</a>
         </nav>
     
 </section>

@@ -1,0 +1,362 @@
+
+
+
+    <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>Novus·Wiki | 个人知识库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <meta name="keywords" content="AI工程师,大模型应用,数据架构,Agent,AI知识库,风控架构,Novus,Wiki,Quinoa,quanoc">
+
+    <meta name="description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Novus·Wiki | 个人知识库">
+<meta property="og:url" content="https://waisec.cn/list/page/60/index.html">
+<meta property="og:site_name" content="Novus·Wiki | 个人知识库">
+<meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Novus">
+<meta property="article:tag" content="AI工程师,大模型应用,数据架构,Agent,AI知识库,风控架构,Novus,Wiki,Quinoa,quanoc">
+<meta name="twitter:card" content="summary">
+    <style>
+    body { margin: 0; padding: 20px; }
+    #post-main { max-width: 1000px; margin: 0 auto; }
+    </style>
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+    
+    
+        <!-- 新版不蒜子统计 - busuanzi.cc -->
+        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <section id="post-main">
+        
+<article id="post-平台工具 | 工程架构和工具/中间件_组件/IDE/Git使用规范" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6-%E7%BB%84%E4%BB%B6/">中间件_组件</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6-%E7%BB%84%E4%BB%B6/IDE/">IDE</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Git/" rel="tag">Git</a>, <a class="tag-link-link" href="/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/" rel="tag">版本管理</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2015/11/" onclick="onclickRoute(event, '/archives/2015/11/')">
+            <time datetime="2015-11-16T17:13:34.000Z" itemprop="datePublished">2015-11-17</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="Git,版本管理">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/e11a7ebc/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/e11a7ebc/" onclick="onclickRoute(event, '/wiki/e11a7ebc/')">Git使用规范</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p></p><p>Git使用流程的规范.</p>
+<p>目的: 避免杂乱无章的commit,从而让项目难以协调和维护。避免合并代码导致的丢失。</p>
+<h2 id="一-新建分支"><a href="#一-新建分支" class="headerlink" title="一.新建分支"></a>一.新建分支</h2><p>每次开发新功能。都需要从最新的master新建分支。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取主干最新代码</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git checkout master</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git pull</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">新建一个开发分支myfeature</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git checkout -b myfeature</span></span><br></pre></td></tr></table></figure>
+<h2 id="二-提交分支commit"><a href="#二-提交分支commit" class="headerlink" title="二.提交分支commit"></a>二.提交分支commit</h2><p>分支功能开发修改后，就可以提交commit了。</p>
+<p>
+                
+            
+        
+        
+            </p></div> 
+            <div class="article-more-link">
+                <a href="/wiki/e11a7ebc/#more" onclick="onclickRoute(event, '/wiki/e11a7ebc/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        <nav id="page-nav">
+        <a class="extend prev" rel="prev" href="/list/page/59/">« Prev</a><a class="page-number" href="/list/">1</a><span class="space">&hellip;</span><a class="page-number" href="/list/page/58/">58</a><a class="page-number" href="/list/page/59/">59</a><span class="page-number current">60</span>
+        </nav>
+    
+</section>
+    
+<script src="/js/main.js"></script>
+
+    <script>
+    function hexToRgb(hex) {
+      if (!hex) return null;
+      hex = hex.replace('#', '');
+      let r = parseInt(hex.slice(0, 2), 16);
+      let g = parseInt(hex.slice(2, 4), 16);
+      let b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    function adjustColor(color, adjustment) {
+        if (!color) return null;
+      let { r, g, b } = hexToRgb(color);
+      r = Math.min(255, Math.max(0, r + adjustment));
+      g = Math.min(255, Math.max(0, g + adjustment));
+      b = Math.min(255, Math.max(0, b + adjustment));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    const BackColors = ['#FFFFFF', '#F0FFF0', '#FFFFF0'];
+    let ColorIndex = 0;
+    function changeBackgroundColor(newColor) {
+        $('.outer, .widget-wrap h3, body, .article-inner, .article-inner .article-meta').css('background-color', newColor);
+        $('.article-entry blockquote').css('background-color', adjustColor(newColor, -10)).css('border-left','4px solid #c8c8c8');
+    }
+    $(document).ready(function() {
+        changeBackgroundColor(BackColors[ColorIndex]);
+    });
+    </script>
+</body>
+</html>
+
+
+
+<script>
+    // anchorInterceptor
+    anchorInterceptor = function(path) {
+        // 添加 fullpage=1 参数表示整页打开
+        const separator = path.includes('?') ? '&' : '?';
+        const fullPath = path + separator + 'fullpage=1';
+        // change hash to trigger route change
+        window.location.hash = fullPath;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('container');
+        
+        // 检查URL中是否有 fullpage=1 参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var isFullPage = urlParams.get('fullpage') === '1';
+        
+        // 如果有 container（完整布局）或者 fullpage=1，执行跳转
+        if (container || isFullPage) {
+            var path = window.location.pathname;
+            var origin = window.location.origin;
+            console.log('path:',path, '\norigin:',origin);
+            console.log('document:', document);
+            // 如果已经在 hash 路由中，不需要跳转
+            if (window.location.hash) {
+                return;
+            }
+            // 如果path是根路径，跳转到首页hash
+            if (path === '/' || path === '' || path === '/index.html') {
+                window.location.href = origin + '#/';
+            } else {
+                window.location.href = origin + '#' + path;
+            }
+        }
+        // 否则不跳转，需要加载js、css来渲染单页面
+    });
+
+    // 切换到单页模式
+    switchToSinglePage = function() {
+        // 获取当前文章路径（从hash中提取或从pathname）
+        var path = window.location.hash ? window.location.hash.slice(1) : window.location.pathname;
+        // 移除fullpage参数
+        path = path.replace(/[?&]fullpage=1/, '');
+        // 在新标签页打开完整URL
+        window.open(window.location.origin + path, '_blank');
+    }
+
+    $(document).ready(function() {
+        if ($('#toggle-sidebar-btn').hasClass('fa-angle-right')) {
+            $('.page-indent').toggleClass('collapsed');
+            $('.article-meta').toggleClass('collapsed');
+            $('.article-more-link').toggleClass('collapsed');
+        }
+        const colorIndex = localStorage.getItem("ColorIndex");
+        // init color
+        changeBackgroundColor(BackColors[colorIndex]);
+    });
+
+    anchorComponentOnclick = function(event) {
+        // 文章的头链接 | 点击监听
+        $('.article-category-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        // 目录的跳转 | 点击监听
+        $('.toc-link').on('click', function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams(window.location.search);
+            //const sectionId = $(this).attr('href').replace('?section=', '');
+            // 更新 URL，但不刷新页面
+            const idx = decodeURIComponent($(this).attr('href')).slice(1);
+            if (idx != 'ndefined') {
+                params.set('section', idx);
+                const curPath = window.location.pathname + window.location.hash.split('?section=')[0];
+                const newUrl = curPath + '?' + params.toString();
+                window.history.pushState({}, '', newUrl);
+                // 滚动到对应位置
+                scrollToSection(idx);
+            }
+        });
+        $('.tag-link-link').on('click', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+        $('#page-nav').on('click', 'a', function(event) {
+            event.preventDefault();
+            const path = $(this).attr('href');
+            anchorInterceptor(path);
+        });
+    }
+</script>

@@ -68,136 +68,6 @@
 <body>
     <section id="post-main">
         
-<article id="post-数据 | 核心生产要素/[1]数据工程/03.处理与计算/[0]数据处理/DataStore/Mongo/使用python添加数据到Mongo" class="article article-type-post">
-    
-    <!-- 支持csv数据的表格化显示 -->
-    
-    
-    <div class="article-inner post-body">
-        
-        
-            <header class="article-header page-indent">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/">数据 | 核心生产要素</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/">[1]数据工程</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/">03.处理与计算</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">[0]数据处理</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/">DataStore</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Mongo/">Mongo</a>
-    </div>
-
-                        
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        
-        <a href="/archives/2018/01/" onclick="onclickRoute(event, '/archives/2018/01/')">
-            <time datetime="2018-01-21T17:55:57.000Z" itemprop="datePublished">2018-01-22</time>
-        </a>
-    </div>
-
-
-
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_page_pv">...</span>    
-                        
-                        
-                        <div class="article-meta-button view-mode-toggle" style="float: right;">
-                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
-                            <a href="/wiki/e07d76e8/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
-                        </div>
-                        <script>
-                        (function() {
-                            // 检查是否在整站模式（有container或fullpage=1参数）
-                            var container = document.getElementById('container');
-                            var urlParams = new URLSearchParams(window.location.search);
-                            var isFullPage = urlParams.get('fullpage') === '1';
-                            
-                            if (container || isFullPage || window.location.hash) {
-                                // 整站模式，显示单页按钮
-                                document.querySelector('.to-fullpage').style.display = 'none';
-                                document.querySelector('.to-singlepage').style.display = 'inline';
-                            }
-                        })();
-                        </script>
-                    </div>
-                
-                
-    <!-- 如果title是数字开头，则去掉数字 -->
-    
-    
-        
-    
-
-    
-        <h1 itemprop="name headline">
-            <a class="article-title" href="/wiki/e07d76e8/" onclick="onclickRoute(event, '/wiki/e07d76e8/')">使用python添加数据到mongo</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry page-indent" itemprop="articleBody text">
-        
-        
-            
-                
-                
-                    
-                    
-                
-            
-        
-        
-            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymongo</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">client = pymongo.MongoClient(<span class="string">&quot;localhost&quot;</span>, <span class="number">27017</span>)</span><br><span class="line">db = client.test</span><br><span class="line"></span><br><span class="line"><span class="comment"># print (db.name)</span></span><br><span class="line"><span class="comment"># print (db.my_collection)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># db.my_collection.insert_one(&#123;&quot;x&quot;: 10&#125;).inserted_id</span></span><br><span class="line"><span class="comment"># create collection . 可以不用创建,插入数据会自动创建</span></span><br><span class="line"><span class="comment">## db.createCollection(&quot;UserBehavior&quot;, &#123; capped : true, autoIndexId : true, size : 6142800, max : 100000 &#125; )</span></span><br><span class="line"></span><br><span class="line">fo = <span class="built_in">open</span>(<span class="string">&quot;/home/zhangquanquan/workspace/stream-project/my-flink-project/src/main/resources/UserBehavior.csv&quot;</span>, <span class="string">&quot;r&quot;</span>)</span><br><span class="line"><span class="built_in">print</span> (<span class="string">&quot;文件名为: &quot;</span>, fo.name)</span><br><span class="line">fileList = fo.readlines()</span><br><span class="line">fo.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> fileList:</span><br><span class="line">    line = line.strip()</span><br><span class="line">    lineItem = line.split(<span class="string">&quot;,&quot;</span>)</span><br><span class="line">    ub = &#123;&#125;</span><br><span class="line">    ub[<span class="string">&#x27;userId&#x27;</span>] = lineItem[<span class="number">0</span>]</span><br><span class="line">    ub[<span class="string">&#x27;itemId&#x27;</span>] = lineItem[<span class="number">1</span>]</span><br><span class="line">    ub[<span class="string">&#x27;categoryId&#x27;</span>] = lineItem[<span class="number">2</span>]</span><br><span class="line">    ub[<span class="string">&#x27;behavior&#x27;</span>] = lineItem[<span class="number">3</span>]</span><br><span class="line">    ub[<span class="string">&#x27;timestamp&#x27;</span>] = lineItem[<span class="number">4</span>]</span><br><span class="line">    json_ub = json.dumps(ub)</span><br><span class="line">    db.user_behavior.insert(ub) <span class="comment"># 批量插入,可以使用 db.collection.insertMany([&#123;&quot;b&quot;: 3&#125;, &#123;&#x27;c&#x27;: 4&#125;])</span></span><br><span class="line">    <span class="comment"># print (json_ub)</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> (<span class="string">&quot;finished.&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># for item in db.my_collection.find().sort(&quot;x&quot;, pymongo.ASCENDING):</span></span><br><span class="line"><span class="comment">#     print(item[&quot;x&quot;])</span></span><br></pre></td></tr></table></figure>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-
-<!-- 添加表格样式 -->
-<style type="text/css">
-.table-container table {
-    border: 2px solid #dfe1e2;
-    /* min-width: 70%; */
-}
-._table {
-    border: 2px solid #dfe1e2;
-}
-._table th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-._table td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-.table-container th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-.table-container td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-</style>
-
-
-    
-        
 <article id="post-数据 | 核心生产要素/[1]数据工程/03.处理与计算/[0]数据处理/DataStore/Elasticsearch/7.Es核心Lucene" class="article article-type-post">
     
     <!-- 支持csv数据的表格化显示 -->
@@ -285,6 +155,442 @@
         
             <p>Elasticsearch 基于 Lucene，隐藏其复杂性，并提供简单易用的 Restful API接口、Java API 接口。所以理解 ES 的关键在于理解 Lucene 的基本原理。</p>
 
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-数据 | 核心生产要素/[1]数据工程/03.处理与计算/[0]数据处理/DataStore/Mongo/Mongo环境配置" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/">数据 | 核心生产要素</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/">[1]数据工程</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/">03.处理与计算</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">[0]数据处理</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/">DataStore</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Mongo/">Mongo</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2018/01/" onclick="onclickRoute(event, '/archives/2018/01/')">
+            <time datetime="2018-01-21T17:55:57.000Z" itemprop="datePublished">2018-01-22</time>
+        </a>
+    </div>
+
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/3ad4c3c1/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/3ad4c3c1/" onclick="onclickRoute(event, '/wiki/3ad4c3c1/')">Mongo环境搭建配置-客户端</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p></p><h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.mongodb.com/download-center/community?jmp=nav">https://www.mongodb.com/download-center/community?jmp=nav</a></p>
+<h2 id="客户端连接"><a href="#客户端连接" class="headerlink" title="客户端连接"></a>客户端连接</h2><p>新mongo环境 mongo mongodb://127.0.0.1:27017<br>然后创建账号并授权.<br>mongo mongodb://nlp:nlp@192.168.1.42:27017</p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.mongodb.org.cn/tutorial/7.html">参考:https://www.mongodb.org.cn/tutorial/7.html</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">show dbs</span><br><span class="line"></span><br><span class="line">use `dbName`</span><br></pre></td></tr></table></figure>
+<h2 id="Docker整合Prometheus、Grafana监控MongoDB"><a href="#Docker整合Prometheus、Grafana监控MongoDB" class="headerlink" title="Docker整合Prometheus、Grafana监控MongoDB"></a>Docker整合Prometheus、Grafana监控MongoDB</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.csdn.net/WALK_MAN_wubiao/article/details/89291991">Docker整合Prometheus、Grafana监控MongoDB</a></p>
+<p>
+                
+            
+        
+        
+            </p></div> 
+            <div class="article-more-link">
+                <a href="/wiki/3ad4c3c1/#more" onclick="onclickRoute(event, '/wiki/3ad4c3c1/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-数据 | 核心生产要素/[1]数据工程/03.处理与计算/[0]数据处理/DataStore/Mongo/Mongo基础-Docker环境及相关命令" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/">数据 | 核心生产要素</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/">[1]数据工程</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/">03.处理与计算</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">[0]数据处理</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/">DataStore</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Mongo/">Mongo</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2018/01/" onclick="onclickRoute(event, '/archives/2018/01/')">
+            <time datetime="2018-01-21T17:55:57.000Z" itemprop="datePublished">2018-01-22</time>
+        </a>
+    </div>
+
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/33cd5a30/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/33cd5a30/" onclick="onclickRoute(event, '/wiki/33cd5a30/')">Mongo基础-相关命令行-Docker</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p></p><h2 id="Docker安装mongo"><a href="#Docker安装mongo" class="headerlink" title="Docker安装mongo"></a>Docker安装mongo</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull mongo</span><br><span class="line">docker run --name mongo-server -p 27017:27017 -v /data/mongo/db:/data/db -d mongo</span><br></pre></td></tr></table></figure>
+<p>使用mongo镜像执行mongo命令了连接容器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it mongo mongo --host 172.17.0.2</span><br></pre></td></tr></table></figure>
+<h2 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">命令行登陆数据库（类似 mysql -uroot -p -h）</span><br><span class="line">mongo --port 27017</span><br><span class="line">use admin</span><br><span class="line">db.auth(&quot;adminUser&quot;, &quot;adminPass&quot;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt; 查看数据库</span><br><span class="line">show databases; // 或者 show dbs;</span><br><span class="line">&gt; 创建数据库</span><br><span class="line">use new_db;     //只有插入数据,db才会真正创建.</span><br><span class="line">&gt; 创建集合后要再插入一个文档(记录)</span><br><span class="line">db.test.insert(&#123;&quot;name&quot;:&quot;菜鸟&quot;&#125;)</span><br><span class="line">&gt; 删除数据库</span><br><span class="line">db; // 查看当前数据库</span><br><span class="line">db.dropDatabase();//删除当前数据库</span><br><span class="line">&gt; 集合的删除</span><br><span class="line">db.collection.drop(); // 在当前数据库下的集合</span><br></pre></td></tr></table></figure>
+<p>
+                
+            
+        
+        
+            </p></div> 
+            <div class="article-more-link">
+                <a href="/wiki/33cd5a30/#more" onclick="onclickRoute(event, '/wiki/33cd5a30/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-数据 | 核心生产要素/[1]数据工程/03.处理与计算/[0]数据处理/DataStore/Mongo/使用python添加数据到Mongo" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/">数据 | 核心生产要素</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/">[1]数据工程</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/">03.处理与计算</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">[0]数据处理</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/">DataStore</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Mongo/">Mongo</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2018/01/" onclick="onclickRoute(event, '/archives/2018/01/')">
+            <time datetime="2018-01-21T17:55:57.000Z" itemprop="datePublished">2018-01-22</time>
+        </a>
+    </div>
+
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/e07d76e8/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/e07d76e8/" onclick="onclickRoute(event, '/wiki/e07d76e8/')">使用python添加数据到mongo</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+            
+        
+        
+            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymongo</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">client = pymongo.MongoClient(<span class="string">&quot;localhost&quot;</span>, <span class="number">27017</span>)</span><br><span class="line">db = client.test</span><br><span class="line"></span><br><span class="line"><span class="comment"># print (db.name)</span></span><br><span class="line"><span class="comment"># print (db.my_collection)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># db.my_collection.insert_one(&#123;&quot;x&quot;: 10&#125;).inserted_id</span></span><br><span class="line"><span class="comment"># create collection . 可以不用创建,插入数据会自动创建</span></span><br><span class="line"><span class="comment">## db.createCollection(&quot;UserBehavior&quot;, &#123; capped : true, autoIndexId : true, size : 6142800, max : 100000 &#125; )</span></span><br><span class="line"></span><br><span class="line">fo = <span class="built_in">open</span>(<span class="string">&quot;/home/zhangquanquan/workspace/stream-project/my-flink-project/src/main/resources/UserBehavior.csv&quot;</span>, <span class="string">&quot;r&quot;</span>)</span><br><span class="line"><span class="built_in">print</span> (<span class="string">&quot;文件名为: &quot;</span>, fo.name)</span><br><span class="line">fileList = fo.readlines()</span><br><span class="line">fo.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> fileList:</span><br><span class="line">    line = line.strip()</span><br><span class="line">    lineItem = line.split(<span class="string">&quot;,&quot;</span>)</span><br><span class="line">    ub = &#123;&#125;</span><br><span class="line">    ub[<span class="string">&#x27;userId&#x27;</span>] = lineItem[<span class="number">0</span>]</span><br><span class="line">    ub[<span class="string">&#x27;itemId&#x27;</span>] = lineItem[<span class="number">1</span>]</span><br><span class="line">    ub[<span class="string">&#x27;categoryId&#x27;</span>] = lineItem[<span class="number">2</span>]</span><br><span class="line">    ub[<span class="string">&#x27;behavior&#x27;</span>] = lineItem[<span class="number">3</span>]</span><br><span class="line">    ub[<span class="string">&#x27;timestamp&#x27;</span>] = lineItem[<span class="number">4</span>]</span><br><span class="line">    json_ub = json.dumps(ub)</span><br><span class="line">    db.user_behavior.insert(ub) <span class="comment"># 批量插入,可以使用 db.collection.insertMany([&#123;&quot;b&quot;: 3&#125;, &#123;&#x27;c&#x27;: 4&#125;])</span></span><br><span class="line">    <span class="comment"># print (json_ub)</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> (<span class="string">&quot;finished.&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># for item in db.my_collection.find().sort(&quot;x&quot;, pymongo.ASCENDING):</span></span><br><span class="line"><span class="comment">#     print(item[&quot;x&quot;])</span></span><br></pre></td></tr></table></figure>
             </div>
         
         <footer class="article-footer">
@@ -466,166 +772,6 @@
 
     
         
-<article id="post-平台工具 | 工程架构和工具/中间件_组件/ActiveMQ/ActiveMQ介绍" class="article article-type-post">
-    
-    <!-- 支持csv数据的表格化显示 -->
-    
-    
-    <div class="article-inner post-body">
-        
-        
-            <header class="article-header page-indent">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6-%E7%BB%84%E4%BB%B6/">中间件_组件</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6-%E7%BB%84%E4%BB%B6/ActiveMQ/">ActiveMQ</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/activemq/" rel="tag">activemq</a>, <a class="tag-link-link" href="/tags/mq/" rel="tag">mq</a>
-    </div>
-
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        
-        <a href="/archives/2017/11/" onclick="onclickRoute(event, '/archives/2017/11/')">
-            <time datetime="2017-11-16T17:13:34.000Z" itemprop="datePublished">2017-11-17</time>
-        </a>
-    </div>
-
-
-
-                        <meta name="keywords" content="activemq,mq">
-                        
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_page_pv">...</span>    
-                        
-                        
-                        <div class="article-meta-button view-mode-toggle" style="float: right;">
-                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
-                            <a href="/wiki/8077d08d/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
-                        </div>
-                        <script>
-                        (function() {
-                            // 检查是否在整站模式（有container或fullpage=1参数）
-                            var container = document.getElementById('container');
-                            var urlParams = new URLSearchParams(window.location.search);
-                            var isFullPage = urlParams.get('fullpage') === '1';
-                            
-                            if (container || isFullPage || window.location.hash) {
-                                // 整站模式，显示单页按钮
-                                document.querySelector('.to-fullpage').style.display = 'none';
-                                document.querySelector('.to-singlepage').style.display = 'inline';
-                            }
-                        })();
-                        </script>
-                    </div>
-                
-                
-    <!-- 如果title是数字开头，则去掉数字 -->
-    
-    
-        
-    
-
-    
-        <h1 itemprop="name headline">
-            <a class="article-title" href="/wiki/8077d08d/" onclick="onclickRoute(event, '/wiki/8077d08d/')">ActiveMQ介绍</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry page-indent" itemprop="articleBody text">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <p><ul>
-<li>使用方式（嵌入模式、集群模式）</li>
-<li>概念：具体某一个队列、整个队列的创建、使用。一个broker</li>
-<li>连接方式（连接池？）</li>
-<li>支持协议</li>
-<p>
-                
-            
-        
-        
-            </p></ul></p></div> 
-            <div class="article-more-link">
-                <a href="/wiki/8077d08d/#more" onclick="onclickRoute(event, '/wiki/8077d08d/#more')">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-
-<!-- 添加表格样式 -->
-<style type="text/css">
-.table-container table {
-    border: 2px solid #dfe1e2;
-    /* min-width: 70%; */
-}
-._table {
-    border: 2px solid #dfe1e2;
-}
-._table th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-._table td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-.table-container th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-.table-container td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-</style>
-
-
-    
-        
 <article id="post-平台工具 | 工程架构和工具/中间件_组件/ActiveMQ/ActiveMQ分享" class="article article-type-post">
     
     <!-- 支持csv数据的表格化显示 -->
@@ -739,6 +885,166 @@
             </p></ol></div> 
             <div class="article-more-link">
                 <a href="/wiki/96901346/#more" onclick="onclickRoute(event, '/wiki/96901346/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-平台工具 | 工程架构和工具/中间件_组件/ActiveMQ/ActiveMQ介绍" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6-%E7%BB%84%E4%BB%B6/">中间件_组件</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6-%E7%BB%84%E4%BB%B6/ActiveMQ/">ActiveMQ</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/activemq/" rel="tag">activemq</a>, <a class="tag-link-link" href="/tags/mq/" rel="tag">mq</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2017/11/" onclick="onclickRoute(event, '/archives/2017/11/')">
+            <time datetime="2017-11-16T17:13:34.000Z" itemprop="datePublished">2017-11-17</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="activemq,mq">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/8077d08d/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/8077d08d/" onclick="onclickRoute(event, '/wiki/8077d08d/')">ActiveMQ介绍</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><ul>
+<li>使用方式（嵌入模式、集群模式）</li>
+<li>概念：具体某一个队列、整个队列的创建、使用。一个broker</li>
+<li>连接方式（连接池？）</li>
+<li>支持协议</li>
+<p>
+                
+            
+        
+        
+            </p></ul></p></div> 
+            <div class="article-more-link">
+                <a href="/wiki/8077d08d/#more" onclick="onclickRoute(event, '/wiki/8077d08d/#more')">Read More</a>
             </div>
         
         <footer class="article-footer">
@@ -1101,166 +1407,6 @@
 
     
         
-<article id="post-平台工具 | 工程架构和工具/中间件_组件/IDE/Git使用规范" class="article article-type-post">
-    
-    <!-- 支持csv数据的表格化显示 -->
-    
-    
-    <div class="article-inner post-body">
-        
-        
-            <header class="article-header page-indent">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6-%E7%BB%84%E4%BB%B6/">中间件_组件</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6-%E7%BB%84%E4%BB%B6/IDE/">IDE</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Git/" rel="tag">Git</a>, <a class="tag-link-link" href="/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/" rel="tag">版本管理</a>
-    </div>
-
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        
-        <a href="/archives/2015/11/" onclick="onclickRoute(event, '/archives/2015/11/')">
-            <time datetime="2015-11-16T17:13:34.000Z" itemprop="datePublished">2015-11-17</time>
-        </a>
-    </div>
-
-
-
-                        <meta name="keywords" content="Git,版本管理">
-                        
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_page_pv">...</span>    
-                        
-                        
-                        <div class="article-meta-button view-mode-toggle" style="float: right;">
-                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
-                            <a href="/wiki/e11a7ebc/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
-                        </div>
-                        <script>
-                        (function() {
-                            // 检查是否在整站模式（有container或fullpage=1参数）
-                            var container = document.getElementById('container');
-                            var urlParams = new URLSearchParams(window.location.search);
-                            var isFullPage = urlParams.get('fullpage') === '1';
-                            
-                            if (container || isFullPage || window.location.hash) {
-                                // 整站模式，显示单页按钮
-                                document.querySelector('.to-fullpage').style.display = 'none';
-                                document.querySelector('.to-singlepage').style.display = 'inline';
-                            }
-                        })();
-                        </script>
-                    </div>
-                
-                
-    <!-- 如果title是数字开头，则去掉数字 -->
-    
-    
-        
-    
-
-    
-        <h1 itemprop="name headline">
-            <a class="article-title" href="/wiki/e11a7ebc/" onclick="onclickRoute(event, '/wiki/e11a7ebc/')">Git使用规范</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry page-indent" itemprop="articleBody text">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <p></p><p>Git使用流程的规范.</p>
-<p>目的: 避免杂乱无章的commit,从而让项目难以协调和维护。避免合并代码导致的丢失。</p>
-<h2 id="一-新建分支"><a href="#一-新建分支" class="headerlink" title="一.新建分支"></a>一.新建分支</h2><p>每次开发新功能。都需要从最新的master新建分支。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取主干最新代码</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git checkout master</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git pull</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">新建一个开发分支myfeature</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git checkout -b myfeature</span></span><br></pre></td></tr></table></figure>
-<h2 id="二-提交分支commit"><a href="#二-提交分支commit" class="headerlink" title="二.提交分支commit"></a>二.提交分支commit</h2><p>分支功能开发修改后，就可以提交commit了。</p>
-<p>
-                
-            
-        
-        
-            </p></div> 
-            <div class="article-more-link">
-                <a href="/wiki/e11a7ebc/#more" onclick="onclickRoute(event, '/wiki/e11a7ebc/#more')">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-
-<!-- 添加表格样式 -->
-<style type="text/css">
-.table-container table {
-    border: 2px solid #dfe1e2;
-    /* min-width: 70%; */
-}
-._table {
-    border: 2px solid #dfe1e2;
-}
-._table th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-._table td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-.table-container th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-.table-container td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-</style>
-
-
-    
-        
 <article id="post-平台工具 | 工程架构和工具/中间件_组件/IDE/Git学习" class="article article-type-post">
     
     <!-- 支持csv数据的表格化显示 -->
@@ -1421,7 +1567,7 @@
 
     
         <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/list/page/58/">« Prev</a><a class="page-number" href="/list/">1</a><span class="space">&hellip;</span><a class="page-number" href="/list/page/57/">57</a><a class="page-number" href="/list/page/58/">58</a><span class="page-number current">59</span>
+        <a class="extend prev" rel="prev" href="/list/page/58/">« Prev</a><a class="page-number" href="/list/">1</a><span class="space">&hellip;</span><a class="page-number" href="/list/page/57/">57</a><a class="page-number" href="/list/page/58/">58</a><span class="page-number current">59</span><a class="page-number" href="/list/page/60/">60</a><a class="extend next" rel="next" href="/list/page/60/">Next »</a>
         </nav>
     
 </section>

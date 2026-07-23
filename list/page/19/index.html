@@ -68,6 +68,303 @@
 <body>
     <section id="post-main">
         
+<article id="post-信息安全-安全可信数字环境-3-网络安全-003-HTTPS-代理链路与安全防御指南003-HTTPS-代理链路与安全防御指南" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8-%E5%AE%89%E5%85%A8%E5%8F%AF%E4%BF%A1%E6%95%B0%E5%AD%97%E7%8E%AF%E5%A2%83/">信息安全 | 安全可信数字环境</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8-%E5%AE%89%E5%85%A8%E5%8F%AF%E4%BF%A1%E6%95%B0%E5%AD%97%E7%8E%AF%E5%A2%83/3-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">[3]网络安全</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/security/" rel="tag">security</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2025/03/" onclick="onclickRoute(event, '/archives/2025/03/')">
+            <time datetime="2025-03-10T03:48:57.000Z" itemprop="datePublished">2025-03-10</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="security">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/fe00a00/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/fe00a00/" onclick="onclickRoute(event, '/wiki/fe00a00/')">HTTPS 代理链路与安全防御指南</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p></p><h1 id="HTTPS-代理链路与安全防御指南"><a href="#HTTPS-代理链路与安全防御指南" class="headerlink" title="HTTPS 代理链路与安全防御指南"></a>HTTPS 代理链路与安全防御指南</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<li><a href="#一核心概念两种代理模式">核心概念：两种代理模式</a></li>
+<li><a href="#二模式一隧道代理connect">模式一：隧道代理（CONNECT）</a></li>
+<li><a href="#三模式二中间人代理mitm">模式二：中间人代理（MITM）</a></li>
+<li><a href="#四配套客户端的防御体系">配套客户端的防御体系</a></li>
+<p>
+                
+            
+        
+        
+            </p></ol></div> 
+            <div class="article-more-link">
+                <a href="/wiki/fe00a00/#more" onclick="onclickRoute(event, '/wiki/fe00a00/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-算法 | AI与机器学习/1|大模型应用/00.基础入门/大模型学习/RAG/001.RAG介绍" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/">1|大模型应用</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/00-%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/">00.基础入门</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/00-%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0/">大模型学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/00-%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0/RAG/">RAG</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Agent/" rel="tag">Agent</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2025/03/" onclick="onclickRoute(event, '/archives/2025/03/')">
+            <time datetime="2025-03-03T03:55:57.000Z" itemprop="datePublished">2025-03-03</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="Agent">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/e4f9a7ea/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/e4f9a7ea/" onclick="onclickRoute(event, '/wiki/e4f9a7ea/')">Agent - RAG介绍</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+            
+        
+        
+            
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
 <article id="post-算法 | AI与机器学习/1|大模型应用/00.基础入门/大模型学习/Skills/001.skills介绍" class="article article-type-post">
     
     <!-- 支持csv数据的表格化显示 -->
@@ -364,142 +661,6 @@ Langchain的研究报告。 通过Langchain发布的技能，
 
     
         
-<article id="post-算法 | AI与机器学习/1|大模型应用/02.Agent应用/05.其它应用探索/006.商品识别技术方案" class="article article-type-post">
-    
-    <!-- 支持csv数据的表格化显示 -->
-    
-    
-    <div class="article-inner post-body">
-        
-        
-            <header class="article-header page-indent">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/">1|大模型应用</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/02-Agent%E5%BA%94%E7%94%A8/">02.Agent应用</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/02-Agent%E5%BA%94%E7%94%A8/05-%E5%85%B6%E5%AE%83%E5%BA%94%E7%94%A8%E6%8E%A2%E7%B4%A2/">05.其它应用探索</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/business/" rel="tag">business</a>, <a class="tag-link-link" href="/tags/private/" rel="tag">private</a>
-    </div>
-
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        
-        <a href="/archives/2025/02/" onclick="onclickRoute(event, '/archives/2025/02/')">
-            <time datetime="2025-02-20T07:55:57.000Z" itemprop="datePublished">2025-02-20</time>
-        </a>
-    </div>
-
-
-
-                        <meta name="keywords" content="private,business">
-                        
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_page_pv">...</span>    
-                        
-                        
-                        <div class="article-meta-button view-mode-toggle" style="float: right;">
-                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
-                            <a href="/wiki/d11878b/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
-                        </div>
-                        <script>
-                        (function() {
-                            // 检查是否在整站模式（有container或fullpage=1参数）
-                            var container = document.getElementById('container');
-                            var urlParams = new URLSearchParams(window.location.search);
-                            var isFullPage = urlParams.get('fullpage') === '1';
-                            
-                            if (container || isFullPage || window.location.hash) {
-                                // 整站模式，显示单页按钮
-                                document.querySelector('.to-fullpage').style.display = 'none';
-                                document.querySelector('.to-singlepage').style.display = 'inline';
-                            }
-                        })();
-                        </script>
-                    </div>
-                
-                
-    <!-- 如果title是数字开头，则去掉数字 -->
-    
-    
-        
-    
-
-    
-        <h1 itemprop="name headline">
-            <a class="article-title" href="/wiki/d11878b/" onclick="onclickRoute(event, '/wiki/d11878b/')">商品识别技术方案</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry page-indent" itemprop="articleBody text">
-        
-        
-            
-                
-                <p>这是一篇加密文章，需要密码才能继续阅读。</p>
-            
-        
-        
-            </div> 
-            <div class="article-more-link">
-                <a href="/wiki/d11878b/#more" onclick="onclickRoute(event, '/wiki/d11878b/#more')">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-
-<!-- 添加表格样式 -->
-<style type="text/css">
-.table-container table {
-    border: 2px solid #dfe1e2;
-    /* min-width: 70%; */
-}
-._table {
-    border: 2px solid #dfe1e2;
-}
-._table th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-._table td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-.table-container th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-.table-container td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-</style>
-
-
-    
-        
 <article id="post-算法 | AI与机器学习/1|大模型应用/02.Agent应用/05.其它应用探索/005.县域商业建设" class="article article-type-post">
     
     <!-- 支持csv数据的表格化显示 -->
@@ -589,6 +750,142 @@ Langchain的研究报告。 通过Langchain发布的技能，
             </div> 
             <div class="article-more-link">
                 <a href="/wiki/f4f6ae19/#more" onclick="onclickRoute(event, '/wiki/f4f6ae19/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-算法 | AI与机器学习/1|大模型应用/02.Agent应用/05.其它应用探索/006.商品识别技术方案" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/">1|大模型应用</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/02-Agent%E5%BA%94%E7%94%A8/">02.Agent应用</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/02-Agent%E5%BA%94%E7%94%A8/05-%E5%85%B6%E5%AE%83%E5%BA%94%E7%94%A8%E6%8E%A2%E7%B4%A2/">05.其它应用探索</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/business/" rel="tag">business</a>, <a class="tag-link-link" href="/tags/private/" rel="tag">private</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2025/02/" onclick="onclickRoute(event, '/archives/2025/02/')">
+            <time datetime="2025-02-20T07:55:57.000Z" itemprop="datePublished">2025-02-20</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="private,business">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/d11878b/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/d11878b/" onclick="onclickRoute(event, '/wiki/d11878b/')">商品识别技术方案</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                <p>这是一篇加密文章，需要密码才能继续阅读。</p>
+            
+        
+        
+            </div> 
+            <div class="article-more-link">
+                <a href="/wiki/d11878b/#more" onclick="onclickRoute(event, '/wiki/d11878b/#more')">Read More</a>
             </div>
         
         <footer class="article-footer">
@@ -1227,284 +1524,8 @@ Langchain的研究报告。 通过Langchain发布的技能，
 
 
     
-        
-<article id="post-算法 | AI与机器学习/2|机器学习/004.应用场景/004.VAE在Pump_data中的应用" class="article article-type-post">
-    
-    <!-- 支持csv数据的表格化显示 -->
-    
-    
-    <div class="article-inner post-body">
-        
-        
-            <header class="article-header page-indent">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">2|机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/004-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/">004.应用场景</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/anomaly/" rel="tag">anomaly</a>, <a class="tag-link-link" href="/tags/security/" rel="tag">security</a>
-    </div>
-
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        
-        <a href="/archives/2024/10/" onclick="onclickRoute(event, '/archives/2024/10/')">
-            <time datetime="2024-10-13T16:48:57.000Z" itemprop="datePublished">2024-10-14</time>
-        </a>
-    </div>
-
-
-
-                        <meta name="keywords" content="security,anomaly">
-                        
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_page_pv">...</span>    
-                        
-                        
-                        <div class="article-meta-button view-mode-toggle" style="float: right;">
-                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
-                            <a href="/wiki/7fe025ef/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
-                        </div>
-                        <script>
-                        (function() {
-                            // 检查是否在整站模式（有container或fullpage=1参数）
-                            var container = document.getElementById('container');
-                            var urlParams = new URLSearchParams(window.location.search);
-                            var isFullPage = urlParams.get('fullpage') === '1';
-                            
-                            if (container || isFullPage || window.location.hash) {
-                                // 整站模式，显示单页按钮
-                                document.querySelector('.to-fullpage').style.display = 'none';
-                                document.querySelector('.to-singlepage').style.display = 'inline';
-                            }
-                        })();
-                        </script>
-                    </div>
-                
-                
-    <!-- 如果title是数字开头，则去掉数字 -->
-    
-    
-        
-    
-
-    
-        <h1 itemprop="name headline">
-            <a class="article-title" href="/wiki/7fe025ef/" onclick="onclickRoute(event, '/wiki/7fe025ef/')">VAE在pump_data中的应用</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry page-indent" itemprop="articleBody text">
-        
-        
-            
-                
-                <p></p><p>VAE-变分自编码器（Variational Autoencoder），是一种生成模型，广泛应用于深度学习和概率建模领域。<br>VAE 是在传统自编码器（Autoencoder）的基础上发展而来的，通过引入概率和统计的方法，使模型具备生成新数据的能力。</p>
-<p>因此，它可以有以下应用场景：图像生成：VAE 可以生成逼真的新图像（如手写数字、脸部图像等）；数据压缩：将高维数据压缩到低维潜在空间；特征提取：学习有意义的潜在表示，用于分类、聚类等任务；时间序列预测：结合 RNN，用于生成序列数据；文本生成：在 NLP 领域用于生成自然语言文本。</p>
-<p>另外，基于VAE将潜在空间建模为一个概率分布（通常是高斯分布），而不是映射到一个固定的潜在点。「有分布约束的潜在空间便于区分正常数据和异常数据，因为异常数据通常会偏离已知的潜在分布。」VAE可更适用于异常检测任务，例如在pump_data中的异常检测、网络流量中的异常检测等。</p><p></p>
-            
-        
-        
-            </div> 
-            <div class="article-more-link">
-                <a href="/wiki/7fe025ef/#more" onclick="onclickRoute(event, '/wiki/7fe025ef/#more')">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-
-<!-- 添加表格样式 -->
-<style type="text/css">
-.table-container table {
-    border: 2px solid #dfe1e2;
-    /* min-width: 70%; */
-}
-._table {
-    border: 2px solid #dfe1e2;
-}
-._table th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-._table td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-.table-container th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-.table-container td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-</style>
-
-
-    
-        
-<article id="post-算法 | AI与机器学习/2|机器学习/004.应用场景/002.异常检测方法综述" class="article article-type-post">
-    
-    <!-- 支持csv数据的表格化显示 -->
-    
-    
-    <div class="article-inner post-body">
-        
-        
-            <header class="article-header page-indent">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">2|机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/004-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/">004.应用场景</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/anomaly/" rel="tag">anomaly</a>, <a class="tag-link-link" href="/tags/security/" rel="tag">security</a>
-    </div>
-
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        
-        <a href="/archives/2024/10/" onclick="onclickRoute(event, '/archives/2024/10/')">
-            <time datetime="2024-10-12T16:48:57.000Z" itemprop="datePublished">2024-10-13</time>
-        </a>
-    </div>
-
-
-
-                        <meta name="keywords" content="security,anomaly">
-                        
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_page_pv">...</span>    
-                        
-                        
-                        <div class="article-meta-button view-mode-toggle" style="float: right;">
-                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
-                            <a href="/wiki/6fca2da1/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
-                        </div>
-                        <script>
-                        (function() {
-                            // 检查是否在整站模式（有container或fullpage=1参数）
-                            var container = document.getElementById('container');
-                            var urlParams = new URLSearchParams(window.location.search);
-                            var isFullPage = urlParams.get('fullpage') === '1';
-                            
-                            if (container || isFullPage || window.location.hash) {
-                                // 整站模式，显示单页按钮
-                                document.querySelector('.to-fullpage').style.display = 'none';
-                                document.querySelector('.to-singlepage').style.display = 'inline';
-                            }
-                        })();
-                        </script>
-                    </div>
-                
-                
-    <!-- 如果title是数字开头，则去掉数字 -->
-    
-    
-        
-    
-
-    
-        <h1 itemprop="name headline">
-            <a class="article-title" href="/wiki/6fca2da1/" onclick="onclickRoute(event, '/wiki/6fca2da1/')">异常检测方法综述</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry page-indent" itemprop="articleBody text">
-        
-        
-            
-                
-                <p></p><p>异常检测作为数据挖掘和机器学习领域中一个重要的方向，用于识别数据集中不符合预期模式的数据点(异常点)或模式。</p>
-<p>它有广泛的应用场景，其中包括金融场景欺诈识别、网络安全场景网络异常流量识别、电商场景基于交易数据的羊毛党/恶意刷评等识别，监控预警类的包括生态灾难的预警(基于风速、降雨、气温等指标预测未来极端异常)、互联网平台的系统异常智能化识别预警。<br>除此之外，还有很多行业都在使用异常检测技术来帮助企业降低风险，并为业务提供指导建议。</p>
-<p>那异常检测都有哪些方法和难点呢，不同场景和条件下如何选择合适的方法？<br>本文将较为全面、系统地介绍异常检测方法，重点对基于机器学习的方法展开阐述。<br>同时，会分析异常检测中的难点，对各方法进行比较，并探讨适用场景的选择。</p><p></p>
-            
-        
-        
-            </div> 
-            <div class="article-more-link">
-                <a href="/wiki/6fca2da1/#more" onclick="onclickRoute(event, '/wiki/6fca2da1/#more')">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-
-<!-- 添加表格样式 -->
-<style type="text/css">
-.table-container table {
-    border: 2px solid #dfe1e2;
-    /* min-width: 70%; */
-}
-._table {
-    border: 2px solid #dfe1e2;
-}
-._table th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-._table td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-.table-container th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-.table-container td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-</style>
-
-
-    
         <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/list/page/18/">« Prev</a><a class="page-number" href="/list/">1</a><span class="space">&hellip;</span><a class="page-number" href="/list/page/17/">17</a><a class="page-number" href="/list/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/list/page/20/">20</a><a class="page-number" href="/list/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/list/page/59/">59</a><a class="extend next" rel="next" href="/list/page/20/">Next »</a>
+        <a class="extend prev" rel="prev" href="/list/page/18/">« Prev</a><a class="page-number" href="/list/">1</a><span class="space">&hellip;</span><a class="page-number" href="/list/page/17/">17</a><a class="page-number" href="/list/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/list/page/20/">20</a><a class="page-number" href="/list/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/list/page/60/">60</a><a class="extend next" rel="next" href="/list/page/20/">Next »</a>
         </nav>
     
 </section>

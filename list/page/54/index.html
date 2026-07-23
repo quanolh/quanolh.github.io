@@ -68,6 +68,312 @@
 <body>
     <section id="post-main">
         
+<article id="post-数据 | 核心生产要素/[1]数据工程/03.处理与计算/[0]数据处理/DataStore/Redis/Redis常用操作" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/">数据 | 核心生产要素</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/">[1]数据工程</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/">03.处理与计算</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">[0]数据处理</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/">DataStore</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Redis/">Redis</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2018/12/" onclick="onclickRoute(event, '/archives/2018/12/')">
+            <time datetime="2018-12-14T17:55:57.000Z" itemprop="datePublished">2018-12-15</time>
+        </a>
+    </div>
+
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/9f1cda4d/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/9f1cda4d/" onclick="onclickRoute(event, '/wiki/9f1cda4d/')">Redis常用操作</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p></p><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.w3cschool.cn/redis_all_about/">Redis开发运维实践指南</a></p>
+<h3 id="monitor"><a href="#monitor" class="headerlink" title="monitor"></a>monitor</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -p 6380 monitor</span><br></pre></td></tr></table></figure>
+<h3 id="info"><a href="#info" class="headerlink" title="info"></a>info</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Server：运行的redis实例一些信息，包括：redis版本，操作系统信息，端口，GCC版本，配置文件路径等；</span><br><span class="line"></span><br><span class="line">Clients：redis客户端信息，包括：已连接客户端数量，阻塞客户端数量等；</span><br><span class="line"></span><br><span class="line">Memory：使用内存，峰值内存，内存碎片率，内存分配方式。这几个参数都非常重要；</span><br><span class="line"></span><br><span class="line">Persistence：AOF和RDB持久化信息；</span><br><span class="line"></span><br><span class="line">Stats：一些统计信息，最重要三个参数：OPS(instantaneous_ops_per_sec)，keyspace_hits和keyspace_misses两个参数反应缓存命中率；</span><br><span class="line"></span><br><span class="line">Replication：redis集群信息；</span><br><span class="line"></span><br><span class="line">CPU：CPU相关信息；</span><br><span class="line"></span><br><span class="line">Keyspace：redis中各个DB里key的信息；</span><br></pre></td></tr></table></figure>
+<h3 id="config"><a href="#config" class="headerlink" title="config"></a>config</h3><p>config是一个非常有价值的命令，主要体现在对redis的运维。因为生产环境一般是不允许随意重启的，不能因为需要调优一些参数就修改conf配置文件并重启。redis作者早就想到了这一点，通过config命令能热修改一些配置，不需要重启redis实例，可以通过如下命令查看哪些参数可以热修改：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config get *</span><br></pre></td></tr></table></figure>
+<p>
+                
+            
+        
+        
+            </p></div> 
+            <div class="article-more-link">
+                <a href="/wiki/9f1cda4d/#more" onclick="onclickRoute(event, '/wiki/9f1cda4d/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-平台工具 | 工程架构和工具/中间件_组件/Docker/005.系统镜像" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6-%E7%BB%84%E4%BB%B6/">中间件_组件</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6-%E7%BB%84%E4%BB%B6/Docker/">Docker</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2018/12/" onclick="onclickRoute(event, '/archives/2018/12/')">
+            <time datetime="2018-12-14T13:55:57.000Z" itemprop="datePublished">2018-12-14</time>
+        </a>
+    </div>
+
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/48daff93/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/48daff93/" onclick="onclickRoute(event, '/wiki/48daff93/')">docker系统镜像[D]</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p></p><h2 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://dev.aliyun.com/detail.html?spm=5176.1971733.2.22.4884464bc4qgot&amp;repoId=1271">镜像地址</a></p>
+<ul>
+<li>拉取镜像</li>
+<li>启动镜像</li>
+</ul>
+<p>
+                
+            
+        
+        
+            </p></div> 
+            <div class="article-more-link">
+                <a href="/wiki/48daff93/#more" onclick="onclickRoute(event, '/wiki/48daff93/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
 <article id="post-平台工具 | 工程架构和工具/中间件_组件/Docker/002.Docker环境-Ubuntu16安装Docker环境" class="article article-type-post">
     
     <!-- 支持csv数据的表格化显示 -->
@@ -174,6 +480,159 @@
             </p></ul></div> 
             <div class="article-more-link">
                 <a href="/wiki/55e61c2b/#more" onclick="onclickRoute(event, '/wiki/55e61c2b/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-平台工具 | 工程架构和工具/中间件_组件/Docker/003.Docker环境其他中间件使用" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6-%E7%BB%84%E4%BB%B6/">中间件_组件</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6-%E7%BB%84%E4%BB%B6/Docker/">Docker</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2018/12/" onclick="onclickRoute(event, '/archives/2018/12/')">
+            <time datetime="2018-12-12T03:55:57.000Z" itemprop="datePublished">2018-12-12</time>
+        </a>
+    </div>
+
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/a662171a/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/a662171a/" onclick="onclickRoute(event, '/wiki/a662171a/')">Docker环境其他中间件使用</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p></p><h2 id="1-Docker镜像仓库搭建"><a href="#1-Docker镜像仓库搭建" class="headerlink" title="1. Docker镜像仓库搭建"></a>1. Docker镜像仓库搭建</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /opt/data/registry  //创建目录</span><br><span class="line"></span><br><span class="line">docker run -d \</span><br><span class="line">  -p 5000:5000 \</span><br><span class="line">  --restart=always \</span><br><span class="line">  --name docker-registry \</span><br><span class="line">  -v /data/docker-registry:/var/lib/registry \</span><br><span class="line">  registry:2</span><br><span class="line">-d : 让容器可以后台运行</span><br><span class="line">-p ：指定映射端口（前者是宿主机的端口号，后者是容器的端口号）</span><br><span class="line">-v ：数据挂载（前者是宿主机的目录，后者是容器的目录）</span><br><span class="line">--name : 为运行的容器命名</span><br></pre></td></tr></table></figure>
+<h2 id="2-redis"><a href="#2-redis" class="headerlink" title="2. redis"></a>2. redis</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run --name some-redis -d redis </span><br><span class="line">docker run -d --name redis-server -p 6379:6379 redis --requirepass <span class="string">&quot;mypassword&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-mysql"><a href="#3-mysql" class="headerlink" title="3. mysql"></a>3. mysql</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://dev.aliyun.com/detail.html?spm=5176.1972343.2.36.sjIQu3&amp;repoId=1239">阿里云镜像仓库地址</a></p>
+<ul>
+<li>配置docker使用阿里云镜像地址</li>
+<p>
+                
+            
+        
+        
+            </p></ul></div> 
+            <div class="article-more-link">
+                <a href="/wiki/a662171a/#more" onclick="onclickRoute(event, '/wiki/a662171a/#more')">Read More</a>
             </div>
         
         <footer class="article-footer">
@@ -458,159 +917,6 @@
             <p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.cnblogs.com/niloay/p/6261784.html">Dockerfile创建镜像</a></p>
 <p>Dockerfile</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># This dockerfile uses the ubuntu image</span><br><span class="line"># VERSION 2 - EDITION 1</span><br><span class="line"># Author: docker_user</span><br><span class="line"># Command format: Instruction [arguments / command] ..</span><br><span class="line"></span><br><span class="line"># Base image to use, this must be set as the first line</span><br><span class="line">FROM ubuntu</span><br><span class="line"></span><br><span class="line"># Maintainer: docker_user &lt;docker_user at email.com&gt; (@docker_user)</span><br><span class="line">MAINTAINER docker_user docker_user@email.com</span><br><span class="line"></span><br><span class="line"># Commands to update the image</span><br><span class="line">#RUN echo &quot;deb http://archive.ubuntu.com/ubuntu/ raring main universe&quot; &gt;&gt; /etc/apt/sources.list</span><br><span class="line">#RUN apt-get update &amp;&amp; apt-get install -y nginx</span><br><span class="line">#RUN echo &quot;\ndaemon off;&quot; &gt;&gt; /etc/nginx/nginx.conf</span><br><span class="line"></span><br><span class="line"># Commands when creating a new container</span><br><span class="line">#CMD /usr/sbin/nginx</span><br><span class="line"></span><br><span class="line">ENV JAVA_HOME=/opt/tools/jdk1.8.0_131</span><br><span class="line">ENV PATH=$JAVA_HOME/bin:$PATH</span><br><span class="line">ENV CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br><span class="line"></span><br><span class="line"># docker build -t nova/jdk .</span><br><span class="line"># docker run -it --name my-java -d java</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-
-<!-- 添加表格样式 -->
-<style type="text/css">
-.table-container table {
-    border: 2px solid #dfe1e2;
-    /* min-width: 70%; */
-}
-._table {
-    border: 2px solid #dfe1e2;
-}
-._table th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-._table td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-.table-container th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-.table-container td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-</style>
-
-
-    
-        
-<article id="post-平台工具 | 工程架构和工具/中间件_组件/Docker/003.Docker环境其他中间件使用" class="article article-type-post">
-    
-    <!-- 支持csv数据的表格化显示 -->
-    
-    
-    <div class="article-inner post-body">
-        
-        
-            <header class="article-header page-indent">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6-%E7%BB%84%E4%BB%B6/">中间件_组件</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/%E4%B8%AD%E9%97%B4%E4%BB%B6-%E7%BB%84%E4%BB%B6/Docker/">Docker</a>
-    </div>
-
-                        
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        
-        <a href="/archives/2018/12/" onclick="onclickRoute(event, '/archives/2018/12/')">
-            <time datetime="2018-12-12T03:55:57.000Z" itemprop="datePublished">2018-12-12</time>
-        </a>
-    </div>
-
-
-
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_page_pv">...</span>    
-                        
-                        
-                        <div class="article-meta-button view-mode-toggle" style="float: right;">
-                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
-                            <a href="/wiki/a662171a/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
-                        </div>
-                        <script>
-                        (function() {
-                            // 检查是否在整站模式（有container或fullpage=1参数）
-                            var container = document.getElementById('container');
-                            var urlParams = new URLSearchParams(window.location.search);
-                            var isFullPage = urlParams.get('fullpage') === '1';
-                            
-                            if (container || isFullPage || window.location.hash) {
-                                // 整站模式，显示单页按钮
-                                document.querySelector('.to-fullpage').style.display = 'none';
-                                document.querySelector('.to-singlepage').style.display = 'inline';
-                            }
-                        })();
-                        </script>
-                    </div>
-                
-                
-    <!-- 如果title是数字开头，则去掉数字 -->
-    
-    
-        
-    
-
-    
-        <h1 itemprop="name headline">
-            <a class="article-title" href="/wiki/a662171a/" onclick="onclickRoute(event, '/wiki/a662171a/')">Docker环境其他中间件使用</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry page-indent" itemprop="articleBody text">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <p></p><h2 id="1-Docker镜像仓库搭建"><a href="#1-Docker镜像仓库搭建" class="headerlink" title="1. Docker镜像仓库搭建"></a>1. Docker镜像仓库搭建</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /opt/data/registry  //创建目录</span><br><span class="line"></span><br><span class="line">docker run -d \</span><br><span class="line">  -p 5000:5000 \</span><br><span class="line">  --restart=always \</span><br><span class="line">  --name docker-registry \</span><br><span class="line">  -v /data/docker-registry:/var/lib/registry \</span><br><span class="line">  registry:2</span><br><span class="line">-d : 让容器可以后台运行</span><br><span class="line">-p ：指定映射端口（前者是宿主机的端口号，后者是容器的端口号）</span><br><span class="line">-v ：数据挂载（前者是宿主机的目录，后者是容器的目录）</span><br><span class="line">--name : 为运行的容器命名</span><br></pre></td></tr></table></figure>
-<h2 id="2-redis"><a href="#2-redis" class="headerlink" title="2. redis"></a>2. redis</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run --name some-redis -d redis </span><br><span class="line">docker run -d --name redis-server -p 6379:6379 redis --requirepass <span class="string">&quot;mypassword&quot;</span></span><br></pre></td></tr></table></figure>
-<h2 id="3-mysql"><a href="#3-mysql" class="headerlink" title="3. mysql"></a>3. mysql</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://dev.aliyun.com/detail.html?spm=5176.1972343.2.36.sjIQu3&amp;repoId=1239">阿里云镜像仓库地址</a></p>
-<ul>
-<li>配置docker使用阿里云镜像地址</li>
-<p>
-                
-            
-        
-        
-            </p></ul></div> 
-            <div class="article-more-link">
-                <a href="/wiki/a662171a/#more" onclick="onclickRoute(event, '/wiki/a662171a/#more')">Read More</a>
             </div>
         
         <footer class="article-footer">
@@ -1231,302 +1537,8 @@
 
 
     
-        
-<article id="post-数据 | 核心生产要素/[1]数据工程/03.处理与计算/[0]数据处理/DataStore/Kafka/关于最近kafka的几个问题" class="article article-type-post">
-    
-    <!-- 支持csv数据的表格化显示 -->
-    
-    
-    <div class="article-inner post-body">
-        
-        
-            <header class="article-header page-indent">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/">数据 | 核心生产要素</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/">[1]数据工程</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/">03.处理与计算</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">[0]数据处理</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/">DataStore</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE-%E6%A0%B8%E5%BF%83%E7%94%9F%E4%BA%A7%E8%A6%81%E7%B4%A0/1-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/03-%E5%A4%84%E7%90%86%E4%B8%8E%E8%AE%A1%E7%AE%97/0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/DataStore/Kafka/">Kafka</a>
-    </div>
-
-                        
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        
-        <a href="/archives/2018/12/" onclick="onclickRoute(event, '/archives/2018/12/')">
-            <time datetime="2018-12-04T15:11:57.000Z" itemprop="datePublished">2018-12-04</time>
-        </a>
-    </div>
-
-
-
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_page_pv">...</span>    
-                        
-                        
-                        <div class="article-meta-button view-mode-toggle" style="float: right;">
-                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
-                            <a href="/wiki/8f0740a3/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
-                        </div>
-                        <script>
-                        (function() {
-                            // 检查是否在整站模式（有container或fullpage=1参数）
-                            var container = document.getElementById('container');
-                            var urlParams = new URLSearchParams(window.location.search);
-                            var isFullPage = urlParams.get('fullpage') === '1';
-                            
-                            if (container || isFullPage || window.location.hash) {
-                                // 整站模式，显示单页按钮
-                                document.querySelector('.to-fullpage').style.display = 'none';
-                                document.querySelector('.to-singlepage').style.display = 'inline';
-                            }
-                        })();
-                        </script>
-                    </div>
-                
-                
-    <!-- 如果title是数字开头，则去掉数字 -->
-    
-    
-        
-    
-
-    
-        <h1 itemprop="name headline">
-            <a class="article-title" href="/wiki/8f0740a3/" onclick="onclickRoute(event, '/wiki/8f0740a3/')">Kafka问题总结</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry page-indent" itemprop="articleBody text">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <p></p><h3 id="consumer提交offset失败"><a href="#consumer提交offset失败" class="headerlink" title="consumer提交offset失败"></a>consumer提交offset失败</h3><p>使用spring-kafka, 配置auto.commit =true 会使用kafka.client的 自动提交机制(5秒钟提交一次-具体细节<strong>TODO</strong>).</p>
-<p>然而一定时间取出的消息没有处理完,长时间没能提交成功???</p>
-<p>现象: offset没有提交成功, consumer的协调者处于dead状态, 恢复后但还能正常消费,但offset一直未能提交.</p>
-<h4 id="Socket一个线程导致消费挂起"><a href="#Socket一个线程导致消费挂起" class="headerlink" title="Socket一个线程导致消费挂起"></a>Socket一个线程导致消费挂起</h4><p>现象: Socket一直处于read状态,导致往队列push消息失败,取出来的消息也没有处理, 没有提交offset.</p>
-<p>可能1. socket read timeout 设置后, 其他线程就处于 Timewait 状态,但是 实际设置connect 超时时间在 socket 超时时间之后, 所以没有超时时间相当于.</p>
-<p>
-                
-            
-        
-        
-            </p></div> 
-            <div class="article-more-link">
-                <a href="/wiki/8f0740a3/#more" onclick="onclickRoute(event, '/wiki/8f0740a3/#more')">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-
-<!-- 添加表格样式 -->
-<style type="text/css">
-.table-container table {
-    border: 2px solid #dfe1e2;
-    /* min-width: 70%; */
-}
-._table {
-    border: 2px solid #dfe1e2;
-}
-._table th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-._table td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-.table-container th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-.table-container td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-</style>
-
-
-    
-        
-<article id="post-算法 | AI与机器学习/2|机器学习/005.一些杂文/1.机器学习认识" class="article article-type-post">
-    
-    <!-- 支持csv数据的表格化显示 -->
-    
-    
-    <div class="article-inner post-body">
-        
-        
-            <header class="article-header page-indent">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">算法 | AI与机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">2|机器学习</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95-AI%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/005-%E4%B8%80%E4%BA%9B%E6%9D%82%E6%96%87/">005.一些杂文</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a>
-    </div>
-
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        
-        <a href="/archives/2018/12/" onclick="onclickRoute(event, '/archives/2018/12/')">
-            <time datetime="2018-12-02T14:55:57.000Z" itemprop="datePublished">2018-12-02</time>
-        </a>
-    </div>
-
-
-
-                        <meta name="keywords" content="机器学习">
-                        
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_page_pv">...</span>    
-                        
-                        
-                        <div class="article-meta-button view-mode-toggle" style="float: right;">
-                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
-                            <a href="/wiki/a607e931/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
-                        </div>
-                        <script>
-                        (function() {
-                            // 检查是否在整站模式（有container或fullpage=1参数）
-                            var container = document.getElementById('container');
-                            var urlParams = new URLSearchParams(window.location.search);
-                            var isFullPage = urlParams.get('fullpage') === '1';
-                            
-                            if (container || isFullPage || window.location.hash) {
-                                // 整站模式，显示单页按钮
-                                document.querySelector('.to-fullpage').style.display = 'none';
-                                document.querySelector('.to-singlepage').style.display = 'inline';
-                            }
-                        })();
-                        </script>
-                    </div>
-                
-                
-    <!-- 如果title是数字开头，则去掉数字 -->
-    
-    
-        
-    
-
-    
-        <h1 itemprop="name headline">
-            <a class="article-title" href="/wiki/a607e931/" onclick="onclickRoute(event, '/wiki/a607e931/')">机器学习认识</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry page-indent" itemprop="articleBody text">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-            
-        
-        
-            <p>传统上认为，让计算机完成某一件事情的唯一方法，就是详细的记录某个算法（就是一系列的指令，告诉计算机能做什么），并解释其如何运行。<br>﻿<br>但机器学习算法不一样：通过从数据中推断，计算机自己会弄明白该怎么做。掌握的数据越多，它们的工作就越顺利。<br>现在我们不给计算机编程。它们自己给自己编程。<br>﻿<br>﻿<br>机器学习是以数据为依据，数据越多，能学的也越多、没有数据，那就什么也学不到。<br>有了大数据？那就有太多的东西可以学习。<br>﻿<br>只要有足够的数据，一段只有几百行代码的程序可以轻易生成几百万代码的程序。而且可以不同问题持续的去编写不同的程序。<br>﻿<br>机器学习有时会和人工智能混淆。严格来说，机器学习是人工智能的子集，但机器学习发展如此壮大且成功，现已超越以前它引以为傲的母领域。人工智能的目标是教会计算机做现在人类能做的事，并且做的更好。而机器学习可以说就是其中最重要的事：不持续学习。计算机就永远无法跟上人类的步伐，有了学习，一切都与时俱进。<br>﻿<br><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.zhihu.com/question/20691338">知乎-机器学习该怎么入门</a><br>﻿<br><a target="_blank" rel="external nofollow noopener noreferrer" href="http://ml.memect.com/article/machine-learning-guide.html#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">机器学习入门资源不完全汇总</a></p>
-
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-
-<!-- 添加表格样式 -->
-<style type="text/css">
-.table-container table {
-    border: 2px solid #dfe1e2;
-    /* min-width: 70%; */
-}
-._table {
-    border: 2px solid #dfe1e2;
-}
-._table th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-._table td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-.table-container th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-.table-container td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-</style>
-
-
-    
         <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/list/page/53/">« Prev</a><a class="page-number" href="/list/">1</a><span class="space">&hellip;</span><a class="page-number" href="/list/page/52/">52</a><a class="page-number" href="/list/page/53/">53</a><span class="page-number current">54</span><a class="page-number" href="/list/page/55/">55</a><a class="page-number" href="/list/page/56/">56</a><span class="space">&hellip;</span><a class="page-number" href="/list/page/59/">59</a><a class="extend next" rel="next" href="/list/page/55/">Next »</a>
+        <a class="extend prev" rel="prev" href="/list/page/53/">« Prev</a><a class="page-number" href="/list/">1</a><span class="space">&hellip;</span><a class="page-number" href="/list/page/52/">52</a><a class="page-number" href="/list/page/53/">53</a><span class="page-number current">54</span><a class="page-number" href="/list/page/55/">55</a><a class="page-number" href="/list/page/56/">56</a><span class="space">&hellip;</span><a class="page-number" href="/list/page/60/">60</a><a class="extend next" rel="next" href="/list/page/55/">Next »</a>
         </nav>
     
 </section>

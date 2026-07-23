@@ -18,13 +18,11 @@
 <meta property="og:site_name" content="Novus·Wiki | 个人知识库">
 <meta property="og:description" content="Quinoa主题驱动的个人知识库，记录技术学习与思考...">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i.loli.net/2019/04/10/5cae0b055889f.jpg">
 <meta property="article:published_time" content="2019-02-24T01:56:24.000Z">
 <meta property="article:modified_time" content="2026-04-23T14:13:12.125Z">
 <meta property="article:author" content="Novus">
 <meta property="article:tag" content="组件安装配置">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2019/04/10/5cae0b055889f.jpg">
     <style>
     body { margin: 0; padding: 20px; }
     #post-main { max-width: 1000px; margin: 0 auto; }
@@ -98,7 +96,7 @@
 }
 </script>
 
-<article id="post-平台工具 | 工程架构和工具/中间件_组件/组件安装配置/Redis安装及集群配置" class="article article-type-post">
+<article id="post-平台工具 | 工程架构和工具/中间件_组件/组件安装配置/ActiveMQ" class="article article-type-post">
     
     <!-- 支持csv数据的表格化显示 -->
     
@@ -111,7 +109,7 @@
                 <strong class="toc-title" id="toc-title" style="cursor: pointer;">Catalogue<span id="toc-title-icon" class="fa fa-angle-down" style="margin-left: 8px; font-size: 12px;"></span></strong>
                 <div id="toc-content" class="toc-content">
                     
-                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE"><span class="toc-text">Redis的安装及集群配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-text">Redis的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis%E7%9A%84%E5%90%AF%E5%8A%A8%EF%BC%9A"><span class="toc-text">Redis的启动：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-cli%E8%BF%9E%E6%8E%A5"><span class="toc-text">Redis-cli连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-cluster%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA"><span class="toc-text">Redis-cluster集群搭建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B8%A9%E5%9D%91%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98"><span class="toc-text">踩坑解决问题</span></a></li></ol></li></ol>
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ActiveMQ"><span class="toc-text">ActiveMQ</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8"><span class="toc-text">安装启动</span></a></li></ol></li></ol>
                     
                 </div>
             </div>
@@ -193,75 +191,14 @@
         
         
         
-            <h1 id="Redis的安装及集群配置"><a href="#Redis的安装及集群配置" class="headerlink" title="Redis的安装及集群配置"></a>Redis的安装及集群配置</h1><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://redis.io/">官方下载地址</a></p>
-<h3 id="Redis的安装"><a href="#Redis的安装" class="headerlink" title="Redis的安装"></a>Redis的安装</h3><p>Redis是c语言开发的，安装需要c语言的编译环境,如果没有gcc需要在线安装: <code>yum install gcc-c++</code></p>
-<p>安装步骤：</p>
-<ul>
-<li>第一步：Redis的源码包上传到Linux</li>
-<li>第二步：解压缩: <code>tar -xvf redis-3.0.0.tar.gz -C /usr/local</code></li>
-<li>第三步：编译 进入redis源码目录: <code>make</code> </li>
-<li><p>第四步：安装: <code>make install PREFIX=/usr/local/redis</code></p>
-<p>  PREFIX参数指定redis的安装目录,一般软件安装到/usr目录下</p>
-<h3 id="Redis的启动："><a href="#Redis的启动：" class="headerlink" title="Redis的启动："></a>Redis的启动：</h3></li>
-<li><p>前端启动：在redis的安装目录下直接启动redis-server<br><code>[root@localhost bin]# ./redis-server</code></p>
-</li>
-<li><p>后台启动：</p>
+            <h1 id="ActiveMQ"><a href="#ActiveMQ" class="headerlink" title="ActiveMQ"></a>ActiveMQ</h1><p><a target="_blank" rel="external nofollow noopener noreferrer" href="http://activemq.apache.org/download.html">官方下载地址</a></p>
+<h3 id="安装启动"><a href="#安装启动" class="headerlink" title="安装启动"></a>安装启动</h3><ul>
+<li>第一步：把ActiveMQ 的压缩包上传到Linux系统</li>
+<li>第二步：解压缩</li>
+<li>第三步：启动<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">使用bin目录下的activemq命令启动：</span><br><span class="line">[root@localhost bin]# ./activemq start</span><br><span class="line">关闭：</span><br><span class="line">[root@localhost bin]# ./activemq stop</span><br><span class="line">查看状态：</span><br><span class="line">[root@localhost bin]# ./activemq status</span><br><span class="line"></span><br><span class="line">进入管理后台：http://IP:8161/admin</span><br><span class="line">用户名：admin</span><br><span class="line">密码：admin</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">把 /root/redis-3.0.0/redis.conf 复制到 /usr/local/redis/bin 目录下 cp redis.conf /usr/local/redis/bin/</span><br><span class="line">修改 redis.conf 文件 设置 daemonize yes</span><br><span class="line">启动时添加配置文件 ./redis-server redis.conf</span><br></pre></td></tr></table></figure>
-<ul>
-<li>关闭：<code>[root@localhost bin]# ./redis-cli shutdown</code></li>
-</ul>
-<h3 id="Redis-cli连接"><a href="#Redis-cli连接" class="headerlink" title="Redis-cli连接"></a>Redis-cli连接</h3><ul>
-<li>默认连接localhost运行在6379端口的redis服务<br><code>[root@localhost bin]# ./redis-cli</code></li>
-<li><p>自定义连接端口<br><code>[root@localhost bin]# ./redis-cli -h 192.168.25.153 -p 6379</code></p>
-<p>  -h：连接的服务器的地址<br>  -p：服务的端口号</p>
-</li>
-<li>远程连接：注释掉 <code>redis.conf</code> 中 <code>bind 127.0.0.1</code> 设置 <code>protected-mode no</code> 重启redis</li>
-<li>设置密码：配置文件中添加 <code>requirepass 你的密码</code> 重启redis<h3 id="Redis-cluster集群搭建"><a href="#Redis-cluster集群搭建" class="headerlink" title="Redis-cluster集群搭建"></a>Redis-cluster集群搭建</h3>由于容错机制，Redis集群中至少应该有三个节点。要保证集群的高可用，需要每个节点有一个备份机，因此，Redis集群至少需要6台服务器。</li>
-</ul>
-<p><img src="https://i.loli.net/2019/04/10/5cae0b055889f.jpg" alt="2bba02ae-da6c-3747-987d-6a4a3851ec6f.jpg"></p>
-<p>由于个人只有一台服务器，只有搭建伪分布式：一台服务器运行6个redis实例，需要修改Redis的端口号7001-7006</p>
-<ul>
-<li>集群搭建环境</li>
-</ul>
-<ol>
-<li><p>使用Ruby脚本搭建集群,需要Ruby的运行环境,安装Ruby</p>
-<p> <code>yum install ruby</code></p>
-<p> <code>yum install rubygems</code></p>
-</li>
-<li><p>安装Ruby脚本运行使用的包</p>
-<p> 上传所需Ruby库文件redis-3.0.0.gem 安装执行： <code>[root@localhost ~]# gem install redis-3.0.0.gem</code></p>
-</li>
-<li><p>进入 <code>redis-3.0.0/src</code> 会找到<code>redis-trib.rb</code>文件，为了方便可将其拷贝至下一步创建的 <code>redis-cluster</code> 文件夹中</p>
-</li>
-</ol>
-<ul>
-<li>搭建Redis集群</li>
-</ul>
-<ol>
-<li><p>拷贝创建6个Redis实例，方便管理将刚复制的6个Redis拷贝至创建 <code>redis-cluster</code> 文件夹，每个实例运行在不同的端口。需要修改redis.conf配置文件：把 <code>cluster-enabled yes</code> 前的注释去掉，并且分别修改端口 <code>port 7001~7006</code></p>
-</li>
-<li><p>创建开启集群的脚本：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost redis-cluster]# vim start-all.sh</span><br><span class="line">cd redis01</span><br><span class="line">./redis-server redis.conf</span><br><span class="line">cd ..</span><br><span class="line">cd redis02</span><br><span class="line">./redis-server redis.conf</span><br><span class="line">cd ..</span><br><span class="line">cd redis03</span><br><span class="line">./redis-server redis.conf</span><br><span class="line">cd ..</span><br><span class="line">cd redis04</span><br><span class="line">./redis-server redis.conf</span><br><span class="line">cd ..</span><br><span class="line">cd redis05</span><br><span class="line">./redis-server redis.conf</span><br><span class="line">cd ..</span><br><span class="line">cd redis06</span><br><span class="line">./redis-server redis.conf</span><br><span class="line">cd ..</span><br><span class="line">//修改脚本文件可执行权限</span><br><span class="line">[root@localhost redis-cluster]# chmod u+x start-all.sh</span><br></pre></td></tr></table></figure></li>
-<li>执行脚本启动每个redis实例</li>
-<li><p>使用ruby脚本搭建集群</p>
-<p> <code>./redis-trib.rb create --replicas 1 123.207.121.135:7001 123.207.121.135:7002 123.207.121.135:7003 123.207.121.135:7004 123.207.121.135:7005 123.207.121.135:7006</code></p>
-</li>
-<li><p>连接集群</p>
-<p> <code>[root@localhost redis-cluster]# redis01/redis-cli -p 7002 -c</code></p>
-</li>
-<li>关闭集群<br> 杀进程：<code>ps -aux|grep redis</code> <code>kill -9 进程ID</code></li>
-</ol>
-<h3 id="踩坑解决问题"><a href="#踩坑解决问题" class="headerlink" title="踩坑解决问题"></a>踩坑解决问题</h3><ul>
-<li>重启服务器后重新启动ruby脚本报错<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ERR] Node 123.207.121.135:7001 is not empty. Either the node already knows other nodes (check with CLUSTER NODES) or contains some key in database 0.</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>由于非正常关闭集群，需删除每个节点中的数据文件aof、rdb、nodes.conf，实在不行就只有重装一遍…</p>
-<ul>
-<li>强制停止redis快照导致，redis运行用户没有权限写rdb文件或者磁盘空间满了<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MISCONF Redis is configured to save RDB snapshots, but is currently not able to persist on disk. Commands that may modify the data set are disabled. Please check Redis logs for details about the error.</span><br></pre></td></tr></table></figure>
-解决办法：修改配置文件 stop-writes-on-bgsave-error no</li>
-</ul>
+<p>登录用户名密码可在 <code>conf/jetty-realm.properties</code> 文件中修改</p>
 
             </div>
         
@@ -274,19 +211,19 @@
     
 <nav id="article-nav">
     
-        <a href="/wiki/f88cea9d/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/f88cea9d/')">
+        <a href="/wiki/9f7d9039/" id="article-nav-newer" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/9f7d9039/')">
             <strong class="article-nav-caption">Newer</strong>
             <div class="article-nav-title">
                 
-                    Maven的安装配置使用
+                    Redis的安装及集群配置
                 
             </div>
         </a>
     
     
-        <a href="/wiki/4cf78043/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/4cf78043/')">
+        <a href="/wiki/ed1edd3e/" id="article-nav-older" class="article-nav-link-wrap" onclick="onclickRoute(event, '/wiki/ed1edd3e/')">
             <strong class="article-nav-caption">Older</strong>
-            <div class="article-nav-title">SpringMVC总结</div>
+            <div class="article-nav-title">Ngix安装</div>
         </a>
     
 </nav>

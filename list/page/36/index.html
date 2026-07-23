@@ -68,6 +68,326 @@
 <body>
     <section id="post-main">
         
+<article id="post-平台工具 | 工程架构和工具/MicroService/技术框架/Netty/004.Netty线程模型和其他WebServer的比较" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/">MicroService</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/">技术框架</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/">Netty</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Netty/" rel="tag">Netty</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2022/03/" onclick="onclickRoute(event, '/archives/2022/03/')">
+            <time datetime="2022-03-08T17:13:34.000Z" itemprop="datePublished">2022-03-09</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="Netty">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/7961baa4/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/7961baa4/" onclick="onclickRoute(event, '/wiki/7961baa4/')">Netty线程模型和其他WebServer的比较</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p></p><p>大家都知晓的是 Netty比其他Server相对性能好，可定制化高. 那具体区别在哪里。</p>
+<p>详细探讨下,上一篇详细讲了Netty的线程模型.</p>
+<h2 id="一、Netty线程模型"><a href="#一、Netty线程模型" class="headerlink" title="一、Netty线程模型."></a>一、Netty线程模型.</h2><p>一个boss线程、32(核数2倍)个work线程.</p>
+<p>下面看看其他WebSever的线程模型.</p>
+<h2 id="二、webmvc"><a href="#二、webmvc" class="headerlink" title="二、webmvc"></a>二、webmvc</h2><p>常见的 spring-webmvc.  (用于 后端API、graphqlServer)</p>
+<p>
+                
+            
+        
+        
+            </p></div> 
+            <div class="article-more-link">
+                <a href="/wiki/7961baa4/#more" onclick="onclickRoute(event, '/wiki/7961baa4/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
+<article id="post-平台工具 | 工程架构和工具/MicroService/技术框架/Netty/003.Netty线程模型" class="article article-type-post">
+    
+    <!-- 支持csv数据的表格化显示 -->
+    
+    
+    <div class="article-inner post-body">
+        
+        
+            <header class="article-header page-indent">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/">MicroService</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/">技术框架</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6/Netty/">Netty</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Netty/" rel="tag">Netty</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        
+        <a href="/archives/2022/03/" onclick="onclickRoute(event, '/archives/2022/03/')">
+            <time datetime="2022-03-08T17:13:34.000Z" itemprop="datePublished">2022-03-09</time>
+        </a>
+    </div>
+
+
+
+                        <meta name="keywords" content="Netty">
+                        
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_page_pv">...</span>    
+                        
+                        
+                        <div class="article-meta-button view-mode-toggle" style="float: right;">
+                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
+                            <a href="/wiki/b4375f89/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
+                        </div>
+                        <script>
+                        (function() {
+                            // 检查是否在整站模式（有container或fullpage=1参数）
+                            var container = document.getElementById('container');
+                            var urlParams = new URLSearchParams(window.location.search);
+                            var isFullPage = urlParams.get('fullpage') === '1';
+                            
+                            if (container || isFullPage || window.location.hash) {
+                                // 整站模式，显示单页按钮
+                                document.querySelector('.to-fullpage').style.display = 'none';
+                                document.querySelector('.to-singlepage').style.display = 'inline';
+                            }
+                        })();
+                        </script>
+                    </div>
+                
+                
+    <!-- 如果title是数字开头，则去掉数字 -->
+    
+    
+        
+    
+
+    
+        <h1 itemprop="name headline">
+            <a class="article-title" href="/wiki/b4375f89/" onclick="onclickRoute(event, '/wiki/b4375f89/')">Netty线程模型</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry page-indent" itemprop="articleBody text">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p></p><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><h3 id="1-Java线程模型演进"><a href="#1-Java线程模型演进" class="headerlink" title="1. Java线程模型演进"></a>1. Java线程模型演进</h3><p>单线程、多线程、线程池.</p>
+<h3 id="2-Reactor模型"><a href="#2-Reactor模型" class="headerlink" title="2. Reactor模型"></a>2. Reactor模型</h3><p>无论是c++还是Java、nodejs 编写的网络框架, 大多数都是基于Reactor模型进行设计和开发.</p>
+<blockquote>
+<p>Reactor模式基于事件驱动，特别适合处理海量的 IO事件.</p>
+</blockquote>
+<p>
+                
+            
+        
+        
+            </p></div> 
+            <div class="article-more-link">
+                <a href="/wiki/b4375f89/#more" onclick="onclickRoute(event, '/wiki/b4375f89/#more')">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- 添加表格样式 -->
+<style type="text/css">
+.table-container table {
+    border: 2px solid #dfe1e2;
+    /* min-width: 70%; */
+}
+._table {
+    border: 2px solid #dfe1e2;
+}
+._table th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+._table td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+.table-container th {
+    font-weight: bold;
+    border: 1px solid #dfe1e2;
+    padding: 0.5em;
+    background-color: #f0f0f0;
+}
+.table-container td{
+    border: 1px solid #dfe1e2;
+    padding: 10px 5px;
+}
+</style>
+
+
+    
+        
 <article id="post-算法 | AI与机器学习/2|机器学习/002.数学知识/线性代数/向量点乘与叉乘的概念及几何意义" class="article article-type-post">
     
     <!-- 支持csv数据的表格化显示 -->
@@ -1292,298 +1612,8 @@
 
 
     
-        
-<article id="post-平台工具 | 工程架构和工具/MicroService/微服务架构/基础/001.线程池" class="article article-type-post">
-    
-    <!-- 支持csv数据的表格化显示 -->
-    
-    
-    <div class="article-inner post-body">
-        
-        
-            <header class="article-header page-indent">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/">MicroService</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/">微服务架构</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%9F%BA%E7%A1%80/">基础</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/MicroService/" rel="tag">MicroService</a>
-    </div>
-
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        
-        <a href="/archives/2021/06/" onclick="onclickRoute(event, '/archives/2021/06/')">
-            <time datetime="2021-06-21T14:56:24.000Z" itemprop="datePublished">2021-06-21</time>
-        </a>
-    </div>
-
-
-
-                        <meta name="keywords" content="MicroService">
-                        
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_page_pv">...</span>    
-                        
-                        
-                        <div class="article-meta-button view-mode-toggle" style="float: right;">
-                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
-                            <a href="/wiki/de7c53fe/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
-                        </div>
-                        <script>
-                        (function() {
-                            // 检查是否在整站模式（有container或fullpage=1参数）
-                            var container = document.getElementById('container');
-                            var urlParams = new URLSearchParams(window.location.search);
-                            var isFullPage = urlParams.get('fullpage') === '1';
-                            
-                            if (container || isFullPage || window.location.hash) {
-                                // 整站模式，显示单页按钮
-                                document.querySelector('.to-fullpage').style.display = 'none';
-                                document.querySelector('.to-singlepage').style.display = 'inline';
-                            }
-                        })();
-                        </script>
-                    </div>
-                
-                
-    <!-- 如果title是数字开头，则去掉数字 -->
-    
-    
-        
-    
-
-    
-        <h1 itemprop="name headline">
-            <a class="article-title" href="/wiki/de7c53fe/" onclick="onclickRoute(event, '/wiki/de7c53fe/')">线程池</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry page-indent" itemprop="articleBody text">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-            
-        
-        
-            <h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://tech.meituan.com/2016/11/18/disruptor.html">高性能队列——Disruptor</a></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.conversantmedia<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>disruptor<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.14<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/com.lmax/disruptor --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.lmax<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>disruptor<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-
-<!-- 添加表格样式 -->
-<style type="text/css">
-.table-container table {
-    border: 2px solid #dfe1e2;
-    /* min-width: 70%; */
-}
-._table {
-    border: 2px solid #dfe1e2;
-}
-._table th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-._table td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-.table-container th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-.table-container td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-</style>
-
-
-    
-        
-<article id="post-平台工具 | 工程架构和工具/MicroService/微服务架构/工作流引擎/001.readme" class="article article-type-post">
-    
-    <!-- 支持csv数据的表格化显示 -->
-    
-    
-    <div class="article-inner post-body">
-        
-        
-            <header class="article-header page-indent">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/">平台工具 | 工程架构和工具</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/">MicroService</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/">微服务架构</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E5%85%B7-%E5%B7%A5%E7%A8%8B%E6%9E%B6%E6%9E%84%E5%92%8C%E5%B7%A5%E5%85%B7/MicroService/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E/">工作流引擎</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/MicroService/" rel="tag">MicroService</a>
-    </div>
-
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        
-        <a href="/archives/2021/06/" onclick="onclickRoute(event, '/archives/2021/06/')">
-            <time datetime="2021-06-21T14:56:24.000Z" itemprop="datePublished">2021-06-21</time>
-        </a>
-    </div>
-
-
-
-                        <meta name="keywords" content="MicroService">
-                        
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_page_pv">...</span>    
-                        
-                        
-                        <div class="article-meta-button view-mode-toggle" style="float: right;">
-                            <a href="?fullpage=1" class="to-fullpage"><i class="fa fa-th-large"></i> 整站</a>
-                            <a href="/wiki/b2ddd39d/" target="_blank" class="to-singlepage" style="display: none; color: #b8bcc0;"><i class="fa fa-file-o"></i> 单页</a>
-                        </div>
-                        <script>
-                        (function() {
-                            // 检查是否在整站模式（有container或fullpage=1参数）
-                            var container = document.getElementById('container');
-                            var urlParams = new URLSearchParams(window.location.search);
-                            var isFullPage = urlParams.get('fullpage') === '1';
-                            
-                            if (container || isFullPage || window.location.hash) {
-                                // 整站模式，显示单页按钮
-                                document.querySelector('.to-fullpage').style.display = 'none';
-                                document.querySelector('.to-singlepage').style.display = 'inline';
-                            }
-                        })();
-                        </script>
-                    </div>
-                
-                
-    <!-- 如果title是数字开头，则去掉数字 -->
-    
-    
-        
-    
-
-    
-        <h1 itemprop="name headline">
-            <a class="article-title" href="/wiki/b2ddd39d/" onclick="onclickRoute(event, '/wiki/b2ddd39d/')">工作流引擎</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry page-indent" itemprop="articleBody text">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-            
-        
-        
-            <p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.zhihu.com/question/20857512">什么情况下，需要使用工作流引擎？</a></p>
-<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://zhuanlan.zhihu.com/p/147622328">几大工作流引擎对比</a></p>
-<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://xie.infoq.cn/article/201c0ac6772e07f81c31cbe07">流程引擎介绍</a></p>
-
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-
-<!-- 添加表格样式 -->
-<style type="text/css">
-.table-container table {
-    border: 2px solid #dfe1e2;
-    /* min-width: 70%; */
-}
-._table {
-    border: 2px solid #dfe1e2;
-}
-._table th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-._table td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-.table-container th {
-    font-weight: bold;
-    border: 1px solid #dfe1e2;
-    padding: 0.5em;
-    background-color: #f0f0f0;
-}
-.table-container td{
-    border: 1px solid #dfe1e2;
-    padding: 10px 5px;
-}
-</style>
-
-
-    
         <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/list/page/35/">« Prev</a><a class="page-number" href="/list/">1</a><span class="space">&hellip;</span><a class="page-number" href="/list/page/34/">34</a><a class="page-number" href="/list/page/35/">35</a><span class="page-number current">36</span><a class="page-number" href="/list/page/37/">37</a><a class="page-number" href="/list/page/38/">38</a><span class="space">&hellip;</span><a class="page-number" href="/list/page/59/">59</a><a class="extend next" rel="next" href="/list/page/37/">Next »</a>
+        <a class="extend prev" rel="prev" href="/list/page/35/">« Prev</a><a class="page-number" href="/list/">1</a><span class="space">&hellip;</span><a class="page-number" href="/list/page/34/">34</a><a class="page-number" href="/list/page/35/">35</a><span class="page-number current">36</span><a class="page-number" href="/list/page/37/">37</a><a class="page-number" href="/list/page/38/">38</a><span class="space">&hellip;</span><a class="page-number" href="/list/page/60/">60</a><a class="extend next" rel="next" href="/list/page/37/">Next »</a>
         </nav>
     
 </section>
